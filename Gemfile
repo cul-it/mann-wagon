@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'locomotivecms_wagon', '2.0.0-beta.2'
+gem 'celluloid', '0.16.0'
 
 group :development do
   # Mac OS X
