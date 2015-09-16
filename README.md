@@ -22,7 +22,7 @@ $ bundle install
 
 1. Serve the site
    ```shellsession
-$ bundle exec wagon serve
+$ bundle exec wagon serve -v
 ```
 
 1. Visit the Mann website at [http://localhost:3333](http://localhost:3333)
