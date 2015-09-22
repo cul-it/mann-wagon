@@ -1,0 +1,19 @@
+%header
+  .cul-logotype{href: "/"}
+    %a.cu-logo{title: "Cornell.edu Homepage", href: "http://cornell.edu"}
+    %a.cul-unit{title: "Mann Library Homepage", href: "/"}
+      %h2.cul-brand.one-lib Cornell University Library
+      %h1.cul-brand.mann-brand {{ site.seo_title | upcase }}
+
+  %form.search-site{role: "search"}
+    %input.search-term{type: "text", placeholder: "Search for books, articles, databases, journals and more"}
+      %button{type: "button"} Search
+
+%nav{role: "navigation"}
+  %ul.site-nav
+    %li.site-nav-link
+      %a{href: "#"} Use the Library
+    %li.site-nav-link
+      %a{href: "#"} Services &amp; Support
+    %li.site-nav-link
+      %a{href: "#"} Events

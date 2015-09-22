@@ -1,0 +1,97 @@
+header {
+  padding: .3em 0;
+  background-color: white;
+
+  @include grid-span(2, 1);
+
+  @include breakpoint($mini) {
+    @include grid-span(6, 1);
+  }
+}
+
+.cul-logotype {
+  padding-left: .3em;
+  @include grid-span(1, 1);
+
+  @include breakpoint($mini) {
+    @include grid-span(4, 1);
+    @include clearfix;
+  }
+
+  @include breakpoint($cramped) {
+    @include grid-span(7, 1);
+  }
+}
+
+.cu-logo {
+  float: left;
+  margin-right: .4em;
+  width: 45px;
+  height: 45px;
+  background-image: url(../images/cul-brand/cu-logo-red-mobile@2x.png);
+  background-size: cover;
+
+  @include breakpoint($cramped) {
+    margin-right: .7em;
+    width: 100px;
+    height: 100px;
+    background-image: url(../images/cul-brand/cu-logo-red@2x.png);
+  }
+}
+
+.cul-brand {
+  font-family: $montserrat;
+  line-height: 1em;
+}
+
+.one-lib {
+  margin: .3em 0 0;
+  font-size: .7em;
+  font-weight: normal;
+  color: $medium-gray;
+
+  @include breakpoint($cramped) {
+    margin-top: 1.5em;
+    font-size: .82em;
+  }
+}
+
+.mann-brand {
+  margin: 0;
+  font-size: 1.7em;
+  font-weight: normal;
+  color: black;
+
+  @include breakpoint($cramped) {
+    font-size: 2em;
+  }
+}
+
+.search-site {
+  margin-top: 1.2em;
+  font-size: .5em;
+
+  @include grid-span(1, 2);
+
+  @include breakpoint($mini) {
+    @include grid-span(2, 5);
+  }
+
+  @include breakpoint($cramped) {
+    margin-top: 2.8em;
+    font-size: .7em;
+
+    @include grid-span(5, 8);
+  }
+}
+
+input.search-term {
+  display: none;
+
+  @include breakpoint($cramped) {
+    float: left;
+    display: inline-block;
+    width: 60%;
+    margin: .15em .5em 0;
+  }
+}

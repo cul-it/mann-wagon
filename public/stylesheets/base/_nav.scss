@@ -1,0 +1,29 @@
+nav {
+  margin-bottom: .5em;
+  text-align: center;
+  background: $cream;
+
+  @include breakpoint($cramped) {
+    text-align: right;
+  }
+}
+
+.site-nav {
+  @include breakpoint($cramped) {
+    padding-right: 1em;
+  }
+}
+
+.site-nav-link {
+  display: inline-block;
+  padding: .4em 0;
+
+  // all but the first
+  & + li {
+    padding-left: 1em;
+  }
+
+  @include breakpoint($cramped) {
+    padding: .8em;
+  }
+}
