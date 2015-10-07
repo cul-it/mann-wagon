@@ -52,6 +52,29 @@
     Available Now
     %span.now {{ now | timezone: 'Eastern' | date: '%-I:%M %p' }}
 
+  .available-grp.available-study
+    %h5 Places to Study
+
+    %ul.available-now
+      %li.available-item
+        %span.badge.badge-success +
+        Individual Rooms
+      %li.unavailable-item
+        %span.badge.badge-success +
+        Group Rooms
+      %li.unavailable-item
+        %span.badge.badge-error x
+        Graduate Rooms
+      %li.available-item
+        %span.badge.badge-success +
+        One Button Studio
+      %li.unavailable-item
+        %span.badge.badge-error x
+        Interview Room
+      %li.available-item
+        %span.badge.badge-success +
+        Bissett Workstations
+
   .available-grp.available-consultation
     %h5 Consultation
 
@@ -79,29 +102,6 @@
       %li.available-item
         %span.badge.badge-success 27
         Laptops
-
-  .available-grp.available-study
-    %h5 Places to Study
-
-    %ul.available-now
-      %li.available-item
-        %span.badge.badge-success +
-        Individual Rooms
-      %li.unavailable-item
-        %span.badge.badge-success +
-        Group Rooms
-      %li.unavailable-item
-        %span.badge.badge-error x
-        Graduate Rooms
-      %li.available-item
-        %span.badge.badge-success +
-        One Button Studio
-      %li.unavailable-item
-        %span.badge.badge-error x
-        Interview Room
-      %li.available-item
-        %span.badge.badge-success +
-        Bissett Workstations
 
 %section.events-exhibits
   %h4.lead-in Events &amp; Exhibits

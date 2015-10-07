@@ -68,3 +68,23 @@ section {
     width: 90%;
   }
 }
+
+.available-grp {
+  margin-bottom: 1em;
+}
+
+.available-study {
+  @include grid-span(3, 2);
+}
+
+.available-consultation {
+  @include float-span(1, 1, 'first');
+  // @include float-span(1, 'first'); // Really should be using this - check wagon logs
+  // @include grid-span(1, 1);
+}
+
+.available-computers {
+  @include float-span(1, 1, 'first');
+  // @include float-span(1, 'first'); // Really should be using this
+  // @include grid-span(1, 1);
+}
