@@ -74,11 +74,16 @@ header {
   @include grid-span(1, 2);
 
   @include breakpoint($mini) {
+    padding-right: 1em;
+    text-align: right;
+
     @include grid-span(2, 5);
   }
 
   @include breakpoint($cramped) {
     margin-top: 2.8em;
+    padding-right: 0;
+    text-align: left;
     font-size: .7em;
 
     @include grid-span(5, 8);

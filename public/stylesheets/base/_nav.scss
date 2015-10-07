@@ -1,15 +1,21 @@
 nav {
   margin-bottom: .5em;
+  font-weight: bold;
+  font-size: .9em;
   text-align: center;
   background: $cream;
 
-  @include breakpoint($cramped) {
+  @include breakpoint($mini) {
     text-align: right;
+  }
+
+  @include breakpoint($cramped) {
+    font-size: 1.2em;
   }
 }
 
 .site-nav {
-  @include breakpoint($cramped) {
+  @include breakpoint($mini) {
     padding-right: 1em;
   }
 }
