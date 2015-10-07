@@ -1,28 +1,37 @@
 section {
-  margin-top: 3em;
-  padding-top: 1em;
-  border-top: solid 1px $light-gray;
+  margin-top: 2em;
+
+  @include grid-span(4, 1);
 }
 
 .lead-in {
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 .more-link {
   font-size: .8em;
 }
 
+.more-hours {
+  font-weight: normal;
+}
+
 .todays-hours {
+  @include grid-span(1, 1);
+
   @include breakpoint($cramped) {
     @include grid-span(2, 1);
   }
 }
 
 .todays-date {
-  float: left;
-  margin: .3em .3em 0;
+  margin: 0 .3em 0 0;
+}
 
-  @include breakpoint($cramped) {
-    float: none;
-  }
+.take-me-now {
+  @include grid-span(2, 3);
+}
+
+.feature {
+  @include grid-span(4, 1);
 }

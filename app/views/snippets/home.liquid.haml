@@ -1,10 +1,11 @@
 .todays-hours
-  %h5.todays-date {{ now | date: '%b %-d, %Y' }}
+  %h5.todays-date
+    {{ now | date: '%b %-d, %Y' }}
+    %a.more-link.more-hours{href: "#"} All Hours >>
 
   %p.hours-now
     %span.badge.badge-hours-open Open
     until Midnight
-    %a.more-link.more-hours{href: "#"} Full Hours >>
 
 %button.take-me-now Reserve a Room
 
