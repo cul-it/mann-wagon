@@ -17,7 +17,7 @@ locales: [en]
 # This converts the server's time to the site's time zone in templates
 # The TimeZone class from Rail's ActiveSupport is used to interpret the string
 # Sample timezone strings: Tokyo, Beijing, Moscow, Cairo, Paris, Pacific Time (US & Canada)
-# timezone: Paris
+timezone: US/Eastern
 
 # For SEO purposes, sites may wish to add a relevant string to the <title> tag
 # And include <meta type="keywords"> and <meta type="description">
