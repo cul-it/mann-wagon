@@ -10,9 +10,6 @@ section {
 
 .more-link {
   font-size: .8em;
-}
-
-.more-hours {
   font-weight: normal;
 }
 
@@ -29,9 +26,45 @@ section {
 }
 
 .take-me-now {
+  font-size: .8em;
+
   @include grid-span(2, 3);
 }
 
+.course-reserves {
+  margin-top: 1em;
+  font-size: .8em;
+
+  @include breakpoint($mini) {
+    @include grid-span(2, 1);
+  }
+}
+
+.lib-guides {
+  @include clearfix;
+}
+
+.guides-group-one {
+  @include breakpoint($mini) {
+    @include grid-span(3, 1);
+  }
+}
+
+.guides-group-two {
+  @include breakpoint($mini) {
+    @include grid-span(3, 4);
+  }
+}
+
 .feature {
+  margin-top: 2em;
   @include grid-span(4, 1);
+}
+
+.side-image {
+  .side-image-content {
+    margin-left: 1em;
+    padding-bottom: 0;
+    width: 90%;
+  }
 }
