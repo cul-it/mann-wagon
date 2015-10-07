@@ -66,6 +66,11 @@ section {
     margin-left: 1em;
     padding-bottom: 0;
     width: 90%;
+
+    @include breakpoint($full) {
+      margin-right: 1em;
+      width: 61%
+    }
   }
 }
 
