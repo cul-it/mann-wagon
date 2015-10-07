@@ -1,0 +1,33 @@
+// @include sgs-change('include clearfix', true);
+
+* {
+  box-sizing: 'border-box';
+}
+
+// Breakpoints
+$mini: 30em;
+$cramped: 43em;
+$full: 56em;
+$allout: 69em;
+
+// Responsive grids via breakpoint and singularity
+@include add-grid(6 1 3 2);
+@include add-grid(6 at $mini);
+@include add-grid(12 at $cramped);
+@include add-grid(3 6 3 at $full);
+@include add-grid(1 3 5 7 9 at $allout);
+
+@include add-gutter(1/4);
+@include add-gutter(.25 at $full);
+
+// Be sure to enable debug mode for your grid visualization so show up:
+@include sgs-change('debug', true);
+
+body {
+  // @include background-grid($color: lightgray);
+}
+
+main {
+  margin: 0 auto;
+  width: 97%;
+}

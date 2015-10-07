@@ -1,0 +1,48 @@
+footer {
+  padding: 2em 0;
+  color: $light-gray;
+  background: $dark-gray;
+  @include grid-span(4, 1);
+
+  @include breakpoint($mini) {
+    @include grid-span(6, 1);
+  }
+}
+
+.footer-panel {
+  margin-bottom: 1em;
+}
+
+.about-us,
+.featured-plus-haiku,
+.contact-us {
+  @include grid-span(4, 1);
+}
+
+
+.about-us {
+  @include breakpoint($mini) {
+    @include grid-span(3, 1);
+  }
+  @include breakpoint($cramped) {
+    @include grid-span(4, 1);
+  }
+}
+
+.featured-plus-haiku {
+  @include breakpoint($mini) {
+    @include grid-span(3, 4);
+  }
+  @include breakpoint($cramped) {
+    @include grid-span(4, 5);
+  }
+}
+
+.contact-us {
+  @include breakpoint($mini) {
+    @include grid-span(6, 1);
+  }
+  @include breakpoint($cramped) {
+    @include grid-span(4, 9);
+  }
+}

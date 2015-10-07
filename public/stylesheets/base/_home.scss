@@ -1,0 +1,95 @@
+section {
+  margin-top: 2em;
+
+  @include grid-span(4, 1);
+}
+
+.lead-in {
+  font-size: 1.3em;
+}
+
+.more-link {
+  font-size: .8em;
+  font-weight: normal;
+}
+
+.todays-hours {
+  @include grid-span(1, 1);
+
+  @include breakpoint($cramped) {
+    @include grid-span(2, 1);
+  }
+}
+
+.todays-date {
+  margin: 0 .3em 0 0;
+}
+
+.take-me-now {
+  font-size: .8em;
+
+  @include grid-span(2, 3);
+}
+
+.course-reserves {
+  margin-top: 1em;
+  font-size: .8em;
+
+  @include breakpoint($mini) {
+    @include grid-span(2, 1);
+  }
+}
+
+.lib-guides {
+  @include clearfix;
+}
+
+.guides-group-one {
+  @include breakpoint($mini) {
+    @include grid-span(3, 1);
+  }
+}
+
+.guides-group-two {
+  @include breakpoint($mini) {
+    @include grid-span(3, 4);
+  }
+}
+
+.feature {
+  margin-top: 2em;
+  @include grid-span(4, 1);
+}
+
+.side-image {
+  .side-image-content {
+    margin-left: 1em;
+    padding-bottom: 0;
+    width: 90%;
+
+    @include breakpoint($full) {
+      margin-right: 1em;
+      width: 61%
+    }
+  }
+}
+
+.available-grp {
+  margin-bottom: 1em;
+}
+
+.available-study {
+  @include grid-span(3, 2);
+}
+
+.available-consultation {
+  @include float-span(1, 1, 'first');
+  // @include float-span(1, 'first'); // Really should be using this - check wagon logs
+  // @include grid-span(1, 1);
+}
+
+.available-computers {
+  @include float-span(1, 1, 'first');
+  // @include float-span(1, 'first'); // Really should be using this
+  // @include grid-span(1, 1);
+}

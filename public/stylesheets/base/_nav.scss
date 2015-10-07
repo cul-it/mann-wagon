@@ -1,0 +1,35 @@
+nav {
+  margin-bottom: 1em;
+  font-weight: bold;
+  font-size: .9em;
+  text-align: center;
+  background: $cream;
+
+  @include breakpoint($mini) {
+    text-align: right;
+  }
+
+  @include breakpoint($cramped) {
+    font-size: 1.2em;
+  }
+}
+
+.site-nav {
+  @include breakpoint($mini) {
+    padding-right: 1em;
+  }
+}
+
+.site-nav-link {
+  display: inline-block;
+  padding: .4em 0;
+
+  // all but the first
+  & + li {
+    padding-left: 1em;
+  }
+
+  @include breakpoint($cramped) {
+    padding: .8em;
+  }
+}
