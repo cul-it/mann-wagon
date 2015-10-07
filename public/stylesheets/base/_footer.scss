@@ -2,7 +2,7 @@ footer {
   padding: 2em 0;
   color: $light-gray;
   background: $dark-gray;
-  @include grid-span(2, 1);
+  @include grid-span(4, 1);
 
   @include breakpoint($mini) {
     @include grid-span(6, 1);
@@ -16,7 +16,7 @@ footer {
 .about-us,
 .featured-plus-haiku,
 .contact-us {
-  @include grid-span(2, 1);
+  @include grid-span(4, 1);
 }
 
 
