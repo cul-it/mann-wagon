@@ -6,6 +6,12 @@ published: true
 {% extends parent %}
 
 {% block 'main' %}
+
+%p.lead
+  {% editable_text "lead paragraph", hint: "Keep it short and sweet" %}
+  One stop shop for all Mann hours
+  {% endeditable_text %}
+
 %a << Prev Week
 %a Next Week >>
 
