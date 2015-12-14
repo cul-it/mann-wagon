@@ -19,7 +19,7 @@ header {
   }
 
   @include breakpoint($cramped) {
-    @include grid-span(7, 1);
+    @include grid-span(8, 1);
   }
 }
 
@@ -41,29 +41,31 @@ header {
 
 .cul-brand {
   font-family: $montserrat;
-  line-height: 1em;
+  line-height: 1.1em;
 }
 
 .one-lib {
   margin: .3em 0 0;
+  padding-left: 4em;
   font-size: .7em;
   font-weight: normal;
   color: $medium-gray;
 
   @include breakpoint($cramped) {
-    margin-top: 1.5em;
-    font-size: .82em;
+    margin-top: .8em;
+    font-size: 1.1em;
   }
 }
 
 .mann-brand {
   margin: 0;
   font-size: 1.7em;
-  font-weight: normal;
+  font-weight: 500;
+  font-family: p22-underground;
   color: black;
 
   @include breakpoint($cramped) {
-    font-size: 2em;
+    font-size: 2.6em;
   }
 }
 
@@ -86,7 +88,7 @@ header {
     text-align: left;
     font-size: .7em;
 
-    @include grid-span(5, 8);
+    @include grid-span(4, 9);
   }
 }
 
