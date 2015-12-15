@@ -10,18 +10,18 @@
 ###### Local Dev
 
 1. Clone this repo
-    ```shellsession
+    ```bash
 $ git clone git@github.com:cul-it/mann-wagon.git
 ```
 
 1. Install gems
-   ```shellsession
+   ```bash
 $ cd <clone>
 $ bundle install
 ```
 
 1. Serve the site
-   ```shellsession
+   ```bash
 $ bundle exec wagon serve -v
 ```
 
@@ -39,12 +39,12 @@ Add `email` and `api_key` for development environment
 
 ###### Sync from a remote Engine
 
-```shellsession
-$ wagon sync development
+```bash
+$ bundle exec wagon sync development
 ```
 
 ###### Deploy to a remote Engine
 
-```shellsession
-$ wagon deploy development
+```bash
+$ bundle exec wagon deploy development
 ```
