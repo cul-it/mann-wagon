@@ -1,0 +1,97 @@
+---
+title: Hours
+published: true
+---
+!!!
+{% extends parent %}
+
+{% block 'main' %}
+
+%p.lead
+  {% editable_text "lead paragraph", hint: "Keep it short and sweet" %}
+  One stop shop for all Mann hours
+  {% endeditable_text %}
+
+%a << Prev Week
+%a Next Week >>
+
+%table
+  %thead
+    %tr
+      %th
+      %th Sun
+      %th Mon
+      %th Tue
+      %th Wed
+      %th Thu
+      %th Fri
+      %th Sat
+  %tbody
+    %tr
+      %td Library & Circulation
+      %td 8am - 12am
+      %td 8am - 12am
+      %td 8am - 12am
+      %td 8am - 12am
+      %td 8am - 12am
+      %td 8am - 12am
+      %td 8am - 12am
+    %tr
+      %td Lobby
+      %td 8am - 12am
+      %td 8am - 12am
+      %td 8am - 12am
+      %td 8am - 12am
+      %td 8am - 12am
+      %td 8am - 12am
+      %td 8am - 12am
+
+.alert.hours-exceptions
+  %h4 Exceptions
+  %hr
+    %h5
+      Spring Break
+      %span Mar 28 - Apr 4 2015
+    %ul.list-unstyled.list-date-time
+      %li
+        %span.time 8a - 5p
+        %span.date Monday - Friday
+      %li
+        %span.time 1p - 5p
+        %span.date Saturday Mar 28
+      %li
+        %span.time CLOSED
+        %span.date Sunday Mar 29
+      %li
+        %span.time 1p - 5p
+        %span.date Saturday Apr 4
+      %li
+        %span.time Noon - 6p
+        %span.date Sunday Apr 5
+    %hr
+      %h5
+        Study &amp; Exams
+        %span May 7-19 2015
+      %ul.list-unstyled.list-date-time
+        %li
+          %span.time Noon - 2a
+          %span.date Sunday May 10
+        %li
+          %span.time 8a - 2a
+          %span.date Mon May 11 - Thu May 14
+        %li
+          %span.time 8a - 8p
+          %span.date Friday May 15
+        %li
+          %span.time 11a - 8p
+          %span.date Saturday May 16
+        %li
+          %span.time Noon - 2a
+          %span.date Sunday May 17
+        %li
+          %span.time 8a - Midnight
+          %span.date Monday May 18
+        %li
+          %span.time 8a - 5p
+          %span.date Tuesday May 19
+{% endblock %}
