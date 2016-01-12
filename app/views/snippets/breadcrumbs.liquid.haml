@@ -1,0 +1,8 @@
+%nav.breadcrumbs
+  {% for crumb in page.breadcrumbs %}
+  {% unless forloop.last %}
+  {% link_to crumb.handle %} →
+  {% else %}
+  {{ crumb.title }}
+  {% endunless %}
+  {% endfor %}

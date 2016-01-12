@@ -2,12 +2,7 @@ nav {
   margin-bottom: 1em;
   font-weight: bold;
   font-size: .9em;
-  text-align: center;
   background: $cream;
-
-  @include breakpoint($mini) {
-    text-align: right;
-  }
 
   @include breakpoint($cramped) {
     font-size: 1.2em;
@@ -15,8 +10,11 @@ nav {
 }
 
 .site-nav {
+  text-align: center;
+
   @include breakpoint($mini) {
     padding-right: 1em;
+    text-align: right;
   }
   .link {
     display: inline-block;
@@ -49,3 +47,9 @@ nav {
 //     padding: .8em;
 //   }
 // }
+
+.breadcrumbs {
+  font-size: .8em;
+  font-weight: normal;
+  background: none;
+}
