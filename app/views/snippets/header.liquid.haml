@@ -11,9 +11,4 @@
 
 %nav{role: "navigation"}
   %ul.site-nav
-    %li.site-nav-link
-      %a{href: "#"} Use the Library
-    %li.site-nav-link
-      %a{href: "#"} Services &amp; Support
-    %li.site-nav-link
-      %a{href: "#"} Events
+    {% nav site, no_wrapper: true, active_class: active %}
