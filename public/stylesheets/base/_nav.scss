@@ -1,16 +1,24 @@
 nav {
+  // margin-bottom: 1em;
+  // font-weight: bold;
+  // font-size: .9em;
+  // background: $cream;
+
+  // @include breakpoint($cramped) {
+  //   font-size: 1.2em;
+  // }
+}
+
+.site-nav {
   margin-bottom: 1em;
   font-weight: bold;
   font-size: .9em;
+  text-align: center;
   background: $cream;
 
   @include breakpoint($cramped) {
     font-size: 1.2em;
   }
-}
-
-.site-nav {
-  text-align: center;
 
   @include breakpoint($mini) {
     padding-right: 1em;
@@ -80,4 +88,9 @@ nav {
   li {
     margin: .3em 0;
   }
+}
+
+.hours-weekly-nav {
+  @include clearfix;
+  font-size: .7em;
 }

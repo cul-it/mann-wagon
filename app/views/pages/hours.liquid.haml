@@ -1,0 +1,116 @@
+---
+title: Hours
+handle: hours
+published: true
+listed: false
+---
+{% extends layouts/default %}
+
+{% block 'main' %}
+
+%nav.hours-weekly-nav.button-group
+  %label
+    %input{:name => "button-group", :type => "radio", :value => "prev-week"}
+      %span.button-group-item << Prev Week
+  %label
+    %input{:name => "button-group", :type => "radio", :value => "next-week"}
+      %span.button-group-item Next Week >>
+
+%table.hours-weekly
+  %thead
+    %tr
+      %th
+      %th
+        Jan 10
+        %span.day-of-week Sun
+      %th
+        Jan 11
+        %span.day-of-week Mon
+      %th
+        Jan 12
+        %span.day-of-week Tue
+      %th.today
+        Jan 13
+        %span.day-of-week Wed
+      %th
+        Jan 14
+        %span.day-of-week Thu
+      %th
+        Jan 15
+        %span.day-of-week Fri
+      %th
+        Jan 16
+        %span.day-of-week Sat
+  %tbody
+    %tr
+      %td Library & Circulation
+      %td 8am - 12am
+      %td 8am - 12am
+      %td 8am - 12am
+      %td.today 8am - 12am
+      %td 8am - 12am
+      %td 8am - 12am
+      %td 8am - 12am
+    %tr
+      %td Lobby
+      %td 8am - 12am
+      %td 8am - 12am
+      %td 8am - 12am
+      %td.today 8am - 12am
+      %td 8am - 12am
+      %td 8am - 12am
+      %td 8am - 12am
+
+.hours-exceptions.flash-alert
+  %h4 Exceptions
+
+  %h5
+    Spring Break
+    %span.badge-alert Mar 25 - Apr 3 2016
+
+  %table.datetime-exceptions
+    %tbody
+      %tr
+        %td.date Monday - Friday
+        %td.time 8am - 5pm
+      %tr
+        %td.date Saturday Mar 26
+        %td.time 1pm - 5pm
+      %tr
+        %td.date Sunday Mar 27
+        %td.time CLOSED
+      %tr
+        %td.date Saturday Apr 2
+        %td.time 1pm - 5pm
+      %tr
+        %td.date Sunday Apr 3
+        %td.time Noon - 6pm
+
+  %h5
+    Study &amp; Exams
+    %span.badge-alert May 15-24 2016
+
+  %table.datetime-exceptions
+    %tbody
+      %tr
+        %td.date Sunday May 15
+        %td.time Noon - 2am
+      %tr
+        %td.date Mon - Thu May 16 - 19
+        %td.time 8am - 2am
+      %tr
+        %td.date Friday May 20
+        %td.time 8am - 8pm
+      %tr
+        %td.date Saturday May 21
+        %td.time 11am - 8pm
+      %tr
+        %td.date Sunday May 22
+        %td.time Noon - 2am
+      %tr
+        %td.date Monday May 23
+        %td.time 8am - Midnight
+      %tr
+        %td.date Tuesday May 24
+        %td.time 8am - 5pm
+{% endblock %}

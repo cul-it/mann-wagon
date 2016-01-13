@@ -1,7 +1,8 @@
 ---
 title: Home
-published: true
 handle: home
+published: true
+listed: false
 ---
 {% extends 'layouts/default' %}
 
@@ -9,7 +10,7 @@ handle: home
 .todays-hours
   %h5.todays-date
     {{ now | date: '%b %-d, %Y' }}
-    %a.more-link.more-hours{href: "#"} All Hours >>
+    %a.more-link.more-hours{href: "{% path_to hours %}"} All Hours >>
 
   %p.hours-now
     %span.badge.badge-hours-open Open
