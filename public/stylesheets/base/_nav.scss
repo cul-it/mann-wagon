@@ -53,3 +53,31 @@ nav {
   font-weight: normal;
   background: none;
 }
+
+.landing-description {
+  @include breakpoint($cramped) {
+    @include grid-span(6, 1);
+  }
+}
+
+.sections {
+  margin-top: 1em;
+  padding: .5em 1em;
+  @include columns(2);
+  background: lighten($cream, 5%);
+  @include border-top-radius(5px);
+  @include border-bottom-radius(5px);
+
+  @include breakpoint($cramped) {
+    margin-top: 0;
+    @include grid-span(6, 7);
+  }
+
+  @include breakpoint($full) {
+    @include columns(3);
+  }
+
+  li {
+    margin: .3em 0;
+  }
+}
