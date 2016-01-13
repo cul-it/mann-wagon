@@ -1,0 +1,14 @@
+{% comment %} Breadcrumbs and page title for all but home page {% endcomment %}
+{% unless page.depth == 0 %}
+  <nav class="breadcrumbs">
+    {% for crumb in page.breadcrumbs %}
+      {% unless forloop.last %}
+        {% link_to crumb.handle %} →
+      {% else %}
+        {{ crumb.title }}
+      {% endunless %}
+    {% endfor %}
+  </nav>
+
+  <h2 class="page-title">{{ page.title }}</h2>
+{% endunless %}

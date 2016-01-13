@@ -1,35 +1,96 @@
 nav {
+  // margin-bottom: 1em;
+  // font-weight: bold;
+  // font-size: .9em;
+  // background: $cream;
+
+  // @include breakpoint($cramped) {
+  //   font-size: 1.2em;
+  // }
+}
+
+.site-nav {
   margin-bottom: 1em;
   font-weight: bold;
   font-size: .9em;
   text-align: center;
   background: $cream;
 
-  @include breakpoint($mini) {
-    text-align: right;
-  }
-
   @include breakpoint($cramped) {
     font-size: 1.2em;
   }
-}
 
-.site-nav {
   @include breakpoint($mini) {
     padding-right: 1em;
+    text-align: right;
+  }
+  .link {
+    display: inline-block;
+    padding: .4em;
+
+    @include breakpoint($cramped) {
+      padding: .8em;
+    }
+
+    &.active {
+      background: darken($cream, 10%);
+    }
   }
 }
 
-.site-nav-link {
-  display: inline-block;
-  padding: .4em 0;
+/**********************************************
+* Keeping these around for reference
+* - if/when we can get nav tag snippet working
+***********************************************/
+// .site-nav-link {
+//   display: inline-block;
+//   padding: .4em 0;
 
-  // all but the first
-  & + li {
-    padding-left: 1em;
+//   // all but the first
+//   & + li {
+//     padding-left: 1em;
+//   }
+
+//   @include breakpoint($cramped) {
+//     padding: .8em;
+//   }
+// }
+
+.breadcrumbs {
+  font-size: .8em;
+  font-weight: normal;
+  background: none;
+}
+
+.landing-description {
+  @include breakpoint($cramped) {
+    @include grid-span(6, 1);
   }
+}
+
+.sections {
+  margin-top: 1em;
+  padding: .5em 1em;
+  @include columns(2);
+  background: lighten($cream, 5%);
+  @include border-top-radius(5px);
+  @include border-bottom-radius(5px);
 
   @include breakpoint($cramped) {
-    padding: .8em;
+    margin-top: 0;
+    @include grid-span(6, 7);
   }
+
+  @include breakpoint($full) {
+    @include columns(3);
+  }
+
+  li {
+    margin: .3em 0;
+  }
+}
+
+.hours-weekly-nav {
+  @include clearfix;
+  font-size: .7em;
 }
