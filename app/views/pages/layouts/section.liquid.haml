@@ -5,15 +5,10 @@ is_layout: true
 {% extends 'layouts/default' %}
 
 {% block main %}
-{% include 'breadcrumbs' %}
-
-%h2.page-title {{ page.title }}
-
 %ul.section-nav
   {% nav page, no_wrapper: true %}
 
 {% editable_text "section_content", hint: "Keep it short and sweet" %}
 Page content here
 {% endeditable_text %}
-
 {% endblock %}

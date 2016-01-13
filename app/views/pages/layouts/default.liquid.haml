@@ -17,6 +17,10 @@ is_layout: false
   %body
     {% include 'header' %}
     %main
+      {% block heading %}
+      {% include 'breadcrumbs-heading' %}
+      {% endblock %}
+
       {% block main %}
       {% endblock %}
     {% include 'footer' %}
