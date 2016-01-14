@@ -13,8 +13,8 @@ listed: false
     %a.more-link.more-hours{href: "{% path_to hours %}"} All Hours >>
 
   %p.hours-now
-    %span.badge.badge-hours-open Open
-    until Midnight
+    %span{ class: "badge {% if mannlib_hours.open == 'Open' %}badge-hours-open{% else %}badge-hours-closed{% endif %}" } {{ mannlib_hours.open }}
+    until {{ mannlib_hours.hours }}
 
 %button.take-me-now Reserve a Room
 
