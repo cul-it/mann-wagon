@@ -1,7 +1,7 @@
 // @include sgs-change('include clearfix', true);
 
 * {
-  box-sizing: 'border-box';
+  @include box-sizing('border-box');
 }
 
 // Breakpoints
@@ -30,4 +30,5 @@ body {
 main {
   margin: 0 auto;
   width: 97%;
+  @include clearfix;
 }

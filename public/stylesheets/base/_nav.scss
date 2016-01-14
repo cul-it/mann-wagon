@@ -70,8 +70,6 @@ nav {
 
 .sections {
   margin-top: 1em;
-  padding: .5em 1em;
-  @include columns(2);
   background: lighten($cream, 5%);
   @include border-top-radius(5px);
   @include border-bottom-radius(5px);
@@ -81,8 +79,17 @@ nav {
     @include grid-span(6, 7);
   }
 
-  @include breakpoint($full) {
-    @include columns(3);
+  ul {
+    padding: .5em 1em;
+    @include columns(2);
+
+    &:empty {
+      padding: 0;
+    }
+
+    @include breakpoint($full) {
+      @include columns(3);
+    }
   }
 
   li {
