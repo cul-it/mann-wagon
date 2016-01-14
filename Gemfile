@@ -22,3 +22,10 @@ group :misc do
   gem 'bourbon', require: 'bourbon'
   gem 'bitters', require: 'bitters'
 end
+
+group :test do
+  gem 'cucumber'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'poltergeist'
+end
