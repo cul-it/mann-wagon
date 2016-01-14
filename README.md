@@ -29,22 +29,30 @@ $ bundle exec wagon serve -v
 
 ### Syncing/Deploying
 
-We'll be using dev Engine at http://mannloco-dev.library.cornell.edu as example
+We'll be using the dev Engine at http://mannloco-dev.library.cornell.edu as an example.
+
+  > See official [Locomotive documentation](https://locomotive-v3.readme.io/docs) for more details on available options for [`sync`](https://locomotive-v3.readme.io/docs/synchronize-content) and [`deploy`](https://locomotive-v3.readme.io/docs/deploy) commands.
 
 ###### Configure environments in `config/deploy.yml`
 
-Add `email` and `api_key` for development environment
+1. Copy the example configuration
 
-> **Don't have an api_key?** What about an account on the remote Engine? [Request one](http://mannloco-dev.library.cornell.edu/locomotive/sign_up) and then you'll find your api-key under [account settings](http://mannloco-dev.library.cornell.edu/locomotive/my_account/edit?_location=%2Flocomotive%2Fsites#api).
+  ```bash
+$ cp config/deploy.yml.example config/deploy.yml
+```
+
+1. Edit `email` and `api_key` for the development environment
+
+  > **Don't have an api_key?** What about an account on the remote Engine? [Request one](http://mannloco-dev.library.cornell.edu/locomotive/sign_up) and then you'll find your api-key under [account settings](http://mannloco-dev.library.cornell.edu/locomotive/my_account/edit?_location=%2Flocomotive%2Fsites#api).
 
 ###### Sync from a remote Engine
 
 ```bash
-$ bundle exec wagon sync development
+$ bundle exec wagon sync development -v
 ```
 
 ###### Deploy to a remote Engine
 
 ```bash
-$ bundle exec wagon deploy development
+$ bundle exec wagon deploy development -v
 ```

@@ -3,3 +3,5 @@ log/*
 dragonfly.log
 
 .sass-cache
+
+deploy.yml

@@ -1,8 +1,8 @@
 development:
   host: http://mannloco-dev.library.cornell.edu
   handle: natural-pebble-3141
-#   email: john@doe.net
-#   api_key: <your api key here>
+  email: john@doe.net
+  api_key: <your api key here>
 # staging:
 #   host: staging.example.com
 #   handle: <your site handle from engine>
