@@ -63,37 +63,51 @@ nav {
 }
 
 .landing-description {
+  @include breakpoint($mini) {
+    @include grid-span(4, 1);
+  }
+
   @include breakpoint($cramped) {
-    @include grid-span(6, 1);
+    @include grid-span(9, 1);
   }
 }
 
 .sections {
   margin-top: 1em;
+  font-size: .9em;
   background: lighten($cream, 5%);
   @include border-top-radius(5px);
   @include border-bottom-radius(5px);
 
-  @include breakpoint($cramped) {
+  @include breakpoint($mini) {
     margin-top: 0;
-    @include grid-span(6, 7);
+    @include grid-span(2, 5);
+  }
+
+  @include breakpoint($cramped) {
+    @include grid-span(3, 10);
   }
 
   ul {
     padding: .5em 1em;
-    @include columns(2);
 
     &:empty {
       padding: 0;
     }
-
-    @include breakpoint($full) {
-      @include columns(3);
-    }
   }
 
   li {
-    margin: .3em 0;
+    padding: .6em 0;
+    line-height: 1em;
+    border-bottom: solid 1px darken($cream, 1%);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    a {
+      display: block;
+    }
   }
 }
 
