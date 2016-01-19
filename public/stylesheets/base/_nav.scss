@@ -62,7 +62,8 @@ nav {
   background: none;
 }
 
-.landing-description {
+.landing-description,
+.page-content {
   @include breakpoint($mini) {
     @include grid-span(4, 1);
   }
@@ -108,7 +109,17 @@ nav {
     a {
       display: block;
     }
+
+    &.link.active a {
+      color: darken($cream, 40%)
+    }
   }
+}
+
+.parent-section {
+  margin-bottom: 0;
+  padding: .5em 0 0 .9em;
+  font-size: 1.1em;
 }
 
 .hours-weekly-nav {
