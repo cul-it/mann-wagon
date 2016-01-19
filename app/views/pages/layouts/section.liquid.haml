@@ -5,10 +5,10 @@ is_layout: true
 {% extends 'layouts/default' %}
 
 {% block main %}
-%ul.section-nav
-  {% nav page, no_wrapper: true %}
+.page-content
+  {% editable_text "page_content", hint: "Keep it short and sweet" %}
+  Page content here
+  {% endeditable_text %}
 
-{% editable_text "section_content", hint: "Keep it short and sweet" %}
-Page content here
-{% endeditable_text %}
+{% include 'section-nav' %}
 {% endblock %}
