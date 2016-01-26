@@ -70,6 +70,10 @@ header {
 .cul-brand {
   font-family: $montserrat;
   line-height: 1.1em;
+
+  a {
+    color: inherit;
+  }
 }
 
 .mann-logo {

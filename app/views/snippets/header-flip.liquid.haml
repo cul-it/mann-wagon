@@ -4,9 +4,11 @@
       %span.cu Cornell University
   .cul-logotype{href: "/"}
     %a.mann-logo{title: "Mann Library Homepage", href: "/"}
-    %a.cul-unit{title: "Mann Library Homepage", href: "/"}
-      %h1.cul-brand.mann-brand.flip {{ site.seo_title | upcase }}
-      %h2.cul-brand.one-lib.flip Cornell University Library
+
+    %h1.cul-brand.mann-brand.flip
+      %a{title: "Home", href: "/"} {{ site.seo_title | upcase }}
+    %h2.cul-brand.one-lib.flip
+      %a{title: "Cornell University Library", href: "http://library.cornell.edu"} Cornell University Library
 
   %form.search-site{role: "search"}
     %input.search-term{type: "text", placeholder: "Search for books, articles, databases, journals and more"}
