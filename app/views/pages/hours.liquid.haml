@@ -7,59 +7,43 @@ listed: false
 {% extends layouts/default %}
 
 {% block 'main' %}
-
+{{ 'main.js' | javascript_tag }}
 %nav.hours-weekly-nav.button-group
   %label
-    %input{:name => "button-group", :type => "radio", :value => "prev-week"}
+    %input{:name => "button-group", :type => "radio", :value => "prev-week", :disabled => true}
       %span.button-group-item << Prev Week
   %label
     %input{:name => "button-group", :type => "radio", :value => "next-week"}
       %span.button-group-item Next Week >>
 
-%table.hours-weekly
+{% for weeks in mannlib_weekly_hours.weekly_hours %}
+{% if forloop.first %}
+{% assign day_today = now | date: "%w" | plus: 0 %}
+{% else %}
+{% assign day_today = nil %}
+{% endif %}
+%table.hours-weekly{ :style => "{% if day_today == nil %}display:none;{% endif %}" }
   %thead
     %tr
       %th
-      %th
-        Jan 10
-        %span.day-of-week Sun
-      %th
-        Jan 11
-        %span.day-of-week Mon
-      %th
-        Jan 12
-        %span.day-of-week Tue
-      %th.today
-        Jan 13
-        %span.day-of-week Wed
-      %th
-        Jan 14
-        %span.day-of-week Thu
-      %th
-        Jan 15
-        %span.day-of-week Fri
-      %th
-        Jan 16
-        %span.day-of-week Sat
+        {% for week in weeks %}
+        {% for date in week[0] %}
+        %th{ class: "{%if forloop.index == day_today %}today{% endif %}" }
+          {{ date | date: '%b %d' }}
+          %span.day-of-week {{ date | date: "%a" }}
+        {% endfor %}
+        {% endfor %}
   %tbody
+    {% for week in weeks %}
+    {% for day in week[1] %}
     %tr
-      %td Library & Circulation
-      %td 8am - 12am
-      %td 8am - 12am
-      %td 8am - 12am
-      %td.today 8am - 12am
-      %td 8am - 12am
-      %td 8am - 12am
-      %td 8am - 12am
-    %tr
-      %td Lobby
-      %td 8am - 12am
-      %td 8am - 12am
-      %td 8am - 12am
-      %td.today 8am - 12am
-      %td 8am - 12am
-      %td 8am - 12am
-      %td 8am - 12am
+      %td {{ day[0] }}
+      {% for time in day[1] %}
+      %td{ class: "{% if forloop.index == day_today %}today{% endif %}" } {{ time }}
+      {% endfor %}
+      {% endfor %}
+    {% endfor %}
+{% endfor %}
 
 .hours-exceptions.flash-alert
   %h4 Exceptions
