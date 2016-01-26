@@ -18,7 +18,7 @@ listed: false
 
 {% for weeks in mannlib_weekly_hours.weekly_hours %}
 {% if forloop.first %}
-{% assign day_today = now | date: "%w" | plus: 0 %}
+{% assign day_today = now | date: "%w" | plus: 1 %}
 {% else %}
 {% assign day_today = nil %}
 {% endif %}

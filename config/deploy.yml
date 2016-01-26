@@ -13,3 +13,8 @@ development:
 #   handle: <your site handle from engine>
 #   email: john@doe.net
 #   api_key: <your api key here>
+local:
+  host: http://localhost:3000
+  handle: harmonious-geyser-8845
+  email: tap87@cornell.edu
+  api_key: 16d67706304b394fe3b2b9d3b1810cc7d4c157a4
