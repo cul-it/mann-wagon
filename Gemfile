@@ -21,4 +21,5 @@ group :misc do
   # gem 'redcarpet', require: 'redcarpet'
   gem 'bourbon', require: 'bourbon'
   gem 'bitters', require: 'bitters'
+  gem 'mann_liquid_extensions', :git => 'git@github.com:cul-it/mann_liquid_extensions'
 end

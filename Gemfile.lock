@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:cul-it/mann_liquid_extensions
+  revision: b54f8a40e50043a584737bb617ef93421c79a8fa
+  specs:
+    mann_liquid_extensions (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -172,6 +178,7 @@ DEPENDENCIES
   bourbon
   celluloid (= 0.16.0)
   locomotivecms_wagon (~> 2.0)
+  mann_liquid_extensions!
 
 BUNDLED WITH
    1.10.6
