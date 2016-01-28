@@ -14,7 +14,6 @@ header {
 }
 
 .cu-banner {
-  margin-bottom: .3em;
   padding-left: .2em;
   height: 45px;
   font-family: Palatino, serif;
@@ -32,8 +31,14 @@ header {
     }
   }
 
+  &.partial {
+    @include breakpoint($cramped) {
+      width: 80%;
+      margin: 0 auto;
+    }
+  }
+
   @include breakpoint($cramped) {
-    margin-bottom: .5em;
     padding-left: .4em;
   }
 }
@@ -53,6 +58,7 @@ header {
 }
 
 .cul-logotype {
+  margin-top: .3em;
   padding-left: .25em;
   @include grid-span(3, 1);
 
@@ -62,6 +68,7 @@ header {
   }
 
   @include breakpoint($cramped) {
+    margin-top: .5em;
     padding-left: .6em;
     @include grid-span(8, 1);
   }
@@ -176,5 +183,27 @@ input.search-term {
     display: inline-block;
     width: 60%;
     margin: .15em .5em 0;
+  }
+}
+
+/**********************************************
+* Temp classes used for demo purposes with
+* Mann Design Taskforce
+***********************************************/
+.toggle-banner {
+  display: none;
+  margin-left: 1em;
+
+  @include breakpoint($cramped) {
+    display: block;
+  }
+}
+
+.toggle-logo {
+  display: block;
+  margin-left: 1em;
+
+  @include breakpoint($cramped) {
+    display: none;
   }
 }
