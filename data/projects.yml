@@ -1,0 +1,16 @@
+- "Sample 1":
+    description: "Accusamus cum beatae. Illo dignissimos libero voluptatem qui dolores quam. Rem provident aut aut deleniti delectus et temporibus. In placeat hic cumque."
+    featured: true # Or false
+
+- "Sample 2":
+    description: "Repudiandae modi exercitationem eos expedita temporibus autem reiciendis. Velit possimus illum. Provident expedita perferendis asperiores doloremque. Totam doloribus ut earum."
+    featured: true # Or false
+
+- "Sample 3":
+    description: "Perferendis sint velit assumenda eum veniam. Dicta dolorum tempore nostrum maxime sunt cumque nulla. Est cum veritatis natus. Eum non maxime reprehenderit fuga."
+    featured: true # Or false
+
+- "Sample 4":
+    description: "Iure id ut rerum. Et quia et architecto dolores voluptas ut. Nesciunt quaerat quidem molestiae quis ut nostrum autem. Consequatur dolores dolorum nisi."
+    featured: true # Or false
+
