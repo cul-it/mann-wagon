@@ -1,0 +1,5 @@
+%nav.sections
+  %ul<
+    {% for project in contents.projects %}
+    %li <a href="{% path_to project %}">{{ project.title }}</a>
+    {% endfor %}

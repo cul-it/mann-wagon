@@ -36,19 +36,19 @@ order_by: manually
 # entry_template: '<a href="{{ link }}">{{ entry._label }}</a>' # The default template
 
 # A list describing each field
-fields: 
+fields:
 - title: # The lowercase, underscored name of the field
     label: Title # Human readable name of the field
     type: string
     required: true
-    hint: Explanatory text displayed in the back office
+    hint: Title of the project
     localized: false
 
 - description: # The lowercase, underscored name of the field
     label: Description # Human readable name of the field
     type: text
     required: false
-    hint: Explanatory text displayed in the back office
+    hint: Keep it short and sweet
     localized: false
     # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
 
@@ -56,5 +56,5 @@ fields:
     label: Featured # Human readable name of the field
     type: boolean
     required: false
-    hint: Explanatory text displayed in the back office
+    hint: Want to feature this project
     localized: false

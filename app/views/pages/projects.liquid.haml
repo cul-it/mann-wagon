@@ -1,0 +1,20 @@
+---
+title: Projects
+handle: projects
+published: true
+listed: true
+position: 1
+---
+{% extends parent %}
+
+{% block main %}
+{% include 'project-nav' %}
+<span>
+{% with_scope featured: true %}
+{% for project in contents.projects %}
+<h2 class="page-title">{{ project.title }}</h2>
+<div class="page-content">{{ project.description }}</div>
+{% endfor %}
+</span>
+{% endwith_scope %}
+{% endblock %}
