@@ -1,13 +1,24 @@
-- EarthCube:
-    _slug: earthcube
-    title: EarthCube
+
+- TEEAL:
+    _slug: teeal
+    title: TEEAL
     description: "<p>Description goes here<br></p>"
-- NYCCSC:
-    _slug: nyccsc
-    title: NYCCSC
-    description: "<p>Description goes here<br></p>"
+    url : http://www.teeal.org/
+    featured: true
 - VIVO:
     _slug: vivo
     title: VIVO
     description: "<p>Description goes here</p>"
+    url : http://vivo.cornell.edu/
     featured: true
+- NYCCSC:
+    _slug: nyccsc
+    title: NYCCSC
+    description: "<p>Description goes here<br></p>"
+    url : #
+    featured: true
+- EarthCube:
+    _slug: earthcube
+    title: EarthCube
+    url : http://earthcube.org/
+    description: "<p>Description goes here<br></p>"
