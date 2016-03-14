@@ -23,13 +23,14 @@
     %h5 Featured Projects
 
     %ul
-      %li TEEAL
-      %li VIVO
-      %li NYCCSC
-      %li EarthCube
+      {% with_scope featured: true %}
+      {% for project in contents.projects %}
+      %li <a href="{% path_to project %}">{{ project.title }}</a>
+      {% endfor %}
+      {% endwith_scope %}
 
     %p
-      <a href="#">More Projects <i class="fa fa-angle-double-right"></i></a>
+      <a href="{% path_to projects %}">More Projects <i class="fa fa-angle-double-right"></i></a>
 
     %h5 Daily Haiku
 
