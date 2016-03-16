@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'locomotivecms_wagon', '~> 2.0'
+gem 'locomotivecms_wagon', '2.1.0.rc3'
 gem 'celluloid', '0.16.0'
 
 group :development do
