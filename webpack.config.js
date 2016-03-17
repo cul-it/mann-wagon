@@ -22,7 +22,9 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       // Bourbon
-      { from: 'node_modules/bourbon/app/assets/stylesheets', to: 'bourbon' }
+      { from: 'node_modules/bourbon/app/assets/stylesheets', to: 'bourbon' },
+      // Breakpoint
+      { from: 'node_modules/breakpoint-sass/stylesheets', to: 'breakpoint' }
     ], {
         ignore: []
     })

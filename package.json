@@ -13,6 +13,7 @@
   "main": "index.js",
   "devDependencies": {
     "bourbon": "^4.2.6",
+    "breakpoint-sass": "^2.7.0",
     "copy-webpack-plugin": "^1.1.1",
     "node-sass": "^3.4.2",
     "webpack": "^1.12.14"
