@@ -1,4 +1,5 @@
-@import 'normalize';
+@import '../vendor/normalize/normalize';
+@include normalize(); // Apply normalize rules
 
 // Media queries & grid
 @import '../vendor/breakpoint/breakpoint';
