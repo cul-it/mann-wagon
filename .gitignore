@@ -5,3 +5,8 @@ dragonfly.log
 .sass-cache
 
 deploy.yml
+
+#npm
+node_modules/*
+public/vendor/*
+npm-debug.log
