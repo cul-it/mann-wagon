@@ -3,7 +3,7 @@
     "name": "Albert R. Mann Library",
     "url": "http://mannlib.cornell.edu"
   },
-  "license": "BSD New",
+  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/cul-it/mann-wagon/issues"
   },
