@@ -1,7 +1,7 @@
 section {
   margin-top: 2em;
 
-  @include grid-span(4, 1);
+  // @include grid-span(4, 1);
 }
 
 .lead-in {
@@ -14,10 +14,10 @@ section {
 }
 
 .todays-hours {
-  @include grid-span(1, 1);
+  @include span(2);
 
   @include breakpoint($cramped) {
-    @include grid-span(2, 1);
+    // @include grid-span(2, 1);
   }
 }
 
@@ -28,7 +28,7 @@ section {
 .take-me-now {
   font-size: .8em;
 
-  @include grid-span(2, 3);
+  // @include grid-span(2, 3);
 }
 
 .course-reserves {
@@ -36,7 +36,7 @@ section {
   font-size: .8em;
 
   @include breakpoint($mini) {
-    @include grid-span(2, 1);
+    // @include grid-span(2, 1);
   }
 }
 
@@ -46,19 +46,19 @@ section {
 
 .guides-group-one {
   @include breakpoint($mini) {
-    @include grid-span(3, 1);
+    // @include grid-span(3, 1);
   }
 }
 
 .guides-group-two {
   @include breakpoint($mini) {
-    @include grid-span(3, 4);
+    // @include grid-span(3, 4);
   }
 }
 
 .feature {
   margin-top: 2em;
-  @include grid-span(4, 1);
+  // @include grid-span(4, 1);
 }
 
 .side-image {
@@ -79,17 +79,13 @@ section {
 }
 
 .available-study {
-  @include grid-span(3, 2);
+  @include span(2 at 3);
 }
 
 .available-consultation {
-  @include float-span(1, 1, 'first');
-  // @include float-span(1, 'first'); // Really should be using this - check wagon logs
-  // @include grid-span(1, 1);
+  // @include float-span(1, 1, 'first');
 }
 
 .available-computers {
-  @include float-span(1, 1, 'first');
-  // @include float-span(1, 'first'); // Really should be using this
-  // @include grid-span(1, 1);
+  // @include float-span(1, 1, 'first');
 }

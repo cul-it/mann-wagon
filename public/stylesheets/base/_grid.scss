@@ -1,30 +1,45 @@
-// @include sgs-change('include clearfix', true);
-
-* {
-  @include box-sizing('border-box');
-}
-
 // Breakpoints
 $mini: 30em;
 $cramped: 43em;
 $full: 56em;
 $allout: 69em;
 
-// Responsive grids via breakpoint and singularity
-@include add-grid(6 1 3 2);
-@include add-grid(6 at $mini);
-@include add-grid(12 at $cramped);
-@include add-grid(3 6 3 at $full);
-@include add-grid(1 3 5 7 9 at $allout);
+// Layouts
+$susy: (
+  gutters: .15,
+  global-box-sizing: border-box,
+  debug: ( // Uncomment these to render grid visualization:
+    // image: show,
+    color: rgba(#ff851b, .25),
+    // output: overlay,
+  )
+);
 
-@include add-gutter(1/4);
-@include add-gutter(.25 at $full);
+// $susy: layout(inside-static show);
 
-// Be sure to enable debug mode for your grid visualization so show up:
-@include sgs-change('debug', true);
+$mini-g: (
+  columns: 6,
+);
+
+$cramped-g: (
+  columns: 8,
+);
 
 body {
-  // @include background-grid($color: lightgray);
+  @include container;
+  @include clearfix;
+
+  // @include breakpoint($mini) {
+  //   @include container(6);
+  // }
+
+  @include susy-breakpoint($mini, $mini-g) {
+    @include container;
+  }
+
+  @include susy-breakpoint($cramped, $cramped-g) {
+    @include container;
+  }
 }
 
 main {

@@ -17,6 +17,7 @@
     "copy-webpack-plugin": "^1.1.1",
     "node-sass": "^3.4.2",
     "normalize-scss": "^4.0.3",
+    "susy": "^2.2.12",
     "webpack": "^1.12.14"
   },
   "scripts": {

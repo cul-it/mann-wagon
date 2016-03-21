@@ -23,7 +23,7 @@
     padding: 3em 0;
 
     @include breakpoint($allout) {
-      @include grid-span(3, 1);
+      // @include grid-span(3, 1);
       background-position: bottom;
       background-size: cover;
       border-right: $side-image-border;
@@ -31,11 +31,11 @@
   }
 
   .side-image-content {
-    @include grid-span(2, 1);
+    // @include grid-span(2, 1);
     padding: 1em 0 4em 0;
 
     @include breakpoint($allout) {
-      @include grid-span(2, 4);
+      // @include grid-span(2, 4);
       padding: 1.6em 0;
     }
 

@@ -1,12 +1,6 @@
 header {
   padding-bottom: .3em;
-  background-color: white;
-
-  @include grid-span(4, 1);
-
-  @include breakpoint($mini) {
-    @include grid-span(6, 1);
-  }
+  @include clearfix;
 
   @include breakpoint($cramped) {
     padding-bottom: .5em;
@@ -14,10 +8,11 @@ header {
 }
 
 .cu-banner {
-  padding-left: .2em;
+  // padding-left: .2em;
   height: 45px;
   font-family: Palatino, serif;
   font-size: 1.1em;
+  @include span(full);
 
   &.red {
     background-color: $cornell-red;
@@ -31,7 +26,7 @@ header {
     }
   }
 
-  @include breakpoint($cramped) {
+  @include susy-breakpoint($cramped, $cramped-g) {
     padding-left: .4em;
   }
 }
@@ -52,18 +47,16 @@ header {
 
 .cul-logotype {
   margin-top: .3em;
-  padding-left: .25em;
-  @include grid-span(3, 1);
+  @include span(3);
 
-  @include breakpoint($mini) {
-    @include grid-span(4, 1);
-    @include clearfix;
+  @include susy-breakpoint($mini, $mini-g) {
+    @include span(3);
   }
 
-  @include breakpoint($cramped) {
+  @include susy-breakpoint($cramped, $cramped-g) {
     margin-top: .5em;
-    padding-left: .6em;
-    @include grid-span(8, 1);
+    // padding-left: .6em;
+    @include span(5);
   }
 }
 
@@ -132,22 +125,19 @@ header {
   margin-top: 1.6em;
   font-size: .5em;
 
-  @include grid-span(1, 4);
+  @include span(1 last);
 
-  @include breakpoint($mini) {
-    padding-right: 1em;
-    text-align: right;
-
-    @include grid-span(2, 5);
+  @include susy-breakpoint($mini, $mini-g) {
+    @include span(1 last);
   }
 
-  @include breakpoint($cramped) {
+  @include susy-breakpoint($cramped, $cramped-g) {
     margin-top: 2.8em;
     padding-right: 0;
     text-align: left;
     font-size: .7em;
 
-    @include grid-span(4, 9);
+    @include span(3 at 6);
   }
 }
 

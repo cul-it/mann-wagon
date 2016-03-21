@@ -27,7 +27,9 @@ module.exports = {
       { from: 'node_modules/breakpoint-sass/stylesheets', to: 'breakpoint' },
       // Normalize
       { from: 'node_modules/normalize-scss/sass', to: 'normalize' },
-      { from: 'node_modules/support-for/sass/_support-for.scss', to: 'normalize/' }
+      { from: 'node_modules/support-for/sass/_support-for.scss', to: 'normalize/' },
+      // Susy
+      { from: 'node_modules/susy/sass', to: 'susy' }
     ], {
         ignore: []
     })
