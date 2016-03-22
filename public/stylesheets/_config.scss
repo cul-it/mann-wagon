@@ -1,8 +1,14 @@
 // Fonts
-@import 'font-stacks';
+// Montserrat (Google Fonts) - CUL standard
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+$montserrat: "Montserrat", sans-serif;
+
+// Breakpoints
+// $medium-screen: 600px;
+// $large-screen: 900px;
 
 // Typography
-$base-font-family: $helvetica;
+$base-font-family: $font-stack-system;
 $heading-font-family: $base-font-family;
 
 // Font Sizes
@@ -19,7 +25,7 @@ $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
 // Colors
-$blue: #477dca;
+$blue: #1565c0;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
@@ -29,7 +35,6 @@ $cornell-red: #b31b1b;
 $hours-open-color: #00796B;
 
 // Font Colors
-$base-background-color: #fff;
 $base-font-color: $dark-gray;
 $action-color: $cornell-red;
 
@@ -37,6 +42,14 @@ $action-color: $cornell-red;
 $base-border-color: $light-gray;
 $base-border: 1px solid $base-border-color;
 
+// Background Colors
+$base-background-color: #fff;
+$secondary-background-color: tint($base-border-color, 75%);
+
 // Forms
 $form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
 $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3);
+
+// Animations
+$base-duration: 150ms;
+$base-timing: ease;

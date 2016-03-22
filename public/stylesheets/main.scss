@@ -3,8 +3,25 @@
 
 @import 'vendor/normalize/normalize';
 @include normalize(); // Apply normalize rules
-@import 'vendor/breakpoint/breakpoint'; // Media queries
-@import 'vendor/susy/susy'; // Grid
+@import 'vendor/breakpoint/breakpoint';
+@import 'vendor/susy/susy';
 @import 'vendor/bourbon/bourbon';
 
 @import 'base/base'; // Scaffolding via Bitters
+
+@import 'config';
+
+@import 'layout/grid';
+@import 'layout/header';
+@import 'layout/nav';
+@import 'layout/footer';
+
+// components
+@import 'components/badges';
+@import 'components/button-groups';
+@import 'components/flashes';
+// @import 'components/side-image'; // Refills are not Bourbon v5 ready
+// -- https://github.com/thoughtbot/bourbon/issues/874#issuecomment-197984091
+
+@import 'pages/home';
+@import 'pages/hours';
