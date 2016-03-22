@@ -21,8 +21,10 @@ module.exports = {
 
   plugins: [
     new CopyWebpackPlugin([
+      // Bitters
+      { from: 'node_modules/Bitters/core', to: 'base' },
       // Bourbon
-      { from: 'node_modules/bourbon/app/assets/stylesheets', to: 'bourbon' },
+      { from: 'node_modules/bourbon/core', to: 'bourbon' },
       // Breakpoint
       { from: 'node_modules/breakpoint-sass/stylesheets', to: 'breakpoint' },
       // Normalize

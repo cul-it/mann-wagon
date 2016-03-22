@@ -9,4 +9,5 @@
 @import '../vendor/bourbon/bourbon';
 
 // Mann -- scaffolding via Bitters
-@import 'base/base';
+// @import 'base/base'; // Original Bitters 1.0 with custom rules/selectors/sheets
+@import '../vendor/base/base';

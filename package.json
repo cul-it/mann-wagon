@@ -12,7 +12,8 @@
   "description": "Packages for Mann Library website on Locomotive",
   "main": "index.js",
   "devDependencies": {
-    "bourbon": "^4.2.6",
+    "Bitters": "github:thoughtbot/bitters",
+    "bourbon": "github:thoughtbot/bourbon",
     "breakpoint-sass": "^2.7.0",
     "copy-webpack-plugin": "^1.1.1",
     "node-sass": "^3.4.2",
