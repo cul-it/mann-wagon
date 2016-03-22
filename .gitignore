@@ -6,7 +6,14 @@ dragonfly.log
 
 deploy.yml
 
-#npm
+# npm
 node_modules/*
-public/vendor/*
 npm-debug.log
+
+# Vendorized Sass
+public/stylesheets/vendor/*
+!public/stylesheets/vendor/.gitkeep
+
+# Bitters scaffolding a la BEM
+public/stylesheets/base/*
+!public/stylesheets/base/.gitkeep
