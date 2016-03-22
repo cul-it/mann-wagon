@@ -7,9 +7,9 @@
 @import 'vendor/susy/susy';
 @import 'vendor/bourbon/bourbon';
 
-@import 'base/base'; // Scaffolding via Bitters
-
 @import 'config';
+
+@import 'base/base'; // Scaffolding via Bitters
 
 @import 'layout/grid';
 @import 'layout/header';

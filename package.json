@@ -23,7 +23,7 @@
   },
   "scripts": {
     "build": "npm run clean && webpack --progress",
-    "clean": "rm -rf public/stylesheets/vendor/* public/stylesheets/base/*"
+    "clean": "rm -rf public/stylesheets/vendor/*"
   },
   "repository": {
     "type": "git",
