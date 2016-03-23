@@ -1,0 +1,22 @@
+// TEMPORARY STYLESHEET FOR EVENTS PROTOTYPE
+// -- none of this will be retained as-is
+
+.events {
+  @include breakpoint($cramped) {
+    @include grid-span(8, 1);
+  }
+
+  @include breakpoint($full) {
+    @include grid-span(2, 1);
+  }
+}
+
+.events-filters {
+  @include breakpoint($cramped) {
+    @include grid-span(4, 9);
+  }
+
+  @include breakpoint($full) {
+    @include grid-span(1, 3);
+  }
+}
