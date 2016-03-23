@@ -24,7 +24,7 @@ $allout: 69em;
 @include sgs-change('debug', true);
 
 body {
-  @include background-grid($color: lightgray);
+  // @include background-grid($color: lightgray);
 }
 
 main {
