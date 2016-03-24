@@ -1,0 +1,7 @@
+# Sourcemap config for autoprefixer via postcss
+# -- would be nice to figure out how to include the previous Sass compilation so this is actually useful
+# -- https://github.com/postcss/postcss/blob/master/docs/source-maps.md
+map:
+  inline: true
+from: main.scss
+to: main.css
