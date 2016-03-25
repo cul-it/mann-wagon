@@ -1,0 +1,30 @@
+.search {
+  margin-top: 1.6em;
+  font-size: .5em;
+
+  @include span(1 last);
+
+  @include susy-breakpoint($mini, $mini-g) {
+    @include span(1 last);
+  }
+
+  @include susy-breakpoint($cramped, $cramped-g) {
+    margin-top: 2.8em;
+    padding-right: 0;
+    text-align: left;
+    font-size: .7em;
+
+    @include span(3 at 6);
+  }
+}
+
+input.search__term {
+  display: none;
+
+  @include breakpoint($cramped) {
+    float: left;
+    display: inline-block;
+    width: 60%;
+    margin: .15em .5em 0;
+  }
+}

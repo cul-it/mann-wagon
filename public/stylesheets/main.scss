@@ -16,12 +16,15 @@
 @import 'layout/nav';
 @import 'layout/footer';
 
-// components
+
 @import 'components/badges';
 @import 'components/button-groups';
 @import 'components/flashes';
 // @import 'components/side-image'; // Refills are not Bourbon v5 ready
 // -- https://github.com/thoughtbot/bourbon/issues/874#issuecomment-197984091
+@import 'components/cu-banner';
+@import 'components/mann-brand';
+@import 'components/search';
 
 @import 'pages/home';
 @import 'pages/hours';

@@ -1,0 +1,36 @@
+.cu-banner {
+  // padding-left: .2em;
+  height: 45px;
+  font-family: Palatino, serif;
+  font-size: 1.1em;
+  color: $white;
+  background-color: $cornell-gray;
+  @include span(full);
+
+  &--red {
+    background-color: $cornell-red;
+  }
+
+  @include susy-breakpoint($cramped, $cramped-g) {
+    padding-left: .4em;
+  }
+}
+
+.cu-banner__insignia {
+  float: left;
+  height: 45px;
+  background-image: url(../images/cul-brand/cu-logo-white-mobile@2x.png);
+  background-size: 39px 39px;
+  background-position: 3px;
+  background-repeat: no-repeat;
+
+  &--red {
+    color: $cornell-red;
+    background-image: url(../images/cul-brand/cu-logo-red-mobile@2x.png);
+  }
+}
+
+.cu-banner__uni-name {
+  display: inline-block;
+  margin: 10px 0 0 48px;
+}
