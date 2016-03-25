@@ -7,3 +7,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+// Utility class for child anchors to inherit parent color
+// -- i.e. don't use the $action-color for these links
+.link--no-color {
+  color: inherit;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: inherit;
+  }
+}
