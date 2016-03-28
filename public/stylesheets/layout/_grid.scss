@@ -6,6 +6,7 @@ $allout: 69em;
 
 // Layouts
 $susy: (
+  columns: 4 2 2 4,
   gutters: .15,
   global-box-sizing: border-box,
   debug: ( // Uncomment these to render grid visualization:

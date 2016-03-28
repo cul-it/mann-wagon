@@ -36,9 +36,3 @@ $success-color: $light-gray !default;
 .badge-success {
   @include badge($success-color);
 }
-
-.badge-hours-open {
-  @include badge($hours-open-color);
-  color: white;
-  font-weight: bold;
-}

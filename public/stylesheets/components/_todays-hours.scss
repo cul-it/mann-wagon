@@ -1,0 +1,32 @@
+.todays-hours {
+  margin-top: 1.2em;
+  font-size: .8em;
+  line-height: .8em;
+  @include span(last 1);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(last 2);
+  }
+}
+
+.todays-hours__now {
+  font-weight: bold;
+
+  &.is-open {
+    @include badge($hours-open-color);
+    color: white;
+  }
+}
+
+.todays-hours__until {
+  font-size: .6em;
+}
+
+.todays-hours__datetime {
+  margin: 0;
+  font-size: .8em;
+}
+
+.todays-hours__more {
+  font-size: .6em;
+}

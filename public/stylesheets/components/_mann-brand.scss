@@ -28,7 +28,7 @@
   }
 
   &.drop-mobile {
-    width: 14px;
+    width: 0;
     background-image: none;
 
     @include breakpoint($tablet) {
@@ -39,7 +39,7 @@
 }
 
 .mann-brand__one-lib {
-  padding: .35em 0 0 1.6em;
+  padding: .35em 0 0 .5em;
   font-size: .88em;
   font-weight: normal;
   font-family: $montserrat;

@@ -7,15 +7,6 @@ listed: false
 {% extends 'layouts/default' %}
 
 {% block main %}
-.todays-hours
-  %h5.todays-date
-    {{ now | date: '%b %-d, %Y' }}
-    %a.more-link.more-hours{href: "{% path_to hours %}"} All Hours >>
-
-  %p.hours-now
-    %span{ class: "badge {% if mannlib_hours.open == 'Open' %}badge-hours-open{% else %}badge-hours-closed{% endif %}" } {{ mannlib_hours.open }}
-    until {{ mannlib_hours.hours }}
-
 %button.take-me-now Reserve a Room
 
 %section.research-help
