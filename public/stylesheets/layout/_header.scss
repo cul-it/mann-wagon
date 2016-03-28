@@ -1,8 +1,3 @@
 header {
-  padding-bottom: .3em;
   @include clearfix;
-
-  @include breakpoint($tablet) {
-    padding-bottom: .5em;
-  }
 }

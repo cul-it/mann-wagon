@@ -1,5 +1,5 @@
 .mann-brand {
-  margin-top: .3em;
+  margin: .5em 0;
   @include span(3);
 
   @include susy-breakpoint($scape, $g-scape) {
@@ -7,7 +7,7 @@
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    margin-top: .5em;
+    margin: .8em 0;
     padding-left: .5em;
     @include span(5);
   }
@@ -39,17 +39,15 @@
 }
 
 .mann-brand__one-lib {
-  margin: .3em 0 0;
-  padding-left: 1.6em;
+  padding: .35em 0 0 1.6em;
   font-size: .88em;
   font-weight: normal;
   font-family: $montserrat;
-  line-height: 1.1em;
+  line-height: .5em;
   color: $medium-gray;
 
   @include breakpoint($tablet) {
-    margin-top: 1.2em;
-    padding-left: 6.1em;
+    padding: 1.2em 0 0 6.1em;
     font-size: 1.15em;
   }
 }
