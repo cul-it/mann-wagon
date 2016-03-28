@@ -3,7 +3,6 @@
 
   @include susy-breakpoint($tablet, $g-tablet) {
     @include span(last 5);
-    @include nobreak;
   }
 }
 
