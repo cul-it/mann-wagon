@@ -1,14 +1,10 @@
 .search {
-  margin-top: 1.6em;
-  font-size: .5em;
-
-  @include span(1 last);
-
-  @include susy-breakpoint($scape, $g-scape) {
-    @include span(1 last);
-  }
+  position: absolute;
+  top: 0;
+  right: 0;
 
   @include susy-breakpoint($tablet, $g-tablet) {
+    position: relative;
     margin-top: 2.8em;
     padding-right: 0;
     text-align: left;
@@ -18,13 +14,22 @@
   }
 }
 
-input.search__term {
+.search__term {
   display: none;
 
-  @include breakpoint($tablet) {
+  @include susy-breakpoint($tablet, $g-tablet) {
     float: left;
     display: inline-block;
     width: 60%;
     margin: .15em .5em 0;
+  }
+}
+
+.search__button {
+  height: 52px; // Match height of cu-banner
+  background-color: $color-search-banner;
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    height: inherit;
   }
 }
