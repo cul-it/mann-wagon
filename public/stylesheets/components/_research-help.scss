@@ -1,0 +1,57 @@
+.research-help {
+  @include clearfix;
+}
+
+.research-help__heading {
+  @include span(2);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(2);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(2);
+  }
+}
+
+.research-help__course-reserves {
+  font-size: .6em;
+  @include span(last 1);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(2);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    margin-bottom: 1.4em;
+
+    @include span(2);
+    @include break;
+  }
+}
+
+.research-help__subheading {
+  margin-bottom: 0;
+  @include break;
+}
+
+.research-help__libguides-grp1 {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(3);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(3);
+  }
+}
+
+.research-help__libguides-grp2 {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(last 3);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(3);
+    @include break;
+  }
+}

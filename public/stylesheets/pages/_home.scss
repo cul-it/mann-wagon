@@ -9,17 +9,8 @@ section {
 }
 
 .more-link {
-  font-size: .8em;
+  font-size: .7em;
   font-weight: normal;
-}
-
-.course-reserves {
-  margin-top: 1em;
-  font-size: .8em;
-
-  @include breakpoint($scape) {
-    // @include grid-span(2, 1);
-  }
 }
 
 .feature {

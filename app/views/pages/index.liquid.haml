@@ -8,31 +8,33 @@ listed: false
 
 {% block main %}
 %section.research-help
-  %h4.lead-in.res-help Research Help
+  %h4.research-help__heading.lead-in Research Help
 
-  %h5.guides
+  %button.research-help__course-reserves Course Reserves
+
+  %h5.research-help__subheading
     Guides
-    %a.more-link{href: "#"} All Guides >>
+    %a.more-link{href: "#"}
+      All Guides
+      %i.fa.fa-angle-double-right
 
-  %ul.lib-guides
-    %span.lib-guides__grp-one
-      %li.lib-guide-feature
+  %ul.research-help__libguides
+    %span.research-help__libguides-grp1
+      %li
         %a{href: "#"} Agriculture Economics &amp; Business
-      %li.lib-guide-feature
+      %li
         %a{href: "#"} Food Systems &amp; Agriculture
-      %li.lib-guide-feature
+      %li
         %a{href: "#"} Health Science &amp; Policy
-      %li.lib-guide-feature
+      %li
         %a{href: "#"} Environmental Sciences
-    %span.lib-guides__grp-two
-      %li.lib-guide-feature
+    %span.research-help__libguides-grp2
+      %li
         %a{href: "#"} Applied Social Sciences
-      %li.lib-guide-feature
+      %li
         %a{href: "#"} Life &amp; Biological Sciences
-      %li.lib-guide-feature
+      %li
         %a{href: "#"} Environmental &amp; Fiber Design
-
-  %button.course-reserves Course Reserves
 
 .feature.side-image
   .images-wrapper
