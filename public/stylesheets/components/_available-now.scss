@@ -1,5 +1,5 @@
 .available-now {
-  @include clearfix;
+  @include span(full);
 }
 
 .available-now__heading {

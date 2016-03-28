@@ -21,8 +21,10 @@
 @import 'components/flashes';
 // @import 'components/side-image'; // Refills are not Bourbon v5 ready
 // -- https://github.com/thoughtbot/bourbon/issues/874#issuecomment-197984091
+// -- https://github.com/thoughtbot/refills/issues/369
 @import 'components/available-now';
 @import 'components/cu-banner';
+@import 'components/featured';
 @import 'components/mann-brand';
 @import 'components/research-help';
 @import 'components/search';

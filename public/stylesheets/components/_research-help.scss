@@ -1,5 +1,7 @@
 .research-help {
-  @include clearfix;
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(3);
+  }
 }
 
 .research-help__heading {
@@ -10,7 +12,7 @@
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(2);
+    @include span(full);
   }
 }
 
@@ -25,7 +27,7 @@
   @include susy-breakpoint($tablet, $g-tablet) {
     margin-bottom: 1.4em;
 
-    @include span(2);
+    @include span(2 of 3);
     @include break;
   }
 }
@@ -41,7 +43,7 @@
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(3);
+    @include span(full);
   }
 }
 
@@ -51,7 +53,6 @@
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(3);
-    @include break;
+    @include span(full);
   }
 }

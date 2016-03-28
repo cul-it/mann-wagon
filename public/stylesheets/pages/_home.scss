@@ -1,7 +1,5 @@
 section {
   margin-top: 2em;
-
-  // @include grid-span(4, 1);
 }
 
 .lead-in {
@@ -11,22 +9,4 @@ section {
 .more-link {
   font-size: .7em;
   font-weight: normal;
-}
-
-.feature {
-  margin-top: 2em;
-  // @include grid-span(4, 1);
-}
-
-.side-image {
-  .side-image-content {
-    margin-left: 1em;
-    padding-bottom: 0;
-    width: 90%;
-
-    @include breakpoint($lapdesk) {
-      margin-right: 1em;
-      width: 61%
-    }
-  }
 }
