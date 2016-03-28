@@ -30,15 +30,23 @@ $blue: #1565c0;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
-$cream: #efede9;
+// $cream: #efede9;
+$cream: $light-gray;
 $cornell-red: #b31b1b;
 $cornell-gray: #232323;
 
-$hours-open-color: #00796B;
+// $hours-open-color: #00796B;
+$hours-open-color: $dark-gray;
+
+// Colors - via Name That Color
+// -- http://chir.ag/projects/name-that-color
+// -- http://www.color-blindness.com/color-name-hue
+$mirage: hsl(203, 34%, 12%);
+$vulcan: hsl(205, 40%, 8%);
 
 // Font Colors
 $base-font-color: $dark-gray;
-$action-color: $cornell-red;
+$action-color: $medium-gray;
 
 // Border
 $base-border-color: $light-gray;
