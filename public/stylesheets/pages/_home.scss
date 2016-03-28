@@ -28,22 +28,6 @@ section {
   }
 }
 
-.lib-guides {
-  @include clearfix;
-}
-
-.guides-group-one {
-  @include breakpoint($scape) {
-    // @include grid-span(3, 1);
-  }
-}
-
-.guides-group-two {
-  @include breakpoint($scape) {
-    // @include grid-span(3, 4);
-  }
-}
-
 .feature {
   margin-top: 2em;
   // @include grid-span(4, 1);
