@@ -4,11 +4,11 @@
 
   @include span(1 last);
 
-  @include susy-breakpoint($mini, $mini-g) {
+  @include susy-breakpoint($scape, $g-scape) {
     @include span(1 last);
   }
 
-  @include susy-breakpoint($cramped, $cramped-g) {
+  @include susy-breakpoint($tablet, $g-tablet) {
     margin-top: 2.8em;
     padding-right: 0;
     text-align: left;
@@ -21,7 +21,7 @@
 input.search__term {
   display: none;
 
-  @include breakpoint($cramped) {
+  @include breakpoint($tablet) {
     float: left;
     display: inline-block;
     width: 60%;

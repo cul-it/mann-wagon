@@ -1,7 +1,7 @@
 // Breakpoints
-$mini: 30em;
-$cramped: 43em;
-$full: 56em;
+$scape: 30em;
+$tablet: 43em;
+$lapdesk: 56em;
 $allout: 69em;
 
 // Layouts
@@ -17,11 +17,11 @@ $susy: (
 
 // $susy: layout(inside-static show);
 
-$mini-g: (
+$g-scape: (
   columns: 6,
 );
 
-$cramped-g: (
+$g-tablet: (
   columns: 8,
 );
 
@@ -29,15 +29,15 @@ body {
   @include container;
   @include clearfix;
 
-  // @include breakpoint($mini) {
+  // @include breakpoint($scape) {
   //   @include container(6);
   // }
 
-  @include susy-breakpoint($mini, $mini-g) {
+  @include susy-breakpoint($scape, $g-scape) {
     @include container;
   }
 
-  @include susy-breakpoint($cramped, $cramped-g) {
+  @include susy-breakpoint($tablet, $g-tablet) {
     @include container;
   }
 }

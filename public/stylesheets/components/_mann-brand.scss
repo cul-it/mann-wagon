@@ -2,11 +2,11 @@
   margin-top: .3em;
   @include span(3);
 
-  @include susy-breakpoint($mini, $mini-g) {
+  @include susy-breakpoint($scape, $g-scape) {
     @include span(3);
   }
 
-  @include susy-breakpoint($cramped, $cramped-g) {
+  @include susy-breakpoint($tablet, $g-tablet) {
     margin-top: .5em;
     padding-left: .5em;
     @include span(5);
@@ -21,7 +21,7 @@
   background-image: url(../images/cul-brand/mann-logo@2x.png);
   background-size: cover;
 
-  @include breakpoint($cramped) {
+  @include breakpoint($tablet) {
     margin-right: .7em;
     width: 100px;
     height: 100px;
@@ -31,7 +31,7 @@
     width: 14px;
     background-image: none;
 
-    @include breakpoint($cramped) {
+    @include breakpoint($tablet) {
       width: 100px;
       background-image: url(../images/cul-brand/mann-logo@2x.png);
     }
@@ -47,7 +47,7 @@
   line-height: 1.1em;
   color: $medium-gray;
 
-  @include breakpoint($cramped) {
+  @include breakpoint($tablet) {
     margin-top: 1.2em;
     padding-left: 6.1em;
     font-size: 1.15em;
@@ -62,7 +62,7 @@
   line-height: .7em;
   color: black;
 
-  @include breakpoint($cramped) {
+  @include breakpoint($tablet) {
     font-size: 2.6em;
   }
 }

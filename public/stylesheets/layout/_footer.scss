@@ -5,7 +5,7 @@ footer {
   background: $dark-gray;
   // @include grid-span(4, 1);
 
-  @include breakpoint($mini) {
+  @include breakpoint($scape) {
     // @include grid-span(6, 1);
   }
 }
@@ -22,28 +22,28 @@ footer {
 
 
 .about-us {
-  @include breakpoint($mini) {
+  @include breakpoint($scape) {
     // @include grid-span(3, 1);
   }
-  @include breakpoint($cramped) {
+  @include breakpoint($tablet) {
     // @include grid-span(4, 1);
   }
 }
 
 .featured-plus-haiku {
-  @include breakpoint($mini) {
+  @include breakpoint($scape) {
     // @include grid-span(3, 4);
   }
-  @include breakpoint($cramped) {
+  @include breakpoint($tablet) {
     // @include grid-span(4, 5);
   }
 }
 
 .contact-us {
-  @include breakpoint($mini) {
+  @include breakpoint($scape) {
     // @include grid-span(6, 1);
   }
-  @include breakpoint($cramped) {
+  @include breakpoint($tablet) {
     // @include grid-span(4, 9);
   }
 }

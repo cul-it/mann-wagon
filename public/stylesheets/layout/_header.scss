@@ -2,7 +2,7 @@ header {
   padding-bottom: .3em;
   @include clearfix;
 
-  @include breakpoint($cramped) {
+  @include breakpoint($tablet) {
     padding-bottom: .5em;
   }
 }

@@ -4,7 +4,7 @@ nav {
   // font-size: .9em;
   // background: $cream;
 
-  // @include breakpoint($cramped) {
+  // @include breakpoint($tablet) {
   //   font-size: 1.2em;
   // }
 }
@@ -16,11 +16,11 @@ nav {
   text-align: center;
   background: $cream;
 
-  @include breakpoint($cramped) {
+  @include breakpoint($tablet) {
     font-size: 1.2em;
   }
 
-  @include breakpoint($mini) {
+  @include breakpoint($scape) {
     padding-right: 1em;
     text-align: right;
   }
@@ -28,7 +28,7 @@ nav {
     display: inline-block;
     padding: .4em;
 
-    @include breakpoint($cramped) {
+    @include breakpoint($tablet) {
       padding: .8em;
     }
 
@@ -51,7 +51,7 @@ nav {
 //     padding-left: 1em;
 //   }
 
-//   @include breakpoint($cramped) {
+//   @include breakpoint($tablet) {
 //     padding: .8em;
 //   }
 // }
@@ -64,11 +64,11 @@ nav {
 
 .landing-description,
 .page-content {
-  @include breakpoint($mini) {
+  @include breakpoint($scape) {
     // @include grid-span(4, 1);
   }
 
-  @include breakpoint($cramped) {
+  @include breakpoint($tablet) {
     // @include grid-span(9, 1);
   }
 }
@@ -80,12 +80,12 @@ nav {
   @include border-top-radius(5px);
   @include border-bottom-radius(5px);
 
-  @include breakpoint($mini) {
+  @include breakpoint($scape) {
     margin-top: 0;
     // @include grid-span(2, 5);
   }
 
-  @include breakpoint($cramped) {
+  @include breakpoint($tablet) {
     // @include grid-span(3, 10);
   }
 

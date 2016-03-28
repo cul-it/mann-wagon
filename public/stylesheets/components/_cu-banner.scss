@@ -11,7 +11,7 @@
     background-color: $cornell-red;
   }
 
-  @include susy-breakpoint($cramped, $cramped-g) {
+  @include susy-breakpoint($tablet, $g-tablet) {
     padding-left: .8em;
   }
 }
