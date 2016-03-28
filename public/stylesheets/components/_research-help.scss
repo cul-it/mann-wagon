@@ -20,15 +20,10 @@
   font-size: .6em;
   @include span(last 1);
 
-  @include susy-breakpoint($scape, $g-scape) {
-    @include span(2);
-  }
-
   @include susy-breakpoint($tablet, $g-tablet) {
     margin-bottom: 1.4em;
 
-    @include span(2 of 3);
-    @include break;
+    @include span(2 of 3 break);
   }
 }
 
