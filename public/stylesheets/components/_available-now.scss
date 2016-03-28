@@ -1,0 +1,84 @@
+.available-now {
+  @include clearfix;
+}
+
+.available-now__heading {
+  margin-bottom: .1em;
+  @include span(3);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(3);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(4);
+  }
+}
+
+.available-now__datetime {
+  font-size: .8em;
+  font-weight: normal;
+}
+
+.available-now__reserve-room {
+  font-size: .6em;
+
+  @include span(last 1);
+  @include clearfix;
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(2);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(2);
+  }
+}
+
+.available-now__grp {
+  margin-bottom: 1em;
+}
+
+.available-now__subheading {
+  margin: .7em 0 .2em 0;
+  font-size: 1em;
+}
+
+.available-study {
+  @include span(2 at 3);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(2);
+
+    @include break;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(2);
+  }
+}
+
+.available-consultation {
+  @include span(first 2);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(2);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(2);
+  }
+}
+
+.available-computers {
+  @include break;
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(last 2);
+    @include nobreak;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(2);
+  }
+}

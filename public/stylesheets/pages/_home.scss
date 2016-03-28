@@ -13,12 +13,6 @@ section {
   font-weight: normal;
 }
 
-.take-me-now {
-  font-size: .8em;
-
-  // @include grid-span(2, 3);
-}
-
 .course-reserves {
   margin-top: 1em;
   font-size: .8em;
@@ -44,20 +38,4 @@ section {
       width: 61%
     }
   }
-}
-
-.available-grp {
-  margin-bottom: 1em;
-}
-
-.available-study {
-  @include span(2 at 3);
-}
-
-.available-consultation {
-  // @include float-span(1, 1, 'first');
-}
-
-.available-computers {
-  // @include float-span(1, 1, 'first');
 }
