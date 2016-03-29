@@ -90,14 +90,18 @@
         Send Feedback
 
   .footer__bottomline
-    .footer__social
-      %a{href: "http://facebook.com/mannlibrary"}
-        %i.fa.fa-facebook-square.fa-2x
-      %a{href: "http://mannlibrary.tumblr.com"}
-        %i.fa.fa-tumblr-square.fa-2x
-      %a{href: "https://www.instagram.com/mannlibrary"}
-        %i.fa.fa-instagram.fa-2x
-      %a{href: "https://www.flickr.com/photos/mann_library"}
-        %i.fa.fa-flickr.fa-2x
+    %ul.footer__social.inline
+      %li
+        %a{href: "http://facebook.com/mannlibrary"}
+          %i.fa.fa-facebook-square.fa-2x
+      %li
+        %a{href: "http://mannlibrary.tumblr.com"}
+          %i.fa.fa-tumblr-square.fa-2x
+      %li
+        %a{href: "https://www.instagram.com/mannlibrary"}
+          %i.fa.fa-instagram.fa-2x
+      %li
+        %a{href: "https://www.flickr.com/photos/mann_library"}
+          %i.fa.fa-flickr.fa-2x
 
     %p.footer__copyright &copy; {{ now | date: '%Y' }} Albert R. Mann Library, Cornell University
