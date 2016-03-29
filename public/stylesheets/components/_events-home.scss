@@ -1,0 +1,39 @@
+.events-home {
+  @include span(full);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(3);
+  }
+}
+
+.workshops {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(last 3);
+  }
+}
+
+.events-home__day {
+  margin: 1.2em 0 .3em 0;
+  font-size: 1.1em;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.events-home__event {
+  margin-bottom: 1.2em;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.events-home__title {
+  margin: 0;
+  font-size: 1em;
+}
+
+.events-home__label {
+  display: none;
+}

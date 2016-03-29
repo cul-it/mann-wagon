@@ -107,88 +107,92 @@ listed: false
         Laptops
         %span.badge.badge-success 27
 
-%section.events-exhibits
-  %h4.lead-in Events &amp; Exhibits
+%section.events-home
+  %h4.events-home__heading.lead-in Events &amp; Exhibits
 
-  %h5.event-day Today
+  %h5.events-home__day Today
 
-  %ul.events
-    %li.event
-      %h6.event-title
+  %ul
+    %li.events-home__event
+      %h6.events-home__title
         %a{href: "#"} Career Development
 
-      %dl.event-detail
-        %dt time
-        %dd 8 am - 5 pm
+      %dl
+        %dt.events-home__label time
+        %dd.events-home__time 8 am - 5 pm
 
-        %dt location
-        %dd Room 102
+        %dt.events-home__label location
+        %dd.events-home__location Room 102
 
-    %li.event
-      %h6.event-title
+    %li.events-home__event
+      %h6.events-home__title
         %a{href: "#"} Plant Breeding Seminar
 
-      %dl.event-detail
-        %dt time
-        %dd 8 am - 1 pm
+      %dl
+        %dt.events-home__label time
+        %dd.events-home__time 8 am - 1 pm
 
-        %dt location
-        %dd Room 100
+        %dt.events-home__label location
+        %dd.events-home__location Room 100
 
-    %li.event
-      %h6.event-title
+    %li.events-home__event
+      %h6.events-home__title
         %a{href: "#"} Data Management Seminar
 
-      %dl.event-detail
-        %dt time
-        %dd 2 pm - 4 pm
+      %dl
+        %dt.events-home__label time
+        %dd.events-home__time 2 pm - 4 pm
 
-        %dt location
-        %dd Room 100
+        %dt.events-home__label location
+        %dd.events-home__location Room 100
 
-  %a.more-link{href: "#"} All Events >>
+  %a.more-link{href: "#"}
+    All Events
+    %i.fa.fa-angle-double-right
 
-%section.workshops-classes
+%section.events-home.workshops
   %h4.lead-in Workshops &amp; Classes
 
-  %h5.event-day Today
+  %h5.events-home__day Today
 
-  %ul.events
-    %li.event
-      %h6.event-title
+  %ul
+    %li.events-home__event
+      %h6.events-home__title
         %a{href: "#"} AEM 4070 001/AEM 6070 001
 
-      %dl.event-detail
-        %dt time
-        %dd 10:10 am - 11:20 am
+      %dl
+        %dt.events-home__label time
+        %dd.events-home__time 10:10 am - 11:20 am
 
-        %dt location
-        %dd Basement 30A
+        %dt.events-home__label location
+        %dd.events-home__location Basement 30A
 
-  %h5.event-day Tomorrow
+  %h5.events-home__day Tomorrow
 
-  %ul.events
-    %li.event
-      %h6.event-title
+  %ul
+    %li.events-home__event
+      %h6.events-home__title
         %a{href: "#"} Sheep - ANSC 3800
 
-      %dl.event-detail
-        %dt time
-        %dd 8 am - 1 pm
+      %dl
+        %dt.events-home__label time
+        %dd.events-home__time 8 am - 1 pm
 
-        %dt location
-        %dd Basement 30B
+        %dt.events-home__label location
+        %dd.events-home__location Basement 30B
 
-    %li.event
-      %h6.event-title
+    %li.events-home__event
+      %h6.events-home__title
         %a{href: "#"} GIS for MLA students
 
-      %dl.event-detail
-        %dt time
-        %dd 1:30 pm - 3 pm
+      %dl
+        %dt.events-home__label time
+        %dd.events-home__time 1:30 pm - 3 pm
 
-        %dt location
-        %dd Stone Classroom
+        %dt.events-home__label location
+        %dd.events-home__location Stone Classroom
 
-  %a.more-link{href: "#"} All Workshops >>
+  %a.more-link{href: "#"}
+    All Workshops
+    %i.fa.fa-angle-double-right
 {% endblock %}
