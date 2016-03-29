@@ -1,26 +1,29 @@
-%footer
-  .about-us.footer-panel
-    %h5 About Us
+%footer.footer
+  .footer__about-us.footer__panel
+    %h5.footer__heading About Us
 
     %p
-      Supporting learning and research in the life sciences, agriculture, human ecology and applied social sciences. <a href="#">More <i class="fa fa-angle-double-right"></i></a>
+      Supporting learning and research in the life sciences, agriculture, human ecology and applied social sciences.
+      %a.more-link{href: "#"}>
+        More
+        %i.fa.fa-angle-double-right
+
+    %p
+      %a.more-link{href: "#"} Organization &amp; Staff
+      |
+      %a.more-link{href: "#"} Employment
 
     / <%= image_tag "floor-map-tn.png", class:"img-responsive img-left img-faded" %>
-    %h6 Floor Plans
+    %h6.footer__subheading Floor Plans
 
-    %ul
-      %li <a href="#">Basement</a>
-      %li <a href="#">1st</a>
-      %li <a href="#">2nd</a>
-      %li <a href="#">3rd</a>
+    %ul.footer__floorplans
+      %li.footer__floor <a href="#">Basement</a>
+      %li.footer__floor <a href="#">1st</a>
+      %li.footer__floor <a href="#">2nd</a>
+      %li.footer__floor <a href="#">3rd</a>
 
-    %p
-      <a href="#">Organization &amp; Staff</a> | <a href="#">Employment</a>
-
-    %p © 1996 - 2015 Cornell University
-
-  .featured-plus-haiku.footer-panel
-    %h5 Featured Projects
+  .footer__featured-plus-haiku.footer__panel
+    %h5.footer__heading Featured Projects
 
     %ul
       {% with_scope featured: true %}
@@ -30,9 +33,11 @@
       {% endwith_scope %}
 
     %p
-      <a href="{% path_to projects %}">More Projects <i class="fa fa-angle-double-right"></i></a>
+      %a.more-link{href: "{% path_to projects %}"}>
+        More Projects
+        %i.fa.fa-angle-double-right
 
-    %h5 Daily Haiku
+    %h5.footer__heading Daily Haiku
 
     %p
       low tide<br>
@@ -40,46 +45,59 @@
       taunt with moonlight
 
     %p
-      <a href="#">Daily Haiku Page <i class="fa fa-angle-double-right"></i></a>
+      %a.more-link{href: "http://haiku.mannlib.cornell.edu"}>
+        Daily Haiku Archive
+        %i.fa.fa-angle-double-right
 
-    .social-media
-      %i.fa.fa-facebook-square.fa-3x
-      %i.fa.fa-tumblr-square.fa-3x
-      %i.fa.fa-flickr.fa-3x
+  .footer__contact-us.footer__panel
+    %h5.footer__heading Contact Us
 
-  .contact-us.footer-panel
-    %h5 Contact Us
-
-    %ul
+    %ul.fa-ul
       %li
         %i.fa-li.fa.fa-question-circle
         %a{href: "#"} Ask a Librarian
       %li
         %i.fa-li.fa.fa-envelope
-        Email Us
         %a{href: "mailto:mann_circ@cornell.edu"} mann_circ@cornell.edu
       %li
         %i.fa-li.fa.fa-mobile
-        Call Us 607-255-3296
+        607-255-3296
       %li
         %i.fa-li.fa.fa-comments
         Chat with a Librarian
       %li
         %i.fa-li.fa.fa-map-marker
-        Visit Us<br>
-        Mann Library<br>
-        237 Mann Drive<br>
-        Cornell University<br>
-        Ithaca, NY <br>
-        %a{href: "#"} Get Directions
-        %a{href: "#"} Map It
+        Visit Us
+        %a.more-link{href: "https://goo.gl/maps/ZJvrC8S5ZVn"}
+          Get Directions
+          %i.fa.fa-angle-double-right
+
+        .footer__address
+          %span.footer__address-line Mann Library
+          %span.footer__address-line 237 Mann Drive
+          %span.footer__address-line Cornell University
+          %span.footer__address-line Ithaca, NY 14853
 
       %li
-        %i.fa-li.fa.fa-user
-        Request a Consultation
+        %a{href: "#"}
+          %i.fa-li.fa.fa-user
+          Request a Consultation
       %li
         %i.fa-li.fa.fa-book
-        </span>Request a Purchase
+        Request a Purchase
       %li
         %i.fa-li.fa.fa-comment
-        </span>Send Feedback
+        Send Feedback
+
+  .footer__bottomline
+    .footer__social
+      %a{href: "http://facebook.com/mannlibrary"}
+        %i.fa.fa-facebook-square.fa-2x
+      %a{href: "http://mannlibrary.tumblr.com"}
+        %i.fa.fa-tumblr-square.fa-2x
+      %a{href: "https://www.instagram.com/mannlibrary"}
+        %i.fa.fa-instagram.fa-2x
+      %a{href: "https://www.flickr.com/photos/mann_library"}
+        %i.fa.fa-flickr.fa-2x
+
+    %p.footer__copyright &copy; {{ now | date: '%Y' }} Albert R. Mann Library, Cornell University

@@ -1,49 +1,70 @@
-footer {
+.footer {
   margin-top: 1em;
-  padding: 2em 0;
+  padding: 2em .3em;
   color: $light-gray;
   background: $dark-gray;
-  // @include grid-span(4, 1);
 
-  @include breakpoint($scape) {
-    // @include grid-span(6, 1);
-  }
+  @include span(full);
 }
 
-.footer-panel {
+.footer__panel {
   margin-bottom: 1em;
-}
 
-.about-us,
-.featured-plus-haiku,
-.contact-us {
-  // @include grid-span(4, 1);
-}
-
-
-.about-us {
-  @include breakpoint($scape) {
-    // @include grid-span(3, 1);
-  }
-  @include breakpoint($tablet) {
-    // @include grid-span(4, 1);
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(2);
   }
 }
 
-.featured-plus-haiku {
-  @include breakpoint($scape) {
-    // @include grid-span(3, 4);
-  }
-  @include breakpoint($tablet) {
-    // @include grid-span(4, 5);
+.footer__about-us {
+
+}
+
+.footer__featured-plus-haiku {
+
+}
+
+.footer__contact-us {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(last 2);
   }
 }
 
-.contact-us {
-  @include breakpoint($scape) {
-    // @include grid-span(6, 1);
+.footer__bottomline {
+  @include span(full);
+}
+
+.footer__heading {
+  margin-bottom: .2em;
+}
+
+.footer__subheading {
+  margin-bottom: .1em;
+  font-size: 1em;
+}
+
+.footer__floorplans,
+.footer__address-line {
+  font-size: .9em;
+  line-height: 1.2em;
+}
+
+.footer__address-line {
+  display: block;
+}
+
+.footer__social {
+  margin-bottom: 1em;
+
+  @include susy-breakpoint($scape, $g-scape) {
+    text-align: right;
+    @include span(last 2);
   }
-  @include breakpoint($tablet) {
-    // @include grid-span(4, 9);
+}
+
+.footer__copyright {
+  line-height: 1.2em;
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(4);
   }
 }
