@@ -3,7 +3,7 @@
   <nav class="breadcrumbs">
     {% for crumb in page.breadcrumbs %}
       {% unless forloop.last %}
-        {% link_to crumb.handle %} →
+        {% link_to crumb.handle %} <i class="fa fa-long-arrow-right"></i>
       {% else %}
         {{ crumb.title }}
       {% endunless %}
