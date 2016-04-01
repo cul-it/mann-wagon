@@ -1,14 +1,16 @@
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
-$montserrat: "Montserrat", sans-serif; // CUL standard
+// Google Fonts
+@import url(https://fonts.googleapis.com/css?family=Lato:400,400italic,700|Francois+One|Montserrat);
+$francois: 'Francois One', sans-serif;
+$lato: 'Lato', sans-serif;
+$montserrat: 'Montserrat', sans-serif; // CUL standard
 
 // Breakpoints
 // $medium-screen: 600px;
 // $large-screen: 900px;
 
 // Typography
-$base-font-family: $font-stack-system;
-$heading-font-family: $base-font-family;
+$base-font-family: $lato;
+$heading-font-family: $francois;
 
 // Font Sizes
 $base-font-size: 1em;

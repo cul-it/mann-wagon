@@ -8,6 +8,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+// Heavier font weight covered by selected heading font (Francois One)
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
 // Utility class for child anchors to inherit parent color
 // -- i.e. don't use the $action-color for these links
 .link--no-color {
