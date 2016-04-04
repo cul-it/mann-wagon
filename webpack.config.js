@@ -22,12 +22,16 @@ module.exports = {
 
   plugins: [
     new CopyWebpackPlugin([
+      // Accoutrement Color
+      { from: 'node_modules/accoutrement-color/sass', to: path.join(sassDir, 'accoutrement-color') },
       // Bitters
       { from: 'node_modules/Bitters/core', to: path.join(sassDir, 'bitters') },
       // Bourbon
       { from: 'node_modules/bourbon/core', to: path.join(sassDir, 'bourbon') },
       // Breakpoint
       { from: 'node_modules/breakpoint-sass/stylesheets', to: path.join(sassDir, 'breakpoint') },
+       // MathSass
+      { from: 'node_modules/mathsass/dist', to: path.join(sassDir, 'mathsass') },
       // Normalize
       { from: 'node_modules/normalize-scss/sass', to: path.join(sassDir, 'normalize') },
       { from: 'node_modules/support-for/sass/_support-for.scss', to: path.join(sassDir, 'normalize') },

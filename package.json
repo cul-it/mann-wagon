@@ -13,9 +13,11 @@
   "main": "index.js",
   "devDependencies": {
     "Bitters": "github:thoughtbot/bitters",
+    "accoutrement-color": "^2.0.0",
     "bourbon": "github:thoughtbot/bourbon",
     "breakpoint-sass": "^2.7.0",
     "copy-webpack-plugin": "^1.1.1",
+    "mathsass": "^0.9.5",
     "node-sass": "^3.4.2",
     "normalize-scss": "^4.0.3",
     "susy": "^2.2.12",
