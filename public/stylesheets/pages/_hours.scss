@@ -1,16 +1,12 @@
 .hours-weekly {
-  font-size: .7em;
+  font-size: modular-scale(-2);
 
-  @include breakpoint($scape) {
-    font-size: .8em;
+  @include susy-breakpoint($scape, $g-scape) {
+    font-size: modular-scale(-1);
   }
 
-  @include breakpoint($tablet) {
-    font-size: .9em;
-  }
-
-  @include breakpoint($lapdesk) {
-    font-size: 1em;
+  @include susy-breakpoint($tablet, $g-tablet) {
+    font-size: modular-scale(0);
   }
 
   th,
@@ -23,7 +19,7 @@
   }
 
   th {
-    line-height: 1.2em;
+    line-height: modular-scale(0);
     color: $medium-gray;
   }
 
@@ -39,7 +35,7 @@
 
 .hours-exceptions {
   margin-top: .5em;
-  font-size: .9em;
+  font-size: modular-scale(-1);
   text-align: left;
 }
 

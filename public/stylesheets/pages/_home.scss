@@ -3,10 +3,10 @@ section {
 }
 
 .lead-in {
-  font-size: 1.3em;
+  font-size: modular-scale(2);
 }
 
 .more-link {
-  font-size: .7em;
+  font-size: modular-scale(-1);
   font-weight: normal;
 }

@@ -14,7 +14,6 @@
 
 .events-home__day {
   margin: 1.2em 0 .3em 0;
-  font-size: 1.1em;
 
   &:first-of-type {
     margin-top: 0;
@@ -31,7 +30,7 @@
 
 .events-home__title {
   margin: 0;
-  font-size: 1em;
+  font-size: modular-scale(0);
 }
 
 .events-home__label {

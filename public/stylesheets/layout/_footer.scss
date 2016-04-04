@@ -39,7 +39,7 @@
 
 .footer__subheading {
   margin-bottom: .1em;
-  font-size: 1em;
+  font-size: modular-scale(0);
 }
 
 .footer__mission,
@@ -49,8 +49,8 @@
 
 .footer__floorplans,
 .footer__address-line {
-  font-size: .9em;
-  line-height: 1.2em;
+  font-size: modular-scale(-1);
+  line-height: modular-scale(1);
 }
 
 .footer__address-line {
@@ -67,7 +67,7 @@
 }
 
 .footer__copyright {
-  line-height: 1.2em;
+  line-height: modular-scale(1);
 
   @include susy-breakpoint($scape, $g-scape) {
     @include span(4);

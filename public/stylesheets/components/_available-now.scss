@@ -16,12 +16,12 @@
 }
 
 .available-now__datetime {
-  font-size: .8em;
+  font-size: modular-scale(-1);
   font-weight: normal;
 }
 
 .available-now__reserve-room {
-  font-size: .6em;
+  font-size: modular-scale(-2);
 
   @include span(last 1);
   @include clearfix;
@@ -41,7 +41,6 @@
 
 .available-now__subheading {
   margin: .7em 0 .2em 0;
-  font-size: 1em;
 }
 
 .available-study {

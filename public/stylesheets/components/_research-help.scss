@@ -17,7 +17,7 @@
 }
 
 .research-help__course-reserves {
-  font-size: .6em;
+  font-size: modular-scale(-2);
   @include span(last 1);
 
   @include susy-breakpoint($tablet, $g-tablet) {

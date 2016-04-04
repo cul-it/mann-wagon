@@ -1,4 +1,4 @@
-$badge-font-size: 0.75em !default;
+$badge-font-size: modular-scale(-1) !default;
 $medium-gray: #999 !default;
 $alert-color: #fff6bf !default;
 // $error-color: #fbe3e4 !default;
@@ -13,7 +13,7 @@ $success-color: $light-gray !default;
   color: darken($color, 60%);
   display: inline-block;
   font-size: $badge-font-size;
-  line-height: 1;
+  line-height: modular-scale(0);
   padding: 0.4em 1.2em;
 }
 

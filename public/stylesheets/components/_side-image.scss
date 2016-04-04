@@ -1,5 +1,5 @@
 .side-image {
-  $base-line-height: 1.5em !default;
+  $base-line-height: modular-scale(2) !default;
   $dark-gray: #333 !default;
   $base-font-color: $dark-gray !default;
   $side-image-background-top: #B5EBEB;
@@ -47,7 +47,7 @@
       background: #BBB;
       color: white;
       display: inline-block;
-      font-size: 0.75em;
+      font-size: modular-scale(-1);
       margin-bottom: 1.3em;
       padding: 3px 8px;
       text-transform: uppercase;
