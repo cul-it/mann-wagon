@@ -45,6 +45,10 @@ body {
 
 main {
   margin: 0 auto;
-  width: 97%;
+  width: 95%;
   @include clearfix;
+
+  @include susy-breakpoint($tablet, $g-tablet){
+    width: 90%;
+  }
 }

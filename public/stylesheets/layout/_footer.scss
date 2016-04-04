@@ -1,10 +1,14 @@
 .footer {
   margin-top: 1em;
   padding: 2em .3em;
-  color: $light-gray;
-  background: $dark-gray;
+  color: color('aluminum');
+  background: color('vulcan');
 
   @include span(full);
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    padding: 2em 3%;
+  }
 }
 
 .footer__panel {
@@ -35,11 +39,13 @@
 
 .footer__heading {
   margin-bottom: .2em;
+  color: color('amulet');
 }
 
 .footer__subheading {
   margin-bottom: .1em;
   font-size: modular-scale(0);
+  color: color('amulet');
 }
 
 .footer__mission,
@@ -64,6 +70,10 @@
     text-align: right;
     @include span(last 2);
   }
+}
+
+.footer__social-icon {
+  color: color('aluminum');
 }
 
 .footer__copyright {

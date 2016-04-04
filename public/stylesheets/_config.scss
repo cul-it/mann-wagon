@@ -25,38 +25,71 @@ $base-spacing: $base-line-height * 1em;
 $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
-// Colors
-$white: #fff;
-$blue: #1565c0;
-$dark-gray: #333;
-$medium-gray: #999;
-$light-gray: #ddd;
-// $cream: #efede9;
-$cream: $light-gray;
-$cornell-red: #b31b1b;
-$cornell-gray: #232323;
-
-// $hours-open-color: #00796B;
-$hours-open-color: $dark-gray;
-
-// Colors - via Name That Color
+// Colors variable via accoutrement-color
+// Names via Name That Color
 // -- http://chir.ag/projects/name-that-color
 // -- http://www.color-blindness.com/color-name-hue
-$mirage: hsl(203, 34%, 12%);
-$vulcan: hsl(205, 40%, 8%);
+$colors: (
+  // Palette
+  'malta': hsl(33, 21%, 69%),
+  'soapstone': hsl(39, 30%, 89%),
+  'kangaroo': hsl(69, 15%, 73%),
+  'boston-blue': hsl(187, 45%, 44%),
+  'amulet': hsl(102, 17%, 54%),
+  'sprout': hsl(96, 31%, 76%),
+  'primrose': hsl(67, 69%, 76%),
+  'yellow-sea': hsl(32, 91%, 58%),
+  'mirage': hsl(203, 34%, 12%),
+  'vulcan': hsl(205, 40%, 8%),
 
-$color-search-banner: tint($mirage, 10%);
+  // Accessory
+  'blond': hsl(52, 100%, 87%),
+  'pine-green': hsl(173, 100%, 24%),
+
+  // Grayscale
+  'alabaster': hsl(0, 0%, 98%),
+  'white': 'alabaster',
+  'black': hsl(0, 0%, 14%),
+  'onyx': hsl(210, 6%, 7%),
+  'aluminum': hsl(193, 6%, 68%),
+  'light-gray': 'aluminum' ('tint': 40%),
+  'medium-gray': 'aluminum' ('shade': 40%),
+  'dark-gray': 'aluminum' ('shade': 80%),
+
+  // Brand
+  'cornell-red': hsl(0, 74%, 40%),
+  'cornell-gray': 'black',
+  'mann-brand': 'vulcan',
+
+  // Fonts
+  'font-base': 'vulcan' ('tint': 10%),
+  'headings': 'vulcan',
+
+  // Links
+  'action': 'boston-blue',
+  'button-action': 'yellow-sea',
+  'nav': 'primrose',
+  'section-nav': 'soapstone' ('tint': 40%),
+
+  // Search
+  'search-banner': 'black' ('tint': 5%),
+  'search-button': 'boston-blue',
+
+  // Hours
+  'today-in-the-week': 'blond',
+  'open': 'pine-green',
+);
 
 // Font Colors
-$base-font-color: $dark-gray;
-$action-color: $medium-gray;
+$base-font-color: color('font-base');
+$action-color: color('action');
 
 // Border
-$base-border-color: $light-gray;
+$base-border-color: color('light-gray');
 $base-border: 1px solid $base-border-color;
 
 // Background Colors
-$base-background-color: #fff;
+$base-background-color: color('white');
 $secondary-background-color: tint($base-border-color, 75%);
 
 // Forms

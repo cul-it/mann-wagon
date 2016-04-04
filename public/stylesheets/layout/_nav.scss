@@ -7,7 +7,7 @@ nav {
   font-weight: bold;
   font-size: modular-scale(-1);
   text-align: center;
-  background: $cream;
+  background: color('nav');
 
   @include susy-breakpoint($scape, $g-scape) {
     font-size: modular-scale(0);
@@ -21,6 +21,7 @@ nav {
     padding-right: 1em;
     text-align: right;
   }
+
   .link {
     display: inline-block;
     padding: .4em;
@@ -29,8 +30,16 @@ nav {
       padding: .8em;
     }
 
+    &:hover {
+      background: color('nav' ('tint': 20%));
+    }
+
     &.active {
-      background: darken($cream, 10%);
+      background: color('nav' ('tint': 40%));
+    }
+
+    a {
+      color: color('vulcan');
     }
   }
 }
@@ -73,7 +82,7 @@ nav {
 .sections {
   margin-top: 1em;
   font-size: modular-scale(-1);
-  background: lighten($cream, 5%);
+  background: color('section-nav');
   @include border-top-radius(5px);
   @include border-bottom-radius(5px);
 
@@ -97,7 +106,7 @@ nav {
   li {
     padding: .6em 0;
     line-height: modular-scale(0);
-    border-bottom: solid 1px darken($cream, 1%);
+    border-bottom: solid 1px color('section-nav' ('shade': 5%));
 
     &:last-child {
       border-bottom: none;
@@ -108,7 +117,7 @@ nav {
     }
 
     &.link.active a {
-      color: darken($cream, 40%)
+      color: color('nav' ('shade': 40%));
     }
   }
 }

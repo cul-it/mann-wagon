@@ -8,7 +8,7 @@
 
   @include susy-breakpoint($tablet, $g-tablet) {
     margin: .8em 0;
-    padding-left: .5em;
+    padding: 0 2%;
     @include span(5);
   }
 }
@@ -44,7 +44,7 @@
   font-weight: normal;
   font-family: $montserrat;
   line-height: .5em;
-  color: $medium-gray;
+  color: color('aluminum');
 
   @include breakpoint($tablet) {
     padding: 1.2em 0 0 6.1em;
@@ -58,7 +58,7 @@
   font-weight: 600;
   font-family: p22-underground;
   line-height: .7em;
-  color: black;
+  color: color('mann-brand');
 
   @include breakpoint($tablet) {
     font-size: 2.6em;

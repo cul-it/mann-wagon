@@ -4,14 +4,14 @@
 
     %p.footer__mission
       Supporting learning and research in the life sciences, agriculture, human ecology and applied social sciences.
-      %a.more-link{href: "#"}>
+      %a.more-link.more-link--footer{href: "#"}>
         More
         %i.fa.fa-angle-double-right
 
     %p
-      %a.more-link{href: "#"} Organization &amp; Staff
+      %a.more-link.more-link--footer{href: "#"} Organization &amp; Staff
       |
-      %a.more-link{href: "#"} Employment
+      %a.more-link.more-link--footer{href: "#"} Employment
 
     / <%= image_tag "floor-map-tn.png", class:"img-responsive img-left img-faded" %>
     %h6.footer__subheading Floor Plans
@@ -33,7 +33,7 @@
       {% endwith_scope %}
 
     %p
-      %a.more-link{href: "{% path_to projects %}"}>
+      %a.more-link.more-link--footer{href: "{% path_to projects %}"}>
         More Projects
         %i.fa.fa-angle-double-right
 
@@ -45,7 +45,7 @@
       taunt with moonlight
 
     %p
-      %a.more-link{href: "http://haiku.mannlib.cornell.edu"}>
+      %a.more-link.more-link--footer{href: "http://haiku.mannlib.cornell.edu"}>
         Daily Haiku Archive
         %i.fa.fa-angle-double-right
 
@@ -74,13 +74,12 @@
           %span.footer__address-line Cornell University
           %span.footer__address-line Ithaca, NY 14853
 
-        %a.more-link{href: "https://goo.gl/maps/ZJvrC8S5ZVn"}
+        %a.more-link.more-link--footer{href: "https://goo.gl/maps/ZJvrC8S5ZVn"}
           Get Directions
           %i.fa.fa-angle-double-right
       %li
-        %a{href: "#"}
-          %i.fa-li.fa.fa-user
-          Request a Consultation
+        %i.fa-li.fa.fa-user
+        %a{href: "#"} Request a Consultation
       %li
         %i.fa-li.fa.fa-book
         Request a Purchase
@@ -91,16 +90,16 @@
   .footer__bottomline
     %ul.footer__social.inline
       %li
-        %a{href: "http://facebook.com/mannlibrary"}
+        %a.footer__social-icon{href: "http://facebook.com/mannlibrary"}
           %i.fa.fa-facebook-square.fa-2x
       %li
-        %a{href: "http://mannlibrary.tumblr.com"}
+        %a.footer__social-icon{href: "http://mannlibrary.tumblr.com"}
           %i.fa.fa-tumblr-square.fa-2x
       %li
-        %a{href: "https://www.instagram.com/mannlibrary"}
+        %a.footer__social-icon{href: "https://www.instagram.com/mannlibrary"}
           %i.fa.fa-instagram.fa-2x
       %li
-        %a{href: "https://www.flickr.com/photos/mann_library"}
+        %a.footer__social-icon{href: "https://www.flickr.com/photos/mann_library"}
           %i.fa.fa-flickr.fa-2x
 
-    %p.footer__copyright &copy; {{ now | date: '%Y' }} Albert R. Mann Library, Cornell University
+    %p.footer__copyright &copy; {{ now | date: '%Y' }} Albert R. Mann Library

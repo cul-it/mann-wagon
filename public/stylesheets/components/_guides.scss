@@ -1,6 +1,6 @@
 .guides {
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(3);
+    @include span(3 break);
   }
 }
 

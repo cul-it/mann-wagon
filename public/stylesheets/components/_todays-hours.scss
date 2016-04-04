@@ -13,8 +13,8 @@
   font-weight: bold;
 
   &.is-open {
-    @include badge($hours-open-color);
-    color: white;
+    @include badge(color('open'));
+    color: color('white');
   }
 }
 

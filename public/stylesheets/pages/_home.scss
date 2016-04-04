@@ -9,6 +9,11 @@ section {
 .more-link {
   font-size: modular-scale(-1);
   font-weight: normal;
+  color: color('amulet');
+
+  &--footer {
+    color: color('yellow-sea' ('desaturate': 25%));
+  }
 }
 
 .course-reserves-link {
@@ -18,6 +23,6 @@ section {
   @include susy-breakpoint($tablet, $g-tablet) {
     margin-bottom: 1.4em;
 
-    @include span(2 of 3 break);
+    @include span(1 break);
   }
 }

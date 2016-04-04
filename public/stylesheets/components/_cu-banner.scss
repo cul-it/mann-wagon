@@ -3,16 +3,16 @@
   height: 52px;
   font-family: Palatino, serif;
   font-size: 1.1em;
-  color: $white;
-  background-color: $mirage;
+  color: color('white');
+  background-color: color('cornell-gray');
   @include span(full);
 
   &--red {
-    background-color: $cornell-red;
+    background-color: color('cornell-red');
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    padding-left: .8em;
+    padding-left: 5%;
   }
 }
 

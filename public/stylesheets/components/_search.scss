@@ -27,7 +27,8 @@
 
 .search__button {
   height: 52px; // Match height of cu-banner
-  background-color: $color-search-banner;
+  color: color('search-button');
+  background-color: color('search-banner');
 
   @include susy-breakpoint($tablet, $g-tablet) {
     height: inherit;

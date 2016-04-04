@@ -20,17 +20,17 @@
 
   th {
     line-height: modular-scale(0);
-    color: $medium-gray;
+    color: color('medium-gray');
   }
 
   .today {
-    background: $cream;
+    background: color('today-in-the-week');
   }
 }
 
 .day-of-week {
   display: block;
-  color: $dark-gray;
+  color: color('headings');
 }
 
 .hours-exceptions {
