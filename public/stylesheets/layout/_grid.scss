@@ -26,6 +26,14 @@ $g-tablet: (
   columns: 8,
 );
 
+$g-lapdesk: (
+  columns: 12,
+);
+
+$g-allout: (
+  columns: 12,
+);
+
 body {
   @include container;
   @include clearfix;
@@ -41,6 +49,10 @@ body {
   @include susy-breakpoint($tablet, $g-tablet) {
     @include container;
   }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include container;
+  }
 }
 
 main {
@@ -50,5 +62,9 @@ main {
 
   @include susy-breakpoint($tablet, $g-tablet){
     width: 90%;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk){
+    width: 80%;
   }
 }

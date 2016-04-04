@@ -11,6 +11,10 @@
     padding: 0 2%;
     @include span(5);
   }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    padding: 0 7%;
+  }
 }
 
 .mann-brand__logo {
