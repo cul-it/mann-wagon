@@ -10,3 +10,14 @@ section {
   font-size: modular-scale(-1);
   font-weight: normal;
 }
+
+.course-reserves-link {
+  font-size: modular-scale(-2);
+  @include span(last 1);
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    margin-bottom: 1.4em;
+
+    @include span(2 of 3 break);
+  }
+}

@@ -7,19 +7,13 @@ listed: false
 {% extends 'layouts/default' %}
 
 {% block main %}
-%section.research-help
-  %button.research-help__course-reserves Course Reserves
+%button.course-reserves-link Course Reserves
 
-  %h4.research-help__heading.lead-in Research Help
+%section.guides
+  %h4.guides__heading.lead-in Guides
 
-  %h5.research-help__subheading
-    Guides
-    %a.more-link{href: "#"}
-      All Guides
-      %i.fa.fa-angle-double-right
-
-  %ul.research-help__libguides
-    %span.research-help__libguides-grp1
+  %ul.guides__libguides
+    %span.guides__libguides-grp1
       %li
         %a{href: "#"} Agriculture Economics &amp; Business
       %li
@@ -28,13 +22,16 @@ listed: false
         %a{href: "#"} Health Science &amp; Policy
       %li
         %a{href: "#"} Environmental Sciences
-    %span.research-help__libguides-grp2
+    %span.guides__libguides-grp2
       %li
         %a{href: "#"} Applied Social Sciences
       %li
         %a{href: "#"} Life &amp; Biological Sciences
       %li
         %a{href: "#"} Environmental &amp; Fiber Design
+  %a.guides__all-guides.more-link{href: "#"}
+    All Guides
+    %i.fa.fa-angle-double-right
 
 %section.featured__side-image
   .featured__images-wrapper
