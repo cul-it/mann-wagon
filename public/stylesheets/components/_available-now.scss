@@ -22,6 +22,7 @@
 }
 
 .available-now__reserve-room {
+  margin-bottom: .7em;
   font-size: modular-scale(-2);
 
   @include span(last 1);
@@ -44,7 +45,7 @@
   margin: .7em 0 .2em 0;
 }
 
-.available-study {
+.available-now__study {
   @include span(2 at 3);
 
   @include susy-breakpoint($scape, $g-scape) {
@@ -56,7 +57,7 @@
   }
 }
 
-.available-consultation {
+.available-now__consultation {
   @include span(first 2);
 
   @include susy-breakpoint($scape, $g-scape) {
@@ -68,8 +69,8 @@
   }
 }
 
-.available-computers {
-  @include break;
+.available-now__computers {
+  // @include break;
 
   @include susy-breakpoint($scape, $g-scape) {
     @include span(last 2 nobreak);
@@ -77,5 +78,15 @@
 
   @include susy-breakpoint($tablet, $g-tablet) {
     @include span(2);
+  }
+}
+
+.available-now__status {
+  &--available {
+    color: darken(color('success'), 60%);
+  }
+
+  &--unavailable {
+    color: darken(color('error'), 60%);
   }
 }
