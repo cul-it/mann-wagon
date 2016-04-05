@@ -1,0 +1,16 @@
+// Targeting content managed via wysihtml
+
+.landing-description,
+.page-content {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(4);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(6);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(9);
+  }
+}

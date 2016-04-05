@@ -28,6 +28,11 @@
   }
 }
 
+.hours-weekly-nav {
+  @include clearfix;
+  font-size: modular-scale(-1);
+}
+
 .day-of-week {
   display: block;
   color: color('headings');

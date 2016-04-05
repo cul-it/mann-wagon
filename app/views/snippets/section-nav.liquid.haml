@@ -1,6 +1,6 @@
-%nav.sections
+%nav.section-nav
   {% if page.depth >= 3 %}
-  %h4.parent-section {{ page.parent.title }}
+  %h4.section-nav__parent {{ page.parent.title }}
 
   %ul<
     {% nav parent, no_wrapper: true, active_class: active %}

@@ -1,8 +1,8 @@
-nav {
+.site-nav {
   @include break;
 }
 
-.site-nav {
+.site-nav__list {
   margin-bottom: 1em;
   font-weight: bold;
   font-size: modular-scale(-1);
@@ -61,74 +61,3 @@ nav {
 //     padding: .8em;
 //   }
 // }
-
-.breadcrumbs {
-  font-size: modular-scale(-1);
-  font-weight: normal;
-  background: none;
-}
-
-.landing-description,
-.page-content {
-  @include breakpoint($scape) {
-    // @include grid-span(4, 1);
-  }
-
-  @include breakpoint($tablet) {
-    // @include grid-span(9, 1);
-  }
-}
-
-.sections {
-  margin-top: 1em;
-  font-size: modular-scale(-1);
-  background: color('section-nav');
-  @include border-top-radius(5px);
-  @include border-bottom-radius(5px);
-
-  @include breakpoint($scape) {
-    margin-top: 0;
-    // @include grid-span(2, 5);
-  }
-
-  @include breakpoint($tablet) {
-    // @include grid-span(3, 10);
-  }
-
-  ul {
-    padding: .5em 1em;
-
-    &:empty {
-      padding: 0;
-    }
-  }
-
-  li {
-    padding: .6em 0;
-    line-height: modular-scale(0);
-    border-bottom: solid 1px color('section-nav' ('shade': 5%));
-
-    &:last-child {
-      border-bottom: none;
-    }
-
-    a {
-      display: block;
-    }
-
-    &.link.active a {
-      color: color('nav' ('shade': 40%));
-    }
-  }
-}
-
-.parent-section {
-  margin-bottom: 0;
-  padding: .5em 0 0 .9em;
-  font-size: modular-scale(1);
-}
-
-.hours-weekly-nav {
-  @include clearfix;
-  font-size: modular-scale(-1);
-}
