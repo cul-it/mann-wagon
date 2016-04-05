@@ -1,5 +1,9 @@
 .available-now {
   @include span(full);
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(6);
+  }
 }
 
 .available-now__heading {
@@ -12,6 +16,10 @@
 
   @include susy-breakpoint($tablet, $g-tablet) {
     @include span(4);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(4 of 6);
   }
 }
 
@@ -35,6 +43,10 @@
   @include susy-breakpoint($tablet, $g-tablet) {
     @include span(2);
   }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(1 of 6);
+  }
 }
 
 .available-now__grp {
@@ -49,11 +61,16 @@
   @include span(2 at 3);
 
   @include susy-breakpoint($scape, $g-scape) {
-    @include span(2 break);
+    // @include span(2 break);
+    @include span(3 at 4);
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(2);
+    @include span(3 at 6);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(3 at 4 of 6);
   }
 }
 
@@ -61,23 +78,34 @@
   @include span(first 2);
 
   @include susy-breakpoint($scape, $g-scape) {
-    @include span(2);
+    @include span(3);
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(2);
+    @include span(3);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(first 3 of 6);
   }
 }
 
 .available-now__computers {
-  // @include break;
+  @include span(2);
+  clear: left;
 
   @include susy-breakpoint($scape, $g-scape) {
-    @include span(last 2 nobreak);
+    @include span(3);
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
     @include span(2);
+    clear: none;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(3 of 6);
+    clear: left;
   }
 }
 

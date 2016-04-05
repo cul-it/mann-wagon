@@ -8,7 +8,7 @@
 
   @include susy-breakpoint($tablet, $g-tablet) {
     margin: .8em 0;
-    padding: 0 2%;
+    padding: 0 3%;
     @include span(5);
   }
 

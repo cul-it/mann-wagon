@@ -12,11 +12,11 @@
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    padding-left: 5%;
+    padding-left: 3%;
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    padding-left: 10%;
+    padding-left: 7%;
   }
 }
 
