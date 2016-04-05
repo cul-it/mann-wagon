@@ -14,3 +14,7 @@
     @include span(9);
   }
 }
+
+.page-content__title {
+  font-size: modular-scale(2);
+}
