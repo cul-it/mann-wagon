@@ -2,7 +2,7 @@
   @include span(full);
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(6);
+    @include span(6 break);
   }
 }
 
@@ -24,7 +24,7 @@
 }
 
 .available-now__datetime {
-  font-size: modular-scale(-1);
+  font-size: modular-scale(-2);
   font-weight: normal;
   color: color('amulet');
 }
@@ -45,7 +45,7 @@
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(1 of 6);
+    @include pull(2);
   }
 }
 

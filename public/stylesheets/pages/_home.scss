@@ -18,11 +18,17 @@ section {
 
 .course-reserves-link {
   font-size: modular-scale(-2);
-  @include span(last 1);
+  @include span(1 at 4);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include isolate(2 at 4);
+  }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    margin-bottom: 1.4em;
+    @include isolate(1);
+  }
 
-    @include span(1 break);
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(2);
   }
 }
