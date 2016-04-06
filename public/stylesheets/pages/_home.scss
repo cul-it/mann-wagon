@@ -8,11 +8,11 @@ section {
 
 .more-link {
   font-size: modular-scale(-1);
-  font-weight: normal;
-  color: color('amulet');
+  font-weight: bold;
+  color: color('more');
 
   &--footer {
-    color: color('yellow-sea' ('desaturate': 25%));
+    color: color('more' ('desaturate': 10%));
   }
 }
 
