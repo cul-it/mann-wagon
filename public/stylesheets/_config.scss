@@ -52,6 +52,7 @@ $colors: (
   'black': hsl(0, 0%, 14%),
   'onyx': hsl(210, 6%, 7%),
   'aluminum': hsl(193, 6%, 68%),
+  'barely-gray': 'aluminum' ('tint': 70%),
   'light-gray': 'aluminum' ('tint': 40%),
   'medium-gray': 'aluminum' ('shade': 40%),
   'dark-gray': 'aluminum' ('shade': 80%),

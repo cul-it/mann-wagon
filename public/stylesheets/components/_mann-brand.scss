@@ -1,5 +1,5 @@
 .mann-brand {
-  margin: .5em 0;
+  margin: .45em 0 .5em 0;
   @include span(3);
 
   @include susy-breakpoint($scape, $g-scape) {
@@ -7,7 +7,7 @@
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    margin: .8em 0;
+    margin: .7em 0 .8em 0;
     padding: 0 3%;
     @include span(5);
   }

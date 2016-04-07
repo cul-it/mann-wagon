@@ -1,6 +1,7 @@
 .cu-banner {
   padding-left: .2em;
-  height: 52px;
+  height: 55px;
+  border-bottom: solid 3px color('barely-gray');
   font-family: Palatino, serif;
   font-size: 1.1em;
   color: color('white');
@@ -13,6 +14,8 @@
 
   @include susy-breakpoint($tablet, $g-tablet) {
     padding-left: 3%;
+    height: 56px;
+    @include border-width(null null 4px null);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
