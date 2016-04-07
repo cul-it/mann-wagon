@@ -20,7 +20,7 @@
 .mann-brand__logo {
   // Nothing here b/c logo is dropped for mobile
 
-  @include breakpoint($tablet) {
+  @include susy-breakpoint($tablet, $g-tablet) {
     float: left;
     margin-right: .7em;
     width: 100px;
@@ -38,7 +38,7 @@
   line-height: .5em;
   color: color('aluminum');
 
-  @include breakpoint($tablet) {
+  @include susy-breakpoint($tablet, $g-tablet) {
     padding: 1.2em 0 0 6.1em;
     font-size: 1.15em;
   }
@@ -52,7 +52,7 @@
   line-height: .7em;
   color: color('mann-brand');
 
-  @include breakpoint($tablet) {
+  @include susy-breakpoint($tablet, $g-tablet) {
     font-size: 2.6em;
   }
 }

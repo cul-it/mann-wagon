@@ -38,9 +38,6 @@ body {
   @include container;
   @include clearfix;
 
-  // @include breakpoint($scape) {
-  //   @include container(6);
-  // }
 
   @include susy-breakpoint($scape, $g-scape) {
     @include container;

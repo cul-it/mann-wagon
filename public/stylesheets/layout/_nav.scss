@@ -17,7 +17,7 @@
     font-size: modular-scale(1);
   }
 
-  @include breakpoint($scape) {
+  @include susy-breakpoint($scape, $g-scape) {
     padding-right: 1em;
     text-align: right;
   }
@@ -26,7 +26,7 @@
     display: inline-block;
     padding: .4em;
 
-    @include breakpoint($tablet) {
+    @include susy-breakpoint($tablet, $g-tablet) {
       padding: .8em;
     }
 
@@ -57,7 +57,7 @@
 //     padding-left: 1em;
 //   }
 
-//   @include breakpoint($tablet) {
+//   @include susy-breakpoint($tablet, $g-tablet) {
 //     padding: .8em;
 //   }
 // }

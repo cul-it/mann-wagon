@@ -13,7 +13,7 @@
   td {
     padding: .2em;
 
-    @include breakpoint($lapdesk) {
+    @include susy-breakpoint($lapdesk, $g-lapdesk) {
       padding: .5em;
     }
   }
