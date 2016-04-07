@@ -4,14 +4,14 @@
 
     %p.footer__mission
       Supporting learning and research in the life sciences, agriculture, human ecology and applied social sciences.
-      %a.more-link.more-link--footer{href: "#"}>
+      %a.more-link.more-link--footer{href: "{% path_to about %}"}>
         More
         %i.fa.fa-angle-double-right
 
     %p
-      %a.more-link.more-link--footer{href: "#"} Organization &amp; Staff
+      %a.more-link.more-link--footer{href: "{% path_to organization-staff %}"} Organization &amp; Staff
       |
-      %a.more-link.more-link--footer{href: "#"} Employment
+      %a.more-link.more-link--footer{href: "{% path_to employment %}"} Employment
 
     / <%= image_tag "floor-map-tn.png", class:"img-responsive img-left img-faded" %>
     %h6.footer__subheading Floor Plans
