@@ -18,13 +18,14 @@
 @import 'layout/nav';
 @import 'layout/footer';
 
-
+// First 3 components are courtesy of Refills
+// Refills are not yet Bourbon v5 ready, but these are functional as is for now
+// -- https://github.com/thoughtbot/bourbon/issues/874#issuecomment-197984091
+// -- https://github.com/thoughtbot/refills/issues/369
 @import 'components/badges';
 @import 'components/button-groups';
 @import 'components/flashes';
-// @import 'components/side-image'; // Refills are not Bourbon v5 ready
-// -- https://github.com/thoughtbot/bourbon/issues/874#issuecomment-197984091
-// -- https://github.com/thoughtbot/refills/issues/369
+// Proceed with Mann components
 @import 'components/available-now';
 @import 'components/breadcrumbs';
 @import 'components/cu-banner';
