@@ -8,12 +8,15 @@
 
   @include susy-breakpoint($tablet, $g-tablet) {
     margin: .7em 0 .8em 0;
-    padding: 0 3%;
+    padding-left: 3%;
+
     @include span(5);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    padding: 0 7%;
+    padding-left: 7%;
+
+    @include span(7);
   }
 }
 

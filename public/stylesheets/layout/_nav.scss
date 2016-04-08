@@ -1,10 +1,18 @@
 .site-nav {
   @include break;
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(last 5 nobreak);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(last 7 nobreak);
+  }
 }
 
 .site-nav__list {
   margin-bottom: 1em;
-  border-top: solid 1px color('nav' ('shade': 8%));
+  border-top: solid 1px color('nav' ('shade': 5%));
   border-bottom: solid 4px color('nav' ('tint': 60%));
   font-weight: bold;
   font-size: modular-scale(-1);
@@ -12,23 +20,23 @@
   background: color('nav');
 
   @include susy-breakpoint($scape, $g-scape) {
+    text-align: right;
     font-size: modular-scale(0);
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    font-size: modular-scale(1);
+    padding-right: 5%;
   }
 
-  @include susy-breakpoint($scape, $g-scape) {
-    padding-right: 1em;
-    text-align: right;
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    padding-right: 8%;
   }
 
   .link {
     display: inline-block;
     padding: .4em;
 
-    @include susy-breakpoint($tablet, $g-tablet) {
+    @include susy-breakpoint($lapdesk, $g-lapdesk) {
       padding: .8em;
     }
 

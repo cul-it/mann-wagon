@@ -6,11 +6,17 @@
   @include susy-breakpoint($tablet, $g-tablet) {
     position: relative;
     margin-top: 2.8em;
-    padding-right: 0;
-    text-align: left;
+    padding-right: 5%;
+    text-align: right;
     font-size: modular-scale(-1);
 
     @include span(3 at 6);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    padding-right: 8%;
+
+    @include span(5 at 8);
   }
 }
 
@@ -18,10 +24,13 @@
   display: none;
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    float: left;
     display: inline-block;
-    width: 60%;
+    width: 70%;
     margin: .15em .5em 0;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    width: 75%;
   }
 }
 

@@ -8,10 +8,28 @@
   @include susy-breakpoint($scape, $g-scape) {
     @include span(last 2);
   }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    padding: .45em 0 .45em 5%;
+    font-size: modular-scale(0);
+
+    @include span(3 wide no-gutter);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    padding: .48em 0 .48em 8%;
+    font-size: modular-scale(1);
+
+    @include span(5 wide no-gutter);
+  }
 }
 
 .todays-hours__mann {
   margin-bottom: .3em;
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(2 of 3);
+  }
 }
 
 .todays-hours__lobby,
