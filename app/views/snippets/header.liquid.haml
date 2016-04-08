@@ -2,6 +2,7 @@
   .cu-banner
     %a.cu-banner__insignia.link--no-color{title: "Cornell.edu Homepage", href: "http://cornell.edu"}
       %span.cu-banner__uni-name.link--no-color Cornell University
+
   .mann-brand{href: "/"}
     %a.mann-brand__logo{title: "Home", href: "/"}
 
@@ -16,15 +17,17 @@
         %i.fa.fa-search
 
   .todays-hours
-    %h5.todays-hours__datetime
-      {{ now | date: '%b %-d, %Y' }}
-      %a.todays-hours__more{href: "{% path_to hours %}"}
-        All Hours
-        %i.fa.fa-angle-double-right
+    %ul
+      %li.todays-hours__mann
+        %span{ class: "badge todays-hours__now {% if mannlib_hours.open == 'Open' %}is-open{% else %}is-closed{% endif %}" } {{ mannlib_hours.open }}
 
-    %span{ class: "badge todays-hours__now {% if mannlib_hours.open == 'Open' %}is-open{% else %}is-closed{% endif %}" } {{ mannlib_hours.open }}
+        %span.todays-hours__until until {{ mannlib_hours.hours }}
+      %li.todays-hours__lobby
+        Lobby: 24 hrs
 
-    %span.todays-hours__until until {{ mannlib_hours.hours }}
+    %a.todays-hours__more{href: "{% path_to hours %}"}
+      All Hours
+      %i.fa.fa-angle-double-right
 
   %nav.site-nav{role: "navigation"}
     %ul.site-nav__list

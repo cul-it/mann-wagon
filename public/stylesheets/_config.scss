@@ -44,7 +44,15 @@ $colors: (
 
   // Accessory
   'blond': hsl(52, 100%, 87%),
-  'pine-green': hsl(173, 100%, 24%),
+
+  // Status
+  'tutu': hsl(358, 75%, 94%),
+  'glitter': hsl(215, 58%, 94%),
+  'spring-green': hsl(72, 58%, 85%),
+  'alert': 'blond',
+  'error': 'tutu',
+  'notice': 'glitter',
+  'success': 'spring-green',
 
   // Grayscale
   'alabaster': hsl(0, 0%, 98%),
@@ -78,16 +86,8 @@ $colors: (
 
   // Hours
   'today-in-the-week': 'blond',
-  'open': 'pine-green',
-
-  // Status
-  'tutu': hsl(358, 75%, 94%),
-  'glitter': hsl(215, 58%, 94%),
-  'spring-green': hsl(72, 58%, 85%),
-  'alert': 'blond',
-  'error': 'tutu',
-  'notice': 'glitter',
-  'success': 'spring-green',
+  'open': 'success',
+  'closed': 'error',
 );
 
 // Font Colors
