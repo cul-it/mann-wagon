@@ -4,6 +4,8 @@
 
 .site-nav__list {
   margin-bottom: 1em;
+  border-top: solid 1px color('nav' ('shade': 8%));
+  border-bottom: solid 4px color('nav' ('tint': 60%));
   font-weight: bold;
   font-size: modular-scale(-1);
   text-align: center;
