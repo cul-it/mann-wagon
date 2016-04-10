@@ -1,0 +1,11 @@
+.featured__side-image {
+  padding: 1em;
+  background: $secondary-background-color;
+  border: solid 1px shade($secondary-background-color, 5%);;
+
+  @include span(full);
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(last 5);
+  }
+}

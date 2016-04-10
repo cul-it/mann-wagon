@@ -1,19 +1,34 @@
 %header
-  .cu-banner.red
-    %a.cu-logo{title: "Cornell.edu Homepage", href: "http://cornell.edu"}
-      %span.cu Cornell University
-  .cul-logotype{href: "/"}
-    %a.mann-logo.no-mobile{title: "Home", href: "/"}
+  .cu-banner
+    %a.cu-banner__insignia.link--no-color{title: "Cornell.edu Homepage", href: "http://cornell.edu"}
+      %span.cu-banner__uni-name.link--no-color Cornell University
 
-    %h2.cul-brand.one-lib
-      %a{title: "Cornell University Library", href: "http://library.cornell.edu"} Cornell University Library
-    %h1.cul-brand.mann-brand
-      %a{title: "Home", href: "/"} {{ site.seo_title | upcase }}
+  .mann-brand{href: "/"}
+    %a.mann-brand__logo{title: "Home", href: "/"}
 
-  %form.search-site{role: "search"}
-    %input.search-term{type: "text", placeholder: "Search for books, articles, databases, journals and more"}
-      %button{type: "button"} Search
+    %h2.mann-brand__one-lib
+      %a.link--no-color{title: "Cornell University Library", href: "http://library.cornell.edu"} Cornell University Library
+    %h1.mann-brand__mannlib
+      %a.link--no-color{title: "Home", href: "/"} {{ site.seo_title | upcase }}
 
-%nav{role: "navigation"}
-  %ul.site-nav
-    {% nav site, no_wrapper: true, active_class: active %}
+  %form.search{role: "search"}
+    %input.search__term{type: "text", placeholder: "Search for books, articles, databases, journals and more"}
+      %button.search__button{type: "button"}
+        %i.fa.fa-search
+
+  .todays-hours
+    %ul
+      %li.todays-hours__mann
+        %span{ class: "badge todays-hours__now {% if mannlib_hours.open == 'Open' %}is-open{% else %}is-closed{% endif %}" } {{ mannlib_hours.open }}
+
+        %span.todays-hours__until until {{ mannlib_hours.hours }}
+      %li.todays-hours__lobby
+        Lobby: 24 hrs
+
+    %a.todays-hours__more{href: "{% path_to hours %}"}
+      All Hours
+      %i.fa.fa-angle-double-right
+
+  %nav.site-nav{role: "navigation"}
+    %ul.site-nav__list
+      {% nav site, no_wrapper: true, active_class: active %}

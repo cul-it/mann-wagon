@@ -13,7 +13,8 @@ is_layout: false
     %script{src: "https://use.typekit.net/udt1gzh.js"}
     %script
       try{Typekit.load({ async: true });}catch(e){}
-    {{ 'application.css' | stylesheet_tag }}
+    {{ 'main.css' | stylesheet_tag }}
+    {{ 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' | stylesheet_tag }}
     {{ 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js' | javascript_tag }}
   %body
     {% include 'header' %}

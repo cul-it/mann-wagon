@@ -1,0 +1,34 @@
+section {
+  margin-top: 2em;
+}
+
+.lead-in {
+  font-size: modular-scale(2);
+}
+
+.more-link {
+  font-size: modular-scale(-1);
+  font-weight: bold;
+  color: color('more');
+
+  &--footer {
+    color: color('more' ('desaturate': 10%));
+  }
+}
+
+.course-reserves-link {
+  font-size: modular-scale(-2);
+  @include span(1 at 4);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include isolate(2 at 4);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include isolate(1);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(2);
+  }
+}

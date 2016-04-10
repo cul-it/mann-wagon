@@ -1,0 +1,54 @@
+.hours-weekly {
+  font-size: modular-scale(-2);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    font-size: modular-scale(-1);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    font-size: modular-scale(0);
+  }
+
+  th,
+  td {
+    padding: .2em;
+
+    @include susy-breakpoint($lapdesk, $g-lapdesk) {
+      padding: .5em;
+    }
+  }
+
+  th {
+    line-height: modular-scale(0);
+    color: color('medium-gray');
+  }
+
+  .today {
+    background: color('today-in-the-week');
+  }
+}
+
+.hours-weekly-nav {
+  @include clearfix;
+  font-size: modular-scale(-1);
+}
+
+.day-of-week {
+  display: block;
+  color: color('headings');
+}
+
+.hours-exceptions {
+  margin-top: .5em;
+  font-size: modular-scale(-1);
+  text-align: left;
+}
+
+.datetime-exceptions {
+  margin: 0 0 1.3em 0;
+  td {
+    padding: .25em 0;
+    text-align: left;
+    border-bottom: none;
+  }
+}
