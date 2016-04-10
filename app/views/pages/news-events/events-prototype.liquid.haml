@@ -1,0 +1,189 @@
+---
+title: Events Prototype
+slug: events-prototype
+position: 0
+listed: true
+published: true
+is_layout: false
+---
+{% extends 'layouts/default' %}
+
+{% block main %}
+.events
+  .event-feature
+    %img.img-responsive.img-faded{:alt => "Abstract placeholder", :src => "/images/events/abstract-placeholder.jpg"}/
+    .btn-group.feature{"aria-label" => "Featured Events", :role => "group"}
+      %button.btn.btn-default{:type => "button"}
+        %i.fa.fa-caret-left
+      %button.btn.btn-default{:type => "button"} 1
+      %button.btn.btn-default{:type => "button"} 2
+      %button.btn.btn-default{:type => "button"} 3
+      %button.btn.btn-default{:type => "button"}
+        %i.fa.fa-caret-right
+  %div{:role => "tabpanel"}
+    / <h2>Events & Exhibits</h2>
+    / Nav tabs/filters
+    %ul.nav.nav-tabs{:role => "tablist"}
+      %li.active{:role => "presentation"}
+        %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "#today", :role => "tab"} Today
+      %li{:role => "presentation"}
+        %a{"aria-controls" => "profile", "data-toggle" => "tab", :href => "#week", :role => "tab"} Tomorrow
+      %li{:role => "presentation"}
+        %a{"aria-controls" => "messages", "data-toggle" => "tab", :href => "#month", :role => "tab"} This Week
+    / Tab panes
+    .tab-content
+      #today.tab-pane.active{:role => "tabpanel"}
+        %h2
+          Today
+          %small Tue, May 5, 2015
+        #events
+          .event{"data-access" => "public", "data-type" => "workshop", "data-venue" => "rm160"}
+            .event-detail
+              %span.time
+                %i.fa.fa-clock-o
+                8 am - 5 pm
+              %span.location.pull-right
+                %i.fa.fa-map-marker
+                Room 160
+            %h3.no-top-margin Event One
+            %p.description Nunc porta eget massa ut convallis. Suspendisse nec ultrices eros. Fusce vel malesuada ante, eu efficitur tortor. Integer condimentum gravida ligula eget malesuada. Aenean eu auctor leo, non vulputate eros. Etiam tincidunt erat in pulvinar congue. Donec bibendum mauris a nibh hendrerit condimentum. Integer eu nisl vel eros consectetur imperdiet.
+            / button for register
+            / icon for public - or - free and open to public
+          .event{"data-access" => "private", "data-type" => "class", "data-venue" => "b30a"}
+            .event-detail
+              %span.time
+                %i.fa.fa-clock-o
+                8 am - 5 pm
+              %span.location.pull-right
+                %i.fa.fa-map-marker
+                Room 160
+            %h3.no-top-margin Event Two
+            %p.description Etiam volutpat sit amet sem vitae convallis. Etiam eu orci non libero pretium auctor. Sed finibus lacinia nisi, vitae fermentum quam molestie quis. Mauris non metus ut nunc pharetra placerat. Aliquam iaculis eleifend est ut pharetra. Quisque posuere accumsan justo sed imperdiet.
+            %p.text-right
+              %a.btn.btn-primary{:href => "#"} Register
+            / button for register
+            / icon for public - or - free and open to public
+          .event{"data-access" => "public", "data-type" => "exhibit", "data-venue" => "lobby"}
+            .event-detail
+              %span.time
+                %i.fa.fa-clock-o
+                8 am - 5 pm
+              %span.location.pull-right
+                %i.fa.fa-map-marker
+                Room 160
+            %h3.no-top-margin Event Three
+            %p.description Aenean dictum nec elit et mattis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer aliquam, turpis ac elementum dignissim, est purus ultrices felis, vel ullamcorper sem libero a dolor. Donec quis faucibus lorem.
+            / button for register
+            / icon for public - or - free and open to public
+            / icon for ongoing
+      #week.tab-pane{:role => "tabpanel"}
+        %h3
+          Tomorrow
+          %small Wed, May 6, 2015
+      #month.tab-pane{:role => "tabpanel"}
+        %h3
+          This Week
+          %small May 4 - 8, 2015
+.events-filters
+  %a.btn.btn-lg.btn-default{:href => "#"} Reserve a space for your event!
+
+  .calendar-table
+    %p.text-center
+      %a.pull-left{:href => "#"}
+        %i.fa.fa-caret-left
+      %a.pull-right{:href => "#"}
+        %i.fa.fa-caret-right
+      May 2015
+    %table.table.table-border
+      %tr
+        %th.tg-031e Sun
+        %th.tg-031e Mon
+        %th.tg-031e Tue
+        %th.tg-031e Wed
+        %th.tg-031e Thu
+        %th.tg-031e Fri
+        %th.tg-031e Sat
+      %tr
+        %td.tg-031e 1
+        %td.tg-031e 2
+        %td.tg-031e 3
+        %td.tg-031e 4
+        %td.tg-031e 5
+        %td.tg-031e 6
+        %td.tg-031e 7
+      %tr
+        %td.tg-031e 8
+        %td.tg-031e 9
+        %td.tg-031e 10
+        %td.tg-031e 11
+        %td.tg-031e 12
+        %td.tg-031e 13
+        %td.tg-031e 14
+      %tr
+        %td.tg-031e 15
+        %td.tg-031e 16
+        %td.tg-031e 17
+        %td.tg-031e 18
+        %td.tg-031e 19
+        %td.tg-031e 20
+        %td.tg-031e 21
+      %tr
+        %td.tg-031e 22
+        %td.tg-031e 23
+        %td.tg-031e 24
+        %td.tg-031e 25
+        %td.tg-031e 26
+        %td.tg-031e 27
+        %td.tg-031e 28
+  %h6
+    %a{"data-filter" => ".event", :href => "#"} Clear All Filters
+  %h6 Sort by
+  %ul.list-unstyled
+    %li Relevance
+    %li Date
+    %li Event Title
+  %h6 Type
+  %ul.fa-ul{"data-filter-group" => "type"}
+    %li
+      %a.filter.active{"data-filter" => "all-type", :href => "#"} All Types
+    %li
+      %a.filter{"data-filter" => "workshop", :href => "#"} Workshop
+    %li
+      %a.filter{"data-filter" => "class", :href => "#"} Class
+      %a{:href => "#"}
+        %i.fa.fa-info-circle
+    %li
+      %a.filter{"data-filter" => "lecture", :href => "#"} Lecture
+    %li
+      %a.filter{"data-filter" => "booktalk", :href => "#"} Book Talk
+    %li
+      %a.filter{"data-filter" => "exhibit", :href => "#"} Exhibit
+    %li
+      %a.filter{"data-filter" => "lobby", :href => "#"} Lobby Table
+    %li
+      %a.filter{"data-filter" => "meeting", :href => "#"} Meeting
+    %li
+      %a.filter{"data-filter" => "other", :href => "#"} Other
+  %h6 Space/Room
+  %ul.fa-ul{"data-filter-group" => "venue"}
+    %li
+      %a.filter.active{"data-filter" => "all-venue", :href => "#"} All Spaces
+    %li
+      %a.filter{"data-filter" => "lobby", :href => "#"} Lobby
+    %li
+      %a.filter{"data-filter" => "gallery", :href => "#"} Gallery
+    %li
+      %a.filter{"data-filter" => "rm100", :href => "#"} Mann 100
+    %li
+      %a.filter{"data-filter" => "rm102", :href => "#"} Mann 102
+    %li
+      %a.filter{"data-filter" => "rm160", :href => "#"} Stern Seminar Room (Mann 160)
+    %li
+      %a.filter{"data-filter" => "stone", :href => "#"} Stone
+    %li
+      %a.filter{"data-filter" => "b30a", :href => "#"} Basement 30A
+    %li
+      %a.filter{"data-filter" => "b30b", :href => "#"} Basement 30B
+
+{% include 'section-nav' %}
+{% endblock %}
