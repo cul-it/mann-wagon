@@ -7,14 +7,14 @@ listed: false
 {% extends layouts/default %}
 
 {% block 'main' %}
-{{ 'main.js' | javascript_tag }}
-%nav.hours-weekly__nav.button-group
-  %label
-    %input{:name => "button-group", :type => "radio", :value => "prev-week", :disabled => true}
-      %span.button-group-item << Prev Week
-  %label
-    %input{:name => "button-group", :type => "radio", :value => "next-week"}
-      %span.button-group-item Next Week >>
+{{ 'hours-nav.js' | javascript_tag }}
+
+.hours-weekly__nav.ui.basic.tiny.buttons
+  %button.ui.button.disabled.js-hours-prev
+    %i.fa.fa-chevron-left
+  %button.ui.button.disabled.js-hours-today Today
+  %button.ui.button.js-hours-next
+    %i.fa.fa-chevron-right
 
 {% for weeks in mannlib_weekly_hours.weekly_hours %}
 {% if forloop.first %}

@@ -36,11 +36,6 @@
   background: color('today-in-the-week');
 }
 
-.hours-weekly__nav {
-  @include clearfix;
-  font-size: modular-scale(-1);
-}
-
 .hours-weekly__month {
   font-size: modular-scale(1);
   color: color('yellow-sea');
