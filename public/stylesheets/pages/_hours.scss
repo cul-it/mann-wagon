@@ -1,5 +1,6 @@
 .hours-weekly {
   font-size: modular-scale(-2);
+  line-height: modular-scale(0);
 
   @include susy-breakpoint($scape, $g-scape) {
     font-size: modular-scale(-1);
@@ -11,44 +12,50 @@
 
   th,
   td {
-    padding: .2em;
+    padding: .5em .1em;
 
-    @include susy-breakpoint($lapdesk, $g-lapdesk) {
-      padding: .5em;
+    @include susy-breakpoint($tablet, $g-tablet) {
+      padding: .7em .3em;
     }
   }
 
-  th {
-    line-height: modular-scale(0);
-    color: color('medium-gray');
-  }
+  tbody {
+    tr {
+      &:nth-of-type(odd) {
+        background: color('alabaster');
+      }
+    }
 
-  .today {
-    background: color('today-in-the-week');
+    td {
+      border-bottom-color: color('barely-gray');
+    }
   }
 }
 
-.hours-weekly-nav {
-  @include clearfix;
-  font-size: modular-scale(-1);
+.hours-weekly__today {
+  background: color('today-in-the-week');
 }
 
-.day-of-week {
+.hours-weekly__month {
+  font-size: modular-scale(1);
+  color: color('yellow-sea');
+}
+
+.hours-weekly__day-of-week {
+  color: color('light-gray' ('shade': 15%));
+}
+
+.hours-weekly__day-of-month {
   display: block;
-  color: color('headings');
+  font-size: modular-scale(1);
 }
 
-.hours-exceptions {
-  margin-top: .5em;
-  font-size: modular-scale(-1);
-  text-align: left;
+.hours-weekly__location {
+  color: color('weekly-location');
+  background: color('weekly-location-bg');
 }
 
-.datetime-exceptions {
-  margin: 0 0 1.3em 0;
-  td {
-    padding: .25em 0;
-    text-align: left;
-    border-bottom: none;
-  }
+.hours-weekly__exception {
+  margin-top: .3em;
+  font-size: modular-scale(-2);
 }
