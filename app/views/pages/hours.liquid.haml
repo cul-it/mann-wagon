@@ -8,7 +8,7 @@ listed: false
 
 {% block 'main' %}
 {{ 'main.js' | javascript_tag }}
-%nav.hours-weekly-nav.button-group
+%nav.hours-weekly__nav.button-group
   %label
     %input{:name => "button-group", :type => "radio", :value => "prev-week", :disabled => true}
       %span.button-group-item << Prev Week
@@ -25,24 +25,24 @@ listed: false
 %table.hours-weekly{ :style => "{% if day_today == nil %}display:none;{% endif %}" }
   %thead
     %tr
-      %th
-        {% for week in weeks %}
-        {% for date in week[0] %}
-        %th{ class: "{%if forloop.index == day_today %}today{% endif %}" }
-          {{ date | date: '%b %d' }}
-          %span.day-of-week {{ date | date: "%a" }}
-        {% endfor %}
-        {% endfor %}
+      %th.hours-weekly__month {{ weeks[1][0][0] | date: "%b" }}
+      {% for week in weeks %}
+      {% for date in week[0] %}
+      %th{ class: "{%if forloop.index == day_today %}hours-weekly__today{% endif %}" }
+        %span.hours-weekly__day-of-week {{ date | date: "%a" }}
+        %span.hours-weekly__day-of-month {{ date | date: '%d' | ceil }}
+      {% endfor %}
+      {% endfor %}
   %tbody
     {% for week in weeks %}
     {% for day in week[1] %}
     %tr
-      %td {{ day[0] }}
+      %td.hours-weekly__location {{ day[0] }}
       {% for time in day[1] %}
-      %td{ class: "{% if forloop.index == day_today %}today{% endif %}" }
-        {{ time[0] }}
+      %td{ class: "{% if forloop.index == day_today %}hours-weekly__today{% endif %}" }
+        %span.hours-weekly__hours {{ time[0] | replace: "Hours", "hrs" }}
         {% unless time[1] == nil %}
-        {{ time[1] }}
+        %span.hours-weekly__exception {{ time[1] }}
         {% endunless %}
 
       {% endfor %}
