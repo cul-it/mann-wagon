@@ -55,17 +55,7 @@
   background: color('weekly-location-bg');
 }
 
-.hours-exceptions {
-  margin-top: .5em;
-  font-size: modular-scale(-1);
-  text-align: left;
-}
-
-.datetime-exceptions {
-  margin: 0 0 1.3em 0;
-  td {
-    padding: .25em 0;
-    text-align: left;
-    border-bottom: none;
-  }
+.hours-weekly__exception {
+  margin-top: .3em;
+  font-size: modular-scale(-2);
 }

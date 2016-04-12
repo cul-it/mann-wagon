@@ -42,7 +42,7 @@ listed: false
       %td{ class: "{% if forloop.index == day_today %}hours-weekly__today{% endif %}" }
         %span.hours-weekly__hours {{ time[0] | replace: "Hours", "hrs" | replace: "Appointment", "Appt" }}
         {% unless time[1] == nil %}
-        %span.hours-weekly__exception {{ time[1] }}
+        %span.badge.badge-alert.hours-weekly__exception {{ time[1] }}
         {% endunless %}
 
       {% endfor %}
