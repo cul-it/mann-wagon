@@ -1,0 +1,32 @@
+- "Sample 1":
+    description: "Tempore voluptas eum nihil qui quo suscipit molestiae. Excepturi et culpa eligendi architecto quidem enim voluptas. Quas omnis praesentium repellat voluptates corporis laudantium officia. Officiis harum nobis quos aspernatur sapiente ipsam perspiciatis."
+    # photo: /samples/spaces/yourfile.txt # Path to a file in the public/samples folder or to a remote and external file.
+    capacity: null # Use the value of a select option defined in the app/content_types/Spaces.rb file.
+    loan_period: null # Use the value of a select option defined in the app/content_types/Spaces.rb file.
+    features: "Quia autem veritatis dicta et unde. Maiores nesciunt consequatur provident minima rem. Voluptas laboriosam repellat blanditiis quo quidem adipisci. Consequatur earum ad fugit non voluptatem necessitatibus."
+    avail_url: "Ullam nihil ratione ex quasi eum fuga omnis."
+
+- "Sample 2":
+    description: "Tenetur est aliquam reiciendis. Non est expedita sint iusto ratione aliquid. Voluptas voluptate tempore corrupti. Excepturi aliquam optio veritatis blanditiis. Est vel explicabo molestias eius."
+    # photo: /samples/spaces/yourfile.txt # Path to a file in the public/samples folder or to a remote and external file.
+    capacity: null # Use the value of a select option defined in the app/content_types/Spaces.rb file.
+    loan_period: null # Use the value of a select option defined in the app/content_types/Spaces.rb file.
+    features: "Earum quo qui non sint. Voluptatibus quo ipsum est animi possimus laudantium. Nemo in exercitationem dicta et possimus nulla qui. Distinctio sunt cum repellat. Aut eligendi dignissimos illum dolor est."
+    avail_url: "Et at veritatis quis quia doloremque eum impedit."
+
+- "Sample 3":
+    description: "Aut sunt rerum. Doloribus modi voluptatem. Sapiente autem ut porro veniam dolorem. Molestias repellendus et nihil."
+    # photo: /samples/spaces/yourfile.txt # Path to a file in the public/samples folder or to a remote and external file.
+    capacity: null # Use the value of a select option defined in the app/content_types/Spaces.rb file.
+    loan_period: null # Use the value of a select option defined in the app/content_types/Spaces.rb file.
+    features: "Aut et deleniti quae. Deserunt delectus sunt et corporis voluptatum. Labore ratione natus molestiae laborum eos magnam. Et qui facere fugiat porro et."
+    avail_url: "Velit ab sit aut provident sed et."
+
+- "Sample 4":
+    description: "Rem aut dolore. Sunt consectetur voluptas dolorem enim. Dicta provident ut magnam et voluptas nostrum."
+    # photo: /samples/spaces/yourfile.txt # Path to a file in the public/samples folder or to a remote and external file.
+    capacity: null # Use the value of a select option defined in the app/content_types/Spaces.rb file.
+    loan_period: null # Use the value of a select option defined in the app/content_types/Spaces.rb file.
+    features: "Vel ut animi eum laboriosam quibusdam et. Consectetur voluptatibus dolores. Ducimus maxime quo quis. Ea molestias et."
+    avail_url: "Illum id et dolore."
+
