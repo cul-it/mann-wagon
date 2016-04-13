@@ -5,7 +5,7 @@ name: Reservation systems
 slug: reservation_systems
 
 # Explanatory text displayed in the back-office
-description: A description of the content type for the editors
+description: Provide integration points to Mann's reservation systems
 
 # Slug of field used to identify entries by default, such as the title
 label_field_name: name
@@ -26,9 +26,9 @@ order_by: manually
 # public_submission_accounts: ['john@example.com']
 
 # Control the display of the content type in the back-office.
-# display_settings:
-#   seo: false              # display the SEO tab for the content entries
-#   advanced: false         # display the Advanced tab for the content entries
+display_settings:
+  seo: false              # display the SEO tab for the content entries
+  # advanced: false         # display the Advanced tab for the content entries
 #   position: 1             # position in the sidebar menu
 #   hidden: false           # hidden for authors?
 
@@ -36,24 +36,24 @@ order_by: manually
 # entry_template: '<a href="{{ link }}">{{ entry._label }}</a>' # The default template
 
 # A list describing each field
-fields: 
+fields:
 - name: # The lowercase, underscored name of the field
     label: Name # Human readable name of the field
     type: string
     required: true
-    hint: Explanatory text displayed in the back office
+    hint: Only used in back-office, never displayed to public
     localized: false
 
 - url: # The lowercase, underscored name of the field
     label: Url # Human readable name of the field
     type: string
-    required: false
-    hint: Explanatory text displayed in the back office
+    required: true
+    hint: Base URL for the reservation system (e.g. http://spaces.library.cornell.edu)
     localized: false
 
 - api_url: # The lowercase, underscored name of the field
     label: Api url # Human readable name of the field
     type: string
-    required: false
-    hint: Explanatory text displayed in the back office
+    required: true
+    hint: Base URL for the API (e.g. https://api3.libcal.com)
     localized: false

@@ -5,13 +5,13 @@ name: Floors
 slug: floors
 
 # Explanatory text displayed in the back-office
-description: A description of the content type for the editors
+description: Manage the floors (levels) in Mann
 
 # Slug of field used to identify entries by default, such as the title
 label_field_name: name
 
 # Valid values: manually, created_at, updated_at, or the slug of any field
-order_by: manually
+order_by: level
 
 # Valid values: asc (ascending) and desc (descending). Set to asc by default.
 # order_direction: asc
@@ -26,9 +26,9 @@ order_by: manually
 # public_submission_accounts: ['john@example.com']
 
 # Control the display of the content type in the back-office.
-# display_settings:
-#   seo: false              # display the SEO tab for the content entries
-#   advanced: false         # display the Advanced tab for the content entries
+display_settings:
+  seo: false              # display the SEO tab for the content entries
+  advanced: false         # display the Advanced tab for the content entries
 #   position: 1             # position in the sidebar menu
 #   hidden: false           # hidden for authors?
 
@@ -36,28 +36,28 @@ order_by: manually
 # entry_template: '<a href="{{ link }}">{{ entry._label }}</a>' # The default template
 
 # A list describing each field
-fields: 
+fields:
 - name: # The lowercase, underscored name of the field
     label: Name # Human readable name of the field
     type: string
     required: true
-    hint: Explanatory text displayed in the back office
+    hint: Display name of this floor (e.g. First Floor)
     localized: false
+
+- level: # The lowercase, underscored name of the field
+    label: Level # Human readable name of the field
+    type: select
+    required: true
+    hint: Numbered value of floor (e.g. Basement = 0)
+    localized: false    # if localized, use
+    #   en: ['option1_en', 'option2_en']
+    #   fr: ['option1_fr', 'option2_fr']
+    select_options: ['0', '1', '2', '3', '4']
 
 - description: # The lowercase, underscored name of the field
     label: Description # Human readable name of the field
     type: text
     required: false
-    hint: Explanatory text displayed in the back office
+    hint: Highlight non-space related items for this floor (e.g. stacks)
     localized: false
-    # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
-
-- level: # The lowercase, underscored name of the field
-    label: Level # Human readable name of the field
-    type: select
-    required: false
-    hint: Explanatory text displayed in the back office
-    localized: false    # if localized, use
-    #   en: ['option1_en', 'option2_en']
-    #   fr: ['option1_fr', 'option2_fr']
-    select_options: ['option 1', 'option 2', 'option 3']
+    text_formatting: text # html (uses rich text editor), markdown or text (uses plain text editor)

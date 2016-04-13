@@ -5,16 +5,16 @@ name: Spaces
 slug: spaces
 
 # Explanatory text displayed in the back-office
-description: A description of the content type for the editors
+description: Manage all spaces throughout Mann
 
 # Slug of field used to identify entries by default, such as the title
 label_field_name: name
 
 # Valid values: manually, created_at, updated_at, or the slug of any field
-order_by: manually
+order_by: name
 
 # Valid values: asc (ascending) and desc (descending). Set to asc by default.
-# order_direction: asc
+order_direction: asc
 
 # Specify a field slug to group entries by that field in the back-office.
 # group_by: <your field>
@@ -26,8 +26,8 @@ order_by: manually
 # public_submission_accounts: ['john@example.com']
 
 # Control the display of the content type in the back-office.
-# display_settings:
-#   seo: false              # display the SEO tab for the content entries
+display_settings:
+  seo: false              # display the SEO tab for the content entries
 #   advanced: false         # display the Advanced tab for the content entries
 #   position: 1             # position in the sidebar menu
 #   hidden: false           # hidden for authors?
@@ -36,19 +36,26 @@ order_by: manually
 # entry_template: '<a href="{{ link }}">{{ entry._label }}</a>' # The default template
 
 # A list describing each field
-fields: 
+fields:
 - name: # The lowercase, underscored name of the field
     label: Name # Human readable name of the field
     type: string
     required: true
-    hint: Explanatory text displayed in the back office
+    hint: If this is a named space, enter it here
+    localized: false
+
+- room: # The lowercase, underscored name of the field
+    label: Room Number # Human readable name of the field
+    type: string
+    required: false
+    hint: Will be appended to name, so leave this empty if room number is already included in name above
     localized: false
 
 - description: # The lowercase, underscored name of the field
     label: Description # Human readable name of the field
     type: text
-    required: false
-    hint: Explanatory text displayed in the back office
+    required: true
+    hint: Keep it short and sweet
     localized: false
     # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
 
@@ -56,47 +63,47 @@ fields:
     label: Photo # Human readable name of the field
     type: file
     required: false
-    hint: Explanatory text displayed in the back office
+    hint: Visual depiction of space
     localized: false
 
 - capacity: # The lowercase, underscored name of the field
     label: Capacity # Human readable name of the field
     type: select
-    required: false
-    hint: Explanatory text displayed in the back office
+    required: true
+    hint: Select the applicable range
     localized: false    # if localized, use
     #   en: ['option1_en', 'option2_en']
     #   fr: ['option1_fr', 'option2_fr']
-    select_options: ['option 1', 'option 2', 'option 3']
-
-- loan_period: # The lowercase, underscored name of the field
-    label: Loan period # Human readable name of the field
-    type: select
-    required: false
-    hint: Explanatory text displayed in the back office
-    localized: false    # if localized, use
-    #   en: ['option1_en', 'option2_en']
-    #   fr: ['option1_fr', 'option2_fr']
-    select_options: ['option 1', 'option 2', 'option 3']
+    select_options: ['1', '4-6', '5', '6', '6-8', '7', '17', '22', '26', '27', '31', '44', '50', 'N/A']
 
 - features: # The lowercase, underscored name of the field
     label: Features # Human readable name of the field
     type: text
     required: false
-    hint: Explanatory text displayed in the back office
+    hint: List equipment & furniture here
     localized: false
     # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
 
 - reserve_sys_id: # The lowercase, underscored name of the field
-    label: Reserve sys # Human readable name of the field
+    label: Reservation System ID # Human readable name of the field
     type: integer
     required: false
-    hint: Explanatory text displayed in the back office
+    hint: If reservable, provide space ID in applicable reservation system
     localized: false
 
+- loan_period: # The lowercase, underscored name of the field
+    label: Loan period # Human readable name of the field
+    type: select
+    required: false
+    hint: If loanable, select the applicable loan period
+    localized: false    # if localized, use
+    #   en: ['option1_en', 'option2_en']
+    #   fr: ['option1_fr', 'option2_fr']
+    select_options: ['4-hour', '8-hour']
+
 - avail_url: # The lowercase, underscored name of the field
-    label: Avail url # Human readable name of the field
+    label: Availability URL # Human readable name of the field
     type: string
     required: false
-    hint: Explanatory text displayed in the back office
+    hint: If loanable, enter full URL for web service call that provides availability status
     localized: false
