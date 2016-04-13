@@ -1,0 +1,32 @@
+- CIT:
+    _slug: cit
+    name: CIT
+    description: CIT Labs at Mann
+- Classroom:
+    _slug: classroom
+    name: Classroom
+    description: All classrooms
+- Conference:
+    _slug: conference
+    name: Conference
+    description: Conference and seminar rooms
+- Group:
+    _slug: group
+    name: Group
+    description: Group study rooms
+- Other:
+    _slug: other
+    name: Other
+    description: Everything else
+- Quiet:
+    _slug: quiet
+    name: Quiet
+    description: Quiet study spaces
+- Reservable:
+    _slug: reservable
+    name: Reservable
+    description: All reservable spaces
+- Study:
+    _slug: study
+    name: Study
+    description: Study spaces and rooms

@@ -1,0 +1,10 @@
+- LibCal:
+    _slug: libcal
+    name: LibCal
+    url: http://spaces.library.cornell.edu
+    api_url: https://api3.libcal.com
+- Booked:
+    _slug: booked
+    name: Booked
+    url: http://booked-dev.library.cornell.edu
+    api_url: http://booked-dev.library.cornell.edu/Web/Services/index.php
