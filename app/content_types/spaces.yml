@@ -51,6 +51,13 @@ fields:
     hint: Will be appended to name, so leave this empty if room number is already included in name above
     localized: false
 
+- floor:
+    label: Floor
+    hint: Where this space is located
+    type: belongs_to
+    class_name: floors
+    required: true
+
 - description: # The lowercase, underscored name of the field
     label: Description # Human readable name of the field
     type: text
@@ -107,9 +114,3 @@ fields:
     required: false
     hint: If loanable, enter full URL for web service call that provides availability status
     localized: false
-
-- floor:
-    label: Floor
-    hint: A description of the relationship for the editors
-    type: belongs_to
-    class_name: floors

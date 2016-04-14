@@ -64,7 +64,7 @@ fields:
 
 - spaces:
     label: Spaces
-    hint: A description of the relationship for the editors
+    hint: On this floor
     type: has_many
     class_name: spaces
     inverse_of: floor
