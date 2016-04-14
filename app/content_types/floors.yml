@@ -61,3 +61,11 @@ fields:
     hint: Highlight non-space related items for this floor (e.g. stacks)
     localized: false
     text_formatting: text # html (uses rich text editor), markdown or text (uses plain text editor)
+
+- spaces:
+    label: Spaces
+    hint: A description of the relationship for the editors
+    type: has_many
+    class_name: spaces
+    inverse_of: floor
+    ui_enabled: true
