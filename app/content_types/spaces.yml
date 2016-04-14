@@ -120,3 +120,11 @@ fields:
     required: false
     hint: If loanable, enter full URL for web service call that provides availability status
     localized: false
+
+- spaces_types:
+    label: Spaces types
+    hint: A description of the relationship for the editors
+    type: many_to_many
+    class_name: spaces_types
+    inverse_of: spaces
+    ui_enabled: true
