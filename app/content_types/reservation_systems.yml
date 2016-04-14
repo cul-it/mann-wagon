@@ -57,3 +57,11 @@ fields:
     required: true
     hint: Base URL for the API (e.g. https://api3.libcal.com)
     localized: false
+
+- spaces:
+    label: Spaces
+    hint: With reservations managed in this sytem
+    type: has_many
+    class_name: spaces
+    inverse_of: reservation_system
+    ui_enabled: true

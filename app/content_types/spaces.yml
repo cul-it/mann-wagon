@@ -91,6 +91,12 @@ fields:
     localized: false
     # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
 
+- reservation_system:
+    label: Reservation System
+    hint: If reservable, where are reservations for this space managed?
+    type: belongs_to
+    class_name: reservation_systems
+
 - reserve_sys_id: # The lowercase, underscored name of the field
     label: Reservation System ID # Human readable name of the field
     type: integer
