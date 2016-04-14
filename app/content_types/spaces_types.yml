@@ -54,7 +54,7 @@ fields:
 
 - spaces:
     label: Spaces
-    hint: A description of the relationship for the editors
+    hint: Assigned to this type
     type: many_to_many
     class_name: spaces
     inverse_of: spaces_types

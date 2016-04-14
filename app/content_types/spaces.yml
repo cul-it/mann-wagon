@@ -17,7 +17,7 @@ order_by: name
 order_direction: asc
 
 # Specify a field slug to group entries by that field in the back-office.
-# group_by: <your field>
+group_by: floor
 
 # Activate public 'create' API (e.g for a contact form)
 # public_submission_enabled: false
@@ -57,6 +57,15 @@ fields:
     type: belongs_to
     class_name: floors
     required: true
+
+- spaces_types:
+    label: Types
+    hint: Assign this space to one or more type -- used to dynamically build categories for Find Spaces
+    type: many_to_many
+    class_name: spaces_types
+    inverse_of: spaces
+    required: true
+    ui_enabled: true
 
 - description: # The lowercase, underscored name of the field
     label: Description # Human readable name of the field
@@ -120,11 +129,3 @@ fields:
     required: false
     hint: If loanable, enter full URL for web service call that provides availability status
     localized: false
-
-- spaces_types:
-    label: Spaces types
-    hint: A description of the relationship for the editors
-    type: many_to_many
-    class_name: spaces_types
-    inverse_of: spaces
-    ui_enabled: true
