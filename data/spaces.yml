@@ -1,0 +1,111 @@
+- 3rd Floor:
+    _slug: 3rd-floor
+    name: 3rd Floor
+    floor: third-floor
+    spaces_types:
+    - quiet
+    - study
+    description: "<p>The entire third floor? Can we (should we?) break it down further?</p>"
+    capacity: N/A
+- B30A:
+    _slug: b30a
+    name: B30A
+    floor: basement
+    spaces_types:
+    - classroom
+    description: "<p>Computer classroom and lab.</p>"
+    capacity: '44'
+- Bissett Collaborative Center:
+    _slug: bissett-collaborative-center
+    name: Bissett Collaborative Center
+    floor: second-floor
+    spaces_types:
+    - group
+    - study
+    description: "<p>A customizable space for students to work collaboratively on
+      academic projects and assignments.</p>"
+    capacity: N/A
+- Bissett Workstations:
+    _slug: bissett-workstations
+    name: Bissett Workstations
+    floor: second-floor
+    spaces_types:
+    - reservable
+    - study
+    description: "<p>Two reservable collaborative workstations with built-in LCD screens
+      and computers are available in the Bissett Collaborative Center (the other two
+      are available on a first-come, first served basis).</p><h3>PLEASE NOTE</h3><p>The
+      reservation system ID for LibCal listed below is the group ID instead of the
+      room ID. We'll need to figure out how to determine situations like this where
+      a space her in Locomotive actually represents multiple reservable rooms/spaces
+      in the corresponding reservation system. The lobby is another example of this.</p>"
+    capacity: '5'
+    reservation_system: libcal
+    reserve_sys_id: 11629
+- Grad Rooms:
+    _slug: grad-rooms
+    name: Grad Rooms
+    floor: third-floor
+    spaces_types:
+    - study
+    description: "<p>Study rooms for graduate students.</p>"
+    capacity: '1'
+    loan_period: 8-hour
+    avail_url: http://mannservices.mannlib.cornell.edu/LibServices/showRoomInfo.do?output=json&locationId=14
+- Hive:
+    _slug: hive
+    name: Hive
+    room: '282'
+    floor: second-floor
+    spaces_types:
+    - reservable
+    - study
+    description: "<p>Not to be mistaken for the Hub.<br></p>"
+    capacity: '7'
+    reservation_system: libcal
+    reserve_sys_id: 34485
+- Lobby:
+    _slug: lobby
+    name: Lobby
+    floor: first-floor
+    spaces_types:
+    - other
+    - reservable
+    description: "<p>The Mann Library lobby is a gathering place where visitors can
+      find casual seating to study, eat, or converse.</p>"
+    capacity: N/A
+    reservation_system: booked
+    reserve_sys_id: 4
+- Mac Lab:
+    _slug: mac-lab
+    name: Mac Lab
+    room: 220A
+    floor: second-floor
+    spaces_types:
+    - cit
+    - classroom
+    description: "<p>Mac lab and classroom.</p>"
+    capacity: '22'
+- Mann 102:
+    _slug: mann-102
+    name: Mann 102
+    floor: first-floor
+    spaces_types:
+    - conference
+    - reservable
+    description: "<p>The crown jewel</p>"
+    capacity: '50'
+    reservation_system: booked
+    reserve_sys_id: 1
+- Stone Classroom:
+    _slug: stone-classroom
+    name: Stone Classroom
+    room: '103'
+    floor: first-floor
+    spaces_types:
+    - classroom
+    - reservable
+    description: "<p>Computer classroom and lab.</p>"
+    capacity: '27'
+    reservation_system: booked
+    reserve_sys_id: 3
