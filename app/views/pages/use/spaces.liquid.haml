@@ -1,8 +1,125 @@
 ---
-title: Spaces
+title: Find a Space
 handle: spaces
 published: true
 listed: true
 position: 1
 ---
-{% extends layouts/section %}
+{% extends layouts/default %}
+
+{% block main %}
+
+.space-finder__study
+  %h3.space-finder__heading Study Spaces
+
+  .space-finder__study--reservable
+    %h4.space-finder__subheading Reservable Study Spaces
+
+    %ul
+      {% with_scope spaces_types: 'study' %}
+      {% for space in contents.spaces %}
+      {% for type in space.spaces_types %}
+      {% if type._slug == 'reservable' %}
+      %li {{ space.name }}
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+      {% endwith_scope %}
+
+  .space-finder__study--rooms
+    %h4.space-finder__subheading Study Rooms
+
+    %ul
+      {% with_scope spaces_types: 'study' %}
+      {% for space in contents.spaces %}
+      {% if space.spaces_types.size == 1 %}
+      %li {{ space.name }}
+      {% endif %}
+      {% endfor %}
+      {% endwith_scope %}
+
+  .space-finder__study--quiet
+    %h4.space-finder__subheading Quiet Study
+
+    %ul
+      {% with_scope spaces_types: 'study' %}
+      {% for space in contents.spaces %}
+      {% for type in space.spaces_types %}
+      {% if type._slug == 'quiet' %}
+      %li {{ space.name }}
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+      {% endwith_scope %}
+
+  .space-finder__study--group
+    %h4.space-finder__subheading Group Study
+
+    %ul
+      {% with_scope spaces_types: 'study' %}
+      {% for space in contents.spaces %}
+      {% for type in space.spaces_types %}
+      {% if type._slug == 'group' %}
+      %li {{ space.name }}
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+      {% endwith_scope %}
+
+.space-finder__classroom
+  %h3.space-finder__heading Classrooms
+
+  .space-finder__classroom--basement
+    %h4.space-finder__subheading Basement Classrooms
+
+    %ul
+      {% with_scope spaces_types: 'classroom', floor: /basement/ %}
+      {% for space in contents.spaces %}
+      %li {{ space.name }}
+      {% endfor %}
+      {% endwith_scope %}
+
+  .space-finder__classroom--stone
+    %ul
+      {% with_scope spaces_types: 'classroom', _slug: /stone/ %}
+      {% for space in contents.spaces %}
+      %li {{ space.name }}
+      {% endfor %}
+      {% endwith_scope %}
+
+  .space-finder__classroom--cit
+    %h4.space-finder__subheading CIT Labs
+
+    %ul
+      {% with_scope spaces_types: 'classroom' %}
+      {% for space in contents.spaces %}
+      {% for type in space.spaces_types %}
+      {% if type._slug == 'cit' %}
+      %li {{ space.name }}
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+      {% endwith_scope %}
+
+.space-finder__conference
+  %h3.space-finder__heading Conference &amp; Seminar Rooms
+
+  %ul
+    {% with_scope spaces_types: 'conference' %}
+    {% for space in contents.spaces %}
+    %li {{ space.name }}
+    {% endfor %}
+    {% endwith_scope %}
+
+.space-finder__conference
+  %h3.space-finder__heading Other Spaces
+
+  %ul
+    {% with_scope spaces_types: 'other' %}
+    {% for space in contents.spaces %}
+    %li {{ space.name }}
+    {% endfor %}
+    {% endwith_scope %}
+
+{% include 'section-nav' %}
+{% endblock %}
