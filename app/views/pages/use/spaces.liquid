@@ -15,13 +15,7 @@ position: 1
     <h4 class="space-finder__subheading">Reservable Study Spaces</h4>
     <ul>
       {% for space in contents.spaces %}
-        {% comment %} Build an array of space types {% endcomment %}
-        {% comment %} -- temporary hack while Did addresses a with_scope bug {% endcomment %}
-        {% assign all_types = '' %}
-        {% for type in space.spaces_types %}
-          {% assign all_types = all_types | append: ', ' | append: type._slug %}
-        {% endfor %}
-        {% assign all_types = all_types | remove_first: ', ' | split: ', ' %}
+        {% include 'spaces-types' %}
 
         {% if all_types contains 'study' and all_types contains 'reservable' %}
           <li>{{ space.name }}</li>
@@ -33,12 +27,7 @@ position: 1
     <h4 class="space-finder__subheading">Study Rooms</h4>
     <ul>
       {% for space in contents.spaces %}
-        {% comment %} Build an array of space types {% endcomment %}
-        {% assign all_types = '' %}
-        {% for type in space.spaces_types %}
-          {% assign all_types = all_types | append: ', ' | append: type._slug %}
-        {% endfor %}
-        {% assign all_types = all_types | remove_first: ', ' | split: ', ' %}
+        {% include 'spaces-types' %}
 
         {% if all_types contains 'study' and all_types.size == 1 %}
           <li>{{ space.name }}</li>
@@ -50,12 +39,7 @@ position: 1
     <h4 class="space-finder__subheading">Quiet Study</h4>
     <ul>
       {% for space in contents.spaces %}
-        {% comment %} Build an array of space types {% endcomment %}
-        {% assign all_types = '' %}
-        {% for type in space.spaces_types %}
-          {% assign all_types = all_types | append: ', ' | append: type._slug %}
-        {% endfor %}
-        {% assign all_types = all_types | remove_first: ', ' | split: ', ' %}
+        {% include 'spaces-types' %}
 
         {% if all_types contains 'study' and all_types contains 'quiet' %}
           <li>{{ space.name }}</li>
@@ -67,12 +51,7 @@ position: 1
     <h4 class="space-finder__subheading">Group Study</h4>
     <ul>
       {% for space in contents.spaces %}
-        {% comment %} Build an array of space types {% endcomment %}
-        {% assign all_types = '' %}
-        {% for type in space.spaces_types %}
-          {% assign all_types = all_types | append: ', ' | append: type._slug %}
-        {% endfor %}
-        {% assign all_types = all_types | remove_first: ', ' | split: ', ' %}
+        {% include 'spaces-types' %}
 
         {% if all_types contains 'study' and all_types contains 'group' %}
           <li>{{ space.name }}</li>
@@ -88,12 +67,7 @@ position: 1
     <h4 class="space-finder__subheading">Basement Classrooms</h4>
     <ul>
       {% for space in contents.spaces %}
-        {% comment %} Build an array of space types {% endcomment %}
-        {% assign all_types = '' %}
-        {% for type in space.spaces_types %}
-          {% assign all_types = all_types | append: ', ' | append: type._slug %}
-        {% endfor %}
-        {% assign all_types = all_types | remove_first: ', ' | split: ', ' %}
+        {% include 'spaces-types' %}
 
         {% if all_types contains 'classroom' and space.floor._slug == 'basement' %}
           <li>{{ space.name }}</li>
@@ -104,12 +78,7 @@ position: 1
   <div class="space-finder__category space-finder__classroom--stone">
     <ul>
       {% for space in contents.spaces %}
-        {% comment %} Build an array of space types {% endcomment %}
-        {% assign all_types = '' %}
-        {% for type in space.spaces_types %}
-          {% assign all_types = all_types | append: ', ' | append: type._slug %}
-        {% endfor %}
-        {% assign all_types = all_types | remove_first: ', ' | split: ', ' %}
+        {% include 'spaces-types' %}
 
         {% if all_types contains 'classroom' and space._slug contains 'stone' %}
           <li>{{ space.name }}</li>
@@ -121,12 +90,7 @@ position: 1
     <h4 class="space-finder__subheading">CIT Labs</h4>
     <ul>
       {% for space in contents.spaces %}
-        {% comment %} Build an array of space types {% endcomment %}
-        {% assign all_types = '' %}
-        {% for type in space.spaces_types %}
-          {% assign all_types = all_types | append: ', ' | append: type._slug %}
-        {% endfor %}
-        {% assign all_types = all_types | remove_first: ', ' | split: ', ' %}
+        {% include 'spaces-types' %}
 
         {% if all_types contains 'classroom' and all_types contains 'cit' %}
           <li>{{ space.name }}</li>
@@ -140,12 +104,7 @@ position: 1
   <h3 class="space-finder__heading">Conference &amp; Seminar Rooms</h3>
   <ul>
     {% for space in contents.spaces %}
-      {% comment %} Build an array of space types {% endcomment %}
-      {% assign all_types = '' %}
-      {% for type in space.spaces_types %}
-        {% assign all_types = all_types | append: ', ' | append: type._slug %}
-      {% endfor %}
-      {% assign all_types = all_types | remove_first: ', ' | split: ', ' %}
+      {% include 'spaces-types' %}
 
       {% if all_types contains 'conference' %}
         <li>{{ space.name }}</li>
@@ -158,12 +117,7 @@ position: 1
   <h3 class="space-finder__heading">Other Spaces</h3>
   <ul>
     {% for space in contents.spaces %}
-      {% comment %} Build an array of space types {% endcomment %}
-      {% assign all_types = '' %}
-      {% for type in space.spaces_types %}
-        {% assign all_types = all_types | append: ', ' | append: type._slug %}
-      {% endfor %}
-      {% assign all_types = all_types | remove_first: ', ' | split: ', ' %}
+      {% include 'spaces-types' %}
 
       {% if all_types contains 'other' %}
         <li>{{ space.name }}</li>
