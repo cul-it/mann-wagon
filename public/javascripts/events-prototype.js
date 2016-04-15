@@ -99,15 +99,26 @@ var events = new Vue({
       },
 
        // Room filter
-       setRoomFilter(room_number){
-        this.room = room_number;
-        this.room_selected = room_number;
+        setRoomFilter(room_number){
+          this.room = room_number;
+          this.room_selected = room_number;
+        },
+
+        removeRoomFilter(){
+          this.room = '';
+          this.room_selected = '';
         },
 
         setEventTypeFilter(event_type){
          this.event_type = event_type;
          this.event_selected = event_type;
          },
+
+         removeEventTypeFilter(){
+           this.event_type = '';
+           this.event_selected = '';
+         },
+
         // Clear filters
         clearAllFilters(){
           this.room = '';

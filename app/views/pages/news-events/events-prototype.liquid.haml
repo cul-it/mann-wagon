@@ -102,12 +102,13 @@ is_layout: false
     %ul.fa-ul{"data-filter-group" => "type"}
       %li{"v-for" => "event_type of allEventTypes | orderBy 'event_type'"}
         %a.filter{"v-bind:class" => "{ 'selected-filter': event_type == event_selected }", "v-on:click" => "setEventTypeFilter(event_type)"} ((event_type))
-
+        %a.fa.fa-times{"v-on:click" => "removeEventTypeFilter()", "v-if" => "event_type == event_selected"}
     %h6 Space/Room
     %ul.fa-ul{"data-filter-group" => "venue"}
       %li{"v-for" => "room of allRoomNames | orderBy 'room'"}
         / event to set room filter
         %a.filter{"v-bind:class" => "{ 'selected-filter': room == room_selected }", "v-on:click" => "setRoomFilter(room)"} ((room))
+        %a.fa.fa-times{"v-on:click" => "removeRoomFilter()", "v-if" => "room == room_selected"}
 
 
 {% include 'section-nav' %}
