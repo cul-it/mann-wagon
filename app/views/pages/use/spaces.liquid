@@ -1,0 +1,130 @@
+---
+title: Find a Space
+handle: spaces
+published: true
+listed: true
+position: 1
+---
+{% extends layouts/default %}
+
+{% block main %}
+
+<section class="space-finder space-finder__study">
+  <h3 class="space-finder__heading">Study Spaces</h3>
+  <div class="space-finder__category space-finder__study--reservable">
+    <h4 class="space-finder__subheading">Reservable Study Spaces</h4>
+    <ul>
+      {% for space in contents.spaces %}
+        {% include 'spaces-types' %}
+
+        {% if all_types contains 'study' and all_types contains 'reservable' %}
+          <li>{{ space.name }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="space-finder__category space-finder__study--rooms">
+    <h4 class="space-finder__subheading">Study Rooms</h4>
+    <ul>
+      {% for space in contents.spaces %}
+        {% include 'spaces-types' %}
+
+        {% if all_types contains 'study' and all_types.size == 1 %}
+          <li>{{ space.name }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="space-finder__category space-finder__study--quiet">
+    <h4 class="space-finder__subheading">Quiet Study</h4>
+    <ul>
+      {% for space in contents.spaces %}
+        {% include 'spaces-types' %}
+
+        {% if all_types contains 'study' and all_types contains 'quiet' %}
+          <li>{{ space.name }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="space-finder__category space-finder__study--group">
+    <h4 class="space-finder__subheading">Group Study</h4>
+    <ul>
+      {% for space in contents.spaces %}
+        {% include 'spaces-types' %}
+
+        {% if all_types contains 'study' and all_types contains 'group' %}
+          <li>{{ space.name }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="space-finder space-finder__classroom">
+  <h3 class="space-finder__heading">Classrooms</h3>
+  <div class="space-finder__category space-finder__classroom--basement">
+    <h4 class="space-finder__subheading">Basement Classrooms</h4>
+    <ul>
+      {% for space in contents.spaces %}
+        {% include 'spaces-types' %}
+
+        {% if all_types contains 'classroom' and space.floor._slug == 'basement' %}
+          <li>{{ space.name }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="space-finder__category space-finder__classroom--stone">
+    <ul>
+      {% for space in contents.spaces %}
+        {% include 'spaces-types' %}
+
+        {% if all_types contains 'classroom' and space._slug contains 'stone' %}
+          <li>{{ space.name }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="space-finder__category space-finder__classroom--cit">
+    <h4 class="space-finder__subheading">CIT Labs</h4>
+    <ul>
+      {% for space in contents.spaces %}
+        {% include 'spaces-types' %}
+
+        {% if all_types contains 'classroom' and all_types contains 'cit' %}
+          <li>{{ space.name }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="space-finder space-finder__conference">
+  <h3 class="space-finder__heading">Conference &amp; Seminar Rooms</h3>
+  <ul>
+    {% for space in contents.spaces %}
+      {% include 'spaces-types' %}
+
+      {% if all_types contains 'conference' %}
+        <li>{{ space.name }}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="space-finder space-finder__conference">
+  <h3 class="space-finder__heading">Other Spaces</h3>
+  <ul>
+    {% for space in contents.spaces %}
+      {% include 'spaces-types' %}
+
+      {% if all_types contains 'other' %}
+        <li>{{ space.name }}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</section>
+
+{% include 'section-nav' %}
+{% endblock %}
