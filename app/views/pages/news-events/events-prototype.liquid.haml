@@ -38,17 +38,9 @@ is_layout: false
                   ((event.event_room_name))
               %h3.no-top-margin ((event.event_title))
               %p.description ((event.event_description))
-              %div{"v-for" => "event_type in event.event_type"}
-                %p.description ((event_type))
+              -# %div{"v-for" => "event_type in event.event_type"}
+              -#   %p.description ((event_type))
 
-        #week.tab-pane{:role => "tabpanel"}
-          %h3
-            Tomorrow
-            %small Wed, May 6, 2015
-        #month.tab-pane{:role => "tabpanel"}
-          %h3
-            This Week
-            %small May 4 - 8, 2015
   .events-filters
     %a.btn.btn-lg.btn-default{:href => "#"} Reserve a space for your event!
 
@@ -101,10 +93,9 @@ is_layout: false
           %td.tg-031e 27
           %td.tg-031e 28
     %h6
-      %a{"data-filter" => ".event", :href => "#"} Clear All Filters
+      %a{"data-filter" => ".event", "v-on:click" => "clearAllFilters()"} Clear All Filters
     %h6 Sort by
     %ul.list-unstyled
-      %li Relevance
       %li Date
       %li Event Title
     %h6 Type

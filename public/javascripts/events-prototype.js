@@ -1,6 +1,5 @@
-// app.js
-
-Vue.config.delimiters = ['((', '))']; // normal output
+// Change Vue delimiters, to work with liquid
+Vue.config.delimiters = ['((', '))'];
 
 var localistApiUrl = 'http://events.cornell.edu/api/2/events/?type=4228&days=28&pp=100'
 
@@ -66,7 +65,7 @@ var events = new Vue({
           {
           url: 'http://booked-dev.library.cornell.edu/Web/Services/index.php/Authentication/Authenticate',
           method: 'POST',
-          data: JSON.stringify({username: 'admin', password: 'password'}),
+          data: JSON.stringify({username: 'test', password: 'test'}),
           dataType: "json"
         }).then(function (data) {
             // success callback
@@ -180,7 +179,7 @@ var events = new Vue({
         var room_names = [];
         $.each(data, function(key, value) {
           var events = {};
-          events['event_type'] = ['Workshop'];
+          events['event_type'] = ['Class/ Workshop'];
           events['event_title'] = value.title;
           events['event_description'] = value.description;
           events['event_start_time'] = value.bufferedStartDate;
@@ -190,8 +189,8 @@ var events = new Vue({
           if (room_names.indexOf(value.resourceName) == -1) {
             room_names.push(value.resourceName);
           }
-          if (event_types.indexOf('Workshop') == -1) {
-            event_types.push('Workshop')
+          if (event_types.indexOf('Class/ Workshop') == -1) {
+            event_types.push('Class/ Workshop')
           }
 
 
@@ -203,7 +202,7 @@ var events = new Vue({
 
         // Use merge to combine the arrays and set
         this.$set('allEvents', ($.merge(this.bookedEvents, this.cornellEvents)));
-        this.$set('allEventTypes', ($.merge(this.cornellEventTypes, this.bookedEventTypes)));
+        this.$set('allEventTypes', ($.unique($.merge(this.cornellEventTypes, this.bookedEventTypes))));
         this.$set('allRoomNames', ($.unique($.merge(this.cornellRoomNames, this.bookedRoomNames))));
       }
     }
