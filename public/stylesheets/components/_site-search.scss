@@ -1,0 +1,15 @@
+.site-search {
+  @include span(full);
+}
+
+.site-search__results {
+  padding-left: 1em;
+  list-style-type: decimal;
+}
+
+.site-search__page-title {
+  margin: 1em 0 0 0;
+  font-family: $base-font-family;
+  font-weight: 700;
+  font-size: modular-scale(0);
+}
