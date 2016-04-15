@@ -7,6 +7,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 
 var sassDir = path.join('stylesheets', 'vendor');
+var jsDir = path.join('javascripts', 'vendor');
 
 module.exports = {
   context: __dirname,
@@ -36,7 +37,14 @@ module.exports = {
       { from: 'node_modules/normalize-scss/sass', to: path.join(sassDir, 'normalize') },
       { from: 'node_modules/support-for/sass/_support-for.scss', to: path.join(sassDir, 'normalize') },
       // Susy
-      { from: 'node_modules/susy/sass', to: path.join(sassDir, 'susy') }
+      { from: 'node_modules/susy/sass', to: path.join(sassDir, 'susy') },
+      //vue
+      { from: 'node_modules/vue/dist', to: path.join(jsDir, 'vue') },
+      //vue-resource
+      { from: 'node_modules/vue-resource/dist', to: path.join(jsDir, 'vue-resource') },
+      //vue-filter
+      { from: 'node_modules/vue-filter', to: path.join(jsDir, 'vue-filter') },
+
     ], {
         ignore: []
     })
