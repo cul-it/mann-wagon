@@ -21,7 +21,7 @@
         %i.dropdown.icon
         .menu
           .item.js-search-target{data: {action: "http://search.library.cornell.edu", target: "_blank"}} Catalog
-          .item.js-search-target{data: {action: "/search", target: "_self"}} Website
+          .item.js-search-target{data: {action: "{% path_to search %}", target: "_self"}} Website
 
   .todays-hours
     %ul

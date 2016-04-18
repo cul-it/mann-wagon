@@ -20,7 +20,7 @@ published: true
 
   {% comment %} Render results only if search query exists {% endcomment %}
   {% if params.q %}
-    {% consume portia from api_request_url , expires_in: 600 %}
+    {% consume portia from api_request_url , expires_in: 0 %}
       {% if portia == null %}
         Search is currently unavailable.
       {% else %}
