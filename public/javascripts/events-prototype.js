@@ -23,7 +23,9 @@ var events = new Vue({
         allEventTypes: [],
         allRoomNames: [],
         event_selected: '',
-        room_selected: ''
+        room_selected: '',
+        sortKey: 'event_start_time',
+        reverse: false
     },
     // Anything within the ready function will run when the application loads
     ready: function() {
@@ -96,6 +98,10 @@ var events = new Vue({
                   // Create custom data model
                   this.bookedEventsArray(response.data.reservations);
                 });
+      },
+
+      sortBy(sortKey){
+        this.sortKey = sortKey;
       },
 
        // Room filter

@@ -28,7 +28,7 @@ is_layout: false
           %h2
             Upcoming Events
           #events
-            .event{"v-for" => "event in allEvents | roomName room | eventType event_type | orderBy 'event_start_time'"}
+            .event{"v-for" => "event in allEvents | orderBy sortKey reverse | roomName room | eventType event_type"}
               .event-detail
                 %span.time
                   %i.fa.fa-clock-o>
@@ -96,8 +96,8 @@ is_layout: false
       %a{"data-filter" => ".event", "v-on:click" => "clearAllFilters()"} Clear All Filters
     %h6 Sort by
     %ul.list-unstyled
-      %li Date
-      %li Event Title
+      %li{"v-on:click" => "sortBy('event_start_time')"} Date
+      %li{"v-on:click" => "sortBy('event_title')"} Event Title
     %h6 Type
     %ul.fa-ul{"data-filter-group" => "type"}
       %li{"v-for" => "event_type of allEventTypes | orderBy 'event_type'"}
