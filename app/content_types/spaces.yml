@@ -67,6 +67,14 @@ fields:
     required: true
     ui_enabled: true
 
+- spaces_study_types:
+    label: Types of study spaces
+    hint: If this is a study space, specify whether indiv, group, quiet
+    type: many_to_many
+    class_name: spaces_study_types
+    inverse_of: spaces
+    ui_enabled: true
+
 - description: # The lowercase, underscored name of the field
     label: Description # Human readable name of the field
     type: text

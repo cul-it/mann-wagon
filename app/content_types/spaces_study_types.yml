@@ -51,3 +51,11 @@ fields:
     hint: Keep it short and sweet
     localized: false
     text_formatting: text # html (uses rich text editor), markdown or text (uses plain text editor)
+
+- spaces:
+    label: Spaces
+    hint: Assigned to this study type
+    type: many_to_many
+    class_name: spaces
+    inverse_of: spaces_study_types
+    ui_enabled: true
