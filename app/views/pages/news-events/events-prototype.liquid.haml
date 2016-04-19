@@ -28,7 +28,7 @@ is_layout: false
           %h2
             Upcoming Events
           #events
-            .event{"v-for" => "event in allEvents | orderBy sortKey reverse | roomName room | eventType event_type"}
+            .event{"v-for" => "event in allEvents | orderBy sortKey reverse | roomName room | eventType event_type | limit list_limit"}
               %h2
                 ((event.event_start_time | momentDateText))
                 %small ((event.event_start_time | momentDate))
@@ -44,7 +44,8 @@ is_layout: false
               %p.description ((event.event_description))
               -# %div{"v-for" => "event_type in event.event_type"}
               -#   %p.description ((event_type))
-
+      %h6
+        %a{"v-on:click" => "loadMoreEvents()"} ((load_more_text))
   .events-filters
     %a.btn.btn-lg.btn-default{:href => "#"} Reserve a space for your event!
 

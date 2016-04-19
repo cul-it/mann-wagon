@@ -25,7 +25,9 @@ var events = new Vue({
         event_selected: '',
         room_selected: '',
         sortKey: 'event_start_time',
-        reverse: false
+        reverse: false,
+        list_limit: 10,
+        load_more_text: "Load More Events"
     },
     // Anything within the ready function will run when the application loads
     ready: function() {
@@ -66,6 +68,9 @@ var events = new Vue({
         } else if (days == 1){
           return "Tomorrow";
         }
+      },
+      limit: function(events, limit) {
+        return events.slice(0, Number(limit))
       }
 
 
@@ -166,6 +171,13 @@ var events = new Vue({
           this.event_type = '';
           this.room_selected = '';
           this.event_selected = '';
+        },
+        loadMoreEvents() {
+          var increment = this.list_limit + 10;
+          this.list_limit = increment > this.allEvents.length ? this.allEvents.length : increment;
+          if (this.list_limit == this.allEvents.length){
+            this.$set("load_more_text", "No more events");
+          }
         },
 
       // Custom data model from cornell events
