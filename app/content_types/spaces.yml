@@ -78,7 +78,7 @@ fields:
 - description: # The lowercase, underscored name of the field
     label: Description # Human readable name of the field
     type: text
-    required: true
+    required: false
     hint: Keep it short and sweet
     localized: false
     # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
@@ -98,7 +98,7 @@ fields:
     localized: false    # if localized, use
     #   en: ['option1_en', 'option2_en']
     #   fr: ['option1_fr', 'option2_fr']
-    select_options: ['1', '4-6', '5', '6', '6-8', '7', '17', '22', '26', '27', '31', '44', '50', 'N/A']
+    select_options: ['N/A', '1', '6', '8', '17', '22', '26', '27', '31', '44', '50']
 
 - features: # The lowercase, underscored name of the field
     label: Features # Human readable name of the field

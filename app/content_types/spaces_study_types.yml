@@ -11,10 +11,10 @@ description: Sub categories under study spaces
 label_field_name: name
 
 # Valid values: manually, created_at, updated_at, or the slug of any field
-order_by: name
+order_by: manually
 
 # Valid values: asc (ascending) and desc (descending). Set to asc by default.
-order_direction: asc
+# order_direction: asc
 
 # Specify a field slug to group entries by that field in the back-office.
 # group_by: <your field>
