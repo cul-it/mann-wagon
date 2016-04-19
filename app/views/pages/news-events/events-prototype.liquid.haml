@@ -29,10 +29,14 @@ is_layout: false
             Upcoming Events
           #events
             .event{"v-for" => "event in allEvents | orderBy sortKey reverse | roomName room | eventType event_type"}
+              %h2
+                ((event.event_start_time | momentDateText))
+                %small ((event.event_start_time | momentDate))
+
               .event-detail
                 %span.time
                   %i.fa.fa-clock-o>
-                  ((event.event_start_time | date '%a, %b %-d, %Y; %I:%M %p')) - ((event.event_end_time |  date '%I:%M %p'))
+                  ((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))
                 %span.location.pull-right
                   %i.fa.fa-map-marker>
                   ((event.event_room_name))
@@ -66,11 +70,11 @@ is_layout: false
 
 
 {% include 'section-nav' %}
+{{ 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js' | javascript_tag }}
+
 {{ 'events-calendar.js' | javascript_tag }}
 {{ 'vendor/vue/vue.js' | javascript_tag }}
 {{ 'vendor/vue-resource/vue-resource.js' | javascript_tag }}
-{{ 'vendor/vue-filter/vue-filter.js' | javascript_tag }}
-{{ 'vendor/vue-filter/vue-filter.js' | javascript_tag }}
 
 {{ 'events-calendar-directive.js' | javascript_tag }}
 {{ 'events-prototype.js' | javascript_tag }}

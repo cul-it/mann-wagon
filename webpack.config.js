@@ -41,9 +41,7 @@ module.exports = {
       //vue
       { from: 'node_modules/vue/dist', to: path.join(jsDir, 'vue') },
       //vue-resource
-      { from: 'node_modules/vue-resource/dist', to: path.join(jsDir, 'vue-resource') },
-      //vue-filter
-      { from: 'node_modules/vue-filter', to: path.join(jsDir, 'vue-filter') },
+      { from: 'node_modules/vue-resource/dist', to: path.join(jsDir, 'vue-resource') }
 
     ], {
         ignore: []

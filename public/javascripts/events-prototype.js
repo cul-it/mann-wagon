@@ -50,11 +50,31 @@ var events = new Vue({
         else {
           return events.filter((event) => event.event_type.indexOf(event_type) > -1);
         }
+      },
+      momentTime: function (date) {
+        return moment(date).format('h:mm a');
+      },
+      momentDate: function (date) {
+        return moment(date).format('ddd, MMM Do, YYYY');
+      },
+      momentDateText: function (date) {
+        var someday = moment(date);
+        var today = moment().startOf('day');
+        var days = someday.diff(today, "days");
+        if (days == 0){
+          return "Today";
+        } else if (days == 1){
+          return "Tomorrow";
+        }
       }
+
 
     },
 
     methods: {
+      moment(){
+        return moment();
+      },
       getCornellEvents(option, date) {
         if(option == "days"){
           this.$http.get(localistApiBaseUrl+"&days=28").then(function(response) {
