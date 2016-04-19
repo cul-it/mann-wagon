@@ -60,3 +60,7 @@ sensitive_data:
     scrapinghub_apikey:
       type: string
       hint: Used to retrieve the items scraped from dev site to power temporary site search
+    booked_username:
+      type: string
+    booked_password:
+      type: string  

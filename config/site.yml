@@ -50,3 +50,5 @@ meta_description: "some meta description"
 metafields:
   sensitive_data:
     scrapinghub_apikey:
+    booked_username:
+    booked_password:
