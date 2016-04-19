@@ -44,54 +44,8 @@ is_layout: false
   .events-filters
     %a.btn.btn-lg.btn-default{:href => "#"} Reserve a space for your event!
 
-    .calendar-table
-      %p.text-center
-        %a.pull-left{:href => "#"}
-          %i.fa.fa-caret-left
-        %a.pull-right{:href => "#"}
-          %i.fa.fa-caret-right
-        May 2015
-      %table.table.table-border
-        %tr
-          %th.tg-031e Sun
-          %th.tg-031e Mon
-          %th.tg-031e Tue
-          %th.tg-031e Wed
-          %th.tg-031e Thu
-          %th.tg-031e Fri
-          %th.tg-031e Sat
-        %tr
-          %td.tg-031e 1
-          %td.tg-031e 2
-          %td.tg-031e 3
-          %td.tg-031e 4
-          %td.tg-031e 5
-          %td.tg-031e 6
-          %td.tg-031e 7
-        %tr
-          %td.tg-031e 8
-          %td.tg-031e 9
-          %td.tg-031e 10
-          %td.tg-031e 11
-          %td.tg-031e 12
-          %td.tg-031e 13
-          %td.tg-031e 14
-        %tr
-          %td.tg-031e 15
-          %td.tg-031e 16
-          %td.tg-031e 17
-          %td.tg-031e 18
-          %td.tg-031e 19
-          %td.tg-031e 20
-          %td.tg-031e 21
-        %tr
-          %td.tg-031e 22
-          %td.tg-031e 23
-          %td.tg-031e 24
-          %td.tg-031e 25
-          %td.tg-031e 26
-          %td.tg-031e 27
-          %td.tg-031e 28
+    -# jquery ui datepicker
+    #datepicker{"v-datepicker" => ""}
     %h6
       %a{"data-filter" => ".event", "v-on:click" => "clearAllFilters()"} Clear All Filters
     %h6 Sort by
@@ -112,10 +66,13 @@ is_layout: false
 
 
 {% include 'section-nav' %}
+{{ 'events-calendar.js' | javascript_tag }}
 {{ 'vendor/vue/vue.js' | javascript_tag }}
 {{ 'vendor/vue-resource/vue-resource.js' | javascript_tag }}
 {{ 'vendor/vue-filter/vue-filter.js' | javascript_tag }}
+{{ 'vendor/vue-filter/vue-filter.js' | javascript_tag }}
 
+{{ 'events-calendar-directive.js' | javascript_tag }}
 {{ 'events-prototype.js' | javascript_tag }}
 
 {% endblock %}

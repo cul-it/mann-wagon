@@ -1,8 +1,8 @@
 // Change Vue delimiters, to work with liquid
 Vue.config.delimiters = ['((', '))'];
 
-var localistApiUrl = 'http://events.cornell.edu/api/2/events/?type=4228&days=28&pp=100'
-
+var localistApiBaseUrl = 'http://events.cornell.edu/api/2/events/?type=4228&pp=100'
+// http://events.cornell.edu/api/2/events/search?search='+date+'&pp=100'
 // New Vue instance/model
 var events = new Vue({
 // identifier with id="events"
@@ -31,7 +31,7 @@ var events = new Vue({
     ready: function() {
       // When the application loads, we want to call the method that initializes
       // some data
-      this.getCornellEvents();
+      this.getCornellEvents("days");
       this.bookedAuthentication();
     },
     filters: {
@@ -55,11 +55,19 @@ var events = new Vue({
     },
 
     methods: {
-      getCornellEvents() {
-        this.$http.get(localistApiUrl).then(function(response) {
-          // Create custom data model
-          this.cornellEventsArray(response.data.events);
-        });
+      getCornellEvents(option, date) {
+        if(option == "days"){
+          this.$http.get(localistApiBaseUrl+"&days=28").then(function(response) {
+            // Create custom data model
+            this.cornellEventsArray(response.data.events);
+          });
+        }
+        else if (option == "date"){
+          this.$http.get(localistApiBaseUrl+"&start="+date+"").then(function(response) {
+            // Create custom data model
+            this.cornellEventsArray(response.data.events);
+          });
+        }
       },
       // Authenticate booked
       bookedAuthentication(){
@@ -74,7 +82,7 @@ var events = new Vue({
             if (data.data.isAuthenticated)
 						{
 							this.$set('headers', {"X-Booked-SessionToken": data.data.sessionToken, "X-Booked-UserId": data.data.userId});
-              this.getBookedReservations();
+              this.getBookedReservations("default");
 						}
 						else
 						{
@@ -85,19 +93,26 @@ var events = new Vue({
         });
       },
       // Get reservations from booked
-      getBookedReservations(){
-        this.$http(
-                {
-                    type: "GET",
-                    url: "http://booked-dev.library.cornell.edu/Web/Services/index.php/Reservations/?resourceId=3",
-                    headers: this.headers,
-                    dataType: "json"
-                })
-                .then(function (response)
-                {
-                  // Create custom data model
-                  this.bookedEventsArray(response.data.reservations);
-                });
+      getBookedReservations(option, date){
+        if(option == "default"){
+          bookedApiUrl = "http://booked-dev.library.cornell.edu/Web/Services/index.php/Reservations/?resourceId=3";
+
+        } else if (option == "date"){
+          bookedApiUrl = "http://booked-dev.library.cornell.edu/Web/Services/index.php/Reservations/?resourceId=3&startDateTime="+date+"T00:00:00&endDateTime="+date+"T23:59:59";
+        }
+          this.$http(
+                  {
+                      type: "GET",
+                      url: bookedApiUrl,
+                      headers: this.headers,
+                      dataType: "json"
+                  })
+                  .then(function (response)
+                  {
+                    // Create custom data model
+                    this.bookedEventsArray(response.data.reservations);
+                  });
+
       },
 
       sortBy(sortKey){
