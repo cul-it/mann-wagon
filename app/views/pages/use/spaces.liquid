@@ -9,14 +9,21 @@ position: 1
 
 {% block main %}
 
+<div class="cards">
 {% for type in contents.spaces_types  %}
-  <section class="space-finder space-finder__study">
-    <h3 class="space-finder__heading">{{ type.name }}</h3>
-    <a href="#" class="ui medium image">
-      <img src="http://placehold.it/250">
-    </a>
-  </section>
+  <div class="card">
+    <div class="card-image">
+      <img src="{{ type.photo.url }}" alt="photo of {{ type.name }}">
+    </div>
+    <div class="card-header">
+      {{ type.name }}
+    </div>
+    <div class="card-copy">
+      <p>{{ type.description }}</p>
+    </div>
+  </div>
 {% endfor %}
+<div class="cards">
 
 {% include 'section-nav' %}
 {% endblock %}
