@@ -1,20 +1,20 @@
 # Human readable name of this type
-name: Types of Spaces
+name: Types of Study Spaces
 
 # Lowercase, underscored handle used to access this type
-slug: spaces_types
+slug: spaces_study_types
 
 # Explanatory text displayed in the back-office
-description: Powers the categories presented on Find Spaces page
+description: Sub categories under study spaces
 
 # Slug of field used to identify entries by default, such as the title
 label_field_name: name
 
 # Valid values: manually, created_at, updated_at, or the slug of any field
-order_by: manually
+order_by: name
 
 # Valid values: asc (ascending) and desc (descending). Set to asc by default.
-# order_direction: asc
+order_direction: asc
 
 # Specify a field slug to group entries by that field in the back-office.
 # group_by: <your field>
@@ -40,15 +40,8 @@ fields:
 - name: # The lowercase, underscored name of the field
     label: Name # Human readable name of the field
     type: string
-    hint:  Display name for this type of space
     required: true
-    localized: false
-
-- photo: # The lowercase, underscored name of the field
-    label: Photo # Human readable name of the field
-    type: file
-    required: false
-    hint: That represents this type of space -- prominently displayed on Find a Space page
+    hint: Display name for this type of study space
     localized: false
 
 - description: # The lowercase, underscored name of the field
@@ -61,8 +54,8 @@ fields:
 
 - spaces:
     label: Spaces
-    hint: Assigned to this type
+    hint: Assigned to this study type
     type: many_to_many
     class_name: spaces
-    inverse_of: spaces_types
+    inverse_of: spaces_study_types
     ui_enabled: true
