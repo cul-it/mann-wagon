@@ -73,6 +73,9 @@ var events = new Vue({
       },
       limit: function(events, limit) {
         return events.slice(0, Number(limit))
+      },
+      toString: function(eventTypeArray){
+        return eventTypeArray.join(", ");
       }
 
 

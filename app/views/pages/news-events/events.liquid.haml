@@ -42,8 +42,7 @@ is_layout: false
                   ((event.event_room_name))
               %h3.no-top-margin ((event.event_title))
               %p.description ((event.event_description))
-              -# %div{"v-for" => "event_type in event.event_type"}
-              -#   %p.description ((event_type))
+              %p.event-type ((event.event_type | toString ))
       %h6
         %a{"v-on:click" => "loadMoreEvents()"} ((load_more_text))
   .events-filters
