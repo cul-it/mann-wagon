@@ -39,6 +39,7 @@ var events = new Vue({
       this.bookedAuthentication();
     },
     filters: {
+      // room filter
       roomName : function(events, room){
         if (room == ''){
           return events;
@@ -47,6 +48,7 @@ var events = new Vue({
           return events.filter((event) => event.event_room_name == room);
         }
       },
+      // event filter
       eventType : function(events, event_type){
         if (event_type == ''){
           return events;
@@ -55,6 +57,7 @@ var events = new Vue({
           return events.filter((event) => event.event_type.indexOf(event_type) > -1);
         }
       },
+    // momentJS filters
       momentTime: function (date) {
         return moment(date).format('h:mm a');
       },
@@ -62,7 +65,7 @@ var events = new Vue({
         return moment(date).format('ddd, MMM Do, YYYY');
       },
       momentDateText: function (date) {
-        var someday = moment(date);
+        var someday = moment(date).startOf('day');
         var today = moment().startOf('day');
         var days = someday.diff(today, "days");
         if (days == 0){
@@ -71,13 +74,13 @@ var events = new Vue({
           return "Tomorrow";
         }
       },
-      limit: function(events, limit) {
-        return events.slice(0, Number(limit))
+      // limit events list
+      limitList: function(events, list_limit) {
+        return events.slice(0, Number(list_limit))
       },
       toString: function(eventTypeArray){
         return eventTypeArray.join(", ");
       }
-
 
     },
 
@@ -85,6 +88,7 @@ var events = new Vue({
       moment(){
         return moment();
       },
+      // Cornell localist events
       getCornellEvents(option, date) {
         if(option == "days"){
           this.$http.get(localistApiBaseUrl+"&days=28").then(function(response) {
@@ -144,27 +148,25 @@ var events = new Vue({
                   });
 
       },
-
+      // sort list
       sortBy(sortKey){
         this.sortKey = sortKey;
       },
 
-       // Room filter
+       // Room filter and remove filter
         setRoomFilter(room_number){
           this.room = room_number;
           this.room_selected = room_number;
         },
-
         removeRoomFilter(){
           this.room = '';
           this.room_selected = '';
         },
-
+        // Event type filter and remove filter
         setEventTypeFilter(event_type){
          this.event_type = event_type;
          this.event_selected = event_type;
          },
-
          removeEventTypeFilter(){
            this.event_type = '';
            this.event_selected = '';
@@ -177,6 +179,7 @@ var events = new Vue({
           this.room_selected = '';
           this.event_selected = '';
         },
+        // Load more events
         loadMoreEvents() {
           var increment = this.list_limit + 10;
           this.list_limit = increment > this.allEvents.length ? this.allEvents.length : increment;

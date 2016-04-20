@@ -24,15 +24,12 @@ is_layout: false
 
       / Tab panes
       .tab-content
-        #today.tab-pane.active{:role => "tabpanel"}
+        #today{"v-for" => "event in allEvents | orderBy sortKey reverse | roomName room | eventType event_type | limitList list_limit"}
           %h2
-            Upcoming Events
+            ((event.event_start_time | momentDateText))
+            %small ((event.event_start_time | momentDate))
           #events
-            .event{"v-for" => "event in allEvents | orderBy sortKey reverse | roomName room | eventType event_type | limit list_limit"}
-              %h2
-                ((event.event_start_time | momentDateText))
-                %small ((event.event_start_time | momentDate))
-
+            .event
               .event-detail
                 %span.time
                   %i.fa.fa-clock-o>
