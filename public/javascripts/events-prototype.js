@@ -8,7 +8,9 @@ var events = new Vue({
 // identifier with id="events"
     el: '#events-container',
 
-// properties
+// props
+    props: ['booked-username', 'booked-password'],
+// data
     data: {
         allEvents: [],
         cornellEvents: [],
@@ -100,7 +102,7 @@ var events = new Vue({
           {
           url: 'http://booked-dev.library.cornell.edu/Web/Services/index.php/Authentication/Authenticate',
           method: 'POST',
-          data: JSON.stringify({username: 'test', password: 'test'}),
+          data: JSON.stringify({username: this.bookedUsername, password: this.bookedPassword}),
           dataType: "json"
         }).then(function (data) {
             // success callback

@@ -9,7 +9,7 @@ is_layout: false
 {% extends 'layouts/default' %}
 
 {% block main %}
-#events-container
+#events-container{"booked-username" => "{{site.metafields.sensitive_data.booked_username}}", "booked-password" => "{{site.metafields.sensitive_data.booked_password}}"}
   .events
     .event-feature
       %img.img-responsive.img-faded{:alt => "Abstract placeholder", :src => "/images/events/abstract-placeholder.jpg"}/
