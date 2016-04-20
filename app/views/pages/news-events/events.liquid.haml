@@ -31,9 +31,13 @@ is_layout: false
           #events
             .event{"v-for" => "event in events"}
               .event-detail
-                %span.time
-                  %i.fa.fa-clock-o>
+                %span.time{"v-if" => "event.event_end_time"}
+                  %i.fa.fa-clock-o
                   ((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))
+                %span.time{"v-else" => ""}
+                  %i.fa.fa-clock-o
+                  ((event.event_start_time | momentTime ))
+
                 %span.location.pull-right
                   %i.fa.fa-map-marker>
                   ((event.event_room_name))
