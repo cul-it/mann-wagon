@@ -24,12 +24,12 @@ is_layout: false
 
       / Tab panes
       .tab-content
-        #today{"v-for" => "(date, events) in allEvents | groupBy 'event_start_time'"}
+        #today{"v-for" => "(date, events) in allEvents | orderBy sortKey reverse | roomName room | eventType event_type | limitList list_limit | groupBy 'event_start_time'"}
           %h2
             ((date | momentDateText))
             ((date | momentDate))
           #events
-            .event{"v-for" => "event in events | orderBy sortKey reverse | roomName room | eventType event_type | limitList list_limit"}
+            .event{"v-for" => "event in events"}
               .event-detail
                 %span.time
                   %i.fa.fa-clock-o>

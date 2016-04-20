@@ -83,8 +83,8 @@ var events = new Vue({
       toString: function(eventTypeArray){
         return eventTypeArray.join(", ");
       },
-      groupBy: function(items, dateKey){
-           return _.groupBy(items, dateKey);
+      groupBy: function(events, dateKey){
+           return _.groupBy(events, dateKey);
       }
     },
 
