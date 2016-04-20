@@ -24,12 +24,12 @@ is_layout: false
 
       / Tab panes
       .tab-content
-        #today{"v-for" => "event in allEvents | orderBy sortKey reverse | roomName room | eventType event_type | limitList list_limit"}
+        #today{"v-for" => "(date, events) in allEvents | groupBy 'event_start_time'"}
           %h2
-            ((event.event_start_time | momentDateText))
-            %small ((event.event_start_time | momentDate))
+            ((date | momentDateText))
+            ((date | momentDate))
           #events
-            .event
+            .event{"v-for" => "event in events | orderBy sortKey reverse | roomName room | eventType event_type | limitList list_limit"}
               .event-detail
                 %span.time
                   %i.fa.fa-clock-o>
@@ -38,8 +38,9 @@ is_layout: false
                   %i.fa.fa-map-marker>
                   ((event.event_room_name))
               %h3.no-top-margin ((event.event_title))
-              %p.description ((event.event_description))
+              -# %p.description ((event.event_description))
               %p.event-type ((event.event_type | toString ))
+          %hr
       %h6
         %a{"v-on:click" => "loadMoreEvents()"} ((load_more_text))
   .events-filters
@@ -68,7 +69,7 @@ is_layout: false
 
 {% include 'section-nav' %}
 {{ 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js' | javascript_tag }}
-
+{{ 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js' | javascript_tag }}
 {{ 'events-calendar.js' | javascript_tag }}
 {{ 'vendor/vue/vue.js' | javascript_tag }}
 {{ 'vendor/vue-resource/vue-resource.js' | javascript_tag }}

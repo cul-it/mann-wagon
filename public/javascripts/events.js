@@ -29,7 +29,8 @@ var events = new Vue({
         sortKey: 'event_start_time',
         reverse: false,
         list_limit: 10,
-        load_more_text: "Load More Events"
+        load_more_text: "Load More Events",
+        dateKey : 'event_start_time'
     },
     // Anything within the ready function will run when the application loads
     ready: function() {
@@ -78,10 +79,13 @@ var events = new Vue({
       limitList: function(events, list_limit) {
         return events.slice(0, Number(list_limit))
       },
+      // event type array to string
       toString: function(eventTypeArray){
         return eventTypeArray.join(", ");
+      },
+      groupBy: function(items, dateKey){
+           return _.groupBy(items, dateKey);
       }
-
     },
 
     methods: {
@@ -208,7 +212,7 @@ var events = new Vue({
             events['event_type'] = eventTypes;
             events['event_title'] = value.title;
             events['event_description'] = value.description_text;
-            events['event_start_time'] = value.event_instances[0].event_instance.start;
+            events['event_start_time'] = value.event_instances[0].event_instance.start.substring(0, 10);
             events['event_end_time'] = value.event_instances[0].event_instance.end;
             events['event_room_name'] = value.room_number;
             cornell_events.push(events);
@@ -254,7 +258,7 @@ var events = new Vue({
           events['event_type'] = ['Class/ Workshop'];
           events['event_title'] = value.title;
           events['event_description'] = value.description;
-          events['event_start_time'] = value.bufferedStartDate;
+          events['event_start_time'] = value.bufferedStartDate.substring(0, 10);
           events['event_end_time'] = value.bufferedEndDate;
           events['event_room_name'] = value.resourceName;
           booked_events.push(events);
@@ -273,7 +277,7 @@ var events = new Vue({
         this.$set('bookedEvents', booked_events);
 
         // Use merge to combine the arrays and set
-        this.$set('allEvents', ($.merge(this.bookedEvents, this.cornellEvents)));
+        this.$set('allEvents', ($.merge(this.cornellEvents, this.bookedEvents)));
         this.$set('allEventTypes', ($.unique($.merge(this.cornellEventTypes, this.bookedEventTypes))));
         this.$set('allRoomNames', ($.unique($.merge(this.cornellRoomNames, this.bookedRoomNames))));
       }
