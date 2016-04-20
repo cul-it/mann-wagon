@@ -1,5 +1,6 @@
 // Change Vue delimiters, to work with liquid
 Vue.config.delimiters = ['((', '))'];
+Vue.config.unsafeDelimiters = ['(((', ')))']
 
 var localistApiBaseUrl = 'http://events.cornell.edu/api/2/events/?type=4228&pp=100'
 // http://events.cornell.edu/api/2/events/search?search='+date+'&pp=100'
@@ -29,7 +30,7 @@ var events = new Vue({
         sortKey: 'event_start_time',
         reverse: false,
         list_limit: 10,
-        load_more_text: "Load More Events",
+        load_more_text: "View More Events",
         dateKey : 'event_start_time',
         searchText: ''
     },
@@ -180,6 +181,9 @@ var events = new Vue({
            this.event_type = '';
            this.event_selected = '';
          },
+         removeSearchFilter(){
+           this.$set("searchText", null);
+         },
 
         // Clear filters
         clearAllFilters(){
@@ -189,6 +193,7 @@ var events = new Vue({
           this.event_selected = '';
           this.getCornellEvents("days");
           this.getBookedReservations("default");
+          this.removeSearchFilter();
         },
         // Load more events
         loadMoreEvents() {

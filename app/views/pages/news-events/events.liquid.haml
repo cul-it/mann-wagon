@@ -41,7 +41,7 @@ is_layout: false
                 %span.location.pull-right
                   %i.fa.fa-map-marker>
                   ((event.event_room_name))
-              %h3.no-top-margin ((event.event_title))
+              %h3.no-top-margin (((event.event_title)))
               %p.description ((event.event_description))
               %p.event-type ((event.event_type | toString ))
           %hr
@@ -57,6 +57,7 @@ is_layout: false
 
     %h6 Filter
     %input.form-control{:placeholder => "Filter events", :type => "text", "v-model" => "searchText"}
+    %a.fa.fa-times{"v-on:click" => "removeSearchFilter()", "v-if" => "searchText"}
 
     %h6 Sort by
     %ul.list-unstyled
