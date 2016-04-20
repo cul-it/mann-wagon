@@ -49,10 +49,11 @@ listed: false
     Available Now
     %span.available-now__datetime {{ now | date: '%-I:%M %p' }}
 
-  %button.available-now__reserve-room Reserve a Room
+  %a{href: "{% path_to spaces %}" }
+    %button.available-now__find-space Find a Space
 
   .available-now__grp.available-now__study
-    %h5.available-now__subheading Places to Study
+    %h5.available-now__subheading Study Spaces
 
     %ul
       %li.available-now__status--available
