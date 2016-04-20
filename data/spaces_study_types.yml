@@ -1,0 +1,12 @@
+- Group:
+    _slug: group
+    name: Group
+    description: Group study rooms
+- Individual:
+    _slug: individual
+    name: Individual
+    description: Group study rooms
+- Quiet:
+    _slug: quiet
+    name: Quiet
+    description: Quiet study spaces
