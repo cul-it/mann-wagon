@@ -30,7 +30,8 @@ var events = new Vue({
         reverse: false,
         list_limit: 10,
         load_more_text: "Load More Events",
-        dateKey : 'event_start_time'
+        dateKey : 'event_start_time',
+        searchText: ''
     },
     // Anything within the ready function will run when the application loads
     ready: function() {

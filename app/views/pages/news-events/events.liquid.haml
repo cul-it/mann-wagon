@@ -24,7 +24,7 @@ is_layout: false
 
       / Tab panes
       .tab-content
-        #today{"v-for" => "(date, events) in allEvents | orderBy sortKey reverse | roomName room | eventType event_type | limitList list_limit | groupBy 'event_start_time'"}
+        #today{"v-for" => "(date, events) in allEvents | filterBy searchText | orderBy sortKey reverse | roomName room | eventType event_type | limitList list_limit | groupBy 'event_start_time'"}
           %h2
             ((date | momentDateText))
             ((date | momentDate))
@@ -42,7 +42,7 @@ is_layout: false
                   %i.fa.fa-map-marker>
                   ((event.event_room_name))
               %h3.no-top-margin ((event.event_title))
-              -# %p.description ((event.event_description))
+              %p.description ((event.event_description))
               %p.event-type ((event.event_type | toString ))
           %hr
       %h6
@@ -54,6 +54,10 @@ is_layout: false
     #datepicker{"v-datepicker" => ""}
     %h6
       %a{"data-filter" => ".event", "v-on:click" => "clearAllFilters()"} Clear All Filters
+
+    %h6 Filter
+    %input.form-control{:placeholder => "Filter events", :type => "text", "v-model" => "searchText"}
+
     %h6 Sort by
     %ul.list-unstyled
       %li{"v-on:click" => "sortBy('event_start_time')"} Date
