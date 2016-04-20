@@ -44,18 +44,22 @@ var events = new Vue({
       // room filter
       roomName : function(events, room){
         if (room == ''){
+          this.loadMoreDisplay(events);
           return events;
         }
         else {
+          this.loadMoreDisplay(events.filter((event) => event.event_room_name == room));
           return events.filter((event) => event.event_room_name == room);
         }
       },
       // event filter
       eventType : function(events, event_type){
         if (event_type == ''){
+          this.loadMoreDisplay(events);
           return events;
         }
         else {
+          this.loadMoreDisplay((event) => event.event_type.indexOf(event_type) > -1);
           return events.filter((event) => event.event_type.indexOf(event_type) > -1);
         }
       },
@@ -183,6 +187,8 @@ var events = new Vue({
           this.event_type = '';
           this.room_selected = '';
           this.event_selected = '';
+          this.getCornellEvents("days");
+          this.getBookedReservations("default");
         },
         // Load more events
         loadMoreEvents() {
@@ -281,6 +287,14 @@ var events = new Vue({
         this.$set('allEvents', ($.merge(this.cornellEvents, this.bookedEvents)));
         this.$set('allEventTypes', ($.unique($.merge(this.cornellEventTypes, this.bookedEventTypes))));
         this.$set('allRoomNames', ($.unique($.merge(this.cornellRoomNames, this.bookedRoomNames))));
+        this.loadMoreDisplay(this.allEvents);
+      },
+      loadMoreDisplay(events){
+        if(events.length <= 10){
+          this.$set('load_more_text', 'No more events')
+        } else {
+          this.$set('load_more_text', 'View more events')
+        }
       }
     }
 
