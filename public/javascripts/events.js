@@ -34,7 +34,8 @@ var events = new Vue({
         dateKey : 'event_start',
         searchText: '',
         dateSelected: '',
-        show: true
+        show: true,
+        filteredEvents: []
     },
     // Anything within the ready function will run when the application loads
     ready: function() {
@@ -52,6 +53,7 @@ var events = new Vue({
         }
         else {
           this.loadMoreDisplay(events.filter((event) => event.event_room_name == room));
+          this.$set("filteredEvents", events.filter((event) => event.event_room_name == room));
           return events.filter((event) => event.event_room_name == room);
         }
       },
@@ -62,7 +64,8 @@ var events = new Vue({
           return events;
         }
         else {
-          this.loadMoreDisplay((event) => event.event_type.indexOf(event_type) > -1);
+          this.loadMoreDisplay(events.filter((event) => event.event_type.indexOf(event_type) > -1));
+          this.$set("filteredEvents", events.filter((event) => event.event_type.indexOf(event_type) > -1));
           return events.filter((event) => event.event_type.indexOf(event_type) > -1);
         }
       },
@@ -309,7 +312,7 @@ var events = new Vue({
         this.$set('allRoomNames', ($.unique($.merge(this.cornellRoomNames, this.bookedRoomNames))));
         this.loadMoreDisplay(this.allEvents);
         this.$set('show', false);
-        console.log(this.allEvents);
+        this.$set('filteredEvents', ($.merge(this.bookedEvents, this.cornellEvents)));
       },
       loadMoreDisplay(events){
         if(events.length <= this.list_limit){

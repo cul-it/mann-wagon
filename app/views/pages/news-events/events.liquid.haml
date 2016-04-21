@@ -48,7 +48,7 @@ is_layout: false
               %p.description ((event.event_description))
               %span.event__type.badge-notice{"v-for" => "type in event.event_type"}
                 ((type))
-        %div{"v-show" => "!show", "v-if" => "allEvents.length == 0"} No events for selection...
+        %div{"v-show" => "!show", "v-if" => "filteredEvents.length == 0"} No events for selection...
 
         %h6
           %a{"v-on:click" => "loadMoreEvents()", "v-if" => "allEvents.length > list_limit"} ((load_more_text))
