@@ -19,3 +19,43 @@
     @include span(last 4);
   }
 }
+
+.events__per-day {
+  margin-top: 3em;
+}
+
+.events__date-heading {
+  font-size: modular-scale(1);
+  border-bottom: solid 3px color('light-gray');
+}
+
+.event {
+  margin-top: 1.5em;
+  padding-bottom: 1.5em;
+  border-bottom: solid 2px color('alabaster');
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  &:last-of-type {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.event__title {
+  margin-bottom: 0;
+  font-family: $base-font-family;
+  font-weight: 700;
+}
+
+.event__details {
+  margin-bottom: .5em;
+  padding: .3em 1em .3em .1em;
+  background: color('alabaster');
+}
+
+.event__type {
+  margin-right: .5em;
+}

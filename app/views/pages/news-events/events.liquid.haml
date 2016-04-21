@@ -25,15 +25,16 @@ is_layout: false
       / Tab panes
       .tab-content
         %div{"v-show" => "show"} loading...
-        #today{"v-for" => "(date, events) in allEvents | filterBy searchText | orderBy sortKey reverse | roomName room | eventType event_type | limitList list_limit | groupBy 'event_start'"}
-          %hr
-          %h2
-            ((date | momentDateText))
-            %small ((date | momentDate))
-          %hr
+
+        .events__per-day{"v-for" => "(date, events) in allEvents | filterBy searchText | orderBy sortKey reverse | roomName room | eventType event_type | limitList list_limit | groupBy 'event_start'"}
+          %h2.events__date-heading
+            ((date | momentDate))
+            %span.events__date.badge.badge-alert{"v-if" => "date | momentDateText != ''"} ((date | momentDateText))
           #events
             .event{"v-for" => "event in events"}
-              .event-detail
+              %h3.event__title (((event.event_title)))
+
+              .event__details
                 %span.time{"v-if" => "event.event_end_time"}
                   %i.fa.fa-clock-o
                   ((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))
@@ -44,9 +45,9 @@ is_layout: false
                 %span.location.pull-right
                   %i.fa.fa-map-marker>
                   ((event.event_room_name))
-              %h3.no-top-margin (((event.event_title)))
               %p.description ((event.event_description))
-              %p.event-type ((event.event_type | toString ))
+              %span.event__type.badge-notice{"v-for" => "type in event.event_type"}
+                ((type))
         %div{"v-show" => "!show", "v-if" => "allEvents.length == 0"} No events for selection...
 
         %h6
