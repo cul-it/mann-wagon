@@ -17,7 +17,7 @@ section {
 }
 
 .course-reserves-link {
-  font-size: modular-scale(-2);
+  font-size: modular-scale(-1);
   @include span(1 at 4);
 
   @include susy-breakpoint($scape, $g-scape) {

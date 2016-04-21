@@ -15,34 +15,26 @@ listed: false
   %ul.guides__libguides
     %span.guides__libguides-grp1
       %li
-        %a{href: "#"} Agriculture Economics &amp; Business
+        %a{href: "http://guides.library.cornell.edu/srch.php?q=agriculture+economics+and+business&t=0"} Agriculture Economics &amp; Business
       %li
-        %a{href: "#"} Food Systems &amp; Agriculture
+        %a{href: "http://guides.library.cornell.edu/srch.php?q=food+systems+and+agriculture&t="} Food Systems &amp; Agriculture
       %li
-        %a{href: "#"} Health Science &amp; Policy
+        %a{href: "http://guides.library.cornell.edu/srch.php?q=health+science+and+policy&t=0"} Health Science &amp; Policy
       %li
-        %a{href: "#"} Environmental Sciences
+        %a{href: "http://guides.library.cornell.edu/srch.php?q=environmental+sciences&t=0"} Environmental Sciences
     %span.guides__libguides-grp2
       %li
-        %a{href: "#"} Applied Social Sciences
+        %a{href: "http://guides.library.cornell.edu/srch.php?q=applied+social+science&guide_id=154284"} Applied Social Sciences
       %li
-        %a{href: "#"} Life &amp; Biological Sciences
+        %a{href: "http://guides.library.cornell.edu/srch.php?q=life+and+biological+sciences&t=0"} Life &amp; Biological Sciences
       %li
-        %a{href: "#"} Environmental &amp; Fiber Design
-  %a.guides__all-guides.more-link{href: "#"}
+        %a{href: "http://guides.library.cornell.edu/srch.php?q=environmental+and+fiber+design&t=0"} Environmental &amp; Fiber Design
+  %a.guides__all-guides.more-link{href: "http://guides.library.cornell.edu"}
     All Guides
     %i.fa.fa-angle-double-right
 
 %section.featured__side-image
-  .featured__images-wrapper
-
-  .featured__side-image-content
-    %h4.featured__heading.lead-in News
-
-    %h1.featured__title Let Mann Help You Create a Student Film Series
-
-    %p
-      %img.img-responsive.img-faded{:alt => "Abstract placeholder", :src => "/images/events/abstract-placeholder.jpg"}/
+  %img.img-responsive.img-faded{:alt => "Abstract placeholder", :src => "/images/events/abstract-placeholder.jpg"}/
 
 %section.available-now
   %h4.available-now__heading.lead-in
@@ -148,7 +140,7 @@ listed: false
         %dt.events-home__label location
         %dd.events-home__location 2nd Floor Gallery
 
-  %a.more-link{href: "/news-events/events"}
+  %a.more-link{href: "{% path_to events %}"}
     All Events
     %i.fa.fa-angle-double-right
 
@@ -197,7 +189,7 @@ listed: false
         %dt.events-home__label location
         %dd.events-home__location Stone Classroom
 
-  %a.more-link{href: "/news-events/events"}
-    All Workshops
+  %a.more-link{href: "{% path_to events %}"}
+    All Workshops &amp; Classes
     %i.fa.fa-angle-double-right
 {% endblock %}
