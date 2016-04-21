@@ -13,7 +13,7 @@ is_layout: false
 #events-container{"booked-username" => "{{site.metafields.sensitive_data.booked_username}}", "booked-password" => "{{site.metafields.sensitive_data.booked_password}}"}
   .events
     .event-feature
-      %img.img-responsive.img-faded{:alt => "Abstract placeholder", :src => "/images/events/abstract-placeholder.jpg"}/
+      %img.img-responsive.img-faded{:alt => "Abstract placeholder", :src => "{{ 'events/abstract-placeholder.jpg' | theme_image_url }}"}/
       .btn-group.feature{"aria-label" => "Featured Events", :role => "group"}
         %button.btn.btn-default{:type => "button"}
           %i.fa.fa-caret-left
