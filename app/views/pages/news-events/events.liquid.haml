@@ -27,8 +27,10 @@ is_layout: false
         %div{"v-show" => "show"} loading...
         #today{"v-for" => "(date, events) in allEvents | filterBy searchText | orderBy sortKey reverse | roomName room | eventType event_type | limitList list_limit | groupBy 'event_start_time'"}
           %h2
+          %hr
             ((date | momentDateText))
             ((date | momentDate))
+          %hr
           #events
             .event{"v-for" => "event in events"}
               .event-detail
@@ -45,11 +47,10 @@ is_layout: false
               %h3.no-top-margin (((event.event_title)))
               %p.description ((event.event_description))
               %p.event-type ((event.event_type | toString ))
-          %hr
         %div{"v-show" => "!show", "v-if" => "allEvents.length == 0"} No events for selection...
 
         %h6
-          %a{"v-on:click" => "loadMoreEvents()", "v-if" => "allEvents.length"} ((load_more_text))
+          %a{"v-on:click" => "loadMoreEvents()", "v-if" => "allEvents.length > list_limit"} ((load_more_text))
   .events-filters
     %a.btn.btn-lg.btn-default{:href => "#"} Reserve a space for your event!
 

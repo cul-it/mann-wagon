@@ -309,8 +309,8 @@ var events = new Vue({
         this.$set('show', false);
       },
       loadMoreDisplay(events){
-        if(events.length <= 10){
-          this.$set('load_more_text', 'No more events')
+        if(events.length <= this.list_limit){
+          this.$set('load_more_text', '')
         } else {
           this.$set('load_more_text', 'View more events')
         }
