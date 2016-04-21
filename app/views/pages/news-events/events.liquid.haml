@@ -52,6 +52,11 @@ is_layout: false
 
     -# jquery ui datepicker
     #datepicker{"v-datepicker" => ""}
+
+    %div
+      ((dateSelected | momentDate))
+      %a.fa.fa-times{"v-on:click" => "removeSelectedDate()", "v-if" => "dateSelected"}
+
     %h6
       %a{"data-filter" => ".event", "v-on:click" => "clearAllFilters()"} Clear All Filters
 

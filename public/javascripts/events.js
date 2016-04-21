@@ -32,7 +32,8 @@ var events = new Vue({
         list_limit: 10,
         load_more_text: "View More Events",
         dateKey : 'event_start_time',
-        searchText: ''
+        searchText: '',
+        dateSelected: ''
     },
     // Anything within the ready function will run when the application loads
     ready: function() {
@@ -69,7 +70,12 @@ var events = new Vue({
         return moment(date).format('h:mm a');
       },
       momentDate: function (date) {
-        return moment(date).format('ddd, MMM Do, YYYY');
+        if(date == ''){
+          return;
+        }
+        else {
+          return moment(date).format('ddd, MMM Do, YYYY');
+        }
       },
       momentDateText: function (date) {
         var someday = moment(date).startOf('day');
@@ -183,6 +189,11 @@ var events = new Vue({
          },
          removeSearchFilter(){
            this.$set("searchText", null);
+         },
+         removeSelectedDate(){
+           this.$set("dateSelected", '');
+           this.getCornellEvents("days");
+           this.getBookedReservations("default");
          },
 
         // Clear filters

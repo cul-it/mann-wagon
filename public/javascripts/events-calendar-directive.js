@@ -6,6 +6,7 @@ Vue.directive('datepicker', {
       onSelect: function(date) {
         vm.getCornellEvents("date", date);
         vm.getBookedReservations("date", date);
+        vm.dateSelected = date;
       }
     });
   }
