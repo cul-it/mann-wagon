@@ -33,7 +33,8 @@ var events = new Vue({
         load_more_text: "View More Events",
         dateKey : 'event_start_time',
         searchText: '',
-        dateSelected: ''
+        dateSelected: '',
+        show: true
     },
     // Anything within the ready function will run when the application loads
     ready: function() {
@@ -205,6 +206,7 @@ var events = new Vue({
           this.getCornellEvents("days");
           this.getBookedReservations("default");
           this.removeSearchFilter();
+          this.$set("dateSelected", '');
         },
         // Load more events
         loadMoreEvents() {
@@ -304,6 +306,7 @@ var events = new Vue({
         this.$set('allEventTypes', ($.unique($.merge(this.cornellEventTypes, this.bookedEventTypes))));
         this.$set('allRoomNames', ($.unique($.merge(this.cornellRoomNames, this.bookedRoomNames))));
         this.loadMoreDisplay(this.allEvents);
+        this.$set('show', false);
       },
       loadMoreDisplay(events){
         if(events.length <= 10){
