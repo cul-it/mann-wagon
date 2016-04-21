@@ -63,16 +63,19 @@ is_layout: false
       ((dateSelected | momentDate))
       %a.fa.fa-times{"v-on:click" => "removeSelectedDate()", "v-if" => "dateSelected"}
 
-    %h6
-      %a{"data-filter" => ".event", "v-on:click" => "clearAllFilters()"} Clear All Filters
+    %a{"data-filter" => ".event", "v-on:click" => "clearAllFilters()"}
+      %button.ui.basic.button
+        %i.fa.fa-times
+        Clear All Filters
 
-    %h6 Type
-    %ul.fa-ul{"data-filter-group" => "type"}
+    %h6.events-filters__type Type
+    %ul{"data-filter-group" => "type"}
       %li{"v-for" => "event_type of allEventTypes | orderBy 'event_type'"}
         %a.filter{"v-bind:class" => "{ 'selected-filter': event_type == event_selected }", "v-on:click" => "setEventTypeFilter(event_type)"} ((event_type))
         %a.fa.fa-times{"v-on:click" => "removeEventTypeFilter()", "v-if" => "event_type == event_selected"}
-    %h6 Space/Room
-    %ul.fa-ul{"data-filter-group" => "venue"}
+
+    %h6.events-filters__type  Space/Room
+    %ul{"data-filter-group" => "venue"}
       %li{"v-for" => "room of allRoomNames | orderBy 'room'"}
         / event to set room filter
         %a.filter{"v-bind:class" => "{ 'selected-filter': room == room_selected }", "v-on:click" => "setRoomFilter(room)"} ((room))
