@@ -25,7 +25,7 @@ is_layout: false
       / Tab panes
       .tab-content
         %div{"v-show" => "show"} loading...
-        #today{"v-for" => "(date, events) in allEvents | filterBy searchText | orderBy sortKey reverse | roomName room | eventType event_type | limitList list_limit | groupBy 'event_start_time'"}
+        #today{"v-for" => "(date, events) in allEvents | filterBy searchText | orderBy sortKey reverse | roomName room | eventType event_type | limitList list_limit | groupBy 'event_start'"}
           %hr
           %h2
             ((date | momentDateText))
