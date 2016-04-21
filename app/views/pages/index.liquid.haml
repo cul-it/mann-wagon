@@ -140,7 +140,7 @@ listed: false
         %dt.events-home__label location
         %dd.events-home__location 2nd Floor Gallery
 
-  %a.more-link{href: "/news-events/events"}
+  %a.more-link{href: "{% path_to events %}"}
     All Events
     %i.fa.fa-angle-double-right
 
@@ -189,7 +189,7 @@ listed: false
         %dt.events-home__label location
         %dd.events-home__location Stone Classroom
 
-  %a.more-link{href: "/news-events/events"}
-    All Workshops
+  %a.more-link{href: "{% path_to events %}"}
+    All Workshops &amp; Classes
     %i.fa.fa-angle-double-right
 {% endblock %}
