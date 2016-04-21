@@ -53,12 +53,13 @@ is_layout: false
         %h6
           %a{"v-on:click" => "loadMoreEvents()", "v-if" => "allEvents.length > list_limit"} ((load_more_text))
   .events-filters
-    %a.btn.btn-lg.btn-default{:href => "#"} Reserve a space for your event!
+    %a{:href => "#"}
+      %button Reserve a space for your event!
 
     -# jquery ui datepicker
     #datepicker{"v-datepicker" => ""}
 
-    %div
+    %div.events-filters__selected-date
       ((dateSelected | momentDate))
       %a.fa.fa-times{"v-on:click" => "removeSelectedDate()", "v-if" => "dateSelected"}
 

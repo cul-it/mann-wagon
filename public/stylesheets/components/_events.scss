@@ -8,18 +8,6 @@
   }
 }
 
-.events-filters {
-  padding-left: .5em;
-
-  @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(last 3);
-  }
-
-  @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(last 4);
-  }
-}
-
 .events__per-day {
   margin-top: 3em;
 }
@@ -58,4 +46,20 @@
 
 .event__type {
   margin-right: .5em;
+}
+
+.events-filters {
+  padding-left: .5em;
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(last 3);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(last 4);
+  }
+}
+
+.events-filters__selected-date {
+  margin-bottom: 2em;
 }
