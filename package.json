@@ -23,6 +23,11 @@
     "susy": "^2.2.12",
     "webpack": "^1.12.14"
   },
+  "dependencies": {
+      "vue": "^1.0.20",
+      "vue-resource": "^0.7.0",
+      "vue-filter": "^0.1.1"
+  },
   "scripts": {
     "build": "npm run clean && webpack --progress",
     "clean": "rm -rf public/stylesheets/vendor/*"

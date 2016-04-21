@@ -19,3 +19,12 @@
     display: none;
   }
 }
+
+// Pointer cursor fo all links on events page
+#events-container {
+  a {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
