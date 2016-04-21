@@ -66,14 +66,6 @@ is_layout: false
     %h6
       %a{"data-filter" => ".event", "v-on:click" => "clearAllFilters()"} Clear All Filters
 
-    %h6 Filter
-    %input.form-control{:placeholder => "Filter events", :type => "text", "v-model" => "searchText"}
-    %a.fa.fa-times{"v-on:click" => "removeSearchFilter()", "v-if" => "searchText"}
-
-    %h6 Sort by
-    %ul.list-unstyled
-      %li{"v-on:click" => "sortBy('event_start_time')"} Date
-      %li{"v-on:click" => "sortBy('event_title')"} Event Title
     %h6 Type
     %ul.fa-ul{"data-filter-group" => "type"}
       %li{"v-for" => "event_type of allEventTypes | orderBy 'event_type'"}
