@@ -1,0 +1,11 @@
+%nav.section-nav
+  {% if page.depth >= 3 %}
+  %h4.section-nav__parent {{ page.parent.title }}
+
+  %ul<
+    {% nav parent, no_wrapper: true, active_class: active %}
+
+  {% else %}
+  %ul<
+    {% nav page, no_wrapper: true, active_class: active %}
+  {% endif %}

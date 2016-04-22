@@ -1,0 +1,53 @@
+---
+title: Spaces template page
+content_type: spaces
+---
+{% extends layouts/default %}
+
+{% block main %}
+
+<p>{{ space.description }}</p>
+
+<img src="{{ space.photo.url }}" alt="photo of {{ space._label }}">
+
+<dl>
+  {% if space.room %}
+    <dt class="space-finder__field-name">Room</dt>
+    <dd>{{ space.room }}</dd>
+  {% endif %}
+
+  {% if space.floor %}
+    <dt class="space-finder__field-name">Floor</dt>
+    <dd>{{ space.floor._label }}</dd>
+  {% endif %}
+
+  {% if space.spaces_types %}
+    <dt class="space-finder__field-name">Type</dt>
+    <dd>
+      {% for type in space.spaces_types %}
+        <a href="{% path_to type %}" title="View all spaces of this type"><span class="badge badge-notice">{{ type._label | downcase }}</span></a>
+      {% endfor %}
+
+      {% if space.reservation_system %}
+        <span class="badge badge-success">reservable</span>
+      {% endif %}
+    </dd>
+  {% endif %}
+
+  {% if space.capacity %}
+    <dt class="space-finder__field-name">Capacity</dt>
+    <dd>{{ space.capacity }}</dd>
+  {% endif %}
+
+  {% if space.loan_period %}
+    <dt class="space-finder__field-name">Loan Period</dt>
+    <dd>{{ space.loan_period }}</dd>
+  {% endif %}
+
+  {% if space.features %}
+    <dt class="space-finder__field-name">Features</dt>
+    <dd>{{ space.features }}</dd>
+  {% endif %}
+</dl>
+
+{% endblock %}

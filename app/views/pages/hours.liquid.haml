@@ -1,0 +1,53 @@
+---
+title: Hours
+handle: hours
+published: true
+listed: false
+---
+{% extends layouts/default %}
+
+{% block 'main' %}
+{{ 'hours-nav.js' | javascript_tag }}
+
+.hours-weekly__nav.ui.basic.tiny.buttons
+  %button.ui.button.disabled.js-hours-prev
+    %i.fa.fa-chevron-left
+  %button.ui.button.disabled.js-hours-today Today
+  %button.ui.button.js-hours-next
+    %i.fa.fa-chevron-right
+
+{% for weeks in mannlib_weekly_hours.weekly_hours %}
+{% if forloop.first %}
+{% assign day_today = now | date: "%w" | plus: 1 %}
+{% else %}
+{% assign day_today = nil %}
+{% endif %}
+%table.hours-weekly{ :style => "{% if day_today == nil %}display:none;{% endif %}" }
+  %thead
+    %tr
+      %th.hours-weekly__month {{ weeks[1][0][0] | date: "%b" }}
+      {% for week in weeks %}
+      {% for date in week[0] %}
+      %th{ class: "{%if forloop.index == day_today %}hours-weekly__today{% endif %}" }
+        %span.hours-weekly__day-of-week {{ date | date: "%a" }}
+        %span.hours-weekly__day-of-month {{ date | date: '%d' | ceil }}
+      {% endfor %}
+      {% endfor %}
+  %tbody
+    {% for week in weeks %}
+    {% for day in week[1] %}
+    %tr
+      %td.hours-weekly__location {{ day[0] }}
+      {% for time in day[1] %}
+      %td{ class: "{% if forloop.index == day_today %}hours-weekly__today{% endif %}" }
+        %span.hours-weekly__hours {{ time[0] | replace: "Hours", "hrs" | replace: "Appointment", "Appt" }}
+        {% unless time[1] == nil %}
+        %span.badge.badge-alert.hours-weekly__exception {{ time[1] }}
+        {% endunless %}
+
+      {% endfor %}
+      {% endfor %}
+    {% endfor %}
+{% endfor %}
+
+{% endblock %}

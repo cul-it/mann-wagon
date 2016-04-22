@@ -1,0 +1,20 @@
+- Basement:
+    _slug: basement
+    name: Basement
+    level: '0'
+- First Floor:
+    _slug: first-floor
+    name: First Floor
+    level: '1'
+- Second Floor:
+    _slug: second-floor
+    name: Second Floor
+    level: '2'
+- Third Floor:
+    _slug: third-floor
+    name: Third Floor
+    level: '3'
+- Fourth Floor:
+    _slug: fourth-floor
+    name: Fourth Floor
+    level: '4'

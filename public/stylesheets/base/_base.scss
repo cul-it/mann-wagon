@@ -1,22 +1,12 @@
-// Mann Library 0.1.0 (aka Orange Peel)
-// Scaffolding via Bitters 1.0.0
-// http://bitters.bourbon.io
+// Scaffolding via Bitters
+@import 'vendor/bitters/buttons';
+@import 'vendor/bitters/forms';
+@import 'vendor/bitters/layout';
+@import 'vendor/bitters/lists';
+@import 'vendor/bitters/media';
+@import 'vendor/bitters/tables';
+@import 'vendor/bitters/typography';
 
-@import "variables";
-
-// Responsive grid via singularity & breakpoint
-@import 'grid';
-
-// Components
-@import '../components/**/*';
-
-@import "buttons";
-@import "forms";
-@import "lists";
-@import "tables";
-@import "typography";
-
-@import 'cul-brand';
-@import 'nav';
-@import 'home';
-@import 'footer';
+// Local sugar
+@import 'lists';
+@import 'typography';

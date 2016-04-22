@@ -1,19 +1,41 @@
 %header
-  .cul-logotype{href: "/"}
-    %a.cu-logo{title: "Cornell.edu Homepage", href: "http://cornell.edu"}
-    %a.cul-unit{title: "Mann Library Homepage", href: "/"}
-      %h2.cul-brand.one-lib Cornell University Library
-      %h1.cul-brand.mann-brand {{ site.seo_title | upcase }}
+  .cu-banner
+    %a.cu-banner__insignia.link--no-color{title: "Cornell.edu Homepage", href: "http://cornell.edu"}
+      %span.cu-banner__uni-name.link--no-color Cornell University
 
-  %form.search-site{role: "search"}
-    %input.search-term{type: "text", placeholder: "Search for books, articles, databases, journals and more"}
-      %button{type: "button"} Search
+  .mann-brand{href: "/"}
+    %a.mann-brand__logo{title: "Home", href: "/"}
 
-%nav{role: "navigation"}
-  %ul.site-nav
-    %li.site-nav-link
-      %a{href: "#"} Use the Library
-    %li.site-nav-link
-      %a{href: "#"} Services &amp; Support
-    %li.site-nav-link
-      %a{href: "#"} Events
+    %h2.mann-brand__one-lib
+      %a.link--no-color{title: "Cornell University Library", href: "http://library.cornell.edu"} Cornell University Library
+    %h1.mann-brand__mannlib
+      %a.link--no-color{title: "Home", href: "/"} {{ site.seo_title | upcase }}
+
+  %form.search{role: "search", action: "http://search.library.cornell.edu", target: "_blank"}
+    .ui.right.action.left.icon.input
+      %i.search.icon
+      %input.search__term{type: "text", name: "q", placeholder: "Search"}
+      %button.search__button{type: "button"}
+      .ui.tiny.floating.dropdown.button.search__select
+        .text Catalog
+        %i.dropdown.icon
+        .menu
+          .item.js-search-target{data: {action: "http://search.library.cornell.edu", target: "_blank"}} Catalog
+          .item.js-search-target{data: {action: "{% path_to search %}", target: "_self"}} Website
+
+  .todays-hours
+    %ul
+      %li.todays-hours__mann
+        %span{ class: "badge todays-hours__now {% if mannlib_hours.open == 'Open' %}is-open{% else %}is-closed{% endif %}" } {{ mannlib_hours.open }}
+
+        %span.todays-hours__until until {{ mannlib_hours.hours }}
+      %li.todays-hours__lobby
+        Lobby: 24 hrs
+
+    %a.todays-hours__more{href: "{% path_to hours %}"}
+      All Hours
+      %i.fa.fa-angle-double-right
+
+  %nav.site-nav{role: "navigation"}
+    %ul.site-nav__list
+      {% nav site, no_wrapper: true, active_class: active %}

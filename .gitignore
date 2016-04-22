@@ -3,3 +3,16 @@ log/*
 dragonfly.log
 
 .sass-cache
+
+deploy.yml
+
+# npm
+node_modules/*
+npm-debug.log
+
+# Vendorized Sass
+public/stylesheets/vendor/*
+!public/stylesheets/vendor/.gitkeep
+
+#Vendorized Vue
+public/javascripts/vendor/*

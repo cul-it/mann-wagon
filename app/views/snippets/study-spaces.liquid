@@ -1,0 +1,17 @@
+<div class="card">
+  <a href="{% path_to space %}" title="View all {{ space.name }}">
+    <div class="card-image">
+      <img src="{{ space.photo.url }}" alt="photo of {{ space.name }}">
+    </div>
+    <div class="card-header">
+      {{ space.name }}
+
+      {% if space.reservation_system %}
+        <span class="badge badge-success">reservable</span>
+      {% endif %}
+    </div>
+    <div class="card-copy">
+      <p>{{ space.description }}</p>
+    </div>
+  </a>
+</div>

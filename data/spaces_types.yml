@@ -1,0 +1,58 @@
+- CIT:
+    _slug: cit
+    name: CIT
+    description: CIT Labs at Mann
+    spaces:
+    - mac-lab
+- Classroom:
+    _slug: classroom
+    name: Classroom
+    description: All classrooms
+    spaces:
+    - b30a
+    - stone-classroom
+    - mac-lab
+- Conference:
+    _slug: conference
+    name: Conference
+    description: Conference and seminar rooms
+    spaces:
+    - mann-102
+- Group:
+    _slug: group
+    name: Group
+    description: Group study rooms
+    spaces:
+    - bissett-collaborative-center
+- Other:
+    _slug: other
+    name: Other
+    description: Everything else
+    spaces:
+    - lobby
+- Quiet:
+    _slug: quiet
+    name: Quiet
+    description: Quiet study spaces
+    spaces:
+    - 3rd-floor
+- Reservable:
+    _slug: reservable
+    name: Reservable
+    description: All reservable spaces
+    spaces:
+    - hive
+    - stone-classroom
+    - mann-102
+    - lobby
+    - bissett-workstations
+- Study:
+    _slug: study
+    name: Study
+    description: Study spaces and rooms
+    spaces:
+    - hive
+    - grad-rooms
+    - 3rd-floor
+    - bissett-collaborative-center
+    - bissett-workstations

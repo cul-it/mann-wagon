@@ -1,0 +1,40 @@
+{
+  "author": {
+    "name": "Albert R. Mann Library",
+    "url": "http://mannlib.cornell.edu"
+  },
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/cul-it/mann-wagon/issues"
+  },
+  "name": "mann-wagon",
+  "version": "0.1.0",
+  "description": "Packages for Mann Library website on Locomotive",
+  "main": "index.js",
+  "devDependencies": {
+    "Bitters": "github:thoughtbot/bitters",
+    "accoutrement-color": "^2.0.0",
+    "bourbon": "github:thoughtbot/bourbon",
+    "breakpoint-sass": "^2.7.0",
+    "copy-webpack-plugin": "^1.1.1",
+    "mathsass": "^0.9.5",
+    "node-sass": "^3.4.2",
+    "normalize-scss": "^4.0.3",
+    "susy": "^2.2.12",
+    "webpack": "^1.12.14"
+  },
+  "dependencies": {
+      "vue": "^1.0.20",
+      "vue-resource": "^0.7.0",
+      "vue-filter": "^0.1.1"
+  },
+  "scripts": {
+    "build": "npm run clean && webpack --progress",
+    "clean": "rm -rf public/stylesheets/vendor/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cul-it/mann-wagon.git"
+  },
+  "homepage": "https://github.com/cul-it/mann-wagon#readme"
+}
