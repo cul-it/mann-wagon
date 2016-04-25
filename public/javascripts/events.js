@@ -105,7 +105,7 @@ var events = new Vue({
           return;
         }
         else {
-          return moment(date).format('ddd, MMM Do, YYYY');
+          return moment(date).format('ddd, MMM DD, YYYY');
         }
       },
       momentDateText: function (date) {
