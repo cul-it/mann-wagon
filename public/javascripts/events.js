@@ -3,73 +3,100 @@ Vue.config.delimiters = ['((', '))'];
 Vue.config.unsafeDelimiters = ['(((', ')))']
 
 var localistApiBaseUrl = 'http://events.cornell.edu/api/2/events/?type=4228&pp=100'
-// http://events.cornell.edu/api/2/events/search?search='+date+'&pp=100'
+
 // New Vue instance/model
 var events = new Vue({
+
 // identifier with id="events"
     el: '#events-container',
 
-// props
+// props, passed via locomotive metafields
     props: ['booked-username', 'booked-password'],
 // data
     data: {
-        allEvents: [],
+        // Arrays for event info
         cornellEvents: [],
-        bookedEvents: [],
-        room: '',
-        event_type: '',
-        headers:{},
         cornellEventTypes: [],
         cornellRoomNames: [],
+
+        bookedEvents: [],
         bookedEventTypes: [],
         bookedRoomNames: [],
+
+        allEvents: [],
         allEventTypes: [],
         allRoomNames: [],
-        event_selected: '',
-        room_selected: '',
+        // Room filter param
+        room: '',
+        // Event type filter param
+        eventType: '',
+        // Booked auth headers
+        headers:{},
+
+        // Variables for adding class to selected filters
+        eventSelected: '',
+        roomSelected: '',
+        // Sort filter key
         sortKey: 'event_start_time',
         reverse: false,
-        list_limit: 10,
-        load_more_text: "View More Events",
+        // How many events to display
+        limitList: 10,
+
+        // Load more link text
+        loadMoreText: "View More Events",
+
+        // Group events key
         dateKey : 'event_start',
+
+        // Search text for filtering events
         searchText: '',
+        // Selected date from calendar
         dateSelected: '',
-        show: true,
+        // No events message
+        showNoEventsMessage: true,
+        // Array for filtered events, for no events message
         filteredEvents: []
     },
     // Anything within the ready function will run when the application loads
     ready: function() {
-      // When the application loads, we want to call the method that initializes
-      // some data
+      // When the application loads, call methods
       this.getCornellEvents("days");
       this.bookedAuthentication();
     },
     filters: {
-      // room filter
-      roomName : function(events, room){
+      // Room filter
+      roomFilter : function(events, room){
         if (room == ''){
           this.loadMoreDisplay(events);
           return events;
         }
         else {
-          this.loadMoreDisplay(events.filter((event) => event.event_room_name == room));
-          this.$set("filteredEvents", events.filter((event) => event.event_room_name == room));
-          return events.filter((event) => event.event_room_name == room);
+          var filterEvents = function(event) {
+              return event.event_room_name == room;
+          }
+          // load more text display, and filtered array for no more events message
+          this.loadMoreDisplay(events.filter(filterEvents));
+          this.$set("filteredEvents", events.filter(filterEvents));
+          return events.filter(filterEvents);
         }
       },
-      // event filter
-      eventType : function(events, event_type){
-        if (event_type == ''){
+      // Event filter
+      eventTypeFilter : function(events, eventType){
+        if (eventType == ''){
           this.loadMoreDisplay(events);
           return events;
         }
         else {
-          this.loadMoreDisplay(events.filter((event) => event.event_type.indexOf(event_type) > -1));
-          this.$set("filteredEvents", events.filter((event) => event.event_type.indexOf(event_type) > -1));
-          return events.filter((event) => event.event_type.indexOf(event_type) > -1);
+          var filterEvents = function(event) {
+              return event.event_type.indexOf(eventType) > -1;
+          }
+          // load more text display, and filtered array for no more events message
+          this.loadMoreDisplay(events.filter(filterEvents));
+          this.$set("filteredEvents", events.filter(filterEvents));
+          return events.filter(filterEvents);
         }
       },
-    // momentJS filters
+    // MomentJS filters
       momentTime: function (date) {
         return moment(date).format('h:mm a');
       },
@@ -91,31 +118,31 @@ var events = new Vue({
           return "Tomorrow";
         }
       },
-      // limit events list
-      limitList: function(events, list_limit) {
-        return events.slice(0, Number(list_limit))
+      // Limit events list
+      limitListFilter: function(events, limitList) {
+        return events.slice(0, Number(limitList))
       },
-      // event type array to string
+      // Event type array to string
       toString: function(eventTypeArray){
         return eventTypeArray.join(", ");
       },
+      // Group events by day (event_start)
       groupBy: function(events, dateKey){
            return _.groupBy(events, dateKey);
       }
     },
 
     methods: {
-      moment(){
-        return moment();
-      },
       // Cornell localist events
       getCornellEvents(option, date) {
+        // Get default events
         if(option == "days"){
           this.$http.get(localistApiBaseUrl+"&days=28").then(function(response) {
             // Create custom data model
             this.cornellEventsArray(response.data.events);
           });
         }
+        // Get events for a date
         else if (option == "date"){
           this.$http.get(localistApiBaseUrl+"&start="+date+"").then(function(response) {
             // Create custom data model
@@ -148,9 +175,10 @@ var events = new Vue({
       },
       // Get reservations from booked
       getBookedReservations(option, date){
+        // Get default events
         if(option == "default"){
           bookedApiUrl = "http://booked-dev.library.cornell.edu/Web/Services/index.php/Reservations/?resourceId=3";
-
+        // Get events for a date
         } else if (option == "date"){
           bookedApiUrl = "http://booked-dev.library.cornell.edu/Web/Services/index.php/Reservations/?resourceId=3&startDateTime="+date+"T00:00:00&endDateTime="+date+"T23:59:59";
         }
@@ -174,103 +202,89 @@ var events = new Vue({
       },
 
        // Room filter and remove filter
-        setRoomFilter(room_number){
-          this.room = room_number;
-          this.room_selected = room_number;
-        },
-        removeRoomFilter(){
-          this.room = '';
-          this.room_selected = '';
-        },
-        // Event type filter and remove filter
-        setEventTypeFilter(event_type){
-         this.event_type = event_type;
-         this.event_selected = event_type;
-         },
-         removeEventTypeFilter(){
-           this.event_type = '';
-           this.event_selected = '';
-         },
-         removeSearchFilter(){
-           this.$set("searchText", null);
-         },
-         removeSelectedDate(){
-           this.$set("dateSelected", '');
-           this.getCornellEvents("days");
-           this.getBookedReservations("default");
-         },
+      setRoomFilter(room_number){
+        this.room = room_number;
+        this.roomSelected = room_number;
+      },
+      removeRoomFilter(){
+        this.room = '';
+        this.roomSelected = '';
+      },
+      // Event type filter and remove filter
+      setEventTypeFilter(event_type){
+       this.eventType = event_type;
+       this.eventSelected = event_type;
+       },
+       removeEventTypeFilter(){
+         this.eventType = '';
+         this.eventSelected = '';
+       },
 
-        // Clear filters
-        clearAllFilters(){
-          this.room = '';
-          this.event_type = '';
-          this.room_selected = '';
-          this.event_selected = '';
-          this.getCornellEvents("days");
-          this.getBookedReservations("default");
-          this.removeSearchFilter();
-          this.$set("dateSelected", '');
-        },
-        // Load more events
-        loadMoreEvents() {
-          var increment = this.list_limit + 10;
-          this.list_limit = increment > this.allEvents.length ? this.allEvents.length : increment;
-          if (this.list_limit == this.allEvents.length){
-            this.$set("load_more_text", "No more events");
-          }
-        },
+      //  Remove search filter
+       removeSearchFilter(){
+         this.$set("searchText", null);
+       },
+
+      //  Remove seleceted date to load default events
+       removeSelectedDate(){
+         this.$set("dateSelected", '');
+         this.getCornellEvents("days");
+         this.getBookedReservations("default");
+         $("#datepicker").datepicker( "setDate", moment().format("YYYY-MM-DD") );
+       },
+
+      // Clear filters
+      clearAllFilters(){
+        this.room = '';
+        this.eventType = '';
+        this.roomSelected = '';
+        this.eventSelected = '';
+        this.getCornellEvents("days");
+        this.getBookedReservations("default");
+        this.removeSearchFilter();
+        this.$set("dateSelected", '');
+        $("#datepicker").datepicker( "setDate", moment().format("YYYY-MM-DD") );
+      },
+
+      // Load more events
+      loadMoreEvents() {
+        var increment = this.limitList + this.limitList;
+        this.limitList = increment > this.allEvents.length ? this.allEvents.length : increment;
+      },
 
       // Custom data model from cornell events
       cornellEventsArray(data){
         var event_types = [];
         var room_names = [];
         var cornell_events = [];
-        $.each(data, function(key, value) {
+
+        // Event properties
+        _.forEach(_.map(data, 'event'), function(value){
           var events = {};
-          $.each(value, function(key, value) {
-            // console.log(value.filters.event_types);
-            var eventTypes = [];
-            $.each(value.filters, function(key, value){
-              if(key == "event_types"){
-                $.each(value, function(key, value) {
-                  eventTypes.push(value.name);
-                });
-              }
-            });
-            events['event_type'] = eventTypes;
-            events['event_title'] = value.title;
-            events['event_description'] = value.description_text;
-            events['event_start_time'] = value.event_instances[0].event_instance.start;
-            events['event_start'] = value.event_instances[0].event_instance.start.substring(0, 10);
-            events['event_end_time'] = value.event_instances[0].event_instance.end;
-            events['event_room_name'] = value.room_number;
-            cornell_events.push(events);
-            $.each(value, function(key, value) {
-                if(key == 'filters') {
-                  $.each(value, function(key, value) {
-                   if (key == 'event_types'){
-                      $.each(value, function(key, value) {
-                        $.each(value, function(key, value) {
-                          if (key == "name") {
-                            if (event_types.indexOf(value) == -1) {
-                              event_types.push(value);
-                            }
-                          }
-                        });
-                      });
-                    }
-                  });
-                }
-                else if (key == 'room_number'){
-                  if (room_names.indexOf(value) == -1) {
-                    room_names.push(value);
-                  }
-                }
-            });
+          var event_type = [];
+          events['event_title'] = value.title;
+          events['event_description'] = value.description_text;
+          events['event_start_time'] = value.event_instances[0].event_instance.start;
+          events['event_start'] = value.event_instances[0].event_instance.start.substring(0, 10);
+          events['event_end_time'] = value.event_instances[0].event_instance.end;
+          events['event_room_name'] = value.room_number;
+          events['event_type'] = event_type;
 
+          // Events array from localist
+          cornell_events.push(events);
+
+          // Event type filter list array
+          _.forEach(_.map(value, 'event_types'), function(value){
+            _.forEach(_.map(value, 'name'), function(value){
+              event_types.push(value);
+              event_type.push(value);
+            });
           });
-        });
 
+          // Room filter list array
+          room_names.push(value.room_number);
+
+        });
         // set array values to be used later to merge
         this.$set('cornellEventTypes', event_types);
         this.$set('cornellRoomNames', room_names)
@@ -282,7 +296,9 @@ var events = new Vue({
         var booked_events = [];
         var event_types = [];
         var room_names = [];
-        $.each(data, function(key, value) {
+
+        // Event properties
+        _.forEach(data, function(value) {
           var events = {};
           events['event_type'] = ['Class/ Workshop'];
           events['event_title'] = value.title;
@@ -291,34 +307,37 @@ var events = new Vue({
           events['event_start'] = value.bufferedStartDate.substring(0, 10);
           events['event_end_time'] = value.bufferedEndDate;
           events['event_room_name'] = value.resourceName;
-          booked_events.push(events);
-          if (room_names.indexOf(value.resourceName) == -1) {
-            room_names.push(value.resourceName);
-          }
-          if (event_types.indexOf('Class/ Workshop') == -1) {
-            event_types.push('Class/ Workshop')
-          }
 
+          // Events array from booked
+          booked_events.push(events);
+
+          // Event type filter list array
+          room_names.push(value.resourceName);
+
+          // Room filter list array
+          event_types.push('Class/ Workshop');
 
         });
-        // set array values to be used later to merge
+
+        // Set array values to be used later to merge
         this.$set('bookedEventTypes', event_types);
         this.$set('bookedRoomNames', room_names)
         this.$set('bookedEvents', booked_events);
 
-        // Use merge to combine the arrays and set
-        this.$set('allEvents', ($.merge(this.cornellEvents, this.bookedEvents)));
-        this.$set('allEventTypes', ($.unique($.merge(this.cornellEventTypes, this.bookedEventTypes))));
-        this.$set('allRoomNames', ($.unique($.merge(this.cornellRoomNames, this.bookedRoomNames))));
+        // Use lodash to combine the arrays and set
+        this.$set('allEvents', (_.concat(this.cornellEvents, this.bookedEvents)));
+        this.$set('allEventTypes', (_.union(this.cornellEventTypes, this.bookedEventTypes)));
+        this.$set('allRoomNames', (_.union(this.cornellRoomNames, this.bookedRoomNames)));
         this.loadMoreDisplay(this.allEvents);
-        this.$set('show', false);
-        this.$set('filteredEvents', ($.merge(this.bookedEvents, this.cornellEvents)));
+        this.$set('showNoEventsMessage', false);
+        this.$set('filteredEvents', this.allEvents);
       },
+      // Text for load more link
       loadMoreDisplay(events){
-        if(events.length <= this.list_limit){
-          this.$set('load_more_text', '')
+        if(events.length <= this.limitList){
+          this.$set('loadMoreText', '')
         } else {
-          this.$set('load_more_text', 'View more events')
+          this.$set('loadMoreText', 'View more events')
         }
       }
     }
