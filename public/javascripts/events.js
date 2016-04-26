@@ -100,6 +100,12 @@ var events = new Vue({
       momentTime: function (date) {
         return moment(date).format('h:mm a');
       },
+      momentHomeTime: function (date) {
+        if((moment(date).get('minutes'))){
+          return moment(date).format('h:mm a');
+        }
+        return moment(date).format('h a');
+      },
       momentDate: function (date) {
         if(date == ''){
           return;
@@ -116,6 +122,19 @@ var events = new Vue({
           return "Today";
         } else if (days == 1){
           return "Tomorrow";
+        }
+      },
+      momentHomeDateText: function (date) {
+        var someday = moment(date).startOf('day');
+        var today = moment().startOf('day');
+        var days = someday.diff(today, "days");
+        if (days == 0){
+          return "Today";
+        } else if (days == 1){
+          return "Tomorrow";
+        }
+        else {
+          return moment(date).format('ddd, MMM DD');
         }
       },
       // Limit events list

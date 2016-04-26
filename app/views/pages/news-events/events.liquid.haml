@@ -27,7 +27,7 @@ is_layout: false
       .tab-content
         %div{"v-show" => "showNoEventsMessage"} loading...
 
-        .events__per-day{"v-for" => "(date, events) in allEvents | filterBy searchText | orderBy sortKey reverse | roomFilter room | eventTypeFilter eventType | limitListFilter limitList | groupBy 'event_start'"}
+        .events__per-day{"v-for" => "(date, events) in allEvents | filterBy searchText | roomFilter room | eventTypeFilter eventType | limitListFilter limitList | groupBy 'event_start'"}
           %h2.events__date-heading
             ((date | momentDate))
             %span.events__date.badge.badge-alert{"v-if" => "date | momentDateText"} ((date | momentDateText))
