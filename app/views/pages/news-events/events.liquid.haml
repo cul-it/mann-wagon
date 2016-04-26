@@ -71,6 +71,10 @@ is_layout: false
         %i.fa.fa-times
         Clear All Filters
 
+    %h6.events-filters__type Filter Events
+    %input.form-control{:placeholder => "Filter events", :type => "text", "v-model" => "searchText"}
+    %a.fa.fa-times{"v-on:click" => "removeSearchFilter()", "v-if" => "searchText"}
+
     %h6.events-filters__type Type
     %ul{"data-filter-group" => "type"}
       %li{"v-for" => "event_type of allEventTypes | orderBy 'eventType'"}
