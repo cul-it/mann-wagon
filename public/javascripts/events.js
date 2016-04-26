@@ -357,7 +357,7 @@ var Description = Vue.extend({
        readMoreLink: true,
        readLessLink: false,
       //  Array for words in description
-       inputWords: this.descriptionText.split(/\s+/)
+       inputWords: _.split(this.descriptionText, /\s+/)
       }
   },
   ready: function() {
@@ -365,7 +365,7 @@ var Description = Vue.extend({
   filters: {
     limitDescriptionFilter: function(description, wordLimit) {
       if (this.inputWords.length > wordLimit) {
-          description = this.inputWords.slice(0, wordLimit).join(' ');
+          description = _.join(_.slice(this.inputWords, 0, wordLimit), ' ');
       }
       // Hide read more link if description <= description word limit
       else if (this.inputWords.length <= wordLimit) {
