@@ -46,7 +46,9 @@ is_layout: false
                 %span.location.pull-right
                   %i.fa.fa-map-marker>
                   ((event.event_room_name))
-              %p.description ((event.event_description))
+
+              %description{"v-bind:description-text" => "(( event.event_description ))", "word-limit" => 20}
+
               %span.event__type.badge-notice{"v-for" => "type in event.event_type"}
                 ((type))
         %div{"v-show" => "!showNoEventsMessage", "v-if" => "filteredEvents.length == 0"} No events for selection...
