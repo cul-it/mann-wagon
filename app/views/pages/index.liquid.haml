@@ -98,7 +98,9 @@ listed: false
         %span.badge.badge-success 27
 
 %section.events-home
-  %h4.events-home__heading.lead-in Events &amp; Exhibits
+  %h4.events-home__heading.lead-in
+    %a.events-home__heading-link{href: "{% path_to events %}"}
+      Events &amp; Exhibits
 
   %h5.events-home__day Today
 
@@ -145,7 +147,9 @@ listed: false
     %i.fa.fa-angle-double-right
 
 %section.events-home.workshops
-  %h4.lead-in Workshops &amp; Classes
+  %h4.lead-in
+    %a.events-home__heading-link{href: "{% path_to events %}"}
+      Workshops &amp; Classes
 
   %h5.events-home__day Today
 
