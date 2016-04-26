@@ -41,9 +41,6 @@ listed: false
     Available Now
     %span.available-now__datetime {{ now | date: '%-I:%M %p' }}
 
-  %a{href: "{% path_to spaces %}" }
-    %button.available-now__find-space Find a Space
-
   .available-now__grp.available-now__study
     %h5.available-now__subheading Study Spaces
 
@@ -66,6 +63,9 @@ listed: false
       %li.available-now__status--available
         %i.fa.fa-fw.fa-check-square
         Bissett Workstations
+
+    %a{href: "{% path_to spaces %}" }
+      %button.available-now__find-space Find a Space
 
   .available-now__grp.available-now__consultation
     %h5.available-now__subheading Consultation
