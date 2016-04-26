@@ -41,9 +41,6 @@ listed: false
     Available Now
     %span.available-now__datetime {{ now | date: '%-I:%M %p' }}
 
-  %a{href: "{% path_to spaces %}" }
-    %button.available-now__find-space Find a Space
-
   .available-now__grp.available-now__study
     %h5.available-now__subheading Study Spaces
 
@@ -66,6 +63,9 @@ listed: false
       %li.available-now__status--available
         %i.fa.fa-fw.fa-check-square
         Bissett Workstations
+
+    %a{href: "{% path_to spaces %}" }
+      %button.available-now__find-space Find a Space
 
   .available-now__grp.available-now__consultation
     %h5.available-now__subheading Consultation
@@ -102,7 +102,7 @@ listed: false
 
   %h5.events-home__day Today
 
-  %ul
+  %ul.events-home__list
     %li.events-home__event
       %h6.events-home__title
         %a{href: "javascript:void(0);"} Farming for Change: Agroecology, Gender, and Climate Change Adaptation in Malawi and Tanzania
@@ -128,7 +128,7 @@ listed: false
 
   %h5.events-home__day Tomorrow
 
-  %ul
+  %ul.events-home__list
     %li.events-home__event
       %h6.events-home__title
         %a{href: "javascript:void(0);"} Farming for Change: Agroecology, Gender, and Climate Change Adaptation in Malawi and Tanzania
@@ -149,7 +149,7 @@ listed: false
 
   %h5.events-home__day Today
 
-  %ul
+  %ul.events-home__list
     %li.events-home__event
       %h6.events-home__title
         %a{href: "javascript:void(0);"} Making & Makerspaces at Cornell
@@ -163,7 +163,7 @@ listed: false
 
   %h5.events-home__day Tomorrow
 
-  %ul
+  %ul.events-home__list
     %li.events-home__event
       %h6.events-home__title
         %a{href: "javascript:void(0);"} Making & Makerspaces at Cornell
@@ -177,7 +177,7 @@ listed: false
 
   %h5.events-home__day Sat, Apr 23
 
-  %ul
+  %ul.events-home__list
     %li.events-home__event
       %h6.events-home__title
         %a{href: "javascript:void(0);"} Splash! At Cornell

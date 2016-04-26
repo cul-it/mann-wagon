@@ -30,22 +30,20 @@
 }
 
 .available-now__find-space {
-  margin-bottom: .7em;
-  font-size: modular-scale(-1);
+  margin-top: .7em;
 
-  @include span(last 1);
-  @include clearfix;
+  @include span(full);
 
   @include susy-breakpoint($scape, $g-scape) {
-    @include span(2);
+    @include span(2 of 3);
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(2);
+    @include span(2 of 3);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include pull(2);
+    @include span(2 of 3);
   }
 }
 
