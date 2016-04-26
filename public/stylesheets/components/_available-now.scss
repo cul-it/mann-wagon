@@ -110,10 +110,10 @@
 
 .available-now__status {
   &--available {
-    color: darken(color('success'), 60%);
+    color: darken(color('success'), 50%);
   }
 
   &--unavailable {
-    color: darken(color('error'), 60%);
+    color: darken(color('error'), 50%);
   }
 }
