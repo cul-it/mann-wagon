@@ -148,12 +148,13 @@ listed: false
           %dd.events-home__location ((event.event_room_name))
 
 
-    %a.more-link{href: "{% path_to events %}"}
+    %a.more-link{href: "{% path_to events %}", "v-on:click" => "setFilterCookie()"}
       All Workshops &amp; Classes
       %i.fa.fa-angle-double-right
 
 {{ 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js' | javascript_tag }}
 {{ 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.11.1/lodash.js' | javascript_tag }}
+{{ 'https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.1/js.cookie.js' | javascript_tag }}
 {{ 'vendor/vue/vue.js' | javascript_tag }}
 {{ 'vendor/vue-resource/vue-resource.js' | javascript_tag }}
 

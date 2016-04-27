@@ -62,6 +62,9 @@ var events = new Vue({
       // When the application loads, call methods
       this.getCornellEvents("days");
       this.bookedAuthentication();
+      if((Cookies.get('filter'))){
+        this.setEventTypeFilter(Cookies.get('filter'));
+      }
     },
     filters: {
       // Room filter
@@ -237,6 +240,7 @@ var events = new Vue({
        removeEventTypeFilter(){
          this.eventType = '';
          this.eventSelected = '';
+         Cookies.remove('filter');
        },
 
       //  Remove search filter
@@ -263,6 +267,7 @@ var events = new Vue({
         this.removeSearchFilter();
         this.$set("dateSelected", '');
         $("#datepicker").datepicker( "setDate", moment().format("YYYY-MM-DD") );
+        Cookies.remove('filter');
       },
 
       // Load more events
@@ -358,11 +363,19 @@ var events = new Vue({
         } else {
           this.$set('loadMoreText', 'View more events')
         }
+      },
+      setFilterCookie(){
+        Cookies.set('filter', 'Class/ Workshop');
       }
     }
 
 })
+if(window.location.pathname == '/news-events/events'){
+  $(window).unload(function() {
+    Cookies.remove('filter');
+  });
 
+}
 
 // Define component for read more description feature
 var Description = Vue.extend({
