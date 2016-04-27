@@ -46,23 +46,35 @@ listed: false
 
     %ul
       %li.available-now__status--available
-        %i.fa.fa-fw.fa-check-square
-        Individual Rooms
+        {% with_scope _slug: 'individual-study-rooms' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
+        %a.available-now__link{href: "{% path_to space %}"}
+          %i.fa.fa-fw.fa-check-square
+          Individual Rooms
       %li.available-now__status--available
-        %i.fa.fa-fw.fa-check-square
-        Group Rooms
+        {% with_scope _slug: 'group-study-rooms' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
+        %a.available-now__link{href: "{% path_to space %}"}
+          %i.fa.fa-fw.fa-check-square
+          Group Rooms
       %li.available-now__status--unavailable
-        %i.fa.fa-fw.fa-minus-square
-        Graduate Rooms
+        {% with_scope _slug: 'grad-rooms' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
+        %a.available-now__link{href: "{% path_to space %}"}
+          %i.fa.fa-fw.fa-minus-square
+          Graduate Rooms
       %li.available-now__status--available
-        %i.fa.fa-fw.fa-check-square
-        One Button Studio
+        {% with_scope _slug: 'one-button-studio' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
+        %a.available-now__link{href: "{% path_to space %}"}
+          %i.fa.fa-fw.fa-check-square
+          One Button Studio
       %li.available-now__status--unavailable
-        %i.fa.fa-fw.fa-minus-square
-        Interview Room
+        {% with_scope _slug: 'interview-room' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
+        %a.available-now__link{href: "{% path_to space %}"}
+          %i.fa.fa-fw.fa-minus-square
+          Interview Room
       %li.available-now__status--available
-        %i.fa.fa-fw.fa-check-square
-        Bissett Workstations
+        {% with_scope _slug: 'bissett-workstations' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
+        %a.available-now__link{href: "{% path_to space %}"}
+          %i.fa.fa-fw.fa-check-square
+          Bissett Workstations
 
     %a{href: "{% path_to spaces %}" }
       %button.available-now__find-space Find a Space
