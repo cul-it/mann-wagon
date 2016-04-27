@@ -41,31 +41,43 @@ listed: false
     Available Now
     %span.available-now__datetime {{ now | date: '%-I:%M %p' }}
 
-  %a{href: "{% path_to spaces %}" }
-    %button.available-now__find-space Find a Space
-
   .available-now__grp.available-now__study
     %h5.available-now__subheading Study Spaces
 
     %ul
       %li.available-now__status--available
-        %i.fa.fa-fw.fa-check-square
-        Individual Rooms
+        {% with_scope _slug: 'individual-study-rooms' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
+        %a.available-now__link{href: "{% path_to space %}"}
+          %i.fa.fa-fw.fa-check-square
+          Individual Rooms
       %li.available-now__status--available
-        %i.fa.fa-fw.fa-check-square
-        Group Rooms
+        {% with_scope _slug: 'group-study-rooms' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
+        %a.available-now__link{href: "{% path_to space %}"}
+          %i.fa.fa-fw.fa-check-square
+          Group Rooms
       %li.available-now__status--unavailable
-        %i.fa.fa-fw.fa-minus-square
-        Graduate Rooms
+        {% with_scope _slug: 'grad-rooms' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
+        %a.available-now__link{href: "{% path_to space %}"}
+          %i.fa.fa-fw.fa-minus-square
+          Graduate Rooms
       %li.available-now__status--available
-        %i.fa.fa-fw.fa-check-square
-        One Button Studio
+        {% with_scope _slug: 'one-button-studio' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
+        %a.available-now__link{href: "{% path_to space %}"}
+          %i.fa.fa-fw.fa-check-square
+          One Button Studio
       %li.available-now__status--unavailable
-        %i.fa.fa-fw.fa-minus-square
-        Interview Room
+        {% with_scope _slug: 'interview-room' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
+        %a.available-now__link{href: "{% path_to space %}"}
+          %i.fa.fa-fw.fa-minus-square
+          Interview Room
       %li.available-now__status--available
-        %i.fa.fa-fw.fa-check-square
-        Bissett Workstations
+        {% with_scope _slug: 'bissett-workstations' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
+        %a.available-now__link{href: "{% path_to space %}"}
+          %i.fa.fa-fw.fa-check-square
+          Bissett Workstations
+
+    %a{href: "{% path_to spaces %}" }
+      %button.available-now__find-space Find a Space
 
   .available-now__grp.available-now__consultation
     %h5.available-now__subheading Consultation
@@ -89,20 +101,25 @@ listed: false
 
     %ul
       %li.available-now__status--unavailable
-        %i.fa.fa-fw.fa-minus-square
-        Desktops
-        %span.badge.badge-error 0
+        %a.available-now__link{href: "{% path_to desktops %}"}
+          %i.fa.fa-fw.fa-minus-square
+          Desktops
+          %span.badge.badge-error 0
       %li.available-now__status--available
-        %i.fa.fa-fw.fa-check-square
-        Laptops
-        %span.badge.badge-success 27
+        %a.available-now__link{href: "{% path_to laptops %}"}
+          %i.fa.fa-fw.fa-check-square
+          Laptops
+          %span.badge.badge-success 27
 
 #events-container{"booked-username" => "{{site.metafields.sensitive_data.booked_username}}", "booked-password" => "{{site.metafields.sensitive_data.booked_password}}"}
   %section.events-home
-    %h4.events-home__heading.lead-in Events &amp; Exhibits
+    %h4.events-home__heading.lead-in
+      %a.events-home__heading-link{href: "{% path_to events %}"}
+        Events &amp; Exhibits
 
+    %div{"v-show" => "showNoEventsMessage"} loading...
 
-    %ul{"v-for" => "(date, events) in allEvents | limitListFilter 3 | groupBy 'event_start'"}
+    %ul.events-home__list{"v-for" => "(date, events) in allEvents | limitListFilter 3 | groupBy 'event_start'"}
 
       %h5.events-home__day ((date | momentHomeDateText))
 
@@ -126,15 +143,18 @@ listed: false
       %i.fa.fa-angle-double-right
 
   %section.events-home.workshops
+    %h4.lead-in
+      %a.events-home__heading-link{href: "{% path_to events %}"}
+        Workshops &amp; Classes
 
-    %h4.lead-in Workshops &amp; Classes
+    %div{"v-show" => "showNoEventsMessage"} loading...
 
-    %ul{"v-for" => "(date, events) in allEvents | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'"}
+
+    %ul.events-home__list{"v-for" => "(date, events) in allEvents | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'"}
 
       %h5.events-home__day ((date | momentHomeDateText))
 
       %li.events-home__event{"v-for" => "event in events"}
-
         %h6.events-home__title
           %a{href: "javascript:void(0);"} ((event.event_title))
 

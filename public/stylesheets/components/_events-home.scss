@@ -20,12 +20,20 @@
   }
 }
 
+.events-home__heading-link {
+  color: color('font-base');
+}
+
 .events-home__day {
   margin: 1.2em 0 .3em 0;
 
   &:first-of-type {
     margin-top: 0;
   }
+}
+
+.events-home__list {
+  margin-bottom: 1em;
 }
 
 .events-home__event {
