@@ -119,22 +119,24 @@ listed: false
 
     %div{"v-show" => "showNoEventsMessage"} loading...
 
-    %ul.events-home__list{"v-for" => "(date, events) in allEvents | limitListFilter 3 | groupBy 'event_start'"}
+    %template{"v-for" => "(date, events) in allEvents | limitListFilter 3 | groupBy 'event_start'"}
 
       %h5.events-home__day ((date | momentHomeDateText))
 
-      %li.events-home__event{"v-for" => "event in events"}
-        %h6.events-home__title
-          %a{href: "javascript:void(0);"} ((event.event_title))
+      %ul.events-home__list
 
-        %dl
-          %dt.events-home__label time
-          %dd.events-home__time{"v-if" => "event.event_end_time"} ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
-          %dd.events-home__time{"v-else" => ""} ((event.event_start_time | momentHomeTime ))
+        %li.events-home__event{"v-for" => "event in events"}
+          %h6.events-home__title
+            %a{href: "javascript:void(0);"} ((event.event_title))
+
+          %dl
+            %dt.events-home__label time
+            %dd.events-home__time{"v-if" => "event.event_end_time"} ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
+            %dd.events-home__time{"v-else" => ""} ((event.event_start_time | momentHomeTime ))
 
 
-          %dt.events-home__label location
-          %dd.events-home__location ((event.event_room_name))
+            %dt.events-home__label location
+            %dd.events-home__location ((event.event_room_name))
 
 
 
@@ -149,23 +151,24 @@ listed: false
 
     %div{"v-show" => "showNoEventsMessage"} loading...
 
-
-    %ul.events-home__list{"v-for" => "(date, events) in allEvents | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'"}
+    %template{"v-for" => "(date, events) in allEvents | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'"}
 
       %h5.events-home__day ((date | momentHomeDateText))
 
-      %li.events-home__event{"v-for" => "event in events"}
-        %h6.events-home__title
-          %a{href: "javascript:void(0);"} ((event.event_title))
+      %ul.events-home__list
 
-        %dl
-          %dt.events-home__label time
-          %dd.events-home__time{"v-if" => "event.event_end_time"} ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
-          %dd.events-home__time{"v-else" => ""} ((event.event_start_time | momentHomeTime ))
+        %li.events-home__event{"v-for" => "event in events"}
+          %h6.events-home__title
+            %a{href: "javascript:void(0);"} ((event.event_title))
+
+          %dl
+            %dt.events-home__label time
+            %dd.events-home__time{"v-if" => "event.event_end_time"} ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
+            %dd.events-home__time{"v-else" => ""} ((event.event_start_time | momentHomeTime ))
 
 
-          %dt.events-home__label location
-          %dd.events-home__location ((event.event_room_name))
+            %dt.events-home__label location
+            %dd.events-home__location ((event.event_room_name))
 
 
     %a.more-link{href: "{% path_to events %}", "v-on:click" => "setFilterCookie()"}
