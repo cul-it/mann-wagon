@@ -111,103 +111,76 @@ listed: false
           Laptops
           %span.badge.badge-success 27
 
-%section.events-home
-  %h4.events-home__heading.lead-in
-    %a.events-home__heading-link{href: "{% path_to events %}"}
-      Events &amp; Exhibits
+#events-container{"booked-username" => "{{site.metafields.sensitive_data.booked_username}}", "booked-password" => "{{site.metafields.sensitive_data.booked_password}}"}
+  %section.events-home
+    %h4.events-home__heading.lead-in
+      %a.events-home__heading-link{href: "{% path_to events %}"}
+        Events &amp; Exhibits
 
-  %h5.events-home__day Today
+    %div{"v-show" => "showNoEventsMessage"} loading...
 
-  %ul.events-home__list
-    %li.events-home__event
-      %h6.events-home__title
-        %a{href: "javascript:void(0);"} Farming for Change: Agroecology, Gender, and Climate Change Adaptation in Malawi and Tanzania
+    %template{"v-for" => "(date, events) in allEvents | limitListFilter 3 | groupBy 'event_start'"}
 
-      %dl
-        %dt.events-home__label time
-        %dd.events-home__time 8 am - 12 am
+      %h5.events-home__day ((date | momentHomeDateText))
 
-        %dt.events-home__label location
-        %dd.events-home__location 2nd Floor Gallery
+      %ul.events-home__list
 
-    %li.events-home__event
-      %h6.events-home__title
-        %a{href: "javascript:void(0);"} Vintage Vogue: Vogel, Vogue and the Art of "Gazette Du Bon Ton"
+        %li.events-home__event{"v-for" => "event in events"}
+          %h6.events-home__title
+            %a{href: "javascript:void(0);"} ((event.event_title))
+
+          %dl
+            %dt.events-home__label time
+            %dd.events-home__time{"v-if" => "event.event_end_time"} ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
+            %dd.events-home__time{"v-else" => ""} ((event.event_start_time | momentHomeTime ))
 
 
-      %dl
-        %dt.events-home__label time
-        %dd.events-home__time 8 am - 6 pm
+            %dt.events-home__label location
+            %dd.events-home__location ((event.event_room_name))
 
-        %dt.events-home__label location
-        %dd.events-home__location Lobby
 
-  %h5.events-home__day Tomorrow
 
-  %ul.events-home__list
-    %li.events-home__event
-      %h6.events-home__title
-        %a{href: "javascript:void(0);"} Farming for Change: Agroecology, Gender, and Climate Change Adaptation in Malawi and Tanzania
+    %a.more-link{href: "{% path_to events %}"}
+      All Events
+      %i.fa.fa-angle-double-right
 
-      %dl
-        %dt.events-home__label time
-        %dd.events-home__time 8 am - 6 pm
+  %section.events-home.workshops
+    %h4.lead-in
+      %a.events-home__heading-link{href: "{% path_to events %}"}
+        Workshops &amp; Classes
 
-        %dt.events-home__label location
-        %dd.events-home__location 2nd Floor Gallery
+    %div{"v-show" => "showNoEventsMessage"} loading...
 
-  %a.more-link{href: "{% path_to events %}"}
-    All Events
-    %i.fa.fa-angle-double-right
+    %template{"v-for" => "(date, events) in allEvents | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'"}
 
-%section.events-home.workshops
-  %h4.lead-in
-    %a.events-home__heading-link{href: "{% path_to events %}"}
-      Workshops &amp; Classes
+      %h5.events-home__day ((date | momentHomeDateText))
 
-  %h5.events-home__day Today
+      %ul.events-home__list
 
-  %ul.events-home__list
-    %li.events-home__event
-      %h6.events-home__title
-        %a{href: "javascript:void(0);"} Making & Makerspaces at Cornell
+        %li.events-home__event{"v-for" => "event in events"}
+          %h6.events-home__title
+            %a{href: "javascript:void(0);"} ((event.event_title))
 
-      %dl
-        %dt.events-home__label time
-        %dd.events-home__time 4:30 pm - 6 pm
+          %dl
+            %dt.events-home__label time
+            %dd.events-home__time{"v-if" => "event.event_end_time"} ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
+            %dd.events-home__time{"v-else" => ""} ((event.event_start_time | momentHomeTime ))
 
-        %dt.events-home__label location
-        %dd.events-home__location Lobby
 
-  %h5.events-home__day Tomorrow
+            %dt.events-home__label location
+            %dd.events-home__location ((event.event_room_name))
 
-  %ul.events-home__list
-    %li.events-home__event
-      %h6.events-home__title
-        %a{href: "javascript:void(0);"} Making & Makerspaces at Cornell
 
-      %dl
-        %dt.events-home__label time
-        %dd.events-home__time 12 pm - 1 pm
+    %a.more-link{href: "{% path_to events %}", "v-on:click" => "setFilterCookie()"}
+      All Workshops &amp; Classes
+      %i.fa.fa-angle-double-right
 
-        %dt.events-home__label location
-        %dd.events-home__location Basement 30B
+{{ 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js' | javascript_tag }}
+{{ 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.11.1/lodash.js' | javascript_tag }}
+{{ 'https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.1/js.cookie.js' | javascript_tag }}
+{{ 'vendor/vue/vue.js' | javascript_tag }}
+{{ 'vendor/vue-resource/vue-resource.js' | javascript_tag }}
 
-  %h5.events-home__day Sat, Apr 23
+{{ 'events.js' | javascript_tag }}
 
-  %ul.events-home__list
-    %li.events-home__event
-      %h6.events-home__title
-        %a{href: "javascript:void(0);"} Splash! At Cornell
-
-      %dl
-        %dt.events-home__label time
-        %dd.events-home__time 12 pm - 5 pm
-
-        %dt.events-home__label location
-        %dd.events-home__location Stone Classroom
-
-  %a.more-link{href: "{% path_to events %}"}
-    All Workshops &amp; Classes
-    %i.fa.fa-angle-double-right
 {% endblock %}
