@@ -11,13 +11,16 @@
 }
 
 .site-nav__list {
+  position: relative;
   margin-bottom: 1em;
+  padding: 0 auto;
   border-top: solid 1px color('nav' ('shade': 5%));
   border-bottom: solid 4px color('nav' ('tint': 60%));
   font-weight: bold;
   font-size: modular-scale(-1);
   text-align: center;
   background: color('nav');
+  @include clearfix;
 
   @include susy-breakpoint($scape, $g-scape) {
     text-align: right;
@@ -33,6 +36,7 @@
   }
 
   .link {
+    position: static;
     display: inline-block;
     padding: .4em;
 
@@ -40,34 +44,81 @@
       padding: .8em;
     }
 
-    &:hover {
-      background: color('nav' ('tint': 20%));
-    }
-
     &.active {
       background: color('nav' ('tint': 40%));
     }
 
-    a {
+    &:hover {
+      background: color('vulcan');
+
+      & > a {
+        color: color('nav');
+      }
+
+      & > .site-nav__mega {
+        display: block;
+      }
+
+    }
+
+    & > a {
       color: color('vulcan');
     }
   }
 }
 
-/**********************************************
-* Keeping these around for reference
-* - if/when we can get nav tag snippet working
-***********************************************/
-// .site-nav-link {
-//   display: inline-block;
-//   padding: .4em 0;
+.site-nav__chevron {
+  font-size: modular-scale(-1);
+  color: color('aluminum');
+}
 
-//   // all but the first
-//   & + li {
-//     padding-left: 1em;
-//   }
+.site-nav__mega {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  width: 100vw;
+  height: auto;
+  padding: 2em;
+  text-align: left;
+  color: color('alabaster');
+  background: color('vulcan' ('transparentize': 0.05));
 
-//   @include susy-breakpoint($tablet, $g-tablet) {
-//     padding: .8em;
-//   }
-// }
+  @include susy-breakpoint($tablet, $g-tablet) {
+    left: - span(4 of 8 wider);
+    width: 88vw;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    left: - span(7 of 12 wider);
+    width: 87vw;
+  }
+}
+
+.site-nav__section {
+  margin-bottom: 1em;
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(2 of 8);
+
+    margin-bottom: 0;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(2 of 12);
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.site-nav__section-title {
+  display: block;
+  color: color('alabaster');
+  border-bottom: solid 1px color('medium-gray');
+}
+
+.site-nav__page {
+  font-weight: normal;
+}

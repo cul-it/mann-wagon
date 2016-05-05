@@ -1,0 +1,15 @@
+{{ page.title }} <i class="site-nav__chevron fa fa-chevron-down"></i>
+
+<ul class="site-nav__mega">
+  {% for child in page.children %}
+    <li class="site-nav__section">
+      <a class="site-nav__section-title" href="{% path_to child %}">{{ child.title }}</a>
+
+      <ul>
+        {% for grandchild in child.children %}
+          <li><a class="site-nav__page" href="{% path_to grandchild %}">{{ grandchild.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
