@@ -82,11 +82,12 @@
   padding: 2em;
   text-align: left;
   color: color('alabaster');
-  background: color('vulcan' ('transparentize': 0.05));
+  background: color('vulcan' ('transparentize': 0.02));
 
   @include susy-breakpoint($tablet, $g-tablet) {
     left: - span(4 of 8 wider);
     width: 88vw;
+    background: color('vulcan' ('transparentize': 0.05));
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
@@ -120,5 +121,26 @@
 }
 
 .site-nav__page {
+  border-bottom: solid 1px color('vulcan' ('tint': 10%));
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    border-bottom: none;
+  }
+}
+
+.site-nav__page-link {
+  display: block;
+  padding: .5em .2em;
   font-weight: normal;
+
+  &:active,
+  &:focus,
+  &:hover {
+    border-radius: 5px;
+    background: color('alabaster');
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    padding: .3em .2em;
+  }
 }

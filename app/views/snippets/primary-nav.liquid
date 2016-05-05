@@ -7,7 +7,7 @@
 
       <ul>
         {% for grandchild in child.children %}
-          <li><a class="site-nav__page" href="{% path_to grandchild %}">{{ grandchild.title }}</a></li>
+          <li class="site-nav__page"><a class="site-nav__page-link" href="{% path_to grandchild %}">{{ grandchild.title }}</a></li>
         {% endfor %}
       </ul>
     </li>
