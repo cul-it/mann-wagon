@@ -86,13 +86,13 @@
 
   @include susy-breakpoint($tablet, $g-tablet) {
     left: - span(4 of 8 wider);
-    width: 88vw;
+    width: 92vw;
     background: color('vulcan' ('transparentize': 0.05));
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     left: - span(7 of 12 wider);
-    width: 87vw;
+    width: 88vw;
   }
 }
 
