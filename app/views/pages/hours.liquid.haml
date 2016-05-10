@@ -33,25 +33,46 @@ listed: false
         %span.hours-weekly__day-of-month {{ date | date: '%d' | ceil }}
       {% endfor %}
       {% endfor %}
+
   %tbody
     {% for week in weeks %}
     {% for day in week[1] %}
-    %tr
-      {% if day[0][1] == '' %}
-      %td.hours-weekly__location {{ day[0][0] }}
-      {% else %}
-      %td.hours-weekly__location
-        %a{href: "{{ day[0][1] }}" }{{ day[0][0] }}
-      {% endif %}      {% for time in day[1] %}
-      %td{ class: "{% if forloop.index == day_today %}hours-weekly__today{% endif %}" }
-        %span.hours-weekly__hours {{ time[0] | replace: "Hours", "hrs" | replace: "Appointment", "Appt" }}
-        {% unless time[1] == nil %}
-        %span.badge.badge-alert.hours-weekly__exception {{ time[1] }}
-        {% endunless %}
+    {% if day[0][2] == "Building" %}
 
-      {% endfor %}
-      {% endfor %}
+    {% include hours-table-rows %}
+
+    {% endif %}
     {% endfor %}
+    {% endfor %}
+
+
+  %tbody
+    %tr
+      %td Service Desks
+    {% for week in weeks %}
+    {% for day in week[1] %}
+    {% if day[0][2] == "Service Desks" %}
+
+    {% include hours-table-rows %}
+
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+
+
+  %tbody
+    %tr
+      %td Consultation Services
+    {% for week in weeks %}
+    {% for day in week[1] %}
+    {% if day[0][2] == "Consultation Services" %}
+
+    {% include hours-table-rows %}
+
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+
 {% endfor %}
 
 {% endblock %}
