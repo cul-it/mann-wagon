@@ -2,14 +2,18 @@
 
 <ul class="site-nav__mega">
   {% for child in page.children %}
-    <li class="site-nav__section">
-      <a class="site-nav__section-title" href="{% path_to child %}">{{ child.title }}</a>
+    {% if child.listed? %}
+      <li class="site-nav__section">
+        <a class="site-nav__section-title" href="{% path_to child %}">{{ child.title }}</a>
 
-      <ul>
-        {% for grandchild in child.children %}
-          <li class="site-nav__page"><a class="site-nav__page-link" href="{% path_to grandchild %}">{{ grandchild.title }}</a></li>
-        {% endfor %}
-      </ul>
-    </li>
+        <ul>
+          {% for grandchild in child.children %}
+            {% if grandchild.listed? %}
+              <li class="site-nav__page"><a class="site-nav__page-link" href="{% path_to grandchild %}">{{ grandchild.title }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </li>
+    {% endif %}
   {% endfor %}
 </ul>

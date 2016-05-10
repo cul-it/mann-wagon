@@ -83,6 +83,7 @@
   text-align: left;
   color: color('alabaster');
   background: color('vulcan' ('transparentize': 0.02));
+  z-index: $above-content;
 
   @include susy-breakpoint($tablet, $g-tablet) {
     left: - span(4 of 8 wider);

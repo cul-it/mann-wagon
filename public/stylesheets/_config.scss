@@ -111,3 +111,8 @@ $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $l
 // Animations
 $base-duration: 150ms;
 $base-timing: ease;
+
+// z-index
+$below-content: 1;
+$content: 2;
+$above-content: 3;
