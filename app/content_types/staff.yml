@@ -17,7 +17,7 @@ order_by: last_name
 # order_direction: asc
 
 # Specify a field slug to group entries by that field in the back-office.
-# group_by: <your field>
+group_by: division
 
 # Activate public 'create' API (e.g for a contact form)
 # public_submission_enabled: false
@@ -94,6 +94,12 @@ fields:
     required: false
     hint: Year is ignored -- use current year
     localized: false
+
+- division:
+    label: Division
+    type: belongs_to
+    class_name: divisions
+    required: true
 
 - expertise: # The lowercase, underscored name of the field
     label: Expertise # Human readable name of the field
