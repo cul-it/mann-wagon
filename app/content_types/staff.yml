@@ -101,6 +101,12 @@ fields:
     class_name: divisions
     required: true
 
+- division_head: # The lowercase, underscored name of the field
+    label: Division head? # Human readable name of the field
+    type: boolean
+    required: true
+    localized: false
+
 - expertise: # The lowercase, underscored name of the field
     label: Expertise # Human readable name of the field
     type: tags
