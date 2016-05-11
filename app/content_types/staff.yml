@@ -108,10 +108,10 @@ fields:
     localized: false
 
 - expertise: # The lowercase, underscored name of the field
-    label: Expertise # Human readable name of the field
+    label: Areas of expertise # Human readable name of the field
     type: tags
     required: false
-    hint: Comma delimited list
+    hint: Comma delimited list of tags
     localized: false
 
 - departments:
