@@ -113,3 +113,10 @@ fields:
     required: false
     hint: Comma delimited list
     localized: false
+
+- departments:
+    label: Liaison to
+    type: has_many
+    class_name: departments
+    inverse_of: liaison
+    ui_enabled: true
