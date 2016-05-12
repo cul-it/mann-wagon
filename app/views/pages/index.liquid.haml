@@ -111,76 +111,8 @@ listed: false
           Laptops
           %span.badge.badge-success 27
 
-#events-container{"booked-username" => "{{site.metafields.sensitive_data.booked_username}}", "booked-password" => "{{site.metafields.sensitive_data.booked_password}}"}
-  %section.events-home
-    %h4.events-home__heading.lead-in
-      %a.events-home__heading-link{href: "{% path_to events %}"}
-        Events &amp; Exhibits
+%events{"booked-username" => "{{site.metafields.sensitive_data.booked_username}}", "booked-password" => "{{site.metafields.sensitive_data.booked_password}}"}
 
-    %div{"v-show" => "showNoEventsMessage"} loading...
-
-    %template{"v-for" => "(date, events) in allEvents | limitListFilter 3 | groupBy 'event_start'"}
-
-      %h5.events-home__day ((date | momentHomeDateText))
-
-      %ul.events-home__list
-
-        %li.events-home__event{"v-for" => "event in events"}
-          %h6.events-home__title
-            %a{href: "javascript:void(0);"} ((event.event_title))
-
-          %dl
-            %dt.events-home__label time
-            %dd.events-home__time{"v-if" => "event.event_end_time"} ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
-            %dd.events-home__time{"v-else" => ""} ((event.event_start_time | momentHomeTime ))
-
-
-            %dt.events-home__label location
-            %dd.events-home__location ((event.event_room_name))
-
-
-
-    %a.more-link{href: "{% path_to events %}"}
-      All Events
-      %i.fa.fa-angle-double-right
-
-  %section.events-home.workshops
-    %h4.lead-in
-      %a.events-home__heading-link{href: "{% path_to events %}"}
-        Workshops &amp; Classes
-
-    %div{"v-show" => "showNoEventsMessage"} loading...
-
-    %template{"v-for" => "(date, events) in allEvents | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'"}
-
-      %h5.events-home__day ((date | momentHomeDateText))
-
-      %ul.events-home__list
-
-        %li.events-home__event{"v-for" => "event in events"}
-          %h6.events-home__title
-            %a{href: "javascript:void(0);"} ((event.event_title))
-
-          %dl
-            %dt.events-home__label time
-            %dd.events-home__time{"v-if" => "event.event_end_time"} ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
-            %dd.events-home__time{"v-else" => ""} ((event.event_start_time | momentHomeTime ))
-
-
-            %dt.events-home__label location
-            %dd.events-home__location ((event.event_room_name))
-
-
-    %a.more-link{href: "{% path_to events %}", "v-on:click" => "setFilterCookie()"}
-      All Workshops &amp; Classes
-      %i.fa.fa-angle-double-right
-
-{{ 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js' | javascript_tag }}
-{{ 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.11.1/lodash.js' | javascript_tag }}
-{{ 'https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.1/js.cookie.js' | javascript_tag }}
-{{ 'vendor/vue/vue.js' | javascript_tag }}
-{{ 'vendor/vue-resource/vue-resource.js' | javascript_tag }}
-
-{{ 'events.js' | javascript_tag }}
+{{ 'homePageEvents.bundle.js' | javascript_tag }}
 
 {% endblock %}
