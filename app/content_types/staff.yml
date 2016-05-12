@@ -99,7 +99,6 @@ fields:
     label: Division
     type: belongs_to
     class_name: divisions
-    required: true
 
 - division_head: # The lowercase, underscored name of the field
     label: Division head? # Human readable name of the field

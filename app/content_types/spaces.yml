@@ -56,7 +56,6 @@ fields:
     hint: Where this space is located
     type: belongs_to
     class_name: floors
-    required: true
 
 - spaces_types:
     label: Types
@@ -64,7 +63,6 @@ fields:
     type: many_to_many
     class_name: spaces_types
     inverse_of: spaces
-    required: true
     ui_enabled: true
 
 - spaces_study_types:
