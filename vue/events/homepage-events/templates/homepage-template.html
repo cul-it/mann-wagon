@@ -1,0 +1,107 @@
+<div id="events-container">
+	<section class="events-home">
+		<h4 class="events-home__heading lead-in">
+      <a class="events-home__heading-link" href="/news-events/events">
+        Events &amp; Exhibits
+      </a>
+		</h4>
+
+
+		<div v-show="showNoEventsMessage">
+			loading...
+		</div>
+
+
+		<template v-for="(date, events) in allEvents | limitListFilter 3 | groupBy 'event_start'">
+			<h5 class="events-home__day">
+        ((date | momentHomeDateText))
+      </h5>
+
+      <ul class="events-home__list">
+				<li class="events-home__event" v-for="event in events">
+					<h6 class="events-home__title">
+            <a href="javascript:void(0);">
+              ((event.event_title))
+            </a>
+					</h6>
+
+					<dl>
+						<dt class="events-home__label">
+              time
+            </dt>
+						<dd class="events-home__time" v-if="event.event_end_time">
+              ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
+            </dd>
+						<dd class="events-home__time" v-else="">
+              ((event.event_start_time | momentHomeTime ))
+            </dd>
+						<dt class="events-home__label">
+              location
+            </dt>
+						<dd class="events-home__location">
+              ((event.event_room_name))
+            </dd>
+					</dl>
+				</li>
+			</ul>
+		</template>
+		<a class="more-link" href="/news-events/events">
+      All Events
+      <i class="fa fa-angle-double-right"></i>
+    </a>
+	</section>
+
+
+	<section class="events-home workshops">
+		<h4 class="lead-in">
+      <a class="events-home__heading-link" href="/news-events/events">
+        Workshops &amp; Classes
+      </a>
+		</h4>
+
+
+		<div v-show="showNoEventsMessage">
+			loading...
+		</div>
+
+
+		<template v-for="(date, events) in allEvents | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'">
+			<h5 class="events-home__day">
+        ((date | momentHomeDateText))
+      </h5>
+
+			<ul class="events-home__list">
+				<li class="events-home__event" v-for="event in events">
+					<h6 class="events-home__title">
+            <a href="javascript:void(0);">
+              ((event.event_title))
+            </a>
+					</h6>
+
+
+					<dl>
+						<dt class="events-home__label">
+              time
+            </dt>
+						<dd class="events-home__time" v-if="event.event_end_time">
+              ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
+            </dd>
+						<dd class="events-home__time" v-else="">
+              ((event.event_start_time | momentHomeTime ))
+            </dd>
+						<dt class="events-home__label">
+              location
+            </dt>
+						<dd class="events-home__location">
+              ((event.event_room_name))
+            </dd>
+					</dl>
+				</li>
+			</ul>
+		</template>
+		<a class="more-link" href="/news-events/events" v-on:click="setFilterCookie()">
+      All Workshops &amp; Classes
+      <i class="fa fa-angle-double-right"></i>
+    </a>
+	</section>
+</div>

@@ -23,6 +23,7 @@
     "breakpoint-sass": "^2.7.0",
     "copy-webpack-plugin": "^1.1.1",
     "css-loader": "^0.23.1",
+    "html-loader": "^0.4.3",
     "jquery": "^2.2.3",
     "jquery-ui": "^1.10.5",
     "js-cookie": "^2.1.1",

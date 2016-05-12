@@ -6,21 +6,35 @@
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 
-var sassDir = path.join('stylesheets', 'vendor');
-var jsDir = path.join('javascripts', 'vendor');
+var sassDir = path.join('../stylesheets', 'vendor');
 
 module.exports = {
   context: __dirname,
 
-  // entry: './app.js',
+  entry: {
+      eventsPage: "./vue/events/events-page/events-page.js",
+      homePageEvents: "./vue/events/homepage-events/homepage-events.js"
+  },
 
   // Vendorize the mixins & libraries
   output: {
-    path: path.join(__dirname, 'public'),
-    filename: 'bundle.js', // Not currently used but required for Webpack to run
+    path: path.join(__dirname, 'public', 'javascripts'),
+    filename: "[name].bundle.js",
     publicPath: '/'
   },
-
+  module: {
+      // `loaders` is an array of loaders to use.
+      loaders: [
+        {
+          test: /\.vue$/, // a regex for matching all files that end in `.vue`
+          loader: 'vue'   // loader to use for matched files
+        },
+        {
+        test: /\.html$/,
+        loader: 'html'
+        }
+      ]
+    },
   plugins: [
     new CopyWebpackPlugin([
       // Accoutrement Color
@@ -37,12 +51,7 @@ module.exports = {
       { from: 'node_modules/normalize-scss/sass', to: path.join(sassDir, 'normalize') },
       { from: 'node_modules/support-for/sass/_support-for.scss', to: path.join(sassDir, 'normalize') },
       // Susy
-      { from: 'node_modules/susy/sass', to: path.join(sassDir, 'susy') },
-      //vue
-      { from: 'node_modules/vue/dist', to: path.join(jsDir, 'vue') },
-      //vue-resource
-      { from: 'node_modules/vue-resource/dist', to: path.join(jsDir, 'vue-resource') }
-
+      { from: 'node_modules/susy/sass', to: path.join(sassDir, 'susy') }
     ], {
         ignore: []
     })

@@ -1,0 +1,148 @@
+<div id="events-container">
+	<div class="events">
+		<div class="event-feature">
+			<img alt="Abstract placeholder" class="img-responsive img-faded" src="/images/events/abstract-placeholder.jpg">
+
+			<div aria-label="Featured Events" class="btn-group feature" role="group">
+				<button class="btn btn-default" type="button">
+          <i class="fa fa-caret-left"></i>
+        </button>
+        <button class="btn btn-default" type="button">1</button>
+        <button class="btn btn-default" type="button">2</button>
+        <button class="btn btn-default" type="button">3</button>
+        <button class="btn btn-default" type="button">
+          <i class="fa fa-caret-right"></i>
+        </button>
+			</div>
+			<!-- Tab panes -->
+
+
+			<div class="tab-content">
+				<div v-show="showNoEventsMessage">
+					loading...
+				</div>
+
+
+				<div class="events__per-day" v-for="(date, events) in allEvents | filterBy searchText | roomFilter room | eventTypeFilter eventType | limitListFilter limitList | groupBy 'event_start'">
+					<h2 class="events__date-heading">
+						((date | momentDate))
+            <span class="events__date badge badge-alert" v-if="date | momentDateText">
+              ((date | momentDateText))
+            </span>
+          </h2>
+
+
+					<div id="events">
+						<div class="event" v-for="event in events">
+							<h3 class="event__title">
+								(((event.event_title)))
+							</h3>
+
+							<div class="event__details">
+
+              	<span class="time" v-if="event.event_end_time">
+                  <i class="fa fa-clock-o"></i>
+                  ((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))
+                </span>
+
+                <span class="time" v-else="">
+                  <i class="fa fa-clock-o"></i>
+                  ((event.event_start_time | momentTime ))
+                </span>
+
+                <span class="location pull-right">
+                  <i class="fa fa-map-marker"></i>
+                  ((event.event_room_name))
+                </span>
+
+              </div>
+
+							<description :description-text = "(( event.event_description ))" word-limit = 20></description>
+
+							<span class="event__type badge-notice" v-for="type in event.event_type">
+                ((type))
+              </span>
+
+						</div>
+					</div>
+				</div>
+
+
+				<div v-if="filteredEvents.length == 0" v-show="!showNoEventsMessage">
+          No events for selection...
+				</div>
+
+
+				<h6>
+          <a v-if="allEvents.length &gt; limitList" v-on:click="loadMoreEvents()">
+            ((loadMoreText))
+          </a>
+				</h6>
+
+      </div>
+		</div>
+	</div>
+
+
+	<div class="events-filters">
+		<a href="#">
+      <button>
+        Reserve a space for your event!
+      </button>
+    </a>
+
+		<div id="datepicker" v-datepicker="">
+		</div>
+
+
+		<div class="events-filters__selected-date">
+			((dateSelected | momentDate))
+      <a class="fa fa-times" v-if="dateSelected" v-on:click="removeSelectedDate()"></a>
+		</div>
+
+    <a data-filter=".event" v-on:click="clearAllFilters()">
+      <button class="ui basic button">
+        <i class="fa fa-times"></i>
+        Clear All Filters
+      </button>
+    </a>
+
+		<h6 class="events-filters__type">
+      Filter Events
+    </h6>
+
+    <input class="form-control" placeholder="Filter events" type="text" v-model="searchText">
+    <a class="fa fa-times" v-if="searchText" v-on:click="removeSearchFilter()"></a>
+
+		<h6 class="events-filters__type">
+      Type
+    </h6>
+
+
+		<ul data-filter-group="type">
+			<li v-for="event_type of allEventTypes | orderBy 'eventType'">
+				<a class="filter" v-bind:class="{ 'selected-filter': event_type == eventSelected }" v-on:click="setEventTypeFilter(event_type)">
+          ((event_type))
+        </a>
+        <a class="fa fa-times" v-if="event_type == eventSelected" v-on:click="removeEventTypeFilter()">
+        </a>
+			</li>
+		</ul>
+
+
+		<h6 class="events-filters__type">
+      Space/Room
+    </h6>
+
+		<ul data-filter-group="venue">
+			<li v-for="room of allRoomNames | orderBy 'room'">
+				<!-- event to set room filter -->
+				<a class="filter" v-bind:class="{ 'selected-filter': room == roomSelected }" v-on:click="setRoomFilter(room)">
+          ((room))
+        </a>
+        <a class="fa fa-times" v-if="room == roomSelected" v-on:click="removeRoomFilter()">
+        </a>
+			</li>
+		</ul>
+	</div>
+</div>
