@@ -1,7 +1,7 @@
 GIT
   remote: git@github.com:cul-it/mann_liquid_extensions
-  revision: df065c4469be0649964a2fd51945805b6f24c37f
-  ref: df065c4
+  revision: 2cacde31e89bbed2fe48eb6ef9d456db3b74dc29
+  ref: 2cacde3
   specs:
     mann_liquid_extensions (0.3.0)
 
