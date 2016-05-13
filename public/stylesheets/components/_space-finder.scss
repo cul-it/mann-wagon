@@ -19,9 +19,24 @@
 }
 
 .space-finder__subheading {
-  margin-bottom: .4em;
+  margin: 2em 0 .5em 0;
+  padding-top: .5em;
   font-family: $base-font-family;
   font-weight: 700;
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    margin: 2em 0 -.3em 0;
+  }
+}
+
+.space-finder__cards {
+  &.ui.cards { // Override semantic ui default
+    margin-top: 0;
+
+    &~.ui.cards {
+      margin-top: 0;
+    }
+  }
 }
 
 .space-finder__field-name {
@@ -32,7 +47,6 @@
   &.ui.button { // Override semantic ui default
     margin-top: .2em;
     color: color('white');
-    // background: color('success');
     background: color('action');
 
     &:hover {
