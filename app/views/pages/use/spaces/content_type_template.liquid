@@ -8,12 +8,11 @@ content_type: spaces_types
 
 <p>{{ spaces_type.description }}</p>
 
-
 {% if spaces_type._slug == 'study' %}
   {% for study_type in contents.spaces_study_types %}
     <h3 class="space-finder__subheading">{{ study_type.name }}</h3>
 
-    <div class="cards">
+    <div class="ui three stackable cards">
       {% for space in study_type.spaces %}
         {% include 'study-spaces' %}
       {% endfor %}
@@ -21,7 +20,7 @@ content_type: spaces_types
   {% endfor %}
 
 {% else %}
-  <div class="cards">
+  <div class="ui three stackable cards">
     {% for space in spaces_type.spaces %}
       {% include 'study-spaces' %}
     {% endfor %}

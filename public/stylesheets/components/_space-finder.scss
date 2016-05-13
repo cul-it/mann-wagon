@@ -15,6 +15,7 @@
 
 .space-finder__heading {
   margin-bottom: 0;
+  color: color('font-base');
 }
 
 .space-finder__subheading {
@@ -25,6 +26,19 @@
 
 .space-finder__field-name {
   margin-top: .8em;
+}
+
+.space-finder__reserve {
+  &.ui.button { // Override semantic ui default
+    margin-top: .2em;
+    color: color('white');
+    // background: color('success');
+    background: color('action');
+
+    &:hover {
+      background: color('action' ('shade': 5%));
+    }
+  }
 }
 
 .space-finder__study {
