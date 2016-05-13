@@ -10,10 +10,21 @@
 }
 
 .space-finder__category {
-  margin-top: 1em;
+  font-family: $base-font-family;
+  font-size: modular-scale(0);
+  font-weight: 700;
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    font-size: modular-scale(1);
+  }
 }
 
-.space-finder__heading {
+.space-finder__name {
+  font-family: $base-font-family;
+  font-weight: 700;
+}
+
+.space-finder__name-link {
   margin-bottom: 0;
   color: color('font-base');
 }

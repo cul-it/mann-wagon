@@ -14,9 +14,9 @@
         <img src="{{ space.photo.url }}" alt="photo of {{ space.name }}">
       </a>
       <div class="content">
-        <div class="header">
-          <a class="space-finder__heading" href="{% path_to space %}" title="View all {{ space.name }}">{{ space.name }}</a>
-        </div>
+        <h3 class="space-finder__name">
+          <a class="space-finder__name-link" href="{% path_to space %}" title="View all {{ space.name }}">{{ space.name }}</a>
+        </h3>
         <div class="meta">
           <span class="right floated">
             {% if spaces_type._slug == 'study' %}
