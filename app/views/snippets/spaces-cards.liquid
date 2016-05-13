@@ -1,0 +1,81 @@
+<div class="ui three stackable cards space-finder__cards">
+  {% for space in spaces_collection %}
+    {% assign quiet_study = false %}
+
+    {% for study_type in space.spaces_study_types %}
+      {% if study_type._label == "Quiet" %}
+        {% assign quiet_study = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
+    <div class="card">
+      <a class="image" href="{% path_to space %}" title="View all {{ space.name }}">
+        <img src="{{ space.photo.url }}" alt="photo of {{ space.name }}">
+      </a>
+      <div class="content">
+        <h3 class="space-finder__name">
+          <a class="space-finder__name-link" href="{% path_to space %}" title="View all {{ space.name }}">{{ space.name }}</a>
+        </h3>
+        <div class="meta">
+          <span class="right floated">
+            {% if spaces_type._slug == 'study' %}
+              {% if quiet_study %}
+                <i class="fa fa-volume-down" title="quiet study"></i>
+              {% else %}
+                <i class="fa fa-volume-up" title="not quiet"></i>
+              {% endif %}
+            {% elsif spaces_type._slug == 'classroom' or spaces_type._slug == 'computing-facilities' %}
+              {% comment %} Need logic here to first see if room is available (all but stone computing center) {% endcomment %}
+              <i class="fa fa-desktop"></i> 27
+            {% endif %}
+          </span>
+
+          <a href="{% path_to hours %}" title="View all hours"><span class="badge badge-success">Open until 11pm</span></a>
+        </div>
+        {% if space.reservation_system %}
+          <div class="description">
+            <a href="#" title="Reserve this space">
+              <button class="ui labeled icon button space-finder__reserve">
+                <i class="calendar icon"></i>
+                Reserve
+              </button>
+            </a>
+          </div>
+        {% endif %}
+      </div>
+      <div class="extra content">
+        <span class="right floated">
+          {% if space.reservation_system or space.avail_url %}
+            {% if space.reservation_system %}
+              <i class="fa fa-ticket"></i>
+            {% else %}
+              <i class="fa fa-key"></i>
+            {% endif %}
+
+            Available?
+          {% endif %}
+        </span>
+          <span>
+            {% if space.capacity == '1' %}
+              <i class="fa fa-user"></i>
+            {% else %}
+              <i class="fa fa-users"></i>
+            {% endif %}
+
+            {% if space.capacity == 'N/A' %}
+              open area
+            {% else %}
+              {{ space.capacity }} max
+            {% endif %}
+          </span>
+      </div>
+    {% comment %}  {% if space.reservation_system %}
+        <div class="ui bottom attached button space-finder__reserve">
+          <i class="fa fa-calendar-plus-o"></i>
+          Reserve
+        </div>
+      {% endif %}{% endcomment %}
+    </div>
+  {% endfor %}
+</div>

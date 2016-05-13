@@ -9,23 +9,18 @@ position: 1
 
 {% block main %}
 
-<div class="cards">
+<div class="ui three doubling cards">
   {% for type in contents.spaces_types %}
-    <div class="card">
-      <a href="{% path_to type %}" title="View all {{ type.name }}">
-        <div class="card-image">
-          <img src="{{ type.photo.url }}" alt="photo of {{ type.name }}">
-        </div>
-        <div class="card-header">
-          {{ type.name }}
-        </div>
-        <div class="card-copy">
-          <p>{{ type.description }}</p>
-        </div>
-      </a>
-    </div>
+    <a class="ui card" href="{% path_to type %}">
+      <div class="image">
+        <img src="{{ type.photo.url }}" alt="photo of {{ type.name }}">
+      </div>
+      <div class="content">
+        <h3 class="space-finder__category">{{ type.name }}</h3>
+      </div>
+    </a>
   {% endfor %}
-<div class="cards">
+</div>
 
 {% include 'section-nav' %}
 

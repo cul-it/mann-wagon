@@ -1,132 +1,56 @@
-.space-finder {
-  padding-bottom: 1em;
-  border-bottom: solid 1px color('barely-gray');
+.space-finder__category {
+  font-family: $base-font-family;
+  font-size: modular-scale(0);
+  font-weight: 700;
 
-  @include span(full);
-
-  &:last-of-type {
-    border-bottom: none;
+  @include susy-breakpoint($tablet, $g-tablet) {
+    font-size: modular-scale(1);
   }
 }
 
-.space-finder__category {
-  margin-top: 1em;
-}
-
-.space-finder__heading {
-  margin-bottom: 0;
-}
-
-.space-finder__subheading {
-  margin-bottom: .4em;
+.space-finder__name {
   font-family: $base-font-family;
   font-weight: 700;
 }
 
+.space-finder__name-link {
+  margin-bottom: 0;
+  color: color('font-base');
+}
+
+.space-finder__subheading {
+  margin: 2em 0 .5em 0;
+  padding-top: .5em;
+  font-family: $base-font-family;
+  font-weight: 700;
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    margin: 2em 0 -.3em 0;
+  }
+}
+
+.space-finder__cards {
+  &.ui.cards { // Override semantic ui default
+    margin-top: 0;
+
+    &~.ui.cards {
+      margin-top: 0;
+    }
+  }
+}
+
+.space-finder__reserve {
+  &.ui.button { // Override semantic ui default
+    margin-top: .2em;
+    color: color('white');
+    background: color('action');
+
+    &:hover {
+      background: color('action' ('shade': 5%));
+    }
+  }
+}
+
 .space-finder__field-name {
   margin-top: .8em;
-}
-
-.space-finder__study {
-  margin-top: 1em;
-
-  &--reservable {
-    @include susy-breakpoint($scape, $g-scape) {
-      @include span(3);
-    }
-
-    @include susy-breakpoint($tablet, $g-tablet) {
-      @include span(2);
-    }
-
-    @include susy-breakpoint($lapdesk, $g-lapdesk) {
-      @include span(3);
-    }
-  }
-
-  &--rooms {
-    @include susy-breakpoint($scape, $g-scape) {
-      @include span(last 3);
-    }
-
-    @include susy-breakpoint($tablet, $g-tablet) {
-      @include span(2);
-    }
-
-    @include susy-breakpoint($lapdesk, $g-lapdesk) {
-      @include span(3);
-    }
-  }
-
-  &--quiet {
-    @include susy-breakpoint($scape, $g-scape) {
-      @include span(3);
-    }
-
-    @include susy-breakpoint($tablet, $g-tablet) {
-      @include span(2);
-    }
-
-    @include susy-breakpoint($lapdesk, $g-lapdesk) {
-      @include span(3);
-    }
-  }
-
-  &--group {
-    @include susy-breakpoint($scape, $g-scape) {
-      @include span(last 3);
-    }
-
-    @include susy-breakpoint($tablet, $g-tablet) {
-      @include span(last 2);
-    }
-
-    @include susy-breakpoint($lapdesk, $g-lapdesk) {
-      @include span(last 3);
-    }
-  }
-}
-
-.space-finder__classroom {
-  &--basement {
-    @include susy-breakpoint($scape, $g-scape) {
-      @include span(3);
-    }
-
-    @include susy-breakpoint($tablet, $g-tablet) {
-      @include span(3);
-    }
-
-    @include susy-breakpoint($lapdesk, $g-lapdesk) {
-      @include span(4);
-    }
-  }
-
-  &--stone {
-    @include susy-breakpoint($scape, $g-scape) {
-      @include span(last 3);
-    }
-
-    @include susy-breakpoint($tablet, $g-tablet) {
-      @include span(3);
-    }
-
-    @include susy-breakpoint($lapdesk, $g-lapdesk) {
-      @include span(4);
-    }
-  }
-
-  &--cit {
-    @include susy-breakpoint($scape, $g-scape) {
-      @include span(3);
-    }
-
-    @include susy-breakpoint($tablet, $g-tablet) {
-      @include span(last 2);
-    }
-
-    @include susy-breakpoint($lapdesk, $g-lapdesk) {
-      @include span(last 4);
-    }
-  }
 }

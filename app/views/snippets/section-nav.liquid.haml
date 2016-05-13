@@ -1,7 +1,0 @@
-{% if page.children.size > 0 %}
-%nav.section-nav
-  %h4.section-nav__heading {{ page.title }}
-
-  %ul.section-nav__pages<
-    {% nav page, no_wrapper: true, active_class: active %}
-{% endif %}
