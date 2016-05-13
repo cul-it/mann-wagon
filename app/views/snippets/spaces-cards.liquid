@@ -10,11 +10,9 @@
     {% endfor %}
 
     <div class="card">
-      <div class="image">
-        <a href="{% path_to space %}" title="View all {{ space.name }}">
-          <img src="{{ space.photo.url }}" alt="photo of {{ space.name }}">
-        </a>
-      </div>
+      <a class="image" href="{% path_to space %}" title="View all {{ space.name }}">
+        <img src="{{ space.photo.url }}" alt="photo of {{ space.name }}">
+      </a>
       <div class="content">
         <div class="header">
           <a class="space-finder__heading" href="{% path_to space %}" title="View all {{ space.name }}">{{ space.name }}</a>
