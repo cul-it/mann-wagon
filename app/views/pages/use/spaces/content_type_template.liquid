@@ -14,7 +14,7 @@ content_type: spaces_types
 
     <div class="ui three stackable cards">
       {% for space in study_type.spaces %}
-        {% include 'study-spaces' %}
+        {% include 'spaces-card' %}
       {% endfor %}
     </div>
   {% endfor %}
@@ -22,7 +22,7 @@ content_type: spaces_types
 {% else %}
   <div class="ui three stackable cards">
     {% for space in spaces_type.spaces %}
-      {% include 'study-spaces' %}
+      {% include 'spaces-card' %}
     {% endfor %}
   </div>
 {% endif %}
