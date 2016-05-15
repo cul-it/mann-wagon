@@ -42,42 +42,7 @@ listed: false
     %span.available-now__datetime {{ now | date: '%-I:%M %p' }}
 
   .available-now__grp.available-now__study
-    %h5.available-now__subheading Study Spaces
-
-    %ul
-      %li.available-now__status--available
-        {% with_scope _slug: 'individual-study-rooms' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
-        %a.available-now__link{href: "{% path_to space %}"}
-          %i.fa.fa-fw.fa-check-square
-          Individual Rooms
-      %li.available-now__status--available
-        {% with_scope _slug: 'group-study-rooms' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
-        %a.available-now__link{href: "{% path_to space %}"}
-          %i.fa.fa-fw.fa-check-square
-          Group Rooms
-      %li.available-now__status--unavailable
-        {% with_scope _slug: 'grad-rooms' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
-        %a.available-now__link{href: "{% path_to space %}"}
-          %i.fa.fa-fw.fa-minus-square
-          Graduate Rooms
-      %li.available-now__status--available
-        {% with_scope _slug: 'one-button-studio' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
-        %a.available-now__link{href: "{% path_to space %}"}
-          %i.fa.fa-fw.fa-check-square
-          One Button Studio
-      %li.available-now__status--unavailable
-        {% with_scope _slug: 'interview-room' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
-        %a.available-now__link{href: "{% path_to space %}"}
-          %i.fa.fa-fw.fa-minus-square
-          Interview Room
-      %li.available-now__status--available
-        {% with_scope _slug: 'bissett-workstations' %}{% assign space = contents.spaces.first %}{% endwith_scope %}
-        %a.available-now__link{href: "{% path_to space %}"}
-          %i.fa.fa-fw.fa-check-square
-          Bissett Workstations
-
-    %a{href: "{% path_to spaces %}" }
-      %button.available-now__find-space Find a Space
+    {% include 'avail-now-study' %}
 
   .available-now__grp.available-now__consultation
     %h5.available-now__subheading Consultation
