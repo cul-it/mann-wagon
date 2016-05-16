@@ -1,4 +1,3 @@
-<script src="//api3.libcal.com/js/roombooking.js?002"></script>
 <div class="ui three stackable cards space-finder__cards">
   {% for space in spaces_collection %}
     {% assign quiet_study = false %}
@@ -38,9 +37,22 @@
           <div class="description">
             <a href="#" title="Reserve this space">
               {% if space.reservation_system.name == 'LibCal' %}
-                <button onclick="loadLibcalWidget({{space.reserve_sys_id}}, this)" widget="no" href="#" class="ui labeled icon button space-finder__reserve" name="HELLO">
+                {% comment %}Build unique id for targeting by libcal widget using custom counter{% endcomment %}
+                {% capture libcal_target_id %}js-libcal-room__{{ space.reserve_sys_id }}-{{ libcal_widget_counter }}{% endcapture %}
+
+                <button id="{{ libcal_target_id }}" class="ui labeled icon button space-finder__reserve">
+
+                <!--  Libcal room reservation widget code -->
+                <script>
+                jQuery(function(){
+                  jQuery("#{{ libcal_target_id }}").LibCalRoomBooking({ "iid": 973, "gid": {{ space.reserve_sys_id }},  "width": 500, "height": 450 });
+                });
+                </script>
+
+                {% comment %}Increment libcal counter{% endcomment %}
+                {% assign libcal_widget_counter = libcal_widget_counter | plus: 1 %}
               {% elsif space.reservation_system.name == 'Booked' %}
-                <button id="room{{space.reserve_sys_id}}" class="ui labeled icon button space-finder__reserve">
+                <button id="room{{ space.reserve_sys_id }}"class="ui labeled icon button space-finder__reserve">
               {% endif %}
                 <i class="calendar icon"></i>
                 Reserve
@@ -82,14 +94,5 @@
         </div>
       {% endif %}{% endcomment %}
     </div>
-    <!--  Libcal room reservation widget code -->
-    <script>
-      function loadLibcalWidget(room_id, button){
-        $("button").removeAttr("id");
-        $(button).attr("id", "room"+room_id);
-        $("#room"+room_id).LibCalRoomBooking({ "iid": 973, "gid": room_id,  "width": 500, "height": 450 });
-      }
-    </script>
-
   {% endfor %}
 </div>
