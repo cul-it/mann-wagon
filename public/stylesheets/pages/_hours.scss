@@ -23,6 +23,10 @@
   }
 }
 
+.hours-weekly__nav {
+  @include last;
+}
+
 .hours-weekly__data {
   padding: .5em .1em;
 
