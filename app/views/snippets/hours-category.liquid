@@ -18,7 +18,7 @@
 
             {% for time in day[1] %}
               <td class="{% if forloop.index == day_today %}hours-weekly__today{% endif %} hours-weekly__data">
-                <span class="hours-weekly__hours">{{ time[0] | replace: "Hours", "hrs" | replace: "Appointment", "Appt" }}</span>
+                <span class="hours-weekly__hours">{{ time[0] | replace: "Hours", "hrs" | replace: "Appointment", "Appt" | replace: "am", "a" | replace: "pm", "p" }}</span>
                 {% unless time[1] == nil %}
                   <span class="badge badge-alert hours-weekly__exception">{{ time[1] }}</span>
                 {% endunless %}
