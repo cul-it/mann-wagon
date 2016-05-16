@@ -51,6 +51,12 @@
   }
 }
 
+.space-finder__card-meta {
+  .ui.cards>.card & { // Override semantic ui default
+    color: color('medium-gray');
+  }
+}
+
 .space-finder__field-name {
   margin-top: .8em;
 }
