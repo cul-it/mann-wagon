@@ -4,42 +4,76 @@ content_type: spaces_types
 ---
 {% extends layouts/default %}
 
-{% block main %}
+  {% block main %}
 
-<p>{{ spaces_type.description }}</p>
+  <script src="//api3.libcal.com/js/roombooking.js?002"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css">
 
-{% if spaces_type._slug == 'study' %}
-  <div class="ui secondary pointing menu">
+  <p>{{ spaces_type.description }}</p>
+
+  {% assign libcal_widget_counter = 1 %}
+
+  {% if spaces_type._slug == 'study' %}
+    <div class="ui secondary pointing menu">
+      {% for study_type in contents.spaces_study_types %}
+        {% capture study_type_icon %}
+          {% case study_type._slug %}
+            {% when 'group' %}
+              fa-users
+            {% when 'individual' %}
+              fa-user
+            {% when 'quiet' %}
+              fa-volume-down
+          {% endcase %}
+        {% endcapture %}
+
+        <a class="item" href="#{{study_type._slug}}">
+          <i class="fa {{ study_type_icon }} icon"></i> {{ study_type.name }}
+        </a>
+      {% endfor %}
+    </div>
+
     {% for study_type in contents.spaces_study_types %}
-      {% capture study_type_icon %}
-        {% case study_type._slug %}
-          {% when 'group' %}
-            fa-users
-          {% when 'individual' %}
-            fa-user
-          {% when 'quiet' %}
-            fa-volume-down
-        {% endcase %}
-      {% endcapture %}
+      <h3 id="{{study_type._slug}}" class="space-finder__subheading">{{ study_type.name }}</h3>
 
-      <a class="item" href="#{{study_type._slug}}">
-        <i class="fa {{ study_type_icon }} icon"></i> {{ study_type.name }}
-      </a>
+      {% assign spaces_collection = study_type.spaces %}
+
+      {% include 'spaces-cards' %}
     {% endfor %}
-  </div>
 
-  {% for study_type in contents.spaces_study_types %}
-    <h3 id="{{study_type._slug}}" class="space-finder__subheading">{{ study_type.name }}</h3>
-
-    {% assign spaces_collection = study_type.spaces %}
+  {% else %}
+    {% assign spaces_collection = spaces_type.spaces %}
 
     {% include 'spaces-cards' %}
-  {% endfor %}
+  {% endif %}
 
-{% else %}
-  {% assign spaces_collection = spaces_type.spaces %}
+<script>
+  function modal(){
+    $( "#booked-modal" ).dialog({
+      height: 450,
+      width: 500,
+      modal: true,
+      resizable: false,
+      show: 'fade',
+      hide: 'fade',
+    });
+    $("#ui-dialog-title-dialog").hide();
+    $(".ui-dialog-titlebar").removeClass('ui-widget-header');
+    return false;
+  }
+</script>
 
-  {% include 'spaces-cards' %}
-{% endif %}
+<div id="booked-modal" title="Room Reservation" hidden>
+  <p>The Reservation form for this room isn't available yet.</p>
+  <p>Thank you.</p>
+</div>
+
+<style>
+.ui-dialog .ui-dialog-content {
+  background: #fff;
+ }
+ .ui-button:focus { outline:none !important }
+</style>
 
 {% endblock %}

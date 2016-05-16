@@ -41,7 +41,7 @@
       in the corresponding reservation system. The lobby is another example of this.</p>"
     capacity: '5'
     reservation_system: libcal
-    reserve_sys_id: 11629
+    reserve_sys_id: 1618
 - Grad Rooms:
     _slug: grad-rooms
     name: Grad Rooms
@@ -63,7 +63,7 @@
     description: "<p>Not to be mistaken for the Hub.<br></p>"
     capacity: '7'
     reservation_system: libcal
-    reserve_sys_id: 34485
+    reserve_sys_id: 11629
 - Lobby:
     _slug: lobby
     name: Lobby
