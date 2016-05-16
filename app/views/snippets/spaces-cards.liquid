@@ -38,9 +38,9 @@
           <div class="description">
             <a href="#" title="Reserve this space">
               {% if space.reservation_system.name == 'LibCal' %}
-                <button id="room{{space.reserve_sys_id}}"class="ui labeled icon button space-finder__reserve">
+                <button onclick="loadLibcalWidget({{space.reserve_sys_id}}, this)" widget="no" href="#" class="ui labeled icon button space-finder__reserve" name="HELLO">
               {% elsif space.reservation_system.name == 'Booked' %}
-                <button id="room{{space.reserve_sys_id}}"class="ui labeled icon button space-finder__reserve">
+                <button id="room{{space.reserve_sys_id}}" class="ui labeled icon button space-finder__reserve">
               {% endif %}
                 <i class="calendar icon"></i>
                 Reserve
@@ -84,9 +84,11 @@
     </div>
     <!--  Libcal room reservation widget code -->
     <script>
-    jQuery(function(){
-       jQuery("#room{{space.reserve_sys_id}}").LibCalRoomBooking({ "iid": 973, "gid": {{space.reserve_sys_id}},  "width": 500, "height": 450 });
-    });
+      function loadLibcalWidget(room_id, button){
+        $("button").removeAttr("id");
+        $(button).attr("id", "room"+room_id);
+        $("#room"+room_id).LibCalRoomBooking({ "iid": 973, "gid": room_id,  "width": 500, "height": 450 });
+      }
     </script>
 
   {% endfor %}
