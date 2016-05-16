@@ -34,44 +34,12 @@ listed: false
       {% endfor %}
       {% endfor %}
 
-  %tbody
-    {% for week in weeks %}
-    {% for day in week[1] %}
-    {% if day[0][2] == "Building" %}
+  / Build array for categories
+  {% assign categories = "Building, Service Desks, Consultation Services" | split: ", " %}
 
-    {% include hours-table-rows %}
-
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
-
-
-  %tbody
-    %tr
-      %th.hours-weekly__grouping-name.hours-weekly__data{colspan: "8"} Service Desks
-      {% for week in weeks %}
-      {% for day in week[1] %}
-      {% if day[0][2] == "Service Desks" %}
-
-      {% include hours-table-rows %}
-
-      {% endif %}
-      {% endfor %}
-      {% endfor %}
-
-
-  %tbody
-    %tr
-      %th.hours-weekly__grouping-name.hours-weekly__data{colspan: "8"} Consultation Services
-      {% for week in weeks %}
-      {% for day in week[1] %}
-      {% if day[0][2] == "Consultation Services" %}
-
-      {% include hours-table-rows %}
-
-      {% endif %}
-      {% endfor %}
-      {% endfor %}
+  {% for category in categories %}
+  {% include hours-category %}
+  {% endfor %}
 
 {% endfor %}
 
