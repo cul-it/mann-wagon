@@ -18,6 +18,10 @@ $badge-font-size: modular-scale(-1) !default;
   @include badge(color('alert'));
 }
 
+.badge-danger {
+  @include badge(color('danger'));
+}
+
 .badge-error {
   @include badge(color('error'));
 }

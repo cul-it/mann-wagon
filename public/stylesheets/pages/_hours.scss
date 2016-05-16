@@ -23,6 +23,10 @@
   }
 }
 
+.hours-weekly__nav {
+  @include last;
+}
+
 .hours-weekly__data {
   padding: .5em .1em;
 
@@ -37,9 +41,8 @@
 
 .hours-weekly__month {
   padding-right: .5em;
-  font-size: modular-scale(1);
+  font-size: modular-scale(2);
   text-align: right;
-  color: color('yellow-sea');
 }
 
 .hours-weekly__day-of-week {
