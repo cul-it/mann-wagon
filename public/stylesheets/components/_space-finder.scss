@@ -39,6 +39,12 @@
   }
 }
 
+.space-finder__quiet {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .space-finder__reserve {
   &.ui.button { // Override semantic ui default
     margin-top: .2em;

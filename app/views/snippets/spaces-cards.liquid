@@ -21,7 +21,8 @@
           <span class="right floated">
             {% if spaces_type._slug == 'study' %}
               {% if quiet_study %}
-                <i class="fa fa-volume-down" title="quiet study"></i>
+
+                <i class="js-sui-popup space-finder__quiet fa fa-volume-down ui icon" title="quiet study" data-variation="inverted" data-position="left center"></i>
               {% endif %}
             {% elsif spaces_type._slug == 'classroom' or spaces_type._slug == 'computing-facilities' %}
               {% comment %} Need logic here to first see if room is available (all but stone computing center) {% endcomment %}
