@@ -1,13 +1,13 @@
 %tr
   {% if day[0][1] == '' %}
-  %td.hours-weekly__location {{ day[0][0] }}
+  %td.hours-weekly__location.hours-weekly__data {{ day[0][0] }}
   {% else %}
-  %td.hours-weekly__location
+  %td.hours-weekly__location.hours-weekly__data
     %a{href: "{{ day[0][1] }}" }{{ day[0][0] }}
   {% endif %}
 
   {% for time in day[1] %}
-  %td{ class: "{% if forloop.index == day_today %}hours-weekly__today{% endif %}" }
+  %td{ class: "{% if forloop.index == day_today %}hours-weekly__today{% endif %} hours-weekly__data" }
     %span.hours-weekly__hours {{ time[0] | replace: "Hours", "hrs" | replace: "Appointment", "Appt" }}
     {% unless time[1] == nil %}
     %span.badge.badge-alert.hours-weekly__exception {{ time[1] }}

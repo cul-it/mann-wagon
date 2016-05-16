@@ -25,10 +25,10 @@ listed: false
 %table.hours-weekly{ :style => "{% if day_today == nil %}display:none;{% endif %}" }
   %thead
     %tr
-      %th.hours-weekly__month {{ weeks[1][0][0] | date: "%b" }}
+      %th.hours-weekly__month.hours-weekly__data {{ weeks[1][0][0] | date: "%b" }}
       {% for week in weeks %}
       {% for date in week[0] %}
-      %th{ class: "{%if forloop.index == day_today %}hours-weekly__today{% endif %}" }
+      %th{ class: "{%if forloop.index == day_today %}hours-weekly__today{% endif %} hours-weekly__data" }
         %span.hours-weekly__day-of-week {{ date | date: "%a" }}
         %span.hours-weekly__day-of-month {{ date | date: '%d' | ceil }}
       {% endfor %}
@@ -48,30 +48,30 @@ listed: false
 
   %tbody
     %tr
-      %td Service Desks
-    {% for week in weeks %}
-    {% for day in week[1] %}
-    {% if day[0][2] == "Service Desks" %}
+      %th.hours-weekly__grouping-name.hours-weekly__data{colspan: "8"} Service Desks
+      {% for week in weeks %}
+      {% for day in week[1] %}
+      {% if day[0][2] == "Service Desks" %}
 
-    {% include hours-table-rows %}
+      {% include hours-table-rows %}
 
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
 
 
   %tbody
     %tr
-      %td Consultation Services
-    {% for week in weeks %}
-    {% for day in week[1] %}
-    {% if day[0][2] == "Consultation Services" %}
+      %th.hours-weekly__grouping-name.hours-weekly__data{colspan: "8"} Consultation Services
+      {% for week in weeks %}
+      {% for day in week[1] %}
+      {% if day[0][2] == "Consultation Services" %}
 
-    {% include hours-table-rows %}
+      {% include hours-table-rows %}
 
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
 
 {% endfor %}
 

@@ -56,7 +56,7 @@ $colors: (
 
   // Grayscale
   'alabaster': hsl(0, 0%, 98%),
-  'white': 'alabaster',
+  'white': hsl(0, 0%, 100%),
   'black': hsl(0, 0%, 14%),
   'onyx': hsl(210, 6%, 7%),
   'aluminum': hsl(193, 6%, 68%),
