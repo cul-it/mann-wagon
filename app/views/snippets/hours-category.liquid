@@ -1,8 +1,9 @@
 <tbody>
   <tr>
     {% unless category == "Building" %}
-      <th class="hours-weekly__grouping-name hours-weekly__data" colspan="8">{{ category }}</th>
+      <th class="hours-weekly__category hours-weekly__data" colspan="8">{{ category }}</th>
     {% endunless %}
+
     {% for week in weeks %}
       {% for day in week[1] %}
         {% if day[0][2] == category %}

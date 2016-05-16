@@ -36,7 +36,9 @@
 }
 
 .hours-weekly__month {
+  padding-right: .5em;
   font-size: modular-scale(1);
+  text-align: right;
   color: color('yellow-sea');
 }
 
@@ -65,7 +67,8 @@
   margin-top: .3em;
 }
 
-.hours-weekly__grouping-name {
-  padding-top: 4em;
+.hours-weekly__category {
+  padding-top: 3em;
+  font-size: modular-scale(1);
   background: color('white');
 }
