@@ -9,7 +9,7 @@ listed: false
 {% block 'main' %}
 {{ 'hours-nav.js' | javascript_tag }}
 
-.hours-weekly__nav.ui.basic.tiny.buttons
+.hours-weekly__nav.ui.tiny.buttons
   %button.ui.button.disabled.js-hours-prev
     %i.fa.fa-chevron-left
   %button.ui.button.disabled.js-hours-today Today
@@ -25,53 +25,21 @@ listed: false
 %table.hours-weekly{ :style => "{% if day_today == nil %}display:none;{% endif %}" }
   %thead
     %tr
-      %th.hours-weekly__month {{ weeks[1][0][0] | date: "%b" }}
+      %th.hours-weekly__month.hours-weekly__data {{ weeks[1][0][0] | date: "%b" }}
       {% for week in weeks %}
       {% for date in week[0] %}
-      %th{ class: "{%if forloop.index == day_today %}hours-weekly__today{% endif %}" }
+      %th{ class: "{%if forloop.index == day_today %}hours-weekly__today{% endif %} hours-weekly__data" }
         %span.hours-weekly__day-of-week {{ date | date: "%a" }}
         %span.hours-weekly__day-of-month {{ date | date: '%d' | ceil }}
       {% endfor %}
       {% endfor %}
 
-  %tbody
-    {% for week in weeks %}
-    {% for day in week[1] %}
-    {% if day[0][2] == "Building" %}
+  / Build array for categories
+  {% assign categories = "Building, Service Desks, Consultation Services" | split: ", " %}
 
-    {% include hours-table-rows %}
-
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
-
-
-  %tbody
-    %tr
-      %td Service Desks
-    {% for week in weeks %}
-    {% for day in week[1] %}
-    {% if day[0][2] == "Service Desks" %}
-
-    {% include hours-table-rows %}
-
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
-
-
-  %tbody
-    %tr
-      %td Consultation Services
-    {% for week in weeks %}
-    {% for day in week[1] %}
-    {% if day[0][2] == "Consultation Services" %}
-
-    {% include hours-table-rows %}
-
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
+  {% for category in categories %}
+  {% include hours-category %}
+  {% endfor %}
 
 {% endfor %}
 
