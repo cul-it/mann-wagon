@@ -17,13 +17,12 @@
         <h3 class="space-finder__name">
           <a class="space-finder__name-link" href="{% path_to space %}" title="View all {{ space.name }}">{{ space.name }}</a>
         </h3>
-        <div class="meta">
+        <div class="meta space-finder__card-meta">
           <span class="right floated">
             {% if spaces_type._slug == 'study' %}
               {% if quiet_study %}
-                <i class="fa fa-volume-down" title="quiet study"></i>
-              {% else %}
-                <i class="fa fa-volume-up" title="not quiet"></i>
+
+                <i class="js-sui-popup space-finder__quiet fa fa-volume-down ui icon" title="quiet study" data-variation="inverted" data-position="left center"></i>
               {% endif %}
             {% elsif spaces_type._slug == 'classroom' or spaces_type._slug == 'computing-facilities' %}
               {% comment %} Need logic here to first see if room is available (all but stone computing center) {% endcomment %}
@@ -61,7 +60,7 @@
           </div>
         {% endif %}
       </div>
-      <div class="extra content">
+      <div class="extra content space-finder__card-meta">
         <span class="right floated">
           {% if space.reservation_system or space.avail_url %}
             {% if space.reservation_system %}
