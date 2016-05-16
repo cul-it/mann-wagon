@@ -39,7 +39,7 @@
                 {% comment %}Build unique id for targeting by libcal widget using custom counter{% endcomment %}
                 {% capture libcal_target_id %}js-libcal-room__{{ space.reserve_sys_id }}-{{ libcal_widget_counter }}{% endcapture %}
 
-                <button id="{{ libcal_target_id }}" class="ui labeled icon button space-finder__reserve">
+                <button id="{{ libcal_target_id }}" class="ui labeled icon button space-finder__reserve-borrow">
 
                 <!--  Libcal room reservation widget code -->
                 <script>
@@ -51,10 +51,19 @@
                 {% comment %}Increment libcal counter{% endcomment %}
                 {% assign libcal_widget_counter = libcal_widget_counter | plus: 1 %}
               {% elsif space.reservation_system.name == 'Booked' %}
-                <button onclick="modal()" class="ui labeled icon button space-finder__reserve">
+                <button onclick="modal()" class="ui labeled icon button space-finder__reserve-borrow">
               {% endif %}
                 <i class="calendar icon"></i>
                 Reserve
+              </button>
+            </a>
+          </div>
+        {% elsif space.avail_url %}
+          <div class="description">
+            <a href="#" title="Borrow this room">
+              <button id="{{ libcal_target_id }}" class="ui labeled icon button space-finder__reserve-borrow">
+                <i class="key icon"></i>
+                Borrow
               </button>
             </a>
           </div>
@@ -82,7 +91,7 @@
           </span>
       </div>
     {% comment %}  {% if space.reservation_system %}
-        <div class="ui bottom attached button space-finder__reserve">
+        <div class="ui bottom attached button space-finder__reserve-borrow">
           <i class="fa fa-calendar-plus-o"></i>
           Reserve
         </div>
