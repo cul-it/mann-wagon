@@ -52,7 +52,7 @@
                 {% comment %}Increment libcal counter{% endcomment %}
                 {% assign libcal_widget_counter = libcal_widget_counter | plus: 1 %}
               {% elsif space.reservation_system.name == 'Booked' %}
-                <button id="room{{ space.reserve_sys_id }}"class="ui labeled icon button space-finder__reserve">
+                <button onclick="modal()" class="ui labeled icon button space-finder__reserve">
               {% endif %}
                 <i class="calendar icon"></i>
                 Reserve
