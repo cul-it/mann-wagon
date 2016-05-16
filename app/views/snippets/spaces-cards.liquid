@@ -22,8 +22,6 @@
             {% if spaces_type._slug == 'study' %}
               {% if quiet_study %}
                 <i class="fa fa-volume-down" title="quiet study"></i>
-              {% else %}
-                <i class="fa fa-volume-up" title="not quiet"></i>
               {% endif %}
             {% elsif spaces_type._slug == 'classroom' or spaces_type._slug == 'computing-facilities' %}
               {% comment %} Need logic here to first see if room is available (all but stone computing center) {% endcomment %}
