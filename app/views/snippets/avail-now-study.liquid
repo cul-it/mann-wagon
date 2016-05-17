@@ -22,8 +22,8 @@
 
       {% for space in contents.spaces %}
         {% if space.reservation_system or space.loan_period %}
+        {% assign  next_available = nil %}
           {% comment %}LibCal Room Availability{% endcomment %}
-
           {% if space.reservation_system.name == "LibCal" %}
             {% if space.name == "Bissett Workstations" %}
               {% assign room_param = "&room_id=4062"%}
@@ -55,15 +55,6 @@
                 {% endfor %}
               {% endconsume %}
 
-            {% comment %}@TODO: Add availability logic...until then, everything is always available...hooray!{% endcomment %}
-            <li class="available-now__{{ available_class }}">
-              <a class="available-now__link" href="{% path_to space %}">
-                <i class="fa fa-fw {{ available_icon }}"></i> {{ space.name }}
-                {% if next_available %}
-                  <p>Next Availabe: {{ next_available }}</p>
-                {% endif %}
-              </a>
-            </li>
           {% else %}
           {% comment %}MannServices Room Availability Logic{% endcomment %}
             {% if space.name == "Grad Rooms" %}
@@ -80,15 +71,6 @@
                 {% assign available_icon = "fa-minus-square" %}
                 {% assign next_available = grad_room_next_available %}
               {% endif %}
-
-                  <!-- <li class="available-now__{{ grad_room_available_class }}">
-                    <a class="available-now__link" href="{% path_to space %}">
-                      <i class="fa fa-fw {{ grad_room_available_icon }}"></i> {{ space.name }}
-                      {% if next_available %}
-                        <p>Next Availabe: {{ next_available | date: '%-I:%M %p' }}</p>
-                      {% endif %}
-                    </a>
-                  </li> -->
 
             {% elsif space.name == "Group Study Rooms" %}
 
@@ -122,16 +104,16 @@
 
             {% endif %}
 
-            <li class="available-now__{{ available_class }}">
-              <a class="available-now__link" href="{% path_to space %}">
-                <i class="fa fa-fw {{ available_icon }}"></i> {{ space.name }}
-                {% if next_available %}
-                  <p>Next Availabe: {{ next_available | date: '%-I:%M %p' }}</p>
-                {% endif %}
-              </a>
-            </li>
-
           {% endif %}
+
+          <li class="available-now__{{ available_class }}">
+            <a class="available-now__link" href="{% path_to space %}">
+              <i class="fa fa-fw {{ available_icon }}"></i> {{ space.name }}
+              {% if next_available %}
+                <p>Next Availabe: {{ next_available | date: '%-I:%M %p' }}</p>
+              {% endif %}
+            </a>
+          </li>
 
         {% endif %}
       {% endfor %}
