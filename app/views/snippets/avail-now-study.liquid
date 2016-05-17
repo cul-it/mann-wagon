@@ -17,25 +17,41 @@
       {% for space in contents.spaces %}
         {% if space.reservation_system or space.loan_period %}
           {% comment %}LibCal Room Availability{% endcomment %}
+
+          {% comment %} Build the request string using API key stored in site metafield {% endcomment %}
+          {% assign api_request_url = 'https://api2.libcal.com/1.0/room_availability/?iid=973&key=' %}
+          {% assign api_request_url = api_request_url | append: site.metafields.sensitive_data.libcal_apikey %}
           {% if space.reservation_system.name == "LibCal" %}
-            {% consume libcal_api from space.avail_url %}
-              {% assign libcal_timeslots = libcal_api.availability.timeslots %}
-              {% for timeslot in libcal_timeslots %}
-                {% comment %}Now available{% endcomment %}
-                {% if timeslot.start <= now %}
-                  {% assign available_class = "status--available" %}
-                  {% assign available_icon = "fa-check-square" %}
-                  {% comment %}Next available{% endcomment %}
-                {% elsif timeslot.start >= now && timeslot.end <= now %}
-                  {% assign available_class = "status--unavailable" %}
-                  {% assign available_icon = "fa-minus-square" %}
-                  {% assign next_available = timeslot.start | date: '%-I:%M %p' %}
+            {% if space.name == "Bissett Workstations" %}
+              {% assign room_param = "&room_id=4062"%}
+            {% elsif space.name == "Hive" %}
+              {% assign room_param = "&room_id=34485"%}
+            {% elsif space.name == "Interview Room" %}
+              {% assign room_param = "&room_id=30942"%}
+            {% elsif space.name == "One Button Studio" %}
+              {% assign room_param = "&room_id=4064"%}
+            {% endif %}
 
-                  {% break %}
+              {% assign api_request_url = api_request_url | append: room_param%}
+              {% consume libcal_api from api_request_url %}
+                {% assign libcal_timeslots = libcal_api.availability.timeslots %}
+                {% for timeslot in libcal_timeslots %}
+                  {% comment %}Now available{% endcomment %}
+                  {% if timeslot.start <= now %}
+                    {% assign available_class = "status--available" %}
+                    {% assign available_icon = "fa-check-square" %}
+                    {% comment %}Next available{% endcomment %}
+                  {% elsif timeslot.start >= now && timeslot.end <= now %}
+                    {% assign available_class = "status--unavailable" %}
+                    {% assign available_icon = "fa-minus-square" %}
+                    {% assign next_available = timeslot.start | date: '%-I:%M %p' %}
 
-                {% endif %}
-              {% endfor %}
-            {% endconsume %}
+                    {% break %}
+
+                  {% endif %}
+                {% endfor %}
+              {% endconsume %}
+
             {% comment %}@TODO: Add availability logic...until then, everything is always available...hooray!{% endcomment %}
             <li class="available-now__{{ available_class }}">
               <a class="available-now__link" href="{% path_to space %}">

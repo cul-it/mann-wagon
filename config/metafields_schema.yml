@@ -63,4 +63,7 @@ sensitive_data:
     booked_username:
       type: string
     booked_password:
-      type: string  
+      type: string
+    libcal_apikey:
+      type: string
+      hint: Used to retrieve data from libcal
