@@ -59,14 +59,17 @@
             </a>
           </div>
         {% elsif space.avail_url %}
-          <div class="description">
-            <a href="#" title="Borrow this room">
-              <button id="{{ libcal_target_id }}" class="ui labeled icon button space-finder__reserve-borrow">
-                <i class="key icon"></i>
-                Borrow
-              </button>
-            </a>
-          </div>
+          {% comment %}This is completely unnecessary but Engine refuses to cooperate otherwise...don't ask{% endcomment %}
+          {% unless space.avail_url == "" %}
+            <div class="description">
+              <a href="#" title="Borrow this room">
+                <button id="{{ libcal_target_id }}" class="ui labeled icon button space-finder__reserve-borrow">
+                  <i class="key icon"></i>
+                  Borrow
+                </button>
+              </a>
+            </div>
+          {% endunless %}
         {% endif %}
       </div>
       <div class="extra content space-finder__card-meta">
