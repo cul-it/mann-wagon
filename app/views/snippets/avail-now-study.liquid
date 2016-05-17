@@ -14,13 +14,14 @@
       {% assign individual_room_next_available = mannservices_api.individual_room_next_available %}
     {% endconsume %}
 
+    {% comment %} Build the Libcal request string using API key stored in site metafield {% endcomment %}
+    {% assign api_request_url = 'https://api2.libcal.com/1.0/room_availability/?iid=973&key=' %}
+    {% assign api_request_url = api_request_url | append: site.metafields.sensitive_data.libcal_apikey %}
+
       {% for space in contents.spaces %}
         {% if space.reservation_system or space.loan_period %}
           {% comment %}LibCal Room Availability{% endcomment %}
 
-          {% comment %} Build the request string using API key stored in site metafield {% endcomment %}
-          {% assign api_request_url = 'https://api2.libcal.com/1.0/room_availability/?iid=973&key=' %}
-          {% assign api_request_url = api_request_url | append: site.metafields.sensitive_data.libcal_apikey %}
           {% if space.reservation_system.name == "LibCal" %}
             {% if space.name == "Bissett Workstations" %}
               {% assign room_param = "&room_id=4062"%}
