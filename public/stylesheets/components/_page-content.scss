@@ -18,7 +18,8 @@
 .page-content__title {
   font-size: modular-scale(2);
 
-  body.hours & {
+  // body classes to target specific pages
+  .body-hours & {
     float: left;
   }
 }

@@ -39,7 +39,13 @@
   }
 }
 
-.space-finder__reserve {
+.space-finder__quiet {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.space-finder__reserve-borrow {
   &.ui.button { // Override semantic ui default
     margin-top: .2em;
     color: color('white');
@@ -48,6 +54,12 @@
     &:hover {
       background: color('action' ('shade': 5%));
     }
+  }
+}
+
+.space-finder__card-meta {
+  .ui.cards>.card & { // Override semantic ui default
+    color: color('medium-gray');
   }
 }
 
