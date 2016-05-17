@@ -64,6 +64,12 @@
   }
 }
 
+.space-finder__checkout {
+  display: block;
+  margin-top: .2em;
+  line-height: 1.3em;
+}
+
 .space-finder__card-meta {
   .ui.cards>.card & { // Override semantic ui default
     color: color('medium-gray');
