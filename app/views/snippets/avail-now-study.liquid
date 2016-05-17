@@ -6,6 +6,14 @@
   <ul>
     {% comment %}Use with_scope to filter on study spaces{% endcomment %}
     {% with_scope spaces_types: study_space_type %}
+
+    {% comment %}MannServices Room Availability{% endcomment %}
+    {% consume mannservices_api from "http://mannservices.mannlib.cornell.edu/LibServices/showRoomInfo.do?output=json&locationId=14" %}
+      {% assign grad_room_next_available = mannservices_api.grad_room_next_available %}
+      {% assign group_room_next_available = mannservices_api.group_room_next_available %}
+      {% assign individual_room_next_available = mannservices_api.individual_room_next_available %}
+    {% endconsume %}
+
       {% for space in contents.spaces %}
         {% if space.reservation_system or space.loan_period %}
           {% comment %}LibCal Room Availability{% endcomment %}
@@ -37,7 +45,87 @@
                 {% endif %}
               </a>
             </li>
+          {% else %}
+          {% comment %}MannServices Room Availability Logic{% endcomment %}
+            {% if space.name == "Grad Rooms" %}
+
+            {% capture current_time %}{{ now | date: '%s'}}{% endcapture %}
+            {% capture available_time %}{{individual_room_next_available | date: '%s'}}{% endcapture %}
+
+              {% comment %}Now available{% endcomment %}
+              {% if available_time <= current_time %}
+                {% assign grad_room_available_class = "status--available" %}
+                {% assign grad_room_available_icon = "fa-check-square" %}
+                {% comment %}Next available{% endcomment %}
+                {% elsif available_time >= current_time %}
+                {% assign grad_room_available_class = "status--unavailable" %}
+                {% assign grad_room_available_icon = "fa-minus-square" %}
+                {% assign grad_room_next_available_time = grad_room_next_available %}
+              {% endif %}
+
+                  <li class="available-now__{{ grad_room_available_class }}">
+                    <a class="available-now__link" href="{% path_to space %}">
+                      <i class="fa fa-fw {{ grad_room_available_icon }}"></i> {{ space.name }}
+                      {% if grad_room_next_available_time %}
+                        <p>Next Availabe: {{ grad_room_next_available_time | date: '%-I:%M %p' }}</p>
+                      {% endif %}
+                    </a>
+                  </li>
+
+            {% elsif space.name == "Group Study Rooms" %}
+
+            {% capture current_time %}{{ now | date: '%s'}}{% endcapture %}
+            {% capture available_time %}{{individual_room_next_available | date: '%s'}}{% endcapture %}
+
+              {% comment %}Now available{% endcomment %}
+              {% if available_time <= current_time %}
+                {% assign group_room_available_class = "status--available" %}
+                {% assign group_room_available_icon = "fa-check-square" %}
+                {% comment %}Next available{% endcomment %}
+                {% elsif available_time >= current_time %}
+                {% assign group_room_available_class = "status--unavailable" %}
+                {% assign group_room_available_icon = "fa-minus-square" %}
+                {% assign group_room_next_available_time = group_room_next_available %}
+              {% endif %}
+
+                  <li class="available-now__{{ group_room_available_class }}">
+                    <a class="available-now__link" href="{% path_to space %}">
+                      <i class="fa fa-fw {{ group_room_available_icon }}"></i> {{ space.name }}
+                      {% if group_room_next_available_time %}
+                        <p>Next Availabe: {{ group_room_next_available_time | date: '%-I:%M %p' }}</p>
+                      {% endif %}
+                    </a>
+                  </li>
+
+            {% elsif space.name == "Individual Study Rooms" %}
+
+              {% capture current_time %}{{ now | date: '%s'}}{% endcapture %}
+              {% capture available_time %}{{individual_room_next_available | date: '%s'}}{% endcapture %}
+
+              {% comment %}Now available{% endcomment %}
+              {% if available_time <= current_time %}
+                {% assign individual_room_available_class = "status--available" %}
+                {% assign individual_room_available_icon = "fa-check-square" %}
+                {% comment %}Next available{% endcomment %}
+              {% elsif available_time >= current_time %}
+                {% assign individual_room_available_class = "status--unavailable" %}
+                {% assign individual_room_available_icon = "fa-minus-square" %}
+                {% assign individual_room_next_available_time = individual_room_next_available %}
+              {% endif %}
+
+                  <li class="available-now__{{ individual_room_available_class }}">
+                    <a class="available-now__link" href="{% path_to space %}">
+                      <i class="fa fa-fw {{ individual_room_available_icon }}"></i> {{ space.name }}
+                      {% if individual_room_next_available_time %}
+                        <p>Next Availabe: {{ individual_room_next_available_time | date: '%-I:%M %p' }}</p>
+                      {% endif %}
+                    </a>
+                  </li>
+
+            {% endif %}
+
           {% endif %}
+
         {% endif %}
       {% endfor %}
     {% endwith_scope %}
