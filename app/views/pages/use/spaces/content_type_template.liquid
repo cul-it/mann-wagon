@@ -35,11 +35,13 @@ content_type: spaces_types
     </div>
 
     {% for study_type in contents.spaces_study_types %}
-      <h3 id="{{study_type._slug}}" class="space-finder__subheading">{{ study_type.name }}</h3>
+      <div class="space-finder__study-spaces">
+        <h3 id="{{study_type._slug}}" class="space-finder__subheading">{{ study_type.name }} Study</h3>
 
-      {% assign spaces_collection = study_type.spaces %}
+        {% assign spaces_collection = study_type.spaces %}
 
-      {% include 'spaces-cards' %}
+        {% include 'spaces-cards' %}
+      </div>
     {% endfor %}
 
   {% else %}
