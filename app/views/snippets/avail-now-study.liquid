@@ -44,7 +44,7 @@
                     {% assign available_class = "status--available" %}
                     {% assign available_icon = "fa-check-square" %}
                     {% comment %}Next available{% endcomment %}
-                  {% elsif timeslot.start >= now && timeslot.end <= now %}
+                  {% elsif timeslot.start > now && timeslot.end <= now %}
                     {% assign available_class = "status--unavailable" %}
                     {% assign available_icon = "fa-minus-square" %}
                     {% assign next_available = timeslot.start | date: '%-I:%M %p' %}
@@ -66,7 +66,7 @@
                 {% assign available_class = "status--available" %}
                 {% assign available_icon = "fa-check-square" %}
               {% comment %}Next available{% endcomment %}
-              {% elsif available_time >= current_time %}
+              {% elsif available_time > current_time %}
                 {% assign available_class = "status--unavailable" %}
                 {% assign available_icon = "fa-minus-square" %}
                 {% assign next_available = grad_room_next_available %}
@@ -81,7 +81,7 @@
                 {% assign available_class = "status--available" %}
                 {% assign available_icon = "fa-check-square" %}
               {% comment %}Next available{% endcomment %}
-              {% elsif available_time >= current_time %}
+              {% elsif available_time > current_time %}
                 {% assign available_class = "status--unavailable" %}
                 {% assign available_icon = "fa-minus-square" %}
                 {% assign next_available = group_room_next_available %}
@@ -96,7 +96,7 @@
                 {% assign available_class = "status--available" %}
                 {% assign available_icon = "fa-check-square" %}
                 {% comment %}Next available{% endcomment %}
-              {% elsif available_time >= current_time %}
+              {% elsif available_time > current_time %}
                 {% assign available_class = "status--unavailable" %}
                 {% assign available_icon = "fa-minus-square" %}
                 {% assign next_available = individual_room_next_available %}
