@@ -30,7 +30,7 @@
             {% endif %}
           </span>
 
-          <a href="{% path_to hours %}" title="View all hours"><span class="badge badge-success">Open until 11pm</span></a>
+          <a href="{% path_to hours %}" title="View all hours"><span class="badge badge-success">Open until 2am</span></a>
         </div>
         {% if space.reservation_system %}
           <div class="description">
@@ -62,12 +62,12 @@
           {% comment %}This is completely unnecessary but Engine refuses to cooperate otherwise...don't ask{% endcomment %}
           {% unless space.avail_url == "" %}
             <div class="description">
-              <a href="#" title="Borrow this room">
-                <button id="{{ libcal_target_id }}" class="ui labeled icon button space-finder__reserve-borrow">
-                  <i class="key icon"></i>
-                  Borrow
-                </button>
-              </a>
+              <div class="ui orange right ribbon label">
+                <i class="key icon"></i>
+                {{ space.loan_period }} loan
+              </div>
+
+              <span class="space-finder__checkout">Check out key from <a href="http://smartmap.mannlib.cornell.edu/location/circulation%20services" title="Map it">circulation desk</a></span>
             </div>
           {% endunless %}
         {% endif %}
