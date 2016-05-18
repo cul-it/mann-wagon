@@ -6,14 +6,25 @@
   <ul>
     {% comment %}Use with_scope to filter on study spaces{% endcomment %}
     {% with_scope spaces_types: study_space_type %}
+
+      {% include 'room-availability-variables'%}
+
       {% for space in contents.spaces %}
         {% if space.reservation_system or space.loan_period %}
-          {% comment %}@TODO: Add availability logic...until then, everything is always available...hooray!{% endcomment %}
-          <li class="available-now__status--available">
+
+          {% include 'room-availability-logic' %}
+
+          <li class="available-now__{{ available_class }}">
             <a class="available-now__link" href="{% path_to space %}">
-              <i class="fa fa-fw fa-check-square"></i> {{ space.name }}
+              <i class="fa fa-fw {{ available_icon }}"></i> {{ space.name }}
+              {% if next_available %}
+                <p>Next Available: {{ next_available | date: '%-I:%M %p' }}</p>
+              {% else %}
+                <p>Closed for the day</p>
+              {% endif %}
             </a>
           </li>
+
         {% endif %}
       {% endfor %}
     {% endwith_scope %}

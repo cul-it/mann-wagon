@@ -10,6 +10,8 @@ content_type: spaces_types
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css">
 
+  {% include 'room-availability-variables'%}
+
   <p>{{ spaces_type.description }}</p>
 
   {% assign libcal_widget_counter = 1 %}

@@ -72,27 +72,37 @@
           {% endunless %}
         {% endif %}
       </div>
-      <div class="extra content space-finder__card-meta">
-        <span class="right floated">
-          {% if space.reservation_system or space.avail_url %}
-            {% comment %}Everything is always avaialable for now{% endcomment %}
-             <i class="fa fa-check"></i> Available
-          {% endif %}
-        </span>
-          <span>
-            {% if space.capacity == '1' %}
-              <i class="fa fa-user"></i>
-            {% else %}
-              <i class="fa fa-users"></i>
-            {% endif %}
 
-            {% if space.capacity == 'N/A' %}
-              open area
-            {% else %}
-              {{ space.capacity }} max
+      {% include 'room-availability-logic' %}
+
+        <div class="extra content space-finder__card-meta">
+          <span class="right floated">
+            {% if space.reservation_system or space.avail_url %}
+              {% comment %}Everything is always avaialable for now{% endcomment %}
+               <i class="fa {{ room_available_icon }}"></i> {{ room_availability }}
+               {% if next_available %}
+                 <p>Next Available: {{ next_available | date: '%-I:%M %p' }}</p>
+               {% else %}
+                 <p>Closed for the day</p>
+               {% endif %}
+
             {% endif %}
           </span>
-      </div>
+            <span>
+              {% if space.capacity == '1' %}
+                <i class="fa fa-user"></i>
+              {% else %}
+                <i class="fa fa-users"></i>
+              {% endif %}
+
+              {% if space.capacity == 'N/A' %}
+                open area
+              {% else %}
+                {{ space.capacity }} max
+              {% endif %}
+            </span>
+        </div>
+
     {% comment %}  {% if space.reservation_system %}
         <div class="ui bottom attached button space-finder__reserve-borrow">
           <i class="fa fa-calendar-plus-o"></i>
