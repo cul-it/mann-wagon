@@ -82,7 +82,7 @@
                <i class="fa {{ room_available_icon }}"></i> {{ room_availability }}
                {% if next_available %}
                  <p>Next Available: {{ next_available | date: '%-I:%M %p' }}</p>
-               {% else %}
+               {% elsif next_available == nil and room_availability == "Unavailable" %}
                  <p>Closed for the day</p>
                {% endif %}
 

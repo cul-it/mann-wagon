@@ -1,7 +1,12 @@
 {% comment %}MannServices Room Availability{% endcomment %}
 {% consume mannservices_api from "http://mannservices.mannlib.cornell.edu/LibServices/showRoomInfo.do?output=json&locationId=14" %}
+  {% assign grad_room_now_available = mannservices_api.grad_room_available %}
   {% assign grad_room_next_available = mannservices_api.grad_room_next_available %}
+
+  {% assign group_room_now_available = mannservices_api.group_room_available %}
   {% assign group_room_next_available = mannservices_api.group_room_next_available %}
+
+  {% assign individual_room_now_available = mannservices_api.individual_room_available %}
   {% assign individual_room_next_available = mannservices_api.individual_room_next_available %}
 {% endconsume %}
 
