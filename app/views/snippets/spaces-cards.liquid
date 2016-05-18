@@ -79,7 +79,7 @@
           <span class="right floated">
             {% if space.reservation_system or space.avail_url %}
             {% comment %}This is completely unnecessary but Engine refuses to cooperate otherwise...don't ask{% endcomment %}
-              {% if space.reservation_system.name != "" or space.avail_url != "" %}
+              {% if space.reservation_system.name != "" and space.avail_url != "" %}
                 {% comment %}Everything is always avaialable for now{% endcomment %}
                  <i class="fa {{ room_available_icon }}"></i> {{ room_availability }}
                  {% if next_available %}
