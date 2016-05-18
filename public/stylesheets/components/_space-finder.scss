@@ -18,14 +18,21 @@
   color: color('font-base');
 }
 
+.space-finder__study-spaces {
+  padding: 0 1em 1em 1em;
+  background: color('alabaster');
+  border-radius: .5em;
+}
+
 .space-finder__subheading {
   margin: 2em 0 .5em 0;
   padding-top: .5em;
   font-family: $base-font-family;
+  font-size: modular-scale(2);
   font-weight: 700;
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    margin: 2em 0 -.3em 0;
+    margin: 2em 0 0 0;
   }
 }
 
@@ -55,6 +62,12 @@
       background: color('action' ('shade': 5%));
     }
   }
+}
+
+.space-finder__checkout {
+  display: block;
+  margin-top: .2em;
+  line-height: 1.3em;
 }
 
 .space-finder__card-meta {
