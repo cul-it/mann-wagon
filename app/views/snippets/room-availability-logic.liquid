@@ -1,7 +1,7 @@
 {% comment %}LibCal Room Availability{% endcomment %}
 {% assign available_class = "status--unavailable" %}
 {% assign available_icon = "fa-minus-square" %}
-{% assign room_availability = "Unvailable" %}
+{% assign room_availability = "Unavailable" %}
 {% assign room_available_icon = "fa-times" %}
 {% assign  next_available = nil %}
 {% assign available_time = nil %}
@@ -34,7 +34,7 @@
           {% assign available_class = "status--unavailable" %}
           {% assign available_icon = "fa-minus-square" %}
           {% assign next_available = available_time | date: '%-I:%M %p' %}
-          {% assign room_availability = "Unvailable" %}
+          {% assign room_availability = "Unavailable" %}
           {% assign room_available_icon = "fa-times" %}
 
           {% break %}
@@ -56,18 +56,20 @@
   {% capture available_time %}{{grad_room_next_available | date: '%s'}}{% endcapture %}
 
     {% comment %}Now available{% endcomment %}
-    {% if available_time <= current_time %}
+    {% if grad_room_now_available > "0" %}
       {% assign available_class = "status--available" %}
       {% assign available_icon = "fa-check-square" %}
       {% assign room_availability = "Available" %}
       {% assign room_available_icon = "fa-check" %}
-    {% comment %}Next available{% endcomment %}
-    {% elsif available_time > current_time %}
-      {% assign available_class = "status--unavailable" %}
-      {% assign available_icon = "fa-minus-square" %}
-      {% assign next_available = available_time %}
-      {% assign room_availability = "Unvailable" %}
-      {% assign room_available_icon = "fa-times" %}
+    {% else %}
+      {% comment %}Next available{% endcomment %}
+      {% if available_time > current_time %}
+        {% assign available_class = "status--unavailable" %}
+        {% assign available_icon = "fa-minus-square" %}
+        {% assign next_available = available_time %}
+        {% assign room_availability = "Unavailable" %}
+        {% assign room_available_icon = "fa-times" %}
+      {% endif %}
     {% endif %}
 
   {% elsif space.name == "Group Study Rooms" %}
@@ -75,18 +77,20 @@
   {% capture available_time %}{{group_room_next_available | date: '%s'}}{% endcapture %}
 
     {% comment %}Now available{% endcomment %}
-    {% if available_time <= current_time %}
+    {% if group_room_now_available > "0" %}
       {% assign available_class = "status--available" %}
       {% assign available_icon = "fa-check-square" %}
       {% assign room_availability = "Available" %}
       {% assign room_available_icon = "fa-check" %}
-    {% comment %}Next available{% endcomment %}
-    {% elsif available_time > current_time %}
-      {% assign available_class = "status--unavailable" %}
-      {% assign available_icon = "fa-minus-square" %}
-      {% assign next_available = available_time %}
-      {% assign room_availability = "Unvailable" %}
-      {% assign room_available_icon = "fa-times" %}
+    {% else %}
+      {% comment %}Next available{% endcomment %}
+      {% if available_time > current_time %}
+        {% assign available_class = "status--unavailable" %}
+        {% assign available_icon = "fa-minus-square" %}
+        {% assign next_available = available_time %}
+        {% assign room_availability = "Unavailable" %}
+        {% assign room_available_icon = "fa-times" %}
+      {% endif %}
     {% endif %}
 
   {% elsif space.name == "Individual Study Rooms" %}
@@ -94,18 +98,20 @@
     {% capture available_time %}{{individual_room_next_available | date: '%s'}}{% endcapture %}
 
     {% comment %}Now available{% endcomment %}
-    {% if available_time <= current_time %}
+    {% if individual_room_now_available > "0" %}
       {% assign available_class = "status--available" %}
       {% assign available_icon = "fa-check-square" %}
       {% assign room_availability = "Available" %}
       {% assign room_available_icon = "fa-check" %}
-    {% comment %}Next available{% endcomment %}
-    {% elsif available_time > current_time %}
-      {% assign available_class = "status--unavailable" %}
-      {% assign available_icon = "fa-minus-square" %}
-      {% assign next_available = available_time %}
-      {% assign room_availability = "Unvailable" %}
-      {% assign room_available_icon = "fa-times" %}
+    {% else %}
+      {% comment %}Next available{% endcomment %}
+      {% if available_time > current_time %}
+        {% assign available_class = "status--unavailable" %}
+        {% assign available_icon = "fa-minus-square" %}
+        {% assign next_available = available_time %}
+        {% assign room_availability = "Unavailable" %}
+        {% assign room_available_icon = "fa-times" %}
+      {% endif %}
     {% endif %}
 
   {% endif %}
