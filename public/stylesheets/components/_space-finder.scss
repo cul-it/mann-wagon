@@ -52,7 +52,7 @@
   }
 }
 
-.space-finder__reserve-borrow {
+.space-finder__reserve {
   &.ui.button { // Override semantic ui default
     margin-top: .2em;
     color: color('white');
@@ -74,8 +74,4 @@
   .ui.cards>.card & { // Override semantic ui default
     color: color('medium-gray');
   }
-}
-
-.space-finder__field-name {
-  margin-top: .8em;
 }
