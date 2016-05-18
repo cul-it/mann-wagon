@@ -18,7 +18,9 @@
             <a class="available-now__link" href="{% path_to space %}">
               <i class="fa fa-fw {{ available_icon }}"></i> {{ space.name }}
               {% if next_available %}
-                <p>Next Availabe: {{ next_available | date: '%-I:%M %p' }}</p>
+                <p>Next Available: {{ next_available | date: '%-I:%M %p' }}</p>
+              {% else %}
+                <p>Closed for the day</p>
               {% endif %}
             </a>
           </li>

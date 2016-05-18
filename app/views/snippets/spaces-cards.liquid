@@ -81,7 +81,9 @@
               {% comment %}Everything is always avaialable for now{% endcomment %}
                <i class="fa {{ room_available_icon }}"></i> {{ room_availability }}
                {% if next_available %}
-                 <p>Next Availabe: {{ next_available | date: '%-I:%M %p' }}</p>
+                 <p>Next Available: {{ next_available | date: '%-I:%M %p' }}</p>
+               {% else %}
+                 <p>Closed for the day</p>
                {% endif %}
 
             {% endif %}
