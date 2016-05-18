@@ -17,11 +17,13 @@
           <li class="available-now__{{ available_class }}">
             <a class="available-now__link" href="{% path_to space %}">
               <i class="fa fa-fw {{ available_icon }}"></i> {{ space.name }}
+              {% comment %}
               {% if next_available %}
                 <p>Next Available: {{ next_available | date: '%-I:%M %p' }}</p>
               {% elsif next_available == nil and room_availability == "Unavailable" %}
                 <p>Closed for the day</p>
               {% endif %}
+              {% endcomment %}
             </a>
           </li>
 

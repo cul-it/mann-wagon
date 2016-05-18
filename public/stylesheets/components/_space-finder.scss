@@ -70,6 +70,16 @@
   line-height: 1.3em;
 }
 
+.space-finder__availability {
+  &--available {
+    color: darken(color('success'), 50%);
+  }
+
+  &--unavailable {
+    color: darken(color('error'), 50%);
+  }
+}
+
 .space-finder__card-meta {
   .ui.cards>.card & { // Override semantic ui default
     color: color('medium-gray');
