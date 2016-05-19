@@ -10,15 +10,6 @@
     font-size: modular-scale(0);
   }
 
-  th,
-  td {
-    padding: .5em .1em;
-
-    @include susy-breakpoint($tablet, $g-tablet) {
-      padding: .7em .3em;
-    }
-  }
-
   tbody {
     tr {
       &:nth-of-type(odd) {
@@ -32,13 +23,26 @@
   }
 }
 
+.hours-weekly__nav {
+  @include last;
+}
+
+.hours-weekly__data {
+  padding: .5em .1em;
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    padding: .7em .3em;
+  }
+}
+
 .hours-weekly__today {
   background: color('today-in-the-week');
 }
 
 .hours-weekly__month {
-  font-size: modular-scale(1);
-  color: color('yellow-sea');
+  padding-right: .5em;
+  font-size: modular-scale(2);
+  text-align: right;
 }
 
 .hours-weekly__day-of-week {
@@ -51,11 +55,23 @@
 }
 
 .hours-weekly__location {
-  color: color('weekly-location');
-  background: color('weekly-location-bg');
+  text-align: right;
+  background: color('white');
+  border-right: solid 1px color('dark-gray');
+  border-bottom: none;
+
+  @include susy-breakpoint($scape, $g-scape) {
+    padding-right: .5em;
+    font-weight: 700;
+  }
 }
 
 .hours-weekly__exception {
   margin-top: .3em;
-  font-size: modular-scale(-2);
+}
+
+.hours-weekly__category {
+  padding-top: 3em;
+  font-size: modular-scale(1);
+  background: color('white');
 }

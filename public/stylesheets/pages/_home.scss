@@ -7,7 +7,6 @@ section {
 }
 
 .more-link {
-  font-size: modular-scale(-1);
   font-weight: bold;
   color: color('more');
 
@@ -17,18 +16,17 @@ section {
 }
 
 .course-reserves-link {
-  font-size: modular-scale(-1);
-  @include span(1 at 4);
+  @include span(2);
 
   @include susy-breakpoint($scape, $g-scape) {
-    @include isolate(2 at 4);
+    @include span(2);
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include isolate(1);
+    @include span(2);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(2);
+    @include span(3);
   }
 }

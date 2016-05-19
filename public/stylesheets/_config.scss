@@ -51,12 +51,13 @@ $colors: (
   'spring-green': hsl(72, 58%, 85%),
   'alert': 'blond',
   'error': 'tutu',
+  'danger': 'yellow-sea' ('tint': 60%),
   'notice': 'glitter',
   'success': 'spring-green',
 
   // Grayscale
   'alabaster': hsl(0, 0%, 98%),
-  'white': 'alabaster',
+  'white': hsl(0, 0%, 100%),
   'black': hsl(0, 0%, 14%),
   'onyx': hsl(210, 6%, 7%),
   'aluminum': hsl(193, 6%, 68%),
@@ -111,3 +112,8 @@ $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $l
 // Animations
 $base-duration: 150ms;
 $base-timing: ease;
+
+// z-index
+$below-content: 1;
+$content: 2;
+$above-content: 3;

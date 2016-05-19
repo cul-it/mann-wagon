@@ -4,7 +4,7 @@
     {% for crumb in page.breadcrumbs %}
       {% comment %} No breadcrumb for current page, only ancestors -- avoid title duplication {% endcomment %}
       {% unless forloop.last %}
-        {% link_to crumb.handle %}
+        {% link_to crumb %}
         {% comment %} Don't render the arrow after the parent {% endcomment %}
         {% if forloop.rindex0 > 1 %}
           <i class="fa fa-long-arrow-right"></i>

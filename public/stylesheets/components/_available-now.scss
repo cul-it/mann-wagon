@@ -29,23 +29,25 @@
   color: color('amulet');
 }
 
-.available-now__find-space {
-  margin-bottom: .7em;
-  font-size: modular-scale(-1);
+.available-now__link {
+  color: inherit;
+}
 
-  @include span(last 1);
-  @include clearfix;
+.available-now__find-space {
+  margin-top: .7em;
+
+  @include span(full);
 
   @include susy-breakpoint($scape, $g-scape) {
-    @include span(2);
+    @include span(2 of 3);
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(2);
+    @include span(2 of 3);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include pull(2);
+    @include span(2 of 3);
   }
 }
 
@@ -110,10 +112,10 @@
 
 .available-now__status {
   &--available {
-    color: darken(color('success'), 60%);
+    color: darken(color('success'), 50%);
   }
 
   &--unavailable {
-    color: darken(color('error'), 60%);
+    color: darken(color('error'), 50%);
   }
 }

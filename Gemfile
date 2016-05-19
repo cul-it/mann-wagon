@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'locomotivecms_wagon', '2.1.0.rc5'
+gem 'locomotivecms_wagon', '2.1.0'
 gem 'celluloid', '0.16.0'
 
 group :development do
@@ -19,5 +19,5 @@ group :misc do
   # Add your extra gems here
   # gem 'susy', require: 'susy'
   # gem 'redcarpet', require: 'redcarpet'
-  gem 'mann_liquid_extensions', :git => 'git@github.com:cul-it/mann_liquid_extensions'
+  gem 'mann_liquid_extensions', :git => 'git@github.com:cul-it/mann_liquid_extensions', :ref => '2cacde3'
 end

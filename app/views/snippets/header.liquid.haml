@@ -26,7 +26,8 @@
   .todays-hours
     %ul
       %li.todays-hours__mann
-        %span{ class: "badge todays-hours__now {% if mannlib_hours.open == 'Open' %}is-open{% else %}is-closed{% endif %}" } {{ mannlib_hours.open }}
+        %a.todays-hours__link{href: "{% path_to hours %}"}
+          %span{ class: "badge todays-hours__now {% if mannlib_hours.open == 'Open' %}is-open{% else %}is-closed{% endif %}" } {{ mannlib_hours.open }}
 
         %span.todays-hours__until until {{ mannlib_hours.hours }}
       %li.todays-hours__lobby
@@ -38,4 +39,4 @@
 
   %nav.site-nav{role: "navigation"}
     %ul.site-nav__list
-      {% nav site, no_wrapper: true, active_class: active %}
+      {% nav site, no_wrapper: true, active_class: active, snippet: primary-nav %}

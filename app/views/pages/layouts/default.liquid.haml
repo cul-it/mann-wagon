@@ -14,16 +14,20 @@ is_layout: false
     %script
       try{Typekit.load({ async: true });}catch(e){}
     {{ 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' | stylesheet_tag }}
-    / TEMPORARY BRUTE FORCE OF DROPDOWN SEMANTIC-UI COMPONENT & DEPENDENCIES -- FOR SEARCH FORM
+    / TEMPORARY BRUTE FORCE OF DROPDOWN SEMANTIC-UI COMPONENT & DEPENDENCIES -- FOR SEARCH FORM & OTHERS
     {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/button.min.css' | stylesheet_tag }}
+    {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/card.min.css' | stylesheet_tag }}
     {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/dropdown.min.css' | stylesheet_tag }}
     {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/icon.min.css' | stylesheet_tag }}
     {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/input.min.css' | stylesheet_tag }}
+    {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/label.min.css' | stylesheet_tag }}
+    {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/menu.min.css' | stylesheet_tag }}
+    {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/popup.min.css' | stylesheet_tag }}
     {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/transition.min.css' | stylesheet_tag }}
     /
     {{ 'main.css' | stylesheet_tag }}
     {{ 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js' | javascript_tag }}
-  %body
+  %body{class: "body-{{ page.slug }}"}
     {% include 'header' %}
     %main
       {% block heading %}
@@ -37,3 +41,4 @@ is_layout: false
     / TEMPORARY JS FOR SEARCH FORM -- WILL BE REFACTORED TO USE WEBPACK
     {{ '//oss.maxcdn.com/semantic-ui/2.1.8/semantic.min.js' | javascript_tag }}
     {{ 'search-select.js' | javascript_tag }}
+    {{ 'spaces-popup.js' | javascript_tag }}

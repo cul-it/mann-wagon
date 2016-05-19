@@ -1,0 +1,115 @@
+<div class="ui three stackable cards space-finder__cards">
+  {% for space in spaces_collection %}
+    {% include 'room-availability-logic' %}
+
+    {% assign quiet_study = false %}
+
+    {% for study_type in space.spaces_study_types %}
+      {% if study_type._label == "Quiet" %}
+        {% assign quiet_study = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
+    <div class="card">
+      <a class="image" href="{% path_to space %}" title="View all {{ space.name }}">
+        <img src="{{ space.photo.url | resize: '700x475#' }}" alt="photo of {{ space.name }}">
+      </a>
+      <div class="content">
+        <h3 class="space-finder__name">
+          <a class="space-finder__name-link" href="{% path_to space %}" title="View all {{ space.name }}">{{ space.name }}</a>
+        </h3>
+        <div class="meta space-finder__card-meta">
+          <span class="right floated">
+            {% if spaces_type._slug == 'study' %}
+              {% if quiet_study %}
+
+                <i class="js-sui-popup space-finder__quiet fa fa-volume-down ui icon" title="quiet study" data-variation="inverted" data-position="left center"></i>
+              {% endif %}
+            {% elsif spaces_type._slug == 'classroom' or spaces_type._slug == 'computing-facilities' %}
+              {% comment %} Need logic here to first see if room is available (all but stone computing center) {% endcomment %}
+              <i class="fa fa-desktop"></i> 27
+            {% endif %}
+          </span>
+
+          <a href="{% path_to hours %}" title="View all hours"><span class="badge badge-success">Open until 2am</span></a>
+        </div>
+        {% if space.reservation_system %}
+          <div class="description">
+            <a href="#" title="Reserve this space">
+              {% if space.reservation_system.name == 'LibCal' %}
+                {% comment %}Build unique id for targeting by libcal widget using custom counter{% endcomment %}
+                {% capture libcal_target_id %}js-libcal-room__{{ space.reserve_sys_id }}-{{ libcal_widget_counter }}{% endcapture %}
+
+                <button id="{{ libcal_target_id }}" class="ui labeled icon button space-finder__reserve">
+
+                <!--  Libcal room reservation widget code -->
+                <script>
+                jQuery(function(){
+                  jQuery("#{{ libcal_target_id }}").LibCalRoomBooking({ "iid": 973, "gid": {{ space.reserve_sys_id }},  "width": 500, "height": 450 });
+                });
+                </script>
+
+                {% comment %}Increment libcal counter{% endcomment %}
+                {% assign libcal_widget_counter = libcal_widget_counter | plus: 1 %}
+              {% elsif space.reservation_system.name == 'Booked' %}
+                <button onclick="modal()" class="ui labeled icon button space-finder__reserve">
+              {% endif %}
+                <i class="calendar icon"></i>
+                Reserve
+              </button>
+            </a>
+
+            {% include 'room-availability-next' %}
+          </div>
+        {% elsif space.avail_url %}
+          {% comment %}This is completely unnecessary but Engine refuses to cooperate otherwise...don't ask{% endcomment %}
+          {% unless space.avail_url == "" %}
+            <div class="description">
+              <div class="ui orange right ribbon label">
+                <i class="key icon"></i>
+                {{ space.loan_period }} loan
+              </div>
+
+              <span class="space-finder__checkout">Check out key from <a href="http://smartmap.mannlib.cornell.edu/location/circulation%20services" title="Map it">circulation desk</a></span>
+
+              {% include 'room-availability-next' %}
+            </div>
+          {% endunless %}
+        {% endif %}
+      </div>
+
+        <div class="extra content space-finder__card-meta">
+          <span class="right floated">
+            {% if space.reservation_system or space.avail_url %}
+            {% comment %}This is completely unnecessary but Engine refuses to cooperate otherwise...don't ask{% endcomment %}
+              {% if space.reservation_system or space.avail_url != "" %}
+                <span class="space-finder__availability--{{ room_availability | downcase }}"><i class="fa {{ room_available_icon }}"></i> {{ room_availability }}</span>
+             {% endif %}
+
+            {% endif %}
+          </span>
+            <span>
+              {% if space.capacity == '1' %}
+                <i class="fa fa-user"></i>
+              {% else %}
+                <i class="fa fa-users"></i>
+              {% endif %}
+
+              {% if space.capacity == 'N/A' %}
+                open area
+              {% else %}
+                {{ space.capacity }} max
+              {% endif %}
+            </span>
+        </div>
+
+    {% comment %}  {% if space.reservation_system %}
+        <div class="ui bottom attached button space-finder__reserve">
+          <i class="fa fa-calendar-plus-o"></i>
+          Reserve
+        </div>
+      {% endif %}{% endcomment %}
+    </div>
+  {% endfor %}
+</div>
