@@ -45,24 +45,16 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var Vue = __webpack_require__(1)
-	Vue.use(__webpack_require__(3));
-
+	Vue.use(__webpack_require__(3))
 	// Change Vue delimiters, to work with liquid
-	Vue.config.delimiters = ['((', '))'];
+	Vue.config.delimiters = ['((', '))']
 	Vue.config.unsafeDelimiters = ['(((', ')))']
 
-	// require a *.vue component
 	var Events = __webpack_require__(27)
 
-
-	// mount a root Vue instance
 	new Vue({
 	  el: 'body',
-	  components: {
-	    // include the required component
-	    // in the options
-	    events: Events
-	  }
+	  components: { Events }
 	})
 
 
@@ -11873,8 +11865,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Cookies = __webpack_require__(35);
-	var _ = __webpack_require__(36);
+	var Cookies = __webpack_require__(37);
+	var _ = __webpack_require__(34);
 	var moment = __webpack_require__(38);
 	var $ = __webpack_require__(140);
 
@@ -11909,7 +11901,7 @@
 
 	      limitList: 10,
 
-	      loadMoreText: "View More Events",
+	      loadMoreText: '',
 
 	      dateKey: 'event_start',
 
@@ -11924,7 +11916,7 @@
 	  },
 
 	  ready: function ready() {
-	    this.getCornellEvents("default");
+	    this.getCornellEvents('default');
 	    this.bookedAuthentication();
 	    if (Cookies.get('filter')) {
 	      this.setEventTypeFilter(Cookies.get('filter'));
@@ -11933,22 +11925,22 @@
 	  directives: __webpack_require__(142),
 	  filters: {
 	    roomFilter: function roomFilter(events, room) {
-	      if (room == '') {
+	      if (room === '') {
 	        this.loadMoreDisplay(events);
 	        return events;
 	      } else {
 	        var filterEvents = function filterEvents(event) {
-	          return event.event_room_name == room;
+	          return event.event_room_name === room;
 	        };
 
 	        this.loadMoreDisplay(events.filter(filterEvents));
-	        this.$set("filteredEvents", events.filter(filterEvents));
+	        this.$set('filteredEvents', events.filter(filterEvents));
 	        return events.filter(filterEvents);
 	      }
 	    },
 
 	    eventTypeFilter: function eventTypeFilter(events, eventType) {
-	      if (eventType == '') {
+	      if (eventType === '') {
 	        this.loadMoreDisplay(events);
 	        return events;
 	      } else {
@@ -11957,7 +11949,7 @@
 	        };
 
 	        this.loadMoreDisplay(events.filter(filterEvents));
-	        this.$set("filteredEvents", events.filter(filterEvents));
+	        this.$set('filteredEvents', events.filter(filterEvents));
 	        return events.filter(filterEvents);
 	      }
 	    },
@@ -11966,7 +11958,7 @@
 	      return moment(date).format('h:mm a');
 	    },
 	    momentDate: function momentDate(date) {
-	      if (date == '') {
+	      if (date === '') {
 	        return;
 	      } else {
 	        return moment(date).format('ddd, MMM DD, YYYY');
@@ -11975,11 +11967,11 @@
 	    momentDateText: function momentDateText(date) {
 	      var someday = moment(date).startOf('day');
 	      var today = moment().startOf('day');
-	      var days = someday.diff(today, "days");
-	      if (days == 0) {
-	        return "Today";
-	      } else if (days == 1) {
-	        return "Tomorrow";
+	      var days = someday.diff(today, 'days');
+	      if (days === 0) {
+	        return 'Today';
+	      } else if (days === 1) {
+	        return 'Tomorrow';
 	      }
 	    },
 
@@ -11988,7 +11980,7 @@
 	    },
 
 	    toString: function toString(eventTypeArray) {
-	      return eventTypeArray.join(", ");
+	      return eventTypeArray.join(', ');
 	    },
 
 	    groupBy: function groupBy(events, dateKey) {
@@ -12000,12 +11992,12 @@
 	    getCornellEvents: function getCornellEvents(option, date) {
 	      var localistApiBaseUrl = 'http://events.cornell.edu/api/2/events/?type=4228&pp=100';
 
-	      if (option == "default") {
-	        this.$http.get(localistApiBaseUrl + "&days=28").then(function (response) {
+	      if (option === 'default') {
+	        this.$http.get(localistApiBaseUrl + '&days=28').then(function (response) {
 	          this.cornellEventsArray(response.data.events);
 	        });
-	      } else if (option == "date") {
-	          this.$http.get(localistApiBaseUrl + "&start=" + date + "").then(function (response) {
+	      } else if (option === 'date') {
+	          this.$http.get(localistApiBaseUrl + '&start=' + date + '').then(function (response) {
 	            this.cornellEventsArray(response.data.events);
 	          });
 	        }
@@ -12015,44 +12007,44 @@
 	        url: 'http://booked-dev.library.cornell.edu/Web/Services/index.php/Authentication/Authenticate',
 	        method: 'POST',
 	        data: (0, _stringify2.default)({ username: this.bookedUsername, password: this.bookedPassword }),
-	        dataType: "json"
+	        dataType: 'json'
 	      }).then(function (data) {
 	        if (data.data.isAuthenticated) {
-	          this.$set('headers', { "X-Booked-SessionToken": data.data.sessionToken, "X-Booked-UserId": data.data.userId });
-	          this.getBookedReservations("default");
+	          this.$set('headers', { 'X-Booked-SessionToken': data.data.sessionToken, 'X-Booked-UserId': data.data.userId });
+	          this.getBookedReservations('default');
 	        } else {
-	          alert(data.message);
+	          console.log(data.message);
 	        }
 	      }, function (response) {});
 	    },
 	    getBookedReservations: function getBookedReservations(option, date) {
 	      var bookedApiUrl = '';
 
-	      if (option == "default") {
-	        bookedApiUrl = "http://booked-dev.library.cornell.edu/Web/Services/index.php/Reservations/?resourceId=3";
-	      } else if (option == "date") {
-	          bookedApiUrl = "http://booked-dev.library.cornell.edu/Web/Services/index.php/Reservations/?resourceId=3&startDateTime=" + date + "T00:00:00&endDateTime=" + date + "T23:59:59";
+	      if (option === 'default') {
+	        bookedApiUrl = 'http://booked-dev.library.cornell.edu/Web/Services/index.php/Reservations/?resourceId=3';
+	      } else if (option === 'date') {
+	          bookedApiUrl = 'http://booked-dev.library.cornell.edu/Web/Services/index.php/Reservations/?resourceId=3&startDateTime=' + date + 'T00:00:00&endDateTime=' + date + 'T23:59:59';
 	        }
 	      this.$http({
-	        type: "GET",
+	        type: 'GET',
 	        url: bookedApiUrl,
 	        headers: this.headers,
-	        dataType: "json"
+	        dataType: 'json'
 	      }).then(function (response) {
 	        this.bookedEventsArray(response.data.reservations);
 	      });
 	    },
-	    setRoomFilter: function setRoomFilter(room_number) {
-	      this.room = room_number;
-	      this.roomSelected = room_number;
+	    setRoomFilter: function setRoomFilter(roomNumber) {
+	      this.room = roomNumber;
+	      this.roomSelected = roomNumber;
 	    },
 	    removeRoomFilter: function removeRoomFilter() {
 	      this.room = '';
 	      this.roomSelected = '';
 	    },
-	    setEventTypeFilter: function setEventTypeFilter(event_type) {
-	      this.eventType = event_type;
-	      this.eventSelected = event_type;
+	    setEventTypeFilter: function setEventTypeFilter(eventType) {
+	      this.eventType = eventType;
+	      this.eventSelected = eventType;
 	    },
 	    removeEventTypeFilter: function removeEventTypeFilter() {
 	      this.eventType = '';
@@ -12060,24 +12052,24 @@
 	      Cookies.remove('filter');
 	    },
 	    removeSearchFilter: function removeSearchFilter() {
-	      this.$set("searchText", null);
+	      this.$set('searchText', null);
 	    },
 	    removeSelectedDate: function removeSelectedDate() {
-	      this.$set("dateSelected", '');
-	      this.getCornellEvents("default");
-	      this.getBookedReservations("default");
-	      $("#datepicker").datepicker("setDate", moment().format("YYYY-MM-DD"));
+	      this.$set('dateSelected', '');
+	      this.getCornellEvents('default');
+	      this.getBookedReservations('default');
+	      $('#datepicker').datepicker('setDate', moment().format('YYYY-MM-DD'));
 	    },
 	    clearAllFilters: function clearAllFilters() {
 	      this.room = '';
 	      this.eventType = '';
 	      this.roomSelected = '';
 	      this.eventSelected = '';
-	      this.getCornellEvents("default");
-	      this.getBookedReservations("default");
+	      this.getCornellEvents('default');
+	      this.getBookedReservations('default');
 	      this.removeSearchFilter();
-	      this.$set("dateSelected", '');
-	      $("#datepicker").datepicker("setDate", moment().format("YYYY-MM-DD"));
+	      this.$set('dateSelected', '');
+	      $('#datepicker').datepicker('setDate', moment().format('YYYY-MM-DD'));
 	      Cookies.remove('filter');
 	    },
 	    loadMoreEvents: function loadMoreEvents() {
@@ -12085,41 +12077,41 @@
 	      this.limitList = increment > this.allEvents.length ? this.allEvents.length : increment;
 	    },
 	    cornellEventsArray: function cornellEventsArray(data) {
-	      var event_types = [];
-	      var room_names = [];
-	      var cornell_events = [];
+	      var eventTypes = [];
+	      var roomNames = [];
+	      var cornellEvents = [];
 
 	      _.forEach(_.map(data, 'event'), function (value) {
 	        var events = {};
-	        var event_type = [];
+	        var eventType = [];
 	        events['event_title'] = value.title;
 	        events['event_description'] = value.description;
 	        events['event_start_time'] = value.event_instances[0].event_instance.start;
 	        events['event_start'] = value.event_instances[0].event_instance.start.substring(0, 10);
 	        events['event_end_time'] = value.event_instances[0].event_instance.end;
 	        events['event_room_name'] = value.room_number;
-	        events['event_type'] = event_type;
+	        events['event_type'] = eventType;
 
-	        cornell_events.push(events);
+	        cornellEvents.push(events);
 
 	        _.forEach(_.map(value, 'event_types'), function (value) {
 	          _.forEach(_.map(value, 'name'), function (value) {
-	            event_types.push(value);
-	            event_type.push(value);
+	            eventTypes.push(value);
+	            eventType.push(value);
 	          });
 	        });
 
-	        room_names.push(value.room_number);
+	        roomNames.push(value.room_number);
 	      });
 
-	      this.$set('cornellEventTypes', event_types);
-	      this.$set('cornellRoomNames', room_names);
-	      this.$set('cornellEvents', cornell_events);
+	      this.$set('cornellEventTypes', eventTypes);
+	      this.$set('cornellRoomNames', roomNames);
+	      this.$set('cornellEvents', cornellEvents);
 	    },
 	    bookedEventsArray: function bookedEventsArray(data) {
-	      var booked_events = [];
-	      var event_types = [];
-	      var room_names = [];
+	      var bookedEvents = [];
+	      var eventTypes = [];
+	      var roomNames = [];
 
 	      _.forEach(data, function (value) {
 	        var events = {};
@@ -12131,16 +12123,16 @@
 	        events['event_end_time'] = value.bufferedEndDate;
 	        events['event_room_name'] = value.resourceName;
 
-	        booked_events.push(events);
+	        bookedEvents.push(events);
 
-	        room_names.push(value.resourceName);
+	        roomNames.push(value.resourceName);
 
-	        event_types.push('Class/ Workshop');
+	        eventTypes.push('Class/ Workshop');
 	      });
 
-	      this.$set('bookedEventTypes', event_types);
-	      this.$set('bookedRoomNames', room_names);
-	      this.$set('bookedEvents', booked_events);
+	      this.$set('bookedEventTypes', eventTypes);
+	      this.$set('bookedRoomNames', roomNames);
+	      this.$set('bookedEvents', bookedEvents);
 
 	      this.$set('allEvents', _.concat(this.cornellEvents, this.bookedEvents));
 	      this.$set('allEventTypes', _.union(this.cornellEventTypes, this.bookedEventTypes));
@@ -12222,8 +12214,10 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+
+	var _ = __webpack_require__(34);
 	exports.default = {
-	  template: __webpack_require__(34),
+	  template: __webpack_require__(36),
 
 	  props: ['descriptionText', 'wordLimit'],
 	  data: function data() {
@@ -12242,7 +12236,7 @@
 	        description = _.join(_.slice(this.inputWords, 0, wordLimit), ' ');
 	      } else if (this.inputWords.length <= wordLimit) {
 	          this.readMoreLink = false;
-	        };
+	        }
 	      return description;
 	    }
 
@@ -12265,169 +12259,6 @@
 
 /***/ },
 /* 34 */
-/***/ function(module, exports) {
-
-	module.exports = "<p class=\"description\" >\n  (((descriptionText | limitDescriptionFilter descriptionLimit)))\n  <a href=\"javascript:;\" v-on:click=\"showMoreDescription()\" v-show=\"readMoreLink\">\n     ....Read More\n  </a>\n  <a href=\"javascript:;\" v-on:click=\"showLessDescription()\" v-show=\"readLessLink\">\n      Read Less\n  </a>\n</p>\n";
-
-/***/ },
-/* 35 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	 * JavaScript Cookie v2.1.1
-	 * https://github.com/js-cookie/js-cookie
-	 *
-	 * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
-	 * Released under the MIT license
-	 */
-	;(function (factory) {
-		if (true) {
-			!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-		} else if (typeof exports === 'object') {
-			module.exports = factory();
-		} else {
-			var OldCookies = window.Cookies;
-			var api = window.Cookies = factory();
-			api.noConflict = function () {
-				window.Cookies = OldCookies;
-				return api;
-			};
-		}
-	}(function () {
-		function extend () {
-			var i = 0;
-			var result = {};
-			for (; i < arguments.length; i++) {
-				var attributes = arguments[ i ];
-				for (var key in attributes) {
-					result[key] = attributes[key];
-				}
-			}
-			return result;
-		}
-
-		function init (converter) {
-			function api (key, value, attributes) {
-				var result;
-				if (typeof document === 'undefined') {
-					return;
-				}
-
-				// Write
-
-				if (arguments.length > 1) {
-					attributes = extend({
-						path: '/'
-					}, api.defaults, attributes);
-
-					if (typeof attributes.expires === 'number') {
-						var expires = new Date();
-						expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
-						attributes.expires = expires;
-					}
-
-					try {
-						result = JSON.stringify(value);
-						if (/^[\{\[]/.test(result)) {
-							value = result;
-						}
-					} catch (e) {}
-
-					if (!converter.write) {
-						value = encodeURIComponent(String(value))
-							.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
-					} else {
-						value = converter.write(value, key);
-					}
-
-					key = encodeURIComponent(String(key));
-					key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
-					key = key.replace(/[\(\)]/g, escape);
-
-					return (document.cookie = [
-						key, '=', value,
-						attributes.expires && '; expires=' + attributes.expires.toUTCString(), // use expires attribute, max-age is not supported by IE
-						attributes.path    && '; path=' + attributes.path,
-						attributes.domain  && '; domain=' + attributes.domain,
-						attributes.secure ? '; secure' : ''
-					].join(''));
-				}
-
-				// Read
-
-				if (!key) {
-					result = {};
-				}
-
-				// To prevent the for loop in the first place assign an empty array
-				// in case there are no cookies at all. Also prevents odd result when
-				// calling "get()"
-				var cookies = document.cookie ? document.cookie.split('; ') : [];
-				var rdecode = /(%[0-9A-Z]{2})+/g;
-				var i = 0;
-
-				for (; i < cookies.length; i++) {
-					var parts = cookies[i].split('=');
-					var name = parts[0].replace(rdecode, decodeURIComponent);
-					var cookie = parts.slice(1).join('=');
-
-					if (cookie.charAt(0) === '"') {
-						cookie = cookie.slice(1, -1);
-					}
-
-					try {
-						cookie = converter.read ?
-							converter.read(cookie, name) : converter(cookie, name) ||
-							cookie.replace(rdecode, decodeURIComponent);
-
-						if (this.json) {
-							try {
-								cookie = JSON.parse(cookie);
-							} catch (e) {}
-						}
-
-						if (key === name) {
-							result = cookie;
-							break;
-						}
-
-						if (!key) {
-							result[name] = cookie;
-						}
-					} catch (e) {}
-				}
-
-				return result;
-			}
-
-			api.set = api;
-			api.get = function (key) {
-				return api(key);
-			};
-			api.getJSON = function () {
-				return api.apply({
-					json: true
-				}, [].slice.call(arguments));
-			};
-			api.defaults = {};
-
-			api.remove = function (key, attributes) {
-				api(key, '', extend(attributes, {
-					expires: -1
-				}));
-			};
-
-			api.withConverter = init;
-
-			return api;
-		}
-
-		return init(function () {});
-	}));
-
-
-/***/ },
-/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -28673,10 +28504,10 @@
 	  }
 	}.call(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(37)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(35)(module), (function() { return this; }())))
 
 /***/ },
-/* 37 */
+/* 35 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -28689,6 +28520,169 @@
 		}
 		return module;
 	}
+
+
+/***/ },
+/* 36 */
+/***/ function(module, exports) {
+
+	module.exports = "<p class=\"description\" >\n  (((descriptionText | limitDescriptionFilter descriptionLimit)))\n  <a href=\"javascript:;\" v-on:click=\"showMoreDescription()\" v-show=\"readMoreLink\">\n     ....Read More\n  </a>\n  <a href=\"javascript:;\" v-on:click=\"showLessDescription()\" v-show=\"readLessLink\">\n      Read Less\n  </a>\n</p>\n";
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	 * JavaScript Cookie v2.1.1
+	 * https://github.com/js-cookie/js-cookie
+	 *
+	 * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+	 * Released under the MIT license
+	 */
+	;(function (factory) {
+		if (true) {
+			!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else if (typeof exports === 'object') {
+			module.exports = factory();
+		} else {
+			var OldCookies = window.Cookies;
+			var api = window.Cookies = factory();
+			api.noConflict = function () {
+				window.Cookies = OldCookies;
+				return api;
+			};
+		}
+	}(function () {
+		function extend () {
+			var i = 0;
+			var result = {};
+			for (; i < arguments.length; i++) {
+				var attributes = arguments[ i ];
+				for (var key in attributes) {
+					result[key] = attributes[key];
+				}
+			}
+			return result;
+		}
+
+		function init (converter) {
+			function api (key, value, attributes) {
+				var result;
+				if (typeof document === 'undefined') {
+					return;
+				}
+
+				// Write
+
+				if (arguments.length > 1) {
+					attributes = extend({
+						path: '/'
+					}, api.defaults, attributes);
+
+					if (typeof attributes.expires === 'number') {
+						var expires = new Date();
+						expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+						attributes.expires = expires;
+					}
+
+					try {
+						result = JSON.stringify(value);
+						if (/^[\{\[]/.test(result)) {
+							value = result;
+						}
+					} catch (e) {}
+
+					if (!converter.write) {
+						value = encodeURIComponent(String(value))
+							.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+					} else {
+						value = converter.write(value, key);
+					}
+
+					key = encodeURIComponent(String(key));
+					key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+					key = key.replace(/[\(\)]/g, escape);
+
+					return (document.cookie = [
+						key, '=', value,
+						attributes.expires && '; expires=' + attributes.expires.toUTCString(), // use expires attribute, max-age is not supported by IE
+						attributes.path    && '; path=' + attributes.path,
+						attributes.domain  && '; domain=' + attributes.domain,
+						attributes.secure ? '; secure' : ''
+					].join(''));
+				}
+
+				// Read
+
+				if (!key) {
+					result = {};
+				}
+
+				// To prevent the for loop in the first place assign an empty array
+				// in case there are no cookies at all. Also prevents odd result when
+				// calling "get()"
+				var cookies = document.cookie ? document.cookie.split('; ') : [];
+				var rdecode = /(%[0-9A-Z]{2})+/g;
+				var i = 0;
+
+				for (; i < cookies.length; i++) {
+					var parts = cookies[i].split('=');
+					var name = parts[0].replace(rdecode, decodeURIComponent);
+					var cookie = parts.slice(1).join('=');
+
+					if (cookie.charAt(0) === '"') {
+						cookie = cookie.slice(1, -1);
+					}
+
+					try {
+						cookie = converter.read ?
+							converter.read(cookie, name) : converter(cookie, name) ||
+							cookie.replace(rdecode, decodeURIComponent);
+
+						if (this.json) {
+							try {
+								cookie = JSON.parse(cookie);
+							} catch (e) {}
+						}
+
+						if (key === name) {
+							result = cookie;
+							break;
+						}
+
+						if (!key) {
+							result[name] = cookie;
+						}
+					} catch (e) {}
+				}
+
+				return result;
+			}
+
+			api.set = api;
+			api.get = function (key) {
+				return api(key);
+			};
+			api.getJSON = function () {
+				return api.apply({
+					json: true
+				}, [].slice.call(arguments));
+			};
+			api.defaults = {};
+
+			api.remove = function (key, attributes) {
+				api(key, '', extend(attributes, {
+					expires: -1
+				}));
+			};
+
+			api.withConverter = init;
+
+			return api;
+		}
+
+		return init(function () {});
+	}));
 
 
 /***/ },
@@ -32735,7 +32729,7 @@
 	    return _moment;
 
 	}));
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(37)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(35)(module)))
 
 /***/ },
 /* 39 */
@@ -52320,29 +52314,29 @@
 /* 141 */
 /***/ function(module, exports) {
 
-	module.exports = "<div id=\"events-container\">\n\t<div class=\"events\">\n\t\t<div class=\"event-feature\">\n\t\t\t<img alt=\"Abstract placeholder\" class=\"img-responsive img-faded\" src=\"/images/events/abstract-placeholder.jpg\">\n\n\t\t\t<div aria-label=\"Featured Events\" class=\"btn-group feature\" role=\"group\">\n\t\t\t\t<button class=\"btn btn-default\" type=\"button\">\n          <i class=\"fa fa-caret-left\"></i>\n        </button>\n        <button class=\"btn btn-default\" type=\"button\">1</button>\n        <button class=\"btn btn-default\" type=\"button\">2</button>\n        <button class=\"btn btn-default\" type=\"button\">3</button>\n        <button class=\"btn btn-default\" type=\"button\">\n          <i class=\"fa fa-caret-right\"></i>\n        </button>\n\t\t\t</div>\n\t\t\t<!-- Tab panes -->\n\n\n\t\t\t<div class=\"tab-content\">\n\t\t\t\t<div v-show=\"showNoEventsMessage\">\n\t\t\t\t\tloading...\n\t\t\t\t</div>\n\n\n\t\t\t\t<div class=\"events__per-day\" v-for=\"(date, events) in allEvents | filterBy searchText | roomFilter room | eventTypeFilter eventType | limitListFilter limitList | groupBy 'event_start'\">\n\t\t\t\t\t<h2 class=\"events__date-heading\">\n\t\t\t\t\t\t((date | momentDate))\n            <span class=\"events__date badge badge-alert\" v-if=\"date | momentDateText\">\n              ((date | momentDateText))\n            </span>\n          </h2>\n\n\n\t\t\t\t\t<div id=\"events\">\n\t\t\t\t\t\t<div class=\"event\" v-for=\"event in events\">\n\t\t\t\t\t\t\t<h3 class=\"event__title\">\n\t\t\t\t\t\t\t\t(((event.event_title)))\n\t\t\t\t\t\t\t</h3>\n\n\t\t\t\t\t\t\t<div class=\"event__details\">\n\n              \t<span class=\"time\" v-if=\"event.event_end_time\">\n                  <i class=\"fa fa-clock-o\"></i>\n                  ((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))\n                </span>\n\n                <span class=\"time\" v-else=\"\">\n                  <i class=\"fa fa-clock-o\"></i>\n                  ((event.event_start_time | momentTime ))\n                </span>\n\n                <span class=\"location pull-right\">\n                  <i class=\"fa fa-map-marker\"></i>\n                  ((event.event_room_name))\n                </span>\n\n              </div>\n\n\t\t\t\t\t\t\t<description :description-text = \"(( event.event_description ))\" word-limit = 20></description>\n\n\t\t\t\t\t\t\t<span class=\"event__type badge-notice\" v-for=\"type in event.event_type\">\n                ((type))\n              </span>\n\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\n\t\t\t\t<div v-if=\"filteredEvents.length == 0\" v-show=\"!showNoEventsMessage\">\n          No events for selection...\n\t\t\t\t</div>\n\n\n\t\t\t\t<h6>\n          <a v-if=\"allEvents.length &gt; limitList\" v-on:click=\"loadMoreEvents()\">\n            ((loadMoreText))\n          </a>\n\t\t\t\t</h6>\n\n      </div>\n\t\t</div>\n\t</div>\n\n\n\t<div class=\"events-filters\">\n\t\t<a href=\"#\">\n      <button>\n        Reserve a space for your event!\n      </button>\n    </a>\n\n\t\t<div id=\"datepicker\" v-datepicker=\"\">\n\t\t</div>\n\n\n\t\t<div class=\"events-filters__selected-date\">\n\t\t\t((dateSelected | momentDate))\n      <a class=\"fa fa-times\" v-if=\"dateSelected\" v-on:click=\"removeSelectedDate()\"></a>\n\t\t</div>\n\n    <a data-filter=\".event\" v-on:click=\"clearAllFilters()\">\n      <button class=\"ui basic button\">\n        <i class=\"fa fa-times\"></i>\n        Clear All Filters\n      </button>\n    </a>\n\n\t\t<h6 class=\"events-filters__type\">\n      Filter Events\n    </h6>\n\n    <input class=\"form-control\" placeholder=\"Filter events\" type=\"text\" v-model=\"searchText\">\n    <a class=\"fa fa-times\" v-if=\"searchText\" v-on:click=\"removeSearchFilter()\"></a>\n\n\t\t<h6 class=\"events-filters__type\">\n      Type\n    </h6>\n\n\n\t\t<ul data-filter-group=\"type\">\n\t\t\t<li v-for=\"event_type of allEventTypes | orderBy 'eventType'\">\n\t\t\t\t<a class=\"filter\" v-bind:class=\"{ 'selected-filter': event_type == eventSelected }\" v-on:click=\"setEventTypeFilter(event_type)\">\n          ((event_type))\n        </a>\n        <a class=\"fa fa-times\" v-if=\"event_type == eventSelected\" v-on:click=\"removeEventTypeFilter()\">\n        </a>\n\t\t\t</li>\n\t\t</ul>\n\n\n\t\t<h6 class=\"events-filters__type\">\n      Space/Room\n    </h6>\n\n\t\t<ul data-filter-group=\"venue\">\n\t\t\t<li v-for=\"room of allRoomNames | orderBy 'room'\">\n\t\t\t\t<!-- event to set room filter -->\n\t\t\t\t<a class=\"filter\" v-bind:class=\"{ 'selected-filter': room == roomSelected }\" v-on:click=\"setRoomFilter(room)\">\n          ((room))\n        </a>\n        <a class=\"fa fa-times\" v-if=\"room == roomSelected\" v-on:click=\"removeRoomFilter()\">\n        </a>\n\t\t\t</li>\n\t\t</ul>\n\t</div>\n</div>\n";
+	module.exports = "<div id=\"events-container\">\n\t<div class=\"events\">\n\t\t<div class=\"event-feature\">\n\t\t\t<img alt=\"Abstract placeholder\" class=\"img-responsive img-faded\" src=\"/images/events/abstract-placeholder.jpg\">\n\n\t\t\t<div aria-label=\"Featured Events\" class=\"btn-group feature\" role=\"group\">\n\t\t\t\t<button class=\"btn btn-default\" type=\"button\">\n          <i class=\"fa fa-caret-left\"></i>\n        </button>\n        <button class=\"btn btn-default\" type=\"button\">1</button>\n        <button class=\"btn btn-default\" type=\"button\">2</button>\n        <button class=\"btn btn-default\" type=\"button\">3</button>\n        <button class=\"btn btn-default\" type=\"button\">\n          <i class=\"fa fa-caret-right\"></i>\n        </button>\n\t\t\t</div>\n\n\t\t\t<!-- Tab panes -->\n\t\t\t<div class=\"tab-content\">\n\t\t\t\t<div v-show=\"showNoEventsMessage\">\n\t\t\t\t\tloading...\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"events__per-day\" v-for=\"(date, events) in allEvents | filterBy searchText | roomFilter room | eventTypeFilter eventType | limitListFilter limitList | groupBy 'event_start'\">\n\t\t\t\t\t<h2 class=\"events__date-heading\">\n\t\t\t\t\t\t((date | momentDate))\n            <span class=\"events__date badge badge-alert\" v-if=\"date | momentDateText\">\n              ((date | momentDateText))\n            </span>\n          </h2>\n\n\t\t\t\t\t<div id=\"events\">\n\t\t\t\t\t\t<div class=\"event\" v-for=\"event in events\">\n\t\t\t\t\t\t\t<h3 class=\"event__title\">\n\t\t\t\t\t\t\t\t(((event.event_title)))\n\t\t\t\t\t\t\t</h3>\n\n\t\t\t\t\t\t\t<div class=\"event__details\">\n\n\t\t\t\t\t\t\t\t<span class=\"time\" v-if=\"event.event_end_time\">\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-clock-o\"></i>\n\t\t\t\t\t\t\t\t\t\t((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))\n\t\t\t\t\t\t\t\t</span>\n\n                <span class=\"time\" v-else=\"\">\n                  <i class=\"fa fa-clock-o\"></i>\n                  ((event.event_start_time | momentTime ))\n                </span>\n\n                <span class=\"location pull-right\">\n                  <i class=\"fa fa-map-marker\"></i>\n                  ((event.event_room_name))\n                </span>\n\n              </div>\n\n\t\t\t\t\t\t\t<description :description-text = \"(( event.event_description ))\" word-limit = \"20\"></description>\n\n\t\t\t\t\t\t\t<span class=\"event__type badge-notice\" v-for=\"type in event.event_type\">\n                ((type))\n              </span>\n\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\t\t\t\t<div v-if=\"filteredEvents.length == 0\" v-show=\"!showNoEventsMessage\">\n          No events for selection...\n\t\t\t\t</div>\n\n\t\t\t\t<h6>\n          <a v-if=\"allEvents.length &gt; limitList\" v-on:click=\"loadMoreEvents()\">\n            ((loadMoreText))\n          </a>\n\t\t\t\t</h6>\n\n      </div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"events-filters\">\n\t\t<a href=\"#\">\n      <button>\n        Reserve a space for your event!\n      </button>\n    </a>\n\n\t\t<div id=\"datepicker\" v-datepicker=\"\">\n\t\t</div>\n\n\t\t<div class=\"events-filters__selected-date\">\n\t\t\t((dateSelected | momentDate))\n      <a class=\"fa fa-times\" v-if=\"dateSelected\" v-on:click=\"removeSelectedDate()\"></a>\n\t\t</div>\n\n    <a data-filter=\".event\" v-on:click=\"clearAllFilters()\">\n      <button class=\"ui basic button\">\n        <i class=\"fa fa-times\"></i>\n        Clear All Filters\n      </button>\n    </a>\n\n\t\t<h6 class=\"events-filters__type\">\n      Filter Events\n    </h6>\n\n    <input class=\"form-control\" placeholder=\"Filter events\" type=\"text\" v-model=\"searchText\">\n    <a class=\"fa fa-times\" v-if=\"searchText\" v-on:click=\"removeSearchFilter()\"></a>\n\n\t\t<h6 class=\"events-filters__type\">\n      Type\n    </h6>\n\n\t\t<ul data-filter-group=\"type\">\n\t\t\t<li v-for=\"event_type of allEventTypes | orderBy 'eventType'\">\n\t\t\t\t<a class=\"filter\" v-bind:class=\"{ 'selected-filter': event_type == eventSelected }\" v-on:click=\"setEventTypeFilter(event_type)\">\n          ((event_type))\n        </a>\n        <a class=\"fa fa-times\" v-if=\"event_type == eventSelected\" v-on:click=\"removeEventTypeFilter()\">\n        </a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<h6 class=\"events-filters__type\">\n      Space/Room\n    </h6>\n\n\t\t<ul data-filter-group=\"venue\">\n\t\t\t<li v-for=\"room of allRoomNames | orderBy 'room'\">\n\t\t\t\t<!-- event to set room filter -->\n\t\t\t\t<a class=\"filter\" v-bind:class=\"{ 'selected-filter': room == roomSelected }\" v-on:click=\"setRoomFilter(room)\">\n          ((room))\n        </a>\n        <a class=\"fa fa-times\" v-if=\"room == roomSelected\" v-on:click=\"removeRoomFilter()\">\n        </a>\n\t\t\t</li>\n\t\t</ul>\n\t</div>\n</div>\n";
 
 /***/ },
 /* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Vue = __webpack_require__(1)
-	var $ = __webpack_require__(140);
-	__webpack_require__(143);
+	var $ = __webpack_require__(140)
+	__webpack_require__(143)
 
 	Vue.directive('datepicker', {
 	  bind: function () {
-	    var vm = this.vm;
+	    var vm = this.vm
 	    $(this.el).datepicker({
 	      dateFormat: 'yy-mm-dd',
-	      onSelect: function(date) {
-	        vm.getCornellEvents("date", date);
-	        vm.getBookedReservations("date", date);
-	        vm.dateSelected = date;
+	      onSelect: function (date) {
+	        vm.getCornellEvents('date', date)
+	        vm.getBookedReservations('date', date)
+	        vm.dateSelected = date
 	      }
-	    });
+	    })
 	  }
-	});
+	})
 
 
 /***/ },

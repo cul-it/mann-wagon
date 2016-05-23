@@ -11854,165 +11854,7 @@
 /***/ },
 /* 32 */,
 /* 33 */,
-/* 34 */,
-/* 35 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	 * JavaScript Cookie v2.1.1
-	 * https://github.com/js-cookie/js-cookie
-	 *
-	 * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
-	 * Released under the MIT license
-	 */
-	;(function (factory) {
-		if (true) {
-			!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-		} else if (typeof exports === 'object') {
-			module.exports = factory();
-		} else {
-			var OldCookies = window.Cookies;
-			var api = window.Cookies = factory();
-			api.noConflict = function () {
-				window.Cookies = OldCookies;
-				return api;
-			};
-		}
-	}(function () {
-		function extend () {
-			var i = 0;
-			var result = {};
-			for (; i < arguments.length; i++) {
-				var attributes = arguments[ i ];
-				for (var key in attributes) {
-					result[key] = attributes[key];
-				}
-			}
-			return result;
-		}
-
-		function init (converter) {
-			function api (key, value, attributes) {
-				var result;
-				if (typeof document === 'undefined') {
-					return;
-				}
-
-				// Write
-
-				if (arguments.length > 1) {
-					attributes = extend({
-						path: '/'
-					}, api.defaults, attributes);
-
-					if (typeof attributes.expires === 'number') {
-						var expires = new Date();
-						expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
-						attributes.expires = expires;
-					}
-
-					try {
-						result = JSON.stringify(value);
-						if (/^[\{\[]/.test(result)) {
-							value = result;
-						}
-					} catch (e) {}
-
-					if (!converter.write) {
-						value = encodeURIComponent(String(value))
-							.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
-					} else {
-						value = converter.write(value, key);
-					}
-
-					key = encodeURIComponent(String(key));
-					key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
-					key = key.replace(/[\(\)]/g, escape);
-
-					return (document.cookie = [
-						key, '=', value,
-						attributes.expires && '; expires=' + attributes.expires.toUTCString(), // use expires attribute, max-age is not supported by IE
-						attributes.path    && '; path=' + attributes.path,
-						attributes.domain  && '; domain=' + attributes.domain,
-						attributes.secure ? '; secure' : ''
-					].join(''));
-				}
-
-				// Read
-
-				if (!key) {
-					result = {};
-				}
-
-				// To prevent the for loop in the first place assign an empty array
-				// in case there are no cookies at all. Also prevents odd result when
-				// calling "get()"
-				var cookies = document.cookie ? document.cookie.split('; ') : [];
-				var rdecode = /(%[0-9A-Z]{2})+/g;
-				var i = 0;
-
-				for (; i < cookies.length; i++) {
-					var parts = cookies[i].split('=');
-					var name = parts[0].replace(rdecode, decodeURIComponent);
-					var cookie = parts.slice(1).join('=');
-
-					if (cookie.charAt(0) === '"') {
-						cookie = cookie.slice(1, -1);
-					}
-
-					try {
-						cookie = converter.read ?
-							converter.read(cookie, name) : converter(cookie, name) ||
-							cookie.replace(rdecode, decodeURIComponent);
-
-						if (this.json) {
-							try {
-								cookie = JSON.parse(cookie);
-							} catch (e) {}
-						}
-
-						if (key === name) {
-							result = cookie;
-							break;
-						}
-
-						if (!key) {
-							result[name] = cookie;
-						}
-					} catch (e) {}
-				}
-
-				return result;
-			}
-
-			api.set = api;
-			api.get = function (key) {
-				return api(key);
-			};
-			api.getJSON = function () {
-				return api.apply({
-					json: true
-				}, [].slice.call(arguments));
-			};
-			api.defaults = {};
-
-			api.remove = function (key, attributes) {
-				api(key, '', extend(attributes, {
-					expires: -1
-				}));
-			};
-
-			api.withConverter = init;
-
-			return api;
-		}
-
-		return init(function () {});
-	}));
-
-
-/***/ },
-/* 36 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -28258,10 +28100,10 @@
 	  }
 	}.call(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(37)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(35)(module), (function() { return this; }())))
 
 /***/ },
-/* 37 */
+/* 35 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -28274,6 +28116,164 @@
 		}
 		return module;
 	}
+
+
+/***/ },
+/* 36 */,
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	 * JavaScript Cookie v2.1.1
+	 * https://github.com/js-cookie/js-cookie
+	 *
+	 * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+	 * Released under the MIT license
+	 */
+	;(function (factory) {
+		if (true) {
+			!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else if (typeof exports === 'object') {
+			module.exports = factory();
+		} else {
+			var OldCookies = window.Cookies;
+			var api = window.Cookies = factory();
+			api.noConflict = function () {
+				window.Cookies = OldCookies;
+				return api;
+			};
+		}
+	}(function () {
+		function extend () {
+			var i = 0;
+			var result = {};
+			for (; i < arguments.length; i++) {
+				var attributes = arguments[ i ];
+				for (var key in attributes) {
+					result[key] = attributes[key];
+				}
+			}
+			return result;
+		}
+
+		function init (converter) {
+			function api (key, value, attributes) {
+				var result;
+				if (typeof document === 'undefined') {
+					return;
+				}
+
+				// Write
+
+				if (arguments.length > 1) {
+					attributes = extend({
+						path: '/'
+					}, api.defaults, attributes);
+
+					if (typeof attributes.expires === 'number') {
+						var expires = new Date();
+						expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+						attributes.expires = expires;
+					}
+
+					try {
+						result = JSON.stringify(value);
+						if (/^[\{\[]/.test(result)) {
+							value = result;
+						}
+					} catch (e) {}
+
+					if (!converter.write) {
+						value = encodeURIComponent(String(value))
+							.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+					} else {
+						value = converter.write(value, key);
+					}
+
+					key = encodeURIComponent(String(key));
+					key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+					key = key.replace(/[\(\)]/g, escape);
+
+					return (document.cookie = [
+						key, '=', value,
+						attributes.expires && '; expires=' + attributes.expires.toUTCString(), // use expires attribute, max-age is not supported by IE
+						attributes.path    && '; path=' + attributes.path,
+						attributes.domain  && '; domain=' + attributes.domain,
+						attributes.secure ? '; secure' : ''
+					].join(''));
+				}
+
+				// Read
+
+				if (!key) {
+					result = {};
+				}
+
+				// To prevent the for loop in the first place assign an empty array
+				// in case there are no cookies at all. Also prevents odd result when
+				// calling "get()"
+				var cookies = document.cookie ? document.cookie.split('; ') : [];
+				var rdecode = /(%[0-9A-Z]{2})+/g;
+				var i = 0;
+
+				for (; i < cookies.length; i++) {
+					var parts = cookies[i].split('=');
+					var name = parts[0].replace(rdecode, decodeURIComponent);
+					var cookie = parts.slice(1).join('=');
+
+					if (cookie.charAt(0) === '"') {
+						cookie = cookie.slice(1, -1);
+					}
+
+					try {
+						cookie = converter.read ?
+							converter.read(cookie, name) : converter(cookie, name) ||
+							cookie.replace(rdecode, decodeURIComponent);
+
+						if (this.json) {
+							try {
+								cookie = JSON.parse(cookie);
+							} catch (e) {}
+						}
+
+						if (key === name) {
+							result = cookie;
+							break;
+						}
+
+						if (!key) {
+							result[name] = cookie;
+						}
+					} catch (e) {}
+				}
+
+				return result;
+			}
+
+			api.set = api;
+			api.get = function (key) {
+				return api(key);
+			};
+			api.getJSON = function () {
+				return api.apply({
+					json: true
+				}, [].slice.call(arguments));
+			};
+			api.defaults = {};
+
+			api.remove = function (key, attributes) {
+				api(key, '', extend(attributes, {
+					expires: -1
+				}));
+			};
+
+			api.withConverter = init;
+
+			return api;
+		}
+
+		return init(function () {});
+	}));
 
 
 /***/ },
@@ -32320,7 +32320,7 @@
 	    return _moment;
 
 	}));
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(37)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(35)(module)))
 
 /***/ },
 /* 39 */
@@ -42101,8 +42101,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Cookies = __webpack_require__(35);
-	var _ = __webpack_require__(36);
+	var Cookies = __webpack_require__(37);
+	var _ = __webpack_require__(34);
 	var moment = __webpack_require__(38);
 
 	exports.default = {
@@ -42125,7 +42125,7 @@
 	  },
 
 	  ready: function ready() {
-	    this.getCornellEvents("default");
+	    this.getCornellEvents('default');
 	    this.bookedAuthentication();
 	    if (Cookies.get('filter')) {
 	      this.setEventTypeFilter(Cookies.get('filter'));
@@ -42133,7 +42133,7 @@
 	  },
 	  filters: {
 	    eventTypeFilter: function eventTypeFilter(events, eventType) {
-	      if (eventType == '') {
+	      if (eventType === '') {
 	        this.loadMoreDisplay(events);
 	        return events;
 	      } else {
@@ -42153,11 +42153,11 @@
 	    momentHomeDateText: function momentHomeDateText(date) {
 	      var someday = moment(date).startOf('day');
 	      var today = moment().startOf('day');
-	      var days = someday.diff(today, "days");
-	      if (days == 0) {
-	        return "Today";
-	      } else if (days == 1) {
-	        return "Tomorrow";
+	      var days = someday.diff(today, 'days');
+	      if (days === 0) {
+	        return 'Today';
+	      } else if (days === 1) {
+	        return 'Tomorrow';
 	      } else {
 	        return moment(date).format('ddd, MMM DD');
 	      }
@@ -42175,12 +42175,12 @@
 	    getCornellEvents: function getCornellEvents(option, date) {
 	      var localistApiBaseUrl = 'http://events.cornell.edu/api/2/events/?type=4228&pp=100';
 
-	      if (option == "default") {
-	        this.$http.get(localistApiBaseUrl + "&days=28").then(function (response) {
+	      if (option === 'default') {
+	        this.$http.get(localistApiBaseUrl + '&days=28').then(function (response) {
 	          this.cornellEventsArray(response.data.events);
 	        });
-	      } else if (option == "date") {
-	          this.$http.get(localistApiBaseUrl + "&start=" + date + "").then(function (response) {
+	      } else if (option === 'date') {
+	          this.$http.get(localistApiBaseUrl + '&start=' + date + '').then(function (response) {
 	            this.cornellEventsArray(response.data.events);
 	          });
 	        }
@@ -42190,54 +42190,54 @@
 	        url: 'http://booked-dev.library.cornell.edu/Web/Services/index.php/Authentication/Authenticate',
 	        method: 'POST',
 	        data: (0, _stringify2.default)({ username: this.bookedUsername, password: this.bookedPassword }),
-	        dataType: "json"
+	        dataType: 'json'
 	      }).then(function (data) {
 	        if (data.data.isAuthenticated) {
-	          this.$set('headers', { "X-Booked-SessionToken": data.data.sessionToken, "X-Booked-UserId": data.data.userId });
-	          this.getBookedReservations("default");
+	          this.$set('headers', { 'X-Booked-SessionToken': data.data.sessionToken, 'X-Booked-UserId': data.data.userId });
+	          this.getBookedReservations('default');
 	        } else {
-	          alert(data.message);
+	          console.log(data.message);
 	        }
 	      }, function (response) {});
 	    },
 	    getBookedReservations: function getBookedReservations(option, date) {
 	      var bookedApiUrl = '';
 
-	      if (option == "default") {
-	        bookedApiUrl = "http://booked-dev.library.cornell.edu/Web/Services/index.php/Reservations/?resourceId=3";
-	      } else if (option == "date") {
-	          bookedApiUrl = "http://booked-dev.library.cornell.edu/Web/Services/index.php/Reservations/?resourceId=3&startDateTime=" + date + "T00:00:00&endDateTime=" + date + "T23:59:59";
+	      if (option === 'default') {
+	        bookedApiUrl = 'http://booked-dev.library.cornell.edu/Web/Services/index.php/Reservations/?resourceId=3';
+	      } else if (option === 'date') {
+	          bookedApiUrl = 'http://booked-dev.library.cornell.edu/Web/Services/index.php/Reservations/?resourceId=3&startDateTime=' + date + 'T00:00:00&endDateTime=' + date + 'T23:59:59';
 	        }
 	      this.$http({
-	        type: "GET",
+	        type: 'GET',
 	        url: bookedApiUrl,
 	        headers: this.headers,
-	        dataType: "json"
+	        dataType: 'json'
 	      }).then(function (response) {
 	        this.bookedEventsArray(response.data.reservations);
 	      });
 	    },
 	    cornellEventsArray: function cornellEventsArray(data) {
-	      var cornell_events = [];
+	      var cornellEvents = [];
 
 	      _.forEach(_.map(data, 'event'), function (value) {
 	        var events = {};
-	        var event_type = [];
+	        var eventType = [];
 	        events['event_title'] = value.title;
 	        events['event_description'] = value.description;
 	        events['event_start_time'] = value.event_instances[0].event_instance.start;
 	        events['event_start'] = value.event_instances[0].event_instance.start.substring(0, 10);
 	        events['event_end_time'] = value.event_instances[0].event_instance.end;
 	        events['event_room_name'] = value.room_number;
-	        events['event_type'] = event_type;
+	        events['event_type'] = eventType;
 
-	        cornell_events.push(events);
+	        cornellEvents.push(events);
 	      });
 
-	      this.$set('cornellEvents', cornell_events);
+	      this.$set('cornellEvents', cornellEvents);
 	    },
 	    bookedEventsArray: function bookedEventsArray(data) {
-	      var booked_events = [];
+	      var bookedEvents = [];
 
 	      _.forEach(data, function (value) {
 	        var events = {};
@@ -42249,10 +42249,10 @@
 	        events['event_end_time'] = value.bufferedEndDate;
 	        events['event_room_name'] = value.resourceName;
 
-	        booked_events.push(events);
+	        bookedEvents.push(events);
 	      });
 
-	      this.$set('bookedEvents', booked_events);
+	      this.$set('bookedEvents', bookedEvents);
 
 	      this.$set('allEvents', _.concat(this.cornellEvents, this.bookedEvents));
 	      this.$set('showNoEventsMessage', false);
@@ -42261,14 +42261,13 @@
 	      Cookies.set('filter', 'Class/ Workshop');
 	    }
 	  }
-
 	};
 
 /***/ },
 /* 147 */
 /***/ function(module, exports) {
 
-	module.exports = "<div id=\"events-container\">\n\t<section class=\"events-home\">\n\t\t<h4 class=\"events-home__heading lead-in\">\n      <a class=\"events-home__heading-link\" href=\"/news-events/events\">\n        Events &amp; Exhibits\n      </a>\n\t\t</h4>\n\n\n\t\t<div v-show=\"showNoEventsMessage\">\n\t\t\tloading...\n\t\t</div>\n\n\n\t\t<template v-for=\"(date, events) in allEvents | limitListFilter 3 | groupBy 'event_start'\">\n\t\t\t<h5 class=\"events-home__day\">\n        ((date | momentHomeDateText))\n      </h5>\n\n      <ul class=\"events-home__list\">\n\t\t\t\t<li class=\"events-home__event\" v-for=\"event in events\">\n\t\t\t\t\t<h6 class=\"events-home__title\">\n            <a href=\"javascript:void(0);\">\n              ((event.event_title))\n            </a>\n\t\t\t\t\t</h6>\n\n\t\t\t\t\t<dl>\n\t\t\t\t\t\t<dt class=\"events-home__label\">\n              time\n            </dt>\n\t\t\t\t\t\t<dd class=\"events-home__time\" v-if=\"event.event_end_time\">\n              ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))\n            </dd>\n\t\t\t\t\t\t<dd class=\"events-home__time\" v-else=\"\">\n              ((event.event_start_time | momentHomeTime ))\n            </dd>\n\t\t\t\t\t\t<dt class=\"events-home__label\">\n              location\n            </dt>\n\t\t\t\t\t\t<dd class=\"events-home__location\">\n              ((event.event_room_name))\n            </dd>\n\t\t\t\t\t</dl>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</template>\n\t\t<a class=\"more-link\" href=\"/news-events/events\">\n      All Events\n      <i class=\"fa fa-angle-double-right\"></i>\n    </a>\n\t</section>\n\n\n\t<section class=\"events-home workshops\">\n\t\t<h4 class=\"lead-in\">\n      <a class=\"events-home__heading-link\" href=\"/news-events/events\">\n        Workshops &amp; Classes\n      </a>\n\t\t</h4>\n\n\n\t\t<div v-show=\"showNoEventsMessage\">\n\t\t\tloading...\n\t\t</div>\n\n\n\t\t<template v-for=\"(date, events) in allEvents | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'\">\n\t\t\t<h5 class=\"events-home__day\">\n        ((date | momentHomeDateText))\n      </h5>\n\n\t\t\t<ul class=\"events-home__list\">\n\t\t\t\t<li class=\"events-home__event\" v-for=\"event in events\">\n\t\t\t\t\t<h6 class=\"events-home__title\">\n            <a href=\"javascript:void(0);\">\n              ((event.event_title))\n            </a>\n\t\t\t\t\t</h6>\n\n\n\t\t\t\t\t<dl>\n\t\t\t\t\t\t<dt class=\"events-home__label\">\n              time\n            </dt>\n\t\t\t\t\t\t<dd class=\"events-home__time\" v-if=\"event.event_end_time\">\n              ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))\n            </dd>\n\t\t\t\t\t\t<dd class=\"events-home__time\" v-else=\"\">\n              ((event.event_start_time | momentHomeTime ))\n            </dd>\n\t\t\t\t\t\t<dt class=\"events-home__label\">\n              location\n            </dt>\n\t\t\t\t\t\t<dd class=\"events-home__location\">\n              ((event.event_room_name))\n            </dd>\n\t\t\t\t\t</dl>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</template>\n\t\t<a class=\"more-link\" href=\"/news-events/events\" v-on:click=\"setFilterCookie()\">\n      All Workshops &amp; Classes\n      <i class=\"fa fa-angle-double-right\"></i>\n    </a>\n\t</section>\n</div>\n";
+	module.exports = "<div id=\"events-container\">\n\t<section class=\"events-home\">\n\t\t<h4 class=\"events-home__heading lead-in\">\n      <a class=\"events-home__heading-link\" href=\"/news-events/events\">\n        Events &amp; Exhibits\n      </a>\n\t\t</h4>\n\n\t\t<div v-show=\"showNoEventsMessage\">\n\t\t\tloading...\n\t\t</div>\n\n\t\t<template v-for=\"(date, events) in allEvents | limitListFilter 3 | groupBy 'event_start'\">\n\t\t\t<h5 class=\"events-home__day\">\n        ((date | momentHomeDateText))\n      </h5>\n\n      <ul class=\"events-home__list\">\n\t\t\t\t<li class=\"events-home__event\" v-for=\"event in events\">\n\t\t\t\t\t<h6 class=\"events-home__title\">\n            <a href=\"javascript:void(0);\">\n              ((event.event_title))\n            </a>\n\t\t\t\t\t</h6>\n\n\t\t\t\t\t<dl>\n\t\t\t\t\t\t<dt class=\"events-home__label\">\n              time\n            </dt>\n\t\t\t\t\t\t<dd class=\"events-home__time\" v-if=\"event.event_end_time\">\n              ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))\n            </dd>\n\t\t\t\t\t\t<dd class=\"events-home__time\" v-else=\"\">\n              ((event.event_start_time | momentHomeTime ))\n            </dd>\n\t\t\t\t\t\t<dt class=\"events-home__label\">\n              location\n            </dt>\n\t\t\t\t\t\t<dd class=\"events-home__location\">\n              ((event.event_room_name))\n            </dd>\n\t\t\t\t\t</dl>\n\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</template>\n\n\t\t<a class=\"more-link\" href=\"/news-events/events\">\n      All Events\n      <i class=\"fa fa-angle-double-right\"></i>\n\t\t</a>\n\n\t</section>\n\n\t<section class=\"events-home workshops\">\n\t\t<h4 class=\"lead-in\">\n      <a class=\"events-home__heading-link\" href=\"/news-events/events\">\n        Workshops &amp; Classes\n      </a>\n\t\t</h4>\n\n\t\t<div v-show=\"showNoEventsMessage\">\n\t\t\tloading...\n\t\t</div>\n\n\t\t<template v-for=\"(date, events) in allEvents | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'\">\n\t\t\t<h5 class=\"events-home__day\">\n        ((date | momentHomeDateText))\n      </h5>\n\n\t\t\t<ul class=\"events-home__list\">\n\t\t\t\t<li class=\"events-home__event\" v-for=\"event in events\">\n\t\t\t\t\t<h6 class=\"events-home__title\">\n            <a href=\"javascript:void(0);\">\n              ((event.event_title))\n            </a>\n\t\t\t\t\t</h6>\n\n\t\t\t\t\t<dl>\n\t\t\t\t\t\t<dt class=\"events-home__label\">\n              time\n            </dt>\n\t\t\t\t\t\t<dd class=\"events-home__time\" v-if=\"event.event_end_time\">\n              ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))\n            </dd>\n\t\t\t\t\t\t<dd class=\"events-home__time\" v-else=\"\">\n              ((event.event_start_time | momentHomeTime ))\n            </dd>\n\t\t\t\t\t\t<dt class=\"events-home__label\">\n              location\n            </dt>\n\t\t\t\t\t\t<dd class=\"events-home__location\">\n              ((event.event_room_name))\n            </dd>\n\t\t\t\t\t</dl>\n\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</template>\n\n\t\t<a class=\"more-link\" href=\"/news-events/events\" v-on:click=\"setFilterCookie()\">\n      All Workshops &amp; Classes\n      <i class=\"fa fa-angle-double-right\"></i>\n    </a>\n\n\t</section>\n</div>\n";
 
 /***/ }
 /******/ ]);

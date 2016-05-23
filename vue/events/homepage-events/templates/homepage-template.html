@@ -6,11 +6,9 @@
       </a>
 		</h4>
 
-
 		<div v-show="showNoEventsMessage">
 			loading...
 		</div>
-
 
 		<template v-for="(date, events) in allEvents | limitListFilter 3 | groupBy 'event_start'">
 			<h5 class="events-home__day">
@@ -42,15 +40,17 @@
               ((event.event_room_name))
             </dd>
 					</dl>
+
 				</li>
 			</ul>
 		</template>
+
 		<a class="more-link" href="/news-events/events">
       All Events
       <i class="fa fa-angle-double-right"></i>
-    </a>
-	</section>
+		</a>
 
+	</section>
 
 	<section class="events-home workshops">
 		<h4 class="lead-in">
@@ -59,11 +59,9 @@
       </a>
 		</h4>
 
-
 		<div v-show="showNoEventsMessage">
 			loading...
 		</div>
-
 
 		<template v-for="(date, events) in allEvents | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'">
 			<h5 class="events-home__day">
@@ -77,7 +75,6 @@
               ((event.event_title))
             </a>
 					</h6>
-
 
 					<dl>
 						<dt class="events-home__label">
@@ -96,12 +93,15 @@
               ((event.event_room_name))
             </dd>
 					</dl>
+
 				</li>
 			</ul>
 		</template>
+
 		<a class="more-link" href="/news-events/events" v-on:click="setFilterCookie()">
       All Workshops &amp; Classes
       <i class="fa fa-angle-double-right"></i>
     </a>
+
 	</section>
 </div>

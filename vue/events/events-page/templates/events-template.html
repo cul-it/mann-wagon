@@ -14,14 +14,12 @@
           <i class="fa fa-caret-right"></i>
         </button>
 			</div>
+
 			<!-- Tab panes -->
-
-
 			<div class="tab-content">
 				<div v-show="showNoEventsMessage">
 					loading...
 				</div>
-
 
 				<div class="events__per-day" v-for="(date, events) in allEvents | filterBy searchText | roomFilter room | eventTypeFilter eventType | limitListFilter limitList | groupBy 'event_start'">
 					<h2 class="events__date-heading">
@@ -31,7 +29,6 @@
             </span>
           </h2>
 
-
 					<div id="events">
 						<div class="event" v-for="event in events">
 							<h3 class="event__title">
@@ -40,10 +37,10 @@
 
 							<div class="event__details">
 
-              	<span class="time" v-if="event.event_end_time">
-                  <i class="fa fa-clock-o"></i>
-                  ((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))
-                </span>
+								<span class="time" v-if="event.event_end_time">
+									<i class="fa fa-clock-o"></i>
+										((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))
+								</span>
 
                 <span class="time" v-else="">
                   <i class="fa fa-clock-o"></i>
@@ -57,7 +54,7 @@
 
               </div>
 
-							<description :description-text = "(( event.event_description ))" word-limit = 20></description>
+							<description :description-text = "(( event.event_description ))" word-limit = "20"></description>
 
 							<span class="event__type badge-notice" v-for="type in event.event_type">
                 ((type))
@@ -67,11 +64,9 @@
 					</div>
 				</div>
 
-
 				<div v-if="filteredEvents.length == 0" v-show="!showNoEventsMessage">
           No events for selection...
 				</div>
-
 
 				<h6>
           <a v-if="allEvents.length &gt; limitList" v-on:click="loadMoreEvents()">
@@ -83,7 +78,6 @@
 		</div>
 	</div>
 
-
 	<div class="events-filters">
 		<a href="#">
       <button>
@@ -93,7 +87,6 @@
 
 		<div id="datepicker" v-datepicker="">
 		</div>
-
 
 		<div class="events-filters__selected-date">
 			((dateSelected | momentDate))
@@ -118,7 +111,6 @@
       Type
     </h6>
 
-
 		<ul data-filter-group="type">
 			<li v-for="event_type of allEventTypes | orderBy 'eventType'">
 				<a class="filter" v-bind:class="{ 'selected-filter': event_type == eventSelected }" v-on:click="setEventTypeFilter(event_type)">
@@ -128,7 +120,6 @@
         </a>
 			</li>
 		</ul>
-
 
 		<h6 class="events-filters__type">
       Space/Room
