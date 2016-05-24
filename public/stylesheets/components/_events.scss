@@ -49,10 +49,10 @@
 }
 
 .events-filters {
-  padding-left: .5em;
-
   @include susy-breakpoint($tablet, $g-tablet) {
     @include span(last 3);
+
+    padding-left: 1.5em;
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {

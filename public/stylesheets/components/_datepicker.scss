@@ -2,8 +2,11 @@
   margin-top: 1em;
 }
 
+.ui-datepicker-header {
+  text-align: right;
+}
+
 .ui-datepicker-prev {
-  margin-left: 3em;
   &:before {
     content: "<<";
   }
