@@ -42077,7 +42077,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "/Users/tap87/Sites/mann-wagon/vue/events/homepage-events/components/HomepageEvents.vue"
+	  var id = "./HomepageEvents.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {

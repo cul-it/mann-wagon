@@ -13,6 +13,3 @@ npm-debug.log
 # Vendorized Sass
 public/stylesheets/vendor/*
 !public/stylesheets/vendor/.gitkeep
-
-#Vendorized Vue
-public/javascripts/vendor/*
