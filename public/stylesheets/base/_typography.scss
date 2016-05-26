@@ -19,6 +19,10 @@ h6 {
   color: color('headings');
 }
 
+.page-subheading {
+  margin-top: 2em;
+}
+
 // Utility class for child anchors to inherit parent color
 // -- i.e. don't use the $action-color for these links
 .link--no-color {

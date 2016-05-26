@@ -1,0 +1,29 @@
+<table class="staff-directory__staff">
+  <thead>
+    <tr>
+      <th>Name</th>
+      {% unless current_division %}
+        <th>Division</th>
+      {% endunless %}
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% comment %} Again with the diff truthy/falsy diff between engine and wagon... the first test for false should suffice in an ideal world{% endcomment %}
+    {% if current_division %}
+      {% with_scope division: current_division, division_head: true %}
+        {% include 'staff-directory-body' %}
+      {% endwith_scope %}
+      {% with_scope imposter: false, imposter: nil, division: current_division, division_head: false, division_head: nil %}
+        {% include 'staff-directory-body' %}
+      {% endwith_scope %}
+    {% else %}
+      {% with_scope imposter: false, imposter: nil %}
+        {% include 'staff-directory-body' %}
+      {% endwith_scope %}
+    {% endif %}
+
+  </tbody>
+</table>

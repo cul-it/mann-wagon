@@ -1,0 +1,28 @@
+.staff-directory__divisions {
+
+}
+
+.staff-directory__staff {
+  font-size: modular-scale(-2);
+  line-height: modular-scale(0);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    font-size: modular-scale(-1);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    font-size: modular-scale(0);
+  }
+
+  tbody {
+    tr {
+      &:nth-of-type(odd) {
+        background: color('alabaster');
+      }
+    }
+
+    td {
+      border-bottom-color: color('barely-gray');
+    }
+  }
+}

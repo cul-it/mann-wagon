@@ -18,30 +18,15 @@ editable_elements:
     Page content here
     {% endeditable_text %}
 
-    <table class="ui single line table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Division</th>
-          <th>Email</th>
-          <th>Phone</th>
-        </tr>
-      </thead>
+    <h3 class="page-subheading">Divisions</h3>
 
-      <tbody>
-        {% comment %} Again with the diff truthy/falsy diff between engine and wagon... the first test for false should suffice in an ideal world{% endcomment %}
-        {% with_scope imposter: false, imposter: nil %}
-          {% for person in contents.staff %}
-            <tr>
-              <td>{{ person.last_name }}, {{ person.first_name }}</td>
-              <td>{{ person.division.name }}</td>
-              <td><a href="mailto:{{ person.netid }}@cornell.edu" title="Email {{ person.first_name }}">{{ person.netid }}</a></td>
-              <td>607-25{{ person.phone }}</td>
-            </tr>
-          {% endfor %}
-        {% endwith_scope %}
-      </tbody>
-    </table>
+    <ul class="staff-directory__divisions bulleted">
+      {% for division in contents.divisions %}
+        <li><a href="{% path_to division %}" title="Learn more about {{ division.name }}">{{ division.name }}</a></li>
+      {% endfor %}
+    </ul>
+
+    {% include 'staff-directory' %}
   </div>
 
   {% include 'section-nav' %}

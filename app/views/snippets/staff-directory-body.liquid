@@ -1,0 +1,10 @@
+{% for person in contents.staff %}
+  <tr>
+    <td>{{ person.last_name }}, {{ person.first_name }}</td>
+    {% unless current_division %}
+      <td>{{ person.division.name }}</td>
+    {% endunless %}
+    <td><a href="mailto:{{ person.netid }}@cornell.edu" title="Email {{ person.first_name }}">{{ person.netid }}</a></td>
+    <td>607-25{{ person.phone }}</td>
+  </tr>
+{% endfor %}
