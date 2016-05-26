@@ -1,6 +1,9 @@
 {% for person in contents.staff %}
   <tr>
-    <td>{{ person.last_name }}, {{ person.first_name }}</td>
+    <td>
+      <strong>{{ person.last_name }}, {{ person.first_name }}</strong>
+      <span class="staff-directory__position">{{ person.title }}</span>
+    </td>
     {% unless current_division %}
       <td>{{ person.division.name }}</td>
     {% endunless %}

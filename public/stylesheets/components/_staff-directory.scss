@@ -26,3 +26,9 @@
     }
   }
 }
+
+.staff-directory__position {
+  display: block;
+  font-size: modular-scale(-1);
+  color: color('medium-gray');
+}
