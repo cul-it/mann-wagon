@@ -1,0 +1,135 @@
+# Human readable name of this type
+name: Purchase Requests
+
+# Lowercase, underscored handle used to access this type
+slug: purchase_requests
+
+# Explanatory text displayed in the back-office
+description: Purchase requests submitted via the website
+
+# Slug of field used to identify entries by default, such as the title
+label_field_name: publication_title
+
+# Valid values: manually, created_at, updated_at, or the slug of any field
+order_by: manually
+
+# Valid values: asc (ascending) and desc (descending). Set to asc by default.
+# order_direction: asc
+
+# Specify a field slug to group entries by that field in the back-office.
+# group_by: <your field>
+
+# Activate public 'create' API (e.g for a contact form)
+public_submission_enabled: true
+
+# Array of emails to be notified of new entries made with the public API
+# public_submission_accounts: ['john@example.com']
+
+# Control the display of the content type in the back-office.
+# display_settings:
+#   seo: false              # display the SEO tab for the content entries
+#   advanced: false         # display the Advanced tab for the content entries
+#   position: 1             # position in the sidebar menu
+#   hidden: false           # hidden for authors?
+
+# By default, the back-office displays the _label property (see label_field_name) of the content entry. This can be modified by writing your own Liquid template below:
+# entry_template: '<a href="{{ link }}">{{ entry._label }}</a>' # The default template
+
+# A list describing each field
+fields:
+- publication_title: # The lowercase, underscored name of the field
+    label: Publication Title # Human readable name of the field
+    type: string
+    required: true
+    localized: false
+
+- author_editor: # The lowercase, underscored name of the field
+    label: Author/Editor # Human readable name of the field
+    type: string
+    required: false
+    localized: false
+
+- publication_date: # The lowercase, underscored name of the field
+    label: Publication Date # Human readable name of the field
+    type: string
+    required: false
+    localized: false
+
+- edition: # The lowercase, underscored name of the field
+    label: Edition # Human readable name of the field
+    type: string
+    required: false
+    localized: false
+
+- series: # The lowercase, underscored name of the field
+    label: Series # Human readable name of the field
+    type: string
+    required: false
+    hint: Explanatory text displayed in the back office
+    localized: false
+
+- isbn: # The lowercase, underscored name of the field
+    label: ISBN # Human readable name of the field
+    type: integer
+    required: false
+    localized: false
+
+- issn: # The lowercase, underscored name of the field
+    label: ISSN # Human readable name of the field
+    type: integer
+    required: false
+    localized: false
+
+- price: # The lowercase, underscored name of the field
+    label: Price # Human readable name of the field
+    type: integer
+    required: false
+    localized: false
+
+- format: # The lowercase, underscored name of the field
+    label: Format # Human readable name of the field
+    type: select
+    required: false
+    localized: false    # if localized, use
+    #   en: ['option1_en', 'option2_en']
+    #   fr: ['option1_fr', 'option2_fr']
+    select_options: ['Print', 'Electronic', 'DVD', 'VHS', 'Other']
+
+- comments: # The lowercase, underscored name of the field
+    label: Comments # Human readable name of the field
+    type: text
+    required: false
+    localized: false
+
+- full_name: # The lowercase, underscored name of the field
+    label: Full Name # Human readable name of the field
+    type: string
+    required: true
+    localized: false
+
+- phone_number: # The lowercase, underscored name of the field
+    label: Phone Number # Human readable name of the field
+    type: string
+    required: true
+    localized: false
+
+- email_address: # The lowercase, underscored name of the field
+    label: Email Address # Human readable name of the field
+    type: string
+    required: true
+    localized: false
+
+- department: # The lowercase, underscored name of the field
+    label: Department # Human readable name of the field
+    type: string
+    required: false
+    localized: false
+
+- cornell_affiliation: # The lowercase, underscored name of the field
+    label: Cornell Affiliation # Human readable name of the field
+    type: select
+    required: false
+    localized: false    # if localized, use
+    #   en: ['option1_en', 'option2_en']
+    #   fr: ['option1_fr', 'option2_fr']
+    select_options: ['Undergraduate Student', 'Graudate Student', 'Faculty', 'Staff']

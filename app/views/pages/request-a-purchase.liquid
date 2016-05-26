@@ -1,0 +1,125 @@
+---
+title: Request-a-purchase
+slug: request-a-purchase
+position: 101
+listed: false
+published: true
+is_layout: false
+---
+{% extends layouts/landing %}
+
+{% block main %}
+
+{% model_form 'purchase_requests', success: '/request-a-purchase', error: '/request-a-purchase', class: "ui error success form" %}
+
+    {% if purchase_request.errors.size > 0 %}
+      <div class="ui error message">
+        <div class="header">The following errors occured:</div>
+        <ul class="list">
+          {% for error in purchase_request.errors %}
+            <li>{{error[0] | capitalize}} -  {{error[1]}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% elsif purchase_request.errors.size == 0 %}
+        <div class="ui success message">
+          <div class="header">Form Completed</div>
+          <p>Your request has been submitted.</p>
+        </div>
+    {% endif %}
+
+    <h4 class="ui dividing header">Order Information</h4>
+    <div class="eight wide field required">
+        <label>Publication Title:</label>
+        <input type="text" name="content[publication_title]" value="{{purchase_request.publication_title}}">
+    </div>
+    <div class="four wide field">
+      <label>Author/Editor:</label>
+      <input type="text" name="content[author_editor]" value="{{purchase_request.author_editor}}">
+    </div>
+    <div class="fields">
+      <div class="field">
+        <label>Publication Date:</label>
+        <input type="date" name="content[publication_date]" value="{{purchase_request.publication_date}}">
+      </div>
+      <div class="field">
+        <label>Edition:</label>
+        <input type="text" name="content[edition]" value="{{purchase_request.edition}}">
+      </div>
+      <div class="field">
+        <label>Series:</label>
+        <input type="text" name="content[series]" value="{{purchase_request.series}}">
+      </div>
+    </div>
+    <div class="fields">
+      <div class="field">
+        <label>ISBN:</label>
+        <input type="text" name="content[isbn]" value="{{purchase_request.isbn}}">
+      </div>
+      <div class="field">
+        <label>ISSN:</label>
+        <input type="text" name="content[issn]" value="{{purchase_request.issn}}">
+      </div>
+    </div>
+    <div class="two wide field">
+      <label>Price:</label>
+      <div class="ui labeled input">
+        <div class="ui label">$</div>
+        <input type="text" name="content[price]" value="{{purchase_request.price}}">
+      </div>
+    </div>
+      <div class="grouped fields">
+        <label>Format:</label>
+        {% for option in contents.purchase_requests.format_options %}
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="content[format]" value="{{option}}">
+            <label>{{option}}</label>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    <div class="eight wide field">
+      <label>Comments:</label>
+      <textarea rows="3" name="content[comments]">{{customer_message.comments}}</textarea></label>
+    </div>
+    <h4 class="ui dividing header">Your Contact Information</h4>
+    <div class="four wide field required">
+      <label>Full Name:</label>
+      <input type="text" name="content[full_name]" value="{{purchase_request.full_name}}">
+    </div>
+    <div class="fields">
+      <div class="three wide field required">
+        <label>Phone Number:</label>
+        <div class="ui labeled input">
+          <div class="ui label">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+          </div>
+          <input type="tel" name="content[phone_number]" value="{{purchase_request.phone_number}}">
+        </div>
+      </div>
+      <div class="three wide field required">
+        <label>Email Address:</label>
+        <input type="text" name="content[email_address]" value="{{purchase_request.email_address}}">
+      </div>
+
+    </div>
+    <div class="four wide field">
+      <label>Department:</label>
+      <input type="text" name="content[department]" value="{{purchase_request.department}}">
+    </div>
+    <div class="grouped fields">
+      <label>Cornell Affiliation:</label>
+      {% for option in contents.purchase_requests.cornell_affiliation_options %}
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input type="radio" name="content[cornell_affiliation]" value="{{option}}">
+          <label>{{option}}</label>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <button type="submit" class="ui submit button">Submit</button>
+  {% endmodel_form %}
+
+{% endblock %}
