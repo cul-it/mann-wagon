@@ -10,7 +10,7 @@ is_layout: false
 
 {% block main %}
 
-{% model_form 'purchase_requests', success: '/request-a-purchase', error: '/request-a-purchase', class: "ui error success form" %}
+{% model_form 'purchase_requests', success: '/request-a-purchase', error: '/request-a-purchase', id: "purchaseRequestForm", class: "ui error success form" %}
 
     {% if purchase_request.errors.size > 0 %}
       <div class="ui error message">
@@ -122,4 +122,5 @@ is_layout: false
     <button type="submit" class="ui submit button">Submit</button>
   {% endmodel_form %}
 
+  {{ 'purchase-request-validation.js' | javascript_tag }}
 {% endblock %}
