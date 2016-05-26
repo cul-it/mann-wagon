@@ -119,3 +119,10 @@ fields:
     class_name: departments
     inverse_of: liaison
     ui_enabled: true
+
+- imposter: # The lowercase, underscored name of the field
+    label: Not Mann staff? # Human readable name of the field
+    type: boolean
+    required: true
+    hint: For those exceptions who are liaisons to CALS/CHE depts but not actually Mann staff - won't be included in staff directory listing
+    localized: false

@@ -15,8 +15,6 @@ module.exports = {
       eventsPage: "./vue/events/events-page/events-page.js",
       homePageEvents: "./vue/events/homepage-events/homepage-events.js"
   },
-
-  // Vendorize the mixins & libraries
   output: {
     path: path.join(__dirname, 'public', 'javascripts'),
     filename: "[name].bundle.js",
@@ -35,6 +33,7 @@ module.exports = {
         }
       ]
     },
+  // Vendorize the Sass mixins & libraries
   plugins: [
     new CopyWebpackPlugin([
       // Accoutrement Color
