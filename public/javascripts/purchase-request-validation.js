@@ -76,7 +76,7 @@ $(document).ready(function () {
              $parent.removeClass('has-success');
 
              // Hide the success icon
-             data.element.data('fv.icon').hide();
+            //  data.element.data('fv.icon').hide();
          }
      });
 });
