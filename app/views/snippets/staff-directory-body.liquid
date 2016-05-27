@@ -6,11 +6,13 @@
     </td>
     {% unless current_division %}
       <td>
-        {% if person.division.name contains 'ITS' %}
-          ITS
-        {% else %}
-          {{ person.division.name }}
-        {% endif %}
+        <a href="{% path_to person.division %}" title="Learn more about {{ person.division.name }}">
+          {% if person.division.name contains 'ITS' %}
+            ITS
+          {% else %}
+            {{ person.division.name }}
+          {% endif %}
+        </a>
       </td>
     {% endunless %}
     <td><a href="mailto:{{ person.netid }}@cornell.edu" title="Email {{ person.first_name }}">{{ person.netid }}</a></td>
