@@ -11,16 +11,18 @@
   </thead>
 
   <tbody>
-    {% comment %} Again with the diff truthy/falsy diff between engine and wagon... the first test for false should suffice in an ideal world{% endcomment %}
     {% if current_division %}
       {% with_scope division: current_division, division_head: true %}
         {% include 'staff-directory-body' %}
       {% endwith_scope %}
-      {% with_scope imposter: false, imposter: nil, division: current_division, division_head: false, division_head: nil %}
+
+      {% comment %} Since there are differences in evaluating falsy btw Engine and Wagon, the key is to test != TRUE {% endcomment %}
+      {% comment %} https://github.com/locomotivecms/steam/blob/2e1b6b821d8e0008dd6b9f616e153b9e9b1e980a/lib/locomotive/steam/adapters/memory/condition.rb#L28 {% endcomment %}
+      {% with_scope division: current_division, division_head.ne: true %}
         {% include 'staff-directory-body' %}
       {% endwith_scope %}
     {% else %}
-      {% with_scope imposter: false, imposter: nil %}
+      {% with_scope imposter.ne: true %}
         {% include 'staff-directory-body' %}
       {% endwith_scope %}
     {% endif %}
