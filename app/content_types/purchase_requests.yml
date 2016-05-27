@@ -70,13 +70,13 @@ fields:
 
 - isbn: # The lowercase, underscored name of the field
     label: ISBN # Human readable name of the field
-    type: integer
+    type: string
     required: false
     localized: false
 
 - issn: # The lowercase, underscored name of the field
     label: ISSN # Human readable name of the field
-    type: integer
+    type: string
     required: false
     localized: false
 
