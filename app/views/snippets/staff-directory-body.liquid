@@ -1,0 +1,21 @@
+{% for person in contents.staff %}
+  <tr>
+    <td>
+      <strong>{{ person.last_name }}, {{ person.first_name }}</strong>
+      <span class="staff-directory__position">{{ person.title }}</span>
+    </td>
+    {% unless current_division %}
+      <td>
+        <a href="{% path_to person.division %}" title="Learn more about {{ person.division.name }}">
+          {% if person.division.name contains 'ITS' %}
+            ITS
+          {% else %}
+            {{ person.division.name }}
+          {% endif %}
+        </a>
+      </td>
+    {% endunless %}
+    <td>{{ person.netid }}</td>
+    <td>607-25{{ person.phone }}</td>
+  </tr>
+{% endfor %}

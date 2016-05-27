@@ -1,0 +1,12 @@
+---
+title: Spaces Type template page
+content_type: divisions
+---
+{% extends layouts/default %}
+
+{% block main %}
+
+  {% assign current_division = division %}
+
+  {% include 'staff-directory' %}
+{% endblock %}

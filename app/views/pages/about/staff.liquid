@@ -1,0 +1,59 @@
+---
+title: Organization & Staff
+slug: staff
+handle: staff
+position: 1
+listed: true
+published: true
+is_layout: false
+editable_elements:
+  main/page_content: Page content here
+
+---
+{% extends "layouts/default" %}
+
+{% block main %}
+  <div class="page-content">
+    {% editable_text "page_content", hint: "Keep it short and sweet" %}
+    Page content here
+    {% endeditable_text %}
+
+    <h3 class="page-subheading">Divisions</h3>
+
+    <ul class="staff-directory__divisions bulleted">
+      {% for division in contents.divisions %}
+        <li><a href="{% path_to division %}" title="Learn more about {{ division.name }}">{{ division.name }}</a></li>
+      {% endfor %}
+    </ul>
+
+    {% include 'staff-directory' %}
+  </div>
+
+  {% include 'section-nav' %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
