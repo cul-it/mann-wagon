@@ -1,7 +1,3 @@
-.staff-directory__divisions {
-
-}
-
 .staff-directory__staff {
   font-size: modular-scale(-2);
   line-height: modular-scale(0);
@@ -25,6 +21,11 @@
       border-bottom-color: color('barely-gray');
     }
   }
+}
+
+.staff-directory__email-hint {
+  font-size: modular-scale(-1);
+  color: color('medium-gray');
 }
 
 .staff-directory__position {
