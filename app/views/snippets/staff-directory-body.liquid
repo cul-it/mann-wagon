@@ -5,7 +5,13 @@
       <span class="staff-directory__position">{{ person.title }}</span>
     </td>
     {% unless current_division %}
-      <td>{{ person.division.name }}</td>
+      <td>
+        {% if person.division.name contains 'ITS' %}
+          ITS
+        {% else %}
+          {{ person.division.name }}
+        {% endif %}
+      </td>
     {% endunless %}
     <td><a href="mailto:{{ person.netid }}@cornell.edu" title="Email {{ person.first_name }}">{{ person.netid }}</a></td>
     <td>607-25{{ person.phone }}</td>
