@@ -9,7 +9,7 @@ is_layout: false
 ---
 {% extends layouts/landing %}
 
-{% block main %}
+{% block 'main' %}
 
 {% model_form 'purchase_requests', success: '/request-a-purchase', error: '/request-a-purchase', id: "purchaseRequestForm", class: "ui error success form" %}
 
