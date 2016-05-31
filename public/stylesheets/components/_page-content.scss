@@ -23,3 +23,7 @@
     float: left;
   }
 }
+
+.page-content--dynamic {
+  @include span(full);
+}

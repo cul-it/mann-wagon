@@ -7,7 +7,7 @@ position: 1
 ---
 {% extends parent %}
 
-{% block main %}
+{% block 'main' %}
 .page-content
   {% for project in contents.projects %}
   %h3 <a href="{{ project.url }}">{{ project.title }}</a>

@@ -33,11 +33,11 @@ is_layout: false
   %body{class: "body-{{ page.slug }}"}
     {% include 'header' %}
     %main
-      {% block heading %}
+      {% block 'heading' %}
       {% include 'breadcrumbs-heading' %}
       {% endblock %}
 
-      {% block main %}
+      {% block 'main' %}
       {% endblock %}
     {% include 'footer' %}
 
