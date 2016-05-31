@@ -8,28 +8,21 @@ published: true
 is_layout: false
 editable_elements:
   main/page_content: Page content here
-
 ---
-{% extends "layouts/default" %}
+{% extends 'layouts/section' %}
 
-{% block main %}
-  <div class="page-content">
-    {% editable_text "page_content", hint: "Keep it short and sweet" %}
-    Page content here
-    {% endeditable_text %}
+{% block 'main/dynamic' %}
 
-    <h3 class="page-subheading">Divisions</h3>
+  <h3 class="page-subheading">Divisions</h3>
 
-    <ul class="staff-directory__divisions bulleted">
-      {% for division in contents.divisions %}
-        <li><a href="{% path_to division %}" title="Learn more about {{ division.name }}">{{ division.name }}</a></li>
-      {% endfor %}
-    </ul>
+  <ul class="staff-directory__divisions bulleted">
+    {% for division in contents.divisions %}
+      <li><a href="{% path_to division %}" title="Learn more about {{ division.name }}">{{ division.name }}</a></li>
+    {% endfor %}
+  </ul>
 
-    {% include 'staff-directory' %}
-  </div>
+  {% include 'staff-directory' %}
 
-  {% include 'section-nav' %}
 {% endblock %}
 
 
