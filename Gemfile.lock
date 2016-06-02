@@ -132,6 +132,7 @@ GEM
     rack-rewrite (1.5.1)
     rack_csrf (2.5.0)
       rack (>= 1.1.0)
+    rake (10.5.0)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
@@ -164,6 +165,7 @@ PLATFORMS
 DEPENDENCIES
   celluloid (= 0.16.0)
   locomotivecms_wagon (= 2.1.0)
+  rake
 
 BUNDLED WITH
    1.11.2

@@ -20,4 +20,5 @@ group :misc do
   # gem 'susy', require: 'susy'
   # gem 'redcarpet', require: 'redcarpet'
   # gem 'mann_liquid_extensions', :git => 'git@github.com:cul-it/mann_liquid_extensions', :ref => '2cacde3'
+  gem 'rake', require: 'rake'
 end
