@@ -11,17 +11,11 @@
     %h1.mann-brand__mannlib
       %a.link--no-color{title: "Home", href: "/"} {{ site.seo_title | upcase }}
 
-  %form.search{role: "search", action: "http://search.library.cornell.edu", target: "_blank"}
-    .ui.right.action.left.icon.input
+  %form.search{role: "search", action: "{% path_to search %}"}
+    .ui.left.icon.fluid.input
       %i.search.icon
       %input.search__term{type: "text", name: "q", placeholder: "Search"}
       %button.search__button{type: "button"}
-      .ui.tiny.floating.dropdown.button.search__select
-        .text Catalog
-        %i.dropdown.icon
-        .menu
-          .item.js-search-target{data: {action: "http://search.library.cornell.edu", target: "_blank"}} Catalog
-          .item.js-search-target{data: {action: "{% path_to search %}", target: "_self"}} Website
 
   .todays-hours
     %ul

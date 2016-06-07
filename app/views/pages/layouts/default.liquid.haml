@@ -14,10 +14,9 @@ is_layout: false
     %script
       try{Typekit.load({ async: true });}catch(e){}
     {{ 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' | stylesheet_tag }}
-    / TEMPORARY BRUTE FORCE OF DROPDOWN SEMANTIC-UI COMPONENT & DEPENDENCIES -- FOR SEARCH FORM & OTHERS
+    / TEMPORARY BRUTE FORCE OF SEMANTIC-UI COMPONENTs & DEPENDENCIES -- FOR SEARCH FORM & OTHERS
     {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/button.min.css' | stylesheet_tag }}
     {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/card.min.css' | stylesheet_tag }}
-    {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/dropdown.min.css' | stylesheet_tag }}
     {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/form.min.css' | stylesheet_tag }}
     {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/icon.min.css' | stylesheet_tag }}
     {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/input.min.css' | stylesheet_tag }}
@@ -43,7 +42,6 @@ is_layout: false
 
     / TEMPORARY JS FOR SEARCH FORM -- WILL BE REFACTORED TO USE WEBPACK
     {{ '//oss.maxcdn.com/semantic-ui/2.1.8/semantic.min.js' | javascript_tag }}
-    {{ 'search-select.js' | javascript_tag }}
     {{ 'spaces-popup.js' | javascript_tag }}
     / TEMPORARY JS FOR FORM VALIDATION -- WILL BE REFACTORED TO USE WEBPACK
     {{ '//oss.maxcdn.com/jquery.formvalidation/0.6.1/js/formValidation.min.js' | javascript_tag }}

@@ -14,7 +14,7 @@
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    padding-right: 10%;
+    padding-right: 7%;
 
     @include span(5 at 8);
   }
