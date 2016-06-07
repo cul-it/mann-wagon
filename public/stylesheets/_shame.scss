@@ -1,15 +1,5 @@
 // All temporary hacks here to help ensure they don't stick around
 
-.search__button {
-  height: 52px; // Match height of cu-banner
-  color: color('search-button') !important;
-  background-color: color('search-banner');
-
-  @include susy-breakpoint($tablet, $g-tablet) {
-    display: none;
-  }
-}
-
 // Pointer cursor fo all links on events page
 #events-container {
   a {

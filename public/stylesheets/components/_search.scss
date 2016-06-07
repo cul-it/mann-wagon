@@ -32,3 +32,16 @@
     width: span(4 of 5);
   }
 }
+
+.search__button {
+  height: 52px; // Match height of cu-banner
+  background-color: color('search-banner');
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    display: none;
+  }
+}
+
+.search__icon {
+  color: color('white');
+}
