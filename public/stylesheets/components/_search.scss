@@ -44,4 +44,8 @@
 
 .search__icon {
   color: color('white');
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    color: inherit;
+  }
 }
