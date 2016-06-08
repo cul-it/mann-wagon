@@ -1,0 +1,27 @@
+{% assign avail_class = 'available' %}
+{% assign unavail_class = 'unavailable' %}
+{% assign avail_icon = 'fa-check-square' %}
+{% assign unavail_icon = 'fa-minus-square' %}
+{% assign avail_badge = 'badge-success' %}
+{% assign unavail_badge = 'badge-error' %}
+
+{% assign laptops_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showLaptopInfo.do?output=json&locationId=14' %}
+
+{% consume laptops from laptops_url %}
+  {% assign winbook_avail = laptops.laptop_available | ceil %}
+  {% assign macbook_avail = laptops.macbook_available | ceil %}
+{% endconsume %}
+
+<h5 class="available-now__subheading">Desktops</h5>
+
+<ul>
+  {% include 'availnow-computers-li' with os: 'windows', available: 0 %}
+  {% include 'availnow-computers-li' with os: 'apple', available: 0 %}
+</ul>
+
+<h5 class="available-now__subheading">Laptops</h5>
+
+<ul>
+  {% include 'availnow-computers-li' with os: 'windows', available: winbook_avail %}
+  {% include 'availnow-computers-li' with os: 'apple', available: macbook_avail %}
+</ul>

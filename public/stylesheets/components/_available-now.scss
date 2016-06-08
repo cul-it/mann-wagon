@@ -110,6 +110,10 @@
   }
 }
 
+.available-now__os {
+  color: color('font-base');
+}
+
 .available-now__status {
   &--available {
     color: darken(color('success'), 50%);
