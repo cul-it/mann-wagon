@@ -57,13 +57,15 @@
 sensitive_data:
   label: Sensitive Data
   fields:
-    scrapinghub_apikey:
-      type: string
-      hint: Used to retrieve the items scraped from dev site to power temporary site search
     booked_username:
       type: string
     booked_password:
       type: string
+    labstats_customer_id:
+      type: string
     libcal_apikey:
       type: string
       hint: Used to retrieve data from libcal
+    scrapinghub_apikey:
+      type: string
+      hint: Used to retrieve the items scraped from dev site to power temporary site search

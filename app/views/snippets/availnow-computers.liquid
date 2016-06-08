@@ -5,6 +5,12 @@
 {% assign avail_badge = 'badge-success' %}
 {% assign unavail_badge = 'badge-error' %}
 
+{% assign desktops_url = 'https://online.labstats.com/api/public/GetPublicApiData/1001' %}
+
+{% consume desktops from desktops_url, auth: site.metafields.sensitive_data.labstats_customer_id %}
+  {% assign wintops_avail = desktops.available %}
+{% endconsume %}
+
 {% assign laptops_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showLaptopInfo.do?output=json&locationId=14' %}
 
 {% consume laptops from laptops_url %}
@@ -15,7 +21,7 @@
 <h5 class="available-now__subheading">Desktops</h5>
 
 <ul>
-  {% include 'availnow-computers-li' with os: 'windows', available: 0 %}
+  {% include 'availnow-computers-li' with os: 'windows', available: wintops_avail %}
   {% include 'availnow-computers-li' with os: 'apple', available: 0 %}
 </ul>
 
