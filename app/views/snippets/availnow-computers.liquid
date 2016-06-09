@@ -5,11 +5,30 @@
 {% assign avail_badge = 'badge-success' %}
 {% assign unavail_badge = 'badge-error' %}
 
-{% assign desktops_url = 'https://online.labstats.com/api/public/GetPublicApiData/1001' %}
+{% assign labstats_url = 'https://online.labstats.com/api/public/GetPublicApiData/1001' %}
 
-{% consume desktops from desktops_url, header_auth: site.metafields.sensitive_data.labstats_customer_id %}
-  {% assign wintops_avail = desktops.available %}
+{% consume desktops from labstats_url, header_auth: site.metafields.sensitive_data.labstats_customer_id %}
+  {% for location in desktops.groups %}
+    {% comment %} Waiting on Gabriel to add LabStats on the rest of the PCs & Macs in the farm, McManus, etc {% endcomment %}
+    {% case location.label %}
+      {% when 'B30A' %}
+        {% assign b30a = location %}
+      {% when 'B30B' %}
+        {% assign b30b = location %}
+      {% when 'CIT 101' %}
+        {% assign cit_101 = location %}
+      {% when 'CIT 112' %}
+        {% assign cit_112 = location %}
+      {% when 'CIT Mac 220A' %}
+        {% assign cit_mac_220a = location %}
+      {% when 'Stone' %}
+        {% assign stone = location %}
+    {% endcase %}
+  {% endfor %}
 {% endconsume %}
+
+{% assign windows_avail = b30a.available | plus: b30b.available | plus: cit_101.available | plus: cit_112.available | plus: stone.available %}
+{% assign macs_avail = cit_mac_220a.available %}
 
 {% assign laptops_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showLaptopInfo.do?output=json&locationId=14' %}
 
@@ -21,8 +40,8 @@
 <h5 class="available-now__subheading">Desktops</h5>
 
 <ul>
-  {% include 'availnow-computers-li' with os: 'windows', available: wintops_avail %}
-  {% include 'availnow-computers-li' with os: 'apple', available: 0 %}
+  {% include 'availnow-computers-li' with os: 'windows', available: windows_avail %}
+  {% include 'availnow-computers-li' with os: 'apple', available: macs_avail %}
 </ul>
 
 <h5 class="available-now__subheading">Laptops</h5>
