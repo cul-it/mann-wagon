@@ -7,7 +7,7 @@
 
 {% assign desktops_url = 'https://online.labstats.com/api/public/GetPublicApiData/1001' %}
 
-{% consume desktops from desktops_url, auth: site.metafields.sensitive_data.labstats_customer_id %}
+{% consume desktops from desktops_url, header_auth: site.metafields.sensitive_data.labstats_customer_id %}
   {% assign wintops_avail = desktops.available %}
 {% endconsume %}
 
