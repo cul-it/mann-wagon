@@ -7,8 +7,8 @@
 
 {% assign labstats_url = 'https://online.labstats.com/api/public/GetPublicApiData/1001' %}
 
-{% consume desktops from labstats_url, header_auth: site.metafields.sensitive_data.labstats_customer_id %}
-  {% for location in desktops.groups %}
+{% consume mann_desktops from labstats_url, header_auth: site.metafields.sensitive_data.labstats_customer_id %}
+  {% for location in mann_desktops.groups %}
     {% comment %} Waiting on Gabriel to add LabStats on the rest of the PCs & Macs in the farm, McManus, etc {% endcomment %}
     {% case location.label %}
       {% when 'B30A' %}
@@ -32,21 +32,21 @@
 
 {% assign laptops_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showLaptopInfo.do?output=json&locationId=14' %}
 
-{% consume laptops from laptops_url %}
-  {% assign winbook_avail = laptops.laptop_available | ceil %}
-  {% assign macbook_avail = laptops.macbook_available | ceil %}
+{% consume mann_laptops from laptops_url %}
+  {% assign winbook_avail = mann_laptops.laptop_available | ceil %}
+  {% assign macbook_avail = mann_laptops.macbook_available | ceil %}
 {% endconsume %}
 
-<h5 class="available-now__subheading">Desktops</h5>
+<h5 class="available-now__subheading"><a class="available-now__link" href="{% path_to desktops %}" title="More details about desktop computers at Mann">Desktops</a></h5>
 
 <ul>
-  {% include 'availnow-computers-li' with os: 'windows', available: windows_avail %}
-  {% include 'availnow-computers-li' with os: 'apple', available: macs_avail %}
+  {% include 'availnow-computers-li' with type: 'desktops', os: 'windows', available: windows_avail %}
+  {% include 'availnow-computers-li' with type: 'desktops', os: 'apple', available: macs_avail %}
 </ul>
 
-<h5 class="available-now__subheading">Laptops</h5>
+<h5 class="available-now__subheading"><a class="available-now__link" href="{% path_to laptops %}" title="More details about laptop computers at Mann">Laptops</a></h5>
 
 <ul>
-  {% include 'availnow-computers-li' with os: 'windows', available: winbook_avail %}
-  {% include 'availnow-computers-li' with os: 'apple', available: macbook_avail %}
+  {% include 'availnow-computers-li' with type: 'laptops', os: 'windows', available: winbook_avail %}
+  {% include 'availnow-computers-li' with type: 'laptops', os: 'apple', available: macbook_avail %}
 </ul>
