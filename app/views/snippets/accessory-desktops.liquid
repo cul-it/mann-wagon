@@ -1,0 +1,31 @@
+<h3>Current Availability</h3>
+
+{% include 'availnow-computers-setup' %}
+
+<h4 class="available-now__floor">First Floor</h4>
+
+<ul>
+  {% include 'availnow-computers-li' with location: 'Stone Classroom', os: 'windows', available: stone.available %}
+  {% include 'availnow-computers-li' with location: 'CIT Lab', os: 'windows', available: cit_112.available %}
+  {% include 'availnow-computers-li' with location: 'Stone Center', os: 'windows', available: stone_center_win %}
+  {% include 'availnow-computers-li' with location: 'Stone Center' os: 'apple', available: 0 %}
+</ul>
+
+<h4 class="available-now__floor">Second Floor</h4>
+
+<ul>
+  {% include 'availnow-computers-li' with location: 'CIT Mac Lab', os: 'apple', available: cit_mac_220a.available %}
+</ul>
+
+<h4 class="available-now__floor">Third Floor</h4>
+
+<ul>
+  {% include 'availnow-computers-li' with location: 'McManus Balcony', os: 'apple', available: 0 %}
+</ul>
+
+<h4 class="available-now__floor">Basement</h4>
+
+<ul>
+  {% include 'availnow-computers-li' with location: 'B30A Classroom', os: 'windows', available: b30a.available %}
+  {% include 'availnow-computers-li' with location: 'B30B Classroom', os: 'windows', available: b30b.available %}
+</ul>

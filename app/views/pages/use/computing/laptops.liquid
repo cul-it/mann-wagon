@@ -26,14 +26,5 @@ editable_elements:
 {% extends parent %}
 
 {% block 'main/accessory' %}
-
-  <h3>Current Availability</h3>
-
-  {% include 'availnow-computers-setup' %}
-
-  <ul>
-    {% include 'availnow-computers-li' with os: 'windows', available: winbook_avail %}
-    {% include 'availnow-computers-li' with os: 'apple', available: macbook_avail %}
-  </ul>
-
+  {% include 'accessory-laptops' %}
 {% endblock %}
