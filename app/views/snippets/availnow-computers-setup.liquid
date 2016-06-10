@@ -29,7 +29,20 @@
     {% endfor %}
   {% endconsume %}
 
-  {% assign windows_avail = b30a.available | plus: b30b.available | plus: cit_101.available | plus: cit_112.available | plus: stone.available %}
+  {% assign windows_avail = cit_101.available | plus: cit_112.available | plus: stone.available %}
+
+  {% comment %} Include B30 classrooms in total count if basement is open {% endcomment %}
+  {% if mannlib_hours.status_2319 == 'Open' %}
+    {% assign windows_avail = windows_avail | plus: b30a.available | plus: b30b.available %}
+
+    {% assign basement_status = false %}
+  {% else %}
+    {% assign b30a = nil %}
+    {% assign b30b = nil %}
+
+    {% capture basement_status %}<a href="{% path_to hours %}" title="View all hours"><span class="badge badge-error">Closed</span></a>{% endcapture %}
+  {% endif %}
+
   {% assign macs_avail = cit_mac_220a.available %}
 
   {% assign stone_center_win =  cit_101.available %}
