@@ -5,6 +5,10 @@ is_layout: true
 {% extends 'layouts/default' %}
 
 {% block 'main' %}
+.page-content--accessory<
+  {% block 'accessory', short_name: true %}
+  {% endblock %}
+
 .page-content
   {% editable_text "page_content", hint: "Keep it short and sweet" %}
   Page content here

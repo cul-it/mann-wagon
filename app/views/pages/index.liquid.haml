@@ -42,7 +42,7 @@ listed: false
     %span.available-now__datetime {{ now | date: '%-I:%M %p' }}
 
   .available-now__grp.available-now__study
-    {% include 'avail-now-study' %}
+    {% include 'availnow-study' %}
 
   .available-now__grp.available-now__consultation
     %h5.available-now__subheading Consultation
@@ -62,19 +62,7 @@ listed: false
         Knight Writing Institute
 
   .available-now__grp.available-now__computers
-    %h5.available-now__subheading Computers
-
-    %ul
-      %li.available-now__status--unavailable
-        %a.available-now__link{href: "{% path_to desktops %}"}
-          %i.fa.fa-fw.fa-minus-square
-          Desktops
-          %span.badge.badge-error 0
-      %li.available-now__status--available
-        %a.available-now__link{href: "{% path_to laptops %}"}
-          %i.fa.fa-fw.fa-check-square
-          Laptops
-          %span.badge.badge-success 27
+    {% include 'availnow-computers' %}
 
 %events{"booked-username" => "{{site.metafields.sensitive_data.booked_username}}", "booked-password" => "{{site.metafields.sensitive_data.booked_password}}"}
 

@@ -7,7 +7,7 @@
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(6);
+    @include span(5);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
@@ -26,4 +26,32 @@
 
 .page-content--dynamic {
   @include span(full);
+}
+
+.page-content--accessory {
+  background: color('alabaster');
+  @include border-top-radius(5px);
+  @include border-bottom-radius(5px);
+
+  @include span(full);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    margin-top: 0;
+    @include span(last 2);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(last 3);
+
+    font-size: modular-scale(0);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(last 3);
+  }
+
+  &:not(:empty) {
+    margin-bottom: 1em;
+    padding: .5em .7em;
+  }
 }
