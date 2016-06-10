@@ -7,7 +7,7 @@
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(6);
+    @include span(5);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
@@ -41,7 +41,7 @@
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(last 2);
+    @include span(last 3);
 
     font-size: modular-scale(0);
   }

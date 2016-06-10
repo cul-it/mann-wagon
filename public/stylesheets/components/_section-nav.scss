@@ -13,7 +13,7 @@
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(last 2);
+    @include span(last 3);
 
     font-size: modular-scale(0);
   }
