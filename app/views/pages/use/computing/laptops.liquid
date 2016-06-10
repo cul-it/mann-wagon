@@ -27,37 +27,13 @@ editable_elements:
 
 {% block 'main/accessory' %}
 
-  <div class="computer-availability">
-    <h3>Current Availability</h3>
+  <h3>Current Availability</h3>
 
-    {% include 'availnow-computers-setup' %}
+  {% include 'availnow-computers-setup' %}
 
-    <ul>
-      {% include 'availnow-computers-li' with type: 'laptops', os: 'windows', available: winbook_avail %}
-      {% include 'availnow-computers-li' with type: 'laptops', os: 'apple', available: macbook_avail %}
-    </ul>
-  </div>
+  <ul>
+    {% include 'availnow-computers-li' with os: 'windows', available: winbook_avail %}
+    {% include 'availnow-computers-li' with os: 'apple', available: macbook_avail %}
+  </ul>
 
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,90 @@
+---
+title: Desktops
+slug: desktops
+handle: desktops
+position: 2
+listed: true
+published: true
+is_layout: false
+editable_elements:
+  main/page_content: "<p>The <strong>John Lemuel Stone Computing Center</strong> (<a
+    rel=\"nofollow\" href=\"http://smartmap.mannlib.cornell.edu/location/John%20Lemuel%20Stone%20Computing%20Center\"
+    title=\"Link: http://smartmap.mannlib.cornell.edu/location/John%20Lemuel%20Stone%20Computing%20Center\"
+    data-mce-href=\"http://smartmap.mannlib.cornell.edu/location/John%20Lemuel%20Stone%20Computing%20Center\">map
+    it</a>) is Mann Library's main public computing facility. Located there are over
+    sixty Dell desktop PC's, eight iMacs and several specialized workstations, providing
+    computing services to the Cornell and New York State communities.</p><p><strong>Mac
+    and Windows</strong> computers and peripherals are available for patron use
+    within the library. Follow one of the links below to get details, or browse the
+    interactive <a rel=\"nofollow\" href=\"http://smartmap.mannlib.cornell.edu/\"
+    title=\"SmartMap\" data-mce-href=\"http://smartmap.mannlib.cornell.edu/\">Mann
+    SmartMap</a> to find locations.</p><p>Mann Library offers a wide variety
+    of software on our public desktop machines.</p><table><thead><tr><th></th><th>Windows </th><th>Mac</th></tr></thead><tbody><tr><td>Locations</td><td><ul><li><a
+    rel=\"nofollow\" href=\"http://dev.mannlib.cornell.edu/use/spaces/all/stone-classroom\"
+    title=\"Stone Computer Classroom and Lab\" data-mce-href=\"https://mannlib.cornell.edu/rooms-labs/classrooms-labs/stone-computer-classroom\">Stone
+    Classroom</a> (<a rel=\"nofollow\" href=\"http://www.smartmap.mannlib.cornell.edu/location/Stone%20Computer%20Classroom\"
+    title=\"Stone Computer Classroom\" data-mce-href=\"http://www.smartmap.mannlib.cornell.edu/location/Stone%20Computer%20Classroom\">map
+    it</a>)</li><li><a rel=\"nofollow\" href=\"http://dev.mannlib.cornell.edu/use/spaces/all/stone-computing-center\">Stone
+    Computing Center</a> (<a rel=\"nofollow\" href=\"http://www.smartmap.mannlib.cornell.edu/location/John%20Lemuel%20Stone%20Computing%20Center\"
+    title=\"Stone Public Computing Area\" data-mce-href=\"http://www.smartmap.mannlib.cornell.edu/location/John%20Lemuel%20Stone%20Computing%20Center\">map
+    it</a>)</li><li><a rel=\"nofollow\" href=\"http://dev.mannlib.cornell.edu/use/spaces/all/cit-lab\">CIT
+    Lab</a> (<a rel=\"nofollow\" href=\"http://www.smartmap.mannlib.cornell.edu/location/CIT%20Computer%20Lab\"
+    title=\"CIT Computer Lab\" data-mce-href=\"http://www.smartmap.mannlib.cornell.edu/location/CIT%20Computer%20Lab\">map
+    it</a>) </li><li><a rel=\"nofollow\" href=\"http://dev.mannlib.cornell.edu/use/spaces/all/b30a\">B30A
+    Basement Classroom &amp; Lab</a> (<a rel=\"nofollow\" href=\"http://www.smartmap.mannlib.cornell.edu/location/B30a\"
+    title=\"B30a Computer Classroom\" data-mce-href=\"http://www.smartmap.mannlib.cornell.edu/location/B30a\">map
+    it</a>)</li><li><a rel=\"nofollow\" href=\"http://dev.mannlib.cornell.edu/use/spaces/all/b30b\">B30B
+    Basement Classroom &amp; Lab</a> (<a rel=\"nofollow\" href=\"http://www.smartmap.mannlib.cornell.edu/location/B30b\"
+    title=\"B30b Computer Classroom\" data-mce-href=\"http://www.smartmap.mannlib.cornell.edu/location/B30b\">map
+    it</a>)</li></ul></td><td><ul><li>1st floor iMacs (<a rel=\"nofollow\"
+    href=\"http://www.smartmap.mannlib.cornell.edu/location/John%20Lemuel%20Stone%20Computing%20Center\"
+    title=\"Stone Public Computing Area\" data-mce-href=\"http://www.smartmap.mannlib.cornell.edu/location/John%20Lemuel%20Stone%20Computing%20Center\">map
+    it</a>)</li><li><a rel=\"nofollow\" href=\"http://dev.mannlib.cornell.edu/use/spaces/all/mac-lab\">CIT
+    Mac Lab &amp; Classroom</a><a rel=\"nofollow\" href=\"http://mannlib.cornell.edu/rooms-labs/classrooms-labs/cit-maclab\"
+    title=\"Link: http://mannlib.cornell.edu/rooms-labs/classrooms-labs/cit-maclab\"
+    data-mce-href=\"http://mannlib.cornell.edu/rooms-labs/classrooms-labs/cit-maclab\"> </a>(Room
+    220A)</li><li>3rd floor iMacs (map it)</li></ul></td></tr><tr><td>Capabilities</td><td
+    class=\"wysiwyg-tmp-selected-cell\"><ul><li>Text Editing</li><li>Spreadsheets</li><li>Databasse</li><li>Presentation
+    Software</li><li>Web Design</li><li>GIS</li><li>Audio-Video Editing</li><li>Scanning/Image
+    Processing</li><li>Graphic Design</li></ul></td><td><ul><li>Text
+    Editing</li><li>Spreadsheets</li><li>Databases</li><li>Presentation Software</li><li>Web
+    Design</li><li>Audio-Video Editing</li><li>Scanning/Image Processing</li><li>Graphic
+    Design</li></ul></td></tr></tbody></table>"
+---
+{% extends parent %}
+
+{% block 'main/accessory' %}
+
+<h3>Current Availability</h3>
+
+{% include 'availnow-computers-setup' %}
+
+<h4 class="available-now__floor">First Floor</h4>
+
+<ul>
+  {% include 'availnow-computers-li' with location: 'Stone Classroom', os: 'windows', available: stone.available %}
+  {% include 'availnow-computers-li' with location: 'CIT Lab', os: 'windows', available: cit_112.available %}
+  {% include 'availnow-computers-li' with location: 'Stone Center', os: 'windows', available: stone_center_win %}
+  {% include 'availnow-computers-li' with location: 'Stone Center' os: 'apple', available: 0 %}
+</ul>
+
+<h4 class="available-now__floor">Second Floor</h4>
+
+<ul>
+  {% include 'availnow-computers-li' with location: 'CIT Mac Lab', os: 'apple', available: cit_mac_220a.available %}
+</ul>
+
+<h4 class="available-now__floor">Third Floor</h4>
+
+<ul>
+  {% include 'availnow-computers-li' with location: 'McManus Balcony', os: 'apple', available: 0 %}
+</ul>
+
+<h4 class="available-now__floor">Basement</h4>
+
+<ul>
+  {% include 'availnow-computers-li' with location: 'B30A Classroom', os: 'windows', available: b30a.available %}
+  {% include 'availnow-computers-li' with location: 'B30B Classroom', os: 'windows', available: b30b.available %}
+</ul>
+
+{% endblock %}

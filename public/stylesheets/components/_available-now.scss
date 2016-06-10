@@ -115,6 +115,8 @@
 }
 
 .available-now__status {
+  clear: left;
+
   &--available {
     color: darken(color('success'), 50%);
   }
@@ -122,4 +124,23 @@
   &--unavailable {
     color: darken(color('error'), 50%);
   }
+}
+
+.available-now__floor {
+  clear: left;
+  margin: 1em 0 0 0;
+  font-size: modular-scale(0);
+}
+
+.available-now__location {
+  font-size: modular-scale(-1);
+
+  @include susy-breakpoint($allout, $g-allout) {
+    font-size: modular-scale(0);
+  }
+}
+
+.available-now__badge--promote {
+  float: left;
+  clear: left;
 }

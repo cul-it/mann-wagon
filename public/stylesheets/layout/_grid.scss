@@ -50,6 +50,10 @@ body {
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     @include container;
   }
+
+  @include susy-breakpoint($allout, $g-allout) {
+    @include container;
+  }
 }
 
 main {

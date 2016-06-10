@@ -30,6 +30,8 @@
 {% assign windows_avail = b30a.available | plus: b30b.available | plus: cit_101.available | plus: cit_112.available | plus: stone.available %}
 {% assign macs_avail = cit_mac_220a.available %}
 
+{% assign stone_center_win =  cit_101.available %}
+
 {% assign laptops_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showLaptopInfo.do?output=json&locationId=14' %}
 
 {% consume mann_laptops from laptops_url %}
