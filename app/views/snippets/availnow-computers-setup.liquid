@@ -5,36 +5,43 @@
 {% assign avail_badge = 'badge-success' %}
 {% assign unavail_badge = 'badge-error' %}
 
-{% assign labstats_url = 'https://online.labstats.com/api/public/GetPublicApiData/1001' %}
+{% comment %} Forget about hitting APIs if we're closed {% endcomment %}
+{% if mannlib_hours.status_1707 == 'Open' %}
+  {% assign labstats_url = 'https://online.labstats.com/api/public/GetPublicApiData/1001' %}
 
-{% consume mann_desktops from labstats_url, header_auth: site.metafields.sensitive_data.labstats_customer_id %}
-  {% for location in mann_desktops.groups %}
-    {% comment %} Waiting on Gabriel to add LabStats on the rest of the PCs & Macs in the farm, McManus, etc {% endcomment %}
-    {% case location.label %}
-      {% when 'B30A' %}
-        {% assign b30a = location %}
-      {% when 'B30B' %}
-        {% assign b30b = location %}
-      {% when 'CIT 101' %}
-        {% assign cit_101 = location %}
-      {% when 'CIT 112' %}
-        {% assign cit_112 = location %}
-      {% when 'CIT Mac 220A' %}
-        {% assign cit_mac_220a = location %}
-      {% when 'Stone' %}
-        {% assign stone = location %}
-    {% endcase %}
-  {% endfor %}
-{% endconsume %}
+  {% consume mann_desktops from labstats_url, header_auth: site.metafields.sensitive_data.labstats_customer_id %}
+    {% for location in mann_desktops.groups %}
+      {% comment %} Waiting on Gabriel to add LabStats on the rest of the PCs & Macs in the farm, McManus, etc {% endcomment %}
+      {% case location.label %}
+        {% when 'B30A' %}
+          {% assign b30a = location %}
+        {% when 'B30B' %}
+          {% assign b30b = location %}
+        {% when 'CIT 101' %}
+          {% assign cit_101 = location %}
+        {% when 'CIT 112' %}
+          {% assign cit_112 = location %}
+        {% when 'CIT Mac 220A' %}
+          {% assign cit_mac_220a = location %}
+        {% when 'Stone' %}
+          {% assign stone = location %}
+      {% endcase %}
+    {% endfor %}
+  {% endconsume %}
 
-{% assign windows_avail = b30a.available | plus: b30b.available | plus: cit_101.available | plus: cit_112.available | plus: stone.available %}
-{% assign macs_avail = cit_mac_220a.available %}
+  {% assign windows_avail = b30a.available | plus: b30b.available | plus: cit_101.available | plus: cit_112.available | plus: stone.available %}
+  {% assign macs_avail = cit_mac_220a.available %}
 
-{% assign stone_center_win =  cit_101.available %}
+  {% assign stone_center_win =  cit_101.available %}
 
-{% assign laptops_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showLaptopInfo.do?output=json&locationId=14' %}
+  {% assign laptops_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showLaptopInfo.do?output=json&locationId=14' %}
 
-{% consume mann_laptops from laptops_url %}
-  {% assign winbook_avail = mann_laptops.laptop_available | ceil %}
-  {% assign macbook_avail = mann_laptops.macbook_available | ceil %}
-{% endconsume %}
+  {% consume mann_laptops from laptops_url %}
+    {% assign winbook_avail = mann_laptops.laptop_available | ceil %}
+    {% assign macbook_avail = mann_laptops.macbook_available | ceil %}
+  {% endconsume %}
+
+  {% assign computer_accessory_heading = 'Current Availability' %}
+{% else %}
+  {% capture computer_accessory_heading %}<a href="{% path_to hours %}" title="View all hours"><span class="badge badge-error">Closed</span></a> <a class="todays-hours__more" href="{% path_to hours %}" title="View all hours">All Hours <i class="fa fa-angle-double-right"></i></a>{% endcapture %}
+{% endif %}

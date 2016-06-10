@@ -17,7 +17,7 @@
     {% endunless %}
     <i class="fa fa-fw fa-{{ os }} available-now__os"></i>
     {% if location %} <span class="available-now__location">{{ location }}</span> {% endif %}
-    <span class="badge {{ badge }} {% if location %}available-now__badge--promote{% endif %}">{{ available }}</span>
+    <span class="badge {{ badge }} {% if location %}available-now__badge--promote{% endif %}">{{ available | default: 0 }}</span>
   {% if linked %}
     </a>
   {% endif %}
