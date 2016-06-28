@@ -23,13 +23,17 @@
           {% assign cit_112 = location %}
         {% when 'CIT Mac 220A' %}
           {% assign cit_mac_220a = location %}
+        {% when 'McManus' %}
+          {% assign mcmanus = location %}
+        {% when 'Research' %}
+          {% assign research_win = location %}
         {% when 'Stone' %}
           {% assign stone = location %}
       {% endcase %}
     {% endfor %}
   {% endconsume %}
 
-  {% assign windows_avail = cit_101.available | plus: cit_112.available | plus: stone.available %}
+  {% assign windows_avail = cit_101.available | plus: cit_112.available | plus: research_win.available | plus: stone.available %}
 
   {% comment %} Include B30 classrooms in total count if basement is open {% endcomment %}
   {% if mannlib_hours.status_2319 == 'Open' %}
@@ -43,9 +47,9 @@
     {% capture basement_status %}<a href="{% path_to hours %}" title="View all hours"><span class="badge badge-error">Closed</span></a>{% endcapture %}
   {% endif %}
 
-  {% assign macs_avail = cit_mac_220a.available %}
+  {% assign macs_avail = cit_mac_220a.available | plus: mcmanus.available %}
 
-  {% assign stone_center_win =  cit_101.available %}
+  {% assign stone_center_win =  cit_101.available | plus: research_win.available %}
 
   {% assign laptops_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showLaptopInfo.do?output=json&locationId=14' %}
 
