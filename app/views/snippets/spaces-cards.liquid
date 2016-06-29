@@ -25,6 +25,8 @@
               {% if quiet_study %}
 
                 <i class="js-sui-popup space-finder__quiet fa fa-volume-down ui icon" title="quiet study" data-variation="inverted" data-position="left center"></i>
+
+                {{ 'spacesQuiet.bundle.js' | javascript_tag }}
               {% endif %}
             {% elsif spaces_type._slug == 'classroom' or spaces_type._slug == 'computing-facilities' %}
               {% comment %} Need logic here to first see if room is available (all but stone computing center) {% endcomment %}

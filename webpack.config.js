@@ -12,24 +12,34 @@ module.exports = {
   context: __dirname,
 
   entry: {
-      eventsPage: "./vue/events/events-page/events-page.js",
-      homePageEvents: "./vue/events/homepage-events/homepage-events.js"
+      eventsPage: './vue/events/events-page/events-page.js',
+      homePageEvents: './vue/events/homepage-events/homepage-events.js',
+      spacesQuiet: './src/spaces-quiet.js'
   },
   output: {
     path: path.join(__dirname, 'public', 'javascripts'),
-    filename: "[name].bundle.js",
+    filename: '[name].bundle.js',
     publicPath: '/'
   },
   module: {
       // `loaders` is an array of loaders to use.
       loaders: [
         {
+          test: /\.css/,
+          loader: 'style!css'
+        },
+        {
+          test:   /\.js/,
+          loader: 'babel',
+          include: path.join(__dirname, 'src')
+        },
+        {
           test: /\.vue$/, // a regex for matching all files that end in `.vue`
           loader: 'vue'   // loader to use for matched files
         },
         {
-        test: /\.html$/,
-        loader: 'html'
+          test: /\.html$/,
+          loader: 'html'
         }
       ]
     },
