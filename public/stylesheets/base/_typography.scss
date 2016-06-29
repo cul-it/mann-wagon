@@ -1,3 +1,9 @@
+// Hide Mann Library type while p22-underground is loading from typekit
+// https://helpx.adobe.com/typekit/using/font-events.html
+.wf-loading {
+  visibility: hidden;
+}
+
 // Bourbon v5 removes all browser prefixes:
 // -- https://github.com/thoughtbot/bourbon/commit/33d4b77
 // but autoprefixer follows Can I Use which doesn't consider font-smooth on
