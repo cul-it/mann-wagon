@@ -14,12 +14,7 @@ is_layout: false
     %script
       try{Typekit.load({ async: true });}catch(e){}
     {{ 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' | stylesheet_tag }}
-    / TEMPORARY BRUTE FORCE OF SEMANTIC-UI COMPONENTs & DEPENDENCIES -- FOR SEARCH FORM & OTHERS
-    {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/form.min.css' | stylesheet_tag }}
-    {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/input.min.css' | stylesheet_tag }}
-    {{ '//oss.maxcdn.com/semantic-ui/2.1.8/components/checkbox.min.css' | stylesheet_tag }}
-    {{ '//oss.maxcdn.com/jquery.formvalidation/0.6.1/css/formValidation.min.css' | stylesheet_tag }}
-    /
+
     {{ 'main.css' | stylesheet_tag }}
     {{ 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js' | javascript_tag }}
   %body{class: "body-{{ page.slug }}"}
@@ -32,7 +27,3 @@ is_layout: false
       {% block 'main' %}
       {% endblock %}
     {% include 'footer' %}
-
-    / TEMPORARY JS FOR FORM VALIDATION -- WILL BE REFACTORED TO USE WEBPACK
-    {{ '//oss.maxcdn.com/jquery.formvalidation/0.6.1/js/formValidation.min.js' | javascript_tag }}
-    {{ '//oss.maxcdn.com/jquery.formvalidation/0.6.1/js/framework/semantic.min.js' | javascript_tag }}
