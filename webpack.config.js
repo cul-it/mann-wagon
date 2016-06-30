@@ -14,6 +14,7 @@ module.exports = {
   entry: {
       eventsPage: './vue/events/events-page/events-page.js',
       homePageEvents: './vue/events/homepage-events/homepage-events.js',
+      hoursNav: './src/hours-nav.js',
       spacesQuiet: './src/spaces-quiet.js'
   },
   output: {
