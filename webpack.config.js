@@ -70,6 +70,7 @@ module.exports = {
       // Semantic-UI
       { from: 'node_modules/semantic-ui-css/components/button.min.css', to: path.join(sassDir, 'semantic-ui') },
       { from: 'node_modules/semantic-ui-css/components/card.min.css', to: path.join(sassDir, 'semantic-ui') },
+      { from: 'node_modules/semantic-ui-css/components/input.min.css', to: path.join(sassDir, 'semantic-ui') },
       { from: 'node_modules/semantic-ui-css/components/label.min.css', to: path.join(sassDir, 'semantic-ui') },
       { from: 'node_modules/semantic-ui-css/components/menu.min.css', to: path.join(sassDir, 'semantic-ui') },
       // Susy
