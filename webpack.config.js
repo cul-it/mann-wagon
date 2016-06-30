@@ -62,6 +62,8 @@ module.exports = {
       { from: 'node_modules/bourbon/core', to: path.join(sassDir, 'bourbon') },
       // Breakpoint
       { from: 'node_modules/breakpoint-sass/stylesheets', to: path.join(sassDir, 'breakpoint') },
+      // Font Awesome
+      { from: 'node_modules/font-awesome/scss', to: path.join(sassDir, 'font-awesome') },
        // MathSass
       { from: 'node_modules/mathsass/dist', to: path.join(sassDir, 'mathsass') },
       // Normalize
