@@ -16,7 +16,7 @@ is_layout: false
     {{ 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' | stylesheet_tag }}
 
     {{ 'main.css' | stylesheet_tag }}
-    {{ 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js' | javascript_tag }}
+    {{ 'jqueryLocal.bundle.js' | javascript_tag }}
   %body{class: "body-{{ page.slug }}"}
     {% include 'header' %}
     %main

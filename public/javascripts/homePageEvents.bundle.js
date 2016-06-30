@@ -52,7 +52,7 @@
 	Vue.config.unsafeDelimiters = ['(((', ')))']
 
 	// require a *.vue component
-	var HomePageEvents = __webpack_require__(145)
+	var HomePageEvents = __webpack_require__(236)
 
 
 	// mount a root Vue instance
@@ -42221,11 +42221,102 @@
 /* 142 */,
 /* 143 */,
 /* 144 */,
-/* 145 */
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(146)
+	__vue_script__ = __webpack_require__(237)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
@@ -42248,7 +42339,7 @@
 	})()}
 
 /***/ },
-/* 146 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42268,7 +42359,7 @@
 	var moment = __webpack_require__(38);
 
 	exports.default = {
-	  template: __webpack_require__(147),
+	  template: __webpack_require__(238),
 	  props: ['booked-username', 'booked-password'],
 	  data: function data() {
 	    return {
@@ -42426,7 +42517,7 @@
 	};
 
 /***/ },
-/* 147 */
+/* 238 */
 /***/ function(module, exports) {
 
 	module.exports = "<div id=\"events-container\">\n\t<section class=\"events-home\">\n\t\t<h4 class=\"events-home__heading lead-in\">\n      <a class=\"events-home__heading-link\" href=\"/news-events/events\">\n        Events &amp; Exhibits\n      </a>\n\t\t</h4>\n\n\t\t<div v-show=\"showNoEventsMessage\">\n\t\t\tloading...\n\t\t</div>\n\n\t\t<template v-for=\"(date, events) in allEvents | limitListFilter 3 | groupBy 'event_start'\">\n\t\t\t<h5 class=\"events-home__day\">\n        ((date | momentHomeDateText))\n      </h5>\n\n      <ul class=\"events-home__list\">\n\t\t\t\t<li class=\"events-home__event\" v-for=\"event in events\">\n\t\t\t\t\t<h6 class=\"events-home__title\">\n            <a href=\"javascript:void(0);\">\n              ((event.event_title))\n            </a>\n\t\t\t\t\t</h6>\n\n\t\t\t\t\t<dl>\n\t\t\t\t\t\t<dt class=\"events-home__label\">\n              time\n            </dt>\n\t\t\t\t\t\t<dd class=\"events-home__time\" v-if=\"event.event_end_time\">\n              ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))\n            </dd>\n\t\t\t\t\t\t<dd class=\"events-home__time\" v-else=\"\">\n              ((event.event_start_time | momentHomeTime ))\n            </dd>\n\t\t\t\t\t\t<dt class=\"events-home__label\">\n              location\n            </dt>\n\t\t\t\t\t\t<dd class=\"events-home__location\">\n              ((event.event_room_name))\n            </dd>\n\t\t\t\t\t</dl>\n\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</template>\n\n\t\t<a class=\"more-link\" href=\"/news-events/events\">\n      All Events\n      <i class=\"fa fa-angle-double-right\"></i>\n\t\t</a>\n\n\t</section>\n\n\t<section class=\"events-home workshops\">\n\t\t<h4 class=\"lead-in\">\n      <a class=\"events-home__heading-link\" href=\"/news-events/events\">\n        Workshops &amp; Classes\n      </a>\n\t\t</h4>\n\n\t\t<div v-show=\"showNoEventsMessage\">\n\t\t\tloading...\n\t\t</div>\n\n\t\t<template v-for=\"(date, events) in allEvents | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'\">\n\t\t\t<h5 class=\"events-home__day\">\n        ((date | momentHomeDateText))\n      </h5>\n\n\t\t\t<ul class=\"events-home__list\">\n\t\t\t\t<li class=\"events-home__event\" v-for=\"event in events\">\n\t\t\t\t\t<h6 class=\"events-home__title\">\n            <a href=\"javascript:void(0);\">\n              ((event.event_title))\n            </a>\n\t\t\t\t\t</h6>\n\n\t\t\t\t\t<dl>\n\t\t\t\t\t\t<dt class=\"events-home__label\">\n              time\n            </dt>\n\t\t\t\t\t\t<dd class=\"events-home__time\" v-if=\"event.event_end_time\">\n              ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))\n            </dd>\n\t\t\t\t\t\t<dd class=\"events-home__time\" v-else=\"\">\n              ((event.event_start_time | momentHomeTime ))\n            </dd>\n\t\t\t\t\t\t<dt class=\"events-home__label\">\n              location\n            </dt>\n\t\t\t\t\t\t<dd class=\"events-home__location\">\n              ((event.event_room_name))\n            </dd>\n\t\t\t\t\t</dl>\n\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</template>\n\n\t\t<a class=\"more-link\" href=\"/news-events/events\" v-on:click=\"setFilterCookie()\">\n      All Workshops &amp; Classes\n      <i class=\"fa fa-angle-double-right\"></i>\n    </a>\n\n\t</section>\n</div>\n";
