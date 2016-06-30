@@ -1,4 +1,3 @@
-import 'semantic-ui-css/components/button.min.css';
 import 'semantic-ui-css/components/transition.min.js';
 import 'semantic-ui-css/components/transition.min.css';
 

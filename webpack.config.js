@@ -60,6 +60,11 @@ module.exports = {
       // Normalize
       { from: 'node_modules/normalize-scss/sass', to: path.join(sassDir, 'normalize') },
       { from: 'node_modules/support-for/sass/_support-for.scss', to: path.join(sassDir, 'normalize') },
+      // Semantic-UI
+      { from: 'node_modules/semantic-ui-css/components/button.min.css', to: path.join(sassDir, 'semantic-ui') },
+      { from: 'node_modules/semantic-ui-css/components/card.min.css', to: path.join(sassDir, 'semantic-ui') },
+      { from: 'node_modules/semantic-ui-css/components/label.min.css', to: path.join(sassDir, 'semantic-ui') },
+      { from: 'node_modules/semantic-ui-css/components/menu.min.css', to: path.join(sassDir, 'semantic-ui') },
       // Susy
       { from: 'node_modules/susy/sass', to: path.join(sassDir, 'susy') }
     ], {
