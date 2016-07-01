@@ -17,6 +17,7 @@ module.exports = {
     }
   },
   entry: {
+      bookedReserve: './src/booked-reserve.js',
       eventsPage: './vue/events/events-page/events-page.js',
       homePageEvents: './vue/events/homepage-events/homepage-events.js',
       hoursNav: './src/hours-nav.js',

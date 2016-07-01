@@ -6,9 +6,8 @@ content_type: spaces_types
 
   {% block 'main' %}
 
-  <script src="//api3.libcal.com/js/roombooking.js?002"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css">
+  {{ '//api3.libcal.com/js/roombooking.js?002' | javascript_tag }}
+  {{ 'bookedReserve.bundle.js' | javascript_tag }}
 
   {% include 'room-availability-variables'%}
 

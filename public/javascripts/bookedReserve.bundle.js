@@ -46,75 +46,90 @@
 
 	'use strict';
 
+	__webpack_require__(1);
+
+	__webpack_require__(2);
+
+	__webpack_require__(6);
+
+	__webpack_require__(7);
+
 	__webpack_require__(9);
 
 	__webpack_require__(10);
 
-	var hoursNav = {
+	var bookedReserve = {
 	  onLoad: function onLoad() {
 	    this.bindEventListeners();
-	    this.currentWeek = 0;
 	  },
 
 	  bindEventListeners: function bindEventListeners() {
-	    $('.js-hours-next').on('click', function () {
-	      hoursNav.gotoWeek('next');
+	    $('.js-booked-reserve').on('click', function () {
+	      $('.js-sui-modal').modal('show');
 	    });
-
-	    $('.js-hours-prev').on('click', function () {
-	      hoursNav.gotoWeek('prev');
-	    });
-
-	    $('.js-hours-today').on('click', function () {
-	      hoursNav.gotoWeek('first');
-	    });
-	  },
-
-	  gotoWeek: function gotoWeek(week) {
-	    switch (week) {
-	      case 'next':
-	        var requestedWeek = hoursNav.currentWeek + 1;
-	        break;
-	      case 'prev':
-	        var requestedWeek = hoursNav.currentWeek - 1;
-	        break;
-	      case 'first':
-	        var requestedWeek = 0;
-	        break;
-	    }
-
-	    // Hide current & display requested week
-	    $('.hours-weekly').eq(hoursNav.currentWeek).transition('toggle');
-	    $('.hours-weekly').eq(requestedWeek).transition('toggle');
-
-	    // Update tracking of current week accordingly
-	    hoursNav.currentWeek = requestedWeek;
-
-	    // Enable/disable appropriate buttons
-	    hoursNav.housekeeping(hoursNav.currentWeek);
-	  },
-
-	  housekeeping: function housekeeping(week) {
-	    // Disable prev & today btns if returning to first week
-	    if (week == 0) {
-	      $('.js-hours-prev, .js-hours-today').addClass('disabled');
-	      // Disable next btn after 52 weeks (zero-based index: 51)
-	    } else if (week == 51) {
-	        $('.js-hours-next').addClass('disabled');
-	      } else {
-	        $('.js-hours-prev, .js-hours-today, .js-hours-next').removeClass('disabled');
-	      }
 	  }
 	};
 
 	$(document).ready(function () {
-	  hoursNav.onLoad();
+	  bookedReserve.onLoad();
 	});
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */,
+/* 1 */
+/***/ function(module, exports) {
+
+	/*!
+	 * # Semantic UI 2.2.1 - Dimmer
+	 * http://github.com/semantic-org/semantic-ui/
+	 *
+	 *
+	 * Released under the MIT license
+	 * http://opensource.org/licenses/MIT
+	 *
+	 */
+	!function(e,i,n,t){"use strict";i="undefined"!=typeof i&&i.Math==Math?i:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")(),e.fn.dimmer=function(i){var o,a=e(this),r=(new Date).getTime(),s=[],m=arguments[0],d="string"==typeof m,c=[].slice.call(arguments,1);return a.each(function(){var u,l,f,g=e.isPlainObject(i)?e.extend(!0,{},e.fn.dimmer.settings,i):e.extend({},e.fn.dimmer.settings),p=g.selector,h=g.namespace,b=g.className,v=g.error,y="."+h,C="module-"+h,w=a.selector||"",S="ontouchstart"in n.documentElement?"touchstart":"click",D=e(this),T=this,N=D.data(C);f={preinitialize:function(){f.is.dimmer()?(l=D.parent(),u=D):(l=D,u=f.has.dimmer()?g.dimmerName?l.find(p.dimmer).filter("."+g.dimmerName):l.find(p.dimmer):f.create())},initialize:function(){f.debug("Initializing dimmer",g),f.bind.events(),f.set.dimmable(),f.instantiate()},instantiate:function(){f.verbose("Storing instance of module",f),N=f,D.data(C,N)},destroy:function(){f.verbose("Destroying previous module",u),f.unbind.events(),f.remove.variation(),l.off(y)},bind:{events:function(){"hover"==g.on?l.on("mouseenter"+y,f.show).on("mouseleave"+y,f.hide):"click"==g.on&&l.on(S+y,f.toggle),f.is.page()&&(f.debug("Setting as a page dimmer",l),f.set.pageDimmer()),f.is.closable()&&(f.verbose("Adding dimmer close event",u),l.on(S+y,p.dimmer,f.event.click))}},unbind:{events:function(){D.removeData(C),l.off(y)}},event:{click:function(i){f.verbose("Determining if event occured on dimmer",i),(0===u.find(i.target).length||e(i.target).is(p.content))&&(f.hide(),i.stopImmediatePropagation())}},addContent:function(i){var n=e(i);f.debug("Add content to dimmer",n),n.parent()[0]!==u[0]&&n.detach().appendTo(u)},create:function(){var i=e(g.template.dimmer());return g.variation&&(f.debug("Creating dimmer with variation",g.variation),i.addClass(g.variation)),g.dimmerName&&(f.debug("Creating named dimmer",g.dimmerName),i.addClass(g.dimmerName)),i.appendTo(l),i},show:function(i){i=e.isFunction(i)?i:function(){},f.debug("Showing dimmer",u,g),f.is.dimmed()&&!f.is.animating()||!f.is.enabled()?f.debug("Dimmer is already shown or disabled"):(f.animate.show(i),g.onShow.call(T),g.onChange.call(T))},hide:function(i){i=e.isFunction(i)?i:function(){},f.is.dimmed()||f.is.animating()?(f.debug("Hiding dimmer",u),f.animate.hide(i),g.onHide.call(T),g.onChange.call(T)):f.debug("Dimmer is not visible")},toggle:function(){f.verbose("Toggling dimmer visibility",u),f.is.dimmed()?f.hide():f.show()},animate:{show:function(i){i=e.isFunction(i)?i:function(){},g.useCSS&&e.fn.transition!==t&&u.transition("is supported")?("auto"!==g.opacity&&f.set.opacity(),u.transition({animation:g.transition+" in",queue:!1,duration:f.get.duration(),useFailSafe:!0,onStart:function(){f.set.dimmed()},onComplete:function(){f.set.active(),i()}})):(f.verbose("Showing dimmer animation with javascript"),f.set.dimmed(),"auto"==g.opacity&&(g.opacity=.8),u.stop().css({opacity:0,width:"100%",height:"100%"}).fadeTo(f.get.duration(),g.opacity,function(){u.removeAttr("style"),f.set.active(),i()}))},hide:function(i){i=e.isFunction(i)?i:function(){},g.useCSS&&e.fn.transition!==t&&u.transition("is supported")?(f.verbose("Hiding dimmer with css"),u.transition({animation:g.transition+" out",queue:!1,duration:f.get.duration(),useFailSafe:!0,onStart:function(){f.remove.dimmed()},onComplete:function(){f.remove.active(),i()}})):(f.verbose("Hiding dimmer with javascript"),f.remove.dimmed(),u.stop().fadeOut(f.get.duration(),function(){f.remove.active(),u.removeAttr("style"),i()}))}},get:{dimmer:function(){return u},duration:function(){return"object"==typeof g.duration?f.is.active()?g.duration.hide:g.duration.show:g.duration}},has:{dimmer:function(){return g.dimmerName?D.find(p.dimmer).filter("."+g.dimmerName).length>0:D.find(p.dimmer).length>0}},is:{active:function(){return u.hasClass(b.active)},animating:function(){return u.is(":animated")||u.hasClass(b.animating)},closable:function(){return"auto"==g.closable?"hover"==g.on?!1:!0:g.closable},dimmer:function(){return D.hasClass(b.dimmer)},dimmable:function(){return D.hasClass(b.dimmable)},dimmed:function(){return l.hasClass(b.dimmed)},disabled:function(){return l.hasClass(b.disabled)},enabled:function(){return!f.is.disabled()},page:function(){return l.is("body")},pageDimmer:function(){return u.hasClass(b.pageDimmer)}},can:{show:function(){return!u.hasClass(b.disabled)}},set:{opacity:function(e){var i=u.css("background-color"),n=i.split(","),t=n&&3==n.length,o=n&&4==n.length;e=0===g.opacity?0:g.opacity||e,t||o?(n[3]=e+")",i=n.join(",")):i="rgba(0, 0, 0, "+e+")",f.debug("Setting opacity to",e),u.css("background-color",i)},active:function(){u.addClass(b.active)},dimmable:function(){l.addClass(b.dimmable)},dimmed:function(){l.addClass(b.dimmed)},pageDimmer:function(){u.addClass(b.pageDimmer)},disabled:function(){u.addClass(b.disabled)},variation:function(e){e=e||g.variation,e&&u.addClass(e)}},remove:{active:function(){u.removeClass(b.active)},dimmed:function(){l.removeClass(b.dimmed)},disabled:function(){u.removeClass(b.disabled)},variation:function(e){e=e||g.variation,e&&u.removeClass(e)}},setting:function(i,n){if(f.debug("Changing setting",i,n),e.isPlainObject(i))e.extend(!0,g,i);else{if(n===t)return g[i];e.isPlainObject(g[i])?e.extend(!0,g[i],n):g[i]=n}},internal:function(i,n){if(e.isPlainObject(i))e.extend(!0,f,i);else{if(n===t)return f[i];f[i]=n}},debug:function(){!g.silent&&g.debug&&(g.performance?f.performance.log(arguments):(f.debug=Function.prototype.bind.call(console.info,console,g.name+":"),f.debug.apply(console,arguments)))},verbose:function(){!g.silent&&g.verbose&&g.debug&&(g.performance?f.performance.log(arguments):(f.verbose=Function.prototype.bind.call(console.info,console,g.name+":"),f.verbose.apply(console,arguments)))},error:function(){g.silent||(f.error=Function.prototype.bind.call(console.error,console,g.name+":"),f.error.apply(console,arguments))},performance:{log:function(e){var i,n,t;g.performance&&(i=(new Date).getTime(),t=r||i,n=i-t,r=i,s.push({Name:e[0],Arguments:[].slice.call(e,1)||"",Element:T,"Execution Time":n})),clearTimeout(f.performance.timer),f.performance.timer=setTimeout(f.performance.display,500)},display:function(){var i=g.name+":",n=0;r=!1,clearTimeout(f.performance.timer),e.each(s,function(e,i){n+=i["Execution Time"]}),i+=" "+n+"ms",w&&(i+=" '"+w+"'"),a.length>1&&(i+=" ("+a.length+")"),(console.group!==t||console.table!==t)&&s.length>0&&(console.groupCollapsed(i),console.table?console.table(s):e.each(s,function(e,i){console.log(i.Name+": "+i["Execution Time"]+"ms")}),console.groupEnd()),s=[]}},invoke:function(i,n,a){var r,s,m,d=N;return n=n||c,a=T||a,"string"==typeof i&&d!==t&&(i=i.split(/[\. ]/),r=i.length-1,e.each(i,function(n,o){var a=n!=r?o+i[n+1].charAt(0).toUpperCase()+i[n+1].slice(1):i;if(e.isPlainObject(d[a])&&n!=r)d=d[a];else{if(d[a]!==t)return s=d[a],!1;if(!e.isPlainObject(d[o])||n==r)return d[o]!==t?(s=d[o],!1):(f.error(v.method,i),!1);d=d[o]}})),e.isFunction(s)?m=s.apply(a,n):s!==t&&(m=s),e.isArray(o)?o.push(m):o!==t?o=[o,m]:m!==t&&(o=m),s}},f.preinitialize(),d?(N===t&&f.initialize(),f.invoke(m)):(N!==t&&N.invoke("destroy"),f.initialize())}),o!==t?o:this},e.fn.dimmer.settings={name:"Dimmer",namespace:"dimmer",silent:!1,debug:!1,verbose:!1,performance:!0,dimmerName:!1,variation:!1,closable:"auto",useCSS:!0,transition:"fade",on:!1,opacity:"auto",duration:{show:500,hide:500},onChange:function(){},onShow:function(){},onHide:function(){},error:{method:"The method you called is not defined."},className:{active:"active",animating:"animating",dimmable:"dimmable",dimmed:"dimmed",dimmer:"dimmer",disabled:"disabled",hide:"hide",pageDimmer:"page",show:"show"},selector:{dimmer:"> .ui.dimmer",content:".ui.dimmer > .content, .ui.dimmer > .content > .center"},template:{dimmer:function(){return e("<div />").attr("class","ui dimmer")}}}}(jQuery,window,document);
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(3);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../css-loader/index.js!./dimmer.min.css", function() {
+				var newContent = require("!!./../../css-loader/index.js!./dimmer.min.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "/*!\n * # Semantic UI 2.2.1 - Dimmer\n * http://github.com/semantic-org/semantic-ui/\n *\n *\n * Released under the MIT license\n * http://opensource.org/licenses/MIT\n *\n */.dimmable:not(.body){position:relative}.ui.dimmer{display:none;position:absolute;top:0!important;left:0!important;width:100%;height:100%;text-align:center;vertical-align:middle;background-color:rgba(0,0,0,.85);opacity:0;line-height:1;-webkit-animation-fill-mode:both;animation-fill-mode:both;-webkit-animation-duration:.5s;animation-duration:.5s;-webkit-transition:background-color .5s linear;transition:background-color .5s linear;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;will-change:opacity;z-index:1000}.ui.dimmer>.content{width:100%;height:100%;display:table;-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}.ui.dimmer>.content>*{display:table-cell;vertical-align:middle;color:#FFF}.ui.segment>.ui.dimmer{border-radius:inherit!important}.animating.dimmable:not(body),.dimmed.dimmable:not(body){overflow:hidden}.dimmed.dimmable>.ui.animating.dimmer,.dimmed.dimmable>.ui.visible.dimmer,.ui.active.dimmer{display:block;opacity:1}.ui.disabled.dimmer{width:0!important;height:0!important}.ui.page.dimmer{position:fixed;-webkit-transform-style:'';transform-style:'';-webkit-perspective:2000px;perspective:2000px;-webkit-transform-origin:center center;transform-origin:center center}body.animating.in.dimmable,body.dimmed.dimmable{overflow:hidden}body.dimmable>.dimmer{position:fixed}.blurring.dimmable>:not(.dimmer){-webkit-filter:blur(0) grayscale(0);filter:blur(0) grayscale(0);-webkit-transition:.8s filter ease;transition:.8s filter ease}.blurring.dimmed.dimmable>:not(.dimmer){-webkit-filter:blur(5px) grayscale(.7);filter:blur(5px) grayscale(.7)}.blurring.dimmable>.dimmer{background-color:rgba(0,0,0,.6)}.blurring.dimmable>.inverted.dimmer{background-color:rgba(255,255,255,.6)}.ui.dimmer>.top.aligned.content>*{vertical-align:top}.ui.dimmer>.bottom.aligned.content>*{vertical-align:bottom}.ui.inverted.dimmer{background-color:rgba(255,255,255,.85)}.ui.inverted.dimmer>.content>*{color:#FFF}.ui.simple.dimmer{display:block;overflow:hidden;opacity:1;width:0;height:0%;z-index:-100;background-color:rgba(0,0,0,0)}.dimmed.dimmable>.ui.simple.dimmer{overflow:visible;opacity:1;width:100%;height:100%;background-color:rgba(0,0,0,.85);z-index:1}.ui.simple.inverted.dimmer{background-color:rgba(255,255,255,0)}.dimmed.dimmable>.ui.simple.inverted.dimmer{background-color:rgba(255,255,255,.85)}", ""]);
+
+	// exports
+
+
+/***/ },
 /* 4 */
 /***/ function(module, exports) {
 
@@ -423,9 +438,61 @@
 
 
 /***/ },
-/* 6 */,
-/* 7 */,
-/* 8 */,
+/* 6 */
+/***/ function(module, exports) {
+
+	/*!
+	 * # Semantic UI 2.2.1 - Modal
+	 * http://github.com/semantic-org/semantic-ui/
+	 *
+	 *
+	 * Released under the MIT license
+	 * http://opensource.org/licenses/MIT
+	 *
+	 */
+	!function(e,n,i,t){"use strict";n="undefined"!=typeof n&&n.Math==Math?n:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")(),e.fn.modal=function(o){var a,r=e(this),s=e(n),c=e(i),l=e("body"),d=r.selector||"",u=(new Date).getTime(),m=[],f=arguments[0],g="string"==typeof f,h=[].slice.call(arguments,1),v=n.requestAnimationFrame||n.mozRequestAnimationFrame||n.webkitRequestAnimationFrame||n.msRequestAnimationFrame||function(e){setTimeout(e,0)};return r.each(function(){var r,b,p,y,k,w,M,C,S,F=e.isPlainObject(o)?e.extend(!0,{},e.fn.modal.settings,o):e.extend({},e.fn.modal.settings),A=F.selector,D=F.className,H=F.namespace,T=F.error,x="."+H,z="module-"+H,O=e(this),q=e(F.context),E=O.find(A.close),j=this,P=O.data(z);S={initialize:function(){S.verbose("Initializing dimmer",q),S.create.id(),S.create.dimmer(),S.refreshModals(),S.bind.events(),F.observeChanges&&S.observeChanges(),S.instantiate()},instantiate:function(){S.verbose("Storing instance of modal"),P=S,O.data(z,P)},create:{dimmer:function(){var n={debug:F.debug,dimmerName:"modals",duration:{show:F.duration,hide:F.duration}},i=e.extend(!0,n,F.dimmerSettings);return F.inverted&&(i.variation=i.variation!==t?i.variation+" inverted":"inverted"),e.fn.dimmer===t?void S.error(T.dimmer):(S.debug("Creating dimmer with settings",i),y=q.dimmer(i),F.detachable?(S.verbose("Modal is detachable, moving content into dimmer"),y.dimmer("add content",O)):S.set.undetached(),F.blurring&&y.addClass(D.blurring),void(k=y.dimmer("get dimmer")))},id:function(){M=(Math.random().toString(16)+"000000000").substr(2,8),w="."+M,S.verbose("Creating unique id for element",M)}},destroy:function(){S.verbose("Destroying previous modal"),O.removeData(z).off(x),s.off(w),k.off(w),E.off(x),q.dimmer("destroy")},observeChanges:function(){"MutationObserver"in n&&(C=new MutationObserver(function(e){S.debug("DOM tree modified, refreshing"),S.refresh()}),C.observe(j,{childList:!0,subtree:!0}),S.debug("Setting up mutation observer",C))},refresh:function(){S.remove.scrolling(),S.cacheSizes(),S.set.screenHeight(),S.set.type(),S.set.position()},refreshModals:function(){b=O.siblings(A.modal),r=b.add(O)},attachEvents:function(n,i){var t=e(n);i=e.isFunction(S[i])?S[i]:S.toggle,t.length>0?(S.debug("Attaching modal events to element",n,i),t.off(x).on("click"+x,i)):S.error(T.notFound,n)},bind:{events:function(){S.verbose("Attaching events"),O.on("click"+x,A.close,S.event.close).on("click"+x,A.approve,S.event.approve).on("click"+x,A.deny,S.event.deny),s.on("resize"+w,S.event.resize)}},get:{id:function(){return(Math.random().toString(16)+"000000000").substr(2,8)}},event:{approve:function(){return F.onApprove.call(j,e(this))===!1?void S.verbose("Approve callback returned false cancelling hide"):void S.hide()},deny:function(){return F.onDeny.call(j,e(this))===!1?void S.verbose("Deny callback returned false cancelling hide"):void S.hide()},close:function(){S.hide()},click:function(n){var t=e(n.target),o=t.closest(A.modal).length>0,a=e.contains(i.documentElement,n.target);!o&&a&&(S.debug("Dimmer clicked, hiding all modals"),S.is.active()&&(S.remove.clickaway(),F.allowMultiple?S.hide():S.hideAll()))},debounce:function(e,n){clearTimeout(S.timer),S.timer=setTimeout(e,n)},keyboard:function(e){var n=e.which,i=27;n==i&&(F.closable?(S.debug("Escape key pressed hiding modal"),S.hide()):S.debug("Escape key pressed, but closable is set to false"),e.preventDefault())},resize:function(){y.dimmer("is active")&&v(S.refresh)}},toggle:function(){S.is.active()||S.is.animating()?S.hide():S.show()},show:function(n){n=e.isFunction(n)?n:function(){},S.refreshModals(),S.showModal(n)},hide:function(n){n=e.isFunction(n)?n:function(){},S.refreshModals(),S.hideModal(n)},showModal:function(n){n=e.isFunction(n)?n:function(){},S.is.animating()||!S.is.active()?(S.showDimmer(),S.cacheSizes(),S.set.position(),S.set.screenHeight(),S.set.type(),S.set.clickaway(),!F.allowMultiple&&S.others.active()?S.hideOthers(S.showModal):(F.onShow.call(j),F.transition&&e.fn.transition!==t&&O.transition("is supported")?(S.debug("Showing modal with css animations"),O.transition({debug:F.debug,animation:F.transition+" in",queue:F.queue,duration:F.duration,useFailSafe:!0,onComplete:function(){F.onVisible.apply(j),S.add.keyboardShortcuts(),S.save.focus(),S.set.active(),F.autofocus&&S.set.autofocus(),n()}})):S.error(T.noTransition))):S.debug("Modal is already visible")},hideModal:function(n,i){return n=e.isFunction(n)?n:function(){},S.debug("Hiding modal"),F.onHide.call(j,e(this))===!1?void S.verbose("Hide callback returned false cancelling hide"):void((S.is.animating()||S.is.active())&&(F.transition&&e.fn.transition!==t&&O.transition("is supported")?(S.remove.active(),O.transition({debug:F.debug,animation:F.transition+" out",queue:F.queue,duration:F.duration,useFailSafe:!0,onStart:function(){S.others.active()||i||S.hideDimmer(),S.remove.keyboardShortcuts()},onComplete:function(){F.onHidden.call(j),S.restore.focus(),n()}})):S.error(T.noTransition)))},showDimmer:function(){y.dimmer("is animating")||!y.dimmer("is active")?(S.debug("Showing dimmer"),y.dimmer("show")):S.debug("Dimmer already visible")},hideDimmer:function(){return y.dimmer("is animating")||y.dimmer("is active")?void y.dimmer("hide",function(){S.remove.clickaway(),S.remove.screenHeight()}):void S.debug("Dimmer is not visible cannot hide")},hideAll:function(n){var i=r.filter("."+D.active+", ."+D.animating);n=e.isFunction(n)?n:function(){},i.length>0&&(S.debug("Hiding all visible modals"),S.hideDimmer(),i.modal("hide modal",n))},hideOthers:function(n){var i=b.filter("."+D.active+", ."+D.animating);n=e.isFunction(n)?n:function(){},i.length>0&&(S.debug("Hiding other modals",b),i.modal("hide modal",n,!0))},others:{active:function(){return b.filter("."+D.active).length>0},animating:function(){return b.filter("."+D.animating).length>0}},add:{keyboardShortcuts:function(){S.verbose("Adding keyboard shortcuts"),c.on("keyup"+x,S.event.keyboard)}},save:{focus:function(){p=e(i.activeElement).blur()}},restore:{focus:function(){p&&p.length>0&&p.focus()}},remove:{active:function(){O.removeClass(D.active)},clickaway:function(){F.closable&&k.off("click"+w)},bodyStyle:function(){""===l.attr("style")&&(S.verbose("Removing style attribute"),l.removeAttr("style"))},screenHeight:function(){S.debug("Removing page height"),l.css("height","")},keyboardShortcuts:function(){S.verbose("Removing keyboard shortcuts"),c.off("keyup"+x)},scrolling:function(){y.removeClass(D.scrolling),O.removeClass(D.scrolling)}},cacheSizes:function(){var o=O.outerHeight();(S.cache===t||0!==o)&&(S.cache={pageHeight:e(i).outerHeight(),height:o+F.offset,contextHeight:"body"==F.context?e(n).height():y.height()}),S.debug("Caching modal and container sizes",S.cache)},can:{fit:function(){return S.cache.height+2*F.padding<S.cache.contextHeight}},is:{active:function(){return O.hasClass(D.active)},animating:function(){return O.transition("is supported")?O.transition("is animating"):O.is(":visible")},scrolling:function(){return y.hasClass(D.scrolling)},modernBrowser:function(){return!(n.ActiveXObject||"ActiveXObject"in n)}},set:{autofocus:function(){var e=O.find(":input").filter(":visible"),n=e.filter("[autofocus]"),i=n.length>0?n.first():e.first();i.length>0&&i.focus()},clickaway:function(){F.closable&&k.on("click"+w,S.event.click)},screenHeight:function(){S.can.fit()?l.css("height",""):(S.debug("Modal is taller than page content, resizing page height"),l.css("height",S.cache.height+2*F.padding))},active:function(){O.addClass(D.active)},scrolling:function(){y.addClass(D.scrolling),O.addClass(D.scrolling)},type:function(){S.can.fit()?(S.verbose("Modal fits on screen"),S.others.active()||S.others.animating()||S.remove.scrolling()):(S.verbose("Modal cannot fit on screen setting to scrolling"),S.set.scrolling())},position:function(){S.verbose("Centering modal on page",S.cache),S.can.fit()?O.css({top:"",marginTop:-(S.cache.height/2)}):O.css({marginTop:"",top:c.scrollTop()})},undetached:function(){y.addClass(D.undetached)}},setting:function(n,i){if(S.debug("Changing setting",n,i),e.isPlainObject(n))e.extend(!0,F,n);else{if(i===t)return F[n];e.isPlainObject(F[n])?e.extend(!0,F[n],i):F[n]=i}},internal:function(n,i){if(e.isPlainObject(n))e.extend(!0,S,n);else{if(i===t)return S[n];S[n]=i}},debug:function(){!F.silent&&F.debug&&(F.performance?S.performance.log(arguments):(S.debug=Function.prototype.bind.call(console.info,console,F.name+":"),S.debug.apply(console,arguments)))},verbose:function(){!F.silent&&F.verbose&&F.debug&&(F.performance?S.performance.log(arguments):(S.verbose=Function.prototype.bind.call(console.info,console,F.name+":"),S.verbose.apply(console,arguments)))},error:function(){F.silent||(S.error=Function.prototype.bind.call(console.error,console,F.name+":"),S.error.apply(console,arguments))},performance:{log:function(e){var n,i,t;F.performance&&(n=(new Date).getTime(),t=u||n,i=n-t,u=n,m.push({Name:e[0],Arguments:[].slice.call(e,1)||"",Element:j,"Execution Time":i})),clearTimeout(S.performance.timer),S.performance.timer=setTimeout(S.performance.display,500)},display:function(){var n=F.name+":",i=0;u=!1,clearTimeout(S.performance.timer),e.each(m,function(e,n){i+=n["Execution Time"]}),n+=" "+i+"ms",d&&(n+=" '"+d+"'"),(console.group!==t||console.table!==t)&&m.length>0&&(console.groupCollapsed(n),console.table?console.table(m):e.each(m,function(e,n){console.log(n.Name+": "+n["Execution Time"]+"ms")}),console.groupEnd()),m=[]}},invoke:function(n,i,o){var r,s,c,l=P;return i=i||h,o=j||o,"string"==typeof n&&l!==t&&(n=n.split(/[\. ]/),r=n.length-1,e.each(n,function(i,o){var a=i!=r?o+n[i+1].charAt(0).toUpperCase()+n[i+1].slice(1):n;if(e.isPlainObject(l[a])&&i!=r)l=l[a];else{if(l[a]!==t)return s=l[a],!1;if(!e.isPlainObject(l[o])||i==r)return l[o]!==t?(s=l[o],!1):!1;l=l[o]}})),e.isFunction(s)?c=s.apply(o,i):s!==t&&(c=s),e.isArray(a)?a.push(c):a!==t?a=[a,c]:c!==t&&(a=c),s}},g?(P===t&&S.initialize(),S.invoke(f)):(P!==t&&P.invoke("destroy"),S.initialize())}),a!==t?a:this},e.fn.modal.settings={name:"Modal",namespace:"modal",silent:!1,debug:!1,verbose:!1,performance:!0,observeChanges:!1,allowMultiple:!1,detachable:!0,closable:!0,autofocus:!0,inverted:!1,blurring:!1,dimmerSettings:{closable:!1,useCSS:!0},context:"body",queue:!1,duration:500,offset:0,transition:"scale",padding:50,onShow:function(){},onVisible:function(){},onHide:function(){return!0},onHidden:function(){},onApprove:function(){return!0},onDeny:function(){return!0},selector:{close:"> .close",approve:".actions .positive, .actions .approve, .actions .ok",deny:".actions .negative, .actions .deny, .actions .cancel",modal:".ui.modal"},error:{dimmer:"UI Dimmer, a required component is not included in this page",method:"The method you called is not defined.",notFound:"The element you specified could not be found"},className:{active:"active",animating:"animating",blurring:"blurring",scrolling:"scrolling",undetached:"undetached"}}}(jQuery,window,document);
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(8);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../css-loader/index.js!./modal.min.css", function() {
+				var newContent = require("!!./../../css-loader/index.js!./modal.min.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "/*!\n * # Semantic UI 2.2.1 - Modal\n * http://github.com/semantic-org/semantic-ui/\n *\n *\n * Released under the MIT license\n * http://opensource.org/licenses/MIT\n *\n */.ui.modal{display:none;position:fixed;z-index:1001;top:50%;left:50%;text-align:left;background:#FFF;border:none;box-shadow:1px 3px 3px 0 rgba(0,0,0,.2),1px 3px 15px 2px rgba(0,0,0,.2);-webkit-transform-origin:50% 25%;transform-origin:50% 25%;border-radius:.28571429rem;-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;will-change:top,left,margin,transform,opacity}.ui.modal>.icon:first-child+*,.ui.modal>:first-child:not(.icon){border-top-left-radius:.28571429rem;border-top-right-radius:.28571429rem}.ui.modal>:last-child{border-bottom-left-radius:.28571429rem;border-bottom-right-radius:.28571429rem}.ui.modal>.close{cursor:pointer;position:absolute;top:-2.5rem;right:-2.5rem;z-index:1;opacity:.8;font-size:1.25em;color:#FFF;width:2.25rem;height:2.25rem;padding:.625rem 0 0}.ui.modal>.close:hover{opacity:1}.ui.modal>.header{display:block;font-family:Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;background:#FFF;margin:0;padding:1.25rem 1.5rem;box-shadow:none;color:rgba(0,0,0,.85);border-bottom:1px solid rgba(34,36,38,.15)}.ui.modal>.header:not(.ui){font-size:1.42857143rem;line-height:1.2857em;font-weight:700}.ui.modal>.content{display:block;width:100%;font-size:1em;line-height:1.4;padding:1.5rem;background:#FFF}.ui.modal>.image.content{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row}.ui.modal>.content>.image{display:block;-webkit-box-flex:0;-webkit-flex:0 1 auto;-ms-flex:0 1 auto;flex:0 1 auto;width:'';-webkit-align-self:top;-ms-flex-item-align:top;align-self:top}.ui.modal>[class*=\"top aligned\"]{-webkit-align-self:top;-ms-flex-item-align:top;align-self:top}.ui.modal>[class*=\"middle aligned\"]{-webkit-align-self:middle;-ms-flex-item-align:middle;align-self:middle}.ui.modal>[class*=stretched]{-webkit-align-self:stretch;-ms-flex-item-align:stretch;align-self:stretch}.ui.modal>.content>.description{display:block;-webkit-box-flex:1;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;min-width:0;-webkit-align-self:top;-ms-flex-item-align:top;align-self:top}.ui.modal>.content>.icon+.description,.ui.modal>.content>.image+.description{-webkit-box-flex:0;-webkit-flex:0 1 auto;-ms-flex:0 1 auto;flex:0 1 auto;min-width:'';width:auto;padding-left:2em}.ui.modal>.content>.image>i.icon{margin:0;opacity:1;width:auto;line-height:1;font-size:8rem}.ui.modal>.actions{background:#F9FAFB;padding:1rem;border-top:1px solid rgba(34,36,38,.15);text-align:right}.ui.modal .actions>.button{margin-left:.75em}@media only screen and (max-width:767px){.ui.modal{width:95%;margin:0 0 0 -47.5%}}@media only screen and (min-width:768px){.ui.modal{width:88%;margin:0 0 0 -44%}}@media only screen and (min-width:992px){.ui.modal{width:850px;margin:0 0 0 -425px}}@media only screen and (min-width:1200px){.ui.modal{width:900px;margin:0 0 0 -450px}}@media only screen and (min-width:1920px){.ui.modal{width:950px;margin:0 0 0 -475px}}@media only screen and (max-width:991px){.ui.modal>.header{padding-right:2.25rem}.ui.modal>.close{top:1.0535rem;right:1rem;color:rgba(0,0,0,.87)}}@media only screen and (max-width:767px){.ui.modal>.header{padding:.75rem 2.25rem .75rem 1rem!important}.ui.modal>.content{display:block;padding:1rem!important}.ui.modal>.close{top:.5rem!important;right:.5rem!important}.ui.modal .image.content{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column}.ui.modal .content>.image{display:block;max-width:100%;margin:0 auto!important;text-align:center;padding:0 0 1rem!important}.ui.modal>.content>.image>i.icon{font-size:5rem;text-align:center}.ui.modal .content>.description{display:block;width:100%!important;margin:0!important;padding:1rem 0!important;box-shadow:none}.ui.modal>.actions{padding:1rem 1rem 0!important}.ui.modal .actions>.button,.ui.modal .actions>.buttons{margin-bottom:1rem}}.ui.inverted.dimmer>.ui.modal{box-shadow:1px 3px 10px 2px rgba(0,0,0,.2)}.ui.basic.modal{background-color:transparent;border:none;border-radius:0;box-shadow:none!important;color:#FFF}.ui.basic.modal>.actions,.ui.basic.modal>.content,.ui.basic.modal>.header{background-color:transparent}.ui.basic.modal>.header{color:#FFF}.ui.basic.modal>.close{top:1rem;right:1.5rem}.ui.inverted.dimmer>.basic.modal{color:rgba(0,0,0,.87)}.ui.inverted.dimmer>.ui.basic.modal>.header{color:rgba(0,0,0,.85)}.ui.active.modal{display:block}.scrolling.dimmable.dimmed{overflow:hidden}.scrolling.dimmable.dimmed>.dimmer{overflow:auto;-webkit-overflow-scrolling:touch}.scrolling.dimmable>.dimmer{position:fixed}.modals.dimmer .ui.scrolling.modal{position:static!important;margin:3.5rem auto!important}.scrolling.undetached.dimmable.dimmed{overflow:auto;-webkit-overflow-scrolling:touch}.scrolling.undetached.dimmable.dimmed>.dimmer{overflow:hidden}.scrolling.undetached.dimmable .ui.scrolling.modal{position:absolute;left:50%;margin-top:3.5rem!important}.undetached.dimmable.dimmed>.pusher{z-index:auto}@media only screen and (max-width:991px){.ui.basic.modal>.close{color:#FFF}.modals.dimmer .ui.scrolling.modal{margin-top:1rem!important;margin-bottom:1rem!important}}.ui.fullscreen.modal{width:95%!important;left:2.5%!important;margin:1em auto}.ui.fullscreen.scrolling.modal{left:0!important}.ui.fullscreen.modal>.header{padding-right:2.25rem}.ui.fullscreen.modal>.close{top:1.0535rem;right:1rem;color:rgba(0,0,0,.87)}.ui.modal{font-size:1rem}.ui.small.modal>.header:not(.ui){font-size:1.3em}@media only screen and (max-width:767px){.ui.small.modal{width:95%;margin:0 0 0 -47.5%}}@media only screen and (min-width:768px){.ui.small.modal{width:70.4%;margin:0 0 0 -35.2%}}@media only screen and (min-width:992px){.ui.small.modal{width:680px;margin:0 0 0 -340px}}@media only screen and (min-width:1200px){.ui.small.modal{width:720px;margin:0 0 0 -360px}}@media only screen and (min-width:1920px){.ui.small.modal{width:760px;margin:0 0 0 -380px}}.ui.large.modal>.header{font-size:1.6em}@media only screen and (max-width:767px){.ui.large.modal{width:95%;margin:0 0 0 -47.5%}}@media only screen and (min-width:768px){.ui.large.modal{width:88%;margin:0 0 0 -44%}}@media only screen and (min-width:992px){.ui.large.modal{width:1020px;margin:0 0 0 -510px}}@media only screen and (min-width:1200px){.ui.large.modal{width:1080px;margin:0 0 0 -540px}}@media only screen and (min-width:1920px){.ui.large.modal{width:1140px;margin:0 0 0 -570px}}", ""]);
+
+	// exports
+
+
+/***/ },
 /* 9 */
 /***/ function(module, exports) {
 
