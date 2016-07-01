@@ -7,6 +7,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 
 var sassDir = path.join('../stylesheets', 'vendor');
+var fontsDir = path.join('../fonts');
 
 module.exports = {
   context: __dirname,
@@ -65,6 +66,7 @@ module.exports = {
       { from: 'node_modules/breakpoint-sass/stylesheets', to: path.join(sassDir, 'breakpoint') },
       // Font Awesome
       { from: 'node_modules/font-awesome/scss', to: path.join(sassDir, 'font-awesome') },
+      { from: 'node_modules/font-awesome/fonts', to: fontsDir },
        // MathSass
       { from: 'node_modules/mathsass/dist', to: path.join(sassDir, 'mathsass') },
       // Normalize
