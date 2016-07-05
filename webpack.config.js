@@ -65,7 +65,8 @@ module.exports = {
       // Breakpoint
       { from: 'node_modules/breakpoint-sass/stylesheets', to: path.join(sassDir, 'breakpoint') },
       // Font Awesome
-      { from: 'node_modules/font-awesome/scss', to: path.join(sassDir, 'font-awesome') },
+      { context: 'node_modules/font-awesome/scss', from: '_*', to: path.join(sassDir, 'font-awesome') },
+      { from: 'node_modules/font-awesome/scss/font-awesome.scss', to: path.join(sassDir, 'font-awesome', '_font-awesome.scss') },
       { from: 'node_modules/font-awesome/fonts', to: fontsDir },
        // MathSass
       { from: 'node_modules/mathsass/dist', to: path.join(sassDir, 'mathsass') },
