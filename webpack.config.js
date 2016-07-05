@@ -74,11 +74,11 @@ module.exports = {
       { from: 'node_modules/normalize-scss/sass', to: path.join(sassDir, 'normalize') },
       { from: 'node_modules/support-for/sass/_support-for.scss', to: path.join(sassDir, 'normalize') },
       // Semantic-UI
-      { from: 'node_modules/semantic-ui-css/components/button.min.css', to: path.join(sassDir, 'semantic-ui') },
-      { from: 'node_modules/semantic-ui-css/components/card.min.css', to: path.join(sassDir, 'semantic-ui') },
-      { from: 'node_modules/semantic-ui-css/components/input.min.css', to: path.join(sassDir, 'semantic-ui') },
-      { from: 'node_modules/semantic-ui-css/components/label.min.css', to: path.join(sassDir, 'semantic-ui') },
-      { from: 'node_modules/semantic-ui-css/components/menu.min.css', to: path.join(sassDir, 'semantic-ui') },
+      { from: 'node_modules/semantic-ui-css/components/button.css', to: path.join(sassDir, 'semantic-ui', '_button.scss') },
+      { from: 'node_modules/semantic-ui-css/components/card.css', to: path.join(sassDir, 'semantic-ui', '_card.scss') },
+      { from: 'node_modules/semantic-ui-css/components/input.css', to: path.join(sassDir, 'semantic-ui', '_input.scss') },
+      { from: 'node_modules/semantic-ui-css/components/label.css', to: path.join(sassDir, 'semantic-ui', '_label.scss') },
+      { from: 'node_modules/semantic-ui-css/components/menu.css', to: path.join(sassDir, 'semantic-ui', '_menu.scss') },
       // Susy
       { from: 'node_modules/susy/sass', to: path.join(sassDir, 'susy') }
     ], {
