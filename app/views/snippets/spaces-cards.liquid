@@ -25,6 +25,8 @@
               {% if quiet_study %}
 
                 <i class="js-sui-popup space-finder__quiet fa fa-volume-down ui icon" title="quiet study" data-variation="inverted" data-position="left center"></i>
+
+                {{ 'spacesQuiet.bundle.js' | javascript_tag }}
               {% endif %}
             {% elsif spaces_type._slug == 'classroom' or spaces_type._slug == 'computing-facilities' %}
               {% comment %} Need logic here to first see if room is available (all but stone computing center) {% endcomment %}
@@ -53,9 +55,9 @@
                 {% comment %}Increment libcal counter{% endcomment %}
                 {% assign libcal_widget_counter = libcal_widget_counter | plus: 1 %}
               {% elsif space.reservation_system.name == 'Booked' %}
-                <button onclick="modal()" class="ui labeled icon button space-finder__reserve">
+                <button id="booked-reserve-{{ space.reserve_sys_id }}" class="js-booked-reserve ui labeled icon button space-finder__reserve">
               {% endif %}
-                <i class="calendar icon"></i>
+                <i class="fa fa-calendar icon"></i>
                 Reserve
               </button>
             </a>
@@ -67,7 +69,7 @@
           {% unless space.avail_url == "" %}
             <div class="description">
               <div class="ui orange right ribbon label">
-                <i class="key icon"></i>
+                <i class="fa fa-key icon"></i>
                 {{ space.loan_period }} loan
               </div>
 

@@ -1,9 +1,9 @@
 # mann-wagon
-[LocomotiveCMS](http://locomotivecms.com) Wagon site for Mann Library
+[Locomotive](http://locomotivecms.com) Wagon site for Mann Library
 
 ### Overview
 
-[Wagon](http://github.com/locomotivecms/wagon) is the command line interface for LocomotiveCMS and is where developers will spend most of their time when working on a LocomotiveCMS site. For a more thorough intro to the LocomotiveCMS approach and workflow, please review the [mann-locomotive README](http://github.com/cul-it/mann-locomotive#overview). We'll be here when you get back.
+[Wagon](http://github.com/locomotivecms/wagon) is the command line interface for Locomotive and is where developers will spend most of their time when working on a Locomotive site. For a more thorough intro to the Locomotive approach and workflow, please review the [mann-locomotive README](http://github.com/cul-it/mann-locomotive#overview). We'll be here when you get back.
 
 ### QuickStart
 
@@ -18,6 +18,12 @@ $ git clone git@github.com:cul-it/mann-wagon.git
    ```bash
 $ cd <clone>
 $ bundle install
+```
+
+1. Install modules & build bundles
+   ```bash
+$ npm install
+$ npm run build
 ```
 
 1. Serve the site

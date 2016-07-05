@@ -1,3 +1,6 @@
+import 'semantic-ui-css/components/transition.min.js';
+import 'semantic-ui-css/components/transition.min.css';
+
 var hoursNav = {
   onLoad: function() {
     this.bindEventListeners();
@@ -21,13 +24,13 @@ var hoursNav = {
   gotoWeek: function(week) {
     switch (week) {
       case 'next':
-        requestedWeek = hoursNav.currentWeek + 1;
+        var requestedWeek = hoursNav.currentWeek + 1;
         break;
       case 'prev':
-        requestedWeek = hoursNav.currentWeek - 1;
+        var requestedWeek = hoursNav.currentWeek - 1;
         break;
       case 'first':
-        requestedWeek = 0;
+        var requestedWeek = 0;
         break;
     }
 

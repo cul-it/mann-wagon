@@ -57,7 +57,7 @@ editable_elements:
     <p>If the walk-in hours are not convenient for you, please request a one-on-one consultation&nbsp;to
     fit your schedule.&nbsp;</p>
     <!--  Libcal MyScheduler Widget-->
-    <script src="//api3.libcal.com/js/myscheduler.js?002"></script>
+    {{ '//api3.libcal.com/js/myscheduler.js?002' | javascript_tag }}
     <script>
     jQuery(function(){
        jQuery("#mySched3659").LibCalMySched({ iid: 973, uid: 3659, gid: 0,  width: 500, height: 450  });
