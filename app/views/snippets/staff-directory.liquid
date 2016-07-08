@@ -10,7 +10,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="staff-directory__tbody">
     {% if current_division %}
       {% with_scope division: current_division, division_head: true %}
         {% include 'staff-directory-body' %}

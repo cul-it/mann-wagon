@@ -1,13 +1,13 @@
 $badge-font-size: modular-scale(-1) !default;
 
 @mixin badge($color: color('medium-gray')) {
-  background-color: $color;
-  border-radius: $badge-font-size * 5;
-  color: darken($color, 60%);
   display: inline-block;
-  font-size: $badge-font-size;
+  border-radius: $badge-font-size * 5;
+  background-color: $color;
+  padding: .4em 1.2em;
   line-height: modular-scale(0);
-  padding: 0.4em 1.2em;
+  color: darken($color, 60%);
+  font-size: $badge-font-size;
 }
 
 .badge {

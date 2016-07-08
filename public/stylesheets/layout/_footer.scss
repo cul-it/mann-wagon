@@ -1,9 +1,4 @@
 .footer {
-  margin-top: 1em;
-  padding: 2em .3em;
-  color: color('aluminum');
-  background: color('vulcan');
-
   @include span(full);
 
   @include susy-breakpoint($tablet, $g-tablet) {
@@ -13,11 +8,14 @@
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     padding: 2em 7%;
   }
+
+  margin-top: 1em;
+  background: color('vulcan');
+  padding: 2em .3em;
+  color: color('aluminum');
 }
 
 .footer__panel {
-  margin-bottom: 1em;
-
   @include susy-breakpoint($scape, $g-scape) {
     @include span(2);
   }
@@ -25,14 +23,8 @@
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     @include span(4);
   }
-}
 
-.footer__about-us {
-
-}
-
-.footer__featured-plus-haiku {
-
+  margin-bottom: 1em;
 }
 
 .footer__contact-us {
@@ -52,8 +44,8 @@
 
 .footer__subheading {
   margin-bottom: .1em;
-  font-size: modular-scale(0);
   color: color('amulet');
+  font-size: modular-scale(0);
 }
 
 .footer__mission,
@@ -63,8 +55,8 @@
 
 .footer__floorplans,
 .footer__address-line {
-  font-size: modular-scale(-1);
   line-height: modular-scale(1);
+  font-size: modular-scale(-1);
 }
 
 .footer__address-line {
@@ -72,12 +64,13 @@
 }
 
 .footer__social {
-  margin-bottom: 1em;
-
   @include susy-breakpoint($scape, $g-scape) {
-    text-align: right;
     @include span(last 2);
+
+    text-align: right;
   }
+
+  margin-bottom: 1em;
 }
 
 .footer__social-icon {
@@ -85,9 +78,9 @@
 }
 
 .footer__copyright {
-  line-height: modular-scale(1);
-
   @include susy-breakpoint($scape, $g-scape) {
     @include span(4);
   }
+
+  line-height: modular-scale(1);
 }

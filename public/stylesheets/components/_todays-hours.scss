@@ -1,8 +1,4 @@
 .todays-hours {
-  padding: .53em .5em;
-  font-size: modular-scale(-1);
-  line-height: modular-scale(-1);
-  background: color('alabaster');
   @include span(last 1);
 
   @include susy-breakpoint($scape, $g-scape) {
@@ -10,30 +6,34 @@
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(3 wide no-gutter break);
+
+    border-top: solid 1px color('alabaster' ('shade': 5%));
+    border-right: solid 2px color('alabaster' ('shade': 5%));
+    border-bottom: solid 4px color('alabaster' ('tint': 30%));
     padding: .45em 0 .15em 5%;
     font-size: modular-scale(0);
-    border-top: solid 1px color('alabaster' ('shade': 5%));
-    border-bottom: solid 4px color('alabaster' ('tint': 30%));
-    border-right: solid 2px color('alabaster' ('shade': 5%));
-
-
-    @include span(3 wide no-gutter);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(5 wide no-gutter);
+
     padding: .5em 0 .2em 8%;
     font-size: modular-scale(1);
-
-    @include span(5 wide no-gutter);
   }
+
+  background: color('alabaster');
+  padding: .53em .5em;
+  line-height: modular-scale(-1);
+  font-size: modular-scale(-1);
 }
 
 .todays-hours__mann {
-  margin-bottom: .3em;
-
   @include susy-breakpoint($tablet, $g-tablet) {
     @include span(2 of 3);
   }
+
+  margin-bottom: .3em;
 }
 
 .todays-hours__lobby,

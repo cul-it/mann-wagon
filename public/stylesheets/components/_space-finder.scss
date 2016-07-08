@@ -1,11 +1,11 @@
 .space-finder__category {
-  font-family: $base-font-family;
-  font-size: modular-scale(0);
-  font-weight: 700;
-
   @include susy-breakpoint($tablet, $g-tablet) {
     font-size: modular-scale(1);
   }
+
+  font-family: $base-font-family;
+  font-size: modular-scale(0);
+  font-weight: 700;
 }
 
 .space-finder__name {
@@ -19,30 +19,26 @@
 }
 
 .space-finder__study-spaces {
-  padding: 0 1em 1em 1em;
-  background: color('alabaster');
   border-radius: .5em;
+  background: color('alabaster');
+  padding: 0 1em 1em;
 }
 
 .space-finder__subheading {
-  margin: 2em 0 .5em 0;
+  @include susy-breakpoint($tablet, $g-tablet) {
+    margin: 2em 0 0;
+  }
+
+  margin: 2em 0 .5em;
   padding-top: .5em;
   font-family: $base-font-family;
   font-size: modular-scale(2);
   font-weight: 700;
-
-  @include susy-breakpoint($tablet, $g-tablet) {
-    margin: 2em 0 0 0;
-  }
 }
 
 .space-finder__cards {
-  &.ui.cards { // Override semantic ui default
+  &~.ui { // Override semantic ui default
     margin-top: 0;
-
-    &~.ui.cards {
-      margin-top: 0;
-    }
   }
 }
 
@@ -53,10 +49,10 @@
 }
 
 .space-finder__reserve {
-  &.ui.button { // Override semantic ui default
+  &.ui { // Override semantic ui default
     margin-top: .2em;
-    color: color('white');
     background: color('action');
+    color: color('white');
 
     &:hover {
       background: color('action' ('shade': 5%));

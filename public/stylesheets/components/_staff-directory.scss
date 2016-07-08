@@ -1,7 +1,4 @@
 .staff-directory__staff {
-  font-size: modular-scale(-2);
-  line-height: modular-scale(0);
-
   @include susy-breakpoint($scape, $g-scape) {
     font-size: modular-scale(-1);
   }
@@ -10,26 +7,29 @@
     font-size: modular-scale(0);
   }
 
-  tbody {
-    tr {
-      &:nth-of-type(odd) {
-        background: color('alabaster');
-      }
-    }
+  line-height: modular-scale(0);
+  font-size: modular-scale(-2);
+}
 
-    td {
-      border-bottom-color: color('barely-gray');
+.staff-directory__tbody {
+  tr {
+    &:nth-of-type(odd) {
+      background: color('alabaster');
     }
+  }
+
+  td {
+    border-bottom-color: color('barely-gray');
   }
 }
 
 .staff-directory__email-hint {
-  font-size: modular-scale(-1);
   color: color('medium-gray');
+  font-size: modular-scale(-1);
 }
 
 .staff-directory__position {
   display: block;
-  font-size: modular-scale(-1);
   color: color('medium-gray');
+  font-size: modular-scale(-1);
 }

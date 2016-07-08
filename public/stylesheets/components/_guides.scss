@@ -7,14 +7,15 @@
 }
 
 .guides__heading {
-  margin-bottom: .5em;
-
   @include span(full);
+
+  margin-bottom: .5em;
 }
 
 .guides__libguides {
-  margin-bottom: 0;
   @include break;
+
+  margin-bottom: 0;
 }
 
 .guides__libguides-grp1 {

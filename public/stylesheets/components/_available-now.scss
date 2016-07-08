@@ -7,7 +7,6 @@
 }
 
 .available-now__heading {
-  margin-bottom: .1em;
   @include span(3);
 
   @include susy-breakpoint($scape, $g-scape) {
@@ -21,12 +20,14 @@
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     @include span(4 of 6);
   }
+
+  margin-bottom: .1em;
 }
 
 .available-now__datetime {
+  color: color('amulet');
   font-size: modular-scale(-2);
   font-weight: normal;
-  color: color('amulet');
 }
 
 .available-now__link {
@@ -34,8 +35,6 @@
 }
 
 .available-now__find-space {
-  margin-top: .7em;
-
   @include span(full);
 
   @include susy-breakpoint($scape, $g-scape) {
@@ -49,6 +48,8 @@
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     @include span(2 of 3);
   }
+
+  margin-top: .7em;
 }
 
 .available-now__grp {
@@ -56,7 +57,7 @@
 }
 
 .available-now__subheading {
-  margin: .7em 0 .2em 0;
+  margin: .7em 0 .2em;
 }
 
 .available-now__study {
@@ -93,7 +94,6 @@
 
 .available-now__computers {
   @include span(2);
-  clear: left;
 
   @include susy-breakpoint($scape, $g-scape) {
     @include span(3);
@@ -108,6 +108,8 @@
     @include span(3 of 6);
     clear: left;
   }
+
+  clear: left;
 }
 
 .available-now__os {
@@ -128,16 +130,16 @@
 
 .available-now__floor {
   clear: left;
-  margin: 1em 0 0 0;
+  margin: 1em 0 0;
   font-size: modular-scale(0);
 }
 
 .available-now__location {
-  font-size: modular-scale(-1);
-
   @include susy-breakpoint($allout, $g-allout) {
     font-size: modular-scale(0);
   }
+
+  font-size: modular-scale(-1);
 }
 
 .available-now__badge--promote {

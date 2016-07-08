@@ -57,8 +57,6 @@ body {
 }
 
 main {
-  margin: 0 auto;
-  width: 95%;
   @include break;
 
   @include susy-breakpoint($tablet, $g-tablet) {
@@ -68,4 +66,7 @@ main {
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     width: 85%;
   }
+
+  margin: 0 auto;
+  width: 95%;
 }

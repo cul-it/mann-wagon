@@ -7,8 +7,8 @@ section {
 }
 
 .more-link {
-  font-weight: bold;
   color: color('more');
+  font-weight: bold;
 
   &--footer {
     color: color('more' ('desaturate': 10%));

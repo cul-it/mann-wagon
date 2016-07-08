@@ -1,28 +1,26 @@
 .search {
-  position: absolute;
-  top: 0;
-  right: 0;
-
   @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(3 at 6);
+
     position: relative;
     margin-top: 3.5em;
     padding-right: 5%;
     text-align: right;
     font-size: modular-scale(-1);
-
-    @include span(3 at 6);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    padding-right: 7%;
-
     @include span(5 at 8);
+
+    padding-right: 7%;
   }
+
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .search__term {
-  display: none;
-
   @include susy-breakpoint($tablet, $g-tablet) {
     display: inline-block;
     width: span(2 of 3);
@@ -31,21 +29,23 @@
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     width: span(4 of 5);
   }
+
+  display: none;
 }
 
 .search__button {
-  height: 52px; // Match height of cu-banner
-  background-color: color('search-banner');
-
   @include susy-breakpoint($tablet, $g-tablet) {
     display: none;
   }
+
+  background-color: color('search-banner');
+  height: 52px; // Match height of cu-banner
 }
 
 .search__icon {
-  color: color('white');
-
   @include susy-breakpoint($tablet, $g-tablet) {
     color: inherit;
   }
+
+  color: color('white');
 }

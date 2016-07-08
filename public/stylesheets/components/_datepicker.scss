@@ -1,3 +1,6 @@
+// ID selector fails lint, but nothing I can do about it at this point
+// -- hopefully we will soon be able to disable linters via source
+// -- https://github.com/sasstools/sass-lint/pull/677
 #datepicker {
   margin-top: 1em;
 }
@@ -8,7 +11,7 @@
 
 .ui-datepicker-prev {
   &:before {
-    content: "<<";
+    content: '<<';
   }
 }
 
@@ -16,14 +19,14 @@
   margin-left: 1em;
 
   &:after {
-    content: ">>";
+    content: '>>';
   }
 }
 
 .ui-datepicker-title {
   float: left;
-  font-weight: 700;
   font-size: modular-scale(1);
+  font-weight: 700;
 }
 
 .ui-datepicker-calendar {
@@ -31,7 +34,7 @@
 }
 
 .ui-state-active {
+  background: color('action');
   padding: .2em;
   color: color('white');
-  background: color('action');
 }

@@ -1,8 +1,7 @@
 // Our own twist on The 7-1 Pattern
 // http://sass-guidelin.es/#the-7-1-pattern
 
-@import 'vendor/normalize/normalize';
-@include normalize(); // Apply normalize rules
+@import 'vendor/normalize/normalize/import-now';
 @import 'vendor/breakpoint/breakpoint';
 @import 'vendor/susy/susy';
 @import 'vendor/bourbon/bourbon';

@@ -11,15 +11,6 @@
 }
 
 .site-nav__list {
-  position: relative;
-  margin-bottom: 1em;
-  padding: 0 auto;
-  border-top: solid 1px color('nav' ('shade': 5%));
-  border-bottom: solid 4px color('nav' ('tint': 60%));
-  font-weight: bold;
-  font-size: modular-scale(-1);
-  text-align: center;
-  background: color('nav');
   @include clearfix;
 
   @include susy-breakpoint($scape, $g-scape) {
@@ -35,14 +26,24 @@
     padding-right: 8%;
   }
 
-  .link {
-    position: static;
-    display: inline-block;
-    padding: .4em;
+  position: relative;
+  margin-bottom: 1em;
+  border-top: solid 1px color('nav' ('shade': 5%));
+  border-bottom: solid 4px color('nav' ('tint': 60%));
+  background: color('nav');
+  padding: 0 auto;
+  text-align: center;
+  font-size: modular-scale(-1);
+  font-weight: bold;
 
+  .link {
     @include susy-breakpoint($lapdesk, $g-lapdesk) {
       padding: .8em;
     }
+
+    display: inline-block;
+    position: static;
+    padding: .4em;
 
     &.active {
       background: color('nav' ('tint': 40%));
@@ -68,38 +69,36 @@
 }
 
 .site-nav__chevron {
-  font-size: modular-scale(-1);
   color: color('aluminum');
+  font-size: modular-scale(-1);
 }
 
 .site-nav__mega {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  display: none;
-  width: 100vw;
-  height: auto;
-  padding: 2em;
-  text-align: left;
-  color: color('alabaster');
-  background: color('vulcan' ('transparentize': 0.02));
-  z-index: $above-content;
-
   @include susy-breakpoint($tablet, $g-tablet) {
     left: - span(4 of 8 wider);
+    background: color('vulcan' ('transparentize': .05));
     width: 92vw;
-    background: color('vulcan' ('transparentize': 0.05));
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     left: - span(7 of 12 wider);
     width: 88vw;
   }
+
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: $above-content;
+  background: color('vulcan' ('transparentize': .02));
+  padding: 2em;
+  width: 100vw;
+  height: auto;
+  text-align: left;
+  color: color('alabaster');
 }
 
 .site-nav__section {
-  margin-bottom: 1em;
-
   @include susy-breakpoint($tablet, $g-tablet) {
     @include span(2 of 8);
 
@@ -110,6 +109,8 @@
     @include span(2 of 12);
   }
 
+  margin-bottom: 1em;
+
   &:last-of-type {
     margin-bottom: 0;
   }
@@ -117,16 +118,16 @@
 
 .site-nav__section-title {
   display: block;
-  color: color('alabaster');
   border-bottom: solid 1px color('medium-gray');
+  color: color('alabaster');
 }
 
 .site-nav__page {
-  border-bottom: solid 1px color('vulcan' ('tint': 10%));
-
   @include susy-breakpoint($tablet, $g-tablet) {
-    border-bottom: none;
+    border-bottom: 0;
   }
+
+  border-bottom: solid 1px color('vulcan' ('tint': 10%));
 }
 
 .site-nav__page-link {

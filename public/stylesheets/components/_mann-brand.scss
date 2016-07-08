@@ -1,5 +1,4 @@
 .mann-brand {
-  margin: .3em 0 .5em 0;
   @include span(3);
 
   @include susy-breakpoint($scape, $g-scape) {
@@ -7,17 +6,19 @@
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    margin: .7em 0 .8em 0;
-    padding-left: 3%;
-
     @include span(5);
+
+    margin: .7em 0 .8em;
+    padding-left: 3%;
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    padding-left: 7%;
-
     @include span(7);
+
+    padding-left: 7%;
   }
+
+  margin: .3em 0 .5em;
 }
 
 .mann-brand__logo {
@@ -26,36 +27,36 @@
   @include susy-breakpoint($tablet, $g-tablet) {
     float: left;
     margin-right: .7em;
+    background-image: url('../images/cul-brand/mann-logo@2x.png');
+    background-size: cover;
     width: 100px;
     height: 100px;
-    background-image: url(../images/cul-brand/mann-logo@2x.png);
-    background-size: cover;
   }
 }
 
 .mann-brand__one-lib {
-  padding: .35em 0 0 .5em;
-  font-size: .88em;
-  font-weight: normal;
-  font-family: $montserrat;
-  line-height: .5em;
-  color: color('aluminum');
-
   @include susy-breakpoint($tablet, $g-tablet) {
     padding: 1.2em 0 0 6.1em;
     font-size: 1.15em;
   }
+
+  padding: .35em 0 0 .5em;
+  line-height: .5em;
+  color: color('aluminum');
+  font-family: $montserrat;
+  font-size: .88em;
+  font-weight: normal;
 }
 
 .mann-brand__mannlib {
-  margin: .2em 0 0 .2em;
-  font-size: 2em;
-  font-weight: 600;
-  font-family: p22-underground;
-  line-height: .7em;
-  color: color('mann-brand');
-
   @include susy-breakpoint($tablet, $g-tablet) {
     font-size: 2.6em;
   }
+
+  margin: .2em 0 0 .2em;
+  line-height: .7em;
+  color: color('mann-brand');
+  font-family: p22-underground;
+  font-size: 2em;
+  font-weight: 600;
 }

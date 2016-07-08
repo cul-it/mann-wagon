@@ -9,7 +9,7 @@
 .space__reserve {
   float: left;
 
-  &.ui.button {
+  &.ui {
     margin-right: 1em;
   }
 }
@@ -18,8 +18,8 @@
 
   &--available {
     margin-top: 1em;
-    font-size: modular-scale(1);
     color: darken(color('success'), 50%);
+    font-size: modular-scale(1);
   }
 
   &--unavailable {
