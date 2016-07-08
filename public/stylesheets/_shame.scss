@@ -1,7 +1,7 @@
 // All temporary hacks here to help ensure they don't stick around
 
 // Pointer cursor fo all links on events page
-#events-container {
+.events-container {
   a {
     &:hover {
       cursor: pointer;
