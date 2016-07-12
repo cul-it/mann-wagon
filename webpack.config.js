@@ -45,10 +45,9 @@ module.exports = {
         },
         {
           test: /\.scss/,
-          // loader: ExtractTextPlugin.extract('style', 'css?sourceMap!sass?sourceMap')
-          // loader: ExtractTextPlugin.extract('raw!sass')
-          // loader: ExtractTextPlugin.extract('style!css!sass')
-          // loader: ExtractTextPlugin.extract('style', 'css?-import!sass')
+          // The key is to disable css-loaders's @import and url handling
+          // so it leaves assets alone (fonts, images)
+          // -- https://github.com/webpack/css-loader#disable-behavior
           loader: ExtractTextPlugin.extract('style', 'css?-import,-url!sass')
         },
         {
@@ -57,13 +56,14 @@ module.exports = {
         },
       ]
     },
-  // Copy over FontAwesome fonts
   plugins: [
+    // Copy over FontAwesome fonts
     new CopyWebpackPlugin([
       { from: 'node_modules/font-awesome/fonts', to: fontsDir },
     ], {
         ignore: []
     }),
+    // Extract compiled CSS from bundle
     new ExtractTextPlugin('../stylesheets/[name].css')
   ]
 };
