@@ -1,9 +1,5 @@
-// Using npm + Webpack to manage vendor dependencies
-// -- for now Webpack is simply copying src files from modules to public dir
-// -- no compiling/preprocessing and copied files are not tracked thanks to .gitignore
-// -- provides some sanity for clean @import paths while tracking versions & dependencies via package.json
-
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 
 var sassDir = path.join('../stylesheets', 'vendor');
@@ -18,13 +14,14 @@ module.exports = {
     }
   },
   entry: {
-      bookedReserve: './src/booked-reserve.js',
+      bookedReserve: './src/js/booked-reserve.js',
       eventsPage: './vue/events/events-page/events-page.js',
       homePageEvents: './vue/events/homepage-events/homepage-events.js',
-      hoursNav: './src/hours-nav.js',
-      jqueryLocal: './src/jquery-local.js',
-      purchaseRequest: './src/purchase-request.js',
-      spacesQuiet: './src/spaces-quiet.js'
+      hoursNav: './src/js/hours-nav.js',
+      jqueryLocal: './src/js/jquery-local.js',
+      main: './src/scss/main.scss',
+      purchaseRequest: './src/js/purchase-request.js',
+      spacesQuiet: './src/js/spaces-quiet.js'
   },
   output: {
     path: path.join(__dirname, 'public', 'javascripts'),
@@ -39,18 +36,26 @@ module.exports = {
           loader: 'style!css'
         },
         {
+          test: /\.html$/,
+          loader: 'html'
+        },
+        {
           test:   /\.js/,
           loader: 'babel',
           include: path.join(__dirname, 'src')
         },
         {
+          test: /\.scss/,
+          // loader: ExtractTextPlugin.extract('style', 'css?sourceMap!sass?sourceMap')
+          // loader: ExtractTextPlugin.extract('raw!sass')
+          // loader: ExtractTextPlugin.extract('style!css!sass')
+          // loader: ExtractTextPlugin.extract('style', 'css?-import!sass')
+          loader: ExtractTextPlugin.extract('style', 'css?-import,-url!sass')
+        },
+        {
           test: /\.vue$/, // a regex for matching all files that end in `.vue`
           loader: 'vue'   // loader to use for matched files
         },
-        {
-          test: /\.html$/,
-          loader: 'html'
-        }
       ]
     },
   // Vendorize the Sass mixins & libraries
@@ -83,6 +88,7 @@ module.exports = {
       { from: 'node_modules/susy/sass', to: path.join(sassDir, 'susy') }
     ], {
         ignore: []
-    })
+    }),
+    new ExtractTextPlugin('../stylesheets/[name].css')
   ]
 };

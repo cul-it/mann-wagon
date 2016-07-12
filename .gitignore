@@ -11,5 +11,8 @@ node_modules/*
 npm-debug.log
 
 # Vendorized Sass
-public/stylesheets/vendor/*
-!public/stylesheets/vendor/.gitkeep
+src/scss/vendor/*
+!src/scss/vendor/.gitkeep
+
+# Bogus JS bundle (collateral damage from copy-webpack-plugin)
+public/javascripts/main.bundle.js
