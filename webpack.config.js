@@ -51,7 +51,8 @@ module.exports = {
           // The key is to disable css-loaders's @import and url handling
           // so it leaves assets alone (fonts, images)
           // -- https://github.com/webpack/css-loader#disable-behavior
-          loader: ExtractTextPlugin.extract('style', 'css?-import,-url!sass')
+          // loader: ExtractTextPlugin.extract('style', 'css?-import,-url!sass')
+          loader: ExtractTextPlugin.extract('style', 'css?-url!sass')
         },
         {
           test: /\.vue$/, // a regex for matching all files that end in `.vue`
