@@ -9,11 +9,11 @@
 @import '~accoutrement-color/sass/color';
 @import '~font-awesome/scss/font-awesome';
 // Semantic-UI components via css for now since Sass port is not yet a reality
-@import '~semantic-ui-css/components/button';
-@import '~semantic-ui-css/components/card';
-@import '~semantic-ui-css/components/input';
-@import '~semantic-ui-css/components/label';
-@import '~semantic-ui-css/components/menu';
+@import '~semantic-ui-css/components/button.min';
+@import '~semantic-ui-css/components/card.min';
+@import '~semantic-ui-css/components/input.min';
+@import '~semantic-ui-css/components/label.min';
+@import '~semantic-ui-css/components/menu.min';
 
 @import 'config';
 
