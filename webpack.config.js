@@ -1,5 +1,8 @@
+// Plugins
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var WebpackShellPlugin = require('webpack-shell-plugin');
+
 var path = require('path');
 
 var fontsDir = path.join('../fonts');
@@ -64,6 +67,9 @@ module.exports = {
         ignore: []
     }),
     // Extract compiled CSS from bundle
-    new ExtractTextPlugin('../stylesheets/[name].css')
+    new ExtractTextPlugin('../stylesheets/[name].css'),
+    new WebpackShellPlugin({
+      onBuildExit:['rm public/javascripts/main.bundle.js']
+    })
   ]
 };

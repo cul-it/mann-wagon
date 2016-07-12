@@ -40,7 +40,8 @@
     "vue-html-loader": "^1.2.2",
     "vue-loader": "^8.5.1",
     "vue-style-loader": "^1.0.0",
-    "webpack": "^1.13.0"
+    "webpack": "^1.13.0",
+    "webpack-shell-plugin": "^0.4.2"
   },
   "dependencies": {
     "formvalidation": "github:formvalidation/formvalidation",
