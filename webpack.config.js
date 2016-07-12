@@ -1,4 +1,5 @@
 // Plugins
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var WebpackShellPlugin = require('webpack-shell-plugin');
@@ -61,6 +62,19 @@ module.exports = {
       ]
     },
   plugins: [
+    new BrowserSyncPlugin({
+      // Browse to http://localhost:3000 during development,
+      host: 'localhost',
+      port: 3000,
+      // Proxy `wagon serve` through Browsersync
+      // -- see `npm start` in package.json
+      proxy: 'localhost:3333',
+      // Files to watch
+      files: [
+        'public/stylesheets/**/*',
+        'app/views/**/*'
+      ]
+    }),
     // Copy over FontAwesome fonts
     new CopyWebpackPlugin([
       { from: 'node_modules/font-awesome/fonts', to: fontsDir },

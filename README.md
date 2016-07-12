@@ -20,18 +20,20 @@ $ cd <clone>
 $ bundle install
 ```
 
-1. Install modules & build bundles
+1. Install modules
    ```bash
 $ npm install
-$ npm run build
 ```
 
 1. Serve the site
+
+  > proxied through [Browsersync](https://www.browsersync.io) for live-reload goodness
+
    ```bash
-$ bundle exec wagon serve -v
+$ npm start
 ```
 
-1. Visit the Mann website at [http://localhost:3333](http://localhost:3333)
+1. Visit the Mann website at [http://localhost:3000](http://localhost:3000)
 
 ### Syncing/Deploying
 
