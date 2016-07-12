@@ -69,6 +69,7 @@ module.exports = {
     }),
     // Extract compiled CSS from bundle
     new ExtractTextPlugin('../stylesheets/[name].css'),
+    // Remove extraneous bundle leftover after extracting CSS
     new WebpackShellPlugin({
       onBuildExit:['rm public/javascripts/main.bundle.js']
     })
