@@ -20,10 +20,10 @@ module.exports = {
       eventsPage: './vue/events/events-page/events-page.js',
       homePageEvents: './vue/events/homepage-events/homepage-events.js',
       hoursNav: './src/js/hours-nav.js',
-      jqueryLocal: './src/js/jquery-local.js',
       main: './src/scss/main.scss',
       purchaseRequest: './src/js/purchase-request.js',
-      spacesQuiet: './src/js/spaces-quiet.js'
+      spacesQuiet: './src/js/spaces-quiet.js',
+      vendor: ['jquery']
   },
   output: {
     path: path.join(__dirname, 'public', 'javascripts'),
