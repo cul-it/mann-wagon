@@ -52,7 +52,7 @@
     "vue-resource": "^0.7.0"
   },
   "scripts": {
-    "build": "webpack --progress"
+    "build": "webpack --progress --watch"
   },
   "repository": {
     "type": "git",
