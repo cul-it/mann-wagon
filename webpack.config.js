@@ -2,7 +2,6 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 
-var sassDir = path.join('../stylesheets', 'vendor');
 var fontsDir = path.join('../fonts');
 
 module.exports = {
@@ -58,34 +57,10 @@ module.exports = {
         },
       ]
     },
-  // Vendorize the Sass mixins & libraries
+  // Copy over FontAwesome fonts
   plugins: [
     new CopyWebpackPlugin([
-      // Accoutrement Color
-      { from: 'node_modules/accoutrement-color/sass', to: path.join(sassDir, 'accoutrement-color') },
-      // Bitters
-      { from: 'node_modules/Bitters/core', to: path.join(sassDir, 'bitters') },
-      // Bourbon
-      { from: 'node_modules/bourbon/core', to: path.join(sassDir, 'bourbon') },
-      // Breakpoint
-      { from: 'node_modules/breakpoint-sass/stylesheets', to: path.join(sassDir, 'breakpoint') },
-      // Font Awesome
-      { context: 'node_modules/font-awesome/scss', from: '_*', to: path.join(sassDir, 'font-awesome') },
-      { from: 'node_modules/font-awesome/scss/font-awesome.scss', to: path.join(sassDir, 'font-awesome', '_font-awesome.scss') },
       { from: 'node_modules/font-awesome/fonts', to: fontsDir },
-       // MathSass
-      { from: 'node_modules/mathsass/dist', to: path.join(sassDir, 'mathsass') },
-      // Normalize
-      { from: 'node_modules/normalize-scss/sass', to: path.join(sassDir, 'normalize') },
-      { from: 'node_modules/support-for/sass/_support-for.scss', to: path.join(sassDir, 'normalize') },
-      // Semantic-UI
-      { from: 'node_modules/semantic-ui-css/components/button.css', to: path.join(sassDir, 'semantic-ui', '_button.scss') },
-      { from: 'node_modules/semantic-ui-css/components/card.css', to: path.join(sassDir, 'semantic-ui', '_card.scss') },
-      { from: 'node_modules/semantic-ui-css/components/input.css', to: path.join(sassDir, 'semantic-ui', '_input.scss') },
-      { from: 'node_modules/semantic-ui-css/components/label.css', to: path.join(sassDir, 'semantic-ui', '_label.scss') },
-      { from: 'node_modules/semantic-ui-css/components/menu.css', to: path.join(sassDir, 'semantic-ui', '_menu.scss') },
-      // Susy
-      { from: 'node_modules/susy/sass', to: path.join(sassDir, 'susy') }
     ], {
         ignore: []
     }),

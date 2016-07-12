@@ -52,8 +52,7 @@
     "vue-resource": "^0.7.0"
   },
   "scripts": {
-    "build": "npm run clean && webpack --progress",
-    "clean": "rm -rf src/scss/vendor/*"
+    "build": "webpack --progress"
   },
   "repository": {
     "type": "git",

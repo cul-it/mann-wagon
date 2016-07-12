@@ -1,11 +1,11 @@
 // Scaffolding via Bitters
-@import 'vendor/bitters/buttons';
-@import 'vendor/bitters/forms';
-@import 'vendor/bitters/layout';
-@import 'vendor/bitters/lists';
-@import 'vendor/bitters/media';
-@import 'vendor/bitters/tables';
-@import 'vendor/bitters/typography';
+@import '~bitters/core/buttons';
+@import '~bitters/core/forms';
+@import '~bitters/core/layout';
+@import '~bitters/core/lists';
+@import '~bitters/core/media';
+@import '~bitters/core/tables';
+@import '~bitters/core/typography';
 
 // Local sugar
 @import 'lists';

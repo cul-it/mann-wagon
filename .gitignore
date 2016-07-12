@@ -10,9 +10,9 @@ deploy.yml
 node_modules/*
 npm-debug.log
 
-# Vendorized Sass
-src/scss/vendor/*
-!src/scss/vendor/.gitkeep
-
 # Bogus JS bundle (collateral damage from copy-webpack-plugin)
 public/javascripts/main.bundle.js
+
+# Compiled Styles
+public/stylesheets/*
+!public/stylesheets/.gitkeep
