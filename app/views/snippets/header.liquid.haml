@@ -18,14 +18,18 @@
       %button.search__button{type: "button"}
 
   .todays-hours
-    %ul
-      %li.todays-hours__mann
+    %ul.todays-hours__list
+      %li.todays-hours__location
         %a.todays-hours__link{href: "{% path_to hours %}"}
           %span{ class: "badge todays-hours__now {% if mannlib_hours.status_1707 == 'Open' %}is-open{% else %}is-closed{% endif %}" } {{ mannlib_hours.status_1707 }}
 
         %span.todays-hours__until {{ mannlib_hours.hours_1707 }}
-      %li.todays-hours__lobby
-        Lobby: {{ mannlib_hours.status_1709 }} {{ mannlib_hours.hours_1709 }}
+      %li.todays-hours__location
+        %span.todays-hours__label Lobby
+        %a.todays-hours__link{href: "{% path_to hours %}"}
+          %span{ class: "badge todays-hours__now {% if mannlib_hours.status_1709 == 'Open' %}is-open{% else %}is-closed{% endif %}" } {{ mannlib_hours.status_1709 }}
+
+        %span.todays-hours__until {{ mannlib_hours.hours_1709 }}
 
     %a.todays-hours__more{href: "{% path_to hours %}"}
       All Hours
