@@ -62,19 +62,29 @@ module.exports = {
       ]
     },
   plugins: [
-    new BrowserSyncPlugin({
-      // Browse to http://localhost:3000 during development,
-      host: 'localhost',
-      port: 3000,
-      // Proxy `wagon serve` through Browsersync
-      // -- see `npm start` in package.json
-      proxy: 'localhost:3333',
-      // Files to watch
-      files: [
-        'public/stylesheets/**/*',
-        'app/views/**/*'
-      ]
-    }),
+    new BrowserSyncPlugin(
+      // BrowserSync options
+      {
+        // Browse app at http://localhost:3000 during development
+        host: 'localhost',
+        port: 3000,
+        // Proxy `wagon serve` through Browsersync
+        // -- see `npm start` in package.json
+        proxy: 'localhost:3333',
+        // Files to watch
+        files: [
+          'public/stylesheets/**/*',
+          'app/views/**/*'
+        ]
+      },
+      // Plugin options
+      {
+        // Don't force Browsersync to reload
+        // -- let the watched files trigger it
+        // -- allows for CSS injection without full page reload
+        reload: false
+      }
+    ),
     // Copy over FontAwesome fonts
     new CopyWebpackPlugin([
       { from: 'node_modules/font-awesome/fonts', to: fontsDir },
