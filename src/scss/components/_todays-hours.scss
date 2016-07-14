@@ -2,12 +2,12 @@
   @include span(full);
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    padding-left: 5.4%;
+    padding-left: $pad-content-tablet;
     font-size: modular-scale(0);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    padding-left: 7.7%;
+    padding-left: $pad-content-lapdesk;
     font-size: modular-scale(1);
   }
 

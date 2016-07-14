@@ -67,6 +67,7 @@ $colors: (
   'cornell-red': hsl(0, 74%, 40%),
   'cornell-gray': 'black',
   'mann-brand': 'vulcan',
+  'cul-hamburger': 'black' ('tint': 20%),
 
   // Fonts
   'font-base': 'vulcan' ('tint': 10%),
@@ -79,7 +80,7 @@ $colors: (
   'more': 'amulet',
 
   // Search
-  'search-banner': 'black' ('tint': 5%),
+  'search-banner': 'black' ('tint': 15%),
   'search-button': 'boston-blue',
 
   // Hours
@@ -109,6 +110,9 @@ $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $l
 // Animations
 $base-duration: 150ms;
 $base-timing: ease;
+
+// Dimensions
+$header-height: 52px;
 
 // z-index
 $below-content: 1;

@@ -16,8 +16,11 @@ $susy: (
   )
 );
 
-// $susy: layout(inside-static show);
+// Alignment for header content with padded content at larger breakpoints
+$pad-content-tablet: 5.4%;
+$pad-content-lapdesk: 7.7%;
 
+// Set Susy contexts for breakpoints
 $g-scape: (
   columns: 6,
 );

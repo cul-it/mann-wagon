@@ -1,10 +1,13 @@
 .search {
+  @include span(full);
+
   @include susy-breakpoint($tablet, $g-tablet) {
     @include span(3 at 6);
 
+    display: block;
     position: relative;
     margin-top: 3.5em;
-    padding-right: 5%;
+    padding-right: $pad-content-tablet;
     text-align: right;
     font-size: modular-scale(-1);
   }
@@ -12,25 +15,24 @@
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     @include span(5 at 8);
 
-    padding-right: 7%;
+    padding-right: $pad-content-lapdesk;
   }
 
+  // Accessed/toggled via search icon cu-banner at mobile
+  display: none;
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
 }
 
 .search__term {
   @include susy-breakpoint($tablet, $g-tablet) {
-    display: inline-block;
     width: span(2 of 3);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     width: span(4 of 5);
   }
-
-  display: none;
 }
 
 .search__button {
@@ -38,14 +40,12 @@
     display: none;
   }
 
+  position: absolute;
+  top: 0;
+  right: 52px;
+  border-radius: 0;
   background-color: color('search-banner');
-  height: 52px; // Match height of cu-banner
-}
-
-.search__icon {
-  @include susy-breakpoint($tablet, $g-tablet) {
-    color: inherit;
-  }
-
-  color: color('white');
+  padding: 0;
+  width: $header-height;
+  height: $header-height; // Match height of cu-banner
 }
