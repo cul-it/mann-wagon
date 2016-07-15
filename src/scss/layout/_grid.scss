@@ -20,6 +20,10 @@ $susy: (
 $pad-content-tablet: 5.4%;
 $pad-content-lapdesk: 7.7%;
 
+// Megamenu joins the party as well
+$pad-megamenu-tablet: 5.8%;
+$pad-megamenu-lapdesk: 10.4%;
+
 // Set Susy contexts for breakpoints
 $g-scape: (
   columns: 6,
