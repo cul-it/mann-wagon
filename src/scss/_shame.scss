@@ -8,3 +8,12 @@
     }
   }
 }
+
+// Quick fix for desktops & laptops on home page
+// -- keep them stacked at tablet breakpoint while in isolate layout
+// -- alternative is to wrap them in another div :(
+.shame-isolate-laptops {
+  @include susy-breakpoint($tablet $lapdesk, $g-tablet) {
+    margin-top: 6.5em;
+  }
+}

@@ -1,31 +1,13 @@
 .available-now {
   @include span(full);
-
-  @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(6 break);
-  }
 }
 
 .available-now__heading {
-  @include span(3);
-
-  @include susy-breakpoint($scape, $g-scape) {
-    @include span(3);
-  }
-
-  @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(3);
-  }
-
-  @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(4 of 6);
-  }
-
   margin-bottom: .1em;
 }
 
 .available-now__datetime {
-  color: color('amulet');
+  color: color('aluminum');
   font-size: modular-scale(-2);
   font-weight: normal;
 }
@@ -34,21 +16,16 @@
   color: inherit;
 }
 
-.available-now__find-space {
-  @include span(full);
-
+.available-now__request-consultation {
   @include susy-breakpoint($scape, $g-scape) {
-    @include span(2 of 3);
+    font-size: modular-scale(0);
   }
 
-  @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(2 of 3);
-  }
+  margin-top: .7em;
+  font-size: modular-scale(-1);
+}
 
-  @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(2 of 3);
-  }
-
+.available-now__find-space {
   margin-top: .7em;
 }
 
@@ -61,38 +38,6 @@
 }
 
 .available-now__study {
-  @include span(2 at 3);
-
-  @include susy-breakpoint($scape, $g-scape) {
-    @include span(3 at 4);
-  }
-
-  @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(3 at 6 break);
-  }
-
-  @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(3 at 4 of 6);
-  }
-}
-
-.available-now__consultation {
-  @include span(first 2);
-
-  @include susy-breakpoint($scape, $g-scape) {
-    @include span(3);
-  }
-
-  @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(3);
-  }
-
-  @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(first 3 of 6);
-  }
-}
-
-.available-now__computers {
   @include span(2);
 
   @include susy-breakpoint($scape, $g-scape) {
@@ -100,16 +45,60 @@
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(2);
-    clear: none;
+    @include span(isolate first 3);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(3 of 6);
-    clear: left;
+    @include span(isolate first 3);
+  }
+}
+
+.available-now__consultation {
+  @include span(last 2);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(last 3);
   }
 
-  clear: left;
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(last 3);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(last 3);
+  }
+}
+
+.available-now__desktops {
+  @include span(2);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(3);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(isolate 2 at 4);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(isolate 3 at 4);
+  }
+}
+
+.available-now__laptops {
+  @include span(last 2);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(last 3);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(isolate 2 at 4);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(isolate 3 at 7);
+  }
 }
 
 .available-now__os {
@@ -117,7 +106,8 @@
 }
 
 .available-now__status {
-  clear: left;
+  padding: .2em 0;
+  line-height: 1em;
 
   &--available {
     color: darken(color('success'), 50%);

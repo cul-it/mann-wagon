@@ -9,8 +9,10 @@ listed: false
 {% block 'main' %}
 %section.available-now
   %h4.available-now__heading.lead-in
-    Available Now
+    Today @ Mann
     %span.available-now__datetime {{ now | date: '%-I:%M %p' }}
+
+  {% include 'availnow-computers' %}
 
   .available-now__grp.available-now__study
     {% include 'availnow-study' %}
@@ -19,21 +21,21 @@ listed: false
     %h5.available-now__subheading Consultation
 
     %ul
-      %li.available-now__status--available
+      %li.available-now__status.available-now__status--available
         %i.fa.fa-fw.fa-check-square
         Reference
-      %li.available-now__status--unavailable
+      %li.available-now__status.available-now__status--unavailable
         %i.fa.fa-fw.fa-minus-square
         GIS
-      %li.available-now__status--available
+      %li.available-now__status.available-now__status--available
         %i.fa.fa-fw.fa-check-square
         CISER
-      %li.available-now__status--available
+      %li.available-now__status.available-now__status--available
         %i.fa.fa-fw.fa-check-square
         Knight Writing Institute
 
-  .available-now__grp.available-now__computers
-    {% include 'availnow-computers' %}
+    %a{href: "#"}
+      %button.available-now__request-consultation Book a Consultation
 
 %section.featured__side-image
   %img.img-responsive.img-faded{:alt => "Abstract placeholder", :src => "{{ 'events/abstract-placeholder.jpg' | theme_image_url }}"}/

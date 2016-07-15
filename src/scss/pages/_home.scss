@@ -1,5 +1,9 @@
 section {
   margin-top: 2em;
+
+  &:first-of-type {
+    margin-top: .5em;
+  }
 }
 
 .lead-in {

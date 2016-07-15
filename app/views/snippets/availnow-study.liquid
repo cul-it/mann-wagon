@@ -14,7 +14,7 @@
 
           {% include 'room-availability-logic' %}
 
-          <li class="available-now__{{ available_class }}">
+          <li class="available-now__status available-now__{{ available_class }}">
             <a class="available-now__link" href="{% path_to space %}">
               <i class="fa fa-fw {{ available_icon }}"></i> {{ space.name }}
               {% comment %}
