@@ -14,19 +14,3 @@ section {
     color: color('more' ('desaturate': 10%));
   }
 }
-
-.course-reserves-link {
-  @include span(2);
-
-  @include susy-breakpoint($scape, $g-scape) {
-    @include span(2);
-  }
-
-  @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(2);
-  }
-
-  @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(3);
-  }
-}
