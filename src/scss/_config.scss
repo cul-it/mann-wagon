@@ -19,7 +19,12 @@ $heading-line-height: 1.2;
 $base-border-radius: 3px;
 $base-spacing: $base-line-height * 1em;
 $small-spacing: $base-spacing / 2;
-$base-z-index: 0;
+$header-height: 52px;
+
+// z-index
+$below-content: 1;
+$content: 2;
+$above-content: 3;
 
 // Colors variable via accoutrement-color
 // Names via Name That Color
@@ -110,11 +115,3 @@ $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $l
 // Animations
 $base-duration: 150ms;
 $base-timing: ease;
-
-// Dimensions
-$header-height: 52px;
-
-// z-index
-$below-content: 1;
-$content: 2;
-$above-content: 3;
