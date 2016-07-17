@@ -1,22 +1,27 @@
 .events-home {
   @include span(full);
 
-  @include susy-breakpoint($scape, $g-scape) {
-    @include span(3);
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(4);
+
+    border-radius: 10px;
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(3);
-  }
-}
-
-.workshops {
-  @include susy-breakpoint($scape, $g-scape) {
-    @include span(last 3);
+    @include span(6);
   }
 
-  @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(last 3);
+  background: color('alabaster' ('shade': 2%));
+  padding: 1.5em;
+
+  &--workshops {
+    @include susy-breakpoint($tablet, $g-tablet) {
+      @include span(last 4);
+    }
+
+    @include susy-breakpoint($lapdesk, $g-lapdesk) {
+      @include span(last 6);
+    }
   }
 }
 
@@ -37,6 +42,8 @@
 }
 
 .events-home__event {
+  @include clearfix;
+
   margin-bottom: 1.2em;
 
   &:last-of-type {
@@ -51,4 +58,16 @@
 
 .events-home__label {
   display: none;
+}
+
+.events-home__time {
+  float: left;
+}
+
+.events-home__location {
+  float: right;
+}
+
+.events-home__location-icon {
+  color: color('medium-gray');
 }
