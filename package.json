@@ -12,7 +12,7 @@
   "description": "Packages for Mann Library website on Locomotive",
   "main": "index.js",
   "devDependencies": {
-    "Bitters": "github:thoughtbot/bitters",
+    "Bitters": "github:thoughtbot/bitters#v1.3.1",
     "accoutrement-color": "^2.0.0",
     "babel-core": "^6.8.0",
     "babel-loader": "^6.2.4",
@@ -42,7 +42,7 @@
   "dependencies": {
     "formvalidation": "github:formvalidation/formvalidation",
     "jquery": "^2.2.4",
-    "jquery-ui": "^1.10.5",
+    "jquery-ui": "1.10.5",
     "semantic-ui-css": "^2.2.1",
     "vue": "^1.0.23",
     "vue-filter": "^0.1.1",
