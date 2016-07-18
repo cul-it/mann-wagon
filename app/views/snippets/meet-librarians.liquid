@@ -1,0 +1,36 @@
+{% comment %}{% assign randomness = contents.staff.size | random %}{% endcomment %}
+
+{% comment %}Select 3 staff to feature{% endcomment %}
+{% assign randomness = contents.staff.all | shuffle | slice: 0, 3 %}
+
+{% for person in randomness %}
+  <div class="meet-librarians__featured">
+    <img class="meet-librarians__photo" src="{{ person.photo.url | resize: '500x500#n' }}" alt="">
+
+    <h5 class="meet-librarians__name">{{ person.first_name }} {{ person.last_name }}</h5>
+
+    <span class="meet-librarians__title">{{ person.title }}</span>
+
+    <h6 class="meet-librarians__subheading">Areas of Expertise</h6>
+
+    <p class="meet-librarians__expertise">{{ person.expertise }}<p>
+
+    <h6 class="meet-librarians__subheading">Liaison to</h6>
+
+    <ul>
+      {% for dept in person.departments %}
+        <li>{{ dept.name }}</li>
+      {% endfor %}
+    </ul>
+
+    <a href="#">
+      <button class="meet-librarians__request-consultation">Book a Consultation</button>
+    </a>
+
+    <a class="meet-librarians__profile-link" href="{% path_to person %}" title="View full profile for {{ person.first_name }}">
+      View Profile <i class="fa fa-angle-double-right"></i>
+    </a>
+
+
+  </div>
+{% endfor %}
