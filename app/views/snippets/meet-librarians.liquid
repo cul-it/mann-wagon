@@ -1,6 +1,4 @@
-{% comment %}{% assign randomness = contents.staff.size | random %}{% endcomment %}
-
-{% comment %}Select 3 staff to feature{% endcomment %}
+{% comment %} Select 3 staff to feature {% endcomment %}
 {% assign randomness = contents.staff.all | shuffle | slice: 0, 3 %}
 
 {% for person in randomness %}
