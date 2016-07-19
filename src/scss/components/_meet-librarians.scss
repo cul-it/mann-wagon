@@ -25,6 +25,10 @@
     @include span(3 (gutter-override: 4.3em));
   }
 
+  @include susy-breakpoint($allout, $g-allout) {
+    @include span(3 (gutter-override: 5.3em));
+  }
+
   @include span(full);
 
   margin-bottom: 2em;
