@@ -6,14 +6,14 @@
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(5);
+    @include span(5 nest);
 
     margin: .7em 0 .8em;
     padding-left: 3%;
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(7);
+    @include span(7 nest);
 
     padding-left: 7%;
   }

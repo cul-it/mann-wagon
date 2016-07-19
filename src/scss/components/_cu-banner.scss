@@ -1,5 +1,5 @@
 .cu-banner {
-  @include span(full);
+  @include span(full nest);
 
   &--red {
     background-color: color('cornell-red');

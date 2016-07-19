@@ -1,5 +1,5 @@
 .todays-hours {
-  @include span(full);
+  @include break;
 
   @include susy-breakpoint($tablet, $g-tablet) {
     padding-left: $pad-content-tablet;
@@ -12,10 +12,9 @@
   }
 
   border-top: solid 1px color('alabaster' ('shade': 5%));
-  border-right: solid 2px color('alabaster' ('shade': 5%));
   border-bottom: solid 4px color('alabaster' ('tint': 30%));
   background: color('alabaster');
-  padding: .21em .5em .14em;
+  padding: .21em 0 .14em .5em;
   font-size: modular-scale(-1);
 }
 

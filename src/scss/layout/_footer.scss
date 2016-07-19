@@ -1,5 +1,5 @@
 .footer {
-  @include span(full);
+  @include span(full nest);
 
   @include susy-breakpoint($tablet, $g-tablet) {
     padding: 2em 3%;

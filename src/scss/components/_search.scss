@@ -7,6 +7,7 @@
     display: block;
     position: relative;
     margin-top: 3.5em;
+    margin-right: 0;
     padding-right: $pad-content-tablet;
     text-align: right;
     font-size: modular-scale(-1);
@@ -15,6 +16,7 @@
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     @include span(5 at 8);
 
+    margin-right: 0;
     padding-right: $pad-content-lapdesk;
   }
 

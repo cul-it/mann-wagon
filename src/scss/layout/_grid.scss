@@ -8,6 +8,7 @@ $allout: 69em;
 $susy: (
   columns: 4 2 2 4,
   gutters: .15,
+  gutter-position: split,
   global-box-sizing: border-box,
   debug: ( // Uncomment these to render grid visualization:
     // image: show,
@@ -18,7 +19,7 @@ $susy: (
 
 // Alignment for header content with padded content at larger breakpoints
 $pad-content-tablet: 5.4%;
-$pad-content-lapdesk: 7.7%;
+$pad-content-lapdesk: 8%;
 
 // Megamenu joins the party as well
 $pad-megamenu-tablet: 5.8%;
@@ -61,6 +62,10 @@ body {
   @include susy-breakpoint($allout, $g-allout) {
     @include container;
   }
+}
+
+header {
+  @include span(100% no-gutters);
 }
 
 main {

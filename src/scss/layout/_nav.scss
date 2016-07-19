@@ -95,8 +95,6 @@
 }
 
 .site-nav__list {
-  // @include clearfix;
-
   @include susy-breakpoint($scape, $g-scape) {
     text-align: left;
   }

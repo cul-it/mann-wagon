@@ -9,21 +9,30 @@
 }
 
 .meet-librarians__featured {
+  @include susy-breakpoint($scape $tablet, $g-scape) {
+    @include span(2 (gutter-override: 5.1em));
+
+    margin-bottom: 0;
+
+    // See the temporary hack in _shame.scss
+  }
+
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(2);
+    @include span(2 (gutter-override: 3.7em));
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(4);
-
-    &:last-of-type {
-      @include span(last 4);
-    }
+    @include span(3 (gutter-override: 4.3em));
   }
 
   @include span(full);
 
+  margin-bottom: 2em;
   text-align: center;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 .meet-librarians__name {

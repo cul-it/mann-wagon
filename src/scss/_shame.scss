@@ -9,6 +9,18 @@
   }
 }
 
+// Hide the 3rd featured librarian at the $scape breakpoint
+// -- trying to avoid a second carousel on the home page
+// -- 3 adjacent are just too tight at this breakpoint
+// -- could revert to having them all stack if team prefers
+.meet-librarians__featured {
+  @include susy-breakpoint($scape $tablet, $g-scape) {
+    &:last-of-type {
+      display: none;
+    }
+  }
+}
+
 // Quick fix for desktops & laptops on home page
 // -- keep them stacked at tablet breakpoint while in isolate layout
 // -- alternative is to wrap them in another div :(
