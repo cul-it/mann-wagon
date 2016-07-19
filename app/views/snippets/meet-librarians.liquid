@@ -17,7 +17,7 @@
 
     <ul>
       {% for dept in person.departments %}
-        <li>{{ dept.name }}</li>
+        <li class="meet-librarians__list-item">{{ dept.name }}</li>
       {% endfor %}
     </ul>
 
@@ -28,7 +28,5 @@
     <a class="meet-librarians__profile-link" href="{% path_to person %}" title="View full profile for {{ person.first_name }}">
       View Profile <i class="fa fa-angle-double-right"></i>
     </a>
-
-
   </div>
 {% endfor %}

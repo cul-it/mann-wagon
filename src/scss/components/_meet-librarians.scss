@@ -39,6 +39,11 @@
   }
 }
 
+.meet-librarians__list-item {
+  padding: .25em 0;
+  line-height: 1.1em;
+}
+
 .meet-librarians__name {
   margin-bottom: 0;
   font-size: modular-scale(2);
@@ -64,5 +69,7 @@
 }
 
 .meet-librarians__title {
+  display: block;
+  line-height: 1em;
   color: color('aluminum');
 }
