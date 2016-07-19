@@ -69,18 +69,17 @@ header {
 }
 
 main {
-  @include break;
+  @include span(100% no-gutters);
+
+  @include pad(2.5%);
 
   @include clearfix;
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    width: 90%;
+    @include pad(5%);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    width: 85%;
+    @include pad(7.5%);
   }
-
-  margin: 0 auto;
-  width: 95%;
 }
