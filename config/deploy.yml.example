@@ -1,5 +1,5 @@
 development:
-  host: http://mannloco-dev.library.cornell.edu
+  host: http://your.engine.net
   handle: natural-pebble-3141
   email: john@doe.net
   api_key: <your api key here>
