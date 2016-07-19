@@ -54,10 +54,10 @@
 }
 
 .available-now__consultation {
-  @include span(last 2);
+  @include span(2);
 
   @include susy-breakpoint($scape, $g-scape) {
-    @include span(last 3);
+    @include span(3);
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
@@ -86,10 +86,10 @@
 }
 
 .available-now__laptops {
-  @include span(last 2);
+  @include span(2);
 
   @include susy-breakpoint($scape, $g-scape) {
-    @include span(last 3);
+    @include span(3);
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {

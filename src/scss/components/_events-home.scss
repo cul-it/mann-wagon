@@ -16,11 +16,11 @@
 
   &--workshops {
     @include susy-breakpoint($tablet, $g-tablet) {
-      @include span(last 4);
+      @include span(4);
     }
 
     @include susy-breakpoint($lapdesk, $g-lapdesk) {
-      @include span(last 6);
+      @include span(6);
     }
   }
 }

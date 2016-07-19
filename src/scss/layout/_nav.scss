@@ -172,18 +172,10 @@
     @include span(2 of 8);
 
     margin-bottom: 0;
-
-    &:last-of-type {
-      @include span(last 2 of 8);
-    }
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     @include span(3 of 12);
-
-    &:last-of-type {
-      @include span(last 3 of 12);
-    }
   }
 
   margin-bottom: 1em;

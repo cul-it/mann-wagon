@@ -27,12 +27,6 @@
   margin-bottom: 1em;
 }
 
-.footer__contact-us {
-  @include susy-breakpoint($scape, $g-scape) {
-    @include span(last 2);
-  }
-}
-
 .footer__bottomline {
   @include span(full);
 }

@@ -50,13 +50,13 @@
 
 .events-filters {
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(last 3);
+    @include span(3);
 
     padding-left: 1.5em;
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(last 4);
+    @include span(4);
   }
 }
 
