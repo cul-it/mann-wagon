@@ -29,7 +29,7 @@ $ npm install
 
 1. Serve the site
 
-  > proxied through [Browsersync](https://www.browsersync.io) for live-reload goodness
+  > proxied through [Browsersync](https://www.browsersync.io) for live-reload goodness -- watching styles, JS, templates
 
    ```bash
 $ npm start
