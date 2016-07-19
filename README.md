@@ -39,9 +39,9 @@ $ npm start
 
 ### Syncing/Deploying
 
-We'll be using the dev Engine at http://mannloco-dev.library.cornell.edu as an example.
+We'll be using the sample development environment in this example.
 
-  > See official [Locomotive documentation](https://locomotive-v3.readme.io/docs) for more details on available options for [`sync`](https://locomotive-v3.readme.io/docs/synchronize-content) and [`deploy`](https://locomotive-v3.readme.io/docs/deploy) commands.
+  > See official Locomotive documentation for a [guide to installing engine](https://locomotive-v3.readme.io/docs/getting-started-with-locomotive) and more details on available options for [`sync`](https://locomotive-v3.readme.io/docs/synchronize-content) and [`deploy`](https://locomotive-v3.readme.io/docs/deploy) commands.
 
 ###### Configure environments in `config/deploy.yml`
 
@@ -51,9 +51,7 @@ We'll be using the dev Engine at http://mannloco-dev.library.cornell.edu as an e
 $ cp config/deploy.yml.example config/deploy.yml
 ```
 
-1. Edit `email` and `api_key` for the development environment
-
-  > **Don't have an api_key?** What about an account on the remote Engine? [Request one](http://mannloco-dev.library.cornell.edu/locomotive/sign_up) and then you'll find your api-key under [account settings](http://mannloco-dev.library.cornell.edu/locomotive/my_account/edit?_location=%2Flocomotive%2Fsites#api).
+1. Edit `host`, `handle`, `email` and `api_key` as applicable for your development environment
 
 ###### Sync from a remote Engine
 
