@@ -74,6 +74,7 @@ module.exports = {
         // Files to watch
         files: [
           'public/stylesheets/**/*',
+          'public/javascripts/**/*',
           'app/views/**/*'
         ]
       },
