@@ -1,0 +1,75 @@
+.meet-librarians {
+  @include span(full);
+}
+
+.meet-librarians__all-experts {
+  @include span(full);
+
+  margin-top: 1em;
+}
+
+.meet-librarians__featured {
+  @include susy-breakpoint($scape $tablet, $g-scape) {
+    @include span(2 (gutter-override: 5.1em));
+
+    margin-bottom: 0;
+
+    // See the temporary hack in _shame.scss
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(2 (gutter-override: 3.7em));
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(3 (gutter-override: 4.3em));
+  }
+
+  @include susy-breakpoint($allout, $g-allout) {
+    @include span(3 (gutter-override: 5.3em));
+  }
+
+  @include span(full);
+
+  margin-bottom: 2em;
+  text-align: center;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.meet-librarians__list-item {
+  padding: .25em 0;
+  line-height: 1.1em;
+}
+
+.meet-librarians__name {
+  margin-bottom: 0;
+  font-size: modular-scale(2);
+}
+
+.meet-librarians__photo {
+  border-radius: 50%;
+}
+
+.meet-librarians__profile-link {
+  display: block;
+  font-weight: 700;
+}
+
+.meet-librarians__request-consultation {
+  margin: 1em 0 .5em;
+  background: color('yellow-sea');
+  font-size: modular-scale(-1);
+}
+
+.meet-librarians__subheading {
+  margin: 1em 0 0;
+}
+
+.meet-librarians__title {
+  display: block;
+  line-height: 1em;
+  color: color('aluminum');
+}

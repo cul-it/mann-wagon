@@ -1,0 +1,20 @@
+section {
+  margin-top: 2em;
+
+  &:first-of-type {
+    margin-top: .5em;
+  }
+}
+
+.lead-in {
+  font-size: modular-scale(2);
+}
+
+.more-link {
+  color: color('more');
+  font-weight: bold;
+
+  &--footer {
+    color: color('more' ('desaturate': 10%));
+  }
+}

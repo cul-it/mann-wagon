@@ -1,0 +1,57 @@
+.todays-hours {
+  @include break;
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    padding-left: $pad-content-tablet;
+    font-size: modular-scale(0);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    padding-left: $pad-content-lapdesk;
+    font-size: modular-scale(1);
+  }
+
+  border-top: solid 1px color('alabaster' ('shade': 5%));
+  border-bottom: solid 4px color('alabaster' ('tint': 30%));
+  background: color('alabaster');
+  padding: .21em 0 .14em .5em;
+  font-size: modular-scale(-1);
+}
+
+.todays-hours__label {
+  font-size: modular-scale(-1);
+}
+
+.todays-hours__list {
+  float: left;
+}
+
+.todays-hours__location {
+  display: inline-block;
+  margin-left: 2em;
+
+  &:first-of-type {
+    margin: 0;
+  }
+}
+
+.todays-hours__more {
+  margin-left: 2em;
+  font-size: modular-scale(-1);
+}
+
+.todays-hours__now {
+  font-weight: bold;
+
+  &.is-open {
+    @include badge(color('open'));
+  }
+
+  &.is-closed {
+    @include badge(color('closed'));
+  }
+}
+
+.todays-hours__until {
+  font-size: modular-scale(-1);
+}

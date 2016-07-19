@@ -1,0 +1,31 @@
+// All temporary hacks here to help ensure they don't stick around
+
+// Pointer cursor fo all links on events page
+.events-container {
+  a {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+// Hide the 3rd featured librarian at the $scape breakpoint
+// -- trying to avoid a second carousel on the home page
+// -- 3 adjacent are just too tight at this breakpoint
+// -- could revert to having them all stack if team prefers
+.meet-librarians__featured {
+  @include susy-breakpoint($scape $tablet, $g-scape) {
+    &:last-of-type {
+      display: none;
+    }
+  }
+}
+
+// Quick fix for desktops & laptops on home page
+// -- keep them stacked at tablet breakpoint while in isolate layout
+// -- alternative is to wrap them in another div :(
+.shame-isolate-laptops {
+  @include susy-breakpoint($tablet $lapdesk, $g-tablet) {
+    margin-top: 6.5em;
+  }
+}

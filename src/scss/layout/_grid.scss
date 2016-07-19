@@ -1,0 +1,85 @@
+// Breakpoints
+$scape: 30em;
+$tablet: 45em;
+$lapdesk: 56em;
+$allout: 69em;
+
+// Layouts
+$susy: (
+  columns: 4 2 2 4,
+  gutters: .15,
+  gutter-position: split,
+  global-box-sizing: border-box,
+  debug: ( // Uncomment these to render grid visualization:
+    // image: show,
+    color: rgba(#ff851b, .25),
+    // output: overlay,
+  )
+);
+
+// Alignment for header content with padded content at larger breakpoints
+$pad-content-tablet: 5.4%;
+$pad-content-lapdesk: 8%;
+
+// Megamenu joins the party as well
+$pad-megamenu-tablet: 5.8%;
+$pad-megamenu-lapdesk: 10.4%;
+
+// Set Susy contexts for breakpoints
+$g-scape: (
+  columns: 6,
+);
+
+$g-tablet: (
+  columns: 8,
+);
+
+$g-lapdesk: (
+  columns: 12,
+);
+
+$g-allout: (
+  columns: 12,
+);
+
+body {
+  @include container;
+  @include clearfix;
+
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include container;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include container;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include container;
+  }
+
+  @include susy-breakpoint($allout, $g-allout) {
+    @include container;
+  }
+}
+
+header {
+  @include span(100% no-gutters);
+}
+
+main {
+  @include span(100% no-gutters);
+
+  @include pad(2.5%);
+
+  @include clearfix;
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include pad(5%);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include pad(7.5%);
+  }
+}

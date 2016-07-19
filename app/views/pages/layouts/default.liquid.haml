@@ -15,7 +15,7 @@ is_layout: false
       try{Typekit.load({ async: true });}catch(e){}
 
     {{ 'main.css' | stylesheet_tag }}
-    {{ 'jqueryLocal.bundle.js' | javascript_tag }}
+    {{ 'vendor.bundle.js' | javascript_tag }}
   %body{class: "body-{{ page.slug }}"}
     {% include 'header' %}
     %main

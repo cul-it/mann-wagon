@@ -1,12 +1,11 @@
-// Using npm + Webpack to manage vendor dependencies
-// -- for now Webpack is simply copying src files from modules to public dir
-// -- no compiling/preprocessing and copied files are not tracked thanks to .gitignore
-// -- provides some sanity for clean @import paths while tracking versions & dependencies via package.json
-
+// Plugins
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var WebpackShellPlugin = require('webpack-shell-plugin');
+
 var path = require('path');
 
-var sassDir = path.join('../stylesheets', 'vendor');
 var fontsDir = path.join('../fonts');
 
 module.exports = {
@@ -18,13 +17,14 @@ module.exports = {
     }
   },
   entry: {
-      bookedReserve: './src/booked-reserve.js',
+      bookedReserve: './src/js/booked-reserve.js',
       eventsPage: './vue/events/events-page/events-page.js',
       homePageEvents: './vue/events/homepage-events/homepage-events.js',
-      hoursNav: './src/hours-nav.js',
-      jqueryLocal: './src/jquery-local.js',
-      purchaseRequest: './src/purchase-request.js',
-      spacesQuiet: './src/spaces-quiet.js'
+      hoursNav: './src/js/hours-nav.js',
+      main: './src/scss/main.scss',
+      purchaseRequest: './src/js/purchase-request.js',
+      spacesQuiet: './src/js/spaces-quiet.js',
+      vendor: ['jquery']
   },
   output: {
     path: path.join(__dirname, 'public', 'javascripts'),
@@ -39,50 +39,63 @@ module.exports = {
           loader: 'style!css'
         },
         {
+          test: /\.html$/,
+          loader: 'html'
+        },
+        {
           test:   /\.js/,
           loader: 'babel',
           include: path.join(__dirname, 'src')
         },
         {
+          test: /\.scss/,
+          // The key is to disable css-loaders's @import and url handling
+          // so it leaves assets alone (fonts, images)
+          // -- https://github.com/webpack/css-loader#disable-behavior
+          // loader: ExtractTextPlugin.extract('style', 'css?-import,-url!sass')
+          loader: ExtractTextPlugin.extract('style', 'css?-url!sass')
+        },
+        {
           test: /\.vue$/, // a regex for matching all files that end in `.vue`
           loader: 'vue'   // loader to use for matched files
         },
-        {
-          test: /\.html$/,
-          loader: 'html'
-        }
       ]
     },
-  // Vendorize the Sass mixins & libraries
   plugins: [
+    new BrowserSyncPlugin(
+      // BrowserSync options
+      {
+        // Browse app at http://localhost:3000 during development
+        host: 'localhost',
+        port: 3000,
+        // Proxy `wagon serve` through Browsersync
+        // -- see `npm start` in package.json
+        proxy: 'localhost:3333',
+        // Files to watch
+        files: [
+          'public/stylesheets/**/*',
+          'app/views/**/*'
+        ]
+      },
+      // Plugin options
+      {
+        // Don't force Browsersync to reload
+        // -- let the watched files trigger it
+        // -- allows for CSS injection without full page reload
+        reload: false
+      }
+    ),
+    // Copy over FontAwesome fonts
     new CopyWebpackPlugin([
-      // Accoutrement Color
-      { from: 'node_modules/accoutrement-color/sass', to: path.join(sassDir, 'accoutrement-color') },
-      // Bitters
-      { from: 'node_modules/Bitters/core', to: path.join(sassDir, 'bitters') },
-      // Bourbon
-      { from: 'node_modules/bourbon/core', to: path.join(sassDir, 'bourbon') },
-      // Breakpoint
-      { from: 'node_modules/breakpoint-sass/stylesheets', to: path.join(sassDir, 'breakpoint') },
-      // Font Awesome
-      { context: 'node_modules/font-awesome/scss', from: '_*', to: path.join(sassDir, 'font-awesome') },
-      { from: 'node_modules/font-awesome/scss/font-awesome.scss', to: path.join(sassDir, 'font-awesome', '_font-awesome.scss') },
       { from: 'node_modules/font-awesome/fonts', to: fontsDir },
-       // MathSass
-      { from: 'node_modules/mathsass/dist', to: path.join(sassDir, 'mathsass') },
-      // Normalize
-      { from: 'node_modules/normalize-scss/sass', to: path.join(sassDir, 'normalize') },
-      { from: 'node_modules/support-for/sass/_support-for.scss', to: path.join(sassDir, 'normalize') },
-      // Semantic-UI
-      { from: 'node_modules/semantic-ui-css/components/button.css', to: path.join(sassDir, 'semantic-ui', '_button.scss') },
-      { from: 'node_modules/semantic-ui-css/components/card.css', to: path.join(sassDir, 'semantic-ui', '_card.scss') },
-      { from: 'node_modules/semantic-ui-css/components/input.css', to: path.join(sassDir, 'semantic-ui', '_input.scss') },
-      { from: 'node_modules/semantic-ui-css/components/label.css', to: path.join(sassDir, 'semantic-ui', '_label.scss') },
-      { from: 'node_modules/semantic-ui-css/components/menu.css', to: path.join(sassDir, 'semantic-ui', '_menu.scss') },
-      // Susy
-      { from: 'node_modules/susy/sass', to: path.join(sassDir, 'susy') }
     ], {
         ignore: []
+    }),
+    // Extract compiled CSS from bundle
+    new ExtractTextPlugin('../stylesheets/[name].css'),
+    // Remove extraneous bundle leftover after extracting CSS
+    new WebpackShellPlugin({
+      onBuildExit:['rm public/javascripts/main.bundle.js']
     })
   ]
 };

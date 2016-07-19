@@ -1,0 +1,117 @@
+// Google Fonts
+@import url('http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Francois+One|Montserrat');
+$francois: 'Francois One', sans-serif;
+$lato: 'Lato', sans-serif;
+$montserrat: 'Montserrat', sans-serif; // CUL standard
+
+// Typography
+$base-font-family: $lato;
+$heading-font-family: $francois;
+
+// Font Sizes
+$base-font-size: 1em;
+
+// Line height
+$base-line-height: 1.5;
+$heading-line-height: 1.2;
+
+// Other Sizes
+$base-border-radius: 3px;
+$base-spacing: $base-line-height * 1em;
+$small-spacing: $base-spacing / 2;
+$header-height: 52px;
+
+// z-index
+$below-content: 1;
+$content: 2;
+$above-content: 3;
+
+// Colors variable via accoutrement-color
+// Names via Name That Color
+// -- http://chir.ag/projects/name-that-color
+// -- http://www.color-blindness.com/color-name-hue
+$colors: (
+  // Palette
+  'malta': hsl(33, 21%, 69%),
+  'soapstone': hsl(39, 30%, 89%),
+  'kangaroo': hsl(69, 15%, 73%),
+  'boston-blue': hsl(187, 45%, 44%),
+  'amulet': hsl(102, 17%, 54%),
+  'sprout': hsl(96, 31%, 76%),
+  'primrose': hsl(67, 69%, 76%),
+  'yellow-sea': hsl(32, 91%, 58%),
+  'mirage': hsl(203, 34%, 12%),
+  'vulcan': hsl(205, 40%, 8%),
+
+  // Accessory
+  'blond': hsl(52, 100%, 87%),
+
+  // Status
+  'tutu': hsl(358, 75%, 94%),
+  'glitter': hsl(215, 58%, 94%),
+  'spring-green': hsl(72, 58%, 85%),
+  'alert': 'blond',
+  'error': 'tutu',
+  'danger': 'yellow-sea' ('tint': 60%),
+  'notice': 'glitter',
+  'success': 'spring-green',
+
+  // Grayscale
+  'alabaster': hsl(0, 0%, 98%),
+  'white': hsl(0, 0%, 100%),
+  'black': hsl(0, 0%, 0%),
+  'bokara-gray': hsl(0, 0%, 16%),
+  'bunker': hsl(210, 6%, 7%),
+  'aluminum': hsl(193, 6%, 68%),
+  'barely-gray': 'aluminum' ('tint': 70%),
+  'light-gray': 'aluminum' ('tint': 40%),
+  'medium-gray': 'aluminum' ('shade': 40%),
+  'dark-gray': 'aluminum' ('shade': 80%),
+
+  // Brand
+  'cornell-red': hsl(0, 74%, 40%),
+  'cornell-gray': 'black',
+  'mann-brand': 'vulcan',
+  'cul-hamburger': 'black' ('tint': 20%),
+
+  // Fonts
+  'font-base': 'vulcan' ('tint': 10%),
+  'headings': 'vulcan',
+
+  // Links
+  'action': 'boston-blue',
+  'nav': 'primrose',
+  'section-nav': 'soapstone' ('tint': 40%),
+  'more': 'amulet',
+
+  // Search
+  'search-banner': 'black' ('tint': 15%),
+  'search-button': 'boston-blue',
+
+  // Hours
+  'closed': 'error',
+  'open': 'success',
+  'today-in-the-week': 'blond',
+  'weekly-location': 'white',
+  'weekly-location-bg': 'vulcan',
+);
+
+// Font Colors
+$base-font-color: color('font-base');
+$action-color: color('action');
+
+// Border
+$base-border-color: color('light-gray');
+$base-border: 1px solid $base-border-color;
+
+// Background Colors
+$base-background-color: color('white');
+$secondary-background-color: tint($base-border-color, 75%);
+
+// Forms
+$form-box-shadow: inset 0 1px 3px rgba(color('black'), .06);
+$form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -.3);
+
+// Animations
+$base-duration: 150ms;
+$base-timing: ease;

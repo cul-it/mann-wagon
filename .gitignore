@@ -10,6 +10,6 @@ deploy.yml
 node_modules/*
 npm-debug.log
 
-# Vendorized Sass
-public/stylesheets/vendor/*
-!public/stylesheets/vendor/.gitkeep
+# Compiled Styles
+public/stylesheets/*
+!public/stylesheets/.gitkeep

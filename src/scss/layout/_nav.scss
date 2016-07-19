@@ -1,0 +1,221 @@
+.cul-nav {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    position: relative;
+    float: right;
+    margin-top: .7em;
+    padding-right: $pad-content-tablet;
+    font-size: modular-scale(-1);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    margin-top: 1.2em;
+    padding-right: $pad-content-lapdesk;
+  }
+
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.cul-nav__button {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    display: none;
+  }
+
+  border-radius: 0;
+  background-color: color('cul-hamburger');
+  padding: 0;
+  width: $header-height;
+  height: $header-height; // Match height of cu-banner
+}
+
+.cul-nav__item {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    display: inline-block;
+    margin-top: 0;
+    padding-left: .2em;
+
+    &:first-of-type {
+      padding-left: 0;
+    }
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    padding-left: 1em;
+  }
+
+  margin-top: 1em;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.cul-nav__link {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    color: color('font-base');
+  }
+
+  color: color('white');
+  font-weight: normal;
+}
+
+.cul-nav__list {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    display: inline-block;
+    position: relative;
+    top: 0;
+    background: none;
+    padding: 0;
+    width: inherit;
+  }
+
+  // Accessed/toggled via hamburger menu for mobile
+  display: none;
+  position: absolute;
+  top: 52px;
+  right: 0;
+  z-index: $above-content;
+  background: color('cul-hamburger');
+  padding: .5em;
+  width: 10em;
+  text-align: left;
+}
+
+.site-nav {
+  @include break;
+
+  margin-bottom: 1em;
+  border-top: solid 1px color('nav' ('shade': 5%));
+  border-bottom: solid 4px color('nav' ('tint': 60%));
+  background: color('nav');
+  padding: 0 auto;
+  text-align: center;
+  font-weight: bold;
+}
+
+.site-nav__list {
+  @include susy-breakpoint($scape, $g-scape) {
+    text-align: left;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    padding-left: $pad-content-tablet;
+    width: span(5);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    padding-left: $pad-content-lapdesk;
+  }
+
+  position: relative;
+
+  .link {
+    @include susy-breakpoint($lapdesk, $g-lapdesk) {
+      padding: .8em;
+    }
+
+    display: inline-block;
+    position: static;
+    padding: .41em;
+
+    &.active {
+      background: color('nav' ('tint': 40%));
+    }
+
+    &:hover {
+      background: color('vulcan');
+
+      & > a {
+        color: color('nav');
+      }
+
+      & > .site-nav__mega {
+        display: block;
+      }
+
+    }
+
+    & > a {
+      color: color('vulcan');
+    }
+  }
+}
+
+.site-nav__mega {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    left: $pad-megamenu-tablet;
+    background: color('vulcan' ('transparentize': .06));
+    width: 92vw;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    left: $pad-megamenu-lapdesk;
+    width: 86vw;
+  }
+
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: $above-content;
+  background: color('vulcan' ('transparentize': .02));
+  padding: 2em;
+  width: 100vw;
+  height: auto;
+  text-align: left;
+  color: color('alabaster');
+}
+
+.site-nav__section {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(2 of 8);
+
+    margin-bottom: 0;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(3 of 12);
+  }
+
+  margin-bottom: 1em;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.site-nav__section-title {
+  display: block;
+  border-bottom: solid 1px color('medium-gray');
+  padding-bottom: .2em;
+  line-height: 1.2em;
+  color: color('alabaster');
+}
+
+.site-nav__page {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    border-bottom: 0;
+  }
+
+  border-bottom: solid 1px color('vulcan' ('tint': 10%));
+}
+
+.site-nav__page-link {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    padding: .8em .2em;
+  }
+
+  display: block;
+  padding: .6em .2em;
+  line-height: 1em;
+  color: color('action' ('tint': 10%));
+  font-weight: normal;
+
+  &:active,
+  &:focus,
+  &:hover {
+    border-radius: 5px;
+    background: color('alabaster');
+  }
+}

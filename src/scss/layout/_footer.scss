@@ -1,0 +1,80 @@
+.footer {
+  @include span(full nest);
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    padding: 2em 3%;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    padding: 2em 7%;
+  }
+
+  margin-top: 1em;
+  background: color('vulcan');
+  padding: 2em .3em;
+  color: color('aluminum');
+}
+
+.footer__panel {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(2);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(4);
+  }
+
+  margin-bottom: 1em;
+}
+
+.footer__bottomline {
+  @include span(full);
+}
+
+.footer__heading {
+  margin-bottom: .2em;
+  color: color('amulet');
+}
+
+.footer__subheading {
+  margin-bottom: .1em;
+  color: color('amulet');
+  font-size: modular-scale(0);
+}
+
+.footer__mission,
+.footer__haiku {
+  margin-bottom: 0;
+}
+
+.footer__floorplans,
+.footer__address-line {
+  line-height: modular-scale(1);
+  font-size: modular-scale(-1);
+}
+
+.footer__address-line {
+  display: block;
+}
+
+.footer__social {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(last 2);
+
+    text-align: right;
+  }
+
+  margin-bottom: 1em;
+}
+
+.footer__social-icon {
+  color: color('aluminum');
+}
+
+.footer__copyright {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(4);
+  }
+
+  line-height: modular-scale(1);
+}

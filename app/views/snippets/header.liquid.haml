@@ -11,26 +11,48 @@
     %h1.mann-brand__mannlib
       %a.link--no-color{title: "Home", href: "/"} {{ site.seo_title | upcase }}
 
+  %button.search__button{type: "button"}
+    %i.fa.fa-search
+
   %form.search{role: "search", action: "{% path_to search %}"}
     .ui.left.icon.fluid.input
       %i.fa.fa-search.icon.search__icon
       %input.search__term{type: "text", name: "q", placeholder: "Search"}
-      %button.search__button{type: "button"}
 
   .todays-hours
-    %ul
-      %li.todays-hours__mann
+    %ul.todays-hours__list
+      %li.todays-hours__location
         %a.todays-hours__link{href: "{% path_to hours %}"}
-          %span{ class: "badge todays-hours__now {% if mannlib_hours.status_1707 == 'Open' %}is-open{% else %}is-closed{% endif %}" } {{ mannlib_hours.status_1707 }}
+          %span{class: "badge todays-hours__now {% if mannlib_hours.status_1707 == 'Open' %}is-open{% else %}is-closed{% endif %}"} {{ mannlib_hours.status_1707 }}
 
         %span.todays-hours__until {{ mannlib_hours.hours_1707 }}
-      %li.todays-hours__lobby
-        Lobby: {{ mannlib_hours.status_1709 }} {{ mannlib_hours.hours_1709 }}
+      %li.todays-hours__location
+        %span.todays-hours__label Lobby
+        %a.todays-hours__link{href: "{% path_to hours %}"}
+          %span{class: "badge todays-hours__now {% if mannlib_hours.status_1709 == 'Open' %}is-open{% else %}is-closed{% endif %}"} {{ mannlib_hours.status_1709 }}
+
+        %span.todays-hours__until {{ mannlib_hours.hours_1709 }}
 
     %a.todays-hours__more{href: "{% path_to hours %}"}
       All Hours
       %i.fa.fa-angle-double-right
 
   %nav.site-nav{role: "navigation"}
+    %nav.cul-nav{role: "navigation"}
+      %button.cul-nav__button{type: "button"}
+        %i.fa.fa-lg.fa-bars
+      %ul.cul-nav__list
+        %li.cul-nav__item
+          %a.cul-nav__link{href: "https://newcatalog.library.cornell.edu"}
+            %i.fa.fa-fw.fa-book
+            Library Catalog
+        %li.cul-nav__item
+          %a.cul-nav__link{href: "https://www.library.cornell.edu/ask"}
+            %i.fa.fa-fw.fa-question
+            Ask a Librarian
+        %li.cul-nav__item
+          %a.cul-nav__link{href: "https://www.library.cornell.edu/myacct"}
+            %i.fa.fa-fw.fa-user
+            My Account
     %ul.site-nav__list
       {% nav site, no_wrapper: true, active_class: active, snippet: primary-nav %}
