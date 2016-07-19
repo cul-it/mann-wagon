@@ -1,3 +1,12 @@
+.space-finder {
+  &.ui.three.doubling.cards { // Override semantic ui default
+    @include susy-breakpoint(max-width $tablet) {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+}
+
 .space-finder__category {
   @include susy-breakpoint($tablet, $g-tablet) {
     font-size: modular-scale(1);
