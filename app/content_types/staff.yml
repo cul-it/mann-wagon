@@ -106,6 +106,13 @@ fields:
     required: true
     localized: false
 
+- librarian: # The lowercase, underscored name of the field
+    label: Librarian? # Human readable name of the field
+    type: boolean
+    required: true
+    hint: Librarians are randomly featured on the homepage
+    localized: false
+
 - expertise: # The lowercase, underscored name of the field
     label: Areas of expertise # Human readable name of the field
     type: tags
