@@ -1,7 +1,9 @@
-{% comment %} Select 3 staff to feature {% endcomment %}
-{% assign randomness = contents.staff.all | shuffle | slice: 0, 3 %}
+{% comment %} Select 3 librarians to feature {% endcomment %}
+{% with_scope librarian: true %}
+  {% assign featured_librarians = contents.staff.all | shuffle | slice: 0, 3 %}
+{% endwith_scope %}
 
-{% for person in randomness %}
+{% for person in featured_librarians %}
   <div class="meet-librarians__featured">
     <img class="meet-librarians__photo" src="{{ person.photo.url | resize: '500x500#n' }}" alt="">
 
