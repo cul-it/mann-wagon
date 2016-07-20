@@ -11,17 +11,25 @@
 
     <span class="meet-librarians__title">{{ person.title }}</span>
 
-    <h6 class="meet-librarians__subheading">Areas of Expertise</h6>
+    {% if person.expertise.size > 0 %}
+      <h6 class="meet-librarians__subheading">Areas of Expertise</h6>
 
-    <p class="meet-librarians__expertise">{{ person.expertise }}<p>
+      <ul>
+        {% for skill in person.expertise %}
+          <li class="meet-librarians__list-item">{{ skill }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
 
-    <h6 class="meet-librarians__subheading">Liaison to</h6>
+    {% if person.departments.size > 0 %}
+      <h6 class="meet-librarians__subheading">Liaison to</h6>
 
-    <ul>
-      {% for dept in person.departments %}
-        <li class="meet-librarians__list-item">{{ dept.name }}</li>
-      {% endfor %}
-    </ul>
+      <ul>
+        {% for dept in person.departments %}
+          <li class="meet-librarians__list-item">{{ dept.name }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
 
     <a href="#">
       <button class="meet-librarians__request-consultation">Book a Consultation</button>
