@@ -10,6 +10,8 @@ deploy.yml
 node_modules/*
 npm-debug.log
 
-# Compiled Styles
+# Compiled assets
+public/javascripts/*
+!public/javascripts/.gitkeep
 public/stylesheets/*
 !public/stylesheets/.gitkeep
