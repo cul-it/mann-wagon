@@ -2,7 +2,7 @@
   <div class="header">
     Reserve this room
   </div>
-  <div class="content">
+  <!-- <div class="content">
     <div class="description">
       <p>The reservation form for this room isn't available yet.</p>
     </div>
@@ -12,5 +12,10 @@
       Thanks
       <i class="fa fa-check icon"></i>
     </div>
-  </div>
+  </div> -->
+
+<div id="reservation-form">
+  <reservation booked-username = "{{site.metafields.sensitive_data.booked_username}}", booked-password = "{{site.metafields.sensitive_data.booked_password}}"></reservation>
 </div>
+</div>
+{{ 'bookedReservation.bundle.js' | javascript_tag }}
