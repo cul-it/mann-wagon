@@ -11,6 +11,11 @@
     %h1.mann-brand__mannlib
       %a.link--no-color{title: "Home", href: "/"} {{ site.seo_title | upcase }}
 
+  .accessory-nav
+    %a.accessory-nav__link{title: "Find course reserves for your class", href: "{% path_to course-reserves %}"}
+      %i.fa.fa-fw.fa-bookmark-o.accessory-nav__icon
+      Course Reserves
+
   %button.search__button{type: "button"}
     %i.fa.fa-search
 
