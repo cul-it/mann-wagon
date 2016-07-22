@@ -1,9 +1,22 @@
 import 'semantic-ui-css/components/dropdown.min.css';
 // import 'semantic-ui-css/components/dropdown.min.js';
 import 'semantic-ui-css/components/form.min.css';
+import 'semantic-ui-css/components/form.min.js';
 import 'semantic-ui-css/components/message.min.css';
 import 'semantic-ui-css/components/transition.min.css';
-import 'semantic-ui-css/components/transition.js';
+import 'semantic-ui-css/components/transition.min.js';
+
+$('.ui.form')
+  .form({
+    fields: {
+      'content[name]'      : 'empty',
+      'content[email]'     : 'empty',
+      'content[category]'  : 'empty',
+      'content[url]'       : 'empty',
+      'content[feedback]'  : 'empty'
+    }
+  })
+;
 
 // Would like to use semantic-ui dropdown component but mobile usability is awful
 // -- limits the number of displayed options to 3 and scrolling is not obvious

@@ -7,7 +7,7 @@
     {% endif %}
   {% endcapture %}
 
-  {% comment %} Status messages {% endcomment %}
+  {% comment %} Status messages from Locomotive {% endcomment %}
   {% if site_feedback.errors.size > 0 %}
     <div class="ui error message">
       <div class="header">Please address the following errors</div>
@@ -65,6 +65,9 @@
       <label>Feedback</label>
       <textarea name="content[feedback]" rows="4">{{ site_feedback.feedback }}</textarea>
     </div>
+
+    {% comment %} Validation messages via semantic-ui {% endcomment %}
+    <div class="ui error message"></div>
 
     <button class="ui button" type="submit">Send it our way</button>
   {% endunless %}
