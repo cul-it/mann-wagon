@@ -21,6 +21,12 @@
   }
 }
 
+// Quickly resurrect research guides from home page
+.shame-guides__all-guides {
+  @include span(full);
+  margin-top: 1em;
+}
+
 // Quick fix for desktops & laptops on home page
 // -- keep them stacked at tablet breakpoint while in isolate layout
 // -- alternative is to wrap them in another div :(
