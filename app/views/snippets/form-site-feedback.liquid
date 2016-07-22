@@ -1,4 +1,11 @@
 {% model_form 'site_feedback', class: 'ui form success error mann-form', success: path , error: path %}
+  {% capture page_in_question %}
+    {% if post? %}
+      {{ site_feedback.url }}
+    {% else %}
+      {{ referer }}
+    {% endif %}
+  {% endcapture %}
 
   {% comment %} Status messages {% endcomment %}
   {% if site_feedback.errors.size > 0 %}
@@ -51,7 +58,7 @@
 
     <div class="required field">
       <label>Page in question</label>
-      <textarea class="mann-form__url" name="content[url]" rows="2">{{ site_feedback.url }}</textarea>
+      <textarea class="mann-form__url" name="content[url]" rows="2">{{ page_in_question | strip }}</textarea>
     </div>
 
     <div class="required field">

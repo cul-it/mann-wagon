@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/cappadona/steam.git
-  revision: de73d6afa7158087cda1acec191133eef81fcb20
-  branch: consume-headers
+  revision: 1324391f333f0bec72e392d0e6d02a624915ca8a
+  branch: dev
   specs:
     locomotivecms_steam (1.2.0.beta1)
       RedCloth (~> 4.2.9)
@@ -70,7 +70,7 @@ GEM
     celluloid (0.16.0)
       timers (~> 4.0.0)
     chronic (0.10.2)
-    chunky_png (1.3.5)
+    chunky_png (1.3.6)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
