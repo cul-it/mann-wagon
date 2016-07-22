@@ -6,15 +6,18 @@ import 'semantic-ui-css/components/message.min.css';
 import 'semantic-ui-css/components/transition.min.css';
 import 'semantic-ui-css/components/transition.min.js';
 
+// Validation via semantic-ui
 $('.ui.form')
   .form({
     fields: {
       'content[name]'      : 'empty',
-      'content[email]'     : 'empty',
+      'content[email]'     : 'email',
       'content[category]'  : 'empty',
-      'content[url]'       : 'empty',
+      'content[url]'       : 'url',
       'content[feedback]'  : 'empty'
-    }
+    },
+    inline : true,
+    on     : 'blur'
   })
 ;
 

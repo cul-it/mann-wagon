@@ -8,7 +8,7 @@
   {% endcapture %}
 
   {% comment %} Status messages from Locomotive {% endcomment %}
-  {% if site_feedback.errors.size > 0 %}
+  {% if site_feedback.errors %}
     <div class="ui error message">
       <div class="header">Please address the following errors</div>
 
@@ -18,7 +18,7 @@
         {% endfor %}
       </ul>
     </div>
-  {% elsif site_feedback.errors.size == 0 %}
+  {% elsif site_feedback.errors == false %}
     <div class="ui icon success message">
       <i class="fa fa-thumbs-o-up icon"></i>
 
@@ -30,7 +30,7 @@
   {% endif %}
 
   {% comment %} Don't display the form after successful submission {% endcomment %}
-  {% unless site_feedback.errors.size == 0 %}
+  {% unless site_feedback.errors == false %}
       <div class="required field mann-form__compact">
         <label>Name</label>
         <input type="text" name="content[name]" value="{{ site_feedback.name }}">
@@ -65,9 +65,6 @@
       <label>Feedback</label>
       <textarea name="content[feedback]" rows="4">{{ site_feedback.feedback }}</textarea>
     </div>
-
-    {% comment %} Validation messages via semantic-ui {% endcomment %}
-    <div class="ui error message"></div>
 
     <button class="ui button" type="submit">Send it our way</button>
   {% endunless %}
