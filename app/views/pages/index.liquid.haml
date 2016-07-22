@@ -18,7 +18,9 @@ listed: false
     {% include 'availnow-study' %}
 
   .available-now__grp.available-now__consultation
-    %h5.available-now__subheading Consultation
+    %h5.available-now__subheading
+      %a.available-now__link{href: "{% path_to consultation-services %}", title: "View all consultation services"}
+        Consultation
 
     %ul
       %li.available-now__status.available-now__status--available
