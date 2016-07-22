@@ -18,7 +18,9 @@ listed: false
     {% include 'availnow-study' %}
 
   .available-now__grp.available-now__consultation
-    %h5.available-now__subheading Consultation
+    %h5.available-now__subheading
+      %a.available-now__link{href: "{% path_to consultation-services %}", title: "View all consultation services"}
+        Consultation
 
     %ul
       %li.available-now__status.available-now__status--available
@@ -33,9 +35,6 @@ listed: false
       %li.available-now__status.available-now__status--available
         %i.fa.fa-fw.fa-check-square
         Knight Writing Institute
-
-    %a{href: "#"}
-      %button.available-now__request-consultation Book a Consultation
 
 %section.featured__side-image
   %img.img-responsive.img-faded{:alt => "Abstract placeholder", :src => "{{ 'events/abstract-placeholder.jpg' | theme_image_url }}"}/
