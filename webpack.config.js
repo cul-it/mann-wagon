@@ -24,7 +24,6 @@ module.exports = {
       main: './src/scss/main.scss',
       purchaseRequest: './src/js/purchase-request.js',
       spacesQuiet: './src/js/spaces-quiet.js',
-      bookedReservation: './vue/forms/form.js',
       vendor: ['jquery']
   },
   output: {
