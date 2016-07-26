@@ -1,0 +1,13 @@
+.mann-form {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    width: 70%;
+  }
+
+  margin: 2em 0 4em;
+}
+
+.mann-form__compact {
+  .ui.form & { // Override semantic-ui default for <select>
+    width: inherit;
+  }
+}
