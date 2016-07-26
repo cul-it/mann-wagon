@@ -1,24 +1,78 @@
 <div id="resource-booked-reserve-{{ space.reserve_sys_id }}" data-booked-resourceId="{{ space.reserve_sys_id }}" class="js-sui-modal ui modal">
+  <i class="close fa fa-times"></i>
   <div class="header">
     Reserve {{space.name}}
   </div>
-  <!-- <div class="content">
-    <div class="description">
-      <p>The reservation form for this room isn't available yet.</p>
-    </div>
-  </div>
-  <div class="actions">
-    <div class="ui positive right labeled icon button">
-      Thanks
-      <i class="fa fa-check icon"></i>
-    </div>
-  </div> -->
 
-  <div id="reservation-form-{{ space.reserve_sys_id }}" class="ui form">
-    <div class="required field">
+  <div id="reservation-form-{{ space.reserve_sys_id }}" class="ui form success error booked-form">
+
+    <!-- Success message -->
+    <div id="reservation-form-success-{{ space.reserve_sys_id }}" class="ui success message" style="display:none">
+      <div class="header">Reservation Request Successful</div>
+      <p>Your reservation request was created successfully.</p>
+    </div>
+
+    <!--  Error message -->
+    <div id="reservation-form-error-{{ space.reserve_sys_id }}" class="ui error message" style="display:none">
+      <div class="header">Reservation Request Errors</div>
+      <p></p>
+    </div>
+
+    <h4 class="ui diving header">Contact Information</h4>
+    <div class="required field booked-form__compact">
       <label>Full Name</label>
       <input type="text" name="fullName" placeholder="Full Name">
     </div>
+
+    <div class="fields">
+      <div class="required field booked-form__compact">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="@cornell.edu">
+      </div>
+
+      <div class="required field booked-form__compact">
+        <label>Phone</label>
+        <input type="tel" name="phone" placeholder="xxx-xxx-xxxx">
+      </div>
+    </div>
+
+    <div class="required field booked-form__compact">
+      <label>Departmental Account Number</label>
+      <input type="tel" name="account" placeholder="Enter N/A if not known">
+    </div>
+    <div class="field">
+      <div id="colleague-{{ space.reserve_sys_id }}" class="ui toggle checkbox">
+        <input type="checkbox">
+        <label>This reservation is for a colleague?</label>
+      </div>
+    </div>
+
+    <div id="colleague-reservation-{{ space.reserve_sys_id }}" style="display:none">
+      <h4 class="ui diving header">Colleague Contact Information</h4>
+      <div class="required field booked-form__compact">
+        <label>Full Name</label>
+        <input type="text" name="colleague-fullName" placeholder="Full Name">
+      </div>
+
+      <div class="fields">
+        <div class="required field booked-form__compact">
+          <label>Email</label>
+          <input type="email" name="colleague-email" placeholder="@cornell.edu">
+        </div>
+
+        <div class="required field booked-form__compact">
+          <label>Phone</label>
+          <input type="tel" name="colleague-phone" placeholder="xxx-xxx-xxxx">
+        </div>
+      </div>
+    </div>
+
+    <h4 class="ui diving header">Reservation Information</h4>
+    <div class="required field booked-form__compact">
+      <label>Affiliation name</label>
+      <input type="text" name="affiliation_name" placeholder="College/Department">
+    </div>
+
     <div class="required field">
       <label>Event Name</label>
       <input type="text" name="title" placeholder="Event Name">
@@ -27,14 +81,7 @@
       <label>Description</label>
       <textarea type="text" name="description" rows="3" placeholder="Description"></textarea>
     </div>
-    <!-- <div class="field">
-      <label>Event Start</label>
-      <input type="datetime-local" v-model="eventStart">
-    </div>
-    <div class="field">
-      <label>Event End</label>
-      <input type="datetime-local" v-model="eventEnd">
-    </div> -->
+
     <div class="two fields">
       <div class="required field">
         <label>Start date</label>
@@ -55,6 +102,42 @@
         </div>
       </div>
     </div>
+    <div class="inline fields">
+    <label>Open to:</label>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input type="radio" name="open_to">
+        <label>Public</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input type="radio" name="open_to">
+        <label>Faculty/Staff/Students only</label>
+      </div>
+    </div>
+  </div>
+    <div class="field">
+      <div class="ui toggle checkbox">
+        <input type="checkbox">
+        <label>Registration required?</label>
+      </div>
+    </div>
+
+    <h4 class="ui dividng header">Additional Information</h4>
+    <div class="field">
+      <div class="ui toggle checkbox">
+        <input type="checkbox">
+        <label>Technical support required?</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui toggle checkbox">
+        <input type="checkbox">
+        <label>Advertise this event on library kiosk?</label>
+      </div>
+    </div>
+
     <input type="hidden" name="resourceId" value="{{space.reserve_sys_id}}">
 
     <input type="hidden" name="username" value="{{site.metafields.sensitive_data.booked_username}}">
