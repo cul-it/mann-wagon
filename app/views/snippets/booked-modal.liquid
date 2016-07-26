@@ -1,6 +1,6 @@
-<div class="js-sui-modal ui modal">
+<div id="resource-booked-reserve-{{ space.reserve_sys_id }}" data-booked-resourceId="{{ space.reserve_sys_id }}" class="js-sui-modal ui modal">
   <div class="header">
-    Reserve this room
+    Reserve {{space.name}}
   </div>
   <!-- <div class="content">
     <div class="description">
@@ -14,8 +14,51 @@
     </div>
   </div> -->
 
-<div id="reservation-form">
-  <reservation booked-username = "{{site.metafields.sensitive_data.booked_username}}", booked-password = "{{site.metafields.sensitive_data.booked_password}}"></reservation>
-</div>
-</div>
-{{ 'bookedReservation.bundle.js' | javascript_tag }}
+  <div id="reservation-form-{{ space.reserve_sys_id }}" class="ui form">
+    <div class="required field">
+      <label>Full Name</label>
+      <input type="text" name="fullName" placeholder="Full Name">
+    </div>
+    <div class="required field">
+      <label>Event Name</label>
+      <input type="text" name="title" placeholder="Event Name">
+    </div>
+    <div class="required field">
+      <label>Description</label>
+      <textarea type="text" name="description" rows="3" placeholder="Description"></textarea>
+    </div>
+    <!-- <div class="field">
+      <label>Event Start</label>
+      <input type="datetime-local" v-model="eventStart">
+    </div>
+    <div class="field">
+      <label>Event End</label>
+      <input type="datetime-local" v-model="eventEnd">
+    </div> -->
+    <div class="two fields">
+      <div class="required field">
+        <label>Start date</label>
+        <div class="ui calendar" id="rangestart{{space.reserve_sys_id}}">
+          <div class="ui input left icon">
+            <i class="calendar icon"></i>
+            <input type="text" placeholder="Start" name="eventStart">
+          </div>
+        </div>
+      </div>
+      <div class="required field">
+        <label>End date</label>
+        <div class="ui calendar" id="rangeend{{space.reserve_sys_id}}">
+          <div class="ui input left icon">
+            <i class="calendar icon"></i>
+            <input type="text" placeholder="End" name="eventEnd">
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" name="resourceId" value="{{space.reserve_sys_id}}">
+
+    <input type="hidden" name="username" value="{{site.metafields.sensitive_data.booked_username}}">
+    <input type="hidden" name="password" value="{{site.metafields.sensitive_data.booked_password}}">
+    <button class="ui submit button">Submit</button>
+
+  </div>
