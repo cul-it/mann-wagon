@@ -64,8 +64,8 @@ var bookedReserve = {
                 url: 'http://booked-dev.library.cornell.edu/Web/Services/index.php/Authentication/Authenticate',
                 method: 'POST',
                 data: JSON.stringify(authData),
-                dataType: 'json'
-              }).then(function (data) {
+                dataType: 'json',
+                success: function (data) {
                 // success callback
                 if (data.isAuthenticated) {
                   headers = {'X-Booked-SessionToken': data.sessionToken, 'X-Booked-UserId': data.userId};
@@ -76,17 +76,21 @@ var bookedReserve = {
                       url: 'http://booked-dev.library.cornell.edu/Web/Services/index.php/Reservations/',
                       headers: headers,
                       data: JSON.stringify(reservationData),
-                      dataType: 'json'
-                    })
-                    .then (function (data) {
-                      console.log(data)
-                    })
+                      dataType: 'json',
+                      success: function (data) {
+                      // success callback
+                      console.log(data);
+                    }, error: function(data){
+                      console.log(data);
+                    }
+                  });
                 } else {
                   console.log(data.message)
                 }
-              }, function (response) {
-                // error callback
-              })
+              }, error: function (data) {
+                console.log(data);
+              }
+            });
           }
 
       });
