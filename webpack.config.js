@@ -19,6 +19,7 @@ module.exports = {
   entry: {
       bookedReserve: './src/js/booked-reserve.js',
       eventsPage: './vue/events/events-page/events-page.js',
+      formSiteFeedback: './src/js/form-site-feedback.js',
       homePageEvents: './vue/events/homepage-events/homepage-events.js',
       hoursNav: './src/js/hours-nav.js',
       main: './src/scss/main.scss',

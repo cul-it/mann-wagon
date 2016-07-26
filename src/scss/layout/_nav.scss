@@ -1,25 +1,32 @@
 .accessory-nav {
   @include susy-breakpoint($scape, $g-scape) {
-    margin-right: 2.5%;
+    right: 2.5%;
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    margin-right: $pad-content-tablet;
+    display: inline-block;
+    right: $pad-content-tablet;
     font-size: modular-scale(0);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    margin-right: $pad-content-lapdesk;
+    right: $pad-content-lapdesk;
   }
 
-  float: right;
-  margin-top: .2em;
+  display: none; // @todo Add to hamburger menu for mobile breakpoints
+  position: absolute;
+  top: 59px;
+  right: 0;
   line-height: 1.2em;
   font-size: modular-scale(-1);
 }
 
 .accessory-nav__icon {
   color: color('yellow-sea');
+}
+
+.accessory-nav__item {
+  display: inline-block;
 }
 
 .accessory-nav__link {
