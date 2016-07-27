@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "formvalidation": "github:formvalidation/formvalidation",
+    "semantic-ui": "github:mdehoog/Semantic-UI.git#calendar-dist",
     "jquery": "^2.2.4",
     "jquery-ui": "1.10.5",
     "semantic-ui-css": "^2.2.1",

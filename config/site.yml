@@ -49,8 +49,8 @@ meta_description: "some meta description"
 
 metafields:
   sensitive_data:
-    booked_username:
-    booked_password:
+    booked_username: tahir
+    booked_password: letmein
     labstats_customer_id:
     libcal_apikey:
     scrapinghub_apikey:
