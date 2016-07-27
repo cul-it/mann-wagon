@@ -30,9 +30,8 @@ var bookedReserve = {
       var resourceModal = ($(this).attr('id'));
       // $('#resource-'+resourceModal)
       //   .modal('show');
-      $('#resource-'+resourceModal).modal(
-        "setting", { autofocus: false },
-        {
+      $('#resource-'+resourceModal).modal({
+          autofocus: false,
           onHide: function(){
             form.form('reset');
           },
@@ -40,8 +39,7 @@ var bookedReserve = {
           },
           onApprove: function() {
           }
-        }
-      ).modal('show');
+      }).modal('show');
     });
 
   },
@@ -59,10 +57,10 @@ var bookedReserve = {
       // Colleage information
       $('#colleague-'+resourceId['bookedResourceid']).checkbox({
         onChecked: function() {
-          $('#colleague-reservation-'+resourceId['bookedResourceid']).show("slow");
+          $('#colleague-reservation-'+resourceId['bookedResourceid']).show('slow');
         },
         onUnchecked: function() {
-          $('#colleague-reservation-'+resourceId['bookedResourceid']).hide("slow");
+          $('#colleague-reservation-'+resourceId['bookedResourceid']).hide('slow');
         }
     });
 
@@ -84,8 +82,8 @@ var bookedReserve = {
             reservationData = $form.form('get values', ['fullName', 'title', 'description', 'resourceId']),
             startDateTime = moment(new Date($form.form('get value', 'eventStart'))).format('YYYY-MM-DDTHH:mm:ssZZ'),
             endDateTime = moment(new Date($form.form('get value', 'eventEnd'))).format('YYYY-MM-DDTHH:mm:ssZZ');
-            reservationData["startDateTime"] = startDateTime;
-            reservationData["endDateTime"] = endDateTime;
+            reservationData['startDateTime'] = startDateTime;
+            reservationData['endDateTime'] = endDateTime;
 
             // Authenticate booked
             var headers = '';
@@ -118,7 +116,7 @@ var bookedReserve = {
                         $form.form('reset');
                     }, error: function(data){
                         successElement.hide();
-                        var errors = JSON.parse(data.responseText)["errors"];
+                        var errors = JSON.parse(data.responseText)['errors'];
                         errorElement.show();
                         $.each( errors, function( key, error ) {
                           $(errorElement).find('p').text(error);
