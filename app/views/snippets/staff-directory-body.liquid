@@ -1,6 +1,7 @@
 {% for person in contents.staff %}
   <tr>
     <td>
+      <img class="ui tiny rounded left floated image" src="{{ person.photo.url }}">
       <strong>{{ person.last_name }}, {{ person.first_name }}</strong>
       <span class="staff-directory__position">{{ person.title }}</span>
     </td>

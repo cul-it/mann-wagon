@@ -13,40 +13,36 @@ editable_elements:
 
 {% block 'main/dynamic' %}
 
-  <h3 class="page-subheading">Divisions</h3>
+  <div class="ui floating labeled icon dropdown button">
+    <input id="sort_by" name="sort" type="hidden">
+    <i class="fa fa-sort icon"></i>
+    <span class="text">Sort</span>
+    <div class="menu">
+      <div class="item" data-value="last_name">Last Name</div>
+      <div class="item" data-value="first_name">First Name</div>
+      <div class="item" data-value="division">Division</div>
+    </div>
+  </div>
 
-  <ul class="staff-directory__divisions bulleted">
-    {% for division in contents.divisions %}
-      <li><a href="{% path_to division %}" title="Learn more about {{ division.name }}">{{ division.name }}</a></li>
-    {% endfor %}
-  </ul>
+  <div class="ui floating labeled icon dropdown button">
+    <input id="filter_by" name="filter" type="hidden">
+    <i class="fa fa-filter icon"></i>
+    <span class="text">Filter</span>
+    <div class="menu">
+      <div class="item" data-value="all">Show All</div>
+      {% for division in contents.divisions %}
+        <div class="item" data-value="{{ division.name }}">
+          {{ division.name }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 
-  {% include 'staff-directory' %}
+  <div class="ui hidden divider"></div>
+
+  {% include 'staff-directory-alt' %}
+  {{ 'staffDirectory.bundle.js' | javascript_tag }}
 
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
