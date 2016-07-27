@@ -1,5 +1,5 @@
 {% for person in contents.staff %}
-  <a href="href="https://www.cornell.edu/search/people.cfm?netid={{ person.netid }}" class="card" data-last_name="{{ person.last_name }}" data-first_name="{{ person.first_name }}" data-division="{{ person.division.name }}">
+  <a href="https://www.cornell.edu/search/people.cfm?netid={{ person.netid }}" class="card" data-last_name="{{ person.last_name }}" data-first_name="{{ person.first_name }}" data-division="{{ person.division.name }}">
     <div class="image">
       {% if person.photo.size > 0 %}
         <img class="ui image" src="{{ person.photo.url }}">
