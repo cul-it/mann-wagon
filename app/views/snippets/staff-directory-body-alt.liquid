@@ -1,0 +1,22 @@
+{% for person in contents.staff %}
+  <a href="href="https://www.cornell.edu/search/people.cfm?netid={{ person.netid }}" class="card" data-last_name="{{ person.last_name }}" data-first_name="{{ person.first_name }}" data-division="{{ person.division.name }}">
+    <div class="image">
+      {% if person.photo.size > 0 %}
+        <img class="ui image" src="{{ person.photo.url }}">
+      {% else %}
+        <img class="ui image placeholder" src="/images/staff/placeholder-staff.jpg">
+      {% endif %}
+    </div>
+    <div class="content">
+      <div class="header">{{ person.last_name }}, {{ person.first_name }}</div>
+      <div class="staff-directory__position">{{ person.title }}</div>
+      <div class="staff-directory__contact">
+        <span class="left floated"><i class="fa fa-envelope icon"></i> {{ person.netid }}</span>
+        <span class="right floated"><i class="fa fa-phone icon"></i> 607-25{{ person.phone }}</span>
+      </div>
+    </div>
+    <div class="extra content">
+      <div class="staff-directory__division">{{ person.division.name }}</div>
+    </div>
+  </a>
+{% endfor %}
