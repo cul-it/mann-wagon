@@ -5,7 +5,13 @@
 
 {% for person in featured_librarians %}
   <div class="meet-librarians__featured">
-    <img class="meet-librarians__photo" src="{{ person.photo.url | resize: '500x500#n' }}" alt="">
+
+    {% if person.photo.size > 0 %}
+      <img class="meet-librarians__photo" src="{{ person.photo.url | resize: '500x500#n' }}" alt="">
+    {% else %}
+      <img class="meet-librarians__photo placeholder" src="/images/staff/placeholder-staff.jpg">
+    {% endif %}
+    
 
     <h5 class="meet-librarians__name">{{ person.first_name }} {{ person.last_name }}</h5>
 
