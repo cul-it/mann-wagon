@@ -25,6 +25,7 @@ module.exports = {
       main: './src/scss/main.scss',
       purchaseRequest: './src/js/purchase-request.js',
       spacesQuiet: './src/js/spaces-quiet.js',
+      staffDirectory: './src/js/staff-directory.js',
       vendor: ['jquery']
   },
   output: {
