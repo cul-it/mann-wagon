@@ -4,7 +4,7 @@
       {% if person.photo.size > 0 %}
         <img class="ui image" src="{{ person.photo.url }}">
       {% else %}
-        <img class="ui image placeholder" src="/images/staff/placeholder-staff.jpg">
+        <img class="ui image placeholder" src="{{ 'staff/placeholder-staff.jpg' | theme_image_url }}">
       {% endif %}
     </div>
     <div class="content">
