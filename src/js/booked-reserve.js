@@ -77,6 +77,8 @@ var bookedReserve = {
           inline : true,
           on     : 'blur',
           onSuccess : function(){
+            // Scroll to top to see success/error messages
+            $('.ui.dimmer').scrollTop(0);
             var $form = $('#reservation-form-'+resourceId['bookedResourceid']),
             authData = $form.form('get values', ['username', 'password']),
             reservationData = $form.form('get values', ['fullName', 'title', 'description', 'resourceId']),
