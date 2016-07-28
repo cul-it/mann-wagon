@@ -9,9 +9,9 @@
     {% if person.photo.size > 0 %}
       <img class="meet-librarians__photo" src="{{ person.photo.url | resize: '500x500#n' }}" alt="">
     {% else %}
-      <img class="meet-librarians__photo placeholder" src="/images/staff/placeholder-staff.jpg">
+      <img class="meet-librarians__photo placeholder" src="{{ 'staff/placeholder-staff.jpg' | theme_image_url }}">
     {% endif %}
-    
+
 
     <h5 class="meet-librarians__name">{{ person.first_name }} {{ person.last_name }}</h5>
 
