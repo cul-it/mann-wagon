@@ -1,0 +1,30 @@
+{% for person in contents.staff %}
+  <tr class="employee" data-last_name="{{ person.last_name }}" data-first_name="{{ person.first_name }}" data-division="{{ person.division.name }}">
+    <td>
+      <div class="staff-directory__header">
+        {% if person.photo.size > 0 %}
+          <img class="ui tiny rounded left floated image" src="{{ person.photo.url }}">
+        {% else %}
+          <img class="ui tiny rounded left floated image placeholder" src="{{ 'staff/placeholder-staff.jpg' | theme_image_url }}">
+        {% endif %}
+        <div class="content">
+          <strong>{{ person.last_name }}, {{ person.first_name }}</strong>
+          <span class="staff-directory__position">{{ person.title }}</span>
+        </div>
+      </div>
+    </td>
+    {% unless current_division %}
+      <td class="top aligned">
+        <a href="{% path_to person.division %}" title="Learn more about {{ person.division.name }}">
+          {% if person.division.name contains 'ITS' %}
+            ITS
+          {% else %}
+            {{ person.division.name }}
+          {% endif %}
+        </a>
+      </td>
+    {% endunless %}
+    <td class="top aligned">{{ person.netid }}</td>
+    <td class="top aligned">607-25{{ person.phone }}</td>
+  </tr>
+{% endfor %}

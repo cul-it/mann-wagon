@@ -1,0 +1,32 @@
+{% for person in contents.staff %}
+  <div class="employee card" data-last_name="{{ person.last_name }}" data-first_name="{{ person.first_name }}" data-division="{{ person.division.name }}">
+    <div class="image">
+      {% if person.photo.size > 0 %}
+        <img class="ui image" src="{{ person.photo.url }}">
+      {% else %}
+        <img class="ui image placeholder" src="{{ 'staff/placeholder-staff.jpg' | theme_image_url }}">
+      {% endif %}
+    </div>
+    <div class="content">
+      <div class="header">{{ person.last_name }}, {{ person.first_name }}</div>
+      <div class="staff-directory__position">{{ person.title }}</div>
+      <div class="staff-directory__contact">
+        <a href="https://www.cornell.edu/search/people.cfm?netid={{ person.netid }}" class="left floated">
+          <i class="fa fa-envelope icon"></i> {{ person.netid }}
+        </a>
+        <a href="https://www.cornell.edu/search/people.cfm?netid={{ person.netid }}" class="right floated">
+          <i class="fa fa-phone icon"></i> 607-25{{ person.phone }}
+        </a>
+      </div>
+    </div>
+    <div class="extra content">
+      <a href="{% path_to person.division %}" title="Learn more about {{ person.division.name }}" class="staff-directory__division">
+        {% if person.division.name contains 'ITS' %}
+          ITS
+        {% else %}
+          {{ person.division.name }}
+        {% endif %}
+      </a>
+    </div>
+  </div>
+{% endfor %}

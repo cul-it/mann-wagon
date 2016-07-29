@@ -3,23 +3,33 @@ import 'semantic-ui-css/components/dropdown.min.js';
 import 'semantic-ui-css/components/transition.min.css';
 import 'semantic-ui-css/components/transition.min.js';
 
+$('#staff-table').css('display', 'none');
+
 $('.ui.dropdown').dropdown();
 
-$('#sort_by').change(function () {
-  sortCards($(this).val());
+$('#sort').change(function() {
+  sortStaff($(this).val());
 });
 
-$('#filter_by').change(function () {
-  filterCards('division', $(this).val());
+$('#division').change(function() {
+  window.location.replace($(this).val());
+});
+
+$('#view > button').on('click', function() {
+  $('.staff-directory').hide();
+  var layoutSelected = $(this).val();
+  $('#staff-' + layoutSelected).show();
 });
 
 //sort cards - last name, first name or division
-function sortCards(field) {
+function sortStaff(field) {
 
+  //sort cards 
   //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-  var $wrapper = $('#staff-cards');
-
-  $wrapper.find('.card').sort(function (a, b) {
+  $('.staff-directory').each(function () {
+    var $wrapper = $(this);
+    console.log($wrapper);
+    $wrapper.find('.employee').sort(function (a, b) {
       var valueA = a.dataset[field];
       var valueB = b.dataset[field];
       if (valueA < valueB) {
@@ -30,17 +40,27 @@ function sortCards(field) {
       }
       //values must be equal
       return 0;
-  }).appendTo( $wrapper );
+    }).appendTo( $wrapper );
+
+  });
+
+  
+
+  //sort table
+  // $wrapper = $('#staff-table');
+
+  // $wrapper.find('.employee').sort(function (a, b) {
+  //     var valueA = a.dataset[field];
+  //     var valueB = b.dataset[field];
+  //     if (valueA < valueB) {
+  //       return -1;
+  //     }
+  //     if (valueA > valueB) {
+  //       return 1;
+  //     }
+  //     //values must be equal
+  //     return 0;
+  // }).appendTo( $wrapper );
 }
 
-function filterCards(field, value) {
-  var $wrapper = $('#staff-cards');
-  if (value == 'all') {
-    $wrapper.find('.card').css('display', 'block');
-  } else {
-    //hide all
-    $wrapper.find('.card').hide();
-    //show division selected
-    $wrapper.find('.card').filter('[data-'+ field + '="' + value + '"]').show();
-  }
-}
+
