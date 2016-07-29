@@ -14,7 +14,7 @@
   <i class="fa fa-sitemap icon"></i>
   <span class="text">Division</span>
   <div class="menu">
-    <div class="item" data-value="all">Show All</div>
+    <div class="item" data-value="{% path_to staff %}">Show All</div>
     {% for division in contents.divisions %}
       <div class="item" data-value="{% path_to division %}">
         {{ division.name }}
