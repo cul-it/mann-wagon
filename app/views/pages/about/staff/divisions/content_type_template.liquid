@@ -1,6 +1,9 @@
 ---
 title: Divisions template page
 content_type: divisions
+editable_elements:
+  main/page_content: Page content here
+
 ---
 {% extends 'layouts/section' %}
 
@@ -8,5 +11,11 @@ content_type: divisions
 
   {% assign current_division = division %}
 
+  {% include 'staff-directory-options' %}
+
+  <div class="ui hidden divider"></div>
+
   {% include 'staff-directory' %}
+  {{ 'staffDirectory.bundle.js' | javascript_tag }}
+
 {% endblock %}

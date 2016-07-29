@@ -1,0 +1,29 @@
+<div class="ui floating labeled icon dropdown tiny button">
+  <input id="sort" name="sort" type="hidden">
+  <i class="fa fa-sort icon"></i>
+  <span class="text">Sort</span>
+  <div class="menu">
+    <div class="item" data-value="last_name">Last Name</div>
+    <div class="item" data-value="first_name">First Name</div>
+    <div class="item" data-value="division">Division</div>
+  </div>
+</div>
+
+<div class="ui floating labeled icon dropdown tiny button">
+  <input id="division" name="division" type="hidden">
+  <i class="fa fa-sitemap icon"></i>
+  <span class="text">Division</span>
+  <div class="menu">
+    <div class="item" data-value="all">Show All</div>
+    {% for division in contents.divisions %}
+      <div class="item" data-value="{% path_to division %}">
+        {{ division.name }}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div id="view" class="ui tiny icon buttons">
+  <button class="ui button" value="table"><i class="fa fa-list icon"></i></button>
+  <button class="ui button" value="cards"><i class="fa fa-th-large icon"></i></button>
+</div>

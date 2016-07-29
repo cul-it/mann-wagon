@@ -1,4 +1,4 @@
-.staff-directory__staff {
+.staff-directory__table {
   @include susy-breakpoint($scape, $g-scape) {
     font-size: modular-scale(-1);
   }
@@ -9,6 +9,10 @@
 
   line-height: modular-scale(0);
   font-size: modular-scale(-2);
+
+  .staff-directory__position {
+    display: block;
+  }
 }
 
 .staff-directory__tbody {
@@ -21,6 +25,7 @@
   td {
     border-bottom-color: color('barely-gray');
   }
+
 }
 
 .staff-directory__email-hint {
@@ -28,22 +33,24 @@
   font-size: modular-scale(-1);
 }
 
-.staff-directory__position {
-  display: block;
-  color: color('medium-gray');
-  font-size: modular-scale(-1);
+.staff-directory__grid {
+  .staff-directory__position {
+    display: block;
+    color: color('medium-gray');
+    font-size: modular-scale(-1);
+  }
+
+  .staff-directory__division {
+    font-size: modular-scale(-1);
+  }
+
+  .staff-directory__contact {
+    margin-top: .3em;
+    font-size: modular-scale(-1);
+  }
 }
 
-.staff-directory__division {
-  color: color('medium-gray');
-  font-size: modular-scale(-1);
-}
-
-.staff-directory__contact {
-  margin-top: .3em;
-  font-size: modular-scale(-1);
-}
-
+/* for missing staff photos */
 .placeholder {
   opacity: .5;
 }
