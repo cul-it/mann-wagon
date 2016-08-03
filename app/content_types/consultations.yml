@@ -54,7 +54,7 @@ fields:
 - phone: # The lowercase, underscored name of the field
     label: Phone # Human readable name of the field
     type: string
-    required: true
+    required: false
     hint: 'Format: XXX-XXX-XXXX'
     localized: false
 

@@ -1,13 +1,14 @@
 ---
-title: Request-a-consultation
+title: Request a Consultation
 slug: request-a-consultation
-handle: request-a-consultation
-position: 101
-listed: false
+position: 5
+listed: true
 published: true
 is_layout: false
+editable_elements:
+  main/page_content: consultation form needed
 ---
-{% extends layouts/section %}
+{% extends parent %}
 
 {% block 'main' %}
 
@@ -84,3 +85,4 @@ is_layout: false
   {{ 'consultationRequest.bundle.js' | javascript_tag }}
 
 {% endblock %}
+
