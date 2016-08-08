@@ -37,7 +37,7 @@ editable_elements:
     {% endif %}
 
     {% comment %} Don't display the form after successful submission {% endcomment %}
-    {% unless consultations.errors == false %}
+    {% unless consultation.errors == false %}
       <div class="required field mann-form__compact">
         <label>Name</label>
         <input type="text" name="content[name]" value="{{ consultations.name }}">
