@@ -1,0 +1,170 @@
+---
+title: Request Course Instruction
+slug: request-course-instruction
+position: 0
+listed: true
+published: true
+is_layout: false
+editable_elements:
+  main/page_content: "<p>Instruction request form needed</p>"
+---
+{% extends parent %}
+
+{% block 'main' %}
+
+  {% model_form 'instruction_requests', class: 'ui form success error mann-form', success: path, error: path %}
+
+    {% comment %} Status messages from Locomotive {% endcomment %}
+    {% if instruction_request.errors %}
+      <div class="ui error message">
+        <div class="header">Please address the following errors</div>
+
+        <ul class="list">
+          {% for error in instruction_request.errors %}
+            <li>{{error[0] | capitalize}} -  {{error[1]}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% elsif instruction_request.errors == false %}
+      <div class="ui icon success message">
+        <i class="fa fa-thumbs-o-up icon"></i>
+
+        <div class="content">
+          <div class="header">Thank You!</div>
+          <p>You will hear from one of our librarians within 24 hours.</p>
+        </div>
+      </div>
+    {% endif %}
+
+    {% comment %} Don't display the form after successful submission {% endcomment %}
+    {% unless instruction_request.errors == false %}
+
+      <h4 class="ui horizontal divider header">
+        Contact Information
+      </h4>
+
+      <div class="required field mann-form__compact">
+        <label>Name</label>
+        <input type="text" name="content[name]" value="{{ instruction_requests.name }}">
+      </div>
+
+      <div class="required field mann-form__compact">
+        <label>Email</label>
+        <input type="email" name="content[email]" value="{{ instruction_requests.email }}">
+      </div>
+
+      <div class="required field mann-form__compact">
+        <label>Phone</label>
+        <input type="tel" name="content[phone]" value="{{ instruction_requests.phone }}">
+      </div>
+
+      <div class="field mann-form__compact">
+        <label>Department</label>
+        <input type="text" name="content[department]" value="{{ instruction_requests.department }}">
+      </div>
+
+      <div class="field">
+        <label>Cornell Affiliation</label>
+        {{ session.size }}
+        {% for val in session %}
+          {{ val }}
+        {% endfor %}
+
+        <select class="ui dropdown mann-form__compact" name="content[affiliation]">
+          <option value="">-- Select one --</option>
+          {% for affiliation in contents.instruction_requests.affiliation_options %}
+            <option value="{{ affiliation }}" {% if instruction_requests.affiliation == affiliation %} selected {% endif %}>{{ affiliation }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="ui hidden divider"></div>
+      <h4 class="ui horizontal divider header">
+        Instruction/Workshop Information
+      </h4>
+
+      <div class="required field">
+        <label>What type of instruction would you like?</label>
+        {{ session.size }}
+        {% for val in session %}
+          {{ val }}
+        {% endfor %}
+
+        <select class="ui dropdown" name="content[type_of_instruction]">
+          <option value="">-- Select one --</option>
+          {% for type_of_instruction in contents.instruction_requests.type_of_instruction_options %}
+            <option value="{{ type_of_instruction }}" {% if instruction_requests.type_of_instruction == type_of_instruction %} selected {% endif %}>{{ type_of_instruction }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+
+      <div class="field">
+        <label>Course Information</label>
+        <textarea name="content[course_info]" rows="4">{{ instruction_requests.course_info }}</textarea>
+      </div>
+
+      <div class="field">
+        <label>Participants</label>
+        {{ session.size }}
+        {% for val in session %}
+          {{ val }}
+        {% endfor %}
+
+        <select class="ui dropdown mann-form__compact" name="content[number_participants]">
+          <option value="">-- Select one --</option>
+          {% for number_participants in contents.instruction_requests.number_participants_options %}
+            <option value="{{ number_participants }}" {% if instruction_requests.number_participants == number_participants %} selected {% endif %}>{{ number_participants }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="field mann-form__compact">
+        <label>Preferred Date for Instruction/Workshop</label>
+        <div class="ui calendar date-selector">
+          <div class="ui input left icon">
+            <i class="fa fa-calendar icon"></i>
+            <input type="text" name="content[date_first]" value="{{ instruction_requests.date_first }}" placeholder="Enter Date">
+          </div>
+        </div>
+      </div>
+
+      <div class="field mann-form__compact">
+        <label>Second Preference</label>
+        <div class="ui calendar date-selector">
+          <div class="ui input left icon">
+            <i class="fa fa-calendar icon"></i>
+            <input type="text" name="content[date_second]" value="{{ instruction_requests.date_second }}" placeholder="Enter Date">
+          </div>
+        </div>
+      </div>
+
+      <div class="field mann-form__compact">
+        <label>Third Preference</label>
+        <div class="ui calendar date-selector">
+          <div class="ui input left icon">
+            <i class="fa fa-calendar icon"></i>
+            <input type="text" name="content[date_third]" value="{{ instruction_requests.date_third }}" placeholder="Enter Date">
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Instruction Needs and/or Learning Outcomes</label>
+        <textarea name="content[needs]" rows="4">{{ instruction_requests.needs }}</textarea>
+      </div>
+
+      <div class="field">
+        <label>Additional Information/Comments</label>
+        <textarea name="content[additional_info]" rows="4">{{ instruction_requests.additional_info }}</textarea>
+      </div>
+
+      <button class="ui button" type="submit">Send it our way</button>
+    {% endunless %}
+  {% endmodel_form %}
+
+  {{ 'instructionRequest.bundle.js' | javascript_tag }}
+
+{% endblock %}
+
+
