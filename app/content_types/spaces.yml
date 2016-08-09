@@ -119,6 +119,13 @@ fields:
     hint: If reservable, provide space ID in applicable reservation system
     localized: false
 
+- reserve_sys_room_ids: # The lowercase, underscored name of the field
+    label: Reservation System Room ID # Human readable name of the field
+    type: string
+    required: false
+    hint: If reservable, Provide room ID for each room separated by comma in a group in applicable reservation system.
+    localized: false
+
 - loan_period: # The lowercase, underscored name of the field
     label: Loan period # Human readable name of the field
     type: select
