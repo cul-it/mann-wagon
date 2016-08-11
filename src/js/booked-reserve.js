@@ -23,7 +23,6 @@ var moment = require('moment')
 var bookedReserve = {
   onLoad: function() {
     this.bindEventListeners();
-    this.createBookedReservation();
   },
 
   bindEventListeners: function() {
@@ -42,6 +41,7 @@ var bookedReserve = {
           onApprove: function() {
           }
       }).modal('show');
+      bookedReserve.createBookedReservation();
     });
 
   },
