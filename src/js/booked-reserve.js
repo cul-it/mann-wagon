@@ -1,20 +1,22 @@
+// SUI calendar component via mdehoog fork until PR is merged
+// -- https://github.com/mdehoog/Semantic-UI/tree/calendar-dist
+// -- https://github.com/Semantic-Org/Semantic-UI/pull/3256#issuecomment-224113834
+import 'semantic-ui-calendar/calendar.min.js';
+import 'semantic-ui-calendar/calendar.min.css';
+
+import 'semantic-ui-css/components/checkbox.min.css';
+import 'semantic-ui-css/components/checkbox.min.js';
 import 'semantic-ui-css/components/dimmer.min.js';
 import 'semantic-ui-css/components/dimmer.min.css';
-import 'semantic-ui-css/components/modal.min.js';
-import 'semantic-ui-css/components/modal.min.css';
-import 'semantic-ui-css/components/transition.min.js';
-import 'semantic-ui-css/components/transition.min.css';
-import 'semantic-ui/dist/components/calendar.min.js'
-import 'semantic-ui/dist/components/calendar.min.css'
-import 'semantic-ui-css/components/popup.min.js';
-import 'semantic-ui-css/components/popup.min.css';
 import 'semantic-ui-css/components/form.min.css';
 import 'semantic-ui-css/components/form.min.js';
 import 'semantic-ui-css/components/message.min.css';
+import 'semantic-ui-css/components/modal.min.js';
+import 'semantic-ui-css/components/modal.min.css';
+import 'semantic-ui-css/components/popup.min.js';
+import 'semantic-ui-css/components/popup.min.css';
 import 'semantic-ui-css/components/transition.min.css';
 import 'semantic-ui-css/components/transition.min.js';
-import 'semantic-ui-css/components/checkbox.min.css';
-import 'semantic-ui-css/components/checkbox.min.js';
 
 var moment = require('moment')
 

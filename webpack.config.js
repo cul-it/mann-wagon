@@ -14,7 +14,10 @@ module.exports = {
   resolve: {
     alias: {
       jquery: "jquery/src/jquery"
-    }
+    },
+    root: [
+      path.resolve('./src/js/vendor')
+    ]
   },
   entry: {
       bookedReserve: './src/js/booked-reserve.js',
