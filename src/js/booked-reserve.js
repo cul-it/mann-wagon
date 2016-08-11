@@ -6,8 +6,8 @@ import 'semantic-ui-css/components/transition.min.js';
 import 'semantic-ui-css/components/transition.min.css';
 import 'semantic-ui/dist/components/calendar.min.js'
 import 'semantic-ui/dist/components/calendar.min.css'
-import 'semantic-ui/dist/components/popup.min.js'
-import 'semantic-ui/dist/components/popup.min.css'
+import 'semantic-ui-css/components/popup.min.js';
+import 'semantic-ui-css/components/popup.min.css';
 import 'semantic-ui-css/components/form.min.css';
 import 'semantic-ui-css/components/form.min.js';
 import 'semantic-ui-css/components/message.min.css';
