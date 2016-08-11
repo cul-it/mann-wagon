@@ -48,8 +48,8 @@ GIT
 
 GIT
   remote: git@github.com:cul-it/mann_liquid_extensions
-  revision: 14fc75d3a777fc9a02c2779b4fbcc84e6a1e4489
-  ref: 14fc75d
+  revision: 8b0cb08633d7b0fe8a7d66264f3904f6e23dd7bc
+  ref: 8b0cb08
   specs:
     mann_liquid_extensions (0.4.0)
 
