@@ -1,0 +1,12 @@
+<div id="resource-booked-reserve-{{ space.reserve_sys_id }}" data-booked-resourceId="{{ space.reserve_sys_id }}" class="js-sui-modal ui fullscreen long modal scrolling">
+  <i class="close fa fa-times"></i>
+  <div class="header">
+    Reserve {{space.name}}
+  </div>
+
+  <div class="ui embed" data-url="http://spaces.library.cornell.edu/booking/mann_102"></div>
+</div>
+
+<button class="js-modal-libcal ui labeled icon button space-finder__reserve">
+
+{{ 'modalLibcal.bundle.js' | javascript_tag }}

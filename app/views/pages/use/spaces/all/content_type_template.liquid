@@ -32,6 +32,8 @@ content_type: spaces
           jQuery("#{{ libcal_target_id }}").LibCalRoomBooking({ "iid": 973, "gid": {{ space.reserve_sys_id }},  "width": 500, "height": 450 });
         });
         </script>
+      {% elsif space.name == 'Mann 102' %}
+        {% include 'modal-libcal' with space.reserve_sys_id, space.name %}
       {% elsif space.reservation_system.name == 'Booked' %}
         <button id="booked-reserve-{{ space.reserve_sys_id }}" class="js-booked-reserve ui labeled icon button space-finder__reserve space__reserve">
       {% endif %}

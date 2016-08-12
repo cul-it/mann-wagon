@@ -20,15 +20,15 @@ module.exports = {
     ]
   },
   entry: {
-      bookedReserve: './src/js/booked-reserve.js',
+      consultationRequest: './src/js/form-consultation-request.js',
       eventsPage: './vue/events/events-page/events-page.js',
       formSiteFeedback: './src/js/form-site-feedback.js',
       homePageEvents: './vue/events/homepage-events/homepage-events.js',
       hoursNav: './src/js/hours-nav.js',
-      main: './src/scss/main.scss',
-      purchaseRequest: './src/js/purchase-request.js',
-      consultationRequest: './src/js/form-consultation-request.js',
       instructionRequest: './src/js/form-instruction-request.js',
+      main: './src/scss/main.scss',
+      modalLibcal: './src/js/modal-libcal.js',
+      purchaseRequest: './src/js/purchase-request.js',
       spacesQuiet: './src/js/spaces-quiet.js',
       staffDirectory: './src/js/staff-directory.js',
       vendor: ['jquery']
