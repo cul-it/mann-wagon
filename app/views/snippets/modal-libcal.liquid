@@ -1,4 +1,4 @@
-<div id="resource-booked-reserve-{{ space.reserve_sys_id }}" data-booked-resourceId="{{ space.reserve_sys_id }}" class="js-sui-modal ui fullscreen long modal scrolling">
+<div id="js-space-{{ space.reserve_sys_id }}" class="js-sui-modal ui fullscreen long modal scrolling">
   <i class="close fa fa-times"></i>
   <div class="header">
     Reserve {{space.name}}
@@ -7,6 +7,6 @@
   <iframe src="http://spaces.library.cornell.edu/booking/mann_102" width="100%" height="625"></iframe>
 </div>
 
-<button class="js-modal-libcal ui labeled icon button space-finder__reserve">
+<button class="js-modal-libcal ui labeled icon button space-finder__reserve" data-spaceid="{{ space.reserve_sys_id }}">
 
 {{ 'modalLibcal.bundle.js' | javascript_tag }}

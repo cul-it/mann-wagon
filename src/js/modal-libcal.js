@@ -8,7 +8,8 @@ var modalLibcal = {
 
   bindEventListeners: function() {
     $('.js-modal-libcal').on('click', function() {
-      $('.js-sui-modal')
+      var spaceId = $(this).data('spaceid');
+      $('#js-space-' + spaceId)
         .modal('show')
       ;
     });
