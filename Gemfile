@@ -1,10 +1,6 @@
 source 'https://rubygems.org'
 
-# Temporarily using GitHub repos to accommodate LabStats API
-# https://github.com/locomotivecms/steam/pull/67
-gem 'locomotivecms_steam', :github => 'cappadona/steam', :branch => 'dev'
-gem 'locomotivecms_wagon', :github => 'locomotivecms/wagon'
-# gem 'locomotivecms_wagon', '2.1.0'
+gem 'locomotivecms_wagon', '~> 2.2.0.rc1'
 gem 'celluloid', '0.16.0'
 
 # Local development
