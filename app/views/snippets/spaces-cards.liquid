@@ -38,29 +38,7 @@
         </div>
         {% if space.reservation_system %}
           <div class="description">
-            <a href="#" title="Reserve this space">
-              {% if space.reservation_system.name == 'LibCal' %}
-                {% comment %}Build unique id for targeting by libcal widget using custom counter{% endcomment %}
-                {% capture libcal_target_id %}js-libcal-room__{{ space.reserve_sys_id }}-{{ libcal_widget_counter }}{% endcapture %}
-
-                <button id="{{ libcal_target_id }}" class="ui labeled icon button space-finder__reserve">
-
-                <!--  Libcal room reservation widget code -->
-                <script>
-                jQuery(function(){
-                  jQuery("#{{ libcal_target_id }}").LibCalRoomBooking({ "iid": 973, "gid": {{ space.reserve_sys_id }},  "width": 500, "height": 450 });
-                });
-                </script>
-
-                {% comment %}Increment libcal counter{% endcomment %}
-                {% assign libcal_widget_counter = libcal_widget_counter | plus: 1 %}
-              {% elsif space.name == 'Mann 102' %}
-                {% include 'modal-libcal' with space.reserve_sys_id, space.name %}
-              {% endif %}
-                <i class="fa fa-calendar icon"></i>
-                Reserve
-              </button>
-            </a>
+            {% include 'spaces-reservable-button' %}
 
             {% include 'room-availability-next' %}
           </div>

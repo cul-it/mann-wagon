@@ -5,8 +5,6 @@ content_type: spaces
 {% extends layouts/default %}
 
 {% block 'main' %}
-  {{ '//api3.libcal.com/js/roombooking.js?002' | javascript_tag }}
-
   <img class="space__photo" src="{{ space.photo.url | resize: '600x407#' }}" alt="photo of {{ space._label }}">
 
   <a href="{% path_to hours %}" title="View all hours"><span class="badge badge-success">Open until 2am</span></a>
@@ -18,25 +16,7 @@ content_type: spaces
   {% include 'room-availability-logic' %}
 
   {% if space.reservation_system %}
-    <a href="#" title="Reserve this space">
-      {% if space.reservation_system.name == 'LibCal' %}
-        {% capture libcal_target_id %}js-libcal-room__{{ space.reserve_sys_id }}{% endcapture %}
-
-        <button id="{{ libcal_target_id }}" class="ui labeled icon button space-finder__reserve space__reserve">
-
-        <!--  Libcal room reservation widget code -->
-        <script>
-        jQuery(function(){
-          jQuery("#{{ libcal_target_id }}").LibCalRoomBooking({ "iid": 973, "gid": {{ space.reserve_sys_id }},  "width": 500, "height": 450 });
-        });
-        </script>
-      {% elsif space.name == 'Mann 102' %}
-        {% include 'modal-libcal' with space.reserve_sys_id, space.name %}
-      {% endif %}
-        <i class="fa fa-calendar icon"></i>
-        Reserve
-      </button>
-    </a>
+    {% include 'spaces-reservable-button' with indiv_space: true %}
   {% elsif space.avail_url %}
     {% comment %}This is completely unnecessary but Engine refuses to cooperate otherwise...don't ask{% endcomment %}
     {% unless space.avail_url == "" %}
