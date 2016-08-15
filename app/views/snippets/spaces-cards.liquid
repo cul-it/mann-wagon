@@ -56,10 +56,6 @@
                 {% assign libcal_widget_counter = libcal_widget_counter | plus: 1 %}
               {% elsif space.name == 'Mann 102' %}
                 {% include 'modal-libcal' with space.reserve_sys_id, space.name %}
-              {% elsif space.reservation_system.name == 'Booked' %}
-                {% include 'booked-modal' with space.reserve_sys_id, space.name %}
-
-                <button id="booked-reserve-{{ space.reserve_sys_id }}" class="js-booked-reserve ui labeled icon button space-finder__reserve">
               {% endif %}
                 <i class="fa fa-calendar icon"></i>
                 Reserve
@@ -85,37 +81,31 @@
         {% endif %}
       </div>
 
-        <div class="extra content space-finder__card-meta">
-          <span class="right floated">
-            {% if space.reservation_system or space.avail_url %}
-            {% comment %}This is completely unnecessary but Engine refuses to cooperate otherwise...don't ask{% endcomment %}
-              {% if space.reservation_system or space.avail_url != "" %}
-                <span class="space-finder__availability--{{ room_availability | downcase }}"><i class="fa {{ room_available_icon }}"></i> {{ room_availability }}</span>
-             {% endif %}
+      <div class="extra content space-finder__card-meta">
+        <span class="right floated">
+          {% if space.reservation_system or space.avail_url %}
+          {% comment %}This is completely unnecessary but Engine refuses to cooperate otherwise...don't ask{% endcomment %}
+            {% if space.reservation_system or space.avail_url != "" %}
+              <span class="space-finder__availability--{{ room_availability | downcase }}"><i class="fa {{ room_available_icon }}"></i> {{ room_availability }}</span>
+           {% endif %}
 
-            {% endif %}
-          </span>
-            <span>
-              {% if space.capacity == '1' %}
-                <i class="fa fa-user"></i>
-              {% else %}
-                <i class="fa fa-users"></i>
-              {% endif %}
+          {% endif %}
+        </span>
 
-              {% if space.capacity == 'N/A' %}
-                open area
-              {% else %}
-                {{ space.capacity }} max
-              {% endif %}
-            </span>
-        </div>
+        <span>
+          {% if space.capacity == '1' %}
+            <i class="fa fa-user"></i>
+          {% else %}
+            <i class="fa fa-users"></i>
+          {% endif %}
 
-    {% comment %}  {% if space.reservation_system %}
-        <div class="ui bottom attached button space-finder__reserve">
-          <i class="fa fa-calendar-plus-o"></i>
-          Reserve
-        </div>
-      {% endif %}{% endcomment %}
+          {% if space.capacity == 'N/A' %}
+            open area
+          {% else %}
+            {{ space.capacity }} max
+          {% endif %}
+        </span>
+      </div>
     </div>
   {% endfor %}
 </div>

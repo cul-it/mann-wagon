@@ -5,9 +5,7 @@ content_type: spaces
 {% extends layouts/default %}
 
 {% block 'main' %}
-
   {{ '//api3.libcal.com/js/roombooking.js?002' | javascript_tag }}
-  {{ 'bookedReserve.bundle.js' | javascript_tag }}
 
   <img class="space__photo" src="{{ space.photo.url | resize: '600x407#' }}" alt="photo of {{ space._label }}">
 
@@ -34,8 +32,6 @@ content_type: spaces
         </script>
       {% elsif space.name == 'Mann 102' %}
         {% include 'modal-libcal' with space.reserve_sys_id, space.name %}
-      {% elsif space.reservation_system.name == 'Booked' %}
-        <button id="booked-reserve-{{ space.reserve_sys_id }}" class="js-booked-reserve ui labeled icon button space-finder__reserve space__reserve">
       {% endif %}
         <i class="fa fa-calendar icon"></i>
         Reserve
@@ -112,7 +108,4 @@ content_type: spaces
       <dd>{{ space.features }}</dd>
     {% endif %}
   </dl>
-
-  {% include 'booked-modal' %}
-
 {% endblock %}
