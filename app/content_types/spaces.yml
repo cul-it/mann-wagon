@@ -126,6 +126,13 @@ fields:
     hint: If reservable, Provide room ID for each room separated by comma in a group in applicable reservation system.
     localized: false
 
+- libcal_public_page_url: # The lowercase, underscored name of the field
+    label: LibCal Public Page URL # Human readable name of the field
+    type: string
+    required: false
+    hint: By default, a widget will be used to render the reservation form. If the full LibCal form is preferred, enter the group's public page URL (aka Friendly URL) here.
+    localized: false
+
 - loan_period: # The lowercase, underscored name of the field
     label: Loan period # Human readable name of the field
     type: select
