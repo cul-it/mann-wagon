@@ -1,3 +1,6 @@
+{% comment %} Build an array of Space types -- no access to drops from within nav snippet {% endcomment %}
+{% assign space_types = 'Conference & Seminar Rooms--conference, Classrooms--classrooms, Computing Facilities--computing-facilities, Gallery & Exhibit Spaces--gallery-exhibit, Lobby & Cafe--lobby-cafe, Study Spaces--study' | split: ', ' %}
+
 {{ page.title }}
 
 <ul class="site-nav__mega">
@@ -7,11 +10,22 @@
         <a class="site-nav__section-title" href="{% path_to child %}">{{ child.title }}</a>
 
         <ul>
-          {% for grandchild in child.children %}
-            {% if grandchild.listed? %}
-              <li class="site-nav__page"><a class="site-nav__page-link" href="{% path_to grandchild %}">{{ grandchild.title }}</a></li>
-            {% endif %}
-          {% endfor %}
+          {% comment %} Manually build subnav for Find a Space using array constructed at top of file {% endcomment %}
+          {% if child.slug == 'spaces' %}
+            {% for type in space_types %}
+              {% comment %} Split out the space type name from the path/slug {% endcomment %}
+              {% assign type_deets = type | split: '--' %}
+
+              <li class="site-nav__page"><a class="site-nav__page-link" href="/use/spaces/{{ type_deets[1] }}">{{ type_deets[0] }}</a></li>
+            {% endfor %}
+          {% comment %} Otherwise, build the subnav via site hierarchy {% endcomment %}
+          {% else %}
+            {% for grandchild in child.children %}
+              {% if grandchild.listed? %}
+                <li class="site-nav__page"><a class="site-nav__page-link" href="{% path_to grandchild %}">{{ grandchild.title }}</a></li>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
         </ul>
       </li>
     {% endif %}

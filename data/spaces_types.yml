@@ -28,7 +28,7 @@
     - stern-seminar-room
     - mann-100
 - Classrooms:
-    _slug: classroom
+    _slug: classrooms
     name: Classrooms
     photo: "/samples/content_entries/Stone_Classroom.JPG"
     description: Mann Library houses multiple reservable classrooms for instruction
@@ -40,7 +40,7 @@
     - cit-lab
     - b30b
 - Lobby & Cafe:
-    _slug: lobby-and-cafe
+    _slug: lobby-cafe
     name: Lobby & Cafe
     photo: "/samples/content_entries/Lobby.jpg"
     description: Reserve the lobby to promote your event or research.
@@ -48,7 +48,7 @@
     - manndible
     - lobby-table-1
 - Gallery & Exhibit Spaces:
-    _slug: gallery-and-exhibit-spaces
+    _slug: gallery-exhibit
     name: Gallery & Exhibit Spaces
     photo: "/samples/content_entries/GalleryWithNewFurniture.apr2015.jpg"
     description: Our gallery and exhibit spaces celebrate the sciences, arts, and
