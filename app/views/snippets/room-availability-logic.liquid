@@ -8,7 +8,6 @@
 
 
 {% if space.reservation_system.name == "LibCal" %}
-
   {% assign room_ids = space.reserve_sys_room_ids | split: "," %}
   {% for room_id in room_ids %}
     {% assign room_param = "&room_id=" | append: room_id %}
@@ -54,21 +53,11 @@
     {% if room_availability == "Available" %}
       {% break %}
     {% endif %}
-
   {% endfor %}
-
-{% elsif space.reservation_system.name == "Booked" %}
-{% comment %}Every room is available till we figure authentication{% endcomment %}
-  {% assign available_class = "status--available" %}
-  {% assign available_icon = "fa-check-square" %}
-  {% assign room_availability = "Available" %}
-  {% assign room_available_icon = "fa-check" %}
-
 {% else %}
 {% comment %}MannServices Room Availability Logic{% endcomment %}
   {% if space.name == "Grad Rooms" %}
-
-  {% capture available_time %}{{grad_room_next_available | date: '%s'}}{% endcapture %}
+    {% capture available_time %}{{grad_room_next_available | date: '%s'}}{% endcapture %}
 
     {% comment %}Now available{% endcomment %}
     {% if grad_room_now_available > "0" %}
@@ -86,10 +75,8 @@
         {% assign room_available_icon = "fa-times" %}
       {% endif %}
     {% endif %}
-
   {% elsif space.name == "Large Group Study Rooms" %}
-
-  {% capture available_time %}{{large_group_room_next_available | date: '%s'}}{% endcapture %}
+    {% capture available_time %}{{large_group_room_next_available | date: '%s'}}{% endcapture %}
 
     {% comment %}Now available{% endcomment %}
     {% if large_group_room_now_available > "0" %}
@@ -107,10 +94,8 @@
         {% assign room_available_icon = "fa-times" %}
       {% endif %}
     {% endif %}
-
   {% elsif space.name == "Small Group Study Rooms" %}
-
-  {% capture available_time %}{{small_group_room_next_available | date: '%s'}}{% endcapture %}
+    {% capture available_time %}{{small_group_room_next_available | date: '%s'}}{% endcapture %}
 
     {% comment %}Now available{% endcomment %}
     {% if small_group_room_now_available > "0" %}
@@ -130,7 +115,6 @@
     {% endif %}
 
   {% elsif space.name == "Individual Study Rooms" %}
-
     {% capture available_time %}{{individual_room_next_available | date: '%s'}}{% endcapture %}
 
     {% comment %}Now available{% endcomment %}
@@ -149,7 +133,5 @@
         {% assign room_available_icon = "fa-times" %}
       {% endif %}
     {% endif %}
-
   {% endif %}
-
 {% endif %}
