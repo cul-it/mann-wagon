@@ -116,14 +116,14 @@ fields:
     label: Reservation System ID # Human readable name of the field
     type: integer
     required: false
-    hint: If reservable, provide space ID in applicable reservation system
+    hint: If reservable, provide space ID in applicable reservation system. For LibCal, use the group ID!
     localized: false
 
 - reserve_sys_room_ids: # The lowercase, underscored name of the field
-    label: Reservation System Room ID # Human readable name of the field
+    label: LibCal Room IDs # Human readable name of the field
     type: string
     required: false
-    hint: If reservable, Provide room ID for each room separated by comma in a group in applicable reservation system.
+    hint: If a LibCal space, provide room ID(s) for each room within the group specified above. Separate multiple room IDs with a comma (no spaces).
     localized: false
 
 - libcal_public_page_url: # The lowercase, underscored name of the field
