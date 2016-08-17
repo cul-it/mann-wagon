@@ -6,16 +6,12 @@
   @include span(full nest);
 
   @include susy-breakpoint($scape, $g-scape) {
-    @include gallery(3 of 6);
+    @include gallery(3 of 6 .75); // Increase gutters for breathing room btw images
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include gallery(3 of 12);
+    @include gallery(3 of 12 .75); // Increase gutters for breathing room btw images
   }
 
   margin-top: 2em;
-}
-
-.landing__section-heading {
-
 }
