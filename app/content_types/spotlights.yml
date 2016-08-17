@@ -5,16 +5,16 @@ name: Spotlights
 slug: spotlights
 
 # Explanatory text displayed in the back-office
-description: A description of the content type for the editors
+description: Featured images for homepage
 
 # Slug of field used to identify entries by default, such as the title
 label_field_name: name
 
 # Valid values: manually, created_at, updated_at, or the slug of any field
-order_by: manually
+order_by: start_date
 
 # Valid values: asc (ascending) and desc (descending). Set to asc by default.
-# order_direction: asc
+order_direction: desc
 
 # Specify a field slug to group entries by that field in the back-office.
 # group_by: <your field>
@@ -36,46 +36,46 @@ order_by: manually
 # entry_template: '<a href="{{ link }}">{{ entry._label }}</a>' # The default template
 
 # A list describing each field
-fields: 
+fields:
 - name: # The lowercase, underscored name of the field
     label: Name # Human readable name of the field
     type: string
     required: true
-    hint: Explanatory text displayed in the back office
+    hint: Only for internal reference -- not displayed on the site
     localized: false
 
 - caption: # The lowercase, underscored name of the field
     label: Caption # Human readable name of the field
     type: text
     required: false
-    hint: Explanatory text displayed in the back office
+    hint: Brief caption to render with image
     localized: false
     # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
 
 - image: # The lowercase, underscored name of the field
     label: Image # Human readable name of the field
     type: file
-    required: false
-    hint: Explanatory text displayed in the back office
+    required: true
+    hint: Suggested dimensions forthcoming...
     localized: false
 
 - start_date: # The lowercase, underscored name of the field
     label: Start date # Human readable name of the field
     type: date_time
-    required: false
-    hint: Explanatory text displayed in the back office
+    required: true
+    hint: When this image should be added to the rotation
     localized: false
 
 - end_date: # The lowercase, underscored name of the field
     label: End date # Human readable name of the field
     type: date_time
     required: false
-    hint: Explanatory text displayed in the back office
+    hint: Leave this empty to keep the image in the rotation permanently
     localized: false
 
 - url: # The lowercase, underscored name of the field
     label: Url # Human readable name of the field
     type: string
     required: false
-    hint: Explanatory text displayed in the back office
+    hint: The image can optionally link to another page/site for further details
     localized: false
