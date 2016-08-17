@@ -1,0 +1,15 @@
+---
+title: Primary
+is_layout: false
+---
+{% extends 'layouts/default' %}
+
+{% block 'main' %}
+  <div class="landing-description">
+    {% editable_text "landing_description", hint: "Keep it short and sweet" %}
+      Brief description here.
+    {% endeditable_text %}
+  </div>
+
+  {% include 'section-nav' %}
+{% endblock %}
