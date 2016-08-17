@@ -1,0 +1,21 @@
+.landing {
+  @include span(full nest);
+}
+
+.landing__section {
+  @include span(full nest);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include gallery(3 of 6);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include gallery(3 of 12);
+  }
+
+  margin-top: 2em;
+}
+
+.landing__section-heading {
+
+}

@@ -1,0 +1,17 @@
+<div class="landing">
+  {% for child in page.children  %}
+    {% if child.listed? %}
+      <div class="landing__section">
+        <h4 class="landing__section-heading">{{ child.title }}</h4>
+
+        <ul>
+          {% for grandchild in child.children %}
+            {% if grandchild.listed? %}
+              <li><a href="{% path_to grandchild %}">{{ grandchild.title }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
