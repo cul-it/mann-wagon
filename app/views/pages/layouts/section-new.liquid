@@ -1,0 +1,26 @@
+---
+title: Section New
+is_layout: false
+---
+{% extends 'layouts/default' %}
+
+{% block 'main' %}
+  {% assign default_photo = 'placeholder.jpg' | theme_image_url %}
+  {% capture selected_photo %}
+    {% editable_file section_photo, hint: 'Used on top-level landing page', priority: 1 %}{% endeditable_file %}
+  {% endcapture %}
+
+  <img class="section-page__photo" src="{{ page.editable_elements.main.section_photo | default: default_photo }}">
+
+  <ul class="section-page__list">
+    {% for child in page.children %}
+      <li><a href="{% path_to child %}">{{ child.title }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <strong>default_photo:</strong> {{ default_photo }} <br>
+
+  <strong>selected_photo:</strong> {{ selected_photo }} <br>
+
+  <strong>page.editable_elements:</strong> {{ page.editable_elements }}
+{% endblock %}

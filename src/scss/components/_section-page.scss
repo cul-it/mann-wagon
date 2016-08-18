@@ -1,0 +1,31 @@
+.section-page__photo {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(3);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(4);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(5);
+  }
+}
+
+.section-page__list {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(3);
+
+    margin-top: 0;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(3 at 6);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(6 at 7);
+  }
+
+  margin-top: 1em;
+}

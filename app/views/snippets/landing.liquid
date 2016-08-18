@@ -2,10 +2,12 @@
   {% for child in page.children  %}
     {% if child.listed? %}
       <div class="landing__section">
-        {% comment %} @todo: Editable file not yet added to primary-landing layout {% endcomment %}
-        <img src="{{ child.editable_elements.section-photo | default: 'placeholder.jpg' | theme_image_url }}" alt="Section photo">
+        {% comment %} @todo: Editable file always returns NIL when hosting site on engine -- working with Didier {% endcomment %}
+        <img src="{{ child.editable_elements.main.section_photo | default: 'placeholder.jpg' | theme_image_url }}" alt="Section photo">
 
         <h4 class="landing__section-heading">{{ child.title }}</h4>
+
+        {{ child.editable_elements }}
 
         <ul>
           {% for grandchild in child.children %}
