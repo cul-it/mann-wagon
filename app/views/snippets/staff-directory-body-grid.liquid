@@ -1,11 +1,8 @@
 {% for person in contents.staff %}
   <div class="employee card" data-last_name="{{ person.last_name }}" data-first_name="{{ person.first_name }}" data-division="{{ person.division.name }}">
     <div class="image">
-      {% if person.photo.size > 0 %}
-        <img class="ui image" src="{{ person.photo.url }}">
-      {% else %}
-        <img class="ui image placeholder" src="{{ 'staff/placeholder-staff.jpg' | theme_image_url }}">
-      {% endif %}
+      {% assign placeholder_image = 'placeholder.jpg' | theme_image_url %}
+      <img class="ui image staff-directory__photo {% unless person.photo.url %}staff-directory__photo--placeholder{% endunless %}" src="{{ person.photo.url | default: placeholder_image }}">
     </div>
     <div class="content">
       <div class="header">{{ person.last_name }}, {{ person.first_name }}</div>

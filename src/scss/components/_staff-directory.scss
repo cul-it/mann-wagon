@@ -50,7 +50,8 @@
   }
 }
 
-/* for missing staff photos */
-.placeholder {
-  opacity: .5;
+.staff-directory__photo {
+  &--placeholder {
+    opacity: .5;
+  }
 }

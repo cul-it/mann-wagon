@@ -3,7 +3,7 @@
     {% if child.listed? %}
       <div class="landing__section">
         {% comment %} @todo: Editable file not yet added to primary-landing layout {% endcomment %}
-        <img src="{{ child.editable_elements.section-photo | default: 'staff/placeholder-staff.jpg' | theme_image_url }}" alt="Section photo">
+        <img src="{{ child.editable_elements.section-photo | default: 'placeholder.jpg' | theme_image_url }}" alt="Section photo">
 
         <h4 class="landing__section-heading">{{ child.title }}</h4>
 
