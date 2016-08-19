@@ -12,11 +12,17 @@ is_layout: false
 
   <img class="section-page__photo" src="{{ page.editable_elements.main.section_photo | default: default_photo }}">
 
-  <ul class="section-page__list">
-    {% for child in page.children %}
-      <li><a href="{% path_to child %}">{{ child.title }}</a></li>
-    {% endfor %}
-  </ul>
+  <div class="section-page__content">
+    {% editable_text "landing_description", hint: "Keep it short and sweet" %}
+      Brief description here.
+    {% endeditable_text %}
+
+    <ul class="section-page__list">
+      {% for child in page.children %}
+        <li><a href="{% path_to child %}">{{ child.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
 
   {% comment %}<strong>default_photo:</strong> {{ default_photo }} <br>
 
