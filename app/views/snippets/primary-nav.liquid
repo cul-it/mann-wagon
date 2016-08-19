@@ -1,13 +1,13 @@
 {% comment %} Snippet that builds array of sub-pages for spaces {% endcomment %}
 {% include 'spaces-subnav' %}
 
-{{ page.title }}
+{{ page.title }}</a>
 
 <ul class="site-nav__mega">
   {% for child in page.children %}
     {% if child.listed? %}
       <li class="site-nav__section">
-        <a class="site-nav__section-title" href="{% path_to child %}">{{ child.title }}</a>
+        <span class="site-nav__section-title">{{ child.title }}</span>
 
         <ul>
           {% comment %} Manually build subnav for Find a Space using array constructed in spaces-subnav {% endcomment %}
