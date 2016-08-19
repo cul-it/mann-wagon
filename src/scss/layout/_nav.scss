@@ -224,15 +224,16 @@
   }
 }
 
-.site-nav__section-title {
-  display: block;
+.site-nav__section-heading {
+  margin-bottom: 0;
   border-bottom: solid 1px color('medium-gray');
   padding-bottom: .2em;
   line-height: 1.2em;
   color: color('alabaster');
+  font-size: modular-scale(0);
 }
 
-.site-nav__page {
+.site-nav__subpage {
   @include susy-breakpoint($tablet, $g-tablet) {
     border-bottom: 0;
   }
@@ -240,7 +241,7 @@
   border-bottom: solid 1px color('vulcan' ('tint': 10%));
 }
 
-.site-nav__page-link {
+.site-nav__subpage-link {
   @include susy-breakpoint($tablet, $g-tablet) {
     padding: .8em .2em;
   }

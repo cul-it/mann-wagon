@@ -51,6 +51,10 @@
 
 .meet-librarians__photo {
   border-radius: 50%;
+
+  &--placeholder {
+    opacity: .5;
+  }
 }
 
 .meet-librarians__profile-link {
