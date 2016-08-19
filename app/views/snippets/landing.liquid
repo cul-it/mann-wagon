@@ -12,20 +12,20 @@
 
         {% comment %}{{ child.editable_elements }}{% endcomment %}
 
-        <ul>
+        <ul class="landing__list">
           {% comment %} Manually build subnav for Find a Space using array constructed in spaces-subnav {% endcomment %}
           {% if child.slug == 'spaces' %}
             {% for type in space_types %}
               {% comment %} Split out the space type name from the path/slug {% endcomment %}
               {% assign type_deets = type | split: '--' %}
 
-              <li><a href="/use/spaces/{{ type_deets[1] }}">{{ type_deets[0] }}</a></li>
+              <li class="landing__subpage"><a href="/use/spaces/{{ type_deets[1] }}">{{ type_deets[0] }}</a></li>
             {% endfor %}
           {% comment %} Otherwise, build the subnav via site hierarchy {% endcomment %}
           {% else %}
             {% for grandchild in child.children %}
               {% if grandchild.listed? %}
-                <li><a href="{% path_to grandchild %}">{{ grandchild.title }}</a></li>
+                <li class="landing__subpage"><a href="{% path_to grandchild %}">{{ grandchild.title }}</a></li>
               {% endif %}
             {% endfor %}
           {% endif %}

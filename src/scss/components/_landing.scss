@@ -2,6 +2,10 @@
   @include span(full nest);
 }
 
+.landing__list {
+  line-height: 1em;
+}
+
 .landing__section {
   @include span(full nest);
 
@@ -14,4 +18,8 @@
   }
 
   margin-top: 2em;
+}
+
+.landing__subpage {
+  margin-bottom: .7em;
 }
