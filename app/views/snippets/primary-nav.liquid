@@ -1,5 +1,5 @@
-{% comment %} Build an array of Space types -- no access to drops from within nav snippet {% endcomment %}
-{% assign space_types = 'Conference & Seminar Rooms--conference, Classrooms--classrooms, Computing Facilities--computing-facilities, Gallery & Exhibit Spaces--gallery-exhibit, Lobby & Cafe--lobby-cafe, Study Spaces--study, All Spaces--' | split: ', ' %}
+{% comment %} Snippet that builds array of sub-pages for spaces {% endcomment %}
+{% include 'spaces-subnav' %}
 
 {{ page.title }}
 
@@ -10,7 +10,7 @@
         <a class="site-nav__section-title" href="{% path_to child %}">{{ child.title }}</a>
 
         <ul>
-          {% comment %} Manually build subnav for Find a Space using array constructed at top of file {% endcomment %}
+          {% comment %} Manually build subnav for Find a Space using array constructed in spaces-subnav {% endcomment %}
           {% if child.slug == 'spaces' %}
             {% for type in space_types %}
               {% comment %} Split out the space type name from the path/slug {% endcomment %}
