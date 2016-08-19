@@ -1,0 +1,15 @@
+{% comment %} Snippet that builds array of sub-pages for spaces {% endcomment %}
+{% include 'spaces-subnav' %}
+
+<div class="landing">
+  {% for child in page.children %}
+    {% if child.listed? %}
+      <div class="landing__section">
+        {% comment %} @todo: Editable file always returns NIL when hosting site on engine -- working with Didier {% endcomment %}
+        <img src="{{ child.editable_elements.main.section_photo | default: 'placeholder.jpg' | theme_image_url }}" alt="Section photo">
+
+        {% include 'nav-builder' with component: 'landing' %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
