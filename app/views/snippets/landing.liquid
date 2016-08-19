@@ -2,34 +2,13 @@
 {% include 'spaces-subnav' %}
 
 <div class="landing">
-  {% for child in page.children  %}
+  {% for child in page.children %}
     {% if child.listed? %}
       <div class="landing__section">
         {% comment %} @todo: Editable file always returns NIL when hosting site on engine -- working with Didier {% endcomment %}
         <img src="{{ child.editable_elements.main.section_photo | default: 'placeholder.jpg' | theme_image_url }}" alt="Section photo">
 
-        <h4 class="landing__section-heading">{{ child.title }}</h4>
-
-        {% comment %}{{ child.editable_elements }}{% endcomment %}
-
-        <ul class="landing__list">
-          {% comment %} Manually build subnav for Find a Space using array constructed in spaces-subnav {% endcomment %}
-          {% if child.slug == 'spaces' %}
-            {% for type in space_types %}
-              {% comment %} Split out the space type name from the path/slug {% endcomment %}
-              {% assign type_deets = type | split: '--' %}
-
-              <li class="landing__subpage"><a href="/use/spaces/{{ type_deets[1] }}">{{ type_deets[0] }}</a></li>
-            {% endfor %}
-          {% comment %} Otherwise, build the subnav via site hierarchy {% endcomment %}
-          {% else %}
-            {% for grandchild in child.children %}
-              {% if grandchild.listed? %}
-                <li class="landing__subpage"><a href="{% path_to grandchild %}">{{ grandchild.title }}</a></li>
-              {% endif %}
-            {% endfor %}
-          {% endif %}
-        </ul>
+        {% include 'nav-builder' with component: 'landing' %}
       </div>
     {% endif %}
   {% endfor %}
