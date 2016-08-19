@@ -7,7 +7,7 @@
 
         <h4 class="landing__section-heading">{{ child.title }}</h4>
 
-        {{ child.editable_elements }}
+        {% comment %}{{ child.editable_elements }}{% endcomment %}
 
         <ul>
           {% for grandchild in child.children %}
