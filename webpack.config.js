@@ -3,6 +3,7 @@ var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var WebpackShellPlugin = require('webpack-shell-plugin');
+var webpack = require('webpack');
 
 var path = require('path');
 
@@ -104,6 +105,12 @@ module.exports = {
     // Remove extraneous bundle leftover after extracting CSS
     new WebpackShellPlugin({
       onBuildExit:['rm public/javascripts/main.bundle.js']
+    }),
+    new webpack.ProvidePlugin({
+      // jquery
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
     })
   ]
 };

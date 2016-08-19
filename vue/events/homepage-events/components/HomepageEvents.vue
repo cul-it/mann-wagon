@@ -1,9 +1,9 @@
 <script>
-var Cookies = require('js-cookie')
 var _ = require('lodash')
 var moment = require('moment')
 
 export default {
+  name: 'events',
   template: require('../templates/homepage-template.html'),
   data () {
     return {
@@ -13,11 +13,8 @@ export default {
       allEvents: [],
       // Event type filter param
       eventType: '',
-      // Booked auth headers
-      headers: {},
       // Group events key
       dateKey: 'event_start',
-
       // No events message
       showNoEventsMessage: true
     }
@@ -27,9 +24,6 @@ export default {
     // When the application loads, call methods
     this.getCornellEvents('default')
     this.getMannServicesEvents('default')
-    if ((Cookies.get('filter'))) {
-      this.setEventTypeFilter(Cookies.get('filter'))
-    }
   },
   filters: {
     // Event filter
@@ -114,6 +108,7 @@ export default {
       _.forEach(_.map(data, 'event'), function (value) {
         var events = {}
         var eventType = []
+        events['event_id'] = value.id
         events['event_title'] = value.title
         events['event_description'] = value.description
         events['event_start_time'] = value.event_instances[0].event_instance.start
@@ -143,6 +138,7 @@ export default {
       // Event properties
       _.forEach(data, function (value) {
         var events = {}
+        events['event_id'] = value.eventId
         events['event_title'] = value.description.match('Event Name: (.*)')[1]
         events['event_description'] = value.description.match('Event Description: (.*)')[1]
         events['event_start_time'] = moment(new Date(value.formattedStartDateTime)).format()
@@ -150,7 +146,7 @@ export default {
         events['event_end_time'] = moment(new Date(value.formattedEndDateTime)).format()
         events['event_room_name'] = value.location
         events['event_type'] = [value.description.match('Event type:: (.*)')[1]]
-        // Events array from booked
+        // Events array from LibCal
         libcalEvents.push(events)
       })
 
@@ -160,9 +156,6 @@ export default {
       // Use lodash to combine the arrays and set
       this.$set('allEvents', (_.concat(this.cornellEvents, this.libcalEvents)))
       this.$set('showNoEventsMessage', false)
-    },
-    setFilterCookie () {
-      Cookies.set('filter', 'Class/ Workshop')
     }
   }
 }
