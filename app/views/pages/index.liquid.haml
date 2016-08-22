@@ -39,7 +39,7 @@ listed: false
 %section.featured__side-image
   %img.img-responsive.img-faded{:alt => "Abstract placeholder", :src => "{{ 'events/abstract-placeholder.jpg' | theme_image_url }}"}/
 
-%events{"booked-username" => "{{site.metafields.sensitive_data.booked_username}}", "booked-password" => "{{site.metafields.sensitive_data.booked_password}}"}
+%events
 
 {{ 'homePageEvents.bundle.js' | javascript_tag }}
 

@@ -1,17 +1,23 @@
 <script>
-var Cookies = require('js-cookie')
+import $ from 'jquery'
 var _ = require('lodash')
 var moment = require('moment')
-var $ = require('jquery')
-
+import 'semantic-ui-css/components/dimmer.min.js'
+import 'semantic-ui-css/components/dimmer.min.css'
+import 'semantic-ui-css/components/modal.min.js'
+import 'semantic-ui-css/components/modal.min.css'
+import 'semantic-ui-css/components/transition.min.js'
+import 'semantic-ui-css/components/transition.min.css'
+import 'semantic-ui-css/components/accordion.min.js'
+import 'semantic-ui-css/components/accordion.min.css'
 import Description from './Description.vue'
 
 export default {
+  name: 'events',
   template: require('../templates/events-template.html'),
   components: {
     Description
   },
-  props: ['booked-username', 'booked-password'],
   data () {
     return {
     // Arrays for event info
@@ -19,9 +25,9 @@ export default {
       cornellEventTypes: [],
       cornellRoomNames: [],
 
-      bookedEvents: [],
-      bookedEventTypes: [],
-      bookedRoomNames: [],
+      libcalEvents: [],
+      libcalEventTypes: [],
+      libcalRoomNames: [],
 
       allEvents: [],
       allEventTypes: [],
@@ -30,15 +36,15 @@ export default {
       room: '',
       // Event type filter param
       eventType: '',
-      // Booked auth headers
-      headers: {},
 
       // Variables for adding class to selected filters
       eventSelected: '',
       roomSelected: '',
 
-      // How many events to display
+      // How many events to display first
       limitList: 10,
+      // events to display to view more
+      listIncrement: 10,
 
       // Load more link text
       loadMoreText: '',
@@ -53,17 +59,50 @@ export default {
       // No events message
       showNoEventsMessage: true,
       // Array for filtered events, for no events message
-      filteredEvents: []
+      filteredEvents: [],
+      // Arrays for single event info
+      event: [],
+      url: window.location.href,
+      query: '',
+      params: '',
+      eventsList: false,
+      singleEvent: false
     }
   },
   // Anything within the ready function will run when the application loads
   ready: function () {
+    if (window.location.search) {
+      this.$set('query', this.url.split('?')[1].split('='))
+    }
+    if (this.query[0] === 'room') {
+      this.$set('params', unescape(this.query[1]))
+    } else if (this.query[0] === 'eventType') {
+      this.$set('params', unescape(this.query[1]))
+    } else if (this.query[0] === 'eventId') {
+      this.$set('params', unescape(this.query[1]))
+    }
+    if (this.query[0] === 'eventId') {
+      if (this.params.match(/[a-z]/i)) {
+        this.getMannServicesEvents('event', this.params)
+      } else {
+        this.getCornellEvent()
+      }
+      // single event
+      this.$set('singleEvent', true)
+      $('body').hide()
+    } else {
+      if (this.query[0] === 'eventType') {
+        this.setEventTypeFilter(this.params)
+      }
+      if (this.query.room) {
+        this.setRoomFilter(this.params)
+      }
+    }
     // When the application loads, call methods
     this.getCornellEvents('default')
-    this.bookedAuthentication()
-    if ((Cookies.get('filter'))) {
-      this.setEventTypeFilter(Cookies.get('filter'))
-    }
+    this.getMannServicesEvents('default')
+    // events list
+    this.$set('eventsList', true)
   },
   directives: require('../directives/datepicker-directive'),
   filters: {
@@ -131,7 +170,6 @@ export default {
       return _.groupBy(events, dateKey)
     }
   },
-
   methods: {
     // Cornell localist events
     getCornellEvents (option, date) {
@@ -150,47 +188,47 @@ export default {
         })
       }
     },
-    // Authenticate booked
-    bookedAuthentication () {
-      this.$http(
-        {
-          url: 'http://booked-dev.library.cornell.edu/Web/Services/index.php/Authentication/Authenticate',
-          method: 'POST',
-          data: JSON.stringify({username: this.bookedUsername, password: this.bookedPassword}),
-          dataType: 'json'
-        }).then(function (data) {
-          // success callback
-          if (data.data.isAuthenticated) {
-            this.$set('headers', {'X-Booked-SessionToken': data.data.sessionToken, 'X-Booked-UserId': data.data.userId})
-            this.getBookedReservations('default')
-          } else {
-            console.log(data.message)
-          }
-        }, function (response) {
-          // error callback
-        })
-    },
-    // Get reservations from booked
-    getBookedReservations (option, date) {
-      var bookedApiUrl = ''
-      // Get default events
-      if (option === 'default') {
-        bookedApiUrl = 'http://booked-dev.library.cornell.edu/Web/Services/index.php/Reservations/?resourceId=3'
-      // Get events for a date
-      } else if (option === 'date') {
-        bookedApiUrl = 'http://booked-dev.library.cornell.edu/Web/Services/index.php/Reservations/?resourceId=3&startDateTime=' + date + 'T00:00:00&endDateTime=' + date + 'T23:59:59'
-      }
-      this.$http(
-        {
-          type: 'GET',
-          url: bookedApiUrl,
-          headers: this.headers,
-          dataType: 'json'
-        })
-        .then(function (response) {
-          // Create custom data model
-          this.bookedEventsArray(response.data.reservations)
-        })
+    getMannServicesEvents (option, param) {
+      var mannservicesEventsUrl = 'http://mannservices.mannlib.cornell.edu/LibServices/showEventsById.do?output=json&id='
+      var roomIds = [23, 24, 25, 26]
+      var vueInstance = this
+      var libcalReservations = []
+      // Create multiple api calls in loop
+      _.each(roomIds, function (roomId, index) {
+        vueInstance.$http(
+          {
+            type: 'GET',
+            url: mannservicesEventsUrl + roomId,
+            dataType: 'json'
+          })
+          .then(function (response) {
+            // Combine response from all calls
+            libcalReservations = _.concat(libcalReservations, response.data.eventList)
+            libcalReservations = _.each(libcalReservations, function (libcalReservation) {
+              // remove email from eventId for use as url parameter for single event display
+              libcalReservation.eventId = libcalReservation.eventId.split('-', 3).join('-')
+            })
+            // Create custom model, call methods only on lass loop
+            if (index === (roomIds.length - 1)) {
+              if (option === 'default') {
+                // All reservations
+                this.libcalReservationsArray(libcalReservations)
+              } else if (option === 'date') {
+                // Reservations on a date
+                var filteredLibcalReservations = _.filter(libcalReservations, function (libcalReservation) {
+                  return (moment(new Date(libcalReservation.formattedStartDateTime)).format('YYYY-MM-DD')) === param
+                })
+                this.libcalReservationsArray(filteredLibcalReservations)
+              } else if (option === 'event') {
+                // Single reservation
+                var filteredLibcalReservation = _.filter(libcalReservations, function (libcalReservation) {
+                  return libcalReservation.eventId === param
+                })
+                this.eventArray('Libcal', filteredLibcalReservation)
+              }
+            }
+          })
+      })
     },
     // Room filter and remove filter
     setRoomFilter (roomNumber) {
@@ -209,7 +247,6 @@ export default {
     removeEventTypeFilter () {
       this.eventType = ''
       this.eventSelected = ''
-      Cookies.remove('filter')
     },
 
     //  Remove search filter
@@ -221,7 +258,7 @@ export default {
     removeSelectedDate () {
       this.$set('dateSelected', '')
       this.getCornellEvents('default')
-      this.getBookedReservations('default')
+      this.getMannServicesEvents('default')
       $('#datepicker').datepicker('setDate', moment().format('YYYY-MM-DD'))
     },
 
@@ -232,19 +269,16 @@ export default {
       this.roomSelected = ''
       this.eventSelected = ''
       this.getCornellEvents('default')
-      this.getBookedReservations('default')
+      this.getMannServicesEvents('default')
       this.removeSearchFilter()
       this.$set('dateSelected', '')
       $('#datepicker').datepicker('setDate', moment().format('YYYY-MM-DD'))
-      Cookies.remove('filter')
     },
-
     // Load more events
     loadMoreEvents () {
-      var increment = this.limitList + this.limitList
-      this.limitList = increment > this.allEvents.length ? this.allEvents.length : increment
+      var newLimitList = this.limitList + this.listIncrement
+      this.limitList = newLimitList > this.allEvents.length ? this.allEvents.length : newLimitList
     },
-
     // Custom data model from cornell events
     cornellEventsArray (data) {
       var eventTypes = []
@@ -255,6 +289,7 @@ export default {
       _.forEach(_.map(data, 'event'), function (value) {
         var events = {}
         var eventType = []
+        events['event_id'] = value.id
         events['event_title'] = value.title
         events['event_description'] = value.description
         events['event_start_time'] = value.event_instances[0].event_instance.start
@@ -265,7 +300,6 @@ export default {
 
         // Events array from localist
         cornellEvents.push(events)
-
         // Event type filter list array
         _.forEach(_.map(value, 'event_types'), function (value) {
           _.forEach(_.map(value, 'name'), function (value) {
@@ -282,44 +316,40 @@ export default {
       this.$set('cornellRoomNames', roomNames)
       this.$set('cornellEvents', cornellEvents)
     },
-
-    // Custom data model from booked events
-    bookedEventsArray (data) {
-      var bookedEvents = []
+    // Custom data model from libcal room bookings
+    libcalReservationsArray (data) {
+      var libcalEvents = []
       var eventTypes = []
       var roomNames = []
 
       // Event properties
       _.forEach(data, function (value) {
         var events = {}
-        events['event_type'] = ['Class/ Workshop']
-        events['event_title'] = value.title
-        events['event_description'] = value.description
-        events['event_start_time'] = value.bufferedStartDate
-        events['event_start'] = value.bufferedStartDate.substring(0, 10)
-        events['event_end_time'] = value.bufferedEndDate
-        events['event_room_name'] = value.resourceName
-
-        // Events array from booked
-        bookedEvents.push(events)
+        events['event_id'] = value.eventId
+        events['event_title'] = value.description.match('Event Name: (.*)')[1]
+        events['event_description'] = value.description.match('Event Description: (.*)')[1]
+        events['event_start_time'] = moment(new Date(value.formattedStartDateTime)).format()
+        events['event_start'] = moment(new Date(value.formattedStartDateTime)).format('YYYY-MM-DD')
+        events['event_end_time'] = moment(new Date(value.formattedEndDateTime)).format()
+        events['event_room_name'] = value.location
+        events['event_type'] = [value.description.match('Event type:: (.*)')[1]]
+        // Events array from LibCal
+        libcalEvents.push(events)
 
         // Event type filter list array
-        roomNames.push(value.resourceName)
+        roomNames.push(value.location)
 
         // Room filter list array
-        eventTypes.push('Class/ Workshop')
+        eventTypes.push(value.description.match('Event type:: (.*)')[1])
       })
-
       // Set array values to be used later to merge
-      this.$set('bookedEventTypes', eventTypes)
-      this.$set('bookedRoomNames', roomNames)
-      this.$set('bookedEvents', bookedEvents)
-
+      this.$set('libcalEventTypes', eventTypes)
+      this.$set('libcalRoomNames', roomNames)
+      this.$set('libcalEvents', libcalEvents)
       // Use lodash to combine the arrays and set
-      this.$set('allEvents', (_.concat(this.cornellEvents, this.bookedEvents)))
-      this.$set('allEventTypes', (_.union(this.cornellEventTypes, this.bookedEventTypes)))
-      this.$set('allRoomNames', (_.union(this.cornellRoomNames, this.bookedRoomNames)))
-
+      this.$set('allEvents', (_.concat(this.cornellEvents, this.libcalEvents)))
+      this.$set('allEventTypes', (_.union(this.cornellEventTypes, this.libcalEventTypes)))
+      this.$set('allRoomNames', (_.union(this.cornellRoomNames, this.libcalRoomNames)))
       this.loadMoreDisplay(this.allEvents)
       this.$set('showNoEventsMessage', false)
       this.$set('filteredEvents', this.allEvents)
@@ -332,8 +362,86 @@ export default {
         this.$set('loadMoreText', 'View more events')
       }
     },
-    setFilterCookie () {
-      Cookies.set('filter', 'Class/ Workshop')
+    // Cornell localist event
+    getCornellEvent () {
+      var localistApiBaseUrl = 'http://events.cornell.edu/api/2/events/'
+      this.$http.get(localistApiBaseUrl + this.params).then(function (response) {
+        // Create custom data model
+        this.eventArray('Cornell', response.data.event)
+      })
+    },
+    eventArray (source, data) {
+      var startDateTime = ''
+      var endDateTime = ''
+      var additionalTimes = []
+      var hasAdditionalTimes = 0
+      if (source === 'Cornell') {
+        _.forEach(_.map(data.event_instances, 'event_instance'), function (value, index) {
+          var today = moment().startOf('day').format()
+          var someday = moment(value.start).startOf('day')
+          var days = someday.diff(today, 'days')
+          if (days === 0 || data.event_instances.length === 1) {
+            startDateTime = value.start
+            endDateTime = value.end
+          } else if (days > 0 && data.event_instances.length > 1) {
+            if (index === 0) {
+              startDateTime = value.start
+              endDateTime = value.end
+            } else if (index > 0) {
+              additionalTimes.push([value.start, value.end])
+              hasAdditionalTimes = additionalTimes.length
+            }
+          } else if (days < 0) {
+
+          }
+        })
+        var eventType = []
+        // Event type filter list array
+        _.forEach(_.map(data, 'event_types'), function (value) {
+          _.forEach(_.map(value, 'name'), function (value) {
+            eventType.push(value)
+          })
+        })
+
+        this.$set('event', {
+          'event_title': data.title,
+          'event_description': data.description,
+          'event_start_time': startDateTime,
+          'event_end_time': endDateTime,
+          'event_additional_times': additionalTimes,
+          'event_has_additional_times': hasAdditionalTimes,
+          'event_room_name': data.room_number,
+          'event_type': eventType
+        })
+      } else if (source === 'Libcal') {
+        this.$set('event', {
+          'event_title': data[0].description.match('Event Name: (.*)')[1],
+          'event_description': data[0].description.match('Event Description: (.*)')[1],
+          'event_start_time': moment(new Date(data[0].formattedStartDateTime)).format(),
+          'event_end_time': moment(new Date(data[0].formattedEndDateTime)).format(),
+          'event_room_name': data[0].location,
+          'event_type': [data[0].description.match('Event type:: (.*)')[1]]
+        })
+      }
+      this.$set('showNoEventsMessage', false)
+      // Call Semantic ui modal and accordion for future times
+      $('.ui.modal').modal({
+        onHide: function () {
+          // Ensure user lands on the events page on modal close.
+          if (document.referrer && document.referrer !== window.location.href && document.referrer !== window.location.href.split('?')[0]) {
+            window.history.back()
+          } else {
+            window.location = window.location.href.split('?')[0]
+          }
+        },
+        onShow: function () {
+          $('body').show()
+        },
+        onVisible: function () {
+          $('.ui.modal').modal('refresh')
+          $('.ui.accordion').accordion()
+        }
+      }).modal('show')
     }
   }
 }
