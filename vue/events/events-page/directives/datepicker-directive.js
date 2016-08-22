@@ -1,5 +1,4 @@
 var Vue = require('vue')
-var $ = require('jquery')
 require('jquery-ui/datepicker')
 
 Vue.directive('datepicker', {

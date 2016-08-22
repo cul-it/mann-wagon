@@ -71,10 +71,10 @@ export default {
     getCornellEvents (option, date) {
       var localistApiBaseUrl = 'http://events.cornell.edu/api/2/events/?type=4228&pp=100'
       // Get default events
-        this.$http.get(localistApiBaseUrl + '&days=28').then(function (response) {
-          // Create custom data model
-          this.cornellEventsArray(response.data.events)
-        })
+      this.$http.get(localistApiBaseUrl + '&days=28').then(function (response) {
+        // Create custom data model
+        this.cornellEventsArray(response.data.events)
+      })
     },
     getMannServicesEvents (option, date) {
       var mannservicesEventsUrl = 'http://mannservices.mannlib.cornell.edu/LibServices/showEventsById.do?output=json&id='

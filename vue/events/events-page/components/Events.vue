@@ -1,14 +1,15 @@
 <script>
+import $ from 'jquery'
 var _ = require('lodash')
 var moment = require('moment')
-import 'semantic-ui-css/components/dimmer.min.js';
-import 'semantic-ui-css/components/dimmer.min.css';
-import 'semantic-ui-css/components/modal.min.js';
-import 'semantic-ui-css/components/modal.min.css';
-import 'semantic-ui-css/components/transition.min.js';
-import 'semantic-ui-css/components/transition.min.css';
-import 'semantic-ui-css/components/accordion.min.js';
-import 'semantic-ui-css/components/accordion.min.css';
+import 'semantic-ui-css/components/dimmer.min.js'
+import 'semantic-ui-css/components/dimmer.min.css'
+import 'semantic-ui-css/components/modal.min.js'
+import 'semantic-ui-css/components/modal.min.css'
+import 'semantic-ui-css/components/transition.min.js'
+import 'semantic-ui-css/components/transition.min.css'
+import 'semantic-ui-css/components/accordion.min.js'
+import 'semantic-ui-css/components/accordion.min.css'
 import Description from './Description.vue'
 
 export default {
@@ -61,8 +62,8 @@ export default {
       filteredEvents: [],
       // Arrays for single event info
       event: [],
-      query: this.$route.query,
-      route: this.$route,
+      url: window.location.href,
+      query: '',
       params: '',
       eventsList: false,
       singleEvent: false
@@ -70,14 +71,17 @@ export default {
   },
   // Anything within the ready function will run when the application loads
   ready: function () {
-    if (this.query.room) {
-      this.$set('params', this.query.room)
-    } else if (this.query.eventType) {
-      this.$set('params', this.query.eventType)
-    } else if (this.query.eventId) {
-      this.$set('params', this.query.eventId)
+    if (window.location.search) {
+      this.$set('query', this.url.split('?')[1].split('='))
     }
-    if (this.query.eventId) {
+    if (this.query[0] === 'room') {
+      this.$set('params', unescape(this.query[1]))
+    } else if (this.query[0] === 'eventType') {
+      this.$set('params', unescape(this.query[1]))
+    } else if (this.query[0] === 'eventId') {
+      this.$set('params', unescape(this.query[1]))
+    }
+    if (this.query[0] === 'eventId') {
       if (this.params.match(/[a-z]/i)) {
         this.getMannServicesEvents('event', this.params)
       } else {
@@ -87,7 +91,7 @@ export default {
       this.$set('singleEvent', true)
       $('body').hide()
     } else {
-      if (this.query.eventType) {
+      if (this.query[0] === 'eventType') {
         this.setEventTypeFilter(this.params)
       }
       if (this.query.room) {
@@ -212,7 +216,7 @@ export default {
               } else if (option === 'date') {
                 // Reservations on a date
                 var filteredLibcalReservations = _.filter(libcalReservations, function (libcalReservation) {
-                  return (moment(new Date(libcalReservation.formattedStartDateTime)).format('YYYY-MM-DD')) == param
+                  return (moment(new Date(libcalReservation.formattedStartDateTime)).format('YYYY-MM-DD')) === param
                 })
                 this.libcalReservationsArray(filteredLibcalReservations)
               } else if (option === 'event') {
@@ -422,19 +426,19 @@ export default {
       this.$set('showNoEventsMessage', false)
       // Call Semantic ui modal and accordion for future times
       $('.ui.modal').modal({
-        onHide: function(){
+        onHide: function () {
           // Ensure user lands on the events page on modal close.
-          if(document.referrer && document.referrer != window.location.href && document.referrer != window.location.href.split("?")[0]){
+          if (document.referrer && document.referrer !== window.location.href && document.referrer !== window.location.href.split('?')[0]) {
             window.history.back()
           } else {
-            window.location = window.location.href.split("?")[0]
+            window.location = window.location.href.split('?')[0]
           }
         },
         onShow: function () {
-        $('body').show()
+          $('body').show()
         },
         onVisible: function () {
-          $('.ui.modal').modal("refresh")
+          $('.ui.modal').modal('refresh')
           $('.ui.accordion').accordion()
         }
       }).modal('show')
