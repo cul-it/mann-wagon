@@ -5,16 +5,16 @@ name: News
 slug: news
 
 # Explanatory text displayed in the back-office
-description: A description of the content type for the editors
+description: Manage news stories
 
 # Slug of field used to identify entries by default, such as the title
 label_field_name: title
 
 # Valid values: manually, created_at, updated_at, or the slug of any field
-order_by: manually
+order_by: published
 
 # Valid values: asc (ascending) and desc (descending). Set to asc by default.
-# order_direction: asc
+order_direction: desc
 
 # Specify a field slug to group entries by that field in the back-office.
 # group_by: <your field>
@@ -26,9 +26,9 @@ order_by: manually
 # public_submission_accounts: ['john@example.com']
 
 # Control the display of the content type in the back-office.
-# display_settings:
+display_settings:
 #   seo: false              # display the SEO tab for the content entries
-#   advanced: false         # display the Advanced tab for the content entries
+  advanced: false         # display the Advanced tab for the content entries
 #   position: 1             # position in the sidebar menu
 #   hidden: false           # hidden for authors?
 
@@ -36,26 +36,23 @@ order_by: manually
 # entry_template: '<a href="{{ link }}">{{ entry._label }}</a>' # The default template
 
 # A list describing each field
-fields: 
+fields:
 - title: # The lowercase, underscored name of the field
     label: Title # Human readable name of the field
     type: string
     required: true
-    hint: Explanatory text displayed in the back office
     localized: false
 
 - date: # The lowercase, underscored name of the field
-    label: Date # Human readable name of the field
+    label: Published Date # Human readable name of the field
     type: date
-    required: false
-    hint: Explanatory text displayed in the back office
+    required: true
     localized: false
 
 - body: # The lowercase, underscored name of the field
     label: Body # Human readable name of the field
     type: text
-    required: false
-    hint: Explanatory text displayed in the back office
+    required: true
     localized: false
     # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
 
@@ -63,29 +60,26 @@ fields:
     label: Tags # Human readable name of the field
     type: tags
     required: false
-    hint: Explanatory text displayed in the back office
     localized: false
 
 - image: # The lowercase, underscored name of the field
     label: Image # Human readable name of the field
     type: file
     required: false
-    hint: Explanatory text displayed in the back office
     localized: false
 
 - image_align: # The lowercase, underscored name of the field
-    label: Image align # Human readable name of the field
+    label: Image Alignment # Human readable name of the field
     type: select
     required: false
-    hint: Explanatory text displayed in the back office
+    hint: Choose whether to align this image left or right inside the news story
     localized: false    # if localized, use
     #   en: ['option1_en', 'option2_en']
     #   fr: ['option1_fr', 'option2_fr']
-    select_options: ['option 1', 'option 2', 'option 3']
+    select_options: ['left', 'right']
 
 - featured: # The lowercase, underscored name of the field
-    label: Featured # Human readable name of the field
+    label: Feature on Homepage? # Human readable name of the field
     type: boolean
     required: false
-    hint: Explanatory text displayed in the back office
     localized: false
