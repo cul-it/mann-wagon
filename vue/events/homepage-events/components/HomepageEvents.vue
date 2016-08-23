@@ -134,20 +134,26 @@ export default {
     // Custom data model from libcal room bookings
     libcalReservationsArray (data) {
       var libcalEvents = []
-
+      var counter = 0
       // Event properties
-      _.forEach(data, function (value) {
+      _.forEach(data, function (value, index) {
         var events = {}
-        events['event_id'] = value.eventId
-        events['event_title'] = value.description.match('Event Name: (.*)')[1]
-        events['event_description'] = value.description.match('Event Description: (.*)')[1]
-        events['event_start_time'] = moment(new Date(value.formattedStartDateTime)).format()
-        events['event_start'] = moment(new Date(value.formattedStartDateTime)).format('YYYY-MM-DD')
-        events['event_end_time'] = moment(new Date(value.formattedEndDateTime)).format()
-        events['event_room_name'] = value.location
-        events['event_type'] = [value.description.match('Event type:: (.*)')[1]]
-        // Events array from LibCal
-        libcalEvents.push(events)
+        // If same event based on title and time comparison
+        if (libcalEvents.length && libcalEvents[counter - 1].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 1].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
+          libcalEvents[counter-1].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
+        } else {
+          events['event_id'] = value.eventId
+          events['event_title'] = value.description.match('Event Name: (.*)')[1]
+          events['event_description'] = value.description.match('Event Description: (.*)')[1]
+          events['event_start_time'] = moment(new Date(value.formattedStartDateTime)).format()
+          events['event_start'] = moment(new Date(value.formattedStartDateTime)).format('YYYY-MM-DD')
+          events['event_end_time'] = moment(new Date(value.formattedEndDateTime)).format()
+          events['event_room_name'] = value.location
+          events['event_type'] = [value.description.match('Event type:: (.*)')[1]]
+          // Events array from LibCal
+          libcalEvents.push(events)
+          counter++
+        }
       })
 
       // Set array values to be used later to merge

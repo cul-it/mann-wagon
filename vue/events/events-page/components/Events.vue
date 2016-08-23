@@ -221,10 +221,13 @@ export default {
                 this.libcalReservationsArray(filteredLibcalReservations)
               } else if (option === 'event') {
                 // Single reservation
-                var filteredLibcalReservation = _.filter(libcalReservations, function (libcalReservation) {
-                  return libcalReservation.eventId === param
+                // Can't get single event from json data due to 30 minute slots,
+                // instead populate libcalEvents with merged events and filter on that
+                this.libcalReservationsArray(libcalReservations)
+                var filteredLibcalReservation = _.filter(this.libcalEvents, function (libcalEvent) {
+                  return libcalEvent.event_id === param
                 })
-                this.eventArray('Libcal', filteredLibcalReservation)
+                this.eventArray('Libcal', filteredLibcalReservation[0])
               }
             }
           })
@@ -321,26 +324,33 @@ export default {
       var libcalEvents = []
       var eventTypes = []
       var roomNames = []
+      // event counter
+      var counter = 0
 
       // Event properties
-      _.forEach(data, function (value) {
+      _.forEach(data, function (value, index) {
         var events = {}
-        events['event_id'] = value.eventId
-        events['event_title'] = value.description.match('Event Name: (.*)')[1]
-        events['event_description'] = value.description.match('Event Description: (.*)')[1]
-        events['event_start_time'] = moment(new Date(value.formattedStartDateTime)).format()
-        events['event_start'] = moment(new Date(value.formattedStartDateTime)).format('YYYY-MM-DD')
-        events['event_end_time'] = moment(new Date(value.formattedEndDateTime)).format()
-        events['event_room_name'] = value.location
-        events['event_type'] = [value.description.match('Event type:: (.*)')[1]]
-        // Events array from LibCal
-        libcalEvents.push(events)
-
-        // Event type filter list array
-        roomNames.push(value.location)
-
-        // Room filter list array
-        eventTypes.push(value.description.match('Event type:: (.*)')[1])
+        // If same event based on title and time comparison
+        if (libcalEvents.length && libcalEvents[counter - 1].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 1].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
+          libcalEvents[counter-1].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
+        } else {
+          events['event_id'] = value.eventId
+          events['event_title'] = value.description.match('Event Name: (.*)')[1]
+          events['event_description'] = value.description.match('Event Description: (.*)')[1]
+          events['event_start_time'] = moment(new Date(value.formattedStartDateTime)).format()
+          events['event_start'] = moment(new Date(value.formattedStartDateTime)).format('YYYY-MM-DD')
+          events['event_end_time'] = moment(new Date(value.formattedEndDateTime)).format()
+          events['event_room_name'] = value.location
+          events['event_type'] = [value.description.match('Event type:: (.*)')[1]]
+          // Events array from LibCal
+          libcalEvents.push(events)
+          // Event type filter list array
+          roomNames.push(value.location)
+          // Room filter list array
+          eventTypes.push(value.description.match('Event type:: (.*)')[1])
+          // Increment event counter
+          counter++
+        }
       })
       // Set array values to be used later to merge
       this.$set('libcalEventTypes', eventTypes)
@@ -414,14 +424,7 @@ export default {
           'event_type': eventType
         })
       } else if (source === 'Libcal') {
-        this.$set('event', {
-          'event_title': data[0].description.match('Event Name: (.*)')[1],
-          'event_description': data[0].description.match('Event Description: (.*)')[1],
-          'event_start_time': moment(new Date(data[0].formattedStartDateTime)).format(),
-          'event_end_time': moment(new Date(data[0].formattedEndDateTime)).format(),
-          'event_room_name': data[0].location,
-          'event_type': [data[0].description.match('Event type:: (.*)')[1]]
-        })
+        this.$set('event', data)
       }
       this.$set('showNoEventsMessage', false)
       // Call Semantic ui modal and accordion for future times
