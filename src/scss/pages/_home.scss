@@ -53,3 +53,18 @@ section {
     right: 1.5em;
   }
 }
+
+.spotlights__dots {
+  & button:hover,
+  & button:focus {
+    background-color: transparent;
+  }
+
+  &.slick-dots { // Override slick.js default styling (slick-theme.css)
+    bottom: -2.2em;
+
+    & li button:before {
+      font-size: 13px;
+    }
+  }
+}

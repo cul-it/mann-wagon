@@ -47,8 +47,20 @@ module.exports = {
           loader: 'style!css'
         },
         {
+          test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: 'url',
+        },
+        {
+          test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
+          loader: 'file',
+        },
+        {
           test: /\.html$/,
           loader: 'html'
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          loader:'url'
         },
         {
           test:   /\.js/,
