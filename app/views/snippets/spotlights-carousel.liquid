@@ -1,0 +1,19 @@
+<section class="spotlights">
+  <div class="spotlights__contain">
+    <span class="spotlights__nav spotlights__nav--prev js-spotlights-prev"><i class="fa fa-angle-left fa-inverse fa-5x"></i></span>
+
+    <div class="spotlights__images">
+      {{ 'spotlights-test/spotlight-1.jpg' | theme_image_tag: 'alt:this is only a test' }}
+      {{ 'spotlights-test/spotlight-2.jpg' | theme_image_tag: 'alt:this is only a test' }}
+      {{ 'spotlights-test/spotlight-3.jpg' | theme_image_tag: 'alt:this is only a test' }}
+      {{ 'spotlights-test/spotlight-4.jpg' | theme_image_tag: 'alt:this is only a test' }}
+      {% for spotlight in contents.spotlights %}
+        {{ spotlight }}
+      {% endfor %}
+    </div>
+
+    <span class="spotlights__nav spotlights__nav--next js-spotlights-next"><i class="fa fa-angle-right fa-inverse fa-5x"></i></span>
+  </div>
+</section>
+
+{{ 'spotlights.bundle.js' | javascript_tag }}
