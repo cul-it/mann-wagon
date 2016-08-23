@@ -36,8 +36,7 @@ listed: false
         %i.fa.fa-fw.fa-check-square
         Knight Writing Institute
 
-%section.featured__side-image
-  %img.img-responsive.img-faded{:alt => "Abstract placeholder", :src => "{{ 'events/abstract-placeholder.jpg' | theme_image_url }}"}/
+{% include 'spotlights-carousel' %}
 
 %events
 
@@ -46,7 +45,7 @@ listed: false
 %section.meet-librarians
   %h4.meet-librarians__heading.lead-in Meet Our Librarians
 
-  {% include meet-librarians' %}
+  {% include 'meet-librarians' %}
 
   %a.meet-librarians__all-experts.more-link{href: "{% path_to staff %}", title: "View all Mann librarians and staff" }
     Meet All Our Experts

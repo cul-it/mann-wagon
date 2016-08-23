@@ -18,3 +18,38 @@ section {
     color: color('more' ('desaturate': 10%));
   }
 }
+
+.slick-slide {
+  margin: 0 .15em;
+}
+
+.spotlights {
+  @include span(full nest);
+
+  margin: 3.5em 0;
+}
+
+.spotlights__contain {
+  position: relative;
+}
+
+.spotlights__nav {
+  position: absolute;
+  top: 50%;
+  z-index: $above-content;
+  cursor: pointer;
+  text-shadow: .1em .2em .6em color('black');
+  font-size: 1.7em;
+
+  & .fa {
+    line-height: 0; // Override Font Awesome default styling
+  }
+
+  &--prev {
+    left: 1.5em;
+  }
+
+  &--next {
+    right: 1.5em;
+  }
+}
