@@ -5,9 +5,29 @@ import 'slick-carousel';
 
 $('.spotlights__images').slick({
   centerMode: true,
-  centerPadding: '150px',
   dots: true,
   dotsClass: 'slick-dots spotlights__dots',
+  mobileFirst: true,
+  nextArrow: $('.js-spotlights-next'),
   prevArrow: $('.js-spotlights-prev'),
-  nextArrow: $('.js-spotlights-next')
+  responsive: [
+    {
+      breakpoint: 480,
+      settings: {
+        centerPadding: '50px'
+      }
+    },
+    {
+      breakpoint: 720,
+      settings: {
+        centerPadding: '75px'
+      }
+    },
+    {
+      breakpoint: 896,
+      settings: {
+        centerPadding: '100px'
+      }
+    }
+  ]
 });
