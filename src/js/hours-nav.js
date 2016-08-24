@@ -26,15 +26,15 @@ var hoursNav = {
     $('#libcal-monthly-hours').hide();
 
     $('.js-hours-week').on('click', function() {
-      $("#libcal-weekly-hours").transition('toggle');
-      $("#libcal-monthly-hours").transition('toggle');
+      $("#libcal-weekly-hours").transition('show');
+      $("#libcal-monthly-hours").transition('hide');
       view = 'week';
       hoursNav.gotoView(view, 'first');
     });
 
     $('.js-hours-month').on('click', function() {
-      $("#libcal-weekly-hours").transition('toggle');
-      $('#libcal-monthly-hours').transition('toggle');
+      $("#libcal-weekly-hours").transition('hide');
+      $('#libcal-monthly-hours').transition('show');
       $('.js-hours-week').removeClass('active');
       view = 'month';
       hoursNav.gotoView(view, 'first');
