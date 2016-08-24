@@ -212,7 +212,12 @@ export default {
             if (index === (roomIds.length - 1)) {
               if (option === 'default') {
                 // All reservations
-                this.libcalReservationsArray(libcalReservations)
+                // Filter out past reservations
+                var today = moment().startOf('day').format()
+                var currentReservations = _.filter(libcalReservations, function (libcalReservation) {
+                  return moment(new Date(libcalReservation.formattedStartDateTime)).format() >= today
+                })
+                this.libcalReservationsArray(currentReservations)
               } else if (option === 'date') {
                 // Reservations on a date
                 var filteredLibcalReservations = _.filter(libcalReservations, function (libcalReservation) {

@@ -95,7 +95,11 @@ export default {
               libcalReservation.eventId = libcalReservation.eventId.split('-', 3).join('-')
             })
             if (index === (roomIds.length - 1)) {
-              this.libcalReservationsArray(libcalReservations)
+              var today = moment().startOf('day').format()
+              var currentReservations = _.filter(libcalReservations, function (libcalReservation) {
+                return moment(new Date(libcalReservation.formattedStartDateTime)).format() >= today
+              })
+              this.libcalReservationsArray(currentReservations)
             }
           })
       })
