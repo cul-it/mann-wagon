@@ -9,7 +9,7 @@
 		loading...
 	</div>
 
-	<template v-for="(date, events) in allEvents | limitListFilter 3 | groupBy 'event_start'">
+	<template v-for="(date, events) in allEvents | orderBy 'event_start_time' | limitListFilter 3 | groupBy 'event_start'">
 		<h5 class="events-home__day">
       ((date | momentHomeDateText))
     </h5>
@@ -62,7 +62,7 @@
 		loading...
 	</div>
 
-	<template v-for="(date, events) in allEvents | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'">
+	<template v-for="(date, events) in allEvents | orderBy 'event_start_time' | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'">
 		<h5 class="events-home__day">
       ((date | momentHomeDateText))
     </h5>
