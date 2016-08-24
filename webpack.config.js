@@ -30,6 +30,7 @@ module.exports = {
       modalLibcal: './src/js/modal-libcal.js',
       purchaseRequest: './src/js/purchase-request.js',
       spacesQuiet: './src/js/spaces-quiet.js',
+      spotlights: './src/js/spotlights.js',
       staffDirectory: './src/js/staff-directory.js',
       vendor: ['jquery']
   },
@@ -46,8 +47,20 @@ module.exports = {
           loader: 'style!css'
         },
         {
+          test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: 'url',
+        },
+        {
+          test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
+          loader: 'file',
+        },
+        {
           test: /\.html$/,
           loader: 'html'
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          loader:'url'
         },
         {
           test:   /\.js/,
