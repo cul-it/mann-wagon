@@ -1,0 +1,20 @@
+---
+title: Upcoming Events/Exhibits
+slug: upcoming
+handle: upcoming-events
+position: 0
+listed: true
+published: true
+is_layout: false
+editable_elements:
+  main/page_content: ''
+---
+{% extends 'layouts/default' %}
+
+{% block 'main' %}
+
+  <events></events>
+
+  {{ 'eventsPage.bundle.js' | javascript_tag }}
+{% endblock %}
+
