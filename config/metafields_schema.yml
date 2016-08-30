@@ -57,15 +57,12 @@
 sensitive_data:
   label: Sensitive Data
   fields:
-    booked_username:
-      type: string
-    booked_password:
-      type: string
     labstats_customer_id:
       type: string
+      hint: Used to authenticate against the LabStats API to retrieve real time desktop availability
     libcal_apikey:
       type: string
-      hint: Used to retrieve data from libcal
+      hint: Used to authenticate against the LibCal API to retrieve reservation, event & consultation data
     scrapinghub_apikey:
       type: string
-      hint: Used to retrieve the items scraped from dev site to power temporary site search
+      hint: Used to authenticate against the Scrapinghub API to retrieve items scraped from dev site to power temporary site search
