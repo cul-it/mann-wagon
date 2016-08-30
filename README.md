@@ -1,11 +1,18 @@
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
 # mann-wagon
-[Locomotive](http://locomotivecms.com) Wagon site for Mann Library
+[Locomotive](http://locomotivecms.com) site for Mann Library
 
 ### Overview
 
-[Wagon](http://github.com/locomotivecms/wagon) is the command line interface for Locomotive and is where developers will spend most of their time when working on a Locomotive site. For a more thorough intro to the Locomotive approach and workflow, please review the [mann-locomotive README](http://github.com/cul-it/mann-locomotive#overview). We'll be here when you get back.
+[Wagon](http://github.com/locomotivecms/wagon) is the command line interface for Locomotive and is where developers will spend most of their time when working locally on a Locomotive site. For a more thorough intro to the Locomotive approach and workflow, please review the [mann-locomotive README](http://github.com/cul-it/mann-locomotive#overview). We'll be here when you get back.
+
+### Prerequisites
+
+* ruby
+* bundler
+* node
+* npm
 
 ### QuickStart
 
@@ -29,13 +36,15 @@ $ npm install
 
 1. Serve the site
 
-  > proxied through [Browsersync](https://www.browsersync.io) for live-reload goodness -- watching styles, JS, templates
+  > proxied through [Browsersync](https://www.browsersync.io) for live-reload goodness -- watching SCSS, JS, templates
 
    ```bash
 $ npm start
 ```
 
 1. Visit the Mann website at [http://localhost:3000](http://localhost:3000)
+
+  > default browser should automatically launch and request this URL thanks to Browsersync
 
 ### Syncing/Deploying
 
