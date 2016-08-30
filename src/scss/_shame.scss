@@ -13,7 +13,7 @@
 // -- trying to avoid a second carousel on the home page
 // -- 3 adjacent are just too tight at this breakpoint
 // -- could revert to having them all stack if team prefers
-.meet-librarians__featured {
+.meet-experts__featured {
   @include susy-breakpoint($scape $tablet, $g-scape) {
     &:last-of-type {
       display: none;
