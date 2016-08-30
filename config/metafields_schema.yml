@@ -57,10 +57,6 @@
 sensitive_data:
   label: Sensitive Data
   fields:
-    booked_username:
-      type: string
-    booked_password:
-      type: string
     labstats_customer_id:
       type: string
     libcal_apikey:
