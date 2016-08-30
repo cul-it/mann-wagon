@@ -7,6 +7,13 @@
 
 [Wagon](http://github.com/locomotivecms/wagon) is the command line interface for Locomotive and is where developers will spend most of their time when working locally on a Locomotive site. For a more thorough intro to the Locomotive approach and workflow, please review the [mann-locomotive README](http://github.com/cul-it/mann-locomotive#overview). We'll be here when you get back.
 
+### Prerequisites
+
+* ruby
+* bundler
+* node
+* npm
+
 ### QuickStart
 
 ###### Local Dev
