@@ -29,13 +29,15 @@ $ npm install
 
 1. Serve the site
 
-  > proxied through [Browsersync](https://www.browsersync.io) for live-reload goodness -- watching styles, JS, templates
+  > proxied through [Browsersync](https://www.browsersync.io) for live-reload goodness -- watching SCSS, JS, templates
 
    ```bash
 $ npm start
 ```
 
 1. Visit the Mann website at [http://localhost:3000](http://localhost:3000)
+
+  > default browser should automatically launch and request this URL thanks to Browsersync
 
 ### Syncing/Deploying
 
