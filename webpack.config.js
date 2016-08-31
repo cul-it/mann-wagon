@@ -22,6 +22,7 @@ module.exports = {
   entry: {
       consultationRequest: './src/js/form-consultation-request.js',
       eventsPage: './vue/events/events-page/events-page.js',
+      experts: './src/js/experts.js',
       formSiteFeedback: './src/js/form-site-feedback.js',
       homePageEvents: './vue/events/homepage-events/homepage-events.js',
       hoursNav: './src/js/hours-nav.js',
