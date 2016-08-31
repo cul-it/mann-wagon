@@ -23,8 +23,6 @@
     @include span(2 (gutter-override: 5.1em));
 
     margin-bottom: 0;
-
-    // See the temporary hack in _shame.scss
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {

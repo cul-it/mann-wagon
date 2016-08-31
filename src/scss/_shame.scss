@@ -9,18 +9,6 @@
   }
 }
 
-// Hide the 3rd featured librarian at the $scape breakpoint
-// -- trying to avoid a second carousel on the home page
-// -- 3 adjacent are just too tight at this breakpoint
-// -- could revert to having them all stack if team prefers
-.meet-experts__featured {
-  @include susy-breakpoint($scape $tablet, $g-scape) {
-    &:last-of-type {
-      display: none;
-    }
-  }
-}
-
 // Quickly resurrect research guides from home page
 .shame-guides__all-guides {
   @include span(full);
