@@ -46,7 +46,7 @@ module.exports = {
       // `loaders` is an array of loaders to use.
       loaders: [
         {
-          test: /\.css/,
+          test: /\.css$/,
           loader: 'style!css'
         },
         {
@@ -66,7 +66,7 @@ module.exports = {
           loader:'url'
         },
         {
-          test:   /\.js/,
+          test:   /\.js$/,
           loader: 'babel',
           include: path.join(__dirname, 'src')
         },
