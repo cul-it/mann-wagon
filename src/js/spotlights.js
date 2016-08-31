@@ -1,12 +1,13 @@
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'components/spotlights';
 
 import 'slick-carousel';
 
 $('.spotlights__images').slick({
   centerMode: true,
   dots: true,
-  dotsClass: 'slick-dots spotlights__dots',
+  dotsClass: 'slick-dots carousel__dots',
   mobileFirst: true,
   nextArrow: $('.js-spotlights-next'),
   prevArrow: $('.js-spotlights-prev'),

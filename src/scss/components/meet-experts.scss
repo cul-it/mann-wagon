@@ -1,3 +1,13 @@
+@import '~breakpoint-sass/stylesheets/breakpoint';
+@import '~susy/sass/susy';
+@import '~bourbon/core/bourbon';
+@import '~mathsass/dist/math';
+@import '~accoutrement-color/sass/color';
+@import 'config';
+@import 'layout/grid';
+
+@import 'components/carousel';
+
 .meet-experts {
   @include span(full);
 }
@@ -39,10 +49,6 @@
   }
 }
 
-.meet-experts__contain {
-  position: relative;
-}
-
 .meet-experts__list-item {
   padding: .25em 0;
   line-height: 1.1em;
@@ -51,6 +57,38 @@
 .meet-experts__name {
   margin-bottom: 0;
   font-size: modular-scale(2);
+}
+
+.meet-experts__nav--prev {
+  @include susy-breakpoint($scape, $g-scape) {
+    left: -.7em;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    left: -1.5em;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    left: -2.5em;
+  }
+
+  left: -.5em;
+}
+
+.meet-experts__nav--next {
+  @include susy-breakpoint($scape, $g-scape) {
+    right: -.7em;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    right: -1.5em;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    right: -2.5em;
+  }
+
+  right: -.5em;
 }
 
 .meet-experts__photo {

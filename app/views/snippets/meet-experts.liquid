@@ -4,8 +4,8 @@
   {% assign featured_librarians = contents.staff.all | shuffle | slice: 0, 3 %}
 {% endwith_scope %}
 
-<div class="meet-experts__contain">
-  <span class="spotlights__nav spotlights__nav--prev js-meet-experts-prev"><i class="fa fa-angle-left fa-inverse fa-5x"></i></span>
+<div class="carousel__contain">
+  <span class="carousel__nav carousel__nav--experts carousel__nav--prev meet-experts__nav--prev js-meet-experts-prev"><i class="fa fa-angle-left fa-3x"></i></span>
 
   <div class="meet-experts__librarians">
     {% for person in all_librarians %}
@@ -48,7 +48,7 @@
     {% endfor %}
   </div>
 
-  <span class="spotlights__nav spotlights__nav--next js-meet-experts-next"><i class="fa fa-angle-right fa-inverse fa-5x"></i></span>
+  <span class="carousel__nav carousel__nav--experts carousel__nav--next meet-experts__nav--next js-meet-experts-next"><i class="fa fa-angle-right fa-3x"></i></span>
 </div>
 
 {{ 'experts.bundle.js' | javascript_tag }}

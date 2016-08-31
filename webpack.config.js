@@ -15,8 +15,10 @@ module.exports = {
     alias: {
       jquery: "jquery/src/jquery"
     },
+    extensions: ['', '.css', '.scss', '.js', '.vue'],
     root: [
-      path.resolve('./src/js/vendor')
+      path.resolve('./src/js/vendor'),
+      path.resolve('./src/scss')
     ]
   },
   entry: {
@@ -69,12 +71,20 @@ module.exports = {
           include: path.join(__dirname, 'src')
         },
         {
-          test: /\.scss/,
+          // Special handling for main stylesheet -- extract to CSS for performance
+          // aka LibSass > Sprockets when compiling (more details in @480c1f6)
+          test: /main\.scss$/,
           // The key is to disable css-loaders's @import and url handling
           // so it leaves assets alone (fonts, images)
           // -- https://github.com/webpack/css-loader#disable-behavior
           // loader: ExtractTextPlugin.extract('style', 'css?-import,-url!sass')
           loader: ExtractTextPlugin.extract('style', 'css?-url!sass')
+        },
+        {
+          // For any other Sass file imported via Webpack
+          test: /\.scss$/,
+          exclude: path.join(__dirname, 'src/scss/main.scss'),
+          loader: 'style!css!sass'
         },
         {
           test: /\.vue$/, // a regex for matching all files that end in `.vue`
@@ -119,5 +129,8 @@ module.exports = {
     new WebpackShellPlugin({
       onBuildExit:['rm public/javascripts/main.bundle.js']
     })
-  ]
+  ],
+  sassLoader: {
+    includePaths: [path.resolve(__dirname, 'src/scss')]
+  }
 };
