@@ -50,10 +50,6 @@
 
     <div class="field">
       <label>Cornell Affiliation</label>
-      {{ session.size }}
-      {% for val in session %}
-        {{ val }}
-      {% endfor %}
 
       <select class="ui dropdown mann-form__compact" name="content[affiliation]">
         <option value="">-- Select one --</option>
@@ -70,10 +66,6 @@
 
     <div class="required field">
       <label>What type of instruction would you like?</label>
-      {{ session.size }}
-      {% for val in session %}
-        {{ val }}
-      {% endfor %}
 
       <select class="ui dropdown" name="content[type_of_instruction]">
         <option value="">-- Select one --</option>
@@ -90,10 +82,6 @@
 
     <div class="field">
       <label>Participants</label>
-      {{ session.size }}
-      {% for val in session %}
-        {{ val }}
-      {% endfor %}
 
       <select class="ui dropdown mann-form__compact" name="content[number_participants]">
         <option value="">-- Select one --</option>
