@@ -13,14 +13,14 @@
 {% endcapture %}
 
 <section class="spotlights">
-  <div class="spotlights__contain">
+  <div class="carousel__contain">
     {% comment %} Use carousel if we have multiple active spotlights {% endcomment %}
     {% if active_spotlights.size > 1 %}
-      <span class="spotlights__nav spotlights__nav--prev js-spotlights-prev"><i class="fa fa-angle-left fa-inverse fa-5x"></i></span>
+      <span class="carousel__nav carousel__nav--prev js-spotlights-prev"><i class="fa fa-angle-left fa-inverse fa-5x"></i></span>
 
       {{ spotlight_images }}
 
-      <span class="spotlights__nav spotlights__nav--next js-spotlights-next"><i class="fa fa-angle-right fa-inverse fa-5x"></i></span>
+      <span class="carousel__nav carousel__nav--next js-spotlights-next"><i class="fa fa-angle-right fa-inverse fa-5x"></i></span>
 
       {{ 'spotlights.bundle.js' | javascript_tag }}
 

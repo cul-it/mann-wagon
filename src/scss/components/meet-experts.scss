@@ -1,20 +1,23 @@
-.meet-librarians {
+@import 'helpers/mixins';
+@import 'config';
+
+@import 'components/carousel';
+
+.meet-experts {
   @include span(full);
 }
 
-.meet-librarians__all-experts {
+.meet-experts__all-experts {
   @include span(full);
 
   margin-top: 1em;
 }
 
-.meet-librarians__featured {
+.meet-experts__featured {
   @include susy-breakpoint($scape $tablet, $g-scape) {
     @include span(2 (gutter-override: 5.1em));
 
     margin-bottom: 0;
-
-    // See the temporary hack in _shame.scss
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
@@ -39,17 +42,49 @@
   }
 }
 
-.meet-librarians__list-item {
+.meet-experts__list-item {
   padding: .25em 0;
   line-height: 1.1em;
 }
 
-.meet-librarians__name {
+.meet-experts__name {
   margin-bottom: 0;
   font-size: modular-scale(2);
 }
 
-.meet-librarians__photo {
+.meet-experts__nav--prev {
+  @include susy-breakpoint($scape, $g-scape) {
+    left: -.7em;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    left: -1.5em;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    left: -2.5em;
+  }
+
+  left: -.5em;
+}
+
+.meet-experts__nav--next {
+  @include susy-breakpoint($scape, $g-scape) {
+    right: -.7em;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    right: -1.5em;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    right: -2.5em;
+  }
+
+  right: -.5em;
+}
+
+.meet-experts__photo {
   border-radius: 50%;
 
   &--placeholder {
@@ -57,22 +92,22 @@
   }
 }
 
-.meet-librarians__profile-link {
+.meet-experts__profile-link {
   display: block;
   font-weight: 700;
 }
 
-.meet-librarians__request-consultation {
+.meet-experts__request-consultation {
   margin: 1em 0 .5em;
   background: color('yellow-sea');
   font-size: modular-scale(-1);
 }
 
-.meet-librarians__subheading {
+.meet-experts__subheading {
   margin: 1em 0 0;
 }
 
-.meet-librarians__title {
+.meet-experts__title {
   display: block;
   line-height: 1em;
   color: color('aluminum');

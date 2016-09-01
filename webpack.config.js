@@ -15,13 +15,16 @@ module.exports = {
     alias: {
       jquery: "jquery/src/jquery"
     },
+    extensions: ['', '.css', '.scss', '.js', '.vue'],
     root: [
-      path.resolve('./src/js/vendor')
+      path.resolve('./src/js/vendor'),
+      path.resolve('./src/scss')
     ]
   },
   entry: {
       consultationRequest: './src/js/form-consultation-request.js',
       eventsPage: './vue/events/events-page/events-page.js',
+      experts: './src/js/experts.js',
       formSiteFeedback: './src/js/form-site-feedback.js',
       homePageEvents: './vue/events/homepage-events/homepage-events.js',
       hoursNav: './src/js/hours-nav.js',
@@ -43,7 +46,7 @@ module.exports = {
       // `loaders` is an array of loaders to use.
       loaders: [
         {
-          test: /\.css/,
+          test: /\.css$/,
           loader: 'style!css'
         },
         {
@@ -63,17 +66,25 @@ module.exports = {
           loader:'url'
         },
         {
-          test:   /\.js/,
+          test:   /\.js$/,
           loader: 'babel',
           include: path.join(__dirname, 'src')
         },
         {
-          test: /\.scss/,
+          // Special handling for main stylesheet -- extract to CSS for performance
+          // aka LibSass > Sprockets when compiling (more details in @480c1f6)
+          test: /main\.scss$/,
           // The key is to disable css-loaders's @import and url handling
           // so it leaves assets alone (fonts, images)
           // -- https://github.com/webpack/css-loader#disable-behavior
           // loader: ExtractTextPlugin.extract('style', 'css?-import,-url!sass')
           loader: ExtractTextPlugin.extract('style', 'css?-url!sass')
+        },
+        {
+          // For any other Sass file imported via Webpack
+          test: /\.scss$/,
+          exclude: path.join(__dirname, 'src/scss/main.scss'),
+          loader: 'style!css!sass'
         },
         {
           test: /\.vue$/, // a regex for matching all files that end in `.vue`
@@ -118,5 +129,8 @@ module.exports = {
     new WebpackShellPlugin({
       onBuildExit:['rm public/javascripts/main.bundle.js']
     })
-  ]
+  ],
+  sassLoader: {
+    includePaths: [path.resolve(__dirname, 'src/scss')]
+  }
 };
