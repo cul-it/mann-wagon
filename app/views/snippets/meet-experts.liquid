@@ -1,7 +1,6 @@
-{% comment %} Select 3 librarians to feature {% endcomment %}
+{% comment %} Filter librarians from all staff and randomize {% endcomment %}
 {% with_scope librarian: true %}
   {% assign all_librarians = contents.staff.all | shuffle %}
-  {% assign featured_librarians = contents.staff.all | shuffle | slice: 0, 3 %}
 {% endwith_scope %}
 
 <div class="carousel__contain">
