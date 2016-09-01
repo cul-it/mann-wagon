@@ -45,7 +45,7 @@ $('.ui.form')
         identifier  : 'content[request]',
         rules: [{
             type    : 'empty',
-            prompt  : 'Please describe the nature of your request'
+            prompt  : 'Please provide details so we can better assist you'
         }]
       }
     },

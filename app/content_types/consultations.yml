@@ -38,7 +38,7 @@ public_submission_accounts: ['nick.cappadona@cornell.edu']
 # entry_template: '<a href="{{ link }}">{{ entry._label }}</a>' # The default template
 
 # A list describing each field
-fields: 
+fields:
 - name: # The lowercase, underscored name of the field
     label: Name # Human readable name of the field
     type: string
@@ -73,7 +73,7 @@ fields:
     select_options: ['Undergraduate Student', 'Graduate Student', 'Faculty', 'Staff', 'Other']
 
 - request: # The lowercase, underscored name of the field
-    label: Nature of your request # Human readable name of the field
+    label: Research topic or assistance needed # Human readable name of the field
     type: text
     required: true
     localized: false
