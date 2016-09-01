@@ -1,0 +1,71 @@
+{% model_form 'consultations', class: 'ui form success error mann-form', success: path, error: path %}
+
+  {% comment %} Status messages from Locomotive {% endcomment %}
+  {% if consultation.errors %}
+    <div class="ui error message">
+      <div class="header">Please address the following errors</div>
+
+      <ul class="list">
+        {% for error in consultation.errors %}
+          <li>{{error[0] | capitalize}} -  {{error[1]}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% elsif consultation.errors == false %}
+    <div class="ui icon success message">
+      <i class="fa fa-thumbs-o-up icon"></i>
+
+      <div class="content">
+        <div class="header">Thank You!</div>
+        <p>You will hear from one of our librarians within 24 hours.</p>
+      </div>
+    </div>
+  {% endif %}
+
+  {% comment %} Don't display the form after successful submission {% endcomment %}
+  {% unless consultation.errors == false %}
+    <div class="required field mann-form__compact">
+      <label>Name</label>
+      <input type="text" name="content[name]" value="{{ consultations.name }}">
+    </div>
+
+    <div class="required field mann-form__compact">
+      <label>Email</label>
+      <input type="email" name="content[email]" value="{{ consultations.email }}">
+    </div>
+
+    <div class="field mann-form__compact">
+      <label>Phone</label>
+      <input type="tel" name="content[phone]" value="{{ consultations.phone }}">
+    </div>
+
+    <div class="required field mann-form__compact">
+      <label>Program, Department or Major</label>
+      <input type="text" name="content[program]" value="{{ consultations.program }}">
+    </div>
+
+    <div class="field">
+      <label>Cornell Affiliation</label>
+      {{ session.size }}
+      {% for val in session %}
+        {{ val }}
+      {% endfor %}
+
+      <select class="ui dropdown mann-form__compact" name="content[affiliation]">
+        <option value="">-- Select one --</option>
+        {% for affiliation in contents.consultations.affiliation_options %}
+          <option value="{{ affiliation }}" {% if consultations.affiliation == affiliation %} selected {% endif %}>{{ affiliation }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="required field">
+      <label>Nature of your request</label>
+      <textarea name="content[request]" rows="4">{{ consultations.request }}</textarea>
+    </div>
+
+    <button class="ui button" type="submit">Send it our way</button>
+  {% endunless %}
+{% endmodel_form %}
+
+{{ 'consultationRequest.bundle.js' | javascript_tag }}
