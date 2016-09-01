@@ -26,6 +26,50 @@ $below-content: 1;
 $content: 2;
 $above-content: 3;
 
+// Breakpoints
+$scape: 30em; // 480px
+$tablet: 45em; // 720px
+$lapdesk: 56em; // 896px
+$allout: 69em; // 1104px
+
+// Set Susy contexts for breakpoints
+$g-scape: (
+  columns: 6,
+);
+
+$g-tablet: (
+  columns: 8,
+);
+
+$g-lapdesk: (
+  columns: 12,
+);
+
+$g-allout: (
+  columns: 12,
+);
+
+// Layouts
+$susy: (
+  columns: 4 2 2 4,
+  gutters: .15,
+  gutter-position: split,
+  global-box-sizing: border-box,
+  debug: ( // Uncomment these to render grid visualization:
+    // image: show,
+    color: rgba(#ff851b, .25),
+    // output: overlay,
+  )
+);
+
+// Alignment for header content with padded content at larger breakpoints
+$pad-content-tablet: 5.4%;
+$pad-content-lapdesk: 8%;
+
+// Megamenu joins the party as well
+$pad-megamenu-tablet: 5.8%;
+$pad-megamenu-lapdesk: 10.4%;
+
 // Colors variable via accoutrement-color
 // Names via Name That Color
 // -- http://chir.ag/projects/name-that-color
