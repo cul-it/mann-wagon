@@ -124,7 +124,7 @@ fields:
 
 - date_third: # The lowercase, underscored name of the field
     label: Third (date) preference # Human readable name of the field
-    type: string
+    type: date
     required: false
     localized: false
 
