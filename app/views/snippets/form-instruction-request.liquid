@@ -77,7 +77,11 @@
 
     <div class="field">
       <div class="ui toggle checkbox">
-        <input type="checkbox" name="content[research_guide]">
+        {% comment %}
+          Need to set value to 1, otherwise Locomotive will submit 'on' when checked
+          -- https://github.com/locomotivecms/engine/issues/399
+        {% endcomment %}
+        <input type="checkbox" name="content[research_guide]" value="1">
         <label>Interested in creation of an online research guide?</label>
       </div>
     </div>
