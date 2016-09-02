@@ -68,12 +68,20 @@ fields:
     localized: false
     select_options: ['Undergraduate Student', 'Graduate Student', 'Faculty', 'Staff', 'Other']
 
-- type_of_instruction: # The lowercase, underscored name of the field
-    label: Type of instruction # Human readable name of the field
+- instruction_types_managed_list: # The lowercase, underscored name of the field
+    label: Manage instruction types # Human readable name of the field
     type: select
-    required: true
+    required: false
+    hint: DON'T select values! Just use EDIT OPTIONS link to manage the options presented to users
     localized: false    # if localized, use
     select_options: ['Class-related session', 'Workshop', 'Library assignment', 'Special instruction (for Cornell Cooperative Extension, emeriti, high school outreach, etc.)', 'Tour and/or Orientation', 'Consultation']
+
+- instruction_types: # The lowercase, underscored name of the field
+    label: Requested instruction types # Human readable name of the field
+    type: tags
+    required: true
+    hint: This field records the intstruction types selected by the user when submitting a request
+    localized: false    # if localized, use
 
 - research_guide: # The lowercase, underscored name of the field
     label: Research Guide? # Human readable name of the field

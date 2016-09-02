@@ -68,17 +68,16 @@
       <label>What type of instruction would you like?</label>
 
       {% comment %}
-        Need to append brackets to element name here so that value is sent as an array for multiple select
-        -- problem is that select field type in locomotive does not support multiple values
-        -- commenting the name change out for now; otherwise would not be able to submit form
-        -- so although the UI allows for multiple selections, only the first one is being stored
-        -- leaving as is for now so we can discuss as a team
+        Please note: Two unusual/special cases for instruction types
+        -- 1. Need to append brackets to element name here so that value is sent as an array for multiple select
+        -- 2. Since the select field type in locomotive does not support multiple values, we're using two fields:
+              * `instruction_types_managed_list` field (field type: select) to manage the options
+              * `insruction_types` field (field type: tags) to store the user selected and submitted values
       {% endcomment %}
-      {% comment %}<select class="ui dropdown selection" name="content[type_of_instruction][]" multiple="">{% endcomment %}
-      <select class="ui dropdown selection" name="content[type_of_instruction]" multiple="">
+      <select class="ui dropdown selection" name="content[instruction_types][]" multiple="" data-validate="content[instruction_types]">
         <option value="">-- Select one or more --</option>
-        {% for type_of_instruction in contents.instruction_requests.type_of_instruction_options %}
-          <option value="{{ type_of_instruction }}" {% if instruction_requests.type_of_instruction == type_of_instruction %} selected {% endif %}>{{ type_of_instruction }}</option>
+        {% for type in contents.instruction_requests.instruction_types_managed_list_options %}
+          <option value="{{ type }}" {% if instruction_request.instruction_types contains type %} selected {% endif %}>{{ type }}</option>
         {% endfor %}
       </select>
     </div>
