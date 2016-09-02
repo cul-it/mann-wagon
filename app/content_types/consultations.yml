@@ -48,7 +48,7 @@ fields:
 - email: # The lowercase, underscored name of the field
     label: Email # Human readable name of the field
     type: string
-    required: false
+    required: true
     localized: false
 
 - phone: # The lowercase, underscored name of the field
