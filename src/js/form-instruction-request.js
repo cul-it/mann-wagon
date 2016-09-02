@@ -4,6 +4,8 @@
 import 'semantic-ui-calendar/calendar.min.js';
 import 'semantic-ui-calendar/calendar.min.css';
 
+import 'semantic-ui-css/components/checkbox.min.css';
+import 'semantic-ui-css/components/checkbox.min.js';
 import 'semantic-ui-css/components/dropdown.min.css';
 import 'semantic-ui-css/components/dropdown.min.js';
 import 'semantic-ui-css/components/form.min.css';
@@ -17,6 +19,10 @@ import 'semantic-ui-css/components/transition.min.js';
 $('.date-selector').calendar({
   type: 'date'
 });
+
+$('.ui.checkbox')
+  .checkbox()
+;
 
 // FEW ITEMS TO NOTE
 // i see nick's comment on the feedback form that he doesn't like this for mobile

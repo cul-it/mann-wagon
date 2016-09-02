@@ -5,7 +5,7 @@ name: Instruction requests
 slug: instruction_requests
 
 # Explanatory text displayed in the back-office
-description: Instruction requested via website 
+description: Instruction requested via website
 
 # Slug of field used to identify entries by default, such as the title
 label_field_name: name
@@ -36,7 +36,7 @@ public_submission_accounts: ['nick.cappadona@cornell.edu']
 # entry_template: '<a href="{{ link }}">{{ entry._label }}</a>' # The default template
 
 # A list describing each field
-fields: 
+fields:
 - name: # The lowercase, underscored name of the field
     label: Name # Human readable name of the field
     type: string
@@ -73,7 +73,13 @@ fields:
     type: select
     required: true
     localized: false    # if localized, use
-    select_options: ['Class-related session', 'Workshop', 'Course web page', 'Library assignment', 'Special instruction (for Cornell Cooperative Extension, emeriti, high school outreach, etc.)', 'Tour and/or Orientation', 'Consultation']
+    select_options: ['Class-related session', 'Workshop', 'Library assignment', 'Special instruction (for Cornell Cooperative Extension, emeriti, high school outreach, etc.)', 'Tour and/or Orientation', 'Consultation']
+
+- research_guide: # The lowercase, underscored name of the field
+    label: Research Guide? # Human readable name of the field
+    type: boolean
+    required: false
+    localized: false
 
 - course_info: # The lowercase, underscored name of the field
     label: Course info # Human readable name of the field
