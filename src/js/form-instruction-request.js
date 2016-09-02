@@ -4,6 +4,8 @@
 import 'semantic-ui-calendar/calendar.min.js';
 import 'semantic-ui-calendar/calendar.min.css';
 
+import 'semantic-ui-css/components/checkbox.min.css';
+import 'semantic-ui-css/components/checkbox.min.js';
 import 'semantic-ui-css/components/dropdown.min.css';
 import 'semantic-ui-css/components/dropdown.min.js';
 import 'semantic-ui-css/components/form.min.css';
@@ -17,6 +19,10 @@ import 'semantic-ui-css/components/transition.min.js';
 $('.date-selector').calendar({
   type: 'date'
 });
+
+$('.ui.checkbox')
+  .checkbox()
+;
 
 // FEW ITEMS TO NOTE
 // i see nick's comment on the feedback form that he doesn't like this for mobile
@@ -55,10 +61,11 @@ $('.ui.form')
             prompt : 'Please enter a valid phone number'
         }]
       },
-      // for some reason on the "on blur" event doesn't seem to trigger this validation rule
+      // for some reason the "on blur" event doesn't seem to trigger this validation rule
       // only working on form submit
-      type_of_instruction: {
-        identifier  : 'content[type_of_instruction]',
+      // -- nac26 2016-09-02: this is a side-effect of using SUI's dropdown component
+      instruction_types: {
+        identifier  : 'content[instruction_types]', // Target data-validate attrib; SUI choked on trailing `[]` in field name
         rules: [{
             type    : 'empty',
             prompt  : 'Please select at least one type of instruction'

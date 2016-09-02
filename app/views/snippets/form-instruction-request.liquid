@@ -67,12 +67,30 @@
     <div class="required field">
       <label>What type of instruction would you like?</label>
 
-      <select class="ui dropdown" name="content[type_of_instruction]">
-        <option value="">-- Select one --</option>
-        {% for type_of_instruction in contents.instruction_requests.type_of_instruction_options %}
-          <option value="{{ type_of_instruction }}" {% if instruction_requests.type_of_instruction == type_of_instruction %} selected {% endif %}>{{ type_of_instruction }}</option>
+      {% comment %}
+        Please note: Two unusual/special cases for instruction types
+        -- 1. Need to append brackets to element name here so that value is sent as an array for multiple select
+        -- 2. Since the select field type in locomotive does not support multiple values, we're using two fields:
+              * `instruction_types_managed_list` field (field type: select) to manage the options
+              * `insruction_types` field (field type: tags) to store the user selected and submitted values
+      {% endcomment %}
+      <select class="ui dropdown selection" name="content[instruction_types][]" multiple="" data-validate="content[instruction_types]">
+        <option value="">-- Select one or more --</option>
+        {% for type in contents.instruction_requests.instruction_types_managed_list_options %}
+          <option value="{{ type }}" {% if instruction_request.instruction_types contains type %} selected {% endif %}>{{ type }}</option>
         {% endfor %}
       </select>
+    </div>
+
+    <div class="field">
+      <div class="ui toggle checkbox">
+        {% comment %}
+          Need to set value to 1, otherwise Locomotive will submit 'on' when checked
+          -- https://github.com/locomotivecms/engine/issues/399
+        {% endcomment %}
+        <input type="checkbox" name="content[research_guide]" value="1">
+        <label>Interested in creation of an online research guide?</label>
+      </div>
     </div>
 
     <div class="field">
@@ -131,7 +149,7 @@
       <textarea name="content[additional_info]" rows="4">{{ instruction_requests.additional_info }}</textarea>
     </div>
 
-    <button class="ui button" type="submit">Send it our way</button>
+    <button class="ui button" type="submit">Submit your request</button>
   {% endunless %}
 {% endmodel_form %}
 
