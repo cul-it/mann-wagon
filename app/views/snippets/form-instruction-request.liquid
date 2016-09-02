@@ -67,8 +67,16 @@
     <div class="required field">
       <label>What type of instruction would you like?</label>
 
-      <select class="ui dropdown" name="content[type_of_instruction]">
-        <option value="">-- Select one --</option>
+      {% comment %}
+        Need to append brackets to element name here so that value is sent as an array for multiple select
+        -- problem is that select field type in locomotive does not support multiple values
+        -- commenting the name change out for now; otherwise would not be able to submit form
+        -- so although the UI allows for multiple selections, only the first one is being stored
+        -- leaving as is for now so we can discuss as a team
+      {% endcomment %}
+      {% comment %}<select class="ui dropdown selection" name="content[type_of_instruction][]" multiple="">{% endcomment %}
+      <select class="ui dropdown selection" name="content[type_of_instruction]" multiple="">
+        <option value="">-- Select one or more --</option>
         {% for type_of_instruction in contents.instruction_requests.type_of_instruction_options %}
           <option value="{{ type_of_instruction }}" {% if instruction_requests.type_of_instruction == type_of_instruction %} selected {% endif %}>{{ type_of_instruction }}</option>
         {% endfor %}
