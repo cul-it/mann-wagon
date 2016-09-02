@@ -130,34 +130,55 @@
 		</ul>
 	</div>
 
-	<!-- <div v-if="singleEvent" v-show="showNoEventsMessage">
-		loading...
-	</div> -->
-</div>
+	<div class="ui fullscreen modal" v-show="!showNoEventsMessage" v-if="singleEvent">
+		<i class="close fa fa-times"></i>
+		<div class="header">
+			(((event.event_title)))
+		</div>
 
-<div class="ui fullscreen modal" v-show="!showNoEventsMessage" v-if="singleEvent">
-	<i class="close fa fa-times"></i>
-	<div class="header">
-		(((event.event_title)))
-	</div>
+		<div class="content">
+			<h2 class="events__date-heading">
+				((event.event_start_time | momentDate))
+				<span class="events__date badge badge-alert" v-if="event.event_start_time | momentDateText">
+					((event.event_start_time | momentDateText))
+				</span>
+			</h2>
 
-	<div class="content">
-		<h2 class="events__date-heading">
-			((event.event_start_time | momentDate))
-			<span class="events__date badge badge-alert" v-if="event.event_start_time | momentDateText">
-				((event.event_start_time | momentDateText))
-			</span>
-		</h2>
+			<div class="event__details">
 
-		<div class="event__details">
+				<span class="location pull-right">
+					<i class="fa fa-map-marker"></i>
+					((event.event_room_name))
+				</span>
 
-			<span class="location pull-right">
-				<i class="fa fa-map-marker"></i>
-				((event.event_room_name))
-			</span>
+				<div class="ui accordion" v-if="event.event_has_additional_times">
+					<div class="title">
+						<span class="time" v-if="event.event_end_time">
+							<i class="fa fa-clock-o"></i>
+								((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))
+						</span>
 
-			<div class="ui accordion" v-if="event.event_has_additional_times">
-				<div class="title">
+						<span class="time" v-else="">
+							<i class="fa fa-clock-o"></i>
+							((event.event_start_time | momentTime ))
+						</span>
+						&rarr; More Dates through (( event.event_additional_times[event.event_has_additional_times-1][0] | momentDate ))
+						<i class="dropdown icon"></i>
+					</div>
+						<div class="content" v-if="event.event_end_time">
+							<p v-for="additional_time of event.event_additional_times">
+								((additional_time[0] | momentDate)), ((additional_time[0] | momentTime)) - ((additional_time[1] | momentTime))
+							</p>
+						</div>
+						<div class="content" v-else="">
+							<p v-for="additional_time of event.event_additional_times">
+								((additional_time[0] | momentDate)), ((additional_time[0] | momentTime))
+							</p>
+						</div>
+				</div>
+
+				<div class="" v-else="">
+
 					<span class="time" v-if="event.event_end_time">
 						<i class="fa fa-clock-o"></i>
 							((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))
@@ -167,45 +188,20 @@
 						<i class="fa fa-clock-o"></i>
 						((event.event_start_time | momentTime ))
 					</span>
-					&rarr; More Dates through (( event.event_additional_times[event.event_has_additional_times-1][0] | momentDate ))
-					<i class="dropdown icon"></i>
+
 				</div>
-					<div class="content" v-if="event.event_end_time">
-						<p v-for="additional_time of event.event_additional_times">
-							((additional_time[0] | momentDate)), ((additional_time[0] | momentTime)) - ((additional_time[1] | momentTime))
-						</p>
-					</div>
-					<div class="content" v-else="">
-						<p v-for="additional_time of event.event_additional_times">
-							((additional_time[0] | momentDate)), ((additional_time[0] | momentTime))
-						</p>
-					</div>
-			</div>
-
-			<div class="" v-else="">
-
-				<span class="time" v-if="event.event_end_time">
-					<i class="fa fa-clock-o"></i>
-						((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))
-				</span>
-
-				<span class="time" v-else="">
-					<i class="fa fa-clock-o"></i>
-					((event.event_start_time | momentTime ))
-				</span>
 
 			</div>
+
+			<p class="description" >
+				(((event.event_description)))
+			</p>
+
+			<span class="event__type badge-notice" v-for="type in event.event_type">
+				((type))
+			</span>
 
 		</div>
 
-		<p class="description" >
-			(((event.event_description)))
-		</p>
-
-		<span class="event__type badge-notice" v-for="type in event.event_type">
-			((type))
-		</span>
-
 	</div>
-
 </div>

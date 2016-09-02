@@ -2,6 +2,7 @@
 import $ from 'jquery'
 var _ = require('lodash')
 var moment = require('moment')
+
 import 'semantic-ui-css/components/dimmer.min.js'
 import 'semantic-ui-css/components/dimmer.min.css'
 import 'semantic-ui-css/components/modal.min.js'
@@ -20,15 +21,16 @@ export default {
   },
   data () {
     return {
+      eventSources: {
+        cornellEvents: [],
+        cornellEventTypes: [],
+        cornellRoomNames: [],
+
+        libcalEvents: [],
+        libcalEventTypes: [],
+        libcalRoomNames: []
+      },
     // Arrays for event info
-      cornellEvents: [],
-      cornellEventTypes: [],
-      cornellRoomNames: [],
-
-      libcalEvents: [],
-      libcalEventTypes: [],
-      libcalRoomNames: [],
-
       allEvents: [],
       allEventTypes: [],
       allRoomNames: [],
@@ -67,6 +69,16 @@ export default {
       params: '',
       eventsList: false,
       singleEvent: false
+    }
+  },
+  watch: {
+    eventSources: {
+      handler: function (events) {
+        if (events.cornellEvents.length > 0 && events.libcalEvents.length > 0) {
+          this.getAllEvents()
+        }
+      },
+      deep: true
     }
   },
   // Anything within the ready function will run when the application loads
@@ -320,9 +332,9 @@ export default {
         roomNames.push(value.room_number)
       })
       // set array values to be used later to merge
-      this.$set('cornellEventTypes', eventTypes)
-      this.$set('cornellRoomNames', roomNames)
-      this.$set('cornellEvents', cornellEvents)
+      this.$set('eventSources.cornellEventTypes', eventTypes)
+      this.$set('eventSources.cornellRoomNames', roomNames)
+      this.$set('eventSources.cornellEvents', cornellEvents)
     },
     // Custom data model from libcal room bookings
     libcalReservationsArray (data) {
@@ -337,7 +349,7 @@ export default {
         var events = {}
         // If same event based on title and time comparison
         if (libcalEvents.length && libcalEvents[counter - 1].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 1].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
-          libcalEvents[counter-1].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
+          libcalEvents[counter - 1].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
         } else {
           events['event_id'] = value.eventId
           events['event_title'] = value.description.match('Event Name: (.*)')[1]
@@ -358,13 +370,14 @@ export default {
         }
       })
       // Set array values to be used later to merge
-      this.$set('libcalEventTypes', eventTypes)
-      this.$set('libcalRoomNames', roomNames)
-      this.$set('libcalEvents', libcalEvents)
-      // Use lodash to combine the arrays and set
-      this.$set('allEvents', (_.concat(this.cornellEvents, this.libcalEvents)))
-      this.$set('allEventTypes', (_.union(this.cornellEventTypes, this.libcalEventTypes)))
-      this.$set('allRoomNames', (_.union(this.cornellRoomNames, this.libcalRoomNames)))
+      this.$set('eventSources.libcalEventTypes', eventTypes)
+      this.$set('eventSources.libcalRoomNames', roomNames)
+      this.$set('eventSources.libcalEvents', libcalEvents)
+    },
+    getAllEvents () {
+      this.$set('allEvents', (_.concat(this.eventSources.cornellEvents, this.eventSources.libcalEvents)))
+      this.$set('allEventTypes', (_.union(this.eventSources.cornellEventTypes, this.eventSources.libcalEventTypes)))
+      this.$set('allRoomNames', (_.union(this.eventSources.cornellRoomNames, this.eventSources.libcalRoomNames)))
       this.loadMoreDisplay(this.allEvents)
       this.$set('showNoEventsMessage', false)
       this.$set('filteredEvents', this.allEvents)
