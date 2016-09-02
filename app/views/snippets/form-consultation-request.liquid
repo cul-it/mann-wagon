@@ -26,22 +26,22 @@
   {% unless consultation.errors == false %}
     <div class="required field mann-form__compact">
       <label>Name</label>
-      <input type="text" name="content[name]" value="{{ consultations.name }}">
+      <input type="text" name="content[name]" value="{{ consultation.name }}">
     </div>
 
     <div class="required field mann-form__compact">
       <label>Email</label>
-      <input type="email" name="content[email]" value="{{ consultations.email }}">
+      <input type="email" name="content[email]" value="{{ consultation.email }}">
     </div>
 
     <div class="field mann-form__compact">
       <label>Phone</label>
-      <input type="tel" name="content[phone]" value="{{ consultations.phone }}">
+      <input type="tel" name="content[phone]" value="{{ consultation.phone }}">
     </div>
 
     <div class="required field mann-form__compact">
       <label>Program, Department or Major</label>
-      <input type="text" name="content[program]" value="{{ consultations.program }}">
+      <input type="text" name="content[program]" value="{{ consultation.program }}">
     </div>
 
     <div class="field">
@@ -50,14 +50,14 @@
       <select class="ui dropdown mann-form__compact" name="content[affiliation]">
         <option value="">-- Select one --</option>
         {% for affiliation in contents.consultations.affiliation_options %}
-          <option value="{{ affiliation }}" {% if consultations.affiliation == affiliation %} selected {% endif %}>{{ affiliation }}</option>
+          <option value="{{ affiliation }}" {% if consultation.affiliation == affiliation %} selected {% endif %}>{{ affiliation }}</option>
         {% endfor %}
       </select>
     </div>
 
     <div class="required field">
       <label>Please describe your research topic or the assistance you need</label>
-      <textarea name="content[request]" rows="4">{{ consultations.request }}</textarea>
+      <textarea name="content[request]" rows="4">{{ consultation.request }}</textarea>
     </div>
 
     <button class="ui button" type="submit">Submit your request</button>
