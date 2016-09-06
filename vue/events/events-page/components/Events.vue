@@ -241,7 +241,7 @@ export default {
                 // Can't get single event from json data due to 30 minute slots,
                 // instead populate libcalEvents with merged events and filter on that
                 this.libcalReservationsArray(libcalReservations)
-                var filteredLibcalReservation = _.filter(this.libcalEvents, function (libcalEvent) {
+                var filteredLibcalReservation = _.filter(this.eventSources.libcalEvents, function (libcalEvent) {
                   return libcalEvent.event_id === param
                 })
                 this.eventArray('Libcal', filteredLibcalReservation[0])
