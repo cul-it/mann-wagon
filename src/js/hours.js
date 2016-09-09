@@ -2,7 +2,7 @@ import 'semantic-ui-css/components/transition.min.js';
 import 'semantic-ui-css/components/transition.min.css';
 import 'pages/hours';
 
-var hoursNav = {
+var hours = {
   onLoad: function() {
     this.bindEventListeners();
     this.currentWeek = 0;
@@ -11,15 +11,15 @@ var hoursNav = {
 
   bindEventListeners: function() {
     $('.js-hours-next').on('click', function() {
-      hoursNav.gotoView(view, 'next');
+      hours.gotoView(view, 'next');
     });
 
     $('.js-hours-prev').on('click', function() {
-      hoursNav.gotoView(view, 'prev');
+      hours.gotoView(view, 'prev');
     });
 
     $('.js-hours-today').on('click', function() {
-      hoursNav.gotoView(view, 'first');
+      hours.gotoView(view, 'first');
     });
 
     var view = 'week';
@@ -30,7 +30,7 @@ var hoursNav = {
       $("#libcal-weekly-hours").transition('show');
       $("#libcal-monthly-hours").transition('hide');
       view = 'week';
-      hoursNav.gotoView(view, 'first');
+      hours.gotoView(view, 'first');
     });
 
     $('.js-hours-month').on('click', function() {
@@ -38,7 +38,7 @@ var hoursNav = {
       $('#libcal-monthly-hours').transition('show');
       $('.js-hours-week').removeClass('active');
       view = 'month';
-      hoursNav.gotoView(view, 'first');
+      hours.gotoView(view, 'first');
     });
 
   },
@@ -47,42 +47,42 @@ var hoursNav = {
     if (view == 'week') {
       switch (week) {
         case 'next':
-          var requestedWeek = hoursNav.currentWeek + 1;
+          var requestedWeek = hours.currentWeek + 1;
           break;
         case 'prev':
-          var requestedWeek = hoursNav.currentWeek - 1;
+          var requestedWeek = hours.currentWeek - 1;
           break;
         case 'first':
           var requestedWeek = 0;
           break;
       }
       // Hide current & display requested week
-      $('.hours-weekly').eq(hoursNav.currentWeek).transition('toggle');
+      $('.hours-weekly').eq(hours.currentWeek).transition('toggle');
       $('.hours-weekly').eq(requestedWeek).transition('toggle');
       // Update tracking of current week accordingly
-      hoursNav.currentWeek = requestedWeek;
+      hours.currentWeek = requestedWeek;
       // Enable/disable appropriate buttons
-      hoursNav.housekeeping(view, hoursNav.currentWeek);
+      hours.housekeeping(view, hours.currentWeek);
 
     }
     if (view == 'month') {
       switch (week) {
         case 'next':
-          var requestedMonth = hoursNav.currentMonth + 1;
+          var requestedMonth = hours.currentMonth + 1;
           break;
         case 'prev':
-          var requestedMonth = hoursNav.currentMonth - 1;
+          var requestedMonth = hours.currentMonth - 1;
           break;
         case 'first':
           var requestedMonth = 0;
           break;
       }
-      $('.s-lc-mhw-c').eq(hoursNav.currentMonth).transition('toggle');
+      $('.s-lc-mhw-c').eq(hours.currentMonth).transition('toggle');
       $('.s-lc-mhw-c').eq(requestedMonth).transition('toggle');
       // Update tracking of current week accordingly
-      hoursNav.currentMonth = requestedMonth;
+      hours.currentMonth = requestedMonth;
       // Enable/disable appropriate buttons
-      hoursNav.housekeeping(view, hoursNav.currentMonth);
+      hours.housekeeping(view, hours.currentMonth);
     }
   },
 
@@ -116,7 +116,7 @@ var hoursNav = {
 }
 
 $(document).ready(function() {
-  hoursNav.onLoad();
+  hours.onLoad();
 });
 
 // Libcal Monthly hours widget
