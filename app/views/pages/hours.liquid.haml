@@ -7,8 +7,6 @@ listed: false
 {% extends layouts/default %}
 
 {% block 'main' %}
-{{ 'hoursNav.bundle.js' | javascript_tag }}
-{{ '//api3.libcal.com/js/hours_month.js?002' | javascript_tag }}
 
 .hours-weekly__nav.ui.tiny.buttons
   %button.ui.button.disabled.js-hours-prev
@@ -50,5 +48,8 @@ listed: false
     {% endfor %}
 
   {% endfor %}
+
+{{ 'hours.bundle.js' | javascript_tag }}
+{{ '//api3.libcal.com/js/hours_month.js?002' | javascript_tag }}
 
 {% endblock %}

@@ -1,5 +1,6 @@
 import 'semantic-ui-css/components/transition.min.js';
 import 'semantic-ui-css/components/transition.min.css';
+import 'pages/hours';
 
 var hoursNav = {
   onLoad: function() {

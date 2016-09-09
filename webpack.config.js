@@ -27,7 +27,7 @@ module.exports = {
       experts: './src/js/experts.js',
       formSiteFeedback: './src/js/form-site-feedback.js',
       homePageEvents: './vue/events/homepage-events/homepage-events.js',
-      hoursNav: './src/js/hours-nav.js',
+      hours: './src/js/hours.js',
       instructionRequest: './src/js/form-instruction-request.js',
       main: './src/scss/main.scss',
       modalLibcal: './src/js/modal-libcal.js',

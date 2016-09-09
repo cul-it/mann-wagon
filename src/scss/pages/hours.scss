@@ -1,3 +1,6 @@
+@import 'helpers/mixins';
+@import 'config';
+
 .hours-weekly {
   @include susy-breakpoint($scape, $g-scape) {
     font-size: modular-scale(-1);
