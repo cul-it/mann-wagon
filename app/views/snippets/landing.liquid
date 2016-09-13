@@ -3,7 +3,7 @@
 
 <div class="landing">
   {% for child in page.children %}
-    {% if child.listed? %}
+    {% if child.listed? and child.published? %}
       <div class="landing__section">
         {% comment %} @todo: Editable file always returns NIL when hosting site on engine -- working with Didier {% endcomment %}
         <img src="{{ child.editable_elements.main.section_photo | default: 'placeholder.jpg' | theme_image_url }}" alt="Section photo">
