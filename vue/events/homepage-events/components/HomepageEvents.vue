@@ -167,7 +167,9 @@ export default {
         Promise.all([promise[704], promise[705]]).then((values) => {
           _.each(values, function (value, index) {
             parseString(value.data, function (error, result) {
-              r25Events[index] = result['r25:space_reservations']['r25:space_reservation']
+              if (result['r25:space_reservations']['r25:space_reservation']) {
+                r25Events[index] = result['r25:space_reservations']['r25:space_reservation']
+              }
             })
           })
           this.r25EventsArray(_.flattenDeep(r25Events))

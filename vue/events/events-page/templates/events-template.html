@@ -72,8 +72,8 @@
       <a class="fa fa-times" v-if="dateSelected" v-on:click="removeSelectedDate()"></a>
 		</div>
 
-    <a data-filter=".event" v-on:click="clearAllFilters()">
-      <button class="ui basic button">
+    <a data-filter=".event" v-show="roomSelected || eventSelected || dateSelected" v-on:click="clearAllFilters()">
+      <button class="ui button">
         <i class="fa fa-times"></i>
         Clear All Filters
       </button>
@@ -87,7 +87,7 @@
     <!-- <a class="fa fa-times" v-if="searchText" v-on:click="removeSearchFilter()"></a> -->
 
 		<h6 class="events-filters__type">
-      Type
+      By type
     </h6>
 
 		<ul data-filter-group="type">
@@ -101,7 +101,7 @@
 		</ul>
 
 		<h6 class="events-filters__type">
-      Space/Room
+      By location
     </h6>
 
 		<ul data-filter-group="venue">
