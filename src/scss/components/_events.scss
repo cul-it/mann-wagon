@@ -1,10 +1,10 @@
 .events {
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(5);
+    @include span(5 nest);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(8);
+    @include span(8 nest);
   }
 }
 
@@ -52,11 +52,13 @@
   @include susy-breakpoint($tablet, $g-tablet) {
     @include span(3);
 
-    padding-left: 1.5em;
+    padding-left: 3.5em;
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     @include span(4);
+
+    padding-left: 5.5em;
   }
 }
 
