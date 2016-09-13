@@ -29,6 +29,8 @@ var hours = {
     $('.js-hours-week').on('click', function() {
       $("#libcal-weekly-hours").transition('show');
       $("#libcal-monthly-hours").transition('hide');
+      $(this).addClass('active');
+      $('.js-hours-month').removeClass('active');
       view = 'week';
       hours.gotoView(view, 'first');
     });
@@ -36,6 +38,7 @@ var hours = {
     $('.js-hours-month').on('click', function() {
       $("#libcal-weekly-hours").transition('hide');
       $('#libcal-monthly-hours').transition('show');
+      $(this).addClass('active');
       $('.js-hours-week').removeClass('active');
       view = 'month';
       hours.gotoView(view, 'first');
