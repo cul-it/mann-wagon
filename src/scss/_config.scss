@@ -135,9 +135,11 @@ $colors: (
   // Hours
   'closed': 'error',
   'open': 'success',
-  'today-in-the-week': 'blond',
+  'today': 'blond',
   'weekly-location': 'white',
   'weekly-location-bg': 'vulcan',
+  'monthly-building': 'notice',
+  'monthly-lobby': 'monthly-building' ('tint': 75%)
 );
 
 // Font Colors
