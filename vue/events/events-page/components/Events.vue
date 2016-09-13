@@ -11,6 +11,7 @@ import 'semantic-ui-css/components/transition.min.js'
 import 'semantic-ui-css/components/transition.min.css'
 import 'semantic-ui-css/components/accordion.min.js'
 import 'semantic-ui-css/components/accordion.min.css'
+
 import Description from './Description.vue'
 
 export default {
@@ -19,18 +20,27 @@ export default {
   components: {
     Description
   },
+  props: ['r25-webservice-authorization', 'default-number-of-days'],
   data () {
     return {
       eventSources: {
-        cornellEvents: [],
-        cornellEventTypes: [],
-        cornellRoomNames: [],
-
-        libcalEvents: [],
-        libcalEventTypes: [],
-        libcalRoomNames: []
+        updatedCornellEvents: false,
+        updatedLibcalEvents: false,
+        updatedR25Events: false
       },
     // Arrays for event info
+      cornellEvents: [],
+      cornellEventTypes: [],
+      cornellRoomNames: [],
+
+      libcalEvents: [],
+      libcalEventTypes: [],
+      libcalRoomNames: [],
+
+      r25Events: [],
+      r25EventTypes: [],
+      r25RoomNames: [],
+
       allEvents: [],
       allEventTypes: [],
       allRoomNames: [],
@@ -72,10 +82,19 @@ export default {
     }
   },
   watch: {
-    eventSources: {
+    'cornellEvents': function () {
+      this.$set('eventSources.updatedCornellEvents', true)
+    },
+    'libcalEvents': function () {
+      this.$set('eventSources.updatedLibcalEvents', true)
+    },
+    'r25Events': function () {
+      this.$set('eventSources.updatedR25Events', true)
+    },
+    'eventSources': {
       handler: function (events) {
-        if (events.cornellEvents.length > 0 && events.libcalEvents.length > 0) {
-          this.getAllEvents()
+        if (events.updatedCornellEvents && events.updatedLibcalEvents && events.updatedR25Events) {
+            this.getAllEvents()
         }
       },
       deep: true
@@ -94,8 +113,10 @@ export default {
       this.$set('params', unescape(this.query[1]))
     }
     if (this.query[0] === 'eventId') {
-      if (this.params.match(/[a-z]/i)) {
+      if (this.params.match('LibCal(.*)')) {
         this.getMannServicesEvents('event', this.params)
+      } else if (this.params.match('R25(.*)')){
+        this.getR25Events('event', this.params.replace('R25-', ''))
       } else {
         this.getCornellEvent()
       }
@@ -113,6 +134,7 @@ export default {
     // When the application loads, call methods
     this.getCornellEvents('default')
     this.getMannServicesEvents('default')
+    this.getR25Events('default')
     // events list
     this.$set('eventsList', true)
   },
@@ -185,10 +207,11 @@ export default {
   methods: {
     // Cornell localist events
     getCornellEvents (option, date) {
+      this.eventSources.updatedCornellEvents = false
       var localistApiBaseUrl = 'http://events.cornell.edu/api/2/events/?type=4228&pp=100'
       // Get default events
       if (option === 'default') {
-        this.$http.get(localistApiBaseUrl + '&days=28').then(function (response) {
+        this.$http.get(localistApiBaseUrl + '&days=' + this.defaultNumberOfDays).then(function (response) {
           // Create custom data model
           this.cornellEventsArray(response.data.events)
         })
@@ -201,6 +224,7 @@ export default {
       }
     },
     getMannServicesEvents (option, param) {
+      this.eventSources.updatedLibcalEvents = false
       var mannservicesEventsUrl = 'http://mannservices.mannlib.cornell.edu/LibServices/showEventsById.do?output=json&id='
       var roomIds = [23, 24, 25, 26]
       var vueInstance = this
@@ -220,16 +244,20 @@ export default {
               // remove email from eventId for use as url parameter for single event display
               libcalReservation.eventId = libcalReservation.eventId.split('-', 3).join('-')
             })
-            // Create custom model, call methods only on lass loop
+            // Create custom model, call methods only on last loop
             if (index === (roomIds.length - 1)) {
               if (option === 'default') {
                 // All reservations
                 // Filter out past reservations
                 var today = moment().startOf('day').format()
+                var end_date = moment(today).add(this.defaultNumberOfDays, 'days').format()
                 var currentReservations = _.filter(libcalReservations, function (libcalReservation) {
                   return moment(new Date(libcalReservation.formattedStartDateTime)).format() >= today
                 })
-                this.libcalReservationsArray(currentReservations)
+                var defaultReservations = _.filter(currentReservations, function (currentReservation) {
+                  return moment(new Date(currentReservation.formattedStartDateTime)).format() <= end_date
+                })
+                this.libcalReservationsArray(defaultReservations)
               } else if (option === 'date') {
                 // Reservations on a date
                 var filteredLibcalReservations = _.filter(libcalReservations, function (libcalReservation) {
@@ -241,7 +269,7 @@ export default {
                 // Can't get single event from json data due to 30 minute slots,
                 // instead populate libcalEvents with merged events and filter on that
                 this.libcalReservationsArray(libcalReservations)
-                var filteredLibcalReservation = _.filter(this.eventSources.libcalEvents, function (libcalEvent) {
+                var filteredLibcalReservation = _.filter(this.libcalEvents, function (libcalEvent) {
                   return libcalEvent.event_id === param
                 })
                 this.eventArray('Libcal', filteredLibcalReservation[0])
@@ -249,6 +277,80 @@ export default {
             }
           })
       })
+    },
+    getR25Events (option, param) {
+      // Use xml2js to convert xml string to JS object
+      var parseString = require('xml2js').parseString
+      this.eventSources.updatedR25Events = false
+      var r25EventsBaseUrl = 'https://r25test.registrar.cornell.edu/r25ws/servlet/wrd/run/rm_reservations.xml?'
+      var roomIds = [704, 705]
+      var vueInstance = this
+      var promise = []
+      var r25Events = []
+      var today = moment().startOf('day').format('YYYYMMDD')
+
+      // Get default events
+      if (option === 'default') {
+        _.each(roomIds, function (roomId, index) {
+          promise[roomId] = vueInstance.$http(
+            {
+              type: 'GET',
+              url: r25EventsBaseUrl + 'space_id=' + roomId + '&start_dt=' + today + '&end_dt=+' + vueInstance.defaultNumberOfDays,
+              headers: {
+                'Authorization': 'Basic ' + vueInstance.r25WebserviceAuthorization
+              },
+              dataType: 'xml'
+            })
+        })
+
+        Promise.all([promise[704], promise[705]]).then((values) => {
+          _.each(values, function (value, index) {
+            parseString(value.data, function (error, result) {
+              r25Events[index] = result['r25:space_reservations']['r25:space_reservation']
+            })
+          })
+          this.r25EventsArray(_.flattenDeep(r25Events))
+        })
+      // Get events for a date
+      } else if (option === 'date') {
+        _.each(roomIds, function (roomId, index) {
+          promise[roomId] = vueInstance.$http(
+            {
+              type: 'GET',
+              url: r25EventsBaseUrl + 'space_id=' + roomId + '&start_dt=' + moment(param).format('YYYYMMDD'),
+              headers: {
+                'Authorization': 'Basic ' + vueInstance.r25WebserviceAuthorization
+              },
+              dataType: 'xml'
+            })
+        })
+
+        Promise.all([promise[704], promise[705]]).then((values) => {
+          _.each(values, function (value, index) {
+            parseString(value.data, function (error, result) {
+              r25Events[index] = result['r25:space_reservations']['r25:space_reservation']
+            })
+          })
+          this.r25EventsArray(_.flattenDeep(r25Events))
+        })
+      } else if (option === 'event') {
+        var r25EventBaseUrl = 'https://r25test.registrar.cornell.edu/r25ws/servlet/wrd/run/reservation.xml?'
+        var r25Event = []
+        vueInstance.$http(
+          {
+            type: 'GET',
+            url: r25EventBaseUrl + 'rsrv_id=' + param ,
+            headers: {
+              'Authorization': 'Basic ' + vueInstance.r25WebserviceAuthorization
+            },
+            dataType: 'xml'
+          }).then(function (response) {
+            parseString(response.data, function (error, result) {
+              r25Event = result['r25:reservations']['r25:reservation']
+            })
+            this.eventArray('R25', r25Event)
+          })
+      }
     },
     // Room filter and remove filter
     setRoomFilter (roomNumber) {
@@ -279,7 +381,10 @@ export default {
       this.$set('dateSelected', '')
       this.getCornellEvents('default')
       this.getMannServicesEvents('default')
+      this.getR25Events('default')
       $('#datepicker').datepicker('setDate', moment().format('YYYY-MM-DD'))
+      this.showNoEventsMessage = true
+      this.allEvents = this.allEventTypes = this.allRoomNames = []
     },
 
     // Clear filters
@@ -290,9 +395,12 @@ export default {
       this.eventSelected = ''
       this.getCornellEvents('default')
       this.getMannServicesEvents('default')
+      this.getR25Events('default')
       this.removeSearchFilter()
       this.$set('dateSelected', '')
       $('#datepicker').datepicker('setDate', moment().format('YYYY-MM-DD'))
+      this.showNoEventsMessage = true
+      this.allEvents = this.allEventTypes = this.allRoomNames = []
     },
     // Load more events
     loadMoreEvents () {
@@ -332,9 +440,9 @@ export default {
         roomNames.push(value.room_number)
       })
       // set array values to be used later to merge
-      this.$set('eventSources.cornellEventTypes', eventTypes)
-      this.$set('eventSources.cornellRoomNames', roomNames)
-      this.$set('eventSources.cornellEvents', cornellEvents)
+      this.$set('cornellEventTypes', eventTypes)
+      this.$set('cornellRoomNames', roomNames)
+      this.$set('cornellEvents', cornellEvents)
     },
     // Custom data model from libcal room bookings
     libcalReservationsArray (data) {
@@ -370,14 +478,42 @@ export default {
         }
       })
       // Set array values to be used later to merge
-      this.$set('eventSources.libcalEventTypes', eventTypes)
-      this.$set('eventSources.libcalRoomNames', roomNames)
-      this.$set('eventSources.libcalEvents', libcalEvents)
+      this.$set('libcalEventTypes', eventTypes)
+      this.$set('libcalRoomNames', roomNames)
+      this.$set('libcalEvents', libcalEvents)
+    },
+    // Custom data model from r25 events
+    r25EventsArray (data) {
+      var r25Events = []
+      var eventTypes = []
+      var roomNames = []
+
+      _.forEach(data, function (value, index) {
+        var events = {}
+        events['event_id'] = 'R25-' + value['r25:reservation_id'][0]
+        events['event_title'] = value['r25:event'][0]['r25:event_name']['0']
+        events['event_description'] = value['r25:event'][0]['r25:event_title']['0']
+        events['event_start_time'] = moment(new Date(value['r25:event'][0]['r25:event_start_dt']['0'])).format()
+        events['event_start'] = moment(new Date(value['r25:event'][0]['r25:event_start_dt']['0'])).format('YYYY-MM-DD')
+        events['event_end_time'] = moment(new Date(value['r25:event'][0]['r25:event_end_dt']['0'])).format()
+        events['event_room_name'] = value['r25:spaces'][0]['r25:formal_name'][0]
+        events['event_type'] = ['Class/ Workshop']
+        // Events array from r25
+        r25Events.push(events)
+        // Event type filter list array
+        roomNames.push(value['r25:spaces'][0]['r25:formal_name'][0])
+        // Room filter list array
+        eventTypes.push("Class/ Workshop")
+      })
+      // set array values to be used later to merge
+      this.$set('r25EventTypes', eventTypes)
+      this.$set('r25RoomNames', roomNames)
+      this.$set('r25Events', r25Events)
     },
     getAllEvents () {
-      this.$set('allEvents', (_.concat(this.eventSources.cornellEvents, this.eventSources.libcalEvents)))
-      this.$set('allEventTypes', (_.union(this.eventSources.cornellEventTypes, this.eventSources.libcalEventTypes)))
-      this.$set('allRoomNames', (_.union(this.eventSources.cornellRoomNames, this.eventSources.libcalRoomNames)))
+      this.$set('allEvents', (_.concat(this.cornellEvents, this.libcalEvents, this.r25Events)))
+      this.$set('allEventTypes', (_.union(this.cornellEventTypes, this.libcalEventTypes, this.r25EventTypes)))
+      this.$set('allRoomNames', (_.union(this.cornellRoomNames, this.libcalRoomNames, this.r25RoomNames)))
       this.loadMoreDisplay(this.allEvents)
       this.$set('showNoEventsMessage', false)
       this.$set('filteredEvents', this.allEvents)
@@ -443,6 +579,15 @@ export default {
         })
       } else if (source === 'Libcal') {
         this.$set('event', data)
+      } else if (source === 'R25') {
+        this.$set('event', {
+          'event_title': data[0]['r25:event_name'][0],
+          'event_description': data[0]['r25:event_title'][0],
+          'event_start_time': moment(new Date(data[0]['r25:event_start_dt'][0])).format(),
+          'event_end_time': moment(new Date(data[0]['r25:event_end_dt'][0])).format(),
+          'event_room_name': data[0]['r25:space_reservation'][0]['r25:formal_name'][0],
+          'event_type': ['Class/Workshop']
+        })
       }
       this.$set('showNoEventsMessage', false)
       // Call Semantic ui modal and accordion for future times

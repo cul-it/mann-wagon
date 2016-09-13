@@ -5,13 +5,18 @@ var moment = require('moment')
 export default {
   name: 'events',
   template: require('../templates/homepage-template.html'),
+  props: ['r25-webservice-authorization', 'default-number-of-days'],
   data () {
     return {
       eventSources: {
-        cornellEvents: [],
-        libcalEvents: []
+        updatedCornellEvents: false,
+        updatedLibcalEvents: false,
+        updatedR25Events: false
       },
       // Arrays for event info
+      cornellEvents: [],
+      libcalEvents: [],
+      r25Events: [],
       allEvents: [],
       // Event type filter param
       eventType: '',
@@ -23,10 +28,19 @@ export default {
   },
   // Use watch to check if data has been updated and then combine
   watch: {
-    eventSources: {
+    'cornellEvents': function () {
+      this.$set('eventSources.updatedCornellEvents', true)
+    },
+    'libcalEvents': function () {
+      this.$set('eventSources.updatedLibcalEvents', true)
+    },
+    'r25Events': function () {
+      this.$set('eventSources.updatedR25Events', true)
+    },
+    'eventSources': {
       handler: function (events) {
-        if (events.cornellEvents.length > 0 && events.libcalEvents.length > 0) {
-          this.getAllEvents()
+        if (events.updatedCornellEvents && events.updatedLibcalEvents && events.updatedR25Events) {
+            this.getAllEvents()
         }
       },
       deep: true
@@ -37,6 +51,7 @@ export default {
     // When the application loads, call methods
     this.getCornellEvents('default')
     this.getMannServicesEvents('default')
+    this.getR25Events('default')
   },
   filters: {
     // Event filter
@@ -84,7 +99,7 @@ export default {
     getCornellEvents (option, date) {
       var localistApiBaseUrl = 'http://events.cornell.edu/api/2/events/?type=4228&pp=100'
       // Get default events
-      this.$http.get(localistApiBaseUrl + '&days=28').then(function (response) {
+      this.$http.get(localistApiBaseUrl + '&days=' + this.defaultNumberOfDays).then(function (response) {
         // Create custom data model
         this.cornellEventsArray(response.data.events)
       })
@@ -108,14 +123,53 @@ export default {
               libcalReservation.eventId = libcalReservation.eventId.split('-', 3).join('-')
             })
             if (index === (roomIds.length - 1)) {
+              // All reservations
+              // Filter out past reservations
               var today = moment().startOf('day').format()
+              var end_date = moment(today).add(this.defaultNumberOfDays, 'days').format()
               var currentReservations = _.filter(libcalReservations, function (libcalReservation) {
                 return moment(new Date(libcalReservation.formattedStartDateTime)).format() >= today
               })
-              this.libcalReservationsArray(currentReservations)
+              var defaultReservations = _.filter(currentReservations, function (currentReservation) {
+                return moment(new Date(currentReservation.formattedStartDateTime)).format() <= end_date
+              })
+              this.libcalReservationsArray(defaultReservations)
             }
           })
       })
+    },
+    getR25Events (option, param) {
+      // Use xml2js to convert xml string to JS object
+      var parseString = require('xml2js').parseString
+      this.eventSources.updatedR25Events = false
+      var r25EventsBaseUrl = 'https://r25test.registrar.cornell.edu/r25ws/servlet/wrd/run/rm_reservations.xml?'
+      var roomIds = [704, 705]
+      var vueInstance = this
+      var promise = []
+      var r25Events = []
+      var today = moment().startOf('day').format('YYYYMMDD')
+
+      // Get default events
+        _.each(roomIds, function (roomId, index) {
+          promise[roomId] = vueInstance.$http(
+            {
+              type: 'GET',
+              url: r25EventsBaseUrl + 'space_id=' + roomId + '&start_dt=' + today + '&end_dt=+35',
+              headers: {
+                'Authorization': 'Basic ' + vueInstance.r25WebserviceAuthorization
+              },
+              dataType: 'xml'
+            })
+        })
+
+        Promise.all([promise[704], promise[705]]).then((values) => {
+          _.each(values, function (value, index) {
+            parseString(value.data, function (error, result) {
+              r25Events[index] = result['r25:space_reservations']['r25:space_reservation']
+            })
+          })
+          this.r25EventsArray(_.flattenDeep(r25Events))
+        })
     },
     // Custom data model from cornell events
     cornellEventsArray (data) {
@@ -145,7 +199,7 @@ export default {
         })
       })
       // set array values to be used later to merge
-      this.$set('eventSources.cornellEvents', cornellEvents)
+      this.$set('cornellEvents', cornellEvents)
     },
 
     // Custom data model from libcal room bookings
@@ -174,10 +228,32 @@ export default {
       })
 
       // Set array values to be used later to merge
-      this.$set('eventSources.libcalEvents', libcalEvents)
+      this.$set('libcalEvents', libcalEvents)
+    },
+    // Custom data model from r25 events
+    r25EventsArray (data) {
+      var r25Events = []
+      var eventTypes = []
+      var roomNames = []
+
+      _.forEach(data, function (value, index) {
+        var events = {}
+        events['event_id'] = 'R25-' + value['r25:reservation_id'][0]
+        events['event_title'] = value['r25:event'][0]['r25:event_name']['0']
+        events['event_description'] = value['r25:event'][0]['r25:event_title']['0']
+        events['event_start_time'] = moment(new Date(value['r25:event'][0]['r25:event_start_dt']['0'])).format()
+        events['event_start'] = moment(new Date(value['r25:event'][0]['r25:event_start_dt']['0'])).format('YYYY-MM-DD')
+        events['event_end_time'] = moment(new Date(value['r25:event'][0]['r25:event_end_dt']['0'])).format()
+        events['event_room_name'] = value['r25:spaces'][0]['r25:formal_name'][0]
+        events['event_type'] = ['Class/ Workshop']
+        // Events array from r25
+        r25Events.push(events)
+      })
+      // set array values to be used later to merge
+      this.$set('r25Events', r25Events)
     },
     getAllEvents () {
-      this.$set('allEvents', (_.concat(this.eventSources.cornellEvents, this.eventSources.libcalEvents)))
+      this.$set('allEvents', (_.concat(this.cornellEvents, this.libcalEvents, this.r25Events)))
       this.$set('showNoEventsMessage', false)
     }
   }
