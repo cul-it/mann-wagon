@@ -544,26 +544,29 @@ export default {
       var endDateTime = ''
       var additionalTimes = []
       var hasAdditionalTimes = 0
+      var today = moment().add(-111, 'days').startOf('day').format()
       if (source === 'Cornell') {
         _.forEach(_.map(data.event_instances, 'event_instance'), function (value, index) {
-          var today = moment().startOf('day').format()
           var someday = moment(value.start).startOf('day')
           var days = someday.diff(today, 'days')
           if (days === 0 || data.event_instances.length === 1) {
             startDateTime = value.start
             endDateTime = value.end
           } else if (days > 0 && data.event_instances.length > 1) {
-            if (index === 0) {
-              startDateTime = value.start
-              endDateTime = value.end
-            } else if (index > 0) {
               additionalTimes.push([value.start, value.end])
               hasAdditionalTimes = additionalTimes.length
-            }
           } else if (days < 0) {
-
+            // Show the last date time for the event
+            startDateTime = value.start
+            endDateTime = value.end
           }
         })
+        if (hasAdditionalTimes && startDateTime < today && endDateTime < today) {
+            startDateTime = additionalTimes[0][0]
+            endDateTime = additionalTimes[0][1]
+            additionalTimes.shift()
+            hasAdditionalTimes = additionalTimes.length
+        }
         var eventType = []
         // Event type filter list array
         _.forEach(_.map(data, 'event_types'), function (value) {

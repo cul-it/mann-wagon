@@ -38,7 +38,7 @@ listed: false
 
 {% include 'spotlights-carousel' %}
 
-%events{"r25-webservice-authorization" => "{{site.metafields.sensitive_data.r25_webservice_authorization}}", "default-number-of-days" => "{{site.metafields.events_config.default_number_of_days}}"}
+%events{"r25-webservice-authorization" => "{{site.metafields.sensitive_data.r25_webservice_authorization}}", "default-number-of-days" => "{{site.metafields.events_config.default_number_of_days | default: 30}}"}
 
 {{ 'homePageEvents.bundle.js' | javascript_tag }}
 
