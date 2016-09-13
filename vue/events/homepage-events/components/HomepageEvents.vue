@@ -2,6 +2,8 @@
 var _ = require('lodash')
 var moment = require('moment')
 
+import 'semantic-ui-css/components/loader.min.css'
+
 export default {
   name: 'events',
   template: require('../templates/homepage-template.html'),

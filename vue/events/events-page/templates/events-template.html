@@ -2,8 +2,10 @@
 	<div class="events" v-if="eventsList">
 		<!-- Tab panes -->
 		<div class="tab-content">
-			<div v-show="showNoEventsMessage">
-				loading...
+			<div v-show="showNoEventsMessage"class="ui segment">
+				<div class="ui active centered inline loader">
+					<div class="ui text loader">Loading</div>
+				</div>
 			</div>
 
 			<div class="events__per-day" v-for="(date, events) in allEvents | orderBy 'event_start_time' | roomFilter room | eventTypeFilter eventType | limitListFilter limitList | groupBy 'event_start'">

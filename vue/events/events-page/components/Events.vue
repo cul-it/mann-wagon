@@ -11,6 +11,7 @@ import 'semantic-ui-css/components/transition.min.js'
 import 'semantic-ui-css/components/transition.min.css'
 import 'semantic-ui-css/components/accordion.min.js'
 import 'semantic-ui-css/components/accordion.min.css'
+import 'semantic-ui-css/components/loader.min.css'
 
 import Description from './Description.vue'
 
