@@ -37,7 +37,7 @@
 
 .s-lc-closed { // closed
   border-radius: .25em;
-  background-color: color('cornell-red');
+  background-color: color('closed' ('darken': 45%));
   padding: .1em .3em;
   color: color('white');
   font-weight: bold;
