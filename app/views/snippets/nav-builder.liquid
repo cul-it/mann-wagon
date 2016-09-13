@@ -14,7 +14,7 @@
   {% comment %} Otherwise, build the subnav via site hierarchy {% endcomment %}
   {% else %}
     {% for grandchild in child.children %}
-      {% if grandchild.listed? %}
+      {% if grandchild.listed? and grandchild.published? %}
         <li class="{{ component }}__subpage"><a class="{{ component }}__subpage-link" href="{% path_to grandchild %}">{{ grandchild.title }}</a></li>
       {% endif %}
     {% endfor %}
