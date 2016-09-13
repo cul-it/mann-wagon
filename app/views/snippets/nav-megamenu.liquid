@@ -5,7 +5,7 @@
 
 <ul class="site-nav__mega">
   {% for child in page.children %}
-    {% if child.listed? %}
+    {% if child.listed? and child.published? %}
       <li class="site-nav__section">
         {% include 'nav-builder' with component: 'site-nav' %}
       </li>
