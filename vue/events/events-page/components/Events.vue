@@ -73,6 +73,8 @@ export default {
       showNoEventsMessage: true,
       // Array for filtered events, for no events message
       filteredEvents: [],
+      // Current date time used to filter out past events on initial load
+      dateTimeNow: moment().format(),
       // Arrays for single event info
       event: [],
       url: window.location.href,
@@ -214,7 +216,11 @@ export default {
       if (option === 'default') {
         this.$http.get(localistApiBaseUrl + '&days=' + this.defaultNumberOfDays).then(function (response) {
           // Create custom data model
-          this.cornellEventsArray(response.data.events)
+          var vueInstance = this
+          var currentLocalistEvents = _.filter(response.data.events, function (event) {
+            return moment(new Date(event.event.event_instances[0].event_instance.end)).format() >= vueInstance.dateTimeNow
+          })
+          this.cornellEventsArray(currentLocalistEvents)
         })
       // Get events for a date
       } else if (option === 'date') {
@@ -252,13 +258,19 @@ export default {
                 // Filter out past reservations
                 var today = moment().startOf('day').format()
                 var end_date = moment(today).add(this.defaultNumberOfDays, 'days').format()
-                var currentReservations = _.filter(libcalReservations, function (libcalReservation) {
+                var notPastLibCalReservations = _.filter(libcalReservations, function (libcalReservation) {
                   return moment(new Date(libcalReservation.formattedStartDateTime)).format() >= today
                 })
-                var defaultReservations = _.filter(currentReservations, function (currentReservation) {
-                  return moment(new Date(currentReservation.formattedStartDateTime)).format() <= end_date
+                // Default number of days to load workaround
+                var defaultLibCalReservations = _.filter(notPastLibCalReservations, function (notPastLibCalReservation) {
+                  return moment(new Date(notPastLibCalReservation.formattedStartDateTime)).format() <= end_date
                 })
-                this.libcalReservationsArray(defaultReservations)
+                // Hide past events for default events
+                var vueInstance = this
+                var currentLibCalReservations = _.filter(defaultLibCalReservations, function (defaultLibCalReservation) {
+                  return moment(new Date(defaultLibCalReservation.formattedEndDateTime)).format() >= vueInstance.dateTimeNow
+                })
+                this.libcalReservationsArray(currentLibCalReservations)
               } else if (option === 'date') {
                 // Reservations on a date
                 var filteredLibcalReservations = _.filter(libcalReservations, function (libcalReservation) {
@@ -312,7 +324,13 @@ export default {
               }
             })
           })
-          this.r25EventsArray(_.flattenDeep(r25Events))
+          r25Events = _.flattenDeep(r25Events)
+          // Hide past events for default events
+          var currentr25Events = _.filter(r25Events, function (r25Event) {
+            return moment(new Date(r25Event['r25:event'][0]['r25:event_end_dt'])).format() >= vueInstance.dateTimeNow
+          })
+
+          this.r25EventsArray(currentr25Events)
         })
       // Get events for a date
       } else if (option === 'date') {
@@ -332,7 +350,7 @@ export default {
           _.each(values, function (value, index) {
             parseString(value.data, function (error, result) {
               if (result['r25:space_reservations']['r25:space_reservation']) {
-                r25Events[index] = result['r25:space_reservations']['r25:space_reservation']
+                r25Events.push(result['r25:space_reservations']['r25:space_reservation'])
               }
             })
           })
@@ -430,7 +448,7 @@ export default {
         events['event_end_time'] = value.event_instances[0].event_instance.end
         events['event_room_name'] = value.room_number
         events['event_type'] = eventType
-
+        events['event_recurring'] = value.recurring
         // Events array from localist
         cornellEvents.push(events)
         // Event type filter list array
@@ -544,26 +562,29 @@ export default {
       var endDateTime = ''
       var additionalTimes = []
       var hasAdditionalTimes = 0
+      var today = moment().add(-111, 'days').startOf('day').format()
       if (source === 'Cornell') {
         _.forEach(_.map(data.event_instances, 'event_instance'), function (value, index) {
-          var today = moment().startOf('day').format()
           var someday = moment(value.start).startOf('day')
           var days = someday.diff(today, 'days')
           if (days === 0 || data.event_instances.length === 1) {
             startDateTime = value.start
             endDateTime = value.end
           } else if (days > 0 && data.event_instances.length > 1) {
-            if (index === 0) {
-              startDateTime = value.start
-              endDateTime = value.end
-            } else if (index > 0) {
               additionalTimes.push([value.start, value.end])
               hasAdditionalTimes = additionalTimes.length
-            }
           } else if (days < 0) {
-
+            // Show the last date time for the event
+            startDateTime = value.start
+            endDateTime = value.end
           }
         })
+        if (hasAdditionalTimes && startDateTime < today && endDateTime < today) {
+            startDateTime = additionalTimes[0][0]
+            endDateTime = additionalTimes[0][1]
+            additionalTimes.shift()
+            hasAdditionalTimes = additionalTimes.length
+        }
         var eventType = []
         // Event type filter list array
         _.forEach(_.map(data, 'event_types'), function (value) {

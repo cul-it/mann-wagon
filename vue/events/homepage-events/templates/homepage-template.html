@@ -11,7 +11,7 @@
 	  </div>
 	</div>
 
-	<template v-for="(date, events) in allEvents | orderBy 'event_start_time' | limitListFilter 3 | groupBy 'event_start'">
+	<template v-for="(date, events) in allEvents | orderBy 'event_start_time' | hideEventType 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'">
 		<h5 class="events-home__day">
       ((date | momentHomeDateText))
     </h5>
