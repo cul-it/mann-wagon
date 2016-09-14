@@ -332,7 +332,7 @@ export default {
           _.each(values, function (value, index) {
             parseString(value.data, function (error, result) {
               if (result['r25:space_reservations']['r25:space_reservation']) {
-                r25Events[index] = result['r25:space_reservations']['r25:space_reservation']
+                r25Events.push(result['r25:space_reservations']['r25:space_reservation'])
               }
             })
           })
@@ -430,7 +430,7 @@ export default {
         events['event_end_time'] = value.event_instances[0].event_instance.end
         events['event_room_name'] = value.room_number
         events['event_type'] = eventType
-
+        events['event_recurring'] = value.recurring
         // Events array from localist
         cornellEvents.push(events)
         // Event type filter list array

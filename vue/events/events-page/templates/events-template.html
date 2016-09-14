@@ -26,11 +26,13 @@
 							<span class="time" v-if="event.event_end_time">
 								<i class="fa fa-clock-o"></i>
 									((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))
+									<a v-if="event.event_recurring" href="?eventId=((event.event_id))">&rarr; Additional Dates</a>
 							</span>
 
               <span class="time" v-else="">
                 <i class="fa fa-clock-o"></i>
                 ((event.event_start_time | momentTime ))
+								<a v-if="event.event_recurring" href="?eventId=((event.event_id))">&rarr; Additional Dates</a>
               </span>
 
               <span class="location pull-right">
@@ -93,7 +95,7 @@
 		<ul data-filter-group="type">
 			<li v-for="event_type of allEventTypes | orderBy 'eventType'">
 				<a class="filter" v-bind:class="{ 'selected-filter': event_type == eventSelected }" v-on:click="setEventTypeFilter(event_type)">
-          ((event_type))
+          ((event_type | capitalize))
         </a>
         <a class="fa fa-times" v-if="event_type == eventSelected" v-on:click="removeEventTypeFilter()">
         </a>
@@ -108,7 +110,7 @@
 			<li v-for="room of allRoomNames | orderBy 'room'">
 				<!-- event to set room filter -->
 				<a class="filter" v-bind:class="{ 'selected-filter': room == roomSelected }" v-on:click="setRoomFilter(room)">
-					((room))
+					((room | capitalize))
         </a>
         <a class="fa fa-times" v-if="room == roomSelected" v-on:click="removeRoomFilter()">
         </a>
@@ -134,7 +136,7 @@
 
 				<span class="location pull-right">
 					<i class="fa fa-map-marker"></i>
-					((event.event_room_name))
+					((event.event_room_name | capitalize))
 				</span>
 
 				<div class="ui accordion" v-if="event.event_has_additional_times">
@@ -184,7 +186,7 @@
 			</p>
 
 			<span class="event__type badge-notice" v-for="type in event.event_type">
-				((type))
+				((type | capitalize))
 			</span>
 
 		</div>
