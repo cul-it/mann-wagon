@@ -52,3 +52,6 @@ metafields:
     labstats_customer_id:
     libcal_apikey:
     scrapinghub_apikey:
+    r25_webservice_authorization:
+  events_config:
+    default_number_of_days:
