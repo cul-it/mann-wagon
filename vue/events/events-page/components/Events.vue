@@ -73,6 +73,8 @@ export default {
       showNoEventsMessage: true,
       // Array for filtered events, for no events message
       filteredEvents: [],
+      // Current date time used to filter out past events on initial load
+      dateTimeNow: moment().format(),
       // Arrays for single event info
       event: [],
       url: window.location.href,
@@ -214,7 +216,11 @@ export default {
       if (option === 'default') {
         this.$http.get(localistApiBaseUrl + '&days=' + this.defaultNumberOfDays).then(function (response) {
           // Create custom data model
-          this.cornellEventsArray(response.data.events)
+          var vueInstance = this
+          var currentLocalistEvents = _.filter(response.data.events, function (event) {
+            return moment(new Date(event.event.event_instances[0].event_instance.end)).format() >= vueInstance.dateTimeNow
+          })
+          this.cornellEventsArray(currentLocalistEvents)
         })
       // Get events for a date
       } else if (option === 'date') {
@@ -252,13 +258,19 @@ export default {
                 // Filter out past reservations
                 var today = moment().startOf('day').format()
                 var end_date = moment(today).add(this.defaultNumberOfDays, 'days').format()
-                var currentReservations = _.filter(libcalReservations, function (libcalReservation) {
+                var notPastLibCalReservations = _.filter(libcalReservations, function (libcalReservation) {
                   return moment(new Date(libcalReservation.formattedStartDateTime)).format() >= today
                 })
-                var defaultReservations = _.filter(currentReservations, function (currentReservation) {
-                  return moment(new Date(currentReservation.formattedStartDateTime)).format() <= end_date
+                // Default number of days to load workaround
+                var defaultLibCalReservations = _.filter(notPastLibCalReservations, function (notPastLibCalReservation) {
+                  return moment(new Date(notPastLibCalReservation.formattedStartDateTime)).format() <= end_date
                 })
-                this.libcalReservationsArray(defaultReservations)
+                // Hide past events for default events
+                var vueInstance = this
+                var currentLibCalReservations = _.filter(defaultLibCalReservations, function (defaultLibCalReservation) {
+                  return moment(new Date(defaultLibCalReservation.formattedEndDateTime)).format() >= vueInstance.dateTimeNow
+                })
+                this.libcalReservationsArray(currentLibCalReservations)
               } else if (option === 'date') {
                 // Reservations on a date
                 var filteredLibcalReservations = _.filter(libcalReservations, function (libcalReservation) {
@@ -312,7 +324,13 @@ export default {
               }
             })
           })
-          this.r25EventsArray(_.flattenDeep(r25Events))
+          r25Events = _.flattenDeep(r25Events)
+          // Hide past events for default events
+          var currentr25Events = _.filter(r25Events, function (r25Event) {
+            return moment(new Date(r25Event['r25:event'][0]['r25:event_end_dt'])).format() >= vueInstance.dateTimeNow
+          })
+
+          this.r25EventsArray(currentr25Events)
         })
       // Get events for a date
       } else if (option === 'date') {
