@@ -68,6 +68,12 @@ export default {
         return events.filter(filterEvents)
       }
     },
+    hideEventType: function(events, eventType) {
+      var hideEvents = function (event) {
+        return event.event_type.indexOf(eventType) === -1
+      }
+      return events.filter(hideEvents)
+    },
     // MomentJS filters
     momentHomeTime: function (date) {
       if ((moment(date).get('minutes'))) {
