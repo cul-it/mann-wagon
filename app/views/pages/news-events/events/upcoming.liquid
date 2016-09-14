@@ -13,8 +13,7 @@ editable_elements:
 
 {% block 'main' %}
 
-  <events></events>
+  <events r25-webservice-authorization = "{{site.metafields.sensitive_data.r25_webservice_authorization}}", default-number-of-days = "{{site.metafields.events_config.default_number_of_days}}"></events>
 
   {{ 'eventsPage.bundle.js' | javascript_tag }}
 {% endblock %}
-

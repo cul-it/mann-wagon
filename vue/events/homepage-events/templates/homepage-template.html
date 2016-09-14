@@ -5,8 +5,10 @@
     </a>
 	</h4>
 
-	<div v-show="showNoEventsMessage">
-		loading...
+	<div v-show="showNoEventsMessage"class="ui segment">
+	  <div class="ui active centered inline loader">
+	    <div class="ui text loader">Loading</div>
+	  </div>
 	</div>
 
 	<template v-for="(date, events) in allEvents | orderBy 'event_start_time' | limitListFilter 3 | groupBy 'event_start'">
@@ -45,7 +47,7 @@
 	</template>
 
 	<a class="more-link" href="/news-events/events/upcoming">
-    All Events
+    Calendar of Events
     <i class="fa fa-angle-double-right"></i>
 	</a>
 
@@ -58,8 +60,10 @@
     </a>
 	</h4>
 
-	<div v-show="showNoEventsMessage">
-		loading...
+	<div v-show="showNoEventsMessage"class="ui segment">
+	  <div class="ui active centered inline loader">
+	    <div class="ui text loader">Loading</div>
+	  </div>
 	</div>
 
 	<template v-for="(date, events) in allEvents | orderBy 'event_start_time' | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'">
@@ -98,7 +102,7 @@
 	</template>
 
 	<a class="more-link" href="/news-events/events/upcoming?eventType=Class/ Workshop">
-    All Workshops &amp; Classes
+    Calendar of Workshops &amp; Classes
     <i class="fa fa-angle-double-right"></i>
   </a>
 </section>

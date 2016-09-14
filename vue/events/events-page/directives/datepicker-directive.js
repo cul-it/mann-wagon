@@ -9,6 +9,9 @@ Vue.directive('datepicker', {
       onSelect: function (date) {
         vm.getCornellEvents('date', date)
         vm.getMannServicesEvents('date', date)
+        vm.getR25Events('date', date)
+        vm.showNoEventsMessage = true
+        vm.allEvents = vm.allEventTypes = vm.allRoomNames =  []
         vm.dateSelected = date
       }
     })

@@ -66,3 +66,12 @@ sensitive_data:
     scrapinghub_apikey:
       type: string
       hint: Used to authenticate against the Scrapinghub API to retrieve items scraped from dev site to power temporary site search
+    r25_webservice_authorization:
+      type: string
+      hint: Base 64 encoded username:password, used to authenticate r25 webservice to retrieve B30 classroom events
+events_config:
+  label: Events Configuration
+  fields:
+    default_number_of_days:
+      type: integer
+      hint: Used to load the events for the number of days in future
