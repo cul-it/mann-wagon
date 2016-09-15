@@ -7,7 +7,7 @@ import 'semantic-ui-css/components/loader.min.css'
 export default {
   name: 'events',
   template: require('../templates/homepage-template.html'),
-  props: ['r25-webservice-authorization', 'default-number-of-days'],
+  props: ['r25-webservice-authorization', 'default-number-of-days', 'homepage-r25-default-number-of-days'],
   data () {
     return {
       eventSources: {
@@ -176,7 +176,7 @@ export default {
           promise[roomId] = vueInstance.$http(
             {
               type: 'GET',
-              url: r25EventsBaseUrl + 'space_id=' + roomId + '&start_dt=' + today + '&end_dt=+35',
+              url: r25EventsBaseUrl + 'space_id=' + roomId + '&start_dt=' + today + '&end_dt=+' + vueInstance.homepageR25DefaultNumberOfDays,
               headers: {
                 'Authorization': 'Basic ' + vueInstance.r25WebserviceAuthorization
               },

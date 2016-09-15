@@ -55,3 +55,4 @@ metafields:
     r25_webservice_authorization:
   events_config:
     default_number_of_days:
+    homepage_r25_default_number_of_days:
