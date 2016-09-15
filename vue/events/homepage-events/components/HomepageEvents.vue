@@ -237,8 +237,11 @@ export default {
       _.forEach(data, function (value, index) {
         var events = {}
         // If same event based on title and time comparison
+        // Check twice for lobby
         if (libcalEvents.length && libcalEvents[counter - 1].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 1].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
           libcalEvents[counter - 1].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
+        } else if (libcalEvents.length >1 && libcalEvents[counter - 2].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 2].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
+          libcalEvents[counter - 2].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
         } else {
           events['event_id'] = value.eventId
           events['event_title'] = value.description.match('Event Name: (.*)')[1]
