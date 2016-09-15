@@ -75,6 +75,8 @@ export default {
       filteredEvents: [],
       // Current date time used to filter out past events on initial load
       dateTimeNow: moment().format(),
+      // Handle libcal separately due to 30 mintue slots
+      hidePastLibcalReservations: false,
       // Arrays for single event info
       event: [],
       url: window.location.href,
@@ -235,60 +237,58 @@ export default {
       var mannservicesEventsUrl = 'http://mannservices.mannlib.cornell.edu/LibServices/showEventsById.do?output=json&id='
       var roomIds = [23, 24, 25, 26]
       var vueInstance = this
+      var promise = []
       var libcalReservations = []
       // Create multiple api calls in loop
       _.each(roomIds, function (roomId, index) {
-        vueInstance.$http(
+        promise[roomId] = vueInstance.$http(
           {
             type: 'GET',
             url: mannservicesEventsUrl + roomId,
             dataType: 'json'
           })
-          .then(function (response) {
-            // Combine response from all calls
-            libcalReservations = _.concat(libcalReservations, response.data.eventList)
-            libcalReservations = _.each(libcalReservations, function (libcalReservation) {
-              // remove email from eventId for use as url parameter for single event display
-              libcalReservation.eventId = libcalReservation.eventId.split('-', 3).join('-')
-            })
-            // Create custom model, call methods only on last loop
-            if (index === (roomIds.length - 1)) {
-              if (option === 'default') {
-                // All reservations
-                // Filter out past reservations
-                var today = moment().startOf('day').format()
-                var end_date = moment(today).add(this.defaultNumberOfDays, 'days').format()
-                var notPastLibCalReservations = _.filter(libcalReservations, function (libcalReservation) {
-                  return moment(new Date(libcalReservation.formattedStartDateTime)).format() >= today
-                })
-                // Default number of days to load workaround
-                var defaultLibCalReservations = _.filter(notPastLibCalReservations, function (notPastLibCalReservation) {
-                  return moment(new Date(notPastLibCalReservation.formattedStartDateTime)).format() <= end_date
-                })
-                // Hide past events for default events
-                var vueInstance = this
-                var currentLibCalReservations = _.filter(defaultLibCalReservations, function (defaultLibCalReservation) {
-                  return moment(new Date(defaultLibCalReservation.formattedEndDateTime)).format() >= vueInstance.dateTimeNow
-                })
-                this.libcalReservationsArray(currentLibCalReservations)
-              } else if (option === 'date') {
-                // Reservations on a date
-                var filteredLibcalReservations = _.filter(libcalReservations, function (libcalReservation) {
-                  return (moment(new Date(libcalReservation.formattedStartDateTime)).format('YYYY-MM-DD')) === param
-                })
-                this.libcalReservationsArray(filteredLibcalReservations)
-              } else if (option === 'event') {
-                // Single reservation
-                // Can't get single event from json data due to 30 minute slots,
-                // instead populate libcalEvents with merged events and filter on that
-                this.libcalReservationsArray(libcalReservations)
-                var filteredLibcalReservation = _.filter(this.libcalEvents, function (libcalEvent) {
-                  return libcalEvent.event_id === param
-                })
-                this.eventArray('Libcal', filteredLibcalReservation[0])
-              }
-            }
+        })
+      Promise.all([promise[23], promise[24], promise[25], promise[26]]).then((values) => {
+        _.each(values, function (value, index) {
+          libcalReservations = _.concat(libcalReservations, value.data.eventList)
+        })
+          libcalReservations = _.each(libcalReservations, function (libcalReservation) {
+            // remove email from eventId for use as url parameter for single event display
+            libcalReservation.eventId = libcalReservation.eventId.split('-', 3).join('-')
           })
+
+        // Create custom model, call methods only on last loop
+        if (option === 'default') {
+          // All reservations
+          // Filter out past reservations
+          var today = moment().startOf('day').format()
+          var end_date = moment(today).add(this.defaultNumberOfDays, 'days').format()
+          var notPastLibCalReservations = _.filter(libcalReservations, function (libcalReservation) {
+            return moment(new Date(libcalReservation.formattedStartDateTime)).format() >= today
+          })
+          // Default number of days to load workaround
+          var defaultLibCalReservations = _.filter(notPastLibCalReservations, function (notPastLibCalReservation) {
+            return moment(new Date(notPastLibCalReservation.formattedStartDateTime)).format() <= end_date
+          })
+          this.libcalReservationsArray(defaultLibCalReservations)
+          this.$set('hidePastLibcalReservations', true)
+        } else if (option === 'date') {
+          // Reservations on a date
+          var filteredLibcalReservations = _.filter(libcalReservations, function (libcalReservation) {
+            return (moment(new Date(libcalReservation.formattedStartDateTime)).format('YYYY-MM-DD')) === param
+          })
+          this.libcalReservationsArray(filteredLibcalReservations)
+          this.$set('hidePastLibcalReservations', false)
+        } else if (option === 'event') {
+          // Single reservation
+          // Can't get single event from json data due to 30 minute slots,
+          // instead populate libcalEvents with merged events and filter on that
+          this.libcalReservationsArray(libcalReservations)
+          var filteredLibcalReservation = _.filter(this.libcalEvents, function (libcalEvent) {
+            return libcalEvent.event_id === param
+          })
+          this.eventArray('Libcal', filteredLibcalReservation[0])
+        }
       })
     },
     getR25Events (option, param) {
@@ -537,6 +537,12 @@ export default {
       this.$set('r25Events', r25Events)
     },
     getAllEvents () {
+      if (this.hidePastLibcalReservations) {
+        var vueInstance = this
+        this.libcalEvents = _.filter(this.libcalEvents, function (libcalEvent) {
+          return libcalEvent.event_end_time >= vueInstance.dateTimeNow
+        })
+      }
       this.$set('allEvents', (_.concat(this.cornellEvents, this.libcalEvents, this.r25Events)))
       this.$set('allEventTypes', (_.union(this.cornellEventTypes, this.libcalEventTypes, this.r25EventTypes)))
       this.$set('allRoomNames', (_.union(this.cornellRoomNames, this.libcalRoomNames, this.r25RoomNames)))
