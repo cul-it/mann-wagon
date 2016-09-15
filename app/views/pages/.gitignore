@@ -1,0 +1,37 @@
+# By default, don't track any pages
+# -- avoids conflicts with content changes taking place in Locomotive back-office
+*
+
+# But don't ignore subdirectories, so we can identify exceptions below
+!*/
+
+# And this file is pretty critical
+!.gitignore
+
+# Track all layouts
+!layouts/*
+
+# Track all content-type templates
+!content_type_template.liquid
+
+# Track 3 top-level pages in megamenu (for dev convenience when serving via wagon)
+!help.liquid
+!news-events.liquid
+!use.liquid
+
+# Track pages that supplement/provide content programatically
+!404.liquid
+!about/staff.liquid
+!contact/site-feedback.liquid
+!help/faculty-instructors/request-course-instruction.liquid
+!help/research-support/consultation-services/gis-at-mann.liquid
+!help/research-support/request-a-consultation.liquid
+!help/research-support/research-guides.liquid
+!hours.liquid
+!index.liquid
+!news-events/events/upcoming.liquid
+!projects.liquid
+!search.liquid
+!use/spaces.liquid
+!use/technology/computing/desktops.liquid
+!use/technology/computing/laptops.liquid

@@ -1,0 +1,103 @@
+<header>
+  <div class="cu-banner">
+    <a class="cu-banner__insignia link--no-color" href="http://cornell.edu" title="Cornell.edu Homepage">
+      <span class="cu-banner__uni-name link--no-color">Cornell University</span>
+    </a>
+  </div>
+
+  <div class="mann-brand" href="/">
+    <a class="mann-brand__logo" href="/" title="Home"></a>
+
+    <h2 class="mann-brand__one-lib">
+      <a class="link--no-color" href="http://library.cornell.edu" title="Cornell University Library">Cornell University Library</a>
+    </h2>
+
+    <h1 class="mann-brand__mannlib">
+      <a class="link--no-color" href="/" title="Home">{{ site.seo_title | upcase }}</a>
+    </h1>
+  </div>
+
+  <nav class="accessory-nav" role="navigation">
+    <ul class="accessory-nav__list">
+      <li class="accessory-nav__item">
+        <a class="accessory-nav__link" href="{% path_to course-reserves %}" title="Find course reserves for your class">
+          <i class="fa fa-fw fa-bookmark-o accessory-nav__icon"></i>
+          Course Reserves
+        </a>
+      </li>
+      <li class="accessory-nav__item">
+        <a class="accessory-nav__link" href="{% path_to research-guides %}" title="View recommended research guides by subject">
+          <i class="fa fa-fw fa-file-text-o accessory-nav__icon"></i>
+          Research Guides
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <button class="search__button" type="button">
+    <i class="fa fa-search"></i>
+  </button>
+
+  <form action="{% path_to search %}" class="search" role="search">
+    <div class="ui left icon fluid input">
+      <i class="fa fa-search icon search__icon"></i>
+      <input class="search__term" name="q" placeholder="Search" type="text"></input>
+    </div>
+  </form>
+
+  <div class="todays-hours">
+    <ul class="todays-hours__list">
+      <li class="todays-hours__location">
+        <a class="todays-hours__link" href="{% path_to hours %}">
+          <span class="badge todays-hours__now {% if mannlib_hours.status_1707 == 'Open' %}is-open{% else %}is-closed{% endif %}">{{ mannlib_hours.status_1707 }}</span>
+        </a>
+        <span class="todays-hours__until">{{ mannlib_hours.hours_1707 }}</span>
+      </li>
+      <li class="todays-hours__location">
+        <span class="todays-hours__label">Lobby</span>
+        <a class="todays-hours__link" href="{% path_to hours %}">
+          <span class="badge todays-hours__now {% if mannlib_hours.status_1709 == 'Open' %}is-open{% else %}is-closed{% endif %}">{{ mannlib_hours.status_1709 }}</span>
+        </a>
+        <span class="todays-hours__until">{{ mannlib_hours.hours_1709 }}</span>
+      </li>
+    </ul>
+
+    <a class="todays-hours__more" href="{% path_to hours %}">
+      All Hours
+      <i class="fa fa-angle-double-right"></i>
+    </a>
+  </div>
+
+  <nav class="site-nav" role="navigation">
+    <nav class="cul-nav" role="navigation">
+      <button class="cul-nav__button" type="button">
+        <i class="fa fa-lg fa-bars"></i>
+      </button>
+
+      <ul class="cul-nav__list">
+        <li class="cul-nav__item">
+          <a class="cul-nav__link" href="https://newcatalog.library.cornell.edu">
+            <i class="fa fa-fw fa-book"></i>
+            Library Catalog
+          </a>
+        </li>
+        <li class="cul-nav__item">
+          <a class="cul-nav__link" href="https://www.library.cornell.edu/ask">
+            <i class="fa fa-fw fa-question"></i>
+            Ask a Librarian
+          </a>
+        </li>
+        <li class="cul-nav__item">
+          <a class="cul-nav__link" href="https://www.library.cornell.edu/myacct">
+            <i class="fa fa-fw fa-user"></i>
+            My Account
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <ul class="site-nav__list">
+      {% nav site, no_wrapper: true, active_class: active, snippet: nav-megamenu %}
+    </ul>
+  </nav>
+</header>
