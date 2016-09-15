@@ -562,7 +562,7 @@ export default {
       var endDateTime = ''
       var additionalTimes = []
       var hasAdditionalTimes = 0
-      var today = moment().add(-111, 'days').startOf('day').format()
+      var today = moment().startOf('day').format()
       if (source === 'Cornell') {
         _.forEach(_.map(data.event_instances, 'event_instance'), function (value, index) {
           var someday = moment(value.start).startOf('day')
