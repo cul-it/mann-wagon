@@ -1,3 +1,7 @@
+{% include 'staff-directory-options' %}
+
+<div class="ui hidden divider"></div>
+
 <table id="staff-table" class="ui table staff-directory staff-directory__table">
   <thead>
     <tr>
@@ -48,3 +52,5 @@
   {% endwith_scope %}
 {% endif %}
 </div>
+
+{{ 'staffDirectory.bundle.js' | javascript_tag }}

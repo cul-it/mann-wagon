@@ -1,0 +1,7 @@
+<div class="page-content">
+  {% for project in contents.projects %}
+    <h3><a href="{{ project.url }}">{{ project.title }}</a></h3>
+
+    <p>{{ project.description }}</p>
+  {% endfor %}
+</div>

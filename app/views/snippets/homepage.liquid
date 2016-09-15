@@ -1,0 +1,49 @@
+<section class="available-now">
+  <h4 class="available-now__heading lead-in">
+    Today @ Mann
+    <span class="available-now__datetime">{{ now | date: '%-I:%M %p' }}</span>
+  </h4>
+
+  {% include 'availnow-computers' %}
+
+  <div class="available-now__grp available-now__study">
+    {% include 'availnow-study' %}
+  </div>
+
+  <div class="available-now__grp available-now__consultation">
+    <h5 class="available-now__subheading">
+      <a class="available-now__link" href="{% path_to consultation-services %}" title="View all consultation services">Consultation</a>
+    </h5>
+
+    <ul>
+      <li class="available-now__status available-now__status--available">
+        <i class="fa fa-fw fa-check-square"></i> Reference
+      </li>
+      <li class="available-now__status available-now__status--unavailable">
+        <i class="fa fa-fw fa-minus-square"></i> GIS
+      </li>
+      <li class="available-now__status available-now__status--available">
+        <i class="fa fa-fw fa-check-square"></i> CISER
+      </li>
+      <li class="available-now__status available-now__status--available">
+        <i class="fa fa-fw fa-check-square"></i> Knight Writing Institute
+      </li>
+    </ul>
+  </div>
+</section>
+
+{% include 'spotlights-carousel' %}
+
+<events r25-webservice-authorization="{{ site.metafields.sensitive_data.r25_webservice_authorization }}"  default-number-of-days="{{ site.metafields.events_config.default_number_of_days | default: 30 }}"></events>
+
+{{ 'homePageEvents.bundle.js' | javascript_tag }}
+
+<section class="meet-experts">
+  <h4 class="meet-experts__heading lead-in">Meet Our Experts</h4>
+
+  {% include 'meet-experts' %}
+
+  <a class="meet-experts__all-experts more-link" href="{% path_to staff %}" title="View all Mann librarians and staff">
+    Meet All Our Experts <i class="fa fa-angle-double-right"></i>
+  </a>
+</section>

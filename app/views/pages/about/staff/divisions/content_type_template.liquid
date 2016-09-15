@@ -7,14 +7,7 @@ editable_elements:
 {% extends 'layouts/basic-page' %}
 
 {% block 'main/dynamic' %}
-
   {% assign current_division = division %}
 
-  {% include 'staff-directory-options' %}
-
-  <div class="ui hidden divider"></div>
-
   {% include 'staff-directory' %}
-  {{ 'staffDirectory.bundle.js' | javascript_tag }}
-
 {% endblock %}
