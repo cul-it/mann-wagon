@@ -19,7 +19,11 @@ var hours = {
     });
 
     $('.js-hours-today').on('click', function() {
-      hours.gotoView(view, 'first');
+      if (view === 'week') {
+        hours.gotoView(view, 0);
+      } else if (view === 'month') {
+        hours.gotoView(view, 0);
+      }
     });
 
     var view = 'week';
@@ -32,7 +36,7 @@ var hours = {
       $(this).addClass('active');
       $('.js-hours-month').removeClass('active');
       view = 'week';
-      hours.gotoView(view, 'first');
+      hours.gotoView(view, hours.currentWeek);
     });
 
     $('.js-hours-month').on('click', function() {
@@ -41,22 +45,22 @@ var hours = {
       $(this).addClass('active');
       $('.js-hours-week').removeClass('active');
       view = 'month';
-      hours.gotoView(view, 'first');
+      hours.gotoView(view, hours.currentMonth);
     });
 
   },
 
-  gotoView: function(view, week) {
+  gotoView: function(view, currentView) {
     if (view == 'week') {
-      switch (week) {
+      switch (currentView) {
         case 'next':
           var requestedWeek = hours.currentWeek + 1;
           break;
         case 'prev':
           var requestedWeek = hours.currentWeek - 1;
           break;
-        case 'first':
-          var requestedWeek = 0;
+        default:
+          var requestedWeek = currentView;
           break;
       }
       // Hide current & display requested week
@@ -69,15 +73,15 @@ var hours = {
 
     }
     if (view == 'month') {
-      switch (week) {
+      switch (currentView) {
         case 'next':
           var requestedMonth = hours.currentMonth + 1;
           break;
         case 'prev':
           var requestedMonth = hours.currentMonth - 1;
           break;
-        case 'first':
-          var requestedMonth = 0;
+        default:
+          var requestedMonth = currentView;
           break;
       }
       $('.s-lc-mhw-c').eq(hours.currentMonth).transition('toggle');
@@ -89,14 +93,15 @@ var hours = {
     }
   },
 
-  housekeeping: function(view, week) {
+  housekeeping: function(view, currentView) {
     if (view == 'week') {
       // Disable prev & today btns if returning to first week
-      if (week == 0) {
+      if (currentView == 0) {
         $('.js-hours-prev, .js-hours-today').addClass('disabled');
         $('.js-hours-next').removeClass('disabled');
       // Disable next btn after 52 weeks (zero-based index: 51)
-      } else if (week == 51) {
+      } else if (currentView == 51) {
+        $('.js-hours-prev, .js-hours-today').removeClass('disabled');
         $('.js-hours-next').addClass('disabled');
       } else {
         $('.js-hours-prev, .js-hours-today, .js-hours-next').removeClass('disabled');
@@ -104,11 +109,12 @@ var hours = {
     }
     if (view == 'month') {
       // Disable prev & today btns if returning to first week
-      if (week == 0) {
+      if (currentView == 0) {
         $('.js-hours-prev, .js-hours-today').addClass('disabled');
         $('.js-hours-next').removeClass('disabled');
-      // Disable next btn after 3 month (zero-based index: 2)
-    } else if (week == 11) {
+      // Disable next btn after 12 month (zero-based index: 11)
+    } else if (currentView == 11) {
+        $('.js-hours-prev, .js-hours-today').removeClass('disabled');
         $('.js-hours-next').addClass('disabled');
       } else {
         $('.js-hours-prev, .js-hours-today, .js-hours-next').removeClass('disabled');
