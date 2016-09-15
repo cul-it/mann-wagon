@@ -1,0 +1,149 @@
+<footer class="footer">
+  <div class="footer__about-us footer__panel">
+    <h5 class="footer__heading">About Us</h5>
+
+    <p class="footer__mission">
+      Supporting learning and research in the life sciences, agriculture, human ecology and applied social sciences.
+      <a class="more-link more-link--footer" href="{% path_to about %}">
+        More
+        <i class="fa fa-angle-double-right"></i>
+      </a>
+    </p>
+
+    <p>
+      <a class="more-link more-link--footer" href="{% path_to staff %}">Organization &amp; Staff</a>
+      |
+      <a class="more-link more-link--footer" href="{% path_to employment %}">Employment</a>
+    </p>
+
+    <!-- <%= image_tag "floor-map-tn.png", class:"img-responsive img-left img-faded" %>
+    -->
+    <h6 class="footer__subheading">Floor Plans</h6>
+
+    <ul class="footer__floorplans">
+      <li class="footer__floor">
+        <a href="http://smartmap.mannlib.cornell.edu/floor/0">Basement</a>
+      </li>
+      <li class="footer__floor">
+        <a href="http://smartmap.mannlib.cornell.edu/floor/1">1st</a>
+      </li>
+      <li class="footer__floor">
+        <a href="http://smartmap.mannlib.cornell.edu/floor/2">2nd</a>
+      </li>
+      <li class="footer__floor">
+        <a href="http://smartmap.mannlib.cornell.edu/floor/3">3rd</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="footer__featured-plus-haiku footer__panel">
+    <h5 class="footer__heading">Featured Projects</h5>
+
+    <ul>
+      {% with_scope featured: true %}
+        {% for project in contents.projects %}
+          <li><a href="{% path_to project %}">{{ project.title }}</a></li>
+        {% endfor %}
+      {% endwith_scope %}
+    </ul>
+
+    <p>
+      <a class="more-link more-link--footer" href="{% path_to projects %}">
+        More Projects
+        <i class="fa fa-angle-double-right"></i>
+      </a>
+    </p>
+
+    <h5 class="footer__heading">Daily Haiku</h5>
+
+    <p class="footer__haiku">
+      low tide<br>
+      the mooring rope<br>
+      taunt with moonlight
+    </p>
+
+    <p>
+      <a class="more-link more-link--footer" href="http://haiku.mannlib.cornell.edu">
+        Daily Haiku Archive
+        <i class="fa fa-angle-double-right"></i>
+      </a>
+    </p>
+  </div>
+
+  <div class="footer__contact-us footer__panel">
+    <h5 class="footer__heading">Contact Us</h5>
+
+    <ul class="fa-ul">
+      <li>
+        <i class="fa-li fa fa-question-circle"></i>
+        <a href="#">Ask a Librarian</a>
+      </li>
+      <li>
+        <i class="fa-li fa fa-envelope"></i>
+        <a href="mailto:mann_circ@cornell.edu">mann_circ@cornell.edu</a>
+      </li>
+      <li>
+        <i class="fa-li fa fa-mobile"></i>
+        607-255-3296
+      </li>
+      <li>
+        <i class="fa-li fa fa-comments"></i>
+        Chat with a Librarian
+      </li>
+      <li>
+        <i class="fa-li fa fa-map-marker"></i>
+
+        <div class="footer__address">
+          <span class="footer__address-line">Mann Library</span>
+          <span class="footer__address-line">237 Mann Drive</span>
+          <span class="footer__address-line">Cornell University</span>
+          <span class="footer__address-line">Ithaca, NY 14853</span>
+        </div>
+
+        <a class="more-link more-link--footer" href="https://goo.gl/maps/ZJvrC8S5ZVn">
+          Get Directions
+          <i class="fa fa-angle-double-right"></i>
+        </a>
+      </li>
+      <li>
+        <i class="fa-li fa fa-user"></i>
+        <a href="#">Request a Consultation</a>
+      </li>
+      <li>
+        <i class="fa-li fa fa-book"></i>
+        <a href="{% path_to recommend-a-purchase %}">Recommend a Purchase</a>
+      </li>
+      <li>
+        <i class="fa-li fa fa-comment"></i>
+        <a href="{% path_to site-feedback %}" title="Send us feedback">Send Feedback</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="footer__bottomline">
+    <ul class="footer__social inline">
+      <li>
+        <a class="footer__social-icon" href="http://facebook.com/mannlibrary">
+          <i class="fa fa-facebook-square fa-2x"></i>
+        </a>
+      </li>
+      <li>
+        <a class="footer__social-icon" href="http://mannlibrary.tumblr.com">
+          <i class="fa fa-tumblr-square fa-2x"></i>
+        </a>
+      </li>
+      <li>
+        <a class="footer__social-icon" href="https://www.instagram.com/mannlibrary">
+          <i class="fa fa-instagram fa-2x"></i>
+        </a>
+      </li>
+      <li>
+        <a class="footer__social-icon" href="https://www.flickr.com/photos/mann_library">
+          <i class="fa fa-flickr fa-2x"></i>
+        </a>
+      </li>
+    </ul>
+
+    <p class="footer__copyright">&copy; {{ now | date: '%Y' }} Albert R. Mann Library</p>
+  </div>
+</footer>

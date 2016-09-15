@@ -13,15 +13,14 @@
 
 # Track all content-type templates
 !content_type_template.liquid
-!content_type_template.liquid.haml
 
 # Track 3 top-level pages in megamenu (for dev convenience when serving via wagon)
 !help.liquid
-!news-events.liquid.haml
-!use.liquid.haml
+!news-events.liquid
+!use.liquid
 
 # Track pages that supplement/provide content programatically
-!404.liquid.haml
+!404.liquid
 !about/staff.liquid
 !contact/site-feedback.liquid
 !help/faculty-instructors/request-course-instruction.liquid
@@ -29,9 +28,9 @@
 !help/research-support/request-a-consultation.liquid
 !help/research-support/research-guides.liquid
 !hours.liquid
-!index.liquid.haml
+!index.liquid
 !news-events/events/upcoming.liquid
-!projects.liquid.haml
+!projects.liquid
 !search.liquid
 !use/spaces.liquid
 !use/technology/computing/desktops.liquid

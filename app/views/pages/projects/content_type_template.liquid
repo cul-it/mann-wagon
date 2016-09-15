@@ -7,7 +7,9 @@ content_type: projects
 {% extends 'layouts/basic-page' %}
 
 {% block 'main' %}
-{% include 'project-nav' %}
-.page-content
-  {{ project.description }}
+  {% include 'nav-projects' %}
+
+  <div class="page-content">
+    {{ project.description }}
+  </div>
 {% endblock %}
