@@ -75,3 +75,6 @@ events_config:
     default_number_of_days:
       type: integer
       hint: Used to load the events for the number of days in future
+    homepage_r25_default_number_of_days:
+      type: integer
+      hint: Used to load r25 events for the number of days in future, only on homepage
