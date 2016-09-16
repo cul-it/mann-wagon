@@ -60,6 +60,27 @@
 
 // Target content authored via wysihtml (RTE)
 .page-content {
+  // Headings
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 2em 0 .5em;
+    font-family: $base-font-family;
+    font-weight: 700;
+
+    &:first-child { // Not necessary if the first element in the block
+      margin-top: 0;
+    }
+  }
+
+  h4,
+  h5,
+  h6 {
+    color: color('medium-gray');
+    font-weight: normal;
+  }
+
   // Lists
   li {
     margin: .2em 0;
