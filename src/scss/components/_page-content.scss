@@ -57,3 +57,24 @@
     padding: .5em .7em;
   }
 }
+
+// Target content authored via wysihtml (RTE)
+.page-content {
+  // Lists
+  li {
+    margin: .2em 0;
+  }
+
+  ol,
+  ul {
+    margin: 0 0 .75em 1.1em;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+}
