@@ -1,108 +1,184 @@
-<section class="events-home">
-	<h4 class="events-home__heading lead-in">
-    <a class="events-home__heading-link" href="/news-events/events/upcoming">
-      Events &amp; Exhibits
-    </a>
-	</h4>
+<div>
+	<section class="events-home">
+		<h4 class="events-home__heading lead-in">
+	    <a class="events-home__heading-link" href="/news-events/events/upcoming">
+	      Events &amp; Exhibits
+	    </a>
+		</h4>
 
-	<div v-show="showNoEventsMessage"class="ui segment">
-	  <div class="ui active centered inline loader">
-	    <div class="ui text loader">Loading</div>
-	  </div>
+		<div v-show="showNoEventsMessage"class="ui segment">
+			<div class="ui active centered inline loader">
+				<div class="ui text loader">Loading</div>
+			</div>
+		</div>
+
+		<template v-for="(date, events) in allEvents | orderBy 'event_start_time' | hideEventType 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'">
+			<h5 class="events-home__day">
+	      ((date | momentHomeDateText))
+	    </h5>
+
+	    <ul class="events-home__list">
+				<li class="events-home__event" v-for="event in events">
+					<h6 class="events-home__title">
+						<a v-link="{ name: 'homepage_events', query: { eventId: event.event_id }}" v-on:click="setRecurringEventStartTime(event.event_start_time)">(((event.event_title)))</a>
+					</h6>
+
+					<dl>
+						<dt class="events-home__label">
+	            time
+	          </dt>
+						<dd class="events-home__time" v-if="event.event_end_time">
+	            ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
+							<a v-if="event.event_recurring" v-link="{ name: 'homepage_events', query: { eventId: event.event_id }}" v-on:click="setRecurringEventStartTime(event.event_start_time)">&rarr; Additional Dates</a>
+	          </dd>
+						<dd class="events-home__time" v-else="">
+	            ((event.event_start_time | momentHomeTime ))
+							<a v-if="event.event_recurring" v-link="{ name: 'homepage_events', query: { eventId: event.event_id }}" v-on:click="setRecurringEventStartTime(event.event_start_time)">&rarr; Additional Dates</a>
+	          </dd>
+						<dt class="events-home__label">
+	            location
+	          </dt>
+						<dd class="events-home__location">
+	            <i class="fa fa-map-marker events-home__location-icon"></i> ((event.event_room_name))
+	          </dd>
+					</dl>
+
+				</li>
+			</ul>
+		</template>
+
+		<a class="more-link" href="/news-events/events/upcoming">
+	    Calendar of Events
+	    <i class="fa fa-angle-double-right"></i>
+		</a>
+
+	</section>
+
+	<section class="events-home events-home--workshops">
+		<h4 class="lead-in">
+	    <a class="events-home__heading-link" href="/news-events/events/upcoming?eventType=Class/ Workshop">
+	      Workshops &amp; Classes
+	    </a>
+		</h4>
+
+		<div v-show="showNoEventsMessage"class="ui segment">
+			<div class="ui active centered inline loader">
+				<div class="ui text loader">Loading</div>
+			</div>
+		</div>
+
+		<template v-for="(date, events) in allEvents | orderBy 'event_start_time' | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'">
+			<h5 class="events-home__day">
+	      ((date | momentHomeDateText))
+	    </h5>
+
+			<ul class="events-home__list">
+				<li class="events-home__event" v-for="event in events">
+					<h6 class="events-home__title">
+						<a v-link="{ name: 'homepage_events', query: { eventId: event.event_id }}" v-on:click="setRecurringEventStartTime(event.event_start_time)">(((event.event_title)))</a>
+					</h6>
+
+					<dl>
+						<dt class="events-home__label">
+	            time
+	          </dt>
+						<dd class="events-home__time" v-if="event.event_end_time">
+	            ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
+							<a v-if="event.event_recurring" v-link="{ name: 'homepage_events', query: { eventId: event.event_id }}" v-on:click="setRecurringEventStartTime(event.event_start_time)">&rarr; Additional Dates</a>
+	          </dd>
+						<dd class="events-home__time" v-else="">
+	            ((event.event_start_time | momentHomeTime ))
+							<a v-if="event.event_recurring" v-link="{ name: 'homepage_events', query: { eventId: event.event_id }}" v-on:click="setRecurringEventStartTime(event.event_start_time)">&rarr; Additional Dates</a>
+	          </dd>
+						<dt class="events-home__label">
+	            location
+	          </dt>
+						<dd class="events-home__location">
+	            <i class="fa fa-map-marker events-home__location-icon"></i> ((event.event_room_name))
+	          </dd>
+					</dl>
+
+				</li>
+			</ul>
+		</template>
+		<a class="more-link" href="/news-events/events/upcoming?eventType=Class/ Workshop">
+	    Calendar of Workshops &amp; Classes
+	    <i class="fa fa-angle-double-right"></i>
+	  </a>
+	</section>
+
+	<div class="ui fullscreen modal" v-show="!showNoEventsMessage" v-if="singleEvent">
+		<i class="close fa fa-times"></i>
+		<div class="header">
+			(((event.event_title)))
+		</div>
+
+		<div class="content">
+			<h2 class="events__date-heading">
+				((event.event_start_time | momentHomeDate))
+				<span class="events__date badge badge-alert" v-if="checkDateText(event.event_start_time)">
+					((event.event_start_time | momentHomeDateText))
+				</span>
+			</h2>
+
+			<div class="event__details">
+
+				<span class="location pull-right">
+					<i class="fa fa-map-marker"></i>
+					((event.event_room_name | capitalize))
+				</span>
+
+				<div class="ui accordion" v-if="event.event_has_additional_times">
+					<div class="title">
+						<span class="time" v-if="event.event_end_time">
+							<i class="fa fa-clock-o"></i>
+								((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
+						</span>
+
+						<span class="time" v-else="">
+							<i class="fa fa-clock-o"></i>
+							((event.event_start_time | momentHomeTime ))
+						</span>
+						&rarr; More Dates through (( event.event_additional_times[event.event_has_additional_times-1][0] | momentDate ))
+						<i class="dropdown icon"></i>
+					</div>
+						<div class="content" v-if="event.event_end_time">
+							<p v-for="additional_time of event.event_additional_times">
+								((additional_time[0] | momentDate)), ((additional_time[0] | momentHomeTime)) - ((additional_time[1] | momentHomeTime))
+							</p>
+						</div>
+						<div class="content" v-else="">
+							<p v-for="additional_time of event.event_additional_times">
+								((additional_time[0] | momentDate)), ((additional_time[0] | momentHomeTime))
+							</p>
+						</div>
+				</div>
+
+				<div class="" v-else="">
+
+					<span class="time" v-if="event.event_end_time">
+						<i class="fa fa-clock-o"></i>
+							((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
+					</span>
+
+					<span class="time" v-else="">
+						<i class="fa fa-clock-o"></i>
+						((event.event_start_time | momentHomeTime ))
+					</span>
+
+				</div>
+
+			</div>
+
+			<p class="description" >
+				(((event.event_description)))
+			</p>
+
+			<span class="event__type badge-notice" v-for="type in event.event_type">
+				((type | capitalize))
+			</span>
+
+		</div>
+
 	</div>
-
-	<template v-for="(date, events) in allEvents | orderBy 'event_start_time' | hideEventType 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'">
-		<h5 class="events-home__day">
-      ((date | momentHomeDateText))
-    </h5>
-
-    <ul class="events-home__list">
-			<li class="events-home__event" v-for="event in events">
-				<h6 class="events-home__title">
-					<a href="/news-events/events/upcoming/?eventId=((event.event_id))">
-						(((event.event_title)))
-					</a>
-				</h6>
-
-				<dl>
-					<dt class="events-home__label">
-            time
-          </dt>
-					<dd class="events-home__time" v-if="event.event_end_time">
-            ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
-          </dd>
-					<dd class="events-home__time" v-else="">
-            ((event.event_start_time | momentHomeTime ))
-          </dd>
-					<dt class="events-home__label">
-            location
-          </dt>
-					<dd class="events-home__location">
-            <i class="fa fa-map-marker events-home__location-icon"></i> ((event.event_room_name))
-          </dd>
-				</dl>
-
-			</li>
-		</ul>
-	</template>
-
-	<a class="more-link" href="/news-events/events/upcoming">
-    Calendar of Events
-    <i class="fa fa-angle-double-right"></i>
-	</a>
-
-</section>
-
-<section class="events-home events-home--workshops">
-	<h4 class="lead-in">
-    <a class="events-home__heading-link" href="/news-events/events/upcoming?eventType=Class/ Workshop">
-      Workshops &amp; Classes
-    </a>
-	</h4>
-
-	<div v-show="showNoEventsMessage"class="ui segment">
-	  <div class="ui active centered inline loader">
-	    <div class="ui text loader">Loading</div>
-	  </div>
-	</div>
-
-	<template v-for="(date, events) in allEvents | orderBy 'event_start_time' | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'">
-		<h5 class="events-home__day">
-      ((date | momentHomeDateText))
-    </h5>
-
-		<ul class="events-home__list">
-			<li class="events-home__event" v-for="event in events">
-				<h6 class="events-home__title">
-					<a href="/news-events/events/upcoming/?eventId=((event.event_id))">
-						(((event.event_title)))
-					</a>
-				</h6>
-
-				<dl>
-					<dt class="events-home__label">
-            time
-          </dt>
-					<dd class="events-home__time" v-if="event.event_end_time">
-            ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
-          </dd>
-					<dd class="events-home__time" v-else="">
-            ((event.event_start_time | momentHomeTime ))
-          </dd>
-					<dt class="events-home__label">
-            location
-          </dt>
-					<dd class="events-home__location">
-            <i class="fa fa-map-marker events-home__location-icon"></i> ((event.event_room_name))
-          </dd>
-				</dl>
-
-			</li>
-		</ul>
-	</template>
-
-	<a class="more-link" href="/news-events/events/upcoming?eventType=Class/ Workshop">
-    Calendar of Workshops &amp; Classes
-    <i class="fa fa-angle-double-right"></i>
-  </a>
-</section>
+</div>
