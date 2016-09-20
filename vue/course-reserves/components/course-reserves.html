@@ -12,7 +12,7 @@
 
   <div class="course-reserves__loader ui active inline loader"></div>
 
-  <div class="course-reserves__items">
+  <div class="course-reserves__items" v-if="itemsCourse">
     <h3 class="course-reserves__course-title">(( itemsCourse.displayCourseNumber )) (( itemsCourse.courseName ))</h3>
     <span class="course-reserves__instructor">Instructor: (( itemsCourse.instructor ))</span>
 

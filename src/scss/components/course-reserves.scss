@@ -1,0 +1,18 @@
+@import 'helpers/mixins';
+@import 'config';
+
+.course-reserves {
+  @include span(full nest);
+}
+
+.course-reserves__course-title {
+  margin-bottom: 0;
+}
+
+.course-reserves__instructor {
+  color: color('medium-gray');
+}
+
+.course-reserves__items {
+  margin-top: 2em;
+}

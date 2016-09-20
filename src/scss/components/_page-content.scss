@@ -25,7 +25,7 @@
 }
 
 .page-content--dynamic {
-  @include span(full);
+  @include span(full nest);
 }
 
 .page-content--accessory {

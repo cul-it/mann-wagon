@@ -1,5 +1,7 @@
 <template src="./course-reserves.html"></template>
 
+<style src="components/course-reserves" lang="sass"></style>
+
 <script>
   import 'semantic-ui-css/components/loader.min.css'
 
