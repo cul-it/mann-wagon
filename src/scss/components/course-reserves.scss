@@ -16,3 +16,16 @@
 .course-reserves__items {
   margin-top: 2em;
 }
+
+.course-reserves__location--not-mann {
+  display: block;
+  color: color('danger' ('darken': 45%));
+}
+
+.course-reserves__table {
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    font-size: modular-scale(0);
+  }
+
+  font-size: modular-scale(-1);
+}

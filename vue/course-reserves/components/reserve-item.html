@@ -1,0 +1,13 @@
+<tr>
+  <td><strong>(( item.title ))</strong></td>
+  <td>(( item.author ))</td>
+  <td>
+    <em v-if="item.elsewhere" class="course-reserves__location--not-mann" >(( item.location ))</em>
+    (( item.callnumber ))
+  </td>
+  <td>
+    <a v-if="item.location === 'electronic reserve'" href="https://blackboard.cornell.edu" title="Sign in to Blackboard to retrieve this electronic resource">(( item.dueDate ))</a>
+    <span v-if="item.dueDate === 'Available'" class="badge badge-success">(( item.dueDate ))</span>
+    <span v-if="item.formattedDueDate" class="badge badge-error">(( item.formattedDueDate ))</span>
+  </td>
+</tr>

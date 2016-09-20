@@ -3,9 +3,15 @@
 <style src="components/course-reserves" lang="sass"></style>
 
 <script>
+  import ReserveItem from './reserve-item'
+
   import 'semantic-ui-css/components/loader.min.css'
 
   export default {
+    components: {
+      ReserveItem
+    },
+
     data () {
       return {
         courses: [],
@@ -43,7 +49,7 @@
           this.toggleLoader()
 
           this.$http.get(reservesApiUrl).then(function (response) {
-            console.log(response.data)
+            // console.log(response.data)
 
             this.$set('itemsCourse', response.data.course)
             this.$set('items', response.data.reserveItemList)
