@@ -23,6 +23,7 @@ module.exports = {
   },
   entry: {
       consultationRequest: './src/js/form-consultation-request.js',
+      courseReserves: './vue/course-reserves/course-reserves.js',
       eventsPage: './vue/events/events-page/events-page.js',
       experts: './src/js/experts.js',
       formSiteFeedback: './src/js/form-site-feedback.js',
@@ -68,7 +69,10 @@ module.exports = {
         {
           test:   /\.js$/,
           loader: 'babel',
-          include: path.join(__dirname, 'src')
+          include: [
+            path.join(__dirname, 'src'),
+            path.join(__dirname, 'vue/course-reserves')
+          ]
         },
         {
           // Special handling for main stylesheet -- extract to CSS for performance

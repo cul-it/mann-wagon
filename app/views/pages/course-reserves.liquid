@@ -24,3 +24,7 @@ editable_elements:
     number. Some libraries will instead shelve reserves by title or course number.</em></p><br></div>'
 ---
 {% extends 'layouts/basic-page' %}
+
+{% block 'main/dynamic' %}
+  {% include 'dynamic-course-reserves' %}
+{% endblock %}
