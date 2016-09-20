@@ -7,7 +7,7 @@ Vue.use(VueResource)
 Vue.config.delimiters = ['((', '))']
 Vue.config.unsafeDelimiters = ['(((', ')))']
 
-import CourseReserves from './components/CourseReserves'
+import CourseReserves from './components/course-reserves'
 
 new Vue({
   el: 'body',
