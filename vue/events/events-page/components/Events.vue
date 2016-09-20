@@ -83,7 +83,28 @@ export default {
       query: '',
       params: '',
       eventsList: false,
-      singleEvent: false
+      singleEvent: false,
+      recurringEventStartTime: ''
+    }
+  },
+  // Use vue-router transition data hook to trigger methods
+  route: {
+    data: function (transition) {
+      if (this.$route.query) {
+        this.$set('query', this.$route.query)
+      }
+      if (this.query.room) {
+        this.$set('params', unescape(this.query.room))
+      } else if (this.query.eventType) {
+        this.$set('params', unescape(this.query.eventType))
+      } else if (this.query.eventId) {
+        this.$set('params', unescape(this.query.eventId))
+      }
+      if (transition.to.query.eventId) {
+        this.displaySingleEventModal()
+      } else if (transition.to.query.eventType || Object.keys(transition.to.query).length === 0) {
+        this.displayEventList()
+      }
     }
   },
   watch: {
@@ -99,7 +120,7 @@ export default {
     'eventSources': {
       handler: function (events) {
         if (events.updatedCornellEvents && events.updatedLibcalEvents && events.updatedR25Events) {
-            this.getAllEvents()
+          this.getAllEvents()
         }
       },
       deep: true
@@ -107,41 +128,6 @@ export default {
   },
   // Anything within the ready function will run when the application loads
   ready: function () {
-    if (window.location.search) {
-      this.$set('query', this.url.split('?')[1].split('='))
-    }
-    if (this.query[0] === 'room') {
-      this.$set('params', unescape(this.query[1]))
-    } else if (this.query[0] === 'eventType') {
-      this.$set('params', unescape(this.query[1]))
-    } else if (this.query[0] === 'eventId') {
-      this.$set('params', unescape(this.query[1]))
-    }
-    if (this.query[0] === 'eventId') {
-      if (this.params.match('LibCal(.*)')) {
-        this.getMannServicesEvents('event', this.params)
-      } else if (this.params.match('R25(.*)')){
-        this.getR25Events('event', this.params.replace('R25-', ''))
-      } else {
-        this.getCornellEvent()
-      }
-      // single event
-      this.$set('singleEvent', true)
-      $('body').hide()
-    } else {
-      if (this.query[0] === 'eventType') {
-        this.setEventTypeFilter(this.params)
-      }
-      if (this.query.room) {
-        this.setRoomFilter(this.params)
-      }
-    }
-    // When the application loads, call methods
-    this.getCornellEvents('default')
-    this.getMannServicesEvents('default')
-    this.getR25Events('default')
-    // events list
-    this.$set('eventsList', true)
   },
   directives: require('../directives/datepicker-directive'),
   filters: {
@@ -210,6 +196,38 @@ export default {
     }
   },
   methods: {
+    displayEventList () {
+      if (this.query.eventType) {
+        this.setEventTypeFilter(this.params)
+      }
+      if (this.query.room) {
+        this.setRoomFilter(this.params)
+      }
+      if (!this.eventSources.updatedCornellEvents && !this.eventSources.libcalEvent && !this.eventSources.r25Events) {
+        this.getCornellEvents('default')
+        this.getMannServicesEvents('default')
+        this.getR25Events('default')
+        // events list
+        this.$set('eventsList', true)
+      }
+    },
+    displaySingleEventModal () {
+      this.$set('showNoEventsMessage', true)
+      if (this.query.eventId) {
+        if (this.params.match('LibCal(.*)')) {
+          this.getMannServicesEvents('event', this.params)
+        } else if (this.params.match('R25(.*)')) {
+          this.getR25Events('event', this.params.replace('R25-', ''))
+        } else {
+          this.getCornellEvent()
+        }
+        // single event
+        this.$set('singleEvent', true)
+      }
+    },
+    setRecurringEventStartTime (startTime) {
+      this.$set('recurringEventStartTime', startTime)
+    },
     // Cornell localist events
     getCornellEvents (option, date) {
       this.eventSources.updatedCornellEvents = false
@@ -247,28 +265,28 @@ export default {
             url: mannservicesEventsUrl + roomId,
             dataType: 'json'
           })
-        })
+      })
       Promise.all([promise[23], promise[24], promise[25], promise[26]]).then((values) => {
         _.each(values, function (value, index) {
           libcalReservations = _.concat(libcalReservations, value.data.eventList)
         })
-          libcalReservations = _.each(libcalReservations, function (libcalReservation) {
-            // remove email from eventId for use as url parameter for single event display
-            libcalReservation.eventId = libcalReservation.eventId.split('-', 3).join('-')
-          })
+        libcalReservations = _.each(libcalReservations, function (libcalReservation) {
+          // remove email from eventId for use as url parameter for single event display
+          libcalReservation.eventId = libcalReservation.eventId.split('-', 3).join('-')
+        })
 
         // Create custom model, call methods only on last loop
         if (option === 'default') {
           // All reservations
           // Filter out past reservations
           var today = moment().startOf('day').format()
-          var end_date = moment(today).add(this.defaultNumberOfDays, 'days').format()
+          var endDate = moment(today).add(this.defaultNumberOfDays, 'days').format()
           var notPastLibCalReservations = _.filter(libcalReservations, function (libcalReservation) {
             return moment(new Date(libcalReservation.formattedStartDateTime)).format() >= today
           })
           // Default number of days to load workaround
           var defaultLibCalReservations = _.filter(notPastLibCalReservations, function (notPastLibCalReservation) {
-            return moment(new Date(notPastLibCalReservation.formattedStartDateTime)).format() <= end_date
+            return moment(new Date(notPastLibCalReservation.formattedStartDateTime)).format() <= endDate
           })
           this.libcalReservationsArray(defaultLibCalReservations)
           this.$set('hidePastLibcalReservations', true)
@@ -362,7 +380,7 @@ export default {
         vueInstance.$http(
           {
             type: 'GET',
-            url: r25EventBaseUrl + 'rsrv_id=' + param ,
+            url: r25EventBaseUrl + 'rsrv_id=' + param,
             headers: {
               'Authorization': 'Basic ' + vueInstance.r25WebserviceAuthorization
             },
@@ -482,7 +500,7 @@ export default {
         // Check twice for lobby
         if (libcalEvents.length && libcalEvents[counter - 1].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 1].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
           libcalEvents[counter - 1].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
-        } else if (libcalEvents.length >1 && libcalEvents[counter - 2].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 2].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
+        } else if (libcalEvents.length > 1 && libcalEvents[counter - 2].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 2].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
           libcalEvents[counter - 2].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
         } else {
           events['event_id'] = value.eventId
@@ -529,7 +547,7 @@ export default {
         // Event type filter list array
         roomNames.push(value['r25:spaces'][0]['r25:formal_name'][0])
         // Room filter list array
-        eventTypes.push("Class/ Workshop")
+        eventTypes.push('Class/ Workshop')
       })
       // set array values to be used later to merge
       this.$set('r25EventTypes', eventTypes)
@@ -567,6 +585,7 @@ export default {
       })
     },
     eventArray (source, data) {
+      var vueInstance = this
       var startDateTime = ''
       var endDateTime = ''
       var additionalTimes = []
@@ -580,8 +599,8 @@ export default {
             startDateTime = value.start
             endDateTime = value.end
           } else if (days > 0 && data.event_instances.length > 1) {
-              additionalTimes.push([value.start, value.end])
-              hasAdditionalTimes = additionalTimes.length
+            additionalTimes.push([value.start, value.end])
+            hasAdditionalTimes = additionalTimes.length
           } else if (days < 0) {
             // Show the last date time for the event
             startDateTime = value.start
@@ -589,10 +608,14 @@ export default {
           }
         })
         if (hasAdditionalTimes && startDateTime < today && endDateTime < today) {
+          if (this.recurringEventStartTime) {
+            startDateTime = this.recurringEventStartTime
+          } else {
             startDateTime = additionalTimes[0][0]
             endDateTime = additionalTimes[0][1]
             additionalTimes.shift()
             hasAdditionalTimes = additionalTimes.length
+          }
         }
         var eventType = []
         // Event type filter list array
@@ -624,23 +647,20 @@ export default {
           'event_type': ['Class/Workshop']
         })
       }
-      this.$set('showNoEventsMessage', false)
       // Call Semantic ui modal and accordion for future times
       $('.ui.modal').modal({
         onHide: function () {
-          // Ensure user lands on the events page on modal close.
-          if (document.referrer && document.referrer !== window.location.href && document.referrer !== window.location.href.split('?')[0]) {
-            window.history.back()
-          } else {
-            window.location = window.location.href.split('?')[0]
+          vueInstance.$route.router.go('/news-events/events/upcoming')
+          if (vueInstance.filteredEvents.length === 0) {
+            vueInstance.showNoEventsMessage = true
           }
         },
         onShow: function () {
-          $('body').show()
         },
         onVisible: function () {
           $('.ui.modal').modal('refresh')
           $('.ui.accordion').accordion()
+          vueInstance.$set('showNoEventsMessage', false)
         }
       }).modal('show')
     }

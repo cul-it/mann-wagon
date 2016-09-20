@@ -25,6 +25,12 @@
   }
 }
 
+.events-home  {
+  &:first-of-type {
+    margin-top: 2em;
+  }
+}
+
 .events-home__heading-link {
   color: color('font-base');
 }

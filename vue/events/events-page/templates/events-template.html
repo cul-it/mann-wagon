@@ -1,13 +1,13 @@
 <div class="events-container">
+	<div v-show="showNoEventsMessage"class="ui segment">
+		<div class="ui active centered inline loader">
+			<div class="ui text loader">Loading</div>
+		</div>
+	</div>
+
 	<div class="events" v-if="eventsList">
 		<!-- Tab panes -->
 		<div class="tab-content">
-			<div v-show="showNoEventsMessage"class="ui segment">
-				<div class="ui active centered inline loader">
-					<div class="ui text loader">Loading</div>
-				</div>
-			</div>
-
 			<div class="events__per-day" v-for="(date, events) in allEvents | orderBy 'event_start_time' | roomFilter room | eventTypeFilter eventType | limitListFilter limitList | groupBy 'event_start'">
 				<h2 class="events__date-heading">
 					((date | momentDate))
@@ -19,20 +19,20 @@
 				<div class="events__list">
 					<div class="event" v-for="event in events">
 						<h3 class="event__title">
-            	<a href="?eventId=((event.event_id))">(((event.event_title)))</a>
+            	<a v-link="{ name: 'events', query: { eventId: event.event_id }}" v-on:click="setRecurringEventStartTime(event.event_start_time)">(((event.event_title)))</a>
 						</h3>
 						<div class="event__details">
 
 							<span class="time" v-if="event.event_end_time">
 								<i class="fa fa-clock-o"></i>
 									((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))
-									<a v-if="event.event_recurring" href="?eventId=((event.event_id))">&rarr; Additional Dates</a>
+									<a v-if="event.event_recurring" v-link="{ name: 'events', query: { eventId: event.event_id }}" v-on:click="setRecurringEventStartTime(event.event_start_time)">&rarr; Additional Dates</a>
 							</span>
 
               <span class="time" v-else="">
                 <i class="fa fa-clock-o"></i>
-                ((event.event_start_time | momentTime ))
-								<a v-if="event.event_recurring" href="?eventId=((event.event_id))">&rarr; Additional Dates</a>
+	                ((event.event_start_time | momentTime ))
+									<a v-if="event.event_recurring" v-link="{ name: 'events', query: { eventId: event.event_id }}" v-on:click="setRecurringEventStartTime(event.event_start_time)">&rarr; Additional Dates</a>
               </span>
 
               <span class="location pull-right">
