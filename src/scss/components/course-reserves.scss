@@ -22,6 +22,11 @@
   color: color('danger' ('darken': 45%));
 }
 
+.course-reserves__overdue {
+  display: block;
+  font-size: modular-scale(-1);
+}
+
 .course-reserves__table {
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     font-size: modular-scale(0);
