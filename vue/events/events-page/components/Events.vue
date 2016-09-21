@@ -464,7 +464,11 @@ export default {
         events['event_start_time'] = value.event_instances[0].event_instance.start
         events['event_start'] = value.event_instances[0].event_instance.start.substring(0, 10)
         events['event_end_time'] = value.event_instances[0].event_instance.end
-        events['event_room_name'] = value.room_number
+        if (value.room_number != '') {
+          events['event_room_name'] = value.room_number
+        } else if (value.location_name != '') {
+          events['event_room_name'] = value.location_name
+        }
         events['event_type'] = eventType
         events['event_recurring'] = value.recurring
         // Events array from localist
@@ -478,7 +482,12 @@ export default {
         })
 
         // Room filter list array
-        roomNames.push(value.room_number)
+        if (value.room_number != '') {
+          roomNames.push(value.room_number)
+        } else if (value.location_name != '') {
+          roomNames.push(value.location_name)
+        }
+
       })
       // set array values to be used later to merge
       this.$set('cornellEventTypes', eventTypes)
