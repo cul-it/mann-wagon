@@ -264,7 +264,7 @@ export default {
           promise[roomId] = vueInstance.$http(
             {
               type: 'GET',
-              url: r25EventsBaseUrl + 'space_id=' + roomId + '&start_dt=' + today + '&end_dt=+' + vueInstance.homePageR25DefaultNumberOfDays,
+              url: r25EventsBaseUrl + 'space_id=' + roomId + '&start_dt=' + today + '&end_dt=+' + vueInstance.homepageR25DefaultNumberOfDays,
               headers: {
                 'Authorization': 'Basic ' + vueInstance.r25WebserviceAuthorization
               },
