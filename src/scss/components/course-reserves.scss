@@ -1,0 +1,53 @@
+@import 'helpers/mixins';
+@import 'config';
+
+.course-reserves {
+  @include span(full nest);
+}
+
+.course-reserves__article-pages {
+  color: color('medium-gray');
+  font-size: modular-scale(-1);
+}
+
+.course-reserves__article-title {
+  display: block;
+}
+
+.course-reserves__course-title {
+  margin-bottom: 0;
+}
+
+.course-reserves__instructor {
+  color: color('medium-gray');
+}
+
+.course-reserves__items {
+  margin-top: 2em;
+}
+
+.course-reserves__location--not-mann {
+  display: block;
+  color: color('danger' ('darken': 45%));
+}
+
+.course-reserves__overdue {
+  display: block;
+  font-size: modular-scale(-1);
+}
+
+.course-reserves__table {
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    font-size: modular-scale(0);
+  }
+
+  font-size: modular-scale(-1);
+}
+
+.course-reserves__tbody {
+  tr {
+    &:nth-of-type(odd) {
+      background: color('alabaster');
+    }
+  }
+}
