@@ -36,3 +36,4 @@
 !use/spaces.liquid
 !use/technology/computing/desktops.liquid
 !use/technology/computing/laptops.liquid
+!use/technology/software.liquid
