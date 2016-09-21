@@ -6,7 +6,7 @@
     (( item.callnumber ))
   </td>
   <td>
-    <a v-if="item.location === 'electronic reserve'" href="https://blackboard.cornell.edu" title="Sign in to Blackboard to retrieve this electronic resource">(( item.dueDate ))</a>
+    <a v-if="item.online" href="https://blackboard.cornell.edu" title="Sign in to Blackboard to retrieve this electronic resource">(( item.dueDate ))</a>
     <span v-if="item.dueDate === 'Available'" class="badge badge-success">(( item.dueDate ))</span>
     <span v-if="item.checkedOut" class="badge badge-error">(( item.formattedDueDate ))</span>
     <template v-if="item.overdue">

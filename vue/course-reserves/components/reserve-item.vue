@@ -16,13 +16,14 @@
 
     methods: {
       itemLogistics () {
-        // Indicate online under availability
-        if (this.item.location === 'electronic reserve') {
+        // Identify online reserves
+        if (this.item.location === 'electronic reserve' || this.item.status === 'Item Available on Electronic Reserves') {
+          this.$set('item.online', true)
           this.$set('item.dueDate', 'Online')
         }
 
         // Identify physical reserves not at Mann
-        if (this.item.location != 'Mann Library Reserve' && this.item.location != 'electronic reserve') {
+        if (this.item.location !== 'Mann Library Reserve' && this.item.location !== 'electronic reserve' && this.item.location !== '?') {
           this.$set('item.elsewhere', true)
         }
 
