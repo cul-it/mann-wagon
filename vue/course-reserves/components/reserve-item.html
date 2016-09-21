@@ -1,5 +1,9 @@
 <tr>
-  <td><strong>(( item.title ))</strong></td>
+  <td>
+    <strong>(( item.title ))</strong>
+    <em class="course-reserves__article-title">(( item.articleTitle ))</em>
+    <span v-if="item.pages" class="course-reserves__article-pages">pp. (( item.pages ))</span>
+  </td>
   <td>(( item.author ))</td>
   <td>
     <em v-if="item.elsewhere" class="course-reserves__location--not-mann" >(( item.location ))</em>
