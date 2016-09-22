@@ -139,17 +139,17 @@
 							<i class="fa fa-clock-o"></i>
 							((event.event_start_time | momentHomeTime ))
 						</span>
-						&rarr; More Dates through (( event.event_additional_times[event.event_has_additional_times-1][0] | momentDate ))
+						&rarr; More Dates through (( event.event_additional_times[event.event_has_additional_times-1][0] | momentHomeDate ))
 						<i class="dropdown icon"></i>
 					</div>
 						<div class="content" v-if="event.event_end_time">
 							<p v-for="additional_time of event.event_additional_times">
-								((additional_time[0] | momentDate)), ((additional_time[0] | momentHomeTime)) - ((additional_time[1] | momentHomeTime))
+								((additional_time[0] | momentHomeDate)), ((additional_time[0] | momentHomeTime)) - ((additional_time[1] | momentHomeTime))
 							</p>
 						</div>
 						<div class="content" v-else="">
 							<p v-for="additional_time of event.event_additional_times">
-								((additional_time[0] | momentDate)), ((additional_time[0] | momentHomeTime))
+								((additional_time[0] | momentHomeDate)), ((additional_time[0] | momentHomeTime))
 							</p>
 						</div>
 				</div>
