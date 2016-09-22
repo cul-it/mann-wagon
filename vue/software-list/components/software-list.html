@@ -1,0 +1,16 @@
+<div class="software-list__table">
+  <h3>Software Availability by Location</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th v-for="heading in softwareList[0]">(( $key ))</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="software in softwareList">
+        <td v-for="entry in software">(( entry ))</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

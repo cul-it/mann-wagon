@@ -15,3 +15,7 @@ editable_elements:
     Labs page</a>.</p>'
 ---
 {% extends "layouts/basic-page" %}
+
+{% block 'main/dynamic' %}
+  {% include 'dynamic-software-list' %}
+{% endblock %}
