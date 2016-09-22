@@ -16,7 +16,7 @@
 
     methods: {
       getCsv () {
-        var csvUrl = 'https://raw.githubusercontent.com/cul-it/mann-softwarelist/master/csv/softwarelist.csv?token='
+        var csvUrl = 'https://raw.githubusercontent.com/cul-it/mann-softwarelist-csv/master/softwarelist.csv'
         var converter = new Converter()
         var vm = this;
 
