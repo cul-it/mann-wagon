@@ -21,7 +21,10 @@ export default {
   components: {
     Description
   },
-  props: ['r25-webservice-authorization', 'default-number-of-days'],
+  props: ['r25-webservice-authorization',
+          'default-number-of-days',
+          'events-page-path'
+        ],
   data () {
     return {
       eventSources: {
@@ -659,7 +662,7 @@ export default {
       // Call Semantic ui modal and accordion for future times
       $('.ui.modal').modal({
         onHide: function () {
-          vueInstance.$route.router.go('/news-events/events/upcoming')
+          vueInstance.$route.router.go(vueInstance.eventsPagePath)
           if (vueInstance.filteredEvents.length === 0) {
             vueInstance.showNoEventsMessage = true
           }

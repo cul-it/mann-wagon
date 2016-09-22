@@ -15,7 +15,11 @@ import 'semantic-ui-css/components/loader.min.css'
 export default {
   name: 'events',
   template: require('../templates/homepage-template.html'),
-  props: ['r25-webservice-authorization', 'default-number-of-days', 'homepage-r25-default-number-of-days'],
+  props: ['r25-webservice-authorization',
+          'default-number-of-days',
+          'homepage-r25-default-number-of-days',
+          'events-page-path'
+        ],
   data () {
     return {
       eventSources: {
