@@ -1,7 +1,7 @@
 <div>
 	<section class="events-home">
 		<h4 class="events-home__heading lead-in">
-	    <a class="events-home__heading-link" href="/news-events/events/upcoming">
+	    <a class="events-home__heading-link" href="((eventsPagePath))">
 	      Events &amp; Exhibits
 	    </a>
 		</h4>
@@ -39,7 +39,7 @@
 	            location
 	          </dt>
 						<dd class="events-home__location">
-	            <i class="fa fa-map-marker events-home__location-icon"></i> ((event.event_room_name))
+	            <i class="fa fa-map-marker events-home__location-icon"></i> ((event.event_room_name | capitalize))
 	          </dd>
 					</dl>
 
@@ -47,7 +47,7 @@
 			</ul>
 		</template>
 
-		<a class="more-link" href="/news-events/events/upcoming">
+		<a class="more-link" href="((eventsPagePath))">
 	    Calendar of Events
 	    <i class="fa fa-angle-double-right"></i>
 		</a>
@@ -56,7 +56,7 @@
 
 	<section class="events-home events-home--workshops">
 		<h4 class="lead-in">
-	    <a class="events-home__heading-link" href="/news-events/events/upcoming?eventType=Class/ Workshop">
+	    <a class="events-home__heading-link" href="((eventsPagePath))?eventType=Class/ Workshop">
 	      Workshops &amp; Classes
 	    </a>
 		</h4>
@@ -94,14 +94,14 @@
 	            location
 	          </dt>
 						<dd class="events-home__location">
-	            <i class="fa fa-map-marker events-home__location-icon"></i> ((event.event_room_name))
+	            <i class="fa fa-map-marker events-home__location-icon"></i> ((event.event_room_name | capitalize))
 	          </dd>
 					</dl>
 
 				</li>
 			</ul>
 		</template>
-		<a class="more-link" href="/news-events/events/upcoming?eventType=Class/ Workshop">
+		<a class="more-link" href="((eventsPagePath))?eventType=Class/ Workshop">
 	    Calendar of Workshops &amp; Classes
 	    <i class="fa fa-angle-double-right"></i>
 	  </a>
@@ -139,17 +139,17 @@
 							<i class="fa fa-clock-o"></i>
 							((event.event_start_time | momentHomeTime ))
 						</span>
-						&rarr; More Dates through (( event.event_additional_times[event.event_has_additional_times-1][0] | momentDate ))
+						&rarr; More Dates through (( event.event_additional_times[event.event_has_additional_times-1][0] | momentHomeDate ))
 						<i class="dropdown icon"></i>
 					</div>
 						<div class="content" v-if="event.event_end_time">
 							<p v-for="additional_time of event.event_additional_times">
-								((additional_time[0] | momentDate)), ((additional_time[0] | momentHomeTime)) - ((additional_time[1] | momentHomeTime))
+								((additional_time[0] | momentHomeDate)), ((additional_time[0] | momentHomeTime)) - ((additional_time[1] | momentHomeTime))
 							</p>
 						</div>
 						<div class="content" v-else="">
 							<p v-for="additional_time of event.event_additional_times">
-								((additional_time[0] | momentDate)), ((additional_time[0] | momentHomeTime))
+								((additional_time[0] | momentHomeDate)), ((additional_time[0] | momentHomeTime))
 							</p>
 						</div>
 				</div>

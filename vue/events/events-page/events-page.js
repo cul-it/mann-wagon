@@ -15,12 +15,13 @@ Vue.config.unsafeDelimiters = ['(((', ')))']
 var Events = require('./components/Events.vue')
 
 var App = Vue.extend({})
+// Use eventsPath as key for the routes object
+var routes = {}
+routes[path_to_events_page] = {
+                      name: 'events',
+                      component: Events
+                     }
 
-router.map({
-  '/news-events/events/upcoming': {
-    name: 'events',
-    component: Events
-  }
-})
+router.map(routes)
 
 router.start(App, 'body')

@@ -15,7 +15,11 @@ import 'semantic-ui-css/components/loader.min.css'
 export default {
   name: 'events',
   template: require('../templates/homepage-template.html'),
-  props: ['r25-webservice-authorization', 'default-number-of-days', 'homepage-r25-default-number-of-days'],
+  props: ['r25-webservice-authorization',
+          'default-number-of-days',
+          'homepage-r25-default-number-of-days',
+          'events-page-path'
+        ],
   data () {
     return {
       eventSources: {
@@ -264,7 +268,7 @@ export default {
           promise[roomId] = vueInstance.$http(
             {
               type: 'GET',
-              url: r25EventsBaseUrl + 'space_id=' + roomId + '&start_dt=' + today + '&end_dt=+' + vueInstance.homePageR25DefaultNumberOfDays,
+              url: r25EventsBaseUrl + 'space_id=' + roomId + '&start_dt=' + today + '&end_dt=+' + vueInstance.homepageR25DefaultNumberOfDays,
               headers: {
                 'Authorization': 'Basic ' + vueInstance.r25WebserviceAuthorization
               },
@@ -321,7 +325,11 @@ export default {
         events['event_start_time'] = value.event_instances[0].event_instance.start
         events['event_start'] = value.event_instances[0].event_instance.start.substring(0, 10)
         events['event_end_time'] = value.event_instances[0].event_instance.end
-        events['event_room_name'] = value.room_number
+        if (value.room_number != '') {
+          events['event_room_name'] = value.room_number
+        } else if (value.location_name != '') {
+          events['event_room_name'] = value.location_name
+        }
         events['event_type'] = eventType
         events['event_recurring'] = value.recurring
 
