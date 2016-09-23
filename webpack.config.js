@@ -99,6 +99,9 @@ module.exports = {
       ]
     },
   node: {
+    // Create empty modules to avoid errors from csvtojson
+    // -- https://github.com/vuejs-templates/webpack/issues/262#issuecomment-247135126
+    // -- https://github.com/webpack/docs/wiki/Configuration#node
     child_process: 'empty',
     fs: 'empty'
   },
