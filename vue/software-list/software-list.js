@@ -7,6 +7,9 @@ Vue.config.unsafeDelimiters = ['(((', ')))']
 // Vue components
 import SoftwareList from './components/software-list'
 
+// Styles
+import 'components/software-list'
+
 new Vue({
   el: '.software-list',
 

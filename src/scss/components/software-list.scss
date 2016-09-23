@@ -1,0 +1,26 @@
+@import 'helpers/mixins';
+@import 'config';
+
+.software-list {
+  @include span(full nest);
+}
+
+.software-list__heading {
+  margin: 2em 0 0;
+}
+
+.software-list__installed {
+  color: color('success' ('darken': 45%));
+}
+
+.software-list__table {
+
+  &.ui.table { // Override semantic ui default
+    @include susy-breakpoint($tablet, $g-tablet) {
+      font-size: modular-scale(0);
+    }
+
+    margin-top: 1em;
+    font-size: modular-scale(-4);
+  }
+}
