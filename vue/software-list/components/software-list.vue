@@ -11,30 +11,21 @@
     },
 
     created: function () {
-      this.getCsv()
+      this.parseCsv()
     },
 
     methods: {
-      getCsv () {
-        var csvUrl = 'https://raw.githubusercontent.com/cul-it/mann-softwarelist-csv/master/softwarelist.csv'
+      parseCsv () {
         var converter = new Converter()
         var vm = this;
 
-        this.$http.get(csvUrl).then(function (response) {
-          // console.log(response)
-          converter.fromString(response.data)
-        })
+        converter.fromString(softwareCsvString)
 
         // end_parsed is emitted after all csv rows have been processed
         converter.on('end_parsed', function (jsonObj) {
            // console.log(jsonObj)
            vm.$set('softwareList', jsonObj)
         });
-
-        // record_parsed is emitted after each csv row is processed
-        // converter.on('record_parsed', function (jsonObj) {
-        //    console.log(jsonObj)
-        // });
       }
     }
   }
