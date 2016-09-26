@@ -61,7 +61,8 @@
 
       <div class="extra content space-finder__card-meta">
         <span class="right floated">
-          {% if space.reservation_system or space.avail_url %}
+          {% if space.reservations_required_in_advance %}
+          {% elsif space.reservation_system or space.avail_url %}
           {% comment %}This is completely unnecessary but Engine refuses to cooperate otherwise...don't ask{% endcomment %}
             {% if space.reservation_system or space.avail_url != "" %}
               <span class="space-finder__availability--{{ room_availability | downcase }}"><i class="fa {{ room_available_icon }}"></i> {{ room_availability }}</span>
