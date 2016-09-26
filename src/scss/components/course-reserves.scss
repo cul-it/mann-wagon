@@ -37,17 +37,11 @@
 }
 
 .course-reserves__table {
-  @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    font-size: modular-scale(0);
-  }
-
-  font-size: modular-scale(-1);
-}
-
-.course-reserves__tbody {
-  tr {
-    &:nth-of-type(odd) {
-      background: color('alabaster');
+  &.ui.table { // Override semantic ui default
+    @include susy-breakpoint($scape, $g-scape) {
+      font-size: modular-scale(0);
     }
+
+    font-size: modular-scale(-2);
   }
 }
