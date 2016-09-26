@@ -6,21 +6,11 @@
 }
 
 .software-list__heading {
-  margin: 2em 0 0;
+  margin: 2em 0 1em;
 }
 
 .software-list__installed {
   color: color('success' ('darken': 45%));
 }
 
-.software-list__table {
-
-  &.ui.table { // Override semantic ui default
-    @include susy-breakpoint($tablet, $g-tablet) {
-      font-size: modular-scale(0);
-    }
-
-    margin-top: 1em;
-    font-size: modular-scale(-4);
-  }
-}
+// See _shame.scss for some unpleasantries around sticky table headings
