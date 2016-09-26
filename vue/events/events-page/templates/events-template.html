@@ -8,6 +8,20 @@
 	<div class="events" v-if="eventsList">
 		<!-- Tab panes -->
 		<div class="tab-content">
+
+			<div class="">
+				((dateSelected | momentDate))
+	      <a class="fa fa-times" v-if="dateSelected" v-on:click="removeSelectedDate()"></a>
+			</div>
+			<div class="">
+				((eventSelected))
+				<a class="fa fa-times" v-if="eventSelected" v-on:click="removeEventTypeFilter()"></a>
+			</div>
+			<div class="">
+				((roomSelected))
+				<a class="fa fa-times" v-if="roomSelected" v-on:click="removeRoomFilter()"></a>
+			</div>
+
 			<div class="events__per-day" v-for="(date, events) in allEvents | orderBy 'event_start_time' | roomFilter room | eventTypeFilter eventType | limitListFilter limitList | groupBy 'event_start'">
 				<h2 class="events__date-heading">
 					((date | momentDate))
