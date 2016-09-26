@@ -1,0 +1,17 @@
+{% comment %}
+  Only include the LibCal script if rendering a single button
+  -- otherwise, the requesting page will handle this call
+  -- avoids multiple calls for this resource when rendering multiple buttons
+{% endcomment %}
+{% if flying_solo %}
+  <!--  Libcal MyScheduler Widget-->
+  {{ '//api3.libcal.com/js/myscheduler.js?002' | javascript_tag }}
+{% endif %}
+
+<script>
+  jQuery(function(){
+     jQuery("#mySched{{ libcal_uid }}").LibCalMySched({ iid: 973, uid: {{ libcal_uid }}, gid: 0,  width: 500, height: 450 });
+  });
+</script>
+
+<button id="mySched{{ libcal_uid }}" class="consultation__book-it" href="#">Book a Consultation</button>
