@@ -43,11 +43,3 @@
 
   font-size: modular-scale(-1);
 }
-
-.course-reserves__tbody {
-  tr {
-    &:nth-of-type(odd) {
-      background: color('alabaster');
-    }
-  }
-}
