@@ -37,7 +37,7 @@
 
               <span class="location pull-right">
                 <i class="fa fa-map-marker"></i>
-                ((event.event_room_name | capitalize))
+                ((event.event_room_name))
               </span>
 
             </div>
@@ -111,7 +111,7 @@
 		<ul data-filter-group="type">
 			<li v-for="event_type of allEventTypes | orderBy 'eventType'">
 				<a class="filter" v-bind:class="{ 'selected-filter': event_type == eventSelected }" v-on:click="setEventTypeFilter(event_type)">
-          ((event_type | capitalize))
+          ((event_type))
         </a>
         <a class="fa fa-times" v-if="event_type == eventSelected" v-on:click="removeEventTypeFilter()">
         </a>
@@ -126,7 +126,7 @@
 			<li v-for="room of allRoomNames | orderBy 'room'">
 				<!-- event to set room filter -->
 				<a class="filter" v-bind:class="{ 'selected-filter': room == roomSelected }" v-on:click="setRoomFilter(room)">
-					((room | capitalize))
+					((room))
         </a>
         <a class="fa fa-times" v-if="room == roomSelected" v-on:click="removeRoomFilter()">
         </a>
@@ -152,7 +152,7 @@
 
 				<span class="location pull-right">
 					<i class="fa fa-map-marker"></i>
-					((event.event_room_name | capitalize))
+					((event.event_room_name))
 				</span>
 
 				<div class="ui accordion" v-if="event.event_has_additional_times">
@@ -202,7 +202,7 @@
 			</p>
 
 			<span class="event__type badge-notice" v-for="type in event.event_type">
-				((type | capitalize))
+				((type))
 			</span>
 
 		</div>

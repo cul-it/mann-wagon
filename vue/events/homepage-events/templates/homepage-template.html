@@ -12,7 +12,7 @@
 			</div>
 		</div>
 
-		<template v-for="(date, events) in allEvents | orderBy 'event_start_time' | hideEventType 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'">
+		<template v-for="(date, events) in allEvents | orderBy 'event_start_time' | hideEventType 'Class/Workshop' | limitListFilter 3 | groupBy 'event_start'">
 			<h5 class="events-home__day">
 	      ((date | momentHomeDateText))
 	    </h5>
@@ -56,7 +56,7 @@
 
 	<section class="events-home events-home--workshops">
 		<h4 class="lead-in">
-	    <a class="events-home__heading-link" href="((eventsPagePath))?eventType=Class/ Workshop">
+	    <a class="events-home__heading-link" href="((eventsPagePath))?eventType=Class/Workshop">
 	      Workshops &amp; Classes
 	    </a>
 		</h4>
@@ -67,7 +67,7 @@
 			</div>
 		</div>
 
-		<template v-for="(date, events) in allEvents | orderBy 'event_start_time' | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'">
+		<template v-for="(date, events) in allEvents | orderBy 'event_start_time' | eventTypeFilter 'Class/Workshop' | limitListFilter 3 | groupBy 'event_start'">
 			<h5 class="events-home__day">
 	      ((date | momentHomeDateText))
 	    </h5>
@@ -101,7 +101,7 @@
 				</li>
 			</ul>
 		</template>
-		<a class="more-link" href="((eventsPagePath))?eventType=Class/ Workshop">
+		<a class="more-link" href="((eventsPagePath))?eventType=Class/Workshop">
 	    Calendar of Workshops &amp; Classes
 	    <i class="fa fa-angle-double-right"></i>
 	  </a>
