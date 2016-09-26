@@ -211,7 +211,6 @@ export default {
         // events list
         this.$set('eventsList', true)
         if (this.eventTypes && this.eventLocations) {
-          console.log(this.eventTypes);
           this.getCuratedFilters()
         }
       }
