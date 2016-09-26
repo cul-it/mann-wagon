@@ -55,7 +55,9 @@ export default {
       params: '',
       eventsList: false,
       singleEvent: false,
-      recurringEventStartTime: ''
+      recurringEventStartTime: '',
+      showEventsLoader: false,
+      showWorkshopsLoader: false
     }
   },
   // Use vue-router transition data hook to trigger methods
@@ -175,7 +177,6 @@ export default {
       }
     },
     displaySingleEventModal () {
-      this.$set('showNoEventsMessage', true)
       if (this.query.eventId) {
         if (this.params.match('LibCal(.*)')) {
           this.getMannServicesEvents('event', this.params)
@@ -579,9 +580,16 @@ export default {
         onVisible: function () {
           $('.ui.modal').modal('refresh')
           $('.ui.accordion').accordion()
-          vueInstance.$set('showNoEventsMessage', false)
+          vueInstance.$set('showEventsLoader', false)
+          vueInstance.$set('showWorkshopsLoader', false)
         }
       }).modal('show')
+    },
+    eventsLoader () {
+      this.$set('showEventsLoader', true)
+    },
+    workshopsLoader() {
+      this.$set('showWorkshopsLoader', true)
     }
   }
 }
