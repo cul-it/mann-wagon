@@ -1,13 +1,12 @@
 {% comment %}LibCal Room Availability{% endcomment %}
-{% assign available_class = "status--unavailable" %}
-{% assign available_icon = "fa-minus-square" %}
-{% assign room_availability = "Unavailable" %}
-{% assign room_available_icon = "fa-times" %}
-{% assign next_available = nil %}
-{% assign available_time = nil %}
+{% if space.reservations_required_in_advance != true and space.reservation_system.name == "LibCal" %}
+  {% assign available_class = "status--unavailable" %}
+  {% assign available_icon = "fa-minus-square" %}
+  {% assign room_availability = "Unavailable" %}
+  {% assign room_available_icon = "fa-times" %}
+  {% assign next_available = nil %}
+  {% assign available_time = nil %}
 
-
-{% if space.reservation_system.name == "LibCal" %}
   {% assign room_ids = space.reserve_sys_room_ids | split: "," %}
   {% for room_id in room_ids %}
     {% assign room_param = "&room_id=" | append: room_id %}

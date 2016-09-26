@@ -1,5 +1,6 @@
-{% if next_available and room_availability == "Unavailable" %}
+{% if space.reservations_required_in_advance %}
+ <p>Reservations required in advance</p>
+{% elsif next_available and room_availability == "Unavailable" %}
  <p class="space-finder__availability--{{ room_availability | downcase }}">Next Available: {{ next_available | date: '%-I:%M %p' }}</p>
 {% elsif next_available == nil and room_availability == "Unavailable" %}
- <p class="space-finder__availability--{{ room_availability | downcase }}">Closed for the day</p>
 {% endif %}
