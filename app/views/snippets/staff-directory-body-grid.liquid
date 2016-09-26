@@ -15,6 +15,10 @@
           <i class="fa fa-phone icon"></i> 607-25{{ person.phone }}
         </a>
       </div>
+
+      {% if person.libcal_uid.size > 0 %}
+        {% include 'staff-book-consultation' with libcal_uid: person.libcal_uid %}
+      {% endif %}
     </div>
     <div class="extra content">
       <a href="{% path_to person.division %}" title="Learn more about {{ person.division.name }}" class="staff-directory__division">
