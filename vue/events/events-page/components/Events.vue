@@ -23,7 +23,9 @@ export default {
   },
   props: ['r25-webservice-authorization',
           'default-number-of-days',
-          'events-page-path'
+          'events-page-path',
+          'event-types',
+          'event-locations'
         ],
   data () {
     return {
@@ -34,20 +36,16 @@ export default {
       },
     // Arrays for event info
       cornellEvents: [],
-      cornellEventTypes: [],
-      cornellRoomNames: [],
-
       libcalEvents: [],
-      libcalEventTypes: [],
-      libcalRoomNames: [],
-
       r25Events: [],
-      r25EventTypes: [],
-      r25RoomNames: [],
 
       allEvents: [],
       allEventTypes: [],
       allRoomNames: [],
+
+      curatedEventTypes: [],
+      curatedEventLocations: [],
+
       // Room filter param
       room: '',
       // Event type filter param
@@ -212,6 +210,10 @@ export default {
         this.getR25Events('default')
         // events list
         this.$set('eventsList', true)
+        if (this.eventTypes && this.eventLocations) {
+          console.log(this.eventTypes);
+          this.getCuratedFilters()
+        }
       }
     },
     displaySingleEventModal () {
@@ -226,7 +228,39 @@ export default {
         }
         // single event
         this.$set('singleEvent', true)
+        if (this.eventTypes && this.eventLocations) {
+          this.getCuratedFilters()
+        }
       }
+    },
+    getCuratedFilters() {
+      // Get curated event types
+      var event_types = this.eventTypes.split('-')
+      var curated_event_types = []
+      var curated_event_type_with_alt = []
+      _.forEach(event_types, function (event_type, index){
+        var curated_event_type = JSON.parse(event_type).curated_event_type_name,
+        alternate_event_type_names = (JSON.parse(event_type).alternate_event_type_names)
+        curated_event_types.push(curated_event_type);
+        // curated_event_type_with_alt = {curated_event_type: curated_event_type,
+        //                                    alternate_event_type_names: alternate_event_type_names}
+        curated_event_type_with_alt.push([curated_event_type, alternate_event_type_names ]);
+      })
+      this.$set('allEventTypes', curated_event_types)
+      this.$set('curatedEventTypes', curated_event_type_with_alt)
+
+      // Get curated locations
+      var event_locations = this.eventLocations.split('-')
+      var curated_event_locations = []
+      var curated_event_locations_with_alt = []
+      _.forEach(event_locations, function (value, index){
+        var curated_event_location = JSON.parse(value).curated_event_location_name,
+        alternate_event_location_names = JSON.parse(value).alternate_event_location_names;
+        curated_event_locations.push(curated_event_location);
+        curated_event_locations_with_alt.push([curated_event_location, alternate_event_location_names ]);
+      })
+      this.$set('allRoomNames', curated_event_locations)
+      this.$set('curatedEventLocations', curated_event_locations_with_alt)
     },
     setRecurringEventStartTime (startTime) {
       this.$set('recurringEventStartTime', startTime)
@@ -453,8 +487,7 @@ export default {
     },
     // Custom data model from cornell events
     cornellEventsArray (data) {
-      var eventTypes = []
-      var roomNames = []
+      var vueInstance = this
       var cornellEvents = []
 
       // Event properties
@@ -472,36 +505,40 @@ export default {
         } else if (value.location_name != '') {
           events['event_room_name'] = value.location_name
         }
-        events['event_type'] = eventType
-        events['event_recurring'] = value.recurring
-        // Events array from localist
-        cornellEvents.push(events)
+        _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
+          if (curatedEventLocation[0] === events['event_room_name']) {
+              events['event_room_name'] = curatedEventLocation[0]
+          } else if (_.includes(curatedEventLocation[1], events['event_room_name'])) {
+              events['event_room_name'] = curatedEventLocation[0]
+          }
+        })
         // Event type filter list array
         _.forEach(_.map(value, 'event_types'), function (value) {
           _.forEach(_.map(value, 'name'), function (value) {
-            eventTypes.push(value)
             eventType.push(value)
           })
         })
-
-        // Room filter list array
-        if (value.room_number != '') {
-          roomNames.push(value.room_number)
-        } else if (value.location_name != '') {
-          roomNames.push(value.location_name)
-        }
-
+        events['event_type'] = eventType
+        _.forEach(eventType, function (type, index, eventType) {
+          _.forEach(vueInstance.curatedEventTypes, function(curatedEventType) {
+            if (curatedEventType[0] === type || _.includes(curatedEventType[1], type)) {
+              if (eventType.indexOf(curatedEventType[0]) === -1) {
+                eventType[index] = curatedEventType[0]
+              }
+            }
+          })
+        })
+        events['event_recurring'] = value.recurring
+        // Events array from localist
+        cornellEvents.push(events)
       })
       // set array values to be used later to merge
-      this.$set('cornellEventTypes', eventTypes)
-      this.$set('cornellRoomNames', roomNames)
       this.$set('cornellEvents', cornellEvents)
     },
     // Custom data model from libcal room bookings
     libcalReservationsArray (data) {
+      var vueInstance = this
       var libcalEvents = []
-      var eventTypes = []
-      var roomNames = []
       // event counter
       var counter = 0
 
@@ -522,27 +559,31 @@ export default {
           events['event_start'] = moment(new Date(value.formattedStartDateTime)).format('YYYY-MM-DD')
           events['event_end_time'] = moment(new Date(value.formattedEndDateTime)).format()
           events['event_room_name'] = value.location
+          _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
+            if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
+                events['event_room_name'] = curatedEventLocation[0]
+            }
+          })
           events['event_type'] = [value.description.match('Event type:: (.*)')[1]]
+          _.forEach(vueInstance.curatedEventTypes, function(curatedEventType, index) {
+            if (curatedEventType[0] === value.description.match('Event type:: (.*)')[1] || _.includes(curatedEventType[1], value.description.match('Event type:: (.*)')[1])) {
+              events['event_type'] = [curatedEventType[0]]
+            }
+          })
+
           // Events array from LibCal
           libcalEvents.push(events)
-          // Event type filter list array
-          roomNames.push(value.location)
-          // Room filter list array
-          eventTypes.push(value.description.match('Event type:: (.*)')[1])
           // Increment event counter
           counter++
         }
       })
       // Set array values to be used later to merge
-      this.$set('libcalEventTypes', eventTypes)
-      this.$set('libcalRoomNames', roomNames)
       this.$set('libcalEvents', libcalEvents)
     },
     // Custom data model from r25 events
     r25EventsArray (data) {
+      var vueInstance = this
       var r25Events = []
-      var eventTypes = []
-      var roomNames = []
 
       _.forEach(data, function (value, index) {
         var events = {}
@@ -553,20 +594,20 @@ export default {
         events['event_start'] = moment(new Date(value['r25:event'][0]['r25:event_start_dt']['0'])).format('YYYY-MM-DD')
         events['event_end_time'] = moment(new Date(value['r25:event'][0]['r25:event_end_dt']['0'])).format()
         events['event_room_name'] = value['r25:spaces'][0]['r25:formal_name'][0]
-        events['event_type'] = ['Class/ Workshop']
+        _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
+          if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
+              events['event_room_name'] = curatedEventLocation[0]
+          }
+        })
+        events['event_type'] = ['Class/Workshop']
         // Events array from r25
         r25Events.push(events)
-        // Event type filter list array
-        roomNames.push(value['r25:spaces'][0]['r25:formal_name'][0])
-        // Room filter list array
-        eventTypes.push('Class/ Workshop')
       })
       // set array values to be used later to merge
-      this.$set('r25EventTypes', eventTypes)
-      this.$set('r25RoomNames', roomNames)
       this.$set('r25Events', r25Events)
     },
     getAllEvents () {
+      var vueInstance = this
       if (this.hidePastLibcalReservations) {
         var vueInstance = this
         this.libcalEvents = _.filter(this.libcalEvents, function (libcalEvent) {
@@ -574,8 +615,6 @@ export default {
         })
       }
       this.$set('allEvents', (_.concat(this.cornellEvents, this.libcalEvents, this.r25Events)))
-      this.$set('allEventTypes', (_.union(this.cornellEventTypes, this.libcalEventTypes, this.r25EventTypes)))
-      this.$set('allRoomNames', (_.union(this.cornellRoomNames, this.libcalRoomNames, this.r25RoomNames)))
       this.loadMoreDisplay(this.allEvents)
       this.$set('showNoEventsMessage', false)
       this.$set('filteredEvents', this.allEvents)
@@ -637,6 +676,27 @@ export default {
           })
         })
 
+        _.forEach(eventType, function (type, index, eventType) {
+          _.forEach(vueInstance.curatedEventTypes, function(curatedEventType) {
+            if (curatedEventType[0] === type || _.includes(curatedEventType[1], type)) {
+              if (eventType.indexOf(curatedEventType[0]) === -1) {
+                eventType[index] = curatedEventType[0]
+              }
+            }
+          })
+        })
+        var location = ''
+        if (data.room_number !== '') {
+          location = data.room_number
+        } else if (data.location_name != '') {
+          location = data.location_name
+        }
+        _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
+          if (curatedEventLocation[0] === location || _.includes(curatedEventLocation[1], location)) {
+              location = curatedEventLocation[0]
+          }
+        })
+
         this.$set('event', {
           'event_title': data.title,
           'event_description': data.description,
@@ -644,7 +704,7 @@ export default {
           'event_end_time': endDateTime,
           'event_additional_times': additionalTimes,
           'event_has_additional_times': hasAdditionalTimes,
-          'event_room_name': data.room_number,
+          'event_room_name': location,
           'event_type': eventType
         })
       } else if (source === 'Libcal') {
