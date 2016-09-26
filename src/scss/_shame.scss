@@ -23,3 +23,21 @@
     margin-top: 6.5em;
   }
 }
+
+// Necessary evils for fixed table header on software page
+// https://github.com/terrymun/StickySort#styling
+div.software-list__table {
+  &.ui.table { // Override semantic ui default
+    @include susy-breakpoint($tablet, $g-tablet) {
+      font-size: modular-scale(0);
+    }
+
+    font-size: modular-scale(-4);
+  }
+}
+
+table.software-list__table {
+  &.ui.table { // Override semantic ui default
+    margin: -.1em;
+  }
+}

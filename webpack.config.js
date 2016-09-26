@@ -33,6 +33,7 @@ module.exports = {
       main: './src/scss/main.scss',
       modalLibcal: './src/js/modal-libcal.js',
       purchaseRequest: './src/js/purchase-request.js',
+      softwareList: './vue/software-list/software-list.js',
       spacesQuiet: './src/js/spaces-quiet.js',
       spotlights: './src/js/spotlights.js',
       staffDirectory: './src/js/staff-directory.js',
@@ -71,7 +72,8 @@ module.exports = {
           loader: 'babel',
           include: [
             path.join(__dirname, 'src'),
-            path.join(__dirname, 'vue/course-reserves')
+            path.join(__dirname, 'vue/course-reserves'),
+            path.join(__dirname, 'vue/software-list')
           ]
         },
         {
@@ -96,6 +98,13 @@ module.exports = {
         },
       ]
     },
+  node: {
+    // Create empty modules to avoid errors from csvtojson
+    // -- https://github.com/vuejs-templates/webpack/issues/262#issuecomment-247135126
+    // -- https://github.com/webpack/docs/wiki/Configuration#node
+    child_process: 'empty',
+    fs: 'empty'
+  },
   plugins: [
     new BrowserSyncPlugin(
       // BrowserSync options

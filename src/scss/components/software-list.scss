@@ -1,0 +1,16 @@
+@import 'helpers/mixins';
+@import 'config';
+
+.software-list {
+  @include span(full nest);
+}
+
+.software-list__heading {
+  margin: 2em 0 1em;
+}
+
+.software-list__installed {
+  color: color('success' ('darken': 45%));
+}
+
+// See _shame.scss for some unpleasantries around sticky table headings
