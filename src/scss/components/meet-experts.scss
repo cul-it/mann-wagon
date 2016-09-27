@@ -13,6 +13,17 @@
   margin-top: 1em;
 }
 
+.meet-experts__dots {
+  &.slick-dots {
+    @include susy-breakpoint($tablet, $g-tablet) {
+      top: -2em;
+    }
+
+    top: -1.5em;
+    bottom: auto;
+  }
+}
+
 .meet-experts__featured {
   @include susy-breakpoint($scape $tablet, $g-scape) {
     @include span(2 (gutter-override: 5.1em));
