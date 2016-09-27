@@ -20,9 +20,9 @@
 {% capture event_locations %}
   {% for event_location in contents.event_locations %}
     {% if (forloop.last)%}
-    {"curated_event_location_name":"{{ event_location.name }}","alternate_event_location_names":"{{ event_location.alternate_names | join: ', ' }}"}
-  {% else %}
-    {"curated_event_location_name":"{{ event_location.name }}","alternate_event_location_names":"{{ event_location.alternate_names | join: ', ' }}"}-
+      {"curated_event_location_name":"{{ event_location.name | escape }}","alternate_event_location_names":"{{ event_location.alternate_names | join: ', ' | escape }}"}
+    {% else %}
+      {"curated_event_location_name":"{{ event_location.name | escape }}","alternate_event_location_names":"{{ event_location.alternate_names | join: ', ' | escape  }}"}-
     {% endif %}
   {% endfor %}
 {% endcapture %}
@@ -30,9 +30,9 @@
 {% capture event_types %}
   {% for event_type in contents.event_types %}
     {% if (forloop.last)%}
-      {"curated_event_type_name":"{{ event_type.name }}","alternate_event_type_names":"{{ event_type.alternate_names | join: ', ' }}"}
+      {"curated_event_type_name":"{{ event_type.name | escape }}","alternate_event_type_names":"{{ event_type.alternate_names | join: ', ' | escape }}"}
     {% else %}
-      {"curated_event_type_name":"{{ event_type.name }}","alternate_event_type_names":"{{ event_type.alternate_names | join: ', ' }}"}-
+      {"curated_event_type_name":"{{ event_type.name | escape }}","alternate_event_type_names":"{{ event_type.alternate_names | join: ', ' | escape }}"}-
     {% endif %}
   {% endfor %}
 {% endcapture %}
