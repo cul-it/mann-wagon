@@ -39,10 +39,6 @@
         {% if person.libcal_uid.size > 0 %}
           {% include 'staff-book-consultation' with libcal_uid: person.libcal_uid %}
         {% endif %}
-
-        <a class="meet-experts__profile-link" href="{% path_to person %}" title="View full profile for {{ person.first_name }}">
-          View Profile <i class="fa fa-angle-double-right"></i>
-        </a>
       </div>
     {% endfor %}
   </div>
