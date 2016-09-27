@@ -34,7 +34,6 @@ module.exports = {
       modalLibcal: './src/js/modal-libcal.js',
       purchaseRequest: './src/js/purchase-request.js',
       softwareList: './vue/software-list/software-list.js',
-      spacesQuiet: './src/js/spaces-quiet.js',
       spotlights: './src/js/spotlights.js',
       staffDirectory: './src/js/staff-directory.js',
       vendor: ['jquery']

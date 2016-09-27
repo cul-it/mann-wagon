@@ -52,6 +52,9 @@
 }
 
 .space-finder__quiet {
+  display: block;
+  padding-left: .25em;
+
   &:hover {
     cursor: pointer;
   }
