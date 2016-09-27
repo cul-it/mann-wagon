@@ -9,6 +9,10 @@
 
       {% include 'room-availability-variables'%}
 
+      {% assign counter = 1 %}
+
+      <div class="available-now__study--grouping">
+
       {% for space in contents.spaces %}
         {% if space.reservation_system or space.loan_period %}
 
@@ -27,8 +31,15 @@
             </a>
           </li>
 
+          {% if counter == 4 %}
+            </div><div class="available-now__study--grouping">
+          {% endif %}
+
+          {% assign counter = counter | plus: 1 %}
         {% endif %}
       {% endfor %}
+
+      </div>
     {% endwith_scope %}
   </ul>
 
