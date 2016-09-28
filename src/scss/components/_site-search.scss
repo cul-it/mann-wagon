@@ -19,23 +19,26 @@
     display: none;
   }
 
+  & .gs-result .gs-title {
+    height: inherit;
+  }
+
+  & .gs-result .gs-visibleUrl {
+    padding-bottom: 0;
+  }
+
+  & .gs-snippet {
+    margin-top: 0;
+  }
+
+  & .gsc-control-cse {
+    font-family: $base-font-family;
+  }
+
   & .gsc-control-cse,
   & .gsc-thumbnail-inside,
   & .gsc-url-top {
     padding: 0;
-  }
-
-  & .gsc-control-cse .gs-result .gs-title {
-    height: inherit;
-    font-size: modular-scale(1);
-
-    b {
-      font-size: inherit;
-    }
-  }
-
-  & .gsc-control-cse .gs-result b {
-    background-color: color('blond');
   }
 
   & .gsc-result-info {
