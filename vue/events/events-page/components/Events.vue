@@ -750,7 +750,7 @@ export default {
       }
       this.$set('allEvents', (_.concat(this.cornellEvents, this.libcalEvents, this.r25Events)))
       this.$set('uncuratedEventTypes', (_.difference((_.union(this.cornellEventTypes, this.libcalEventTypes, this.r25EventTypes)), this.allEventTypes)))
-      this.$set('uncuratedRoomNames', (_.difference((_.union(this.cornellRoomNames, this.libcalroomNames, this.r25RoomNames)), this.allRoomNames)))
+      this.$set('uncuratedRoomNames', (_.difference((_.union(this.cornellRoomNames, this.libcalRoomNames, this.r25RoomNames)), this.allRoomNames)))
       this.loadMoreDisplay(this.allEvents)
       this.$set('showNoEventsMessage', false)
       this.$set('filteredEvents', this.allEvents)
