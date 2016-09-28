@@ -2,12 +2,37 @@
   @include span(full);
 }
 
+// Override Google CSE defaults
 .site-search__results {
-  @include span(full);
+  @include span(full nest);
 
-  margin-top: 1.5em;
-  padding-left: 1em;
-  list-style-type: decimal;
+  & table {
+    margin: 0;
+  }
+
+  & td {
+    border: 0;
+    padding: 0;
+  }
+
+  & .gcsc-branding {
+    display: none;
+  }
+
+  & .gsc-control-cse,
+  & .gsc-thumbnail-inside,
+  & .gsc-url-top {
+    padding: 0;
+  }
+
+  & .gsc-control-cse .gs-result .gs-title {
+    height: inherit;
+    font-size: modular-scale(1);
+  }
+
+  & .gsc-result-info {
+    padding-left: 0;
+  }
 }
 
 .site-search__page-title {
