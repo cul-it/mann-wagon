@@ -19,12 +19,20 @@
     display: none;
   }
 
+  & .gs-result .gs-title {
+    height: inherit;
+  }
+
   & .gs-result .gs-visibleUrl {
     padding-bottom: 0;
   }
 
   & .gs-snippet {
     margin-top: 0;
+  }
+
+  & .gsc-control-cse {
+    font-family: $base-font-family;
   }
 
   & .gsc-control-cse,
