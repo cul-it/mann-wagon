@@ -40,8 +40,19 @@ export default {
       r25Reservations: [],
     // Arrays for event info
       cornellEvents: [],
+      cornellEventTypes: [],
+      cornellRoomNames: [],
+
+      uncuratedEventTypes: [],
+      uncuratedRoomNames: [],
+
       libcalEvents: [],
+      libcalEventTypes: [],
+      libcalRoomNames: [],
+
       r25Events: [],
+      r25EventTypes: [],
+      r25RoomNames: [],
 
       allEvents: [],
       allEventTypes: [],
@@ -376,8 +387,7 @@ export default {
         var parseString = require('xml2js').parseString
         this.eventSources.updatedR25Events = false
         var r25EventsBaseUrl = 'https://r25test.registrar.cornell.edu/r25ws/servlet/wrd/run/rm_reservations.xml?'
-        // var roomIds = [704, 705]
-        var roomIds = [420, 445]
+        var roomIds = [704, 705]
         var vueInstance = this
         var promise = []
         var r25Reservations = []
@@ -397,7 +407,7 @@ export default {
               })
           })
 
-          Promise.all([promise[420], promise[445]]).then((values) => {
+          Promise.all([promise[704], promise[705]]).then((values) => {
             _.each(values, function (value, index) {
               parseString(value.data, function (error, result) {
                 if (result['r25:space_reservations']['r25:space_reservation']) {
@@ -428,7 +438,7 @@ export default {
                 })
             })
 
-            Promise.all([promise[420], promise[445]]).then((values) => {
+            Promise.all([promise[704], promise[705]]).then((values) => {
               _.each(values, function (value, index) {
                 parseString(value.data, function (error, result) {
                   if (result['r25:space_reservations']['r25:space_reservation']) {
@@ -534,6 +544,8 @@ export default {
     cornellEventsArray (data) {
       var vueInstance = this
       var cornellEvents = []
+      var roomNames = []
+      var eventTypes = []
 
       // Event properties
       _.forEach(_.map(data, 'event'), function (value) {
@@ -561,6 +573,9 @@ export default {
         _.forEach(_.map(value, 'event_types'), function (value) {
           _.forEach(_.map(value, 'name'), function (value) {
             eventType.push(value)
+            if (eventTypes.indexOf(value) === -1) {
+              eventTypes.push(value)
+            }
           })
         })
         events['event_type'] = eventType
@@ -576,14 +591,44 @@ export default {
         events['event_recurring'] = value.recurring
         // Events array from localist
         cornellEvents.push(events)
+
+        // Room filter list array
+        if (value.room_number != '') {
+          if (roomNames.indexOf(value.room_number) === -1) {
+            roomNames.push(value.room_number)
+          }
+        } else if (value.location_name != '') {
+          if (roomNames.indexOf(value.location_name) === -1) {
+            roomNames.push(value.location_name)
+          }
+        }
+
+      })
+      _.forEach(eventTypes, function (type, index, eventTypes) {
+        _.forEach(vueInstance.curatedEventTypes, function(curatedEventType) {
+          if (curatedEventType[0] === type || _.includes(curatedEventType[1], type)) {
+              eventTypes[index] = curatedEventType[0]
+          }
+        })
+      })
+      _.forEach(roomNames, function (room, index, roomNames) {
+        _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation) {
+          if (curatedEventLocation[0] === room || _.includes(curatedEventLocation[1], room)) {
+              roomNames[index] = curatedEventLocation[0]
+          }
+        })
       })
       // set array values to be used later to merge
       this.$set('cornellEvents', cornellEvents)
+      this.$set('cornellEventTypes', eventTypes)
+      this.$set('cornellRoomNames', roomNames)
     },
     // Custom data model from libcal room bookings
     libcalReservationsArray (data) {
       var vueInstance = this
       var libcalEvents = []
+      var eventTypes = []
+      var roomNames = []
       // event counter
       var counter = 0
 
@@ -619,16 +664,43 @@ export default {
           // Events array from LibCal
           libcalEvents.push(events)
           // Increment event counter
+
+        // Room filter list array
+        if (roomNames.indexOf(value.location) === -1) {
+          roomNames.push(value.location)
+        }
+        // Event type filter list array
+        if (eventTypes.indexOf(value.description.match('Event type:: (.*)')[1]) === -1) {
+          eventTypes.push(value.description.match('Event type:: (.*)')[1])
+        }
           counter++
         }
       })
+      _.forEach(eventTypes, function (type, index, eventTypes) {
+        _.forEach(vueInstance.curatedEventTypes, function(curatedEventType) {
+          if (curatedEventType[0] === type || _.includes(curatedEventType[1], type)) {
+              eventTypes[index] = curatedEventType[0]
+          }
+        })
+      })
+      _.forEach(roomNames, function (room, index, roomNames) {
+        _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation) {
+          if (curatedEventLocation[0] === room || _.includes(curatedEventLocation[1], room)) {
+              roomNames[index] = curatedEventLocation[0]
+          }
+        })
+      })
       // Set array values to be used later to merge
       this.$set('libcalEvents', libcalEvents)
+      this.$set('libcalEventTypes', eventTypes)
+      this.$set('libcalRoomNames', roomNames)
     },
     // Custom data model from r25 events
     r25EventsArray (data) {
       var vueInstance = this
       var r25Events = []
+      var eventTypes = []
+      var roomNames = []
 
       _.forEach(data, function (value, index) {
         var events = {}
@@ -647,9 +719,26 @@ export default {
         events['event_type'] = ['Class/Workshop']
         // Events array from r25
         r25Events.push(events)
+        // Room filter list array
+        if (roomNames.indexOf(value['r25:spaces'][0]['r25:formal_name'][0]) === -1) {
+          roomNames.push(value['r25:spaces'][0]['r25:formal_name'][0])
+        }
       })
+      // Event type filter list array
+      eventTypes.push('Class/Workshop')
+
+      _.forEach(roomNames, function (room, index, roomNames) {
+        _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation) {
+          if (curatedEventLocation[0] === room || _.includes(curatedEventLocation[1], room)) {
+              roomNames[index] = curatedEventLocation[0]
+          }
+        })
+      })
+
       // set array values to be used later to merge
       this.$set('r25Events', r25Events)
+      this.$set('r25EventTypes', eventTypes)
+      this.$set('r25RoomNames', roomNames)
     },
     getAllEvents () {
       var vueInstance = this
@@ -660,6 +749,8 @@ export default {
         })
       }
       this.$set('allEvents', (_.concat(this.cornellEvents, this.libcalEvents, this.r25Events)))
+      this.$set('uncuratedEventTypes', (_.difference((_.union(this.cornellEventTypes, this.libcalEventTypes, this.r25EventTypes)), this.allEventTypes)))
+      this.$set('uncuratedRoomNames', (_.difference((_.union(this.cornellRoomNames, this.libcalroomNames, this.r25RoomNames)), this.allRoomNames)))
       this.loadMoreDisplay(this.allEvents)
       this.$set('showNoEventsMessage', false)
       this.$set('filteredEvents', this.allEvents)

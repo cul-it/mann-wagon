@@ -117,6 +117,15 @@
         </a>
 			</li>
 		</ul>
+		<ul v-if="uncuratedEventTypes.length">
+			<li v-for="event_type of uncuratedEventTypes | orderBy 'eventType'">
+				<a class="filter" v-bind:class="{ 'selected-filter': event_type == eventSelected }" v-on:click="setEventTypeFilter(event_type)">
+					((event_type))*
+				</a>
+				<a class="fa fa-times" v-if="event_type == eventSelected" v-on:click="removeEventTypeFilter()">
+				</a>
+			</li>
+		</ul>
 
 		<h6 class="events-filters__type">
       By location
@@ -131,6 +140,17 @@
         <a class="fa fa-times" v-if="room == roomSelected" v-on:click="removeRoomFilter()">
         </a>
 			</li>
+		</ul>
+		<ul v-if="uncuratedRoomNames.length">
+			<li v-for="room of uncuratedRoomNames | orderBy 'room'">
+				<!-- event to set room filter -->
+				<a class="filter" v-bind:class="{ 'selected-filter': room == roomSelected }" v-on:click="setRoomFilter(room)">
+					((room))*
+				</a>
+				<a class="fa fa-times" v-if="room == roomSelected" v-on:click="removeRoomFilter()">
+				</a>
+			</li>
+
 		</ul>
 	</div>
 
