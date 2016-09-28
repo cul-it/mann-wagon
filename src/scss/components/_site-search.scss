@@ -1,5 +1,5 @@
 .site-search {
-  @include span(full);
+  @include span(full nest);
 }
 
 // Override Google CSE defaults
@@ -28,6 +28,14 @@
   & .gsc-control-cse .gs-result .gs-title {
     height: inherit;
     font-size: modular-scale(1);
+
+    b {
+      font-size: inherit;
+    }
+  }
+
+  & .gsc-control-cse .gs-result b {
+    background-color: color('blond');
   }
 
   & .gsc-result-info {
