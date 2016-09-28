@@ -19,6 +19,14 @@
     display: none;
   }
 
+  & .gs-result .gs-visibleUrl {
+    padding-bottom: 0;
+  }
+
+  & .gs-snippet {
+    margin-top: 0;
+  }
+
   & .gsc-control-cse,
   & .gsc-thumbnail-inside,
   & .gsc-url-top {
