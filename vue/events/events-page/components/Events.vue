@@ -558,9 +558,9 @@ export default {
         events['event_start'] = value.event_instances[0].event_instance.start.substring(0, 10)
         events['event_end_time'] = value.event_instances[0].event_instance.end
         if (value.room_number != '') {
-          events['event_room_name'] = value.room_number
+          events['event_room_name'] = value.room_number.replace(',', '')
         } else if (value.location_name != '') {
-          events['event_room_name'] = value.location_name
+          events['event_room_name'] = value.location_name.replace(',', '')
         }
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
           if (curatedEventLocation[0] === events['event_room_name']) {
@@ -572,9 +572,9 @@ export default {
         // Event type filter list array
         _.forEach(_.map(value, 'event_types'), function (value) {
           _.forEach(_.map(value, 'name'), function (value) {
-            eventType.push(value)
-            if (eventTypes.indexOf(value) === -1) {
-              eventTypes.push(value)
+            eventType.push(value.replace(',', ''))
+            if (eventTypes.indexOf(value.replace(',', '')) === -1) {
+              eventTypes.push(value.replace(',', ''))
             }
           })
         })
@@ -594,12 +594,12 @@ export default {
 
         // Room filter list array
         if (value.room_number != '') {
-          if (roomNames.indexOf(value.room_number) === -1) {
-            roomNames.push(value.room_number)
+          if (roomNames.indexOf(value.room_number.replace(',', '')) === -1) {
+            roomNames.push(value.room_number.replace(',', ''))
           }
         } else if (value.location_name != '') {
-          if (roomNames.indexOf(value.location_name) === -1) {
-            roomNames.push(value.location_name)
+          if (roomNames.indexOf(value.location_name.replace(',', '')) === -1) {
+            roomNames.push(value.location_name.replace(',', ''))
           }
         }
 
@@ -648,15 +648,15 @@ export default {
           events['event_start_time'] = moment(new Date(value.formattedStartDateTime)).format()
           events['event_start'] = moment(new Date(value.formattedStartDateTime)).format('YYYY-MM-DD')
           events['event_end_time'] = moment(new Date(value.formattedEndDateTime)).format()
-          events['event_room_name'] = value.location
+          events['event_room_name'] = value.location.replace(',', '')
           _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
             if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
                 events['event_room_name'] = curatedEventLocation[0]
             }
           })
-          events['event_type'] = [value.description.match('Event type:: (.*)')[1]]
+          events['event_type'] = [value.description.match('Event type:: (.*)')[1].replace(',', '')]
           _.forEach(vueInstance.curatedEventTypes, function(curatedEventType, index) {
-            if (curatedEventType[0] === value.description.match('Event type:: (.*)')[1] || _.includes(curatedEventType[1], value.description.match('Event type:: (.*)')[1])) {
+            if (curatedEventType[0] === value.description.match('Event type:: (.*)')[1].replace(',', '') || _.includes(curatedEventType[1], value.description.match('Event type:: (.*)')[1].replace(',', ''))) {
               events['event_type'] = [curatedEventType[0]]
             }
           })
@@ -666,12 +666,12 @@ export default {
           // Increment event counter
 
         // Room filter list array
-        if (roomNames.indexOf(value.location) === -1) {
-          roomNames.push(value.location)
+        if (roomNames.indexOf(value.location.replace(',', '')) === -1) {
+          roomNames.push(value.location.replace(',', ''))
         }
         // Event type filter list array
-        if (eventTypes.indexOf(value.description.match('Event type:: (.*)')[1]) === -1) {
-          eventTypes.push(value.description.match('Event type:: (.*)')[1])
+        if (eventTypes.indexOf(value.description.match('Event type:: (.*)')[1].replace(',', '')) === -1) {
+          eventTypes.push(value.description.match('Event type:: (.*)')[1].replace(',', ''))
         }
           counter++
         }
@@ -710,7 +710,7 @@ export default {
         events['event_start_time'] = moment(new Date(value['r25:event'][0]['r25:event_start_dt']['0'])).format()
         events['event_start'] = moment(new Date(value['r25:event'][0]['r25:event_start_dt']['0'])).format('YYYY-MM-DD')
         events['event_end_time'] = moment(new Date(value['r25:event'][0]['r25:event_end_dt']['0'])).format()
-        events['event_room_name'] = value['r25:spaces'][0]['r25:formal_name'][0]
+        events['event_room_name'] = value['r25:spaces'][0]['r25:formal_name'][0].replace(',', '')
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
           if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
               events['event_room_name'] = curatedEventLocation[0]
@@ -720,8 +720,8 @@ export default {
         // Events array from r25
         r25Events.push(events)
         // Room filter list array
-        if (roomNames.indexOf(value['r25:spaces'][0]['r25:formal_name'][0]) === -1) {
-          roomNames.push(value['r25:spaces'][0]['r25:formal_name'][0])
+        if (roomNames.indexOf(value['r25:spaces'][0]['r25:formal_name'][0].replace(',', '')) === -1) {
+          roomNames.push(value['r25:spaces'][0]['r25:formal_name'][0].replace(',', ''))
         }
       })
       // Event type filter list array
@@ -808,10 +808,9 @@ export default {
         // Event type filter list array
         _.forEach(_.map(data, 'event_types'), function (value) {
           _.forEach(_.map(value, 'name'), function (value) {
-            eventType.push(value)
+            eventType.push(value.replace(',', ''))
           })
         })
-
         _.forEach(eventType, function (type, index, eventType) {
           _.forEach(vueInstance.curatedEventTypes, function(curatedEventType) {
             if (curatedEventType[0] === type || _.includes(curatedEventType[1], type)) {
@@ -823,9 +822,9 @@ export default {
         })
         var location = ''
         if (data.room_number !== '') {
-          location = data.room_number
+          location = data.room_number.replace(',', '')
         } else if (data.location_name != '') {
-          location = data.location_name
+          location = data.location_name.replace(',', '')
         }
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
           if (curatedEventLocation[0] === location || _.includes(curatedEventLocation[1], location)) {
@@ -846,25 +845,36 @@ export default {
       } else if (source === 'Libcal') {
         this.$set('event', data)
       } else if (source === 'R25Local') {
+          var location = data['r25:spaces'][0]['r25:formal_name'][0].replace(',', '')
+          _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
+            if (curatedEventLocation[0] === location || _.includes(curatedEventLocation[1], location)) {
+                location = curatedEventLocation[0]
+            }
+          })
         this.$set('event', {
           'event_title': data['r25:event'][0]['r25:event_name']['0'],
           'event_description': data['r25:event'][0]['r25:event_title']['0'],
           'event_start_time': moment(new Date(data['r25:event'][0]['r25:event_start_dt']['0'])).format(),
           'event_end_time': moment(new Date(data['r25:event'][0]['r25:event_end_dt']['0'])).format(),
-          'event_room_name': data['r25:spaces'][0]['r25:formal_name'][0],
+          'event_room_name': location,
           'event_type': ['Class/Workshop']
         })
       } else if (source === 'R25Web') {
+        var location = data[0]['r25:space_reservation'][0]['r25:formal_name'][0].replace(',', '')
+        _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
+          if (curatedEventLocation[0] === location || _.includes(curatedEventLocation[1], location)) {
+              location = curatedEventLocation[0]
+          }
+        })
         this.$set('event', {
           'event_title': data[0]['r25:event_name'][0],
           'event_description': data[0]['r25:event_title'][0],
           'event_start_time': moment(new Date(data[0]['r25:event_start_dt'][0])).format(),
           'event_end_time': moment(new Date(data[0]['r25:event_end_dt'][0])).format(),
-          'event_room_name': data[0]['r25:space_reservation'][0]['r25:formal_name'][0],
+          'event_room_name': location,
           'event_type': ['Class/Workshop']
         })
-      }
-      // Call Semantic ui modal and accordion for future times
+      }      // Call Semantic ui modal and accordion for future times
       $('.ui.modal').modal({
         onHide: function () {
           vueInstance.$route.router.go(vueInstance.eventsPagePath)
