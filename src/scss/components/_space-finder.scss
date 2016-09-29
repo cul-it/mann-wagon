@@ -35,7 +35,7 @@
 
 .space-finder__subheading {
   @include susy-breakpoint($tablet, $g-tablet) {
-    margin: 2em 0 0;
+    margin: 2em 0 .5em;
   }
 
   margin: 2em 0 .5em;
@@ -90,6 +90,7 @@
 
 .space-finder__card-meta {
   .ui.cards>.card & { // Override semantic ui default
+    display: block;
     color: color('medium-gray');
   }
 }

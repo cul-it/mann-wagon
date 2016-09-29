@@ -12,9 +12,9 @@
 
     <!--  Libcal room reservation widget code -->
     <script>
-    jQuery(function(){
-      jQuery("#{{ libcal_target_id }}").LibCalRoomBooking({ "iid": 973, "gid": {{ space.reserve_sys_id }},  "width": 500, "height": 450 });
-    });
+      jQuery(function(){
+        jQuery("#{{ libcal_target_id }}").LibCalRoomBooking({ "iid": 973, "gid": {{ space.reserve_sys_id }},  "width": 500, "height": 450 });
+      });
     </script>
   {% endif %}
 
@@ -22,6 +22,5 @@
   {% assign libcal_widget_counter = libcal_widget_counter | plus: 1 %}
 {% endif %}
 
-  <i class="fa fa-calendar icon"></i>
-  Reserve
+  <i class="fa fa-calendar icon"></i> Reserve
 </button>
