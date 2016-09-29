@@ -11,20 +11,24 @@
       {% endif %}
     {% endfor %}
 
-    <div class="card">
-      <a class="image" href="{% path_to space %}" title="View all {{ space.name }}">
+    {% capture card_link_attr %}href="{% path_to space %}" title="View details for {{ space.name }}"{% endcapture %}
+
+    <div class="ui raised link card">
+      <a class="image" {{ card_link_attr }}>
         <img src="{{ space.photo.url | resize: '700x475#' }}" alt="photo of {{ space.name }}">
       </a>
-      <div class="content">
-        <h3 class="space-finder__name">
-          <a class="space-finder__name-link" href="{% path_to space %}" title="View all {{ space.name }}">{{ space.name }}</a>
-        </h3>
+      <div class="content js-spacefinder-content" data-link="{% path_to space %}">
+        <h3 class="space-finder__name">{{ space.name }}</h3>
+
         <div class="meta space-finder__card-meta">
           <span class="right floated">
             {% if spaces_type._slug == 'study' %}
               {% if quiet_study %}
                 <span class="space-finder__quiet" data-tooltip="quiet study" data-position="left center" data-inverted="">
-                  <i class="fa fa-volume-down ui icon"></i>
+                  <span class="fa-stack">
+                    <i class="fa fa-volume-up fa-stack-1x ui icon"></i>
+                    <i class="space-finder__quiet-ban fa fa-ban fa-stack-2x ui icon"></i>
+                  </span>
                 </span>
               {% endif %}
             {% elsif spaces_type._slug == 'classroom' or spaces_type._slug == 'computing-facilities' %}
@@ -33,8 +37,9 @@
             {% endif %}
           </span>
 
-          <a href="{% path_to hours %}" title="View all hours"><span class="badge badge-success">Open until 2am</span></a>
+          {% comment %}<a class="js-spacefinder-link" href="{% path_to hours %}" title="View all hours"><span class="badge badge-success">Open until 2am</span></a>{% endcomment %}
         </div>
+
         {% if space.reservation_system %}
           <div class="description">
             {% include 'spaces-reservable-button' %}
@@ -45,12 +50,12 @@
           {% comment %}This is completely unnecessary but Engine refuses to cooperate otherwise...don't ask{% endcomment %}
           {% unless space.avail_url == "" %}
             <div class="description">
-              <div class="ui orange right ribbon label">
+              <div class="space-finder__loanable ui orange right ribbon label">
                 <i class="fa fa-key icon"></i>
                 {{ space.loan_period }} loan
               </div>
 
-              <span class="space-finder__checkout">Check out key from <a href="http://smartmap.mannlib.cornell.edu/location/circulation%20services" title="Map it">circulation desk</a></span>
+              <span class="space-finder__checkout">Check out key from <a class="js-spacefinder-link" href="http://smartmap.mannlib.cornell.edu/location/circulation%20services" title="Map it">circulation desk</a></span>
 
               {% include 'room-availability-next' %}
             </div>
@@ -58,7 +63,7 @@
         {% endif %}
       </div>
 
-      <div class="extra content space-finder__card-meta">
+      <a class="extra content space-finder__card-meta" {{ card_link_attr }}>
         <span class="right floated">
           {% if space.reservations_required_in_advance %}
           {% elsif space.reservation_system or space.avail_url %}
@@ -83,7 +88,9 @@
             {{ space.capacity }} max
           {% endif %}
         </span>
-      </div>
+      </a>
     </div>
   {% endfor %}
 </div>
+
+{{ 'spacesCards.bundle.js' | javascript_tag }}
