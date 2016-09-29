@@ -8,7 +8,7 @@
   {% if space.libcal_public_page_url %}
     {% include 'modal-libcal' with space.reserve_sys_id, space.name %}
   {% else %}
-    <button id="{{ libcal_target_id }}" class="ui labeled icon button space-finder__reserve {% if indiv_space %}space__reserve{% endif %}" title="Reserve this space">
+    <button id="{{ libcal_target_id }}" class="ui labeled icon button space-finder__reserve js-spacefinder-link {% if indiv_space %}space__reserve{% endif %}" title="Reserve this space">
 
     <!--  Libcal room reservation widget code -->
     <script>

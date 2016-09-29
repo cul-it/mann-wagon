@@ -17,30 +17,29 @@
       <a class="image" {{ card_link_attr }}>
         <img src="{{ space.photo.url | resize: '700x475#' }}" alt="photo of {{ space.name }}">
       </a>
-      <div class="content">
-        <a {{ card_link_attr }}>
-          <h3 class="space-finder__name">{{ space.name }}</h3>
+      <div class="content js-spacefinder-content" data-link="{% path_to space %}">
+        <h3 class="space-finder__name">{{ space.name }}</h3>
 
-          <div class="meta space-finder__card-meta">
-            <span class="right floated">
-              {% if spaces_type._slug == 'study' %}
-                {% if quiet_study %}
-                  <span class="space-finder__quiet" data-tooltip="quiet study" data-position="left center" data-inverted="">
-                    <span class="fa-stack">
-                      <i class="fa fa-volume-up fa-stack-1x ui icon"></i>
-                      <i class="space-finder__quiet-ban fa fa-ban fa-stack-2x ui icon"></i>
-                    </span>
+        <div class="meta space-finder__card-meta">
+          <span class="right floated">
+            {% if spaces_type._slug == 'study' %}
+              {% if quiet_study %}
+                <span class="space-finder__quiet" data-tooltip="quiet study" data-position="left center" data-inverted="">
+                  <span class="fa-stack">
+                    <i class="fa fa-volume-up fa-stack-1x ui icon"></i>
+                    <i class="space-finder__quiet-ban fa fa-ban fa-stack-2x ui icon"></i>
                   </span>
-                {% endif %}
-              {% elsif spaces_type._slug == 'classroom' or spaces_type._slug == 'computing-facilities' %}
-                {% comment %} Need logic here to first see if room is available (all but stone computing center) {% endcomment %}
-                <i class="fa fa-desktop"></i> 27
+                </span>
               {% endif %}
-            </span>
+            {% elsif spaces_type._slug == 'classroom' or spaces_type._slug == 'computing-facilities' %}
+              {% comment %} Need logic here to first see if room is available (all but stone computing center) {% endcomment %}
+              <i class="fa fa-desktop"></i> 27
+            {% endif %}
+          </span>
 
-            <a href="{% path_to hours %}" title="View all hours"><span class="badge badge-success">Open until 2am</span></a>
-          </div>
-        </a>
+          <a class="js-spacefinder-link" href="{% path_to hours %}" title="View all hours"><span class="badge badge-success">Open until 2am</span></a>
+        </div>
+
         {% if space.reservation_system %}
           <div class="description">
             {% include 'spaces-reservable-button' %}
@@ -51,16 +50,14 @@
           {% comment %}This is completely unnecessary but Engine refuses to cooperate otherwise...don't ask{% endcomment %}
           {% unless space.avail_url == "" %}
             <div class="description">
-              <a class="space-finder__loanable ui orange right ribbon label" {{ card_link_attr }}>
+              <div class="space-finder__loanable ui orange right ribbon label">
                 <i class="fa fa-key icon"></i>
                 {{ space.loan_period }} loan
-              </a>
+              </div>
 
-              <span class="space-finder__checkout"><a {{ card_link_attr }}>Check out key from</a> <a href="http://smartmap.mannlib.cornell.edu/location/circulation%20services" title="Map it">circulation desk</a></span>
+              <span class="space-finder__checkout">Check out key from <a class="js-spacefinder-link" href="http://smartmap.mannlib.cornell.edu/location/circulation%20services" title="Map it">circulation desk</a></span>
 
-              <a {{ card_link_attr }}>
-                {% include 'room-availability-next' %}
-              </a>
+              {% include 'room-availability-next' %}
             </div>
           {% endunless %}
         {% endif %}
@@ -95,3 +92,5 @@
     </div>
   {% endfor %}
 </div>
+
+{{ 'spacesCards.bundle.js' | javascript_tag }}
