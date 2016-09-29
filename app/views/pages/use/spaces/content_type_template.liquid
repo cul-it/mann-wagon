@@ -21,13 +21,20 @@ content_type: spaces_types
               fa-users
             {% when 'individual' %}
               fa-user
-            {% when 'quiet' %}
-              fa-volume-down
           {% endcase %}
         {% endcapture %}
 
         <a class="item" href="#{{study_type._slug}}">
-          <i class="fa {{ study_type_icon }} icon"></i> {{ study_type.name }}
+          {% if study_type._slug == 'quiet' %}
+            <span class="space-finder__quiet-grp fa-stack">
+              <i class="fa fa-volume-up fa-stack-1x ui icon"></i>
+              <i class="space-finder__quiet-ban fa fa-ban fa-stack-2x ui icon"></i>
+            </span>
+          {% else %}
+            <i class="fa {{ study_type_icon }} icon"></i>
+          {% endif %}
+
+          {{ study_type.name }}
         </a>
       {% endfor %}
     </div>
