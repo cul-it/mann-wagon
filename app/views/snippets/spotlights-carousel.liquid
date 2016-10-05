@@ -7,7 +7,13 @@
 {% capture spotlight_images %}
   <div class="spotlights__images">
     {% for spotlight in active_spotlights %}
-      <img src="{{ spotlight.image.url | image_url }}" alt="{{ spotlight.name }}" title="{{ spotlight.caption }}">
+      {% capture spotlight_image %}<img src="{{ spotlight.image.url | image_url }}" alt="{{ spotlight.name }}" title="{{ spotlight.caption }}">{% endcapture %}
+
+      {% if spotlight.url %}
+        <a href="{{ spotlight.url }}">{{ spotlight_image }}</a>
+      {% else %}
+        {{ spotlight_image }}
+      {% endif %}
     {% endfor %}
   </div>
 {% endcapture %}
