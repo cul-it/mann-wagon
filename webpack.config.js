@@ -1,12 +1,9 @@
 // Plugins
 var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var WebpackShellPlugin = require('webpack-shell-plugin');
 
 var path = require('path');
-
-var fontsDir = path.join('../fonts');
 
 module.exports = {
   context: __dirname,
@@ -130,12 +127,6 @@ module.exports = {
         reload: false
       }
     ),
-    // Copy over FontAwesome fonts
-    new CopyWebpackPlugin([
-      { from: 'node_modules/font-awesome/fonts', to: fontsDir },
-    ], {
-        ignore: []
-    }),
     // Extract compiled CSS from bundle
     new ExtractTextPlugin('../stylesheets/[name].css'),
     // Remove extraneous bundle leftover after extracting CSS

@@ -10,6 +10,7 @@ import 'semantic-ui-css/components/dropdown.min.css';
 import 'semantic-ui-css/components/dropdown.min.js';
 import 'semantic-ui-css/components/form.min.css';
 import 'semantic-ui-css/components/form.min.js';
+import 'semantic-ui-css/components/icon.min.css';
 import 'semantic-ui-css/components/message.min.css';
 import 'semantic-ui-css/components/popup.min.css';
 import 'semantic-ui-css/components/popup.min.js';
@@ -27,9 +28,6 @@ $('.ui.checkbox')
 // FEW ITEMS TO NOTE
 // i see nick's comment on the feedback form that he doesn't like this for mobile
 // probably needs to be reworked, but i do like the multiple select that comes with semantic-ui
-// another caveat - because we're not using the "semantic-ui way" of using font-awesome icons:
-// the multiple select doesn't show the "x" to remove an item
-// the calendar doesn't show the < > (previous/next) icons on month view
 $('.ui.dropdown')
   .dropdown()
 ;
