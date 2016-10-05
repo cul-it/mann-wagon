@@ -56,7 +56,7 @@ fields:
     label: Image # Human readable name of the field
     type: file
     required: true
-    hint: Suggested dimensions forthcoming...
+    hint: 1800px X 1013px -- JPG or PNG, whichever provides better bang-for-your-buck (minimize filesize & maximize quality)
     localized: false
 
 - fallback: # The lowercase, underscored name of the field
