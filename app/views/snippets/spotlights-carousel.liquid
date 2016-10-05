@@ -14,8 +14,6 @@
   {% assign active_spotlights = fallback_spotlights %}
 {% endif %}
 
-{% assign counter = 0 %}
-
 {% comment %} Build div containing images for all active spotlights {% endcomment %}
 {% capture spotlight_images %}
   <div class="spotlights__images">
@@ -28,12 +26,10 @@
         {{ spotlight_image }}
       {% endif %}
 
-      {% assign counter = counter | plus: 1 %}
-
       {% comment %} Limit to 2 max for fallback and 5 max otherwise {% endcomment %}
-      {% if falling_back and counter == 2 %}
+      {% if falling_back and forloop.index == 2 %}
         {% break %}
-      {% elsif counter == 5 %}
+      {% elsif forloop.index == 5 %}
         {% break %}
       {% endif %}
     {% endfor %}
@@ -53,7 +49,6 @@
       {{ 'spotlights.bundle.js' | javascript_tag }}
 
     {% comment %} Otherwise, just display a single image {% endcomment %}
-    {% comment %} @todo: We should probably handle the inevitable case where there are no active spotlights {% endcomment %}
     {% else %}
       {{ spotlight_images }}
     {% endif %}
