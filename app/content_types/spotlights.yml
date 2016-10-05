@@ -17,7 +17,7 @@ order_by: start_date
 order_direction: desc
 
 # Specify a field slug to group entries by that field in the back-office.
-# group_by: <your field>
+group_by: fallback
 
 # Activate public 'create' API (e.g for a contact form)
 # public_submission_enabled: false
@@ -59,10 +59,17 @@ fields:
     hint: Suggested dimensions forthcoming...
     localized: false
 
+- fallback: # The lowercase, underscored name of the field
+    label: Fallback Image? # Human readable name of the field
+    type: boolean
+    required: false
+    hint: When there are no active images (based on start/end date), a max of two fallback images will be rendered. If this field is set to true, there is no need to set the date fields as they will be ignored.
+    localized: false
+
 - start_date: # The lowercase, underscored name of the field
     label: Start date # Human readable name of the field
     type: date_time
-    required: true
+    required: false
     hint: When this image should be added to the rotation
     localized: false
 

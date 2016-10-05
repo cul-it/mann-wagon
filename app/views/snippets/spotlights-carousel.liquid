@@ -1,7 +1,20 @@
-{% comment %} Filter on active spotlights {% endcomment %}
+{% comment %} Active spotlights {% endcomment %}
 {% with_scope end_date.gte: now, start_date.lte: now %}
   {% assign active_spotlights = contents.spotlights.all %}
 {% endwith_scope %}
+
+{% comment %} Fallback spotlights {% endcomment %}
+{% with_scope fallback: true %}
+  {% assign fallback_spotlights = contents.spotlights.all %}
+{% endwith_scope %}
+
+{% comment %} If no active spotlights, default to fallbacks {% endcomment %}
+{% if active_spotlights.size == 0 %}
+  {% assign falling_back = true %}
+  {% assign active_spotlights = fallback_spotlights %}
+{% endif %}
+
+{% assign counter = 0 %}
 
 {% comment %} Build div containing images for all active spotlights {% endcomment %}
 {% capture spotlight_images %}
@@ -13,6 +26,15 @@
         <a href="{{ spotlight.url }}">{{ spotlight_image }}</a>
       {% else %}
         {{ spotlight_image }}
+      {% endif %}
+
+      {% assign counter = counter | plus: 1 %}
+
+      {% comment %} Limit to 2 max for fallback and 5 max otherwise {% endcomment %}
+      {% if falling_back and counter == 2 %}
+        {% break %}
+      {% elsif counter == 5 %}
+        {% break %}
       {% endif %}
     {% endfor %}
   </div>
