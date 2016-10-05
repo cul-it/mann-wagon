@@ -46,7 +46,7 @@ fields:
 
 - caption: # The lowercase, underscored name of the field
     label: Caption # Human readable name of the field
-    type: text
+    type: string
     required: false
     hint: Brief caption to render with image
     localized: false
