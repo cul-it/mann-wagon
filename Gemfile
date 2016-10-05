@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'locomotivecms_wagon', '~> 2.2.0.rc1'
+gem 'locomotivecms_wagon', '~> 2.2.0.rc2'
 gem 'celluloid', '0.16.0'
 
 # Local development
