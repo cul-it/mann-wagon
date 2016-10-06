@@ -95,30 +95,32 @@
 			</li>
 		</ul>
 
-
-		<div id="datepicker" v-datepicker="">
-		</div>
-
-		<div class="events-filters__selected-date">
-			((dateSelected | momentDate))
-      <a class="fa fa-times" v-if="dateSelected" v-on:click="removeSelectedDate()"></a>
-		</div>
-
-    <a data-filter=".event" v-show="roomSelected || eventSelected || dateSelected" v-on:click="clearAllFilters()">
-      <button class="ui button">
-        <i class="fa fa-times"></i>
-        Clear All Filters
-      </button>
-    </a>
-
-		<h6 class="events-filters__type">
+		<h3 class="events-filters__heading">
       Filter Events
+      <a data-filter=".event" v-show="roomSelected || eventSelected || dateSelected" v-on:click="clearAllFilters()" class="events-filters__clear-all">
+        <button class="mini ui right labeled icon button">
+          <i class="remove icon"></i>
+          Clear All Filters
+        </button>
+      </a>
+    </h3>
+
+    <h6 class="events-filters__type ui ribbon teal label">
+      By date
     </h6>
+
+    <div class="events-filters__selected-date">
+      ((dateSelected | momentDate))
+      <a class="fa fa-times" v-if="dateSelected" v-on:click="removeSelectedDate()"></a>
+    </div>
+
+    <div id="datepicker" v-datepicker="">
+    </div>
 
     <!-- <input class="form-control" placeholder="Filter events" type="text" v-model="searchText"> -->
     <!-- <a class="fa fa-times" v-if="searchText" v-on:click="removeSearchFilter()"></a> -->
 
-		<h6 class="events-filters__type">
+		<h6 class="events-filters__type ui ribbon teal label">
       By type
     </h6>
 
@@ -141,7 +143,7 @@
 			</li>
 		</ul>
 
-		<h6 class="events-filters__type">
+		<h6 class="events-filters__type ui ribbon teal label">
       By location
     </h6>
 

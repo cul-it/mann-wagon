@@ -8,6 +8,9 @@ const router = new VueRouter({
   saveScrollPosition: true
 })
 
+// Styles
+require('semantic-ui-css/components/icon.min.css')
+
 // Change Vue delimiters, to work with liquid
 Vue.config.delimiters = ['((', '))']
 Vue.config.unsafeDelimiters = ['(((', ')))']

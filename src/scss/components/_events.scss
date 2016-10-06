@@ -1,6 +1,9 @@
 .events {
   @include susy-breakpoint($tablet, $g-tablet) {
     @include span(5 nest);
+
+    box-shadow: 1em 0 3em -2.3em color('black');
+    padding-right: 2em;
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
@@ -52,14 +55,22 @@
   @include susy-breakpoint($tablet, $g-tablet) {
     @include span(3);
 
-    padding-left: 3.5em;
+    padding-left: 2.5em;
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     @include span(4);
 
-    padding-left: 5.5em;
+    padding-left: 3.5em;
   }
+}
+
+.events-filters__clear-all {
+  vertical-align: text-top;
+}
+
+.events-filters__heading {
+  margin-top: 2em;
 }
 
 .events-filters__selected-date {
@@ -67,7 +78,15 @@
 }
 
 .events-filters__type {
-  margin: 1em 0 0;
+  &.ui.label { // Override semantic ui default
+    margin: 2em 0 0;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  font-family: $base-font-family;
 }
 
 .selected-filter {
