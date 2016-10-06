@@ -62,8 +62,8 @@ fields:
 - fallback: # The lowercase, underscored name of the field
     label: Fallback Image? # Human readable name of the field
     type: boolean
-    required: false
-    hint: When there are no active images (based on start/end date), a max of two fallback images will be rendered. If this field is set to true, there is no need to set the date fields as they will be ignored.
+    required: true
+    hint: When there are less than 3 active spotlights based on start/end date, fallback images will be rendered (up to 3 total). If this field is set to true, there is no need to set the date fields as they will be ignored.
     localized: false
 
 - start_date: # The lowercase, underscored name of the field

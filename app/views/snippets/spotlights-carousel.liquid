@@ -1,5 +1,5 @@
 {% comment %} Active spotlights {% endcomment %}
-{% with_scope end_date.gte: now, start_date.lte: now %}
+{% with_scope fallback: false, end_date.gte: now, start_date.lte: now %}
   {% assign active_spotlights = contents.spotlights.all %}
 {% endwith_scope %}
 
@@ -8,49 +8,29 @@
   {% assign fallback_spotlights = contents.spotlights.all %}
 {% endwith_scope %}
 
-{% comment %} If no active spotlights, default to fallbacks {% endcomment %}
-{% if active_spotlights.size == 0 %}
-  {% assign falling_back = true %}
-  {% assign active_spotlights = fallback_spotlights %}
-{% endif %}
+{% assign counter = 0 %}
 
-{% comment %} Build div containing images for all active spotlights {% endcomment %}
+{% comment %} Build div containing images for active and/or fallback spotlights {% endcomment %}
 {% capture spotlight_images %}
   <div class="spotlights__images">
-    {% for spotlight in active_spotlights %}
-      {% capture spotlight_image %}<img src="{{ spotlight.image.url | image_url }}" alt="{{ spotlight.name }}" title="{{ spotlight.caption }}">{% endcapture %}
+    {% comment %} Limit active spotlights to 5 max {% endcomment %}
+    {% include 'spotlights-looper' with spotlights: active_spotlights, max: 5 %}
 
-      {% if spotlight.url %}
-        <a href="{{ spotlight.url }}">{{ spotlight_image }}</a>
-      {% else %}
-        {{ spotlight_image }}
-      {% endif %}
-
-      {% comment %} Limit to 2 max for fallback and 5 max otherwise {% endcomment %}
-      {% if falling_back and forloop.index == 2 %}
-        {% break %}
-      {% elsif forloop.index == 5 %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
+    {% comment %} If less than 3 active spotlights, supplement with fallback up to 3 total {% endcomment %}
+    {% if counter < 3 %}
+      {% include 'spotlights-looper' with spotlights: fallback_spotlights, max: 3 %}
+    {% endif %}
   </div>
 {% endcapture %}
 
 <section class="spotlights">
   <div class="carousel__contain">
-    {% comment %} Use carousel if we have multiple active spotlights {% endcomment %}
-    {% if active_spotlights.size > 1 %}
-      <span class="carousel__nav carousel__nav--prev js-spotlights-prev"><i class="fa fa-angle-left fa-inverse fa-5x"></i></span>
+    <span class="carousel__nav carousel__nav--prev js-spotlights-prev"><i class="fa fa-angle-left fa-inverse fa-5x"></i></span>
 
-      {{ spotlight_images }}
+    {{ spotlight_images }}
 
-      <span class="carousel__nav carousel__nav--next js-spotlights-next"><i class="fa fa-angle-right fa-inverse fa-5x"></i></span>
+    <span class="carousel__nav carousel__nav--next js-spotlights-next"><i class="fa fa-angle-right fa-inverse fa-5x"></i></span>
 
-      {{ 'spotlights.bundle.js' | javascript_tag }}
-
-    {% comment %} Otherwise, just display a single image {% endcomment %}
-    {% else %}
-      {{ spotlight_images }}
-    {% endif %}
+    {{ 'spotlights.bundle.js' | javascript_tag }}
   </div>
 </section>
