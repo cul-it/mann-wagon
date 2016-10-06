@@ -10,6 +10,7 @@
 		<div class="tab-content">
 
 			<div class="events__applied-filters">
+				((dateSelected | momentDate))
 	      <a v-if="dateSelected" v-on:click="removeSelectedDate()" title="Remove filter">
            <button class="mini ui teal right labeled icon button">
             <i class="remove icon"></i>
