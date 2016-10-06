@@ -9,17 +9,28 @@
 		<!-- Tab panes -->
 		<div class="tab-content">
 
-			<div class="">
-				((dateSelected | momentDate))
-	      <a class="fa fa-times" v-if="dateSelected" v-on:click="removeSelectedDate()"></a>
-			</div>
-			<div class="">
-				((eventSelected))
-				<a class="fa fa-times" v-if="eventSelected" v-on:click="removeEventTypeFilter()"></a>
-			</div>
-			<div class="">
-				((roomSelected))
-				<a class="fa fa-times" v-if="roomSelected" v-on:click="removeRoomFilter()"></a>
+			<div v-if="dateSelected || eventSelected || roomSelected" class="events__applied-filters">
+        Current filters:
+	      <a v-if="dateSelected" v-on:click="removeSelectedDate()" title="Remove filter">
+           <button class="mini ui teal right labeled icon button">
+            <i class="remove icon"></i>
+            DATE: ((dateSelected | momentDate))
+          </button>
+        </a>
+
+				<a v-if="eventSelected" v-on:click="removeEventTypeFilter()" title="Remove filter">
+          <button class="mini ui teal right labeled icon button">
+            <i class="remove icon"></i>
+            TYPE: ((eventSelected))
+          </button>
+        </a>
+
+				<a v-if="roomSelected" v-on:click="removeRoomFilter()" title="Remove filter">
+          <button class="mini ui teal right labeled icon button">
+            <i class="remove icon"></i>
+            LOCATION: ((roomSelected))
+          </button>
+        </a>
 			</div>
 
 			<div class="events__per-day" v-for="(date, events) in allEvents | orderBy 'event_start_time' | roomFilter room | eventTypeFilter eventType | limitListFilter limitList | groupBy 'event_start'">
