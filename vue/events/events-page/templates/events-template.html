@@ -8,6 +8,30 @@
 	<div class="events" v-if="eventsList">
 		<!-- Tab panes -->
 		<div class="tab-content">
+
+			<div class="events__applied-filters">
+	      <a v-if="dateSelected" v-on:click="removeSelectedDate()" title="Remove filter">
+           <button class="mini ui teal right labeled icon button">
+            <i class="remove icon"></i>
+            DATE: ((dateSelected | momentDate))
+          </button>
+        </a>
+
+				<a v-if="eventSelected" v-on:click="removeEventTypeFilter()" title="Remove filter">
+          <button class="mini ui teal right labeled icon button">
+            <i class="remove icon"></i>
+            TYPE: ((eventSelected))
+          </button>
+        </a>
+
+				<a v-if="roomSelected" v-on:click="removeRoomFilter()" title="Remove filter">
+          <button class="mini ui teal right labeled icon button">
+            <i class="remove icon"></i>
+            LOCATION: ((roomSelected))
+          </button>
+        </a>
+			</div>
+
 			<div class="events__per-day" v-for="(date, events) in allEvents | orderBy 'event_start_time' | roomFilter room | eventTypeFilter eventType | limitListFilter limitList | groupBy 'event_start'">
 				<h2 class="events__date-heading">
 					((date | momentDate))
@@ -81,74 +105,84 @@
 			</li>
 		</ul>
 
-
-		<div id="datepicker" v-datepicker="">
-		</div>
-
-		<div class="events-filters__selected-date">
-			((dateSelected | momentDate))
-      <a class="fa fa-times" v-if="dateSelected" v-on:click="removeSelectedDate()"></a>
-		</div>
-
-    <a data-filter=".event" v-show="roomSelected || eventSelected || dateSelected" v-on:click="clearAllFilters()">
-      <button class="ui button">
-        <i class="fa fa-times"></i>
-        Clear All Filters
-      </button>
-    </a>
-
-		<h6 class="events-filters__type">
+		<h3 class="events-filters__heading">
       Filter Events
+      <a data-filter=".event" v-show="roomSelected || eventSelected || dateSelected" v-on:click="clearAllFilters()" class="events-filters__clear-all">
+        <button class="mini ui right labeled icon button">
+          <i class="remove icon"></i>
+          Clear All Filters
+        </button>
+      </a>
+    </h3>
+
+    <h6 class="events-filters__type ui ribbon teal label">
+      By date
     </h6>
 
-    <!-- <input class="form-control" placeholder="Filter events" type="text" v-model="searchText"> -->
-    <!-- <a class="fa fa-times" v-if="searchText" v-on:click="removeSearchFilter()"></a> -->
+    <div class="events-filters__selected-date">
+      ((dateSelected | momentDate))
+      <a v-if="dateSelected" v-on:click="removeSelectedDate()">
+        <i class="red remove icon"></i>
+      </a>
+    </div>
 
-		<h6 class="events-filters__type">
+    <div id="datepicker" v-datepicker="">
+    </div>
+
+    <!-- <input class="form-control" placeholder="Filter events" type="text" v-model="searchText"> -->
+    <!-- <a v-if="searchText" v-on:click="removeSearchFilter()"> -->
+      <!-- <i class="red remove icon"></i> -->
+    <!-- </a> -->
+
+		<h6 class="events-filters__type ui ribbon teal label">
       By type
     </h6>
 
 		<ul data-filter-group="type">
 			<li v-for="event_type of allEventTypes | orderBy 'eventType'">
-				<a class="filter" v-bind:class="{ 'selected-filter': event_type == eventSelected }" v-on:click="setEventTypeFilter(event_type)">
+				<a class="filter" v-bind:class="{ 'events-filters__selected-filter': event_type == eventSelected }" v-on:click="setEventTypeFilter(event_type)">
           ((event_type))
         </a>
-        <a class="fa fa-times" v-if="event_type == eventSelected" v-on:click="removeEventTypeFilter()">
+        <a v-if="event_type == eventSelected" v-on:click="removeEventTypeFilter()">
+          <i class="red remove icon"></i>
         </a>
 			</li>
 		</ul>
 		<ul v-if="uncuratedEventTypes.length">
 			<li v-for="event_type of uncuratedEventTypes | orderBy 'eventType'">
-				<a class="filter" v-bind:class="{ 'selected-filter': event_type == eventSelected }" v-on:click="setEventTypeFilter(event_type)">
+				<a class="filter" v-bind:class="{ 'events-filters__selected-filter': event_type == eventSelected }" v-on:click="setEventTypeFilter(event_type)">
 					((event_type))*
 				</a>
-				<a class="fa fa-times" v-if="event_type == eventSelected" v-on:click="removeEventTypeFilter()">
+				<a v-if="event_type == eventSelected" v-on:click="removeEventTypeFilter()">
+          <i class="red remove icon"></i>
 				</a>
 			</li>
 		</ul>
 
-		<h6 class="events-filters__type">
+		<h6 class="events-filters__type ui ribbon teal label">
       By location
     </h6>
 
 		<ul data-filter-group="venue">
 			<li v-for="room of allRoomNames | orderBy 'room'">
 				<!-- event to set room filter -->
-				<a class="filter" v-bind:class="{ 'selected-filter': room == roomSelected }" v-on:click="setRoomFilter(room)">
+				<a class="filter" v-bind:class="{ 'events-filters__selected-filter': room == roomSelected }" v-on:click="setRoomFilter(room)">
 					((room))
         </a>
-        <a class="fa fa-times" v-if="room == roomSelected" v-on:click="removeRoomFilter()">
+        <a v-if="room == roomSelected" v-on:click="removeRoomFilter()">
+          <i class="red remove icon"></i>
         </a>
 			</li>
 		</ul>
 		<ul v-if="uncuratedRoomNames.length">
 			<li v-for="room of uncuratedRoomNames | orderBy 'room'">
 				<!-- event to set room filter -->
-				<a class="filter" v-bind:class="{ 'selected-filter': room == roomSelected }" v-on:click="setRoomFilter(room)">
+				<a class="filter" v-bind:class="{ 'events-filters__selected-filter': room == roomSelected }" v-on:click="setRoomFilter(room)">
 					((room))*
 				</a>
-				<a class="fa fa-times" v-if="room == roomSelected" v-on:click="removeRoomFilter()">
-				</a>
+				<a v-if="room == roomSelected" v-on:click="removeRoomFilter()">
+  				<i class="red remove icon"></i>
+        </a>
 			</li>
 
 		</ul>
