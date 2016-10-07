@@ -467,9 +467,9 @@ export default {
                 events['event_room_name'] = curatedEventLocation[0]
             }
           })
-          events['event_type'] = [value.description.match('Event type:: (.*)')[1].replace(',', '')]
+          events['event_type'] = [value.description.match('Event type: (.*)')[1].replace(',', '')]
           _.forEach(vueInstance.curatedEventTypes, function(curatedEventType, index) {
-            if (curatedEventType[0] === value.description.match('Event type:: (.*)')[1].replace(',', '') || _.includes(curatedEventType[1], value.description.match('Event type:: (.*)')[1].replace(',', ''))) {
+            if (curatedEventType[0] === value.description.match('Event type: (.*)')[1].replace(',', '') || _.includes(curatedEventType[1], value.description.match('Event type: (.*)')[1].replace(',', ''))) {
               events['event_type'] = [curatedEventType[0]]
             }
           })
