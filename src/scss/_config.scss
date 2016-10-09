@@ -75,20 +75,19 @@ $pad-megamenu-lapdesk: 10.4%;
 // -- http://chir.ag/projects/name-that-color
 // -- http://www.color-blindness.com/color-name-hue
 $colors: (
-  // Palette
-  'malta': hsl(33, 21%, 69%),
-  'soapstone': hsl(39, 30%, 89%),
-  'kangaroo': hsl(69, 15%, 73%),
-  'boston-blue': hsl(187, 45%, 44%),
-  'amulet': hsl(102, 17%, 54%),
-  'sprout': hsl(96, 31%, 76%),
-  'primrose': hsl(67, 69%, 76%),
-  'yellow-sea': hsl(32, 91%, 58%),
-  'mirage': hsl(203, 34%, 12%),
-  'vulcan': hsl(205, 40%, 8%),
+  // Primary Palette - http://coolors.co/ebefde-edc217-28849b-60c198-377771
+  'alabaster-new': hsl(74%, 35%, 90%),
+  'deep-lemon': hsl(48%, 86%, 51%),
+  'celadon-green': hsl(192%, 59%, 38%),
+  'ocean-green': hsl(155%, 44%, 57%),
+  'myrtle-green': hsl(174%, 37%, 34%),
 
   // Accessory
   'blond': hsl(52, 100%, 87%),
+  'primrose': hsl(67, 69%, 76%),
+  'soapstone': hsl(39, 30%, 89%),
+  'yellow-sea': hsl(32, 91%, 58%),
+  'vulcan': hsl(205, 40%, 8%),
 
   // Status
   'tutu': hsl(358, 75%, 94%),
@@ -116,22 +115,21 @@ $colors: (
   // Brand
   'cornell-red': hsl(0, 74%, 40%),
   'cornell-gray': 'raisin-black',
-  'mann-brand': 'vulcan',
+  'mann-primary': 'celadon-green',
   'cul-hamburger': 'black' ('tint': 20%),
 
-  // Fonts
+  // Typography
   'font-base': 'vulcan' ('tint': 10%),
   'headings': 'vulcan',
+  'headings-footer': 'ocean-green',
 
   // Links
-  'action': 'boston-blue',
+  'action': 'celadon-green',
   'nav': 'primrose',
   'section-nav': 'soapstone' ('tint': 40%),
-  'more': 'amulet',
 
   // Search
   'search-banner': 'black' ('tint': 15%),
-  'search-button': 'boston-blue',
 
   // Hours
   'closed': 'error',
