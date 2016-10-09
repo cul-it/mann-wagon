@@ -19,7 +19,7 @@ $heading-line-height: 1.2;
 $base-border-radius: 3px;
 $base-spacing: $base-line-height * 1em;
 $small-spacing: $base-spacing / 2;
-$header-height: 52px;
+$header-height: 45px;
 
 // z-index
 $below-content: 1;
@@ -104,6 +104,7 @@ $colors: (
   'alabaster': hsl(0, 0%, 98%),
   'white': hsl(0, 0%, 100%),
   'black': hsl(0, 0%, 0%),
+  'raisin-black': hsl(0, 0%, 13%),
   'bokara-gray': hsl(0, 0%, 16%),
   'bunker': hsl(210, 6%, 7%),
   'aluminum': hsl(193, 6%, 68%),
@@ -114,7 +115,7 @@ $colors: (
 
   // Brand
   'cornell-red': hsl(0, 74%, 40%),
-  'cornell-gray': 'black',
+  'cornell-gray': 'raisin-black',
   'mann-brand': 'vulcan',
   'cul-hamburger': 'black' ('tint': 20%),
 
