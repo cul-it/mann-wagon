@@ -47,15 +47,8 @@ fields:
 - url: # The lowercase, underscored name of the field
     label: Url # Human readable name of the field
     type: string
-    required: true
-    hint: Base URL for the reservation system (e.g. http://spaces.library.cornell.edu)
-    localized: false
-
-- api_url: # The lowercase, underscored name of the field
-    label: Api url # Human readable name of the field
-    type: string
-    required: true
-    hint: Base URL for the API (e.g. https://api3.libcal.com)
+    required: false
+    hint: Reservation form URL -- used for reserve button if no API or widget is available
     localized: false
 
 - spaces:
