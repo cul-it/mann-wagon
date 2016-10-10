@@ -60,6 +60,8 @@
               {% include 'room-availability-next' %}
             </div>
           {% endunless %}
+        {% elsif space.note %}
+          <em class="space-finder__note">{{ space.note }}</em>
         {% endif %}
       </div>
 
