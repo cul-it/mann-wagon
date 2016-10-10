@@ -97,7 +97,11 @@ $colors: (
   'error': 'tutu',
   'danger': 'yellow-sea' ('tint': 60%),
   'notice': 'glitter',
-  'success': 'spring-green',
+  'success': 'ocean-green' ('tint': 75%),
+
+  // Availability
+  'available': 'myrtle-green',
+  'available-icon': 'ocean-green',
 
   // Grayscale
   'alabaster': hsl(0, 0%, 98%),

@@ -13,7 +13,7 @@
     <a class="available-now__link" href="{% path_to type %}">
   {% endif %}
     {% unless location %}
-      <i class="fa fa-fw {{ icon }}"></i>
+      <i class="fa fa-fw {{ icon }} available-now__icon--{{ class }}"></i>
     {% endunless %}
     <i class="fa fa-fw fa-{{ os }} available-now__os"></i>
     {% if location %} <span class="available-now__location">{{ location }}</span> {% endif %}

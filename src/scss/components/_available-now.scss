@@ -106,11 +106,17 @@
   line-height: 1em;
 
   &--available {
-    color: darken(color('success'), 50%);
+    color: color('available');
   }
 
   &--unavailable {
     color: darken(color('error'), 50%);
+  }
+}
+
+.available-now__icon {
+  &--available {
+    color: color('available-icon');
   }
 }
 
