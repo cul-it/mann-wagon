@@ -38,15 +38,15 @@ order_by: manually
 # A list describing each field
 fields:
 - name: # The lowercase, underscored name of the field
-    label: Event location # Human readable name of the field
+    label: Name # Human readable name of the field
     type: string
     required: true
-    hint: Curated event location
+    hint: The name of the location that will be displayed in the events calendar
     localized: false
 
 - alternate_names: # The lowercase, underscored name of the field
     label: Alternate names # Human readable name of the field
     type: tags
     required: false
-    hint: Alternate names for this event location
+    hint: A comma separated list of strings returned from the data sources that will equate to this name
     localized: false
