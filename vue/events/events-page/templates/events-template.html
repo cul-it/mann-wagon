@@ -77,7 +77,7 @@
 			</div>
 
 			<div v-if="filteredEvents.length == 0" v-show="!showNoEventsMessage">
-        No events for selection...
+				(((noEventsMessage)))
 			</div>
 
 			<h6>
@@ -189,12 +189,24 @@
 	</div>
 
 	<div class="ui fullscreen modal">
+
 		<i class="close fa fa-times"></i>
-		<div class="header">
+
+		<div class="header" v-if="noSingleEventMessage">
+			Error
+		</div>
+
+		<div class="header" v-else="">
 			(((event.event_title)))
 		</div>
 
-		<div class="content">
+		<div class="content" v-if="noSingleEventMessage">
+			<p>
+				(((noSingleEventMessage)))
+			</p>
+		</div>
+
+		<div class="content" v-else="">
 			<h2 class="events__date-heading">
 				((event.event_start_time | momentDate))
 				<span class="events__date badge badge-alert" v-if="event.event_start_time | momentDateText">

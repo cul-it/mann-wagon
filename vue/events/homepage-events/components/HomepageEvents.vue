@@ -33,6 +33,13 @@ export default {
       localistReservations: [],
       libcalReservations: [],
       r25Reservations: [],
+      // Api errors
+      errorCornellEvents: null,
+      errorLibcalEvents: null,
+      errorR25Events: null,
+      errorCornellEvent: null,
+      errorLibcalEvent: null,
+      errorR25Event: null,
       // Arrays for event info
       cornellEvents: [],
       libcalEvents: [],
@@ -48,6 +55,8 @@ export default {
       dateKey: 'event_start',
       // No events message
       showNoEventsMessage: true,
+      noEventsMessage: 'No upcoming events.',
+      noSingleEventMessage: null,
       // Current date time used to filter out past events on initial load
       dateTimeNow: moment().format(),
       // Handle libcal separately due to 30 mintue slots
@@ -61,7 +70,8 @@ export default {
       singleEvent: false,
       recurringEventStartTime: '',
       showEventsLoader: false,
-      showWorkshopsLoader: false
+      showWorkshopsLoader: false,
+      apiErrors: []
     }
   },
   // Use vue-router transition data hook to trigger methods
@@ -102,6 +112,15 @@ export default {
         }
       },
       deep: true
+    },
+    'errorCornellEvents': function () {
+      this.logErrors('Cornell', this.errorCornellEvents)
+    },
+    'errorLibcalEvents': function () {
+      this.logErrors('Libcal', this.errorLibcalEvents)
+    },
+    'errorR25Events': function () {
+      this.logErrors('R25', this.errorR25Events)
     }
   },
   // Anything within the ready function will run when the application loads
@@ -162,6 +181,14 @@ export default {
     }
   },
   methods: {
+    logErrors (service, error) {
+      // log errors and show message to end user
+      console.log(error.status, error.statusText, error.request.url);
+      this.apiErrors.push(service)
+      if (this.apiErrors.length === 3) {
+        this.$set('noEventsMessage', 'Something went wrong while getting upcoming events, please try again later. <br><a href="/contact/site-feedback">Report this issue.</a>')
+      }
+    },
     displayEventList () {
       if (this.query.eventType) {
         this.setEventTypeFilter(this.params)
@@ -233,6 +260,7 @@ export default {
     },
     // Cornell localist events
     getCornellEvents (option, param) {
+      var vueInstance = this
       if (this.localistReservations.length) {
         this.setCornellEvents(option, param)
       } else if (option === 'event') {
@@ -242,12 +270,14 @@ export default {
         // Get default events
         this.$http.get(localistApiBaseUrl + '&days=' + this.defaultNumberOfDays).then(function (response) {
           // Create custom data model
-          var vueInstance = this
           var currentLocalistEvents = _.filter(response.data.events, function (event) {
             return moment(new Date(event.event.event_instances[0].event_instance.end)).format() >= vueInstance.dateTimeNow
           })
           this.$set('localistReservations', currentLocalistEvents)
           this.setCornellEvents(option, param)
+        }).catch(function(error){
+          vueInstance.$set('errorCornellEvents', error)
+          vueInstance.$set('eventSources.updatedCornellEvents', true)
         })
       }
     },
@@ -285,6 +315,11 @@ export default {
           })
           this.$set('libcalReservations', libcalReservations);
           this.setLibCalEvents(option, param)
+        }).catch(function(error){
+          vueInstance.setLibCalEvents(option, 'error')
+          vueInstance.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/contact/site-feedback">Report this issue.</a>')
+          vueInstance.$set('errorLibcalEvents', error)
+          vueInstance.$set('eventSources.updatedLibcalEvents', true)
         })
       }
     },
@@ -308,11 +343,16 @@ export default {
         // Single reservation
         // Can't get single event from json data due to 30 minute slots,
         // instead populate libcalEvents with merged events and filter on that
-        this.libcalReservationsArray(this.libcalReservations)
-        var singleLibcalReservation = _.filter(this.libcalEvents, function (libcalEvent) {
-          return libcalEvent.event_id === param
-        })
-        this.eventArray('Libcal', singleLibcalReservation[0])
+        if (param === 'error') {
+          this.eventArray('Error')
+        } else {
+          this.libcalReservationsArray(this.libcalReservations)
+          var singleLibcalReservation = _.filter(this.libcalEvents, function (libcalEvent) {
+            return libcalEvent.event_id === param
+          })
+          this.eventArray('Libcal', singleLibcalReservation[0])
+          this.$set('noSingleEventMessage', null)
+        }
       }
     },
     getR25Events (option, param) {
@@ -359,6 +399,9 @@ export default {
 
             this.$set('r25Reservations', currentr25Reservations)
             this.setR25Events (option, param)
+          }).catch(function(error){
+            vueInstance.$set('errorR25Events', error)
+            vueInstance.$set('eventSources.updatedR25Events', true)
           })
         } else if (option === 'event') {
           var r25EventBaseUrl = 'https://r25test.registrar.cornell.edu/r25ws/servlet/wrd/run/reservation.xml?'
@@ -376,6 +419,11 @@ export default {
                 r25Event = result['r25:reservations']['r25:reservation']
               })
               this.eventArray('R25Web', r25Event)
+              this.$set('noSingleEventMessage', null)
+            }).catch(function(error){
+              vueInstance.eventArray('Error')
+              vueInstance.$set('errorR25Event', error)
+              this.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/contact/site-feedback">Report this issue.</a>')
             })
         }
       }
@@ -520,10 +568,16 @@ export default {
     },
     // Cornell localist event
     getCornellEvent () {
+      var vueInstance = this
       var localistApiBaseUrl = 'http://events.cornell.edu/api/2/events/'
       this.$http.get(localistApiBaseUrl + this.params).then(function (response) {
         // Create custom data model
         this.eventArray('Cornell', response.data.event)
+        this.$set('noSingleEventMessage', null)
+      }).catch(function(error){
+        vueInstance.eventArray('Error')
+        vueInstance.$set('errorCornellEvent', error)
+        this.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/contact/site-feedback">Report this issue.</a>')
       })
     },
     eventArray (source, data) {
