@@ -1,43 +1,4 @@
 .accessory-nav {
-  @include susy-breakpoint($scape, $g-scape) {
-    right: 2.5%;
-  }
-
-  @include susy-breakpoint($tablet, $g-tablet) {
-    display: inline-block;
-    right: $pad-content-tablet;
-    font-size: modular-scale(0);
-  }
-
-  @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    right: $pad-content-lapdesk;
-  }
-
-  display: none; // @todo Add to hamburger menu for mobile breakpoints
-  position: absolute;
-  top: 59px;
-  right: 0;
-  line-height: 1.2em;
-  font-size: modular-scale(-1);
-}
-
-.accessory-nav__icon {
-  color: color('yellow-sea');
-}
-
-.accessory-nav__item {
-  display: inline-block;
-}
-
-.accessory-nav__link {
-  @include border-bottom-radius(8px);
-
-  background: color('alabaster');
-  padding: .2em .5em .3em;
-  color: color('font-base');
-}
-
-.cul-nav {
   @include susy-breakpoint($tablet, $g-tablet) {
     position: relative;
     float: right;
@@ -56,7 +17,7 @@
   right: 0;
 }
 
-.cul-nav__button {
+.accessory-nav__button {
   @include susy-breakpoint($tablet, $g-tablet) {
     display: none;
   }
@@ -68,7 +29,11 @@
   height: $header-height; // Match height of cu-banner
 }
 
-.cul-nav__item {
+.accessory-nav__icon {
+  color: color('accessory-nav-icon');
+}
+
+.accessory-nav__item {
   @include susy-breakpoint($tablet, $g-tablet) {
     display: inline-block;
     margin-top: 0;
@@ -90,16 +55,16 @@
   }
 }
 
-.cul-nav__link {
-  @include susy-breakpoint($tablet, $g-tablet) {
-    color: color('font-base');
-  }
-
-  color: color('white');
+.accessory-nav__link {
+  color: color('accessory-nav');
   font-weight: normal;
+
+  &:hover {
+    color: color('accessory-nav-hover');
+  }
 }
 
-.cul-nav__list {
+.accessory-nav__list {
   @include susy-breakpoint($tablet, $g-tablet) {
     display: inline-block;
     position: relative;
@@ -121,13 +86,35 @@
   text-align: left;
 }
 
+.my-account {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    display: inline-block;
+    right: $pad-content-tablet + .4;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    right: $pad-content-lapdesk + .4;
+  }
+
+  display: none; // @todo Add to hamburger menu for mobile breakpoints
+  position: absolute;
+  top: 5px;
+  right: 0;
+  line-height: 1.2em;
+  font-size: modular-scale(-1);
+}
+
+.my-account__link {
+  color: color('my-account');
+}
+
 .site-nav {
   @include break;
 
   margin-bottom: 1em;
-  border-top: solid 1px color('nav' ('shade': 5%));
-  border-bottom: solid 4px color('nav' ('tint': 60%));
-  background: color('nav');
+  border-top: solid 1px color('nav-bg' ('shade': 5%));
+  border-bottom: solid 4px color('nav-bg' ('tint': 85%));
+  background: color('nav-bg');
   padding: 0 auto;
   text-align: center;
   font-weight: bold;
@@ -159,15 +146,15 @@
     padding: .41em;
 
     &.active {
-      background: color('nav' ('tint': 40%));
+      background: color('nav-bg' ('shade': 15%));
     }
 
     &:hover {
-      background: color('vulcan');
+      background: color('mega-bg');
       transition-delay: 200ms;
 
       & > a {
-        color: color('nav');
+        color: color('nav-bg');
         transition-delay: 200ms;
       }
 
@@ -180,7 +167,7 @@
     }
 
     & > a {
-      color: color('vulcan');
+      color: color('white');
     }
   }
 }
@@ -188,7 +175,6 @@
 .site-nav__mega {
   @include susy-breakpoint($tablet, $g-tablet) {
     left: $pad-megamenu-tablet;
-    background: color('vulcan' ('transparentize': .06));
     width: 92vw;
   }
 
@@ -203,12 +189,11 @@
   visibility: hidden;
   opacity: 0;
   z-index: $above-content;
-  background: color('vulcan' ('transparentize': .02));
+  background: color('mega-bg' ('transparentize': .02));
   padding: 2em;
   width: 100vw;
   height: auto;
   text-align: left;
-  color: color('alabaster');
 }
 
 .site-nav__section {
@@ -231,10 +216,9 @@
 
 .site-nav__section-heading {
   margin-bottom: 0;
-  border-bottom: solid 1px color('medium-gray');
+  border-bottom: solid 1px color('mega-bg' ('shade': 10%));
   padding-bottom: .2em;
   line-height: 1.2em;
-  color: color('alabaster');
   font-size: modular-scale(0);
 }
 
@@ -243,24 +227,19 @@
     border-bottom: 0;
   }
 
-  border-bottom: solid 1px color('vulcan' ('tint': 10%));
+  border-bottom: solid 1px color('mega-bg' ('shade': 10%));
 }
 
 .site-nav__subpage-link {
-  @include susy-breakpoint($tablet, $g-tablet) {
-    padding: .8em .2em;
-  }
-
   display: block;
   padding: .6em .2em;
   line-height: 1em;
-  color: color('action' ('tint': 10%));
   font-weight: normal;
 
   &:active,
   &:focus,
   &:hover {
     border-radius: 5px;
-    background: color('alabaster');
+    background: color('mega-bg' ('shade': 5%));
   }
 }

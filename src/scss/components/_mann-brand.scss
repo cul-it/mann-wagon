@@ -27,7 +27,7 @@
   @include susy-breakpoint($tablet, $g-tablet) {
     float: left;
     margin-right: .7em;
-    background-image: url('../images/cul-brand/mann-logo@2x.png');
+    background-image: url('../images/cul-brand/mann-logo@2x.svg');
     background-size: cover;
     width: 100px;
     height: 100px;
@@ -55,7 +55,7 @@
 
   margin: .2em 0 0 .2em;
   line-height: .7em;
-  color: color('mann-brand');
+  color: color('mann-primary');
   font-family: p22-underground;
   font-size: 2em;
   font-weight: 600;
