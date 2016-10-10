@@ -9,6 +9,10 @@ content_type: spaces
 
   {% comment %}<a href="{% path_to hours %}" title="View all hours"><span class="badge badge-success">Open until 2am</span></a>{% endcomment %}
 
+  {% if space.note %}
+    <em class="space-finder__note">{{ space.note }}</em>
+  {% endif %}
+
   <p>{{ space.description }}</p>
 
   {% include 'room-availability-variables' %}

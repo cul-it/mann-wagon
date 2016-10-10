@@ -81,6 +81,13 @@ fields:
     localized: false
     # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
 
+- note: # The lowercase, underscored name of the field
+    label: Note # Human readable name of the field
+    type: string
+    required: false
+    hint: This should be left empty unless there is something important that should be displayed on the card. KEEP IT BRIEF! (i.e. "For library staff use only" for Rm 160)
+    localized: false
+
 - photo: # The lowercase, underscored name of the field
     label: Photo # Human readable name of the field
     type: file
