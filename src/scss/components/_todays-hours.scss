@@ -7,7 +7,7 @@
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     display: inline-block;
     position: absolute;
-    top: 5.6em;
+    top: 100px;
     right: $pad-content-lapdesk;
     padding: 0;
   }
