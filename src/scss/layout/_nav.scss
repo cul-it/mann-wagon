@@ -2,18 +2,19 @@
   @include susy-breakpoint($tablet, $g-tablet) {
     position: relative;
     float: right;
-    margin-top: .7em;
+    margin-top: .8em;
     padding-right: $pad-content-tablet;
-    font-size: modular-scale(-1);
+    font-size: modular-scale(-2);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    margin-top: 1.2em;
+    margin-top: 1em;
     padding-right: $pad-content-lapdesk;
+    font-size: modular-scale(-1);
   }
 
   position: absolute;
-  top: 0;
+  top: 3px;
   right: 0;
 }
 
@@ -23,10 +24,11 @@
   }
 
   border-radius: 0;
-  background-color: color('cul-hamburger');
+  background-color: color('cu-banner');
   padding: 0;
   width: $header-height;
   height: $header-height; // Match height of cu-banner
+  color: color('accessory-nav-btn');
 }
 
 .accessory-nav__icon {
@@ -80,7 +82,7 @@
   top: 52px;
   right: 0;
   z-index: $above-content;
-  background: color('cul-hamburger');
+  background: color('accessory-nav');
   padding: .5em;
   width: 10em;
   text-align: left;
@@ -98,7 +100,7 @@
 
   display: none; // @todo Add to hamburger menu for mobile breakpoints
   position: absolute;
-  top: 5px;
+  top: 6px;
   right: 0;
   line-height: 1.2em;
   font-size: modular-scale(-1);
@@ -126,12 +128,12 @@
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    padding-left: $pad-content-tablet;
+    padding-left: $pad-content-tablet - 2;
     width: span(5);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    padding-left: $pad-content-lapdesk;
+    padding-left: $pad-content-lapdesk - 1.6;
   }
 
   position: relative;
