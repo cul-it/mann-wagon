@@ -12,6 +12,10 @@
 			</div>
 		</div>
 
+		<div v-if="allEvents.length == 0" v-show="!showNoEventsMessage">
+			(((noEventsMessage)))
+		</div>
+
 		<template v-for="(date, events) in allEvents | orderBy 'event_start_time' | hideEventType 'Class/Workshop' | limitListFilter 3 | groupBy 'event_start'">
 			<h5 class="events-home__day">
 	      ((date | momentHomeDateText))
@@ -67,6 +71,10 @@
 			</div>
 		</div>
 
+		<div v-if="allEvents.length == 0" v-show="!showNoEventsMessage">
+			(((noEventsMessage)))
+		</div>
+
 		<template v-for="(date, events) in allEvents | orderBy 'event_start_time' | eventTypeFilter 'Class/Workshop' | limitListFilter 3 | groupBy 'event_start'">
 			<h5 class="events-home__day">
 	      ((date | momentHomeDateText))
@@ -108,12 +116,21 @@
 	</section>
 
 	<div class="ui fullscreen modal">
-		<i class="close fa fa-times"></i>
-		<div class="header">
+		<div class="header" v-if="noSingleEventMessage">
+			Error
+		</div>
+
+		<div class="header" v-else="">
 			(((event.event_title)))
 		</div>
 
-		<div class="content">
+		<div class="content" v-if="noSingleEventMessage">
+			<p>
+				(((noSingleEventMessage)))
+			</p>
+		</div>
+
+		<div class="content" v-else="">
 			<h2 class="events__date-heading">
 				((event.event_start_time | momentHomeDate))
 				<span class="events__date badge badge-alert" v-if="checkDateText(event.event_start_time)">
