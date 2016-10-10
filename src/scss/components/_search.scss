@@ -4,27 +4,24 @@
   @include susy-breakpoint($tablet, $g-tablet) {
     @include span(3 at 6);
 
-    display: block;
-    position: relative;
-    margin-top: 3.5em;
+    display: inline-block;
+    right: $pad-content-tablet;
     margin-right: 0;
-    padding-right: $pad-content-tablet;
-    text-align: right;
-    font-size: modular-scale(-1);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     @include span(5 at 8);
 
+    right: $pad-content-lapdesk;
     margin-right: 0;
-    padding-right: $pad-content-lapdesk;
   }
 
   // Accessed/toggled via search icon cu-banner at mobile
   display: none;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 24px;
+  right: 0;
+  font-size: modular-scale(-1);
 }
 
 .search__term {
