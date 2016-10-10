@@ -13,7 +13,7 @@
   }
 
   position: absolute;
-  top: 0;
+  top: 3px;
   right: 0;
 }
 
@@ -23,10 +23,11 @@
   }
 
   border-radius: 0;
-  background-color: color('cul-hamburger');
+  background-color: color('cu-banner');
   padding: 0;
   width: $header-height;
   height: $header-height; // Match height of cu-banner
+  color: color('accessory-nav-btn');
 }
 
 .accessory-nav__icon {
@@ -80,7 +81,7 @@
   top: 52px;
   right: 0;
   z-index: $above-content;
-  background: color('cul-hamburger');
+  background: color('accessory-nav');
   padding: .5em;
   width: 10em;
   text-align: left;
