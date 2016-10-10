@@ -1,5 +1,9 @@
 .events-home {
   @include span(full nest);
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    display: flex; // Equal column heights for two event groupings
+  }
 }
 
 .events-home__day {
