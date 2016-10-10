@@ -1,4 +1,11 @@
-  <h5 class="available-now__subheading"><a class="available-now__link" href="{% path_to spaces %}/study" title="View all of our study spaces">Study Spaces</a></h5>
+  <h5 class="available-now__subheading">
+    <a class="available-now__link" href="{% path_to spaces %}/study" title="View all of our study spaces">Study Spaces</a>
+
+    <a href="{% path_to spaces %}" title="Find a space that fits your needs">
+      <button class="available-now__find-space">Find all Spaces</button>
+    </a>
+  </h5>
+
 
   {% comment %}This trick to get BSON ID for study entry of spaces_types courtesy of Didier via Gitter convo{% endcomment %}
   {% with_scope _slug: 'study' %}{% assign study_space_type = contents.spaces_types.first %}{% endwith_scope %}
@@ -35,7 +42,3 @@
       </div>
     {% endwith_scope %}
   </ul>
-
-  <a href="{% path_to spaces %}" title="Find a space that fits your needs">
-    <button class="available-now__find-space">Find all Spaces</button>
-  </a>
