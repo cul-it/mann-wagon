@@ -17,23 +17,6 @@
     </h1>
   </div>
 
-  <nav class="accessory-nav" role="navigation">
-    <ul class="accessory-nav__list">
-      <li class="accessory-nav__item">
-        <a class="accessory-nav__link" href="{% path_to course-reserves %}" title="Find course reserves for your class">
-          <i class="fa fa-fw fa-bookmark-o accessory-nav__icon"></i>
-          Course Reserves
-        </a>
-      </li>
-      <li class="accessory-nav__item">
-        <a class="accessory-nav__link" href="{% path_to research-guides %}" title="View recommended research guides by subject">
-          <i class="fa fa-fw fa-file-text-o accessory-nav__icon"></i>
-          Research Guides
-        </a>
-      </li>
-    </ul>
-  </nav>
-
   <button class="search__button" type="button">
     <i class="fa fa-search"></i>
   </button>
@@ -69,28 +52,28 @@
   </div>
 
   <nav class="site-nav" role="navigation">
-    <nav class="cul-nav" role="navigation">
-      <button class="cul-nav__button" type="button">
+    <nav class="accessory-nav" role="navigation">
+      <button class="accessory-nav__button" type="button">
         <i class="fa fa-lg fa-bars"></i>
       </button>
 
-      <ul class="cul-nav__list">
-        <li class="cul-nav__item">
-          <a class="cul-nav__link" href="https://newcatalog.library.cornell.edu">
-            <i class="fa fa-fw fa-book"></i>
+      <ul class="accessory-nav__list">
+        <li class="accessory-nav__item">
+          <a class="accessory-nav__link" href="https://newcatalog.library.cornell.edu" title="Search the Library Catalog">
+            <i class="accessory-nav__icon fa fa-fw fa-book"></i>
             Library Catalog
           </a>
         </li>
-        <li class="cul-nav__item">
-          <a class="cul-nav__link" href="https://www.library.cornell.edu/ask">
-            <i class="fa fa-fw fa-question"></i>
-            Ask a Librarian
+        <li class="accessory-nav__item">
+          <a class="accessory-nav__link" href="{% path_to course-reserves %}" title="Find course reserves for your class">
+            <i class="accessory-nav__icon fa fa-fw fa-bookmark"></i>
+            Course Reserves
           </a>
         </li>
-        <li class="cul-nav__item">
-          <a class="cul-nav__link" href="https://www.library.cornell.edu/myacct">
-            <i class="fa fa-fw fa-user"></i>
-            My Account
+        <li class="accessory-nav__item">
+          <a class="accessory-nav__link" href="https://www.library.cornell.edu/ask">
+            <i class="accessory-nav__icon fa fa-fw fa-question"></i>
+            Ask a Librarian
           </a>
         </li>
       </ul>

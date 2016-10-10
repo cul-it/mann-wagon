@@ -1,43 +1,4 @@
 .accessory-nav {
-  @include susy-breakpoint($scape, $g-scape) {
-    right: 2.5%;
-  }
-
-  @include susy-breakpoint($tablet, $g-tablet) {
-    display: inline-block;
-    right: $pad-content-tablet;
-    font-size: modular-scale(0);
-  }
-
-  @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    right: $pad-content-lapdesk;
-  }
-
-  display: none; // @todo Add to hamburger menu for mobile breakpoints
-  position: absolute;
-  top: 59px;
-  right: 0;
-  line-height: 1.2em;
-  font-size: modular-scale(-1);
-}
-
-.accessory-nav__icon {
-  color: color('yellow-sea');
-}
-
-.accessory-nav__item {
-  display: inline-block;
-}
-
-.accessory-nav__link {
-  @include border-bottom-radius(8px);
-
-  background: color('alabaster');
-  padding: .2em .5em .3em;
-  color: color('font-base');
-}
-
-.cul-nav {
   @include susy-breakpoint($tablet, $g-tablet) {
     position: relative;
     float: right;
@@ -56,7 +17,7 @@
   right: 0;
 }
 
-.cul-nav__button {
+.accessory-nav__button {
   @include susy-breakpoint($tablet, $g-tablet) {
     display: none;
   }
@@ -68,7 +29,11 @@
   height: $header-height; // Match height of cu-banner
 }
 
-.cul-nav__item {
+.accessory-nav__icon {
+  color: color('accessory-nav-icon');
+}
+
+.accessory-nav__item {
   @include susy-breakpoint($tablet, $g-tablet) {
     display: inline-block;
     margin-top: 0;
@@ -90,16 +55,16 @@
   }
 }
 
-.cul-nav__link {
-  @include susy-breakpoint($tablet, $g-tablet) {
-    color: color('font-base');
-  }
-
-  color: color('white');
+.accessory-nav__link {
+  color: color('accessory-nav');
   font-weight: normal;
+
+  &:hover {
+    color: color('accessory-nav-hover');
+  }
 }
 
-.cul-nav__list {
+.accessory-nav__list {
   @include susy-breakpoint($tablet, $g-tablet) {
     display: inline-block;
     position: relative;
