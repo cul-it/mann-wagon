@@ -125,9 +125,9 @@
   @include break;
 
   margin-bottom: 1em;
-  border-top: solid 1px color('nav' ('shade': 5%));
-  border-bottom: solid 4px color('nav' ('tint': 60%));
-  background: color('nav');
+  border-top: solid 1px color('nav-bg' ('shade': 5%));
+  border-bottom: solid 4px color('nav-bg' ('tint': 85%));
+  background: color('nav-bg');
   padding: 0 auto;
   text-align: center;
   font-weight: bold;
@@ -159,15 +159,15 @@
     padding: .41em;
 
     &.active {
-      background: color('nav' ('tint': 40%));
+      background: color('nav-bg' ('shade': 15%));
     }
 
     &:hover {
-      background: color('vulcan');
+      background: color('mega-bg');
       transition-delay: 200ms;
 
       & > a {
-        color: color('nav');
+        color: color('nav-bg');
         transition-delay: 200ms;
       }
 
@@ -180,7 +180,7 @@
     }
 
     & > a {
-      color: color('vulcan');
+      color: color('white');
     }
   }
 }
@@ -188,7 +188,6 @@
 .site-nav__mega {
   @include susy-breakpoint($tablet, $g-tablet) {
     left: $pad-megamenu-tablet;
-    background: color('vulcan' ('transparentize': .06));
     width: 92vw;
   }
 
@@ -203,12 +202,11 @@
   visibility: hidden;
   opacity: 0;
   z-index: $above-content;
-  background: color('vulcan' ('transparentize': .02));
+  background: color('mega-bg' ('transparentize': .02));
   padding: 2em;
   width: 100vw;
   height: auto;
   text-align: left;
-  color: color('alabaster');
 }
 
 .site-nav__section {
@@ -231,10 +229,9 @@
 
 .site-nav__section-heading {
   margin-bottom: 0;
-  border-bottom: solid 1px color('medium-gray');
+  border-bottom: solid 1px color('mega-bg' ('shade': 10%));
   padding-bottom: .2em;
   line-height: 1.2em;
-  color: color('alabaster');
   font-size: modular-scale(0);
 }
 
@@ -243,24 +240,19 @@
     border-bottom: 0;
   }
 
-  border-bottom: solid 1px color('vulcan' ('tint': 10%));
+  border-bottom: solid 1px color('mega-bg' ('shade': 10%));
 }
 
 .site-nav__subpage-link {
-  @include susy-breakpoint($tablet, $g-tablet) {
-    padding: .8em .2em;
-  }
-
   display: block;
   padding: .6em .2em;
   line-height: 1em;
-  color: color('action' ('tint': 10%));
   font-weight: normal;
 
   &:active,
   &:focus,
   &:hover {
     border-radius: 5px;
-    background: color('alabaster');
+    background: color('mega-bg' ('shade': 5%));
   }
 }
