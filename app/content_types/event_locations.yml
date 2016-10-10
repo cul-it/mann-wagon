@@ -50,3 +50,10 @@ fields:
     required: false
     hint: A comma separated list of strings returned from the data sources that will equate to this name
     localized: false
+
+- smartmap_url: # The lowercase, underscored name of the field
+    label: SmartMap URL # Human readable name of the field
+    type: string
+    required: false
+    hint: Used to link from the events calendar to the Mann SmartMap to aid in patrons finding the location
+    localized: false
