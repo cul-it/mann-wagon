@@ -2,14 +2,15 @@
   @include susy-breakpoint($tablet, $g-tablet) {
     position: relative;
     float: right;
-    margin-top: .7em;
+    margin-top: .8em;
     padding-right: $pad-content-tablet;
-    font-size: modular-scale(-1);
+    font-size: modular-scale(-2);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    margin-top: 1.2em;
+    margin-top: 1em;
     padding-right: $pad-content-lapdesk;
+    font-size: modular-scale(-1);
   }
 
   position: absolute;
@@ -127,12 +128,12 @@
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    padding-left: $pad-content-tablet;
+    padding-left: $pad-content-tablet - 2;
     width: span(5);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    padding-left: $pad-content-lapdesk;
+    padding-left: $pad-content-lapdesk - 1.6;
   }
 
   position: relative;
