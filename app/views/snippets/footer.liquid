@@ -1,13 +1,9 @@
 <footer class="footer">
   <div class="footer__about-us footer__panel">
-  <h5 class="footer__heading"><a href="{% path_to about %}" title="Learn about Albert R. Mann Library">About Us</a></h5>
+  <h5 class="footer__heading"><a class="footer__heading-link" href="{% path_to about %}" title="Learn about Albert R. Mann Library">About Us</a></h5>
 
     <p class="footer__mission">
       Supporting learning and research in the life sciences, agriculture, human ecology and applied social sciences.
-      <a class="more-link more-link--footer" href="{% path_to about %}" title="Learn about Albert R. Mann Library">
-        More
-        <i class="fa fa-angle-double-right"></i>
-      </a>
     </p>
 
     <p>
@@ -16,7 +12,7 @@
       <a class="more-link more-link--footer" href="{% path_to employment %}" title="Career opportunities at Mann Library">Employment</a>
     </p>
 
-    <h5 class="footer__heading">Floor Plans</h5>
+    <h5 class="footer__heading"><a class="footer__heading-link" href="http://smartmap.mannlib.cornell.edu" title="Mann Library SmartMap">Floor Plans</a></h5>
 
     <ul class="footer__floorplans">
       <li class="footer__floor">
@@ -35,7 +31,7 @@
   </div>
 
   <div class="footer__featured-plus-haiku footer__panel">
-    <h5 class="footer__heading">Featured Projects</h5>
+  <h5 class="footer__heading"><a class="footer__heading-link" href="{% path_to projects %}" title="View all projects">Featured Projects</a></h5>
 
     <ul>
       {% with_scope featured: true %}
@@ -52,7 +48,7 @@
       </a>
     </p>
 
-    <h5 class="footer__heading">Daily Haiku</h5>
+    <h5 class="footer__heading"><a class="footer__heading-link" href="http://haiku.mannlib.cornell.edu" title="Visit the Mann Library Daily Haiku site">Daily Haiku</a></h5>
 
     <p class="footer__haiku">
       low tide<br>
@@ -69,7 +65,7 @@
   </div>
 
   <div class="footer__contact-us footer__panel">
-    <h5 class="footer__heading">Contact Us</h5>
+    <h5 class="footer__heading"><a class="footer__heading-link" href="{% path_to contact %}" title="Mann Library contact options">Contact Us</h5>
 
     <ul class="fa-ul">
       <li>
