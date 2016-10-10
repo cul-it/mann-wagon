@@ -4,24 +4,24 @@
 @import 'components/carousel';
 
 .meet-experts {
-  @include span(full);
+  @include span(full nest);
 }
 
 .meet-experts__all-experts {
-  @include span(full);
+  @include span(full nest);
 
   margin-top: 1em;
 }
 
 .meet-experts__dots {
   &.slick-dots {
-    @include susy-breakpoint($tablet, $g-tablet) {
-      top: -2em;
-    }
-
-    top: -1.5em;
+    top: -3em;
     bottom: auto;
   }
+}
+
+.meet-experts__heading {
+  margin-bottom: 2em;
 }
 
 .meet-experts__featured {
