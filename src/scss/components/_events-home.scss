@@ -31,20 +31,12 @@
   }
 }
 
-.events-home__heading-link {
-  color: color('font-base');
-}
-
 .events-home__day {
   margin: 1.2em 0 .3em;
 
   &:first-of-type {
     margin-top: 0;
   }
-}
-
-.events-home__list {
-  margin-bottom: 1em;
 }
 
 .events-home__event {
@@ -57,17 +49,16 @@
   }
 }
 
-.events-home__title {
-  margin: 0;
-  font-size: modular-scale(0);
+.events-home__heading-link {
+  color: color('font-base');
 }
 
 .events-home__label {
   display: none;
 }
 
-.events-home__time {
-  float: left;
+.events-home__list {
+  margin-bottom: 1em;
 }
 
 .events-home__location {
@@ -76,4 +67,13 @@
 
 .events-home__location-icon {
   color: color('medium-gray');
+}
+
+.events-home__time {
+  float: left;
+}
+
+.events-home__title {
+  margin: 0;
+  font-size: modular-scale(0);
 }
