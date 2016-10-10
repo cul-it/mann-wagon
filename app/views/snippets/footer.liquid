@@ -1,35 +1,35 @@
 <footer class="footer">
   <div class="footer__about-us footer__panel">
-    <h5 class="footer__heading">About Us</h5>
+  <h5 class="footer__heading"><a href="{% path_to about %}" title="Learn about Albert R. Mann Library">About Us</a></h5>
 
     <p class="footer__mission">
       Supporting learning and research in the life sciences, agriculture, human ecology and applied social sciences.
-      <a class="more-link more-link--footer" href="{% path_to about %}">
+      <a class="more-link more-link--footer" href="{% path_to about %}" title="Learn about Albert R. Mann Library">
         More
         <i class="fa fa-angle-double-right"></i>
       </a>
     </p>
 
     <p>
-      <a class="more-link more-link--footer" href="{% path_to staff %}">Organization &amp; Staff</a>
+      <a class="more-link more-link--footer" href="{% path_to staff %}" title="Mann divisions and staff">Organization &amp; Staff</a>
       |
-      <a class="more-link more-link--footer" href="{% path_to employment %}">Employment</a>
+      <a class="more-link more-link--footer" href="{% path_to employment %}" title="Career opportunities at Mann Library">Employment</a>
     </p>
 
     <h5 class="footer__heading">Floor Plans</h5>
 
     <ul class="footer__floorplans">
       <li class="footer__floor">
-        <a href="http://smartmap.mannlib.cornell.edu/floor/0">Basement</a>
+        <a href="http://smartmap.mannlib.cornell.edu/floor/0" title="Basement floor plan">Basement</a>
       </li>
       <li class="footer__floor">
-        <a href="http://smartmap.mannlib.cornell.edu/floor/1">1st</a>
+        <a href="http://smartmap.mannlib.cornell.edu/floor/1" title="First floor, floor plan">1st</a>
       </li>
       <li class="footer__floor">
-        <a href="http://smartmap.mannlib.cornell.edu/floor/2">2nd</a>
+        <a href="http://smartmap.mannlib.cornell.edu/floor/2" title="Second floor, floor plan">2nd</a>
       </li>
       <li class="footer__floor">
-        <a href="http://smartmap.mannlib.cornell.edu/floor/3">3rd</a>
+        <a href="http://smartmap.mannlib.cornell.edu/floor/3" title="Third floor, floor plan">3rd</a>
       </li>
     </ul>
   </div>
@@ -40,13 +40,13 @@
     <ul>
       {% with_scope featured: true %}
         {% for project in contents.projects %}
-          <li><a href="{% path_to project %}">{{ project.title }}</a></li>
+          <li><a href="{% path_to project %}" title="View details of {{ project.title }}">{{ project.title }}</a></li>
         {% endfor %}
       {% endwith_scope %}
     </ul>
 
     <p>
-      <a class="more-link more-link--footer" href="{% path_to projects %}">
+      <a class="more-link more-link--footer" href="{% path_to projects %}" title="View all projects">
         More Projects
         <i class="fa fa-angle-double-right"></i>
       </a>
@@ -61,7 +61,7 @@
     </p>
 
     <p>
-      <a class="more-link more-link--footer" href="http://haiku.mannlib.cornell.edu">
+      <a class="more-link more-link--footer" href="http://haiku.mannlib.cornell.edu" title="Visit the Mann Library Daily Haiku site">
         Daily Haiku Archive
         <i class="fa fa-angle-double-right"></i>
       </a>
@@ -74,14 +74,14 @@
     <ul class="fa-ul">
       <li>
         <i class="fa-li fa fa-question-circle"></i>
-        <a href="#">Ask a Librarian</a>
+        <a href="https://www.library.cornell.edu/ask" title="Request assistance from our friendly experts">Ask a Librarian</a>
       </li>
       <li>
         <i class="fa-li fa fa-envelope"></i>
-        <a href="mailto:mann_circ@cornell.edu">mann_circ@cornell.edu</a>
+        <a href="mailto:mann_circ@cornell.edu" title="Email the Mann Circulation Desk staff">mann_circ@cornell.edu</a>
       </li>
       <li>
-        <i class="fa-li fa fa-mobile"></i>
+        <i class="fa-li fa fa-phone"></i>
         607-255-3296
       </li>
       <li>
@@ -98,18 +98,18 @@
           <span class="footer__address-line">Ithaca, NY 14853</span>
         </div>
 
-        <a class="more-link more-link--footer" href="https://goo.gl/maps/ZJvrC8S5ZVn">
+        <a class="more-link more-link--footer" href="https://goo.gl/maps/ZJvrC8S5ZVn" title="Get directions to Mann Library">
           Get Directions
           <i class="fa fa-angle-double-right"></i>
         </a>
       </li>
       <li>
         <i class="fa-li fa fa-user"></i>
-        <a href="#">Request a Consultation</a>
+        <a href="{% path_to consultation-request %}" title="Submit a consultation request">Request a Consultation</a>
       </li>
       <li>
         <i class="fa-li fa fa-book"></i>
-        <a href="{% path_to recommend-a-purchase %}">Recommend a Purchase</a>
+        <a href="{% path_to recommend-a-purchase %}" title="Submit a purchase recommendation for our collection">Recommend a Purchase</a>
       </li>
       <li>
         <i class="fa-li fa fa-comment"></i>
@@ -121,22 +121,22 @@
   <div class="footer__bottomline">
     <ul class="footer__social inline">
       <li>
-        <a class="footer__social-icon" href="http://facebook.com/mannlibrary">
+        <a class="footer__social-icon" href="http://facebook.com/mannlibrary" title="Albert R. Mann Library on Facebook">
           <i class="fa fa-facebook-square fa-2x"></i>
         </a>
       </li>
       <li>
-        <a class="footer__social-icon" href="http://mannlibrary.tumblr.com">
+        <a class="footer__social-icon" href="http://mannlibrary.tumblr.com" title="Albert R. Mann Library on Tumblr">
           <i class="fa fa-tumblr-square fa-2x"></i>
         </a>
       </li>
       <li>
-        <a class="footer__social-icon" href="https://www.instagram.com/mannlibrary">
+        <a class="footer__social-icon" href="https://www.instagram.com/mannlibrary" title="Albert R. Mann Library on Instagram">
           <i class="fa fa-instagram fa-2x"></i>
         </a>
       </li>
       <li>
-        <a class="footer__social-icon" href="https://www.flickr.com/photos/mann_library">
+        <a class="footer__social-icon" href="https://www.flickr.com/photos/mann_library" title="Albert R. Mann Library on Flickr">
           <i class="fa fa-flickr fa-2x"></i>
         </a>
       </li>
