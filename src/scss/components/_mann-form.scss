@@ -11,3 +11,19 @@
     width: inherit;
   }
 }
+
+.mann-form__header {
+  &.ui.header { // Override semantic-ui default
+    margin-top: 3em;
+    font-size: modular-scale(1);
+  }
+
+  &:first-of-type.ui.header {
+    margin-top: 0;
+  }
+}
+
+.radio-button__label {
+  margin-bottom: 0;
+  font-weight: normal;
+}

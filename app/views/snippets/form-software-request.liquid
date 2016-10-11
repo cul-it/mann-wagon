@@ -27,7 +27,7 @@
   {% comment %} Don't display the form after successful submission {% endcomment %}
   {% unless software_request.errors == false %}
 
-    <h4 class="ui dividing header">Contact Information</h4>
+    <h4 class="ui dividing header mann-form__header">Contact Information</h4>
 
     <div class="required field mann-form__compact">
       <label>Name</label>
@@ -71,15 +71,15 @@
       </div>
     </div>
 
-    <h4 class="ui dividing header">Software Information</h4>
+    <h4 class="ui dividing header mann-form__header">Software Information</h4>
+
+    <div class="ui tiny compact message">
+      <p>Be sure to <a href="/use/technology/software" title="View Mann's installed software list" target="_blank">review our existing installed software</a></p>
+    </div>
 
     <div class="required field mann-form__compact">
       <label>Software Title</label>
       <input type="text" name="content[title]" value="{{ software_request.title }}">
-
-      <div class="ui tiny compact message">
-        <p>Be sure to <a href="/use/technology/software" title="View Mann's installed software list" target="_blank">review our existing installed software</a></p>
-      </div>
     </div>
 
     <div class="required field mann-form__compact">
@@ -146,7 +146,7 @@
         <div class="field">
           <div class="ui radio checkbox">
             <input type="radio" name="content[delivery]" {% if software_request.delivery == delivery %} checked {% endif %} tabindex="0" class="hidden">
-            <label>{{ delivery }}</label>
+            <label class="radio-button__label">{{ delivery }}</label>
           </div>
         </div>
       {% endfor %}
