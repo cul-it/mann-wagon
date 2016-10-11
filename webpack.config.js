@@ -29,7 +29,6 @@ module.exports = {
       instructionRequest: './src/js/form-instruction-request.js',
       main: './src/scss/main.scss',
       modalLibcal: './src/js/modal-libcal.js',
-      purchaseRequest: './src/js/purchase-request.js',
       softwareList: './vue/software-list/software-list.js',
       softwareRequest: './src/js/form-software-request.js',
       spacesCards: './src/js/spaces-cards.js',
