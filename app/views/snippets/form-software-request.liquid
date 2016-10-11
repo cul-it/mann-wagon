@@ -1,0 +1,156 @@
+{% model_form 'software_requests', class: 'ui form success error mann-form', success: path, error: path %}
+  {% comment %} Status messages from Locomotive {% endcomment %}
+  {% if software_request.errors %}
+    <div class="ui error message">
+      <div class="header">Please address the following errors</div>
+
+      <ul class="list">
+        {% for error in software_request.errors %}
+          <li>{{error[0] | capitalize}} -  {{error[1]}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% elsif software_request.errors == false %}
+    <div class="ui icon success message">
+      <i class="thumbs outline up icon"></i>
+
+      <div class="content">
+        <div class="header">Thank You!</div>
+
+        <p>Your software installation request has been submitted successfully. We'll be in touch shortly to confirm your request.</p>
+
+        <p><strong>Please note that your request is not guaranteed until you receive confirmation from Mann Library staff.</strong></p>
+      </div>
+    </div>
+  {% endif %}
+
+  {% comment %} Don't display the form after successful submission {% endcomment %}
+  {% unless software_request.errors == false %}
+
+    <h4 class="ui dividing header">Contact Information</h4>
+
+    <div class="required field mann-form__compact">
+      <label>Name</label>
+      <input type="text" name="content[name]" value="{{ software_request.name }}">
+    </div>
+
+    <div class="required field mann-form__compact">
+      <label>Email</label>
+      <input type="email" name="content[email]" value="{{ software_request.email }}">
+    </div>
+
+    <div class="required field mann-form__compact">
+      <label>Phone</label>
+      <input type="tel" name="content[phone]" value="{{ software_request.phone }}">
+    </div>
+
+    <div class="required field mann-form__compact">
+      <label>Department</label>
+      <input type="text" name="content[department]" value="{{ software_request.department }}">
+    </div>
+
+    <div class="required field">
+      <label>Cornell Affiliation</label>
+
+      <select class="ui dropdown mann-form__compact" name="content[affiliation]">
+        <option value="">-- Select one --</option>
+        {% for affiliation in contents.software_requests.affiliation_options %}
+          <option value="{{ affiliation }}" {% if software_request.affiliation == affiliation %} selected {% endif %}>{{ affiliation }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="field">
+      <div class="ui toggle checkbox">
+        {% comment %}
+          Need to set value to 1, otherwise Locomotive will submit 'on' when checked
+          -- https://github.com/locomotivecms/engine/issues/399
+        {% endcomment %}
+        <input type="checkbox" name="content[course_related]" value="1" {% if software_request.course_related | ceil == 1 %} checked {% endif %}>
+        <label>Is this a course-related request?</label>
+      </div>
+    </div>
+
+    <h4 class="ui dividing header">Software Information</h4>
+
+    <div class="required field mann-form__compact">
+      <label>Software Title</label>
+      <input type="text" name="content[title]" value="{{ software_request.title }}">
+    </div>
+
+    <div class="required field mann-form__compact">
+      <label>Software Company Name</label>
+      <input type="text" name="content[company]" value="{{ software_request.company }}">
+    </div>
+
+    <div class="required field mann-form__compact">
+      <label>Software Website</label>
+      <input type="text" name="content[url]" value="{{ software_request.url }}">
+    </div>
+
+    <div class="required field">
+      <label>Software Platform</label>
+
+      {% comment %}
+        Please note: Two unusual/special cases for platform
+        -- 1. Need to append brackets to element name here so that value is sent as an array for multiple select
+        -- 2. Since the select field type in locomotive does not support multiple values, we're using two fields:
+              * `platform_managed_list` field (field type: select) to manage the options
+              * `platform` field (field type: tags) to store the user selected and submitted values
+      {% endcomment %}
+      <select class="ui dropdown selection" name="content[platform][]" multiple="" data-validate="content[platform]">
+        <option value="">-- Select one or more --</option>
+        {% for platform in contents.software_requests.platform_managed_list_options %}
+          <option value="{{ platform }}" {% if software_request.platform contains platform %} selected {% endif %}>{{ platform }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="field mann-form__compact">
+      <label>Number of Licenses</label>
+      <input type="text" name="content[licenses]" value="{{ software_request.url }}">
+    </div>
+
+    <div class="required field mann-form__compact">
+      <label>Preferred Date for Software Installation</label>
+      <div class="ui calendar date-selector">
+        <div class="ui input left icon">
+          <i class="calendar icon"></i>
+          <input type="text" name="content[date]" value="{{ software_request.date }}" placeholder="Enter Date">
+        </div>
+      </div>
+    </div>
+
+    <div class="required grouped fields">
+      <label for="fruit">Sofware Delivery</label>
+      {% for delivery in contents.software_requests.delivery_options %}
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="content[delivery]" {% if software_request.delivery == delivery %} checked {% endif %} tabindex="0" class="hidden">
+            <label>{{ delivery }}</label>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="required field">
+      <label>Where should this software be installed?</label>
+
+      <select class="ui dropdown mann-form__compact" name="content[location]">
+        <option value="">-- Select one --</option>
+        {% for location in contents.software_requests.location_options %}
+          <option value="{{ location }}" {% if software_request.location == location %} selected {% endif %}>{{ location }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Notes regarding software, installation, or licensing</label>
+      <textarea name="content[notes]" rows="4">{{ software_request.notes }}</textarea>
+    </div>
+
+    <button class="ui button" type="submit">Submit your request</button>
+  {% endunless %}
+{% endmodel_form %}
+
+{{ 'softwareRequest.bundle.js' | javascript_tag }}

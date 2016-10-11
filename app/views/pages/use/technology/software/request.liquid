@@ -6,4 +6,8 @@ listed: true
 published: true
 is_layout: false
 ---
-{% extends "layouts/basic-page" %}
+{% extends 'layouts/basic-page' %}
+
+{% block 'main/dynamic' %}
+  {% include 'form-software-request' %}
+{% endblock %}

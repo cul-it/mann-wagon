@@ -96,14 +96,22 @@ fields:
     required: true
     localized: false
 
-- platform: # The lowercase, underscored name of the field
-    label: Software Platform # Human readable name of the field
+- platform_managed_list: # The lowercase, underscored name of the field
+    label: Manage software platforms # Human readable name of the field
     type: select
     required: true
+    hint: DON'T select values! Just use EDIT OPTIONS link to manage the options presented to users
     localized: false    # if localized, use
     #   en: ['option1_en', 'option2_en']
     #   fr: ['option1_fr', 'option2_fr']
     select_options: ['Windows', 'Mac (unavailable in Mann classrooms)']
+
+- platform: # The lowercase, underscored name of the field
+    label: Requested software platforms # Human readable name of the field
+    type: tags
+    required: true
+    hint: This field records the platforms selected by the user when submitting a request
+    localized: false    # if localized, use
 
 - licenses: # The lowercase, underscored name of the field
     label: Number of Licenses # Human readable name of the field
