@@ -18,8 +18,12 @@ import 'semantic-ui-css/components/popup.min.js';
 import 'semantic-ui-css/components/transition.min.css';
 import 'semantic-ui-css/components/transition.min.js';
 
+import moment from 'moment'
+
 $('.ui.date-selector').calendar({
   type: 'date',
+  minDate: moment().add(2, 'weeks').toDate(),
+  maxDate: moment().add(1, 'year').toDate()
 });
 
 $('.ui.checkbox')
