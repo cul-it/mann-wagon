@@ -14,6 +14,11 @@
       this.parseCsv()
     },
 
+    // Ensure stickyheaders are applied after softwareList is populated/generated/created
+    watch: {
+      softwareList: 'stickyHeaders'
+    },
+
     methods: {
       parseCsv () {
         var converter = new Converter()
@@ -26,6 +31,10 @@
            // console.log(jsonObj)
            vm.$set('softwareList', jsonObj)
         });
+      },
+
+      stickyHeaders () {
+        $('.software-list__table').stickySort()
       }
     }
   }
