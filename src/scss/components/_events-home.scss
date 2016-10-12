@@ -3,6 +3,7 @@
 
   @include susy-breakpoint($tablet, $g-tablet) {
     display: flex; // Equal column heights for two event groupings
+    position: relative;
   }
 }
 
@@ -32,6 +33,7 @@
 
     margin-top: 0;
     border-radius: 10px;
+    padding-bottom: 4em;
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
@@ -65,6 +67,13 @@
 
 .events-home__location-icon {
   color: color('medium-gray');
+}
+
+.events-home__more-link {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    position: absolute;
+    bottom: 1.3em;
+  }
 }
 
 .events-home__time {
