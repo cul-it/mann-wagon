@@ -99,7 +99,7 @@ fields:
 - platform_managed_list: # The lowercase, underscored name of the field
     label: Manage software platforms # Human readable name of the field
     type: select
-    required: true
+    required: false
     hint: DON'T select values! Just use EDIT OPTIONS link to manage the options presented to users
     localized: false    # if localized, use
     #   en: ['option1_en', 'option2_en']
