@@ -19,7 +19,7 @@
 
         <p>Your software installation request has been submitted successfully. We'll be in touch shortly to confirm your request.</p>
 
-        <p><strong>Please note that your request is not guaranteed until you receive confirmation from Mann Library staff.</strong></p>
+        <p><strong>Please note that your request is not guaranteed until you receive confirmation from one of our staff members.</strong></p>
       </div>
     </div>
   {% endif %}
@@ -112,7 +112,7 @@
 
     <div class="field mann-form__compact">
       <label>Number of Licenses</label>
-      <input type="text" name="content[licenses]" value="{{ software_request.url }}">
+      <input type="text" name="content[licenses]" value="{{ software_request.licenses }}">
 
       <div class="ui tiny compact message">
         <p>If you require software that involves a fee or cost, please contact either the <a href="mailto:mww3@cornell.edu" title="Email CALS staff about covering software fees">College of Agricultural &amp; Life Sciences</a>, the <a href="mailto:jeh24@cornell.edu" title="Email CHE staff about covering software fees">College of Human Ecology</a>, or the individual unit/department making the request.</p>
@@ -142,10 +142,11 @@
 
     <div class="required grouped fields">
       <label for="fruit">Sofware Delivery</label>
+
       {% for delivery in contents.software_requests.delivery_options %}
         <div class="field">
           <div class="ui radio checkbox">
-            <input type="radio" name="content[delivery]" {% if software_request.delivery == delivery %} checked {% endif %} tabindex="0" class="hidden">
+            <input type="radio" name="content[delivery]" value="{{ delivery }}" {% if software_request.delivery == delivery %} checked {% endif %} tabindex="0" class="hidden">
             <label class="radio-button__label">{{ delivery }}</label>
           </div>
         </div>
