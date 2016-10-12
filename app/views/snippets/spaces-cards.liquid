@@ -26,8 +26,8 @@
               {% if quiet_study %}
                 <span class="space-finder__quiet" data-tooltip="quiet study" data-position="left center" data-inverted="">
                   <span class="fa-stack">
-                    <i class="fa fa-volume-up fa-stack-1x ui icon"></i>
-                    <i class="space-finder__quiet-ban fa fa-ban fa-stack-2x ui icon"></i>
+                    <i class="fa fa-volume-up fa-stack-1x"></i>
+                    <i class="space-finder__quiet-ban fa fa-ban fa-stack-2x"></i>
                   </span>
                 </span>
               {% endif %}
@@ -51,7 +51,7 @@
           {% unless space.avail_url == "" %}
             <div class="description">
               <div class="space-finder__loanable ui orange right ribbon label">
-                <i class="fa fa-key icon"></i>
+                <i class="key icon"></i>
                 {{ space.loan_period }} loan
               </div>
 
