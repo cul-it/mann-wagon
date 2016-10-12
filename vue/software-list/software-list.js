@@ -20,7 +20,3 @@ new Vue({
 
 import 'sticky-sort/jquery.stickysort.min.js'
 import 'sticky-sort/stickysort.css'
-
-$(window).load(function(){
-  $('.software-list__table').stickySort()
-});
