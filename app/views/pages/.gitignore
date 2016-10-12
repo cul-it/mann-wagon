@@ -22,7 +22,6 @@
 # Track pages that supplement/provide content programatically
 !404.liquid
 !about/staff.liquid
-!contact/site-feedback.liquid
 !course-reserves.liquid
 !help/faculty-instructors/request-course-instruction.liquid
 !help/research-support/consultation-services/gis-at-mann.liquid
@@ -33,9 +32,11 @@
 !news-events/events/upcoming.liquid
 !projects.liquid
 !search.liquid
+!site-feedback.liquid
 !use/spaces.liquid
 !use/technology/computing/desktops.liquid
 !use/technology/computing/laptops.liquid
 !use/technology/software.liquid
+!use/technology/software/request.liquid
 !use/technology/equipment.liquid
 !use/technology/equipment/*
