@@ -1,0 +1,43 @@
+{% include 'equipment-list-setup' %}
+<table class="equipment-list__table ui yellow definition unstackable celled structured table">
+  <thead class="full-width">
+    <tr>
+      <th rowspan="2">Equipment</th>
+      <th rowspan="2">Item</th>
+      <th rowspan="2">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      {{ camera_title }}
+      {{ camera_items }}
+    </tr>
+    <tr>
+      {{ camcorder_title }}
+      {{ camcorder_items }}
+    </tr>
+    <tr>
+      {{ audio_recorder_title }}
+      {{ audio_recorder_items }}
+    </tr>
+    <tr>
+      {{ projector_title }}
+      {{ projector_items }}
+    </tr>
+    <tr>
+      {{ microphone_title }}
+      {{ microphone_items }}
+    </tr>
+    <tr>
+      {{ gps_unit_title }}
+      {{ gps_unit_items }}
+    </tr>
+    <tr>
+      {{ additional_equipment_title }}
+      {{ additional_equipment_items }}
+    </tr>
+  </tbody>
+</table>
+
+{{ 'http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js' | javascript_tag }}
+{{ 'equipment.bundle.js' | javascript_tag }}

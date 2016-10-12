@@ -21,6 +21,7 @@ module.exports = {
   entry: {
       consultationRequest: './src/js/form-consultation-request.js',
       courseReserves: './vue/course-reserves/course-reserves.js',
+      equipment: './src/js/equipment.js',
       eventsPage: './vue/events/events-page/events-page.js',
       experts: './src/js/experts.js',
       formSiteFeedback: './src/js/form-site-feedback.js',

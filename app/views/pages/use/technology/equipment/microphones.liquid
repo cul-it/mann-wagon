@@ -1,0 +1,26 @@
+---
+title: Microphones
+slug: microphones
+handle: microphones
+position: 4
+listed: true
+published: true
+is_layout: false
+editable_elements:
+  main/page_content: '<div><h2><br></h2><h3>Sony Wireless Microphone Kit</h3><h3>&nbsp;<img
+    alt="" src="/samples/assets/Sony_Mic_Kit.jpg" class="wysiwyg-float-right"></h3><b><div><br></div>Features:</b></div><div><ul><li>Plug-in
+    transmitter with omni-directional handheld microphone</li><li>Bodypack transmitter
+    with lavalier microphone</li></ul><p><br></p><p><b>Additional information: </b>For
+    full specifications, please see the operating instructions.</p><p><br></p><p><br></p><h3>Blue
+    Snowball Microphone</h3><p><b><img alt="" src="/samples/assets/Blue_Mic.jpg" class="wysiwyg-float-right"></b></p><p><b>Features:&nbsp;</b></p><ul><li>Frequency
+    response 40-18kHz</li><li>Polar patterns, omnidirectional or cardiod</li></ul><p><b><br></b></p><p><b>Additional
+    information:</b> For full specifications, please visit <a rel="nofollow" href="http://www.bluemic.com/products/snowball/#"
+    title="Link: http://www.bluemic.com/products/snowball/#">Blue Microphone''s website</a>.<br></p></div>'
+  main/section_photo: ''
+  main/landing_description: Brief description here.
+---
+{% extends 'layouts/basic-page' %}
+{% block 'main/accessory' %}
+  {% include 'equipment-list-setup' %}
+  {% include 'equipment-type-list' with equipment_type: microphone_items %}
+{% endblock %}

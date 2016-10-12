@@ -1,0 +1,32 @@
+---
+title: Camcorders
+slug: camcorders
+handle: camcorders
+position: 1
+listed: true
+published: true
+is_layout: false
+editable_elements:
+  main/page_content: "<h3>Sony HDR-PJ380 High Definition Handycam Camcorder</h3><p><b><img
+    alt=\"\" src=\"/samples/assets/Sony_Handycam.jpg\" class=\"wysiwyg-float-right\"></b></p><p><b>Features:</b><br></p><ul><li>1080/60p
+    video capabilities</li><li>8.9 megapixel still camera</li><li>30x optical zoom</li><li>16
+    gigabyte storage</li><li>13 lumen projector</li></ul><p><b><br></b></p><p><b>Additional
+    information:</b> \r\n\r\nFor full specifications, please visit <a rel=\"nofollow\"
+    href=\"http://www.sony.com/\" title=\"Link: https://esupport.sony.com/US/p/model-home.pl?mdl=DSCW730\">Sony's
+    website</a>. You may need to enter the model number to obtain the required information.\r\n\r\n</p><p><br></p><h3>Panasonic
+    HX-WA03 Active Lifestyle Full HD Camcorder</h3><p><b><img alt=\"\" src=\"/samples/assets/Panasonic_Flip.jpg\"
+    class=\"wysiwyg-float-right\"></b></p><p><b>Features:</b></p><ul><li>1080 60i/30p
+    video capabilities</li><li>16 megapixel camera</li><li>18x iZoom and 120x digital
+    zoom</li><li>8 gigabyte storage</li><li>Dustproof/Freezeproof/Waterproof*</li></ul><p><i>*Check
+    documentation for limitations</i><br></p><p><b><br></b></p><p><b>Additional information:</b>
+    For full specifications, please visit <a rel=\"nofollow\" href=\"http://shop.panasonic.com/support-only/HX-WA03W.html\"
+    title=\"Link: http://shop.panasonic.com/support-only/HX-WA03W.html\">Panasonic's
+    website</a>. You may need to enter the model number to obtain the required information.\r\n\r\n</p><p><br></p>"
+  main/section_photo: ''
+  main/landing_description: Brief description here.
+---
+{% extends 'layouts/basic-page' %}
+{% block 'main/accessory' %}
+  {% include 'equipment-list-setup' %}
+  {% include 'equipment-type-list' with equipment_type: camcorder_items %}
+{% endblock %}

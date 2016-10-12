@@ -1,0 +1,51 @@
+{% assign equipment_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showEquipmentInfo.do?locationId=14&output=json' %}
+
+{% consume mann_equipment from equipment_url %}
+
+  {% for equipment in mann_equipment.equipment_list %}
+    {% if equipment.equipment_type == 'digital-video-camera-0' or equipment.equipment_type == 'digital-camera-0' %}
+      {% capture camera_counter %} {% increment camera %} {% endcapture %}
+      {% assign camera_counter = camera_counter | plus: 2 %}
+      {% capture camera_title %} <td rowspan="{{ camera_counter }}" class="selectable"><a href="{% path_to cameras %}">Cameras</a></td> {% endcapture %}
+      {% include 'equipment-availability-badge' %}
+      {% capture camera_items %} {{ camera_items }} <tr><td class="selectable"><a href="{% path_to cameras %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back }}</td></tr> {% endcapture %}
+    {% elsif equipment.equipment_type == 'digital-video-camera-1' or equipment.equipment_type == 'digital-video-camera-2'%}
+      {% capture camcorder_counter %} {% increment camcorder %} {% endcapture %}
+      {% assign camcorder_counter = camcorder_counter | plus: 2 %}
+      {% capture camcorder_title %} <td rowspan="{{ camcorder_counter }}" class="selectable"><a href="{% path_to camcorders %}">Camcorders</a></td> {% endcapture %}
+      {% include 'equipment-availability-badge' %}
+      {% capture camcorder_items %} {{ camcorder_items }} <tr><td class="selectable"><a href="{% path_to camcorders %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back }}</td></tr> {% endcapture %}
+    {% elsif equipment.equipment_type == 'audio-recorder' or equipment.equipment_type == 'audio-recorder-0' %}
+      {% capture audio_recorder_counter %} {% increment audio_recorder %} {% endcapture %}
+      {% assign audio_recorder_counter = audio_recorder_counter | plus: 2 %}
+      {% capture audio_recorder_title %} <td rowspan="{{ audio_recorder_counter }}" class="selectable"><a href="{% path_to audio_recorders %}">Audio Recorders</a></td> {% endcapture %}
+      {% include 'equipment-availability-badge' %}
+      {% capture audio_recorder_items %} {{ audio_recorder_items }} <tr><td class="selectable"><a href="{% path_to audio_recorders %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back }}</td></tr> {% endcapture %}
+    {% elsif equipment.equipment_type == 'epson-projector' or equipment.equipment_type == 'epson-projector-0' %}
+      {% capture projector_counter %} {% increment projector %} {% endcapture %}
+      {% assign projector_counter = projector_counter | plus: 2 %}
+      {% capture projector_title %} <td rowspan="{{ projector_counter }}" class="selectable"><a href="{% path_to projectors %}">Projectors</a></td> {% endcapture %}
+      {% include 'equipment-availability-badge' %}
+      {% capture projector_items %} {{ projector_items }} <tr><td class="selectable"><a href="{% path_to projectors %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back }}</td></tr> {% endcapture %}
+    {% elsif equipment.equipment_type == 'snowball' or equipment.equipment_type == 'microphone-kit' %}
+      {% capture microphone_counter %} {% increment microphone %} {% endcapture %}
+      {% assign microphone_counter = microphone_counter | plus: 2 %}
+      {% capture microphone_title %} <td rowspan="{{ microphone_counter }}" class="selectable"><a href="{% path_to microphones %}">Microphones</a></td> {% endcapture %}
+      {% include 'equipment-availability-badge' %}
+      {% capture microphone_items %} {{ microphone_items }} <tr><td class="selectable"><a href="{% path_to microphones %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back }}</td></tr> {% endcapture %}
+    {% elsif equipment.equipment_type == 'gps/datalog-gps' or equipment.equipment_type == 'gps/garmin-gps' %}
+      {% capture gps_unit_counter %} {% increment gps %} {% endcapture %}
+      {% assign gps_unit_counter = gps_unit_counter | plus: 2 %}
+      {% capture gps_unit_title %} <td rowspan="{{ gps_unit_counter }}" class="selectable"><a href="{% path_to gps_units %}">GPS Units</a></td> {% endcapture %}
+      {% include 'equipment-availability-badge' %}
+      {% capture gps_unit_items %} {{ gps_unit_items }} <tr><td class="selectable"><a href="{% path_to gps_units %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back }}</td></tr> {% endcapture %}
+    {% elsif equipment.equipment_type == 'portable-screen' or equipment.equipment_type == 'tripods' or equipment.equipment_type == 'tripods-3' or equipment.equipment_type == 'tripods-4'%}
+      {% capture additional_equipment_counter %} {% increment additional %} {% endcapture %}
+      {% assign additional_equipment_counter = additional_equipment_counter | plus: 2 %}
+      {% capture additional_equipment_title %} <td rowspan="{{ additional_equipment_counter }}" class="selectable"><a href="{% path_to additional_equipment %}">Additional Equipment</a></td> {% endcapture %}
+      {% include 'equipment-availability-badge' %}
+      {% capture additional_equipment_items %} {{ additional_equipment_items }} <tr><td class="selectable"><a href="{% path_to additional_equipment %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back }}</td></tr> {% endcapture %}
+    {% else %}
+    {% endif %}
+  {% endfor %}
+{% endconsume %}

@@ -1,0 +1,31 @@
+---
+title: Projectors
+slug: projectors
+handle: projectors
+position: 3
+listed: true
+published: true
+is_layout: false
+editable_elements:
+  main/page_content: "<h1><br></h1><h3>Epson EX3212 SVGA 3LCD Projector</h3><p><b><img
+    alt=\"\" src=\"/samples/assets/Epson_EX3212.jpg\" class=\"wysiwyg-float-right\"></b></p><p><b>Features:</b></p><ul><li>2800
+    Lumens</li><li>Native SVGA 800 x 600 DPI</li><li>Resized resolutions, 640 x 480
+    (VGA), 1024 x 768 (XGA), 1152 x 864 (SXGA), 1280 x 800 (WXGA), 1400 x 1060 (SXGA+)</li><li>10'
+    VGA cable</li><li>Thunderbolt to VGA adaptor</li><br></ul><p><b>Additional information:</b>
+    For full specifications, please visit <a rel=\"nofollow\" href=\"http://www.epson.com/cgi-bin/Store/jsp/Product.do?sku=V11H533020#product-info\"
+    title=\"Link: http://www.epson.com/cgi-bin/Store/jsp/Product.do?sku=V11H533020#product-info\">Epson's
+    website</a>.</p><p><br></p><h3>Epson VS230 SVGA LCD Projector</h3><p><b><img alt=\"\"
+    src=\"/samples/assets/Epson_VS230.jpg\" class=\"wysiwyg-float-right\"></b></p><p><b>Features:</b></p><ul><li>2800
+    Lumens</li><li>Native 800 x 768 resolution</li><li>10' VGA cable</li><li>Mini
+    displayport to VGA adaptor</li></ul><p><br></p><p><b>Additional information:</b>&nbsp;For
+    full specifications, please visit <a rel=\"nofollow\" href=\"http://www.epson.com/cgi-bin/Store/jsp/Product.do?sku=V11H552220\"
+    title=\"Link: http://www.epson.com/cgi-bin/Store/jsp/Product.do?sku=V11H552220\">Epson's
+    website</a>.\r\n\r\n<br></p>"
+  main/section_photo: ''
+  main/landing_description: Brief description here.
+---
+{% extends 'layouts/basic-page' %}
+{% block 'main/accessory' %}
+  {% include 'equipment-list-setup' %}
+  {% include 'equipment-type-list' with equipment_type: projector_items %}
+{% endblock %}

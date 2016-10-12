@@ -1,0 +1,32 @@
+---
+title: Cameras
+slug: cameras
+handle: cameras
+position: 0
+listed: true
+published: true
+is_layout: false
+editable_elements:
+  main/page_content: '<h3>Canon EOS Rebel DSLR</h3><div><p><b><img alt="" src="/samples/assets/DSLR.jpg"
+    class="wysiwyg-float-right"></b></p><p><b>Features:</b><br></p><ul><li>18 megapixel
+    still camera<br></li><li>18-55mm IS II lens</li><li>16 gigabyte storage</li></ul><div><br></div><div><b>Additional
+    information:&nbsp;</b>For full specifications, please visit <a rel="nofollow"
+    href="https://www.usa.canon.com/internet/portal/us/home/products/details/cameras/dslr/eos-rebel-t3i-ef-s-18-55-is-ii-kit"
+    title="Link: https://www.usa.canon.com/internet/portal/us/home/products/details/cameras/dslr/eos-rebel-t3i-ef-s-18-55-is-ii-kit">Canon''s
+    website</a>. You may need to enter the model number to obtain the required information.<h3><br></h3><h3>Sony
+    Cyber-shot Digital Still Camera<br></h3></div><p><img alt="" src="/samples/assets/Sony_Cybershot.jpg"
+    class="wysiwyg-float-right"></p><p><b>Features:</b></p><ul><li>16.1 megapixel
+    still camera</li><li>8x optical zoom</li><li>8 gigabyte memory card</li><li>Anti-blur
+    and intelligent photo options</li><li>Video recording in 1080i</li><li>3D image
+    capture capabilities</li></ul><p><b><br></b></p><p><b>Additional information:&nbsp;</b>For
+    full specifications, please visit <a rel="nofollow" href="https://esupport.sony.com/US/p/model-home.pl?mdl=DSCW730"
+    title="Link: https://esupport.sony.com/US/p/model-home.pl?mdl=DSCW730">Sony''s
+    website</a>. You may need to enter the model number to obtain the required information.</p><p><b><br></b></p></div>'
+  main/section_photo: ''
+  main/landing_description: Brief description here.
+---
+{% extends 'layouts/basic-page' %}
+{% block 'main/accessory' %}
+  {% include 'equipment-list-setup' %}
+  {% include 'equipment-type-list' with equipment_type: camera_items %}
+{% endblock %}

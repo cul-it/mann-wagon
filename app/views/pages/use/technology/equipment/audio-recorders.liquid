@@ -1,0 +1,30 @@
+---
+title: Audio Recorders
+slug: audio-recorders
+handle: audio_recorders
+position: 2
+listed: true
+published: true
+is_layout: false
+editable_elements:
+  main/page_content: '<h1><br></h1><h3>Zoom H1 Handy Recorder</h3><p><b></b></p><p><b><img
+    alt="" src="/samples/assets/Zoom_H1.jpg" class="wysiwyg-float-right"></b></p><p><b>Features:</b><br></p><ul><li>2
+    gigabyte capacity</li><li>Microphone input</li><li>Headphone output</li><li>Records
+    in MP3 format</li></ul><p><br></p><p><b>Additional information:&nbsp;</b>For full
+    specifications, please visit the <a rel="nofollow" href="https://www.zoom-na.com/products/field-video-recording/field-recording/zoom-h1-handy-recorder"
+    title="Link: https://www.zoom-na.com/products/field-video-recording/field-recording/zoom-h1-handy-recorder">Zoom
+    website</a>.</p><h1><br></h1><h1><br></h1><h3>Zoom H4n Handy Recorder</h3><p><b><img
+    alt="" src="/samples/assets/Zoom_H4n.jpg" class="wysiwyg-float-right"></b></p><p><b>Features:</b></p><ul><li>True
+    X/Y stereo microphones</li><li>Selectable recording patterns</li><li>16 gigabytes
+    memory</li><li>Wired remote control</li></ul><p><b><br></b></p><p><b>Additional
+    information:&nbsp;</b>For full specifications, please visit the <a rel="nofollow"
+    href="https://www.zoom-na.com/products/field-video-recording/field-recording/zoom-h4n-handy-recorder">Zoom
+    website</a>.</p>'
+  main/section_photo: ''
+  main/landing_description: Brief description here.
+---
+{% extends 'layouts/basic-page' %}
+{% block 'main/accessory' %}
+  {% include 'equipment-list-setup' %}
+  {% include 'equipment-type-list' with equipment_type: audio_recorder_items %}
+{% endblock %}

@@ -1,0 +1,26 @@
+---
+title: Additional Equipment
+slug: more-dot-dot-dot
+handle: additional_equipment
+position: 6
+listed: true
+published: true
+is_layout: false
+editable_elements:
+  main/page_content: "<h2><br></h2><h3>Da-Lite 50\" Portable Presenter Screen<img
+    alt=\"\" src=\"/samples/assets/DaLite.jpg\" class=\"wysiwyg-float-right\"></h3><p><b>Features:</b><br></p><ul><li>Easy
+    set-up</li><li>Lightweight (5 lbs)</li><li>50\" diagonal screen</li><li>Offered
+    with wide power screen surface with a 2.2 gain and 45-degree viewing angle</li><br></ul><p><b>Additional
+    information:</b> The presenter is&nbsp;an ultra-lightweight, tabletop projection
+    screen with fold out legs and stability-providing base that weighs only five pounds.
+    For full specifications, please visit <a rel=\"nofollow\" href=\"http://www.da-lite.com/products/portable-screens/presenter\"
+    title=\"Link: http://www.da-lite.com/products/portable-screens/presenter\">Da-Lite's
+    website</a>.\r\n\r\n</p><p><br></p><p><br></p>"
+  main/section_photo: ''
+  main/landing_description: Brief description here.
+---
+{% extends 'layouts/basic-page' %}
+{% block 'main/accessory' %}
+  {% include 'equipment-list-setup' %}
+  {% include 'equipment-type-list' with equipment_type: additional_equipment_items %}
+{% endblock %}
