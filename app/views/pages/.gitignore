@@ -30,6 +30,8 @@
 !hours.liquid
 !index.liquid
 !news-events/events/upcoming.liquid
+!news-events/news/archive.liquid
+!news-events/news/latest.liquid
 !projects.liquid
 !search.liquid
 !site-feedback.liquid
