@@ -1,16 +1,22 @@
-<table class="equipment-list__table ui yellow selectable collapsing unstackable table">
+<table class="equipment-type-list__table ui yellow selectable unstackable very compact small table">
   <thead>
     <tr>
-      <th rowspan="2">Item</th>
-      <th rowspan="2">Status</th>
+      <th>Item</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      {{ equipment_type }}
+      <td colspan="2"><div class="ui large teal ribbon label">{{ equipment_type_1_title}}</div></td>
+    </tr>
+    <tr>
+      {{ equipment_type_1 }}
+    </tr>
+    <tr>
+      <td colspan="2"><div class="ui large teal ribbon label">{{ equipment_type_2_title}}</div></td>
+    </tr>
+    <tr>
+      {{ equipment_type_2 }}
     </tr>
   </tbody>
 </table>
-
-{{ 'http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js' | javascript_tag }}
-{{ 'equipment.bundle.js' | javascript_tag }}

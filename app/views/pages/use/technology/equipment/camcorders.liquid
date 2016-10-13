@@ -27,6 +27,11 @@ editable_elements:
 ---
 {% extends 'layouts/basic-page' %}
 {% block 'main/accessory' %}
-  {% include 'equipment-list-setup' %}
-  {% include 'equipment-type-list' with equipment_type: camcorder_items %}
+  {% include 'equipment-type-setup' %}
+  {% include 'equipment-type-list'
+    with equipment_type_1_title: camcorder_type_1_title,
+    with equipment_type_1: camcorder_type_1_items,
+    with equipment_type_2_title: camcorder_type_2_title,
+    with equipment_type_2: camcorder_type_2_items
+  %}
 {% endblock %}

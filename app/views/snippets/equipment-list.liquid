@@ -1,43 +1,53 @@
 {% include 'equipment-list-setup' %}
-<table class="equipment-list__table ui yellow definition unstackable celled structured table">
-  <thead class="full-width">
+<table class="equipment-list__table ui yellow selectable unstackable very compact small table">
+  <thead>
     <tr>
-      <th rowspan="2">Equipment</th>
-      <th rowspan="2">Item</th>
-      <th rowspan="2">Status</th>
+      <th>Item</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      {{ camera_title }}
+      <td colspan="2"><div class="ui large teal ribbon label">Cameras</div></td>
+    </tr>
+    <tr>
       {{ camera_items }}
     </tr>
     <tr>
-      {{ camcorder_title }}
+      <td colspan="2"><div class="ui large teal ribbon label">Camcorders</div></td>
+    </tr>
+    <tr>
       {{ camcorder_items }}
     </tr>
     <tr>
-      {{ audio_recorder_title }}
+      <td colspan="2"><div class="ui large teal ribbon label">Audio Recorders</div></td>
+    </tr>
+    <tr>
       {{ audio_recorder_items }}
     </tr>
     <tr>
-      {{ projector_title }}
+      <td colspan="2"><div class="ui large teal ribbon label">Projectors</div></td>
+    </tr>
+    <tr>
       {{ projector_items }}
     </tr>
     <tr>
-      {{ microphone_title }}
+      <td colspan="2"><div class="ui large teal ribbon label">Microphones</div></td>
+    </tr>
+    <tr>
       {{ microphone_items }}
     </tr>
     <tr>
-      {{ gps_unit_title }}
+      <td colspan="2"><div class="ui large teal ribbon label">GPS Units</div></td>
+    </tr>
+    <tr>
       {{ gps_unit_items }}
     </tr>
     <tr>
-      {{ additional_equipment_title }}
+    </tr>
+      <td colspan="2"><div class="ui large teal ribbon label">Additional Equipment</div></td>
+    <tr>
       {{ additional_equipment_items }}
     </tr>
   </tbody>
 </table>
-
-{{ 'http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js' | javascript_tag }}
-{{ 'equipment.bundle.js' | javascript_tag }}

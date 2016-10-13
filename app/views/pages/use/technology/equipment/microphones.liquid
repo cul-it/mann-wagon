@@ -23,6 +23,11 @@ editable_elements:
 ---
 {% extends 'layouts/basic-page' %}
 {% block 'main/accessory' %}
-  {% include 'equipment-list-setup' %}
-  {% include 'equipment-type-list' with equipment_type: microphone_items %}
+  {% include 'equipment-type-setup' %}
+  {% include 'equipment-type-list'
+    with equipment_type_1_title: microphone_type_1_title,
+    with equipment_type_1: microphone_type_1_items,
+    with equipment_type_2_title: microphone_type_2_title,
+    with equipment_type_2: microphone_type_2_items
+  %}
 {% endblock %}
