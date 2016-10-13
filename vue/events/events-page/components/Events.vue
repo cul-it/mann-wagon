@@ -689,7 +689,7 @@ export default {
       // Event properties
       _.forEach(data, function (value, index) {
         var events = {}
-        if (value.description.match('Additional Notes: (.*)')[1] == 'duplicate-mann') {
+        if (value.description.match('Will this be advertised through Cornell Events\\?: (.*)')[1] == 'Yes') {
           // Do nothing
         } else {
           // If same event based on title and time comparison
