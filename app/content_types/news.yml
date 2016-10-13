@@ -49,6 +49,14 @@ fields:
     required: true
     localized: false
 
+- teaser: # The lowercase, underscored name of the field
+    label: Teaser # Human readable name of the field
+    type: text
+    required: true
+    hint: Brief summary that will be displayed as preview to story
+    localized: false
+    text_formatting: text
+
 - body: # The lowercase, underscored name of the field
     label: Body # Human readable name of the field
     type: text
@@ -78,8 +86,9 @@ fields:
     #   fr: ['option1_fr', 'option2_fr']
     select_options: ['left', 'right']
 
-- featured: # The lowercase, underscored name of the field
-    label: Feature on Homepage? # Human readable name of the field
-    type: boolean
-    required: false
-    localized: false
+# nac26, 2016-10-13: Disable this feature for initial launch & revisit later
+# - featured: # The lowercase, underscored name of the field
+#     label: Feature on Homepage? # Human readable name of the field
+#     type: boolean
+#     required: false
+#     localized: false
