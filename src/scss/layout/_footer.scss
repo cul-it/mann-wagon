@@ -36,8 +36,11 @@
 .footer__copyright {
   @include susy-breakpoint($scape, $g-scape) {
     @include span(4);
+
+    margin-left: 0;
   }
 
+  margin-top: 1em;
   line-height: modular-scale(1);
 }
 
@@ -53,6 +56,10 @@
 .footer__haiku,
 .footer__mission {
   margin-bottom: 0;
+}
+
+.footer__mann-logo {
+  max-width: 8em;
 }
 
 .footer__panel {
