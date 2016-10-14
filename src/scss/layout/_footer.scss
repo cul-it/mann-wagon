@@ -15,6 +15,10 @@
   color: color('white');
 }
 
+.footer__about-subnav {
+  margin-bottom: 1em;
+}
+
 .footer__panel {
   @include susy-breakpoint($scape, $g-scape) {
     @include span(2);

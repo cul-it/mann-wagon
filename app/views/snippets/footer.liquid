@@ -6,11 +6,13 @@
       Supporting learning and research in the life sciences, agriculture, human ecology and applied social sciences.
     </p>
 
-    <p>
-      <a class="more-link more-link--footer" href="{% path_to staff %}" title="Mann divisions and staff">Organization &amp; Staff</a>
-      |
-      <a class="more-link more-link--footer" href="{% path_to employment %}" title="Career opportunities at Mann Library">Employment</a>
-    </p>
+    {% comment %} About Us subnav with child pages {% endcomment %}
+    {% with_scope slug: 'about' %}{% assign about_page = site.pages.first %}{% endwith_scope %}
+    <ul class="footer__about-subnav">
+      {% for child in about_page.children %}
+        <li><a href="{% path_to child %}" title="{{ child.title }}">{{ child.title }}</a></li>
+      {% endfor %}
+    </ul>
 
     <h5 class="footer__heading"><a class="footer__heading-link" href="http://smartmap.mannlib.cornell.edu" title="Mann Library SmartMap">Floor Plans</a></h5>
 
@@ -42,7 +44,7 @@
     </ul>
 
     <p>
-      <a class="more-link more-link--footer" href="{% path_to projects %}" title="View all projects">
+      <a class="more-link" href="{% path_to projects %}" title="View all projects">
         More Projects
         <i class="fa fa-angle-double-right"></i>
       </a>
@@ -57,7 +59,7 @@
     </p>
 
     <p>
-      <a class="more-link more-link--footer" href="http://haiku.mannlib.cornell.edu" title="Visit the Mann Library Daily Haiku site">
+      <a class="more-link" href="http://haiku.mannlib.cornell.edu" title="Visit the Mann Library Daily Haiku site">
         Daily Haiku Archive
         <i class="fa fa-angle-double-right"></i>
       </a>
@@ -94,7 +96,7 @@
           <span class="footer__address-line">Ithaca, NY 14853</span>
         </div>
 
-        <a class="more-link more-link--footer" href="https://goo.gl/maps/ZJvrC8S5ZVn" title="Get directions to Mann Library">
+        <a class="more-link" href="https://goo.gl/maps/ZJvrC8S5ZVn" title="Get directions to Mann Library">
           Get Directions
           <i class="fa fa-angle-double-right"></i>
         </a>
