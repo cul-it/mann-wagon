@@ -1,6 +1,6 @@
 <footer class="footer">
-  <div class="footer__about-us footer__panel">
-  <h5 class="footer__heading"><a class="footer__heading-link" href="{% path_to about %}" title="Learn about Albert R. Mann Library">About Us</a></h5>
+  <div class="footer__panel footer__panel--about-us">
+    <h5 class="footer__heading"><a class="footer__heading-link" href="{% path_to about %}" title="Learn about Albert R. Mann Library">About Us</a></h5>
 
     <p class="footer__mission">
       Supporting learning and research in the life sciences, agriculture, human ecology and applied social sciences.
@@ -32,8 +32,8 @@
     </ul>
   </div>
 
-  <div class="footer__featured-plus-haiku footer__panel">
-  <h5 class="footer__heading"><a class="footer__heading-link" href="{% path_to projects %}" title="View all projects">Featured Projects</a></h5>
+  <div class="footer__panel footer__panel--featured-plus-haiku ">
+    <h5 class="footer__heading"><a class="footer__heading-link" href="{% path_to projects %}" title="View all projects">Featured Projects</a></h5>
 
     <ul>
       {% with_scope featured: true %}
@@ -66,7 +66,7 @@
     </p>
   </div>
 
-  <div class="footer__contact-us footer__panel">
+  <div class="footer__panel footer__panel--contact-us">
     <h5 class="footer__heading">Contact Us</h5>
 
     <ul class="fa-ul">
