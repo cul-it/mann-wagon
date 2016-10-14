@@ -7,7 +7,7 @@
     </p>
 
     {% comment %} About Us subnav with child pages {% endcomment %}
-    {% with_scope slug: 'about' %}{% assign about_page = site.pages.first %}{% endwith_scope %}
+    {% with_scope handle: 'about' %}{% assign about_page = site.pages.first %}{% endwith_scope %}
     <ul class="footer__about-subnav">
       {% for child in about_page.children %}
         <li><a href="{% path_to child %}" title="{{ child.title }}">{{ child.title }}</a></li>
