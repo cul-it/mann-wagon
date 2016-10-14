@@ -110,7 +110,9 @@ export default {
       eventsList: false,
       singleEvent: false,
       recurringEventStartTime: '',
-      apiErrors: []
+      apiErrors: [],
+      latestCornellRequest: 0,
+      latestR25Request: 0
     }
   },
   // Use vue-router transition data hook to trigger methods
@@ -331,16 +333,23 @@ export default {
             vueInstance.$set('eventSources.updatedCornellEvents', true)
           })
       } else if (option === 'date') {
-        this.$http.get(localistApiBaseUrl + '&start=' + param + '').then(function (response) {
-          // Create custom data model
-          // this.cornellEventsArray(response.data.events)
+        this.makeCornellRequest(localistApiBaseUrl, option, param)
+      }
+    },
+    makeCornellRequest (localistApiBaseUrl, option, param) {
+      var vueInstance = this
+      var thisRequest = ++this.latestCornellRequest;
+      var localistApiBaseUrl = 'http://events.cornell.edu/api/2/events/?type=4228&pp=100'
+
+      this.$http.get(localistApiBaseUrl + '&start=' + param + '').then(function (response) {
+        if (thisRequest === this.latestCornellRequest) {
           this.$set('localistReservations', response.data.events)
           this.setCornellEvents(option, param)
-        }).catch(function(error){
-          vueInstance.$set('errorCornellEvents', error)
-          vueInstance.$set('eventSources.updatedCornellEvents', true)
-        })
-      }
+        }
+      }).catch(function(error){
+        vueInstance.$set('errorCornellEvents', error)
+        vueInstance.$set('eventSources.updatedCornellEvents', true)
+      })
     },
     setCornellEvents (option, param) {
       if (option === 'default') {
@@ -487,22 +496,7 @@ export default {
                   dataType: 'xml'
                 })
             })
-
-            Promise.all([promise[704], promise[705]]).then((values) => {
-              _.each(values, function (value, index) {
-                parseString(value.data, function (error, result) {
-                  if (result['r25:space_reservations']['r25:space_reservation']) {
-                    r25Reservations.push(result['r25:space_reservations']['r25:space_reservation'])
-                  }
-                })
-              })
-              r25Reservations = _.flattenDeep(r25Reservations)
-              this.$set('r25Reservations', r25Reservations)
-              this.setR25Events (option, param)
-            }).catch(function(error){
-              vueInstance.$set('errorR25Events', error)
-              vueInstance.$set('eventSources.updatedR25Events', true)
-            })
+            this.makeR25Request(r25EventsBaseUrl, option, param)
         } else if (option === 'event') {
           var r25EventBaseUrl = 'https://r25test.registrar.cornell.edu/r25ws/servlet/wrd/run/reservation.xml?'
           var r25Event = []
@@ -527,6 +521,32 @@ export default {
             })
         }
       }
+    },
+    makeR25Request (r25EventsBaseUrl, option, param) {
+      var vueInstance = this
+      // Use xml2js to convert xml string to JS object
+      var parseString = require('xml2js').parseString
+
+      var thisRequest = ++this.latestR25Request;
+      var r25Reservations = []
+
+      Promise.all([promise[704], promise[705]]).then((values) => {
+        if (thisRequest === this.latestR25Request) {
+          _.each(values, function (value, index) {
+            parseString(value.data, function (error, result) {
+              if (result['r25:space_reservations']['r25:space_reservation']) {
+                r25Reservations.push(result['r25:space_reservations']['r25:space_reservation'])
+              }
+            })
+          })
+          r25Reservations = _.flattenDeep(r25Reservations)
+          this.$set('r25Reservations', r25Reservations)
+          this.setR25Events (option, param)
+        }
+      }).catch(function(error){
+        vueInstance.$set('errorR25Events', error)
+        vueInstance.$set('eventSources.updatedR25Events', true)
+      })
     },
     setR25Events (option, param) {
       if (option === 'default') {
