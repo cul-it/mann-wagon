@@ -4,8 +4,11 @@
   {% comment %} Build unique id for targeting by libcal widget using custom counter {% endcomment %}
   {% capture libcal_target_id %}js-libcal-room__{{ space.reserve_sys_id }}-{{ libcal_widget_counter }}{% endcapture %}
 
-  {% comment %} Widget or all-out form for LibCal? {% endcomment %}
-  {% if space.libcal_public_page_url %}
+  {% comment %}
+    Widget or all-out form for LibCal?
+    - The second condition should be completely unnecessary but Engine on dev instance refuses to evaluate empty string as false
+  {% endcomment %}
+  {% if space.libcal_public_page_url and space.libcal_public_page_url != '' %}
     {% include 'modal-libcal' with space.reserve_sys_id, space.name %}
   {% else %}
     <a id="{{ libcal_target_id }}" class="ui labeled icon button space-finder__reserve js-spacefinder-link {% if indiv_space %}space__reserve{% endif %}" title="Reserve this space">
