@@ -496,7 +496,7 @@ export default {
                   dataType: 'xml'
                 })
             })
-            this.makeR25Request(r25EventsBaseUrl, option, param)
+            this.makeR25Request(promise, r25EventsBaseUrl, option, param)
         } else if (option === 'event') {
           var r25EventBaseUrl = 'https://r25test.registrar.cornell.edu/r25ws/servlet/wrd/run/reservation.xml?'
           var r25Event = []
@@ -522,7 +522,7 @@ export default {
         }
       }
     },
-    makeR25Request (r25EventsBaseUrl, option, param) {
+    makeR25Request (promise, r25EventsBaseUrl, option, param) {
       var vueInstance = this
       // Use xml2js to convert xml string to JS object
       var parseString = require('xml2js').parseString
