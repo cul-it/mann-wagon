@@ -17,3 +17,6 @@ public/stylesheets/*
 !public/stylesheets/.gitkeep
 
 # SPECIAL HANDLING FOR PAGES!!! -> app/views/pages/.gitignore
+
+# Cached response for LibCal Hours API
+cache/*
