@@ -318,7 +318,11 @@ export default {
           this.$http.get(localistApiBaseUrl + '&days=' + this.defaultNumberOfDays).then(function (response) {
             // Create custom data model
             var currentLocalistEvents = _.filter(response.data.events, function (event) {
-              return moment(new Date(event.event.event_instances[0].event_instance.end)).format() >= vueInstance.dateTimeNow
+              if (event.event.event_instances[0].event_instance.end) {
+                return moment(new Date(event.event.event_instances[0].event_instance.end)).format() >= vueInstance.dateTimeNow
+              } else {
+                return event
+              }
             })
             this.$set('localistReservations', currentLocalistEvents)
             this.setCornellEvents(option, param, currentLocalistEvents)
