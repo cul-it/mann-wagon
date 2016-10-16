@@ -32,12 +32,7 @@
         {% continue %}
       {% endif %}
 
-      <li class="news-latest__archive-story">
-        <a href="{% path_to story %}" title="View full story">
-          <span class="news-latest__date--archive">{{ story.date | date: '%a %b %d, %Y' }} - </span>
-          {{ story.title }}
-        </a>
-      </li>
+      {% include 'news-archive-list' %}
 
       {% comment %} Bail out after 5 & link to archive {% endcomment %}
       {% if forloop.index == 8 %}
