@@ -9,11 +9,8 @@
 
         <p>
           <span class="news-latest__date ui mini basic label">{{ story.date | date: '%a %b %e, %Y' }}</span>
-          {% if story.teaser.size > 0 %}
-            {{ story.teaser }}
-          {% else %}
-            {{ story.body | truncatewords: 20 }}
-          {% endif %}
+
+          {{ story.teaser }}
         </p>
       </li>
 
