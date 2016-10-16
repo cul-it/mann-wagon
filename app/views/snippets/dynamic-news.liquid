@@ -1,6 +1,9 @@
+{% comment %} Filter out future news stories {% endcomment %}
+{% with_scope date.lte: now %}{% assign published_stories = contents.news.all %}{% endwith_scope %}
+
 <div class="news-latest__stories">
   <ul>
-    {% for story in contents.news %}
+    {% for story in published_stories %}
       <li class="news-latest__item">
         {% comment %}<img class="news-latest__img ui rounded image" src="https://dummyimage.com/125">{% endcomment %}
         <a href="{% path_to story %}" title="View full story"><img class="news-latest__img ui rounded image" src="{{ story.image.url | resize: '125x125#n' }}"></a>
@@ -23,7 +26,7 @@
   <h4 class="news-latest__archive-heading">Older News</h4>
 
   <ul>
-    {% for story in contents.news %}
+    {% for story in published_stories %}
       {% comment %} Skip first 3 since they're featured above {% endcomment %}
       {% if forloop.index < 4 %}
         {% continue %}
