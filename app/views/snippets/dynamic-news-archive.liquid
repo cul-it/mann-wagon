@@ -1,0 +1,20 @@
+<ul>
+  {% comment %} Filter out future news stories {% endcomment %}
+  {% with_scope date.lte: now %}
+    {% for story in contents.news %}
+      {% assign this_year = story.date | date: '%Y' %}
+
+      <li class="news-latest__archive-story">
+        {% if forloop.first or this_year != prev_year %}
+          <h5 class="news-latest__archive-heading">{{ this_year }}</h5>
+        {% endif %}
+        <a href="{% path_to story %}" title="View full story">
+          <span class="news-latest__date--archive">{{ story.date | date: '%a %b %d, %Y' }} - </span>
+          {{ story.title }}
+        </a>
+      </li>
+
+      {% assign prev_year = this_year %}
+    {% endfor %}
+  {% endwith_scope %}
+</ul>
