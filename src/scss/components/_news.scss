@@ -49,6 +49,10 @@
   }
 }
 
+.news-latest__social-icon {
+  color: color('aluminum');
+}
+
 .news-latest__stories {
   @include susy-breakpoint($tablet, $g-tablet) {
     @include span(5 nest);
