@@ -2,26 +2,28 @@
 {% with_scope date.lte: now %}{% assign published_stories = contents.news.all %}{% endwith_scope %}
 
 <div class="news-latest__stories">
-  <ul>
-    {% for story in published_stories %}
-      <li class="news-latest__item">
-        {% comment %}<img class="news-latest__img ui rounded image" src="https://dummyimage.com/125">{% endcomment %}
-        <a href="{% path_to story %}" title="View full story"><img class="news-latest__img ui rounded image" src="{{ story.image.url | resize: '125x125#n' }}"></a>
+  {% editable_model news, hint: 'Manage all news stories' %}
+    <ul>
+      {% for story in published_stories %}
+        <li class="news-latest__item">
+          {% comment %}<img class="news-latest__img ui rounded image" src="https://dummyimage.com/125">{% endcomment %}
+          <a href="{% path_to story %}" title="View full story"><img class="news-latest__img ui rounded image" src="{{ story.image.url | resize: '125x125#n' }}"></a>
 
-        <h5 class="news-latest__story-title"><a href="{% path_to story %}" title="View full story">{{ story.title }}</a></h5>
+          <h5 class="news-latest__story-title"><a href="{% path_to story %}" title="View full story">{{ story.title }}</a></h5>
 
-        <p>
-          <span class="news-latest__date ui mini basic label">{{ story.date | date: '%a %b %e, %Y' }}</span>
+          <p>
+            <span class="news-latest__date ui mini basic label">{{ story.date | date: '%a %b %e, %Y' }}</span>
 
-          {{ story.teaser }}
-        </p>
-      </li>
+            {{ story.teaser }}
+          </p>
+        </li>
 
-      {% if forloop.index == 3 %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  </ul>
+        {% if forloop.index == 3 %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endeditable_model %}
 
   <h4 class="news-latest__archive-heading">Older News</h4>
 
