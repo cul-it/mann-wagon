@@ -118,26 +118,7 @@
 
   <div class="footer__bottomline">
     <ul class="footer__social inline">
-      <li>
-        <a class="footer__social-icon" href="http://facebook.com/mannlibrary" title="Albert R. Mann Library on Facebook">
-          <i class="fa fa-facebook-square fa-2x"></i>
-        </a>
-      </li>
-      <li>
-        <a class="footer__social-icon" href="http://mannlibrary.tumblr.com" title="Albert R. Mann Library on Tumblr">
-          <i class="fa fa-tumblr-square fa-2x"></i>
-        </a>
-      </li>
-      <li>
-        <a class="footer__social-icon" href="https://www.instagram.com/mannlibrary" title="Albert R. Mann Library on Instagram">
-          <i class="fa fa-instagram fa-2x"></i>
-        </a>
-      </li>
-      <li>
-        <a class="footer__social-icon" href="https://www.flickr.com/photos/mann_library" title="Albert R. Mann Library on Flickr">
-          <i class="fa fa-flickr fa-2x"></i>
-        </a>
-      </li>
+      {% include 'social-media-links' %}
     </ul>
 
     <img class="footer__mann-logo" src="{{ 'cul-brand/mann-logo-white@2x.svg' | theme_image_url }}" alt="Mann Library logo">

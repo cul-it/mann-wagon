@@ -1,12 +1,14 @@
 // Google Fonts
-@import url('http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Francois+One|Montserrat');
+@import url('http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Francois+One|Montserrat|Inconsolata:400,700');
 $francois: 'Francois One', sans-serif;
 $lato: 'Lato', sans-serif;
+$inconsolata: 'Inconsolata', sans-serif;
 $montserrat: 'Montserrat', sans-serif; // CUL standard
 
 // Typography
 $base-font-family: $lato;
 $heading-font-family: $francois;
+$monospace-font-family: $inconsolata;
 
 // Font Sizes
 $base-font-size: 1em;
