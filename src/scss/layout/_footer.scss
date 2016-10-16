@@ -15,20 +15,29 @@
   color: color('white');
 }
 
-.footer__panel {
-  @include susy-breakpoint($scape, $g-scape) {
-    @include span(2);
-  }
-
-  @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(4);
-  }
-
+.footer__about-subnav {
   margin-bottom: 1em;
+}
+
+.footer__address-line {
+  display: block;
+  line-height: modular-scale(1);
+  font-size: modular-scale(-1);
 }
 
 .footer__bottomline {
   @include span(full);
+}
+
+.footer__copyright {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(4);
+
+    margin-left: 0;
+  }
+
+  margin-top: 1em;
+  line-height: modular-scale(1);
 }
 
 .footer__heading {
@@ -40,39 +49,61 @@
   color: color('headings-footer');
 }
 
-.footer__mission,
-.footer__haiku {
+.footer__haiku,
+.footer__mission {
   margin-bottom: 0;
 }
 
-.footer__floorplans,
-.footer__address-line {
-  line-height: modular-scale(1);
-  font-size: modular-scale(-1);
+.footer__mann-logo {
+  max-width: 8em;
 }
 
-.footer__address-line {
-  display: block;
+.footer__panel {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(2);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(3);
+
+    &--about-us {
+      @include span(5);
+    }
+
+    &--contact-us {
+      @include span(4);
+    }
+  }
+
+  @include susy-breakpoint($allout, $g-allout) {
+    @include span(3);
+
+    &--about-us {
+      @include span(6);
+    }
+  }
+
+  margin-bottom: 1em;
 }
 
 .footer__social {
   @include susy-breakpoint($scape, $g-scape) {
     @include span(last 2);
 
-    text-align: right;
+    padding-left: .6em;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(last 4);
+  }
+
+  @include susy-breakpoint($allout, $g-allout) {
+    @include span(last 3);
   }
 
   margin-bottom: 1em;
 }
 
 .footer__social-icon {
-  color: color('aluminum');
-}
-
-.footer__copyright {
-  @include susy-breakpoint($scape, $g-scape) {
-    @include span(4);
-  }
-
-  line-height: modular-scale(1);
+  color: color('white');
 }

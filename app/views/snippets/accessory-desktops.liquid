@@ -23,7 +23,7 @@
   {% include 'availnow-computers-li' with location: 'McManus Balcony', os: 'apple', available: mcmanus.available %}
 </ul>
 
-<h4 class="available-now__floor">Basement {{ basement_status }} </h4>
+<h4 class="available-now__floor">Basement {% if basement_status %}{{ basement_status }}{% endif %}</h4>
 
 <ul>
   {% include 'availnow-computers-li' with location: 'B30A Classroom', os: 'windows', available: b30a.available %}

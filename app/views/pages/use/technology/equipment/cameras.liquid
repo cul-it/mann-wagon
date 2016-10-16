@@ -1,0 +1,36 @@
+---
+title: Cameras
+slug: cameras
+handle: cameras
+position: 0
+listed: true
+published: true
+is_layout: false
+editable_elements:
+  main/page_content: '<h2>Canon EOS Rebel DSLR</h2><div><p><b><img title="Image: /samples/assets/DSLR.jpg"
+    src="/samples/assets/DSLR.jpg" class="wysiwyg-float-right"></b></p><p><b>Features:</b><br></p><ul><li>18
+    megapixel still camera<br></li><li>18-55mm IS II lens</li><li>16 gigabyte storage</li></ul><div><br></div><div><b>Additional
+    information:&nbsp;</b>For full specifications, please visit <a href="https://www.usa.canon.com/internet/portal/us/home/products/details/cameras/dslr/eos-rebel-t3i-ef-s-18-55-is-ii-kit"
+    title="Link: https://www.usa.canon.com/internet/portal/us/home/products/details/cameras/dslr/eos-rebel-t3i-ef-s-18-55-is-ii-kit">Canon''s
+    website</a>. You may need to enter the model number to obtain the required information.</div><div><br></div><div><br><h2>Sony
+    Cyber-shot Digital Still Camera<br></h2></div><p><img src="/samples/assets/Sony_Cybershot.jpg"
+    class="wysiwyg-float-right"></p><p><b>Features:</b></p><ul><li>16.1 megapixel
+    still camera</li><li>8x optical zoom</li><li>8 gigabyte memory card</li><li>Anti-blur
+    and intelligent photo options</li><li>Video recording in 1080i</li><li>3D image
+    capture capabilities</li></ul><p><b><br></b></p><p><b>Additional information:&nbsp;</b>For
+    full specifications, please visit <a href="https://esupport.sony.com/US/p/model-home.pl?mdl=DSCW730"
+    title="Link: https://esupport.sony.com/US/p/model-home.pl?mdl=DSCW730">Sony''s
+    website</a>. You may need to enter the model number to obtain the required information.</p><p><b><br></b></p></div>'
+  main/section_photo: ''
+  main/landing_description: Brief description here.
+---
+{% extends 'layouts/basic-page' %}
+{% block 'main/accessory' %}
+  {% include 'equipment-type-setup' %}
+  {% include 'equipment-type-list'
+    with equipment_type_1_title: camera_type_1_title,
+    with equipment_type_1: camera_type_1_items,
+    with equipment_type_2_title: camera_type_2_title,
+    with equipment_type_2: camera_type_2_items
+  %}
+{% endblock %}

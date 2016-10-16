@@ -1,37 +1,39 @@
 <footer class="footer">
-  <div class="footer__about-us footer__panel">
-  <h5 class="footer__heading"><a class="footer__heading-link" href="{% path_to about %}" title="Learn about Albert R. Mann Library">About Us</a></h5>
+  <div class="footer__panel footer__panel--about-us">
+    <h5 class="footer__heading"><a class="footer__heading-link" href="{% path_to about %}" title="Learn about Albert R. Mann Library">About Us</a></h5>
 
     <p class="footer__mission">
       Supporting learning and research in the life sciences, agriculture, human ecology and applied social sciences.
     </p>
 
-    <p>
-      <a class="more-link more-link--footer" href="{% path_to staff %}" title="Mann divisions and staff">Organization &amp; Staff</a>
-      |
-      <a class="more-link more-link--footer" href="{% path_to employment %}" title="Career opportunities at Mann Library">Employment</a>
-    </p>
+    {% comment %} About Us subnav with child pages {% endcomment %}
+    {% with_scope handle: 'about' %}{% assign about_page = site.pages.first %}{% endwith_scope %}
+    <ul class="footer__about-subnav">
+      {% for child in about_page.children %}
+        <li><a href="{% path_to child %}" title="{{ child.title }}">{{ child.title }}</a></li>
+      {% endfor %}
+    </ul>
 
     <h5 class="footer__heading"><a class="footer__heading-link" href="http://smartmap.mannlib.cornell.edu" title="Mann Library SmartMap">Floor Plans</a></h5>
 
-    <ul class="footer__floorplans">
-      <li class="footer__floor">
+    <ul>
+      <li>
         <a href="http://smartmap.mannlib.cornell.edu/floor/0" title="Basement floor plan">Basement</a>
       </li>
-      <li class="footer__floor">
+      <li>
         <a href="http://smartmap.mannlib.cornell.edu/floor/1" title="First floor, floor plan">1st</a>
       </li>
-      <li class="footer__floor">
+      <li>
         <a href="http://smartmap.mannlib.cornell.edu/floor/2" title="Second floor, floor plan">2nd</a>
       </li>
-      <li class="footer__floor">
+      <li>
         <a href="http://smartmap.mannlib.cornell.edu/floor/3" title="Third floor, floor plan">3rd</a>
       </li>
     </ul>
   </div>
 
-  <div class="footer__featured-plus-haiku footer__panel">
-  <h5 class="footer__heading"><a class="footer__heading-link" href="{% path_to projects %}" title="View all projects">Featured Projects</a></h5>
+  <div class="footer__panel footer__panel--featured-plus-haiku ">
+    <h5 class="footer__heading"><a class="footer__heading-link" href="{% path_to projects %}" title="View all projects">Featured Projects</a></h5>
 
     <ul>
       {% with_scope featured: true %}
@@ -42,7 +44,7 @@
     </ul>
 
     <p>
-      <a class="more-link more-link--footer" href="{% path_to projects %}" title="View all projects">
+      <a class="more-link" href="{% path_to projects %}" title="View all projects">
         More Projects
         <i class="fa fa-angle-double-right"></i>
       </a>
@@ -57,14 +59,14 @@
     </p>
 
     <p>
-      <a class="more-link more-link--footer" href="http://haiku.mannlib.cornell.edu" title="Visit the Mann Library Daily Haiku site">
+      <a class="more-link" href="http://haiku.mannlib.cornell.edu" title="Visit the Mann Library Daily Haiku site">
         Daily Haiku Archive
         <i class="fa fa-angle-double-right"></i>
       </a>
     </p>
   </div>
 
-  <div class="footer__contact-us footer__panel">
+  <div class="footer__panel footer__panel--contact-us">
     <h5 class="footer__heading">Contact Us</h5>
 
     <ul class="fa-ul">
@@ -94,7 +96,7 @@
           <span class="footer__address-line">Ithaca, NY 14853</span>
         </div>
 
-        <a class="more-link more-link--footer" href="https://goo.gl/maps/ZJvrC8S5ZVn" title="Get directions to Mann Library">
+        <a class="more-link" href="https://goo.gl/maps/ZJvrC8S5ZVn" title="Get directions to Mann Library">
           Get Directions
           <i class="fa fa-angle-double-right"></i>
         </a>
@@ -118,6 +120,8 @@
     <ul class="footer__social inline">
       {% include 'social-media-links' %}
     </ul>
+
+    <img class="footer__mann-logo" src="{{ 'cul-brand/mann-logo-white@2x.svg' | theme_image_url }}" alt="Mann Library logo">
 
     <p class="footer__copyright">&copy; {{ now | date: '%Y' }} Albert R. Mann Library</p>
   </div>

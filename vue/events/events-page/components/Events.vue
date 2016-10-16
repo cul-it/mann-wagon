@@ -110,7 +110,9 @@ export default {
       eventsList: false,
       singleEvent: false,
       recurringEventStartTime: '',
-      apiErrors: []
+      apiErrors: [],
+      latestCornellRequest: 0,
+      latestR25Request: 0
     }
   },
   // Use vue-router transition data hook to trigger methods
@@ -318,7 +320,11 @@ export default {
           this.$http.get(localistApiBaseUrl + '&days=' + this.defaultNumberOfDays).then(function (response) {
             // Create custom data model
             var currentLocalistEvents = _.filter(response.data.events, function (event) {
-              return moment(new Date(event.event.event_instances[0].event_instance.end)).format() >= vueInstance.dateTimeNow
+              if (event.event.event_instances[0].event_instance.end) {
+                return moment(new Date(event.event.event_instances[0].event_instance.end)).format() >= vueInstance.dateTimeNow
+              } else {
+                return event
+              }
             })
             this.$set('localistReservations', currentLocalistEvents)
             this.setCornellEvents(option, param, currentLocalistEvents)
@@ -327,16 +333,23 @@ export default {
             vueInstance.$set('eventSources.updatedCornellEvents', true)
           })
       } else if (option === 'date') {
-        this.$http.get(localistApiBaseUrl + '&start=' + param + '').then(function (response) {
-          // Create custom data model
-          // this.cornellEventsArray(response.data.events)
+        this.makeCornellRequest(localistApiBaseUrl, option, param)
+      }
+    },
+    makeCornellRequest (localistApiBaseUrl, option, param) {
+      var vueInstance = this
+      var thisRequest = ++this.latestCornellRequest;
+      var localistApiBaseUrl = 'http://events.cornell.edu/api/2/events/?type=4228&pp=100'
+
+      this.$http.get(localistApiBaseUrl + '&start=' + param + '').then(function (response) {
+        if (thisRequest === this.latestCornellRequest) {
           this.$set('localistReservations', response.data.events)
           this.setCornellEvents(option, param)
-        }).catch(function(error){
-          vueInstance.$set('errorCornellEvents', error)
-          vueInstance.$set('eventSources.updatedCornellEvents', true)
-        })
-      }
+        }
+      }).catch(function(error){
+        vueInstance.$set('errorCornellEvents', error)
+        vueInstance.$set('eventSources.updatedCornellEvents', true)
+      })
     },
     setCornellEvents (option, param) {
       if (option === 'default') {
@@ -483,22 +496,7 @@ export default {
                   dataType: 'xml'
                 })
             })
-
-            Promise.all([promise[704], promise[705]]).then((values) => {
-              _.each(values, function (value, index) {
-                parseString(value.data, function (error, result) {
-                  if (result['r25:space_reservations']['r25:space_reservation']) {
-                    r25Reservations.push(result['r25:space_reservations']['r25:space_reservation'])
-                  }
-                })
-              })
-              r25Reservations = _.flattenDeep(r25Reservations)
-              this.$set('r25Reservations', r25Reservations)
-              this.setR25Events (option, param)
-            }).catch(function(error){
-              vueInstance.$set('errorR25Events', error)
-              vueInstance.$set('eventSources.updatedR25Events', true)
-            })
+            this.makeR25Request(promise, r25EventsBaseUrl, option, param)
         } else if (option === 'event') {
           var r25EventBaseUrl = 'https://r25test.registrar.cornell.edu/r25ws/servlet/wrd/run/reservation.xml?'
           var r25Event = []
@@ -523,6 +521,32 @@ export default {
             })
         }
       }
+    },
+    makeR25Request (promise, r25EventsBaseUrl, option, param) {
+      var vueInstance = this
+      // Use xml2js to convert xml string to JS object
+      var parseString = require('xml2js').parseString
+
+      var thisRequest = ++this.latestR25Request;
+      var r25Reservations = []
+
+      Promise.all([promise[704], promise[705]]).then((values) => {
+        if (thisRequest === this.latestR25Request) {
+          _.each(values, function (value, index) {
+            parseString(value.data, function (error, result) {
+              if (result['r25:space_reservations']['r25:space_reservation']) {
+                r25Reservations.push(result['r25:space_reservations']['r25:space_reservation'])
+              }
+            })
+          })
+          r25Reservations = _.flattenDeep(r25Reservations)
+          this.$set('r25Reservations', r25Reservations)
+          this.setR25Events (option, param)
+        }
+      }).catch(function(error){
+        vueInstance.$set('errorR25Events', error)
+        vueInstance.$set('eventSources.updatedR25Events', true)
+      })
     },
     setR25Events (option, param) {
       if (option === 'default') {
@@ -689,45 +713,49 @@ export default {
       // Event properties
       _.forEach(data, function (value, index) {
         var events = {}
-        // If same event based on title and time comparison
-        // Check twice for lobby
-        if (libcalEvents.length && libcalEvents[counter - 1].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 1].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
-          libcalEvents[counter - 1].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
-        } else if (libcalEvents.length > 1 && libcalEvents[counter - 2].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 2].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
-          libcalEvents[counter - 2].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
+        if (value.description.match('Will this be advertised through Cornell Events\\?: (.*)')[1] == 'Yes') {
+          // Do nothing
         } else {
-          events['event_id'] = value.eventId
-          events['event_title'] = value.description.match('Event Name: (.*)')[1]
-          events['event_description'] = value.description.match('Event Description: (.*)')[1]
-          events['event_start_time'] = moment(new Date(value.formattedStartDateTime)).format()
-          events['event_start'] = moment(new Date(value.formattedStartDateTime)).format('YYYY-MM-DD')
-          events['event_end_time'] = moment(new Date(value.formattedEndDateTime)).format()
-          events['event_room_name'] = value.location.replace(',', '')
-          _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
-            if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
-                events['event_room_name'] = curatedEventLocation[0]
-            }
-          })
-          events['event_type'] = [value.description.match('Event type: (.*)')[1].replace(',', '')]
-          _.forEach(vueInstance.curatedEventTypes, function(curatedEventType, index) {
-            if (curatedEventType[0] === value.description.match('Event type: (.*)')[1].replace(',', '') || _.includes(curatedEventType[1], value.description.match('Event type: (.*)')[1].replace(',', ''))) {
-              events['event_type'] = [curatedEventType[0]]
-            }
-          })
+          // If same event based on title and time comparison
+          // Check twice for lobby
+          if (libcalEvents.length && libcalEvents[counter - 1].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 1].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
+            libcalEvents[counter - 1].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
+          } else if (libcalEvents.length > 1 && libcalEvents[counter - 2].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 2].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
+            libcalEvents[counter - 2].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
+          } else {
+            events['event_id'] = value.eventId
+            events['event_title'] = value.description.match('Event Name: (.*)')[1]
+            events['event_description'] = value.description.match('Event Description: (.*)')[1]
+            events['event_start_time'] = moment(new Date(value.formattedStartDateTime)).format()
+            events['event_start'] = moment(new Date(value.formattedStartDateTime)).format('YYYY-MM-DD')
+            events['event_end_time'] = moment(new Date(value.formattedEndDateTime)).format()
+            events['event_room_name'] = value.location.replace(',', '')
+            _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
+              if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
+                  events['event_room_name'] = curatedEventLocation[0]
+              }
+            })
+            events['event_type'] = [value.description.match('Event type: (.*)')[1].replace(',', '')]
+            _.forEach(vueInstance.curatedEventTypes, function(curatedEventType, index) {
+              if (curatedEventType[0] === value.description.match('Event type: (.*)')[1].replace(',', '') || _.includes(curatedEventType[1], value.description.match('Event type: (.*)')[1].replace(',', ''))) {
+                events['event_type'] = [curatedEventType[0]]
+              }
+            })
 
-          // Events array from LibCal
-          libcalEvents.push(events)
-          // Increment event counter
+            // Events array from LibCal
+            libcalEvents.push(events)
+            // Increment event counter
 
-        // Room filter list array
-        if (roomNames.indexOf(value.location.replace(',', '')) === -1) {
-          roomNames.push(value.location.replace(',', ''))
-        }
-        // Event type filter list array
-        if (eventTypes.indexOf(value.description.match('Event type: (.*)')[1].replace(',', '')) === -1) {
-          eventTypes.push(value.description.match('Event type: (.*)')[1].replace(',', ''))
-        }
-          counter++
+          // Room filter list array
+          if (roomNames.indexOf(value.location.replace(',', '')) === -1) {
+            roomNames.push(value.location.replace(',', ''))
+          }
+          // Event type filter list array
+          if (eventTypes.indexOf(value.description.match('Event type: (.*)')[1].replace(',', '')) === -1) {
+            eventTypes.push(value.description.match('Event type: (.*)')[1].replace(',', ''))
+          }
+            counter++
+          }
         }
       })
       _.forEach(eventTypes, function (type, index, eventTypes) {

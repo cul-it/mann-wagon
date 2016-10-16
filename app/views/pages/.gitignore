@@ -22,14 +22,14 @@
 # Track pages that supplement/provide content programatically
 !404.liquid
 !about/staff.liquid
-!course-reserves.liquid
+!/course-reserves.liquid # Be specific here due to redirect with same filename at use/borrow-request-renew/course-reserves.liquid
 !help/faculty-instructors/request-course-instruction.liquid
-!help/research-support/consultation-services/gis-at-mann.liquid
 !help/research-support/research-guides.liquid
 !help/research-support/research-help/request-a-consultation.liquid
+!help/research-support/research-help/gis-at-mann.liquid
 !hours.liquid
 !index.liquid
-!news-events/events/upcoming.liquid
+!news-events/events/calendar.liquid
 !news-events/news/archive.liquid
 !news-events/news/latest.liquid
 !projects.liquid
