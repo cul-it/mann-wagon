@@ -6,11 +6,9 @@ is_layout: true
 
 {% block 'main' %}
   {% assign default_photo = 'placeholder.jpg' | theme_image_url %}
-  {% capture selected_photo %}
-    {% editable_file section_photo, hint: 'Used on top-level landing page', priority: 1 %}{% endeditable_file %}
-  {% endcapture %}
+  {% capture selected_photo %}{% editable_file section_photo, hint: 'Used on top-level landing page', priority: 1 %}/samples/placeholder.jpg{% endeditable_file %}{% endcapture %}
 
-  <img class="section-page__photo" src="{{ page.editable_elements.main.section_photo | default: default_photo }}">
+  <img class="section-page__photo ui rounded image" src="{{ selected_photo }}">
 
   <div class="section-page__content">
     {% editable_text "landing_description", hint: "Keep it short and sweet" %}
