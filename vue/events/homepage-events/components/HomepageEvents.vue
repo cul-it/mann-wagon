@@ -249,9 +249,10 @@ export default {
       var curated_event_locations_with_alt = []
       _.forEach(event_locations, function (value, index){
         var curated_event_location = JSON.parse(value).curated_event_location_name,
-        alternate_event_location_names = JSON.parse(value).alternate_event_location_names;
+        alternate_event_location_names = JSON.parse(value).alternate_event_location_names,
+        smartmap_url = JSON.parse(value).smartmap_url;
         curated_event_locations.push(curated_event_location);
-        curated_event_locations_with_alt.push([curated_event_location, alternate_event_location_names ]);
+        curated_event_locations_with_alt.push([curated_event_location, alternate_event_location_names, smartmap_url ]);
       })
       this.$set('curatedEventLocations', curated_event_locations_with_alt)
     },
@@ -463,10 +464,9 @@ export default {
           events['event_room_name'] = value.location_name.replace(',', '')
         }
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
-          if (curatedEventLocation[0] === events['event_room_name']) {
+          if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
               events['event_room_name'] = curatedEventLocation[0]
-          } else if (_.includes(curatedEventLocation[1], events['event_room_name'])) {
-              events['event_room_name'] = curatedEventLocation[0]
+              events['event_room_smartmap_url'] = curatedEventLocation[2]
           }
         })
         // Event type filter list array
@@ -520,6 +520,7 @@ export default {
             _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
               if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
                   events['event_room_name'] = curatedEventLocation[0]
+                  events['event_room_smartmap_url'] = curatedEventLocation[2]
               }
             })
             events['event_type'] = [value.description.match('Event type: (.*)')[1].replace(',', '')]
@@ -555,6 +556,7 @@ export default {
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
           if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
               events['event_room_name'] = curatedEventLocation[0]
+              events['event_room_smartmap_url'] = curatedEventLocation[2]
           }
         })
         events['event_type'] = ['Class/Workshop']
@@ -595,6 +597,7 @@ export default {
       var additionalTimes = []
       var hasAdditionalTimes = 0
       var today = moment().startOf('day').format()
+      var location_smartmap_url = ''
       if (source === 'Cornell') {
         _.forEach(_.map(data.event_instances, 'event_instance'), function (value, index) {
           var someday = moment(value.start).startOf('day')
@@ -646,6 +649,7 @@ export default {
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
           if (curatedEventLocation[0] === location || _.includes(curatedEventLocation[1], location)) {
               location = curatedEventLocation[0]
+              location_smartmap_url = curatedEventLocation[2]
           }
         })
 
@@ -657,7 +661,8 @@ export default {
           'event_additional_times': additionalTimes,
           'event_has_additional_times': hasAdditionalTimes,
           'event_room_name': location,
-          'event_type': eventType
+          'event_type': eventType,
+          'event_room_smartmap_url': location_smartmap_url
         })
       } else if (source === 'Libcal') {
         this.$set('event', data)
@@ -666,6 +671,7 @@ export default {
           _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
             if (curatedEventLocation[0] === location || _.includes(curatedEventLocation[1], location)) {
                 location = curatedEventLocation[0]
+                location_smartmap_url = curatedEventLocation[2]
             }
           })
         this.$set('event', {
@@ -674,13 +680,15 @@ export default {
           'event_start_time': moment(new Date(data['r25:event'][0]['r25:event_start_dt']['0'])).format(),
           'event_end_time': moment(new Date(data['r25:event'][0]['r25:event_end_dt']['0'])).format(),
           'event_room_name': location,
-          'event_type': ['Class/Workshop']
+          'event_type': ['Class/Workshop'],
+          'event_room_smartmap_url': location_smartmap_url
         })
       } else if (source === 'R25Web') {
         var location = data[0]['r25:space_reservation'][0]['r25:formal_name'][0].replace(',', '')
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
           if (curatedEventLocation[0] === location || _.includes(curatedEventLocation[1], location)) {
               location = curatedEventLocation[0]
+              location_smartmap_url = curatedEventLocation[2]
           }
         })
         this.$set('event', {
@@ -689,7 +697,8 @@ export default {
           'event_start_time': moment(new Date(data[0]['r25:event_start_dt'][0])).format(),
           'event_end_time': moment(new Date(data[0]['r25:event_end_dt'][0])).format(),
           'event_room_name': location,
-          'event_type': ['Class/Workshop']
+          'event_type': ['Class/Workshop'],
+          'event_room_smartmap_url': location_smartmap_url
         })
       }
       // Call Semantic ui modal and accordion for future times

@@ -43,7 +43,9 @@
 	            location
 	          </dt>
 						<dd class="events-home__location">
-	            <i class="fa fa-map-marker events-home__location-icon"></i> ((event.event_room_name | capitalize))
+	            <i class="fa fa-map-marker events-home__location-icon"></i>
+							<a target="_blank" v-if="event.event_room_smartmap_url" href="(( event.event_room_smartmap_url ))">((event.event_room_name ))</a>
+							<template v-else="">((event.event_room_name ))</template>
 	          </dd>
 					</dl>
 
@@ -100,7 +102,9 @@
 	            location
 	          </dt>
 						<dd class="events-home__location">
-	            <i class="fa fa-map-marker events-home__location-icon"></i> ((event.event_room_name | capitalize))
+	            <i class="fa fa-map-marker events-home__location-icon"></i>
+							<a target="_blank" v-if="event.event_room_smartmap_url" href="(( event.event_room_smartmap_url ))">((event.event_room_name ))</a>
+							<template v-else="">((event.event_room_name ))</template>
 	          </dd>
 					</dl>
 
@@ -139,7 +143,8 @@
 
 				<span class="location pull-right">
 					<i class="fa fa-map-marker"></i>
-					((event.event_room_name | capitalize))
+					<a target="_blank" v-if="event.event_room_smartmap_url" href="(( event.event_room_smartmap_url ))">((event.event_room_name ))</a>
+					<template v-else="">((event.event_room_name ))</template>
 				</span>
 
 				<div class="ui accordion" v-if="event.event_has_additional_times">
@@ -189,7 +194,7 @@
 			</p>
 
 			<span class="event__type badge-notice" v-for="type in event.event_type">
-				((type | capitalize))
+				((type ))
 			</span>
 
 		</div>

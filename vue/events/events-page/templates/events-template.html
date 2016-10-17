@@ -61,7 +61,8 @@
 
               <span class="location pull-right">
                 <i class="fa fa-map-marker"></i>
-                ((event.event_room_name))
+								<a target="_blank" v-if="event.event_room_smartmap_url" href="(( event.event_room_smartmap_url ))">((event.event_room_name ))</a>
+								<template v-else="">((event.event_room_name ))</template>
               </span>
 
             </div>
@@ -218,7 +219,8 @@
 
 				<span class="location pull-right">
 					<i class="fa fa-map-marker"></i>
-					((event.event_room_name))
+					<a target="_blank" v-if="event.event_room_smartmap_url" href="(( event.event_room_smartmap_url ))">((event.event_room_name ))</a>
+					<template v-else="">((event.event_room_name ))</template>
 				</span>
 
 				<div class="ui accordion" v-if="event.event_has_additional_times">
