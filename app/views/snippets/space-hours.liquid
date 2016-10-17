@@ -17,7 +17,9 @@
   {% assign space_hours = mannlib_hours.hours_1707 | date: '%l:%M %p' | downcase | replace: ':00', '' %}
   {%comment%}Monday through Friday{%endcomment%}
     {% if day_of_week == 'Monday' or day_of_week == 'Tuesday' or day_of_week == 'Wednesday' or day_of_week == 'Thrusday' or day_of_week == 'Friday' %}
-      {% if now < '6 pm'%}
+      {% capture current_time %} {{ now | date: '%s' }} {% endcapture %}
+      {% capture closed_time %} {{ '6 pm' | date: '%s' }} {% endcapture %}
+      {% if current_time < closed_time %}
         {% assign space_status = 'Closed' %}
       {% endif %}
     {% endif %}
