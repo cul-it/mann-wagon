@@ -4,6 +4,8 @@
 .page-content {
   @include susy-breakpoint($scape, $g-scape) {
     @include span(4 nest);
+
+    padding-right: 1em;
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
@@ -32,22 +34,22 @@
   @include border-top-radius(5px);
   @include border-bottom-radius(5px);
 
-  @include span(full);
+  @include span(full nest);
 
   @include susy-breakpoint($scape, $g-scape) {
-    @include span(last 2);
+    @include span(last 2 nest);
 
     margin-top: 0;
   }
 
   @include susy-breakpoint($tablet, $g-tablet) {
-    @include span(last 3);
+    @include span(last 3 nest);
 
     font-size: modular-scale(0);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(last 3);
+    @include span(last 3 nest);
   }
 
   background: color('alabaster');
