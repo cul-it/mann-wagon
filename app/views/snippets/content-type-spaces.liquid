@@ -38,9 +38,7 @@
       <span class="space-finder__checkout">Check out key from <a href="http://smartmap.mannlib.cornell.edu/location/circulation%20services" title="Map it">circulation desk</a></span>
     {% endunless %}
   {% endif %}
-  {% if space.reservations_required_in_advance %}
-  <p>Reservations required in advance</p>
-  {% elsif space.reservation_system or space.avail_url %}
+  {% if space.reservation_system or space.avail_url %}
     {% comment %}This is completely unnecessary but Engine refuses to cooperate otherwise...don't ask{% endcomment %}
     {% if space.reservation_system or space.avail_url != "" %}
       <div class="space__availability--{{ room_availability | downcase }}">
@@ -53,6 +51,8 @@
        </div>
      {% endif %}
   {% endif %}
+
+  {% include 'room-availability-next' %}
 
   <dl class="space__rundown">
     {% if space.room %}
