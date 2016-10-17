@@ -1,19 +1,3 @@
-.space__photo {
-  @include susy-breakpoint($tablet, $g-tablet) {
-    float: right;
-    margin-left: 1em;
-    width: span(4 of 8);
-  }
-}
-
-.space__reserve {
-  float: left;
-
-  &.ui {
-    margin-right: 1em;
-  }
-}
-
 .space__availability {
 
   &--available {
@@ -27,16 +11,32 @@
   }
 }
 
-.space__rundown {
-  clear: left;
-  margin-top: 2em;
+.space__features {
+  @include span(full);
+  border: solid 1px color('light-gray');
 }
 
 .space__field-name {
   margin-top: .8em;
 }
 
-.space__features {
-  @include span(full);
-  border: solid 1px color('light-gray');
+.space__photo {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    float: right;
+    margin-left: 1em;
+    width: span(4 of 8);
+  }
+}
+
+.space__rundown {
+  clear: left;
+  margin-top: 2em;
+}
+
+.space__reserve {
+  float: left;
+
+  &.ui {
+    margin-right: 1em;
+  }
 }
