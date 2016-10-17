@@ -34,7 +34,7 @@
               {% endif %}
             {% elsif spaces_type._slug == 'classroom' or spaces_type._slug == 'computing-facilities' %}
               {% comment %} Need logic here to first see if room is available (all but stone computing center) {% endcomment %}
-              <i class="fa fa-desktop"></i> 27
+              {% comment %} <i class="fa fa-desktop"></i> 27 {% endcomment %}
             {% endif %}
           </span>
           {% if space_status %}
