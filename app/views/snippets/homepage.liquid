@@ -49,13 +49,14 @@ event-types = '{{ event_types | default: null }}'
 {{ 'homePageEvents.bundle.js' | javascript_tag }}
 
 <section class="meet-experts">
-  <h4 class="meet-experts__heading lead-in">Meet Our Experts</h4>
+  <h4 class="meet-experts__heading lead-in">
+    <a class="meet-experts__heading-link" href="{% path_to staff %}" title="View all Mann librarians and staff">
+      Meet Our Experts
+      <button class="meet-experts__all-button">All Experts</button>
+    </a>
+  </h4>
 
   {% include 'meet-experts' %}
-
-  <a class="meet-experts__all-experts more-link" href="{% path_to staff %}" title="View all Mann librarians and staff">
-    Meet All Our Experts <i class="fa fa-angle-double-right"></i>
-  </a>
 </section>
 
 <!--  Libcal MyScheduler Widget-->
