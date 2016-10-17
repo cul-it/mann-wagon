@@ -8,6 +8,9 @@
         <div class="content">
           <strong>{{ person.last_name }}, {{ person.first_name }}</strong>
           <span class="staff-directory__position">{{ person.title }}</span>
+          {% if person.libcal_uid.size > 0 %}
+            {% include 'staff-book-consultation' with libcal_uid: person.libcal_uid %}
+          {% endif %}
         </div>
       </div>
     </td>

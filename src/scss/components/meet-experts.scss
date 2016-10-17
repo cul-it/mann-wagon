@@ -7,6 +7,11 @@
   @include span(full nest);
 }
 
+.meet-experts__all-button {
+  margin-left: 1em;
+  font-size: modular-scale(-3);
+}
+
 .meet-experts__all-experts {
   @include span(full nest);
 
@@ -22,6 +27,10 @@
 
 .meet-experts__heading {
   margin-bottom: 2em;
+}
+
+.meet-experts__heading-link {
+  color: inherit;
 }
 
 .meet-experts__featured {
@@ -114,6 +123,7 @@
 
 .meet-experts__title {
   display: block;
+  margin-bottom: 1em;
   line-height: 1em;
   color: color('aluminum');
 }

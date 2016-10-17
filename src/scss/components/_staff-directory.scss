@@ -1,31 +1,7 @@
-.staff-directory__table {
-  @include susy-breakpoint($scape, $g-scape) {
-    font-size: modular-scale(-1);
+.staff-directory__book-consultation {
+  &.ui.button { // Override semantic ui default
+    margin: 1em 0 .5em;
   }
-
-  @include susy-breakpoint($tablet, $g-tablet) {
-    font-size: modular-scale(0);
-  }
-
-  line-height: modular-scale(0);
-  font-size: modular-scale(-2);
-
-  .staff-directory__position {
-    display: block;
-  }
-}
-
-.staff-directory__tbody {
-  tr {
-    &:nth-of-type(odd) {
-      background: color('alabaster');
-    }
-  }
-
-  td {
-    border-bottom-color: color('barely-gray');
-  }
-
 }
 
 .staff-directory__email-hint {
@@ -54,4 +30,34 @@
   &--placeholder {
     opacity: .5;
   }
+}
+
+.staff-directory__table {
+  @include susy-breakpoint($scape, $g-scape) {
+    font-size: modular-scale(-1);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    font-size: modular-scale(0);
+  }
+
+  line-height: modular-scale(0);
+  font-size: modular-scale(-2);
+
+  .staff-directory__position {
+    display: block;
+  }
+}
+
+.staff-directory__tbody {
+  tr {
+    &:nth-of-type(odd) {
+      background: color('alabaster');
+    }
+  }
+
+  td {
+    border-bottom-color: color('barely-gray');
+  }
+
 }
