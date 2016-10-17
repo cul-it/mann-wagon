@@ -1,3 +1,15 @@
+.staff-directory__book-consultation {
+  &.ui.button { // Override semantic ui default
+    margin: 1em 0 .5em;
+    background-color: color('consultation');
+    color: color('white');
+
+    &:hover {
+      background-color: color('consultation' ('shade': 10%));
+    }
+  }
+}
+
 .staff-directory__email-hint {
   color: color('medium-gray');
   font-size: modular-scale(-1);
