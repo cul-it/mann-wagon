@@ -73,3 +73,9 @@
   display: block;
   margin: -.7em 0 2em;
 }
+
+.news-story__image {
+  @include susy-breakpoint($scape $lapdesk, $g-scape) {
+    width: span(3);
+  }
+}
