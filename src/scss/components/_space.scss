@@ -1,7 +1,7 @@
 .space__photo {
   @include susy-breakpoint($tablet, $g-tablet) {
     float: right;
-    padding-left: 1em;
+    margin-left: 1em;
     width: span(4 of 8);
   }
 }
