@@ -15,9 +15,9 @@
 {% capture event_locations %}
   {% for event_location in contents.event_locations %}
     {% if (forloop.last)%}
-    {"curated_event_location_name":"{{ event_location.name | escape }}","alternate_event_location_names":"{{ event_location.alternate_names | join: ', ' | escape }}"}
+    {"curated_event_location_name":"{{ event_location.name | escape }}","alternate_event_location_names":"{{ event_location.alternate_names | join: ', ' | escape }}","smartmap_url":"{{ event_location.smartmap_url | escape }}"}
   {% else %}
-    {"curated_event_location_name":"{{ event_location.name | escape }}","alternate_event_location_names":"{{ event_location.alternate_names | join: ', ' | escape  }}"}-
+    {"curated_event_location_name":"{{ event_location.name | escape }}","alternate_event_location_names":"{{ event_location.alternate_names | join: ', ' | escape  }}","smartmap_url":"{{ event_location.smartmap_url | escape }}"}-
     {% endif %}
   {% endfor %}
 {% endcapture %}
