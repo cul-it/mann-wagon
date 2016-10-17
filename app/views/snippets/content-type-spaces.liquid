@@ -1,7 +1,19 @@
+{% include 'space-hours' %}
 <div class="space">
   <img class="space__photo ui rounded image" src="{{ space.photo.url | resize: '600x407#' }}" alt="photo of {{ space._label }}">
-
-  {% comment %}<a href="{% path_to hours %}" title="View all hours"><span class="badge badge-success">Open until 2am</span></a>{% endcomment %}
+  {% if space_status %}
+    <a class="js-spacefinder-link" href="{% path_to hours %}" title="View all hours">
+      <span class="badge {% if space_status == 'Open' %}badge-success{% else %}badge-error{% endif %}">{{ space_status }}
+      {% if space_hours %}
+        {% if space_hours == '24 hours' %}
+          {{ space_hours }}
+        {% else %}
+          {{ space_hours | prepend: 'until '}}
+        {% endif %}
+      {% endif %}
+      </span>
+    </a>
+  {% endif %}
 
   {% if space.note %}
     <em class="space-finder__note">{{ space.note }}</em>
