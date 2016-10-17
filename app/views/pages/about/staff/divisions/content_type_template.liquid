@@ -1,13 +1,9 @@
 ---
 title: Divisions template page
 content_type: divisions
-editable_elements:
-  main/page_content: Page content here
 ---
-{% extends 'layouts/basic-page' %}
+{% extends 'layouts/default' %}
 
-{% block 'main/dynamic' %}
-  {% assign current_division = division %}
-
-  {% include 'staff-directory' %}
+{% block 'main' %}
+  {% include 'content-type-divisions' %}
 {% endblock %}

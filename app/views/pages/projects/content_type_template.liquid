@@ -4,12 +4,8 @@ listed: false
 published: true
 content_type: projects
 ---
-{% extends 'layouts/basic-page' %}
+{% extends 'layouts/default' %}
 
 {% block 'main' %}
-  {% include 'nav-projects' %}
-
-  <div class="page-content">
-    {{ project.description }}
-  </div>
+  {% include 'content-type-projects' %}
 {% endblock %}

@@ -23,14 +23,16 @@
   </div>
 {% endcapture %}
 
-<section class="spotlights">
-  <div class="carousel__contain">
-    <span class="carousel__nav carousel__nav--prev js-spotlights-prev"><i class="fa fa-angle-left fa-inverse fa-5x"></i></span>
+{% editable_model spotlights, hint: 'Manage all spotlights' %}
+  <section class="spotlights">
+    <div class="carousel__contain">
+      <span class="carousel__nav carousel__nav--prev js-spotlights-prev"><i class="fa fa-angle-left fa-inverse fa-5x"></i></span>
 
-    {{ spotlight_images }}
+      {{ spotlight_images }}
 
-    <span class="carousel__nav carousel__nav--next js-spotlights-next"><i class="fa fa-angle-right fa-inverse fa-5x"></i></span>
+      <span class="carousel__nav carousel__nav--next js-spotlights-next"><i class="fa fa-angle-right fa-inverse fa-5x"></i></span>
 
-    {{ 'spotlights.bundle.js' | javascript_tag }}
-  </div>
-</section>
+      {{ 'spotlights.bundle.js' | javascript_tag }}
+    </div>
+  </section>
+{% endeditable_model %}
