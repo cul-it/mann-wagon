@@ -1,0 +1,21 @@
+.projects__description {
+  margin-top: 0;
+}
+
+.projects__heading {
+  margin-bottom: 0;
+}
+
+.projects__list {
+  margin-top: 2em;
+}
+
+.projects__project {
+  margin-bottom: 2em;
+}
+
+.projects__url {
+  &.ui.label { // Override semantic ui default
+    margin-bottom: 1em;
+  }
+}
