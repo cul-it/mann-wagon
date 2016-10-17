@@ -1,3 +1,5 @@
+{% editable_model instruction_requests, hint: 'View submitted requests' %}{% endeditable_model %}
+
 {% model_form 'instruction_requests', class: 'ui form success error mann-form', success: path, error: path %}
   {% comment %} Status messages from Locomotive {% endcomment %}
   {% if instruction_request.errors %}
