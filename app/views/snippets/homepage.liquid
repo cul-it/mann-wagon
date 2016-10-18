@@ -40,7 +40,7 @@
 <router-view
 r25-webservice-authorization = '{{ site.metafields.sensitive_data.r25_webservice_authorization }}'
 default-number-of-days = '{{ site.metafields.events_config.default_number_of_days | default: 30 }}'
-homepage-r25-default-number-of-days = '{{ site.metafields.events_config.homepage_r25_default_number_of_days | default: 3 }}'
+homepage-r25-default-number-of-days = '3'
 events-page-path = '{% path_to events-calendar %}'
 event-locations = '{{ event_locations | default: null }}'
 event-types = '{{ event_types | default: null }}'
