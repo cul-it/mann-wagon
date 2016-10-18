@@ -459,9 +459,9 @@ export default {
         events['event_start'] = value.event_instances[0].event_instance.start.substring(0, 10)
         events['event_end_time'] = value.event_instances[0].event_instance.end
         if (value.room_number != '') {
-          events['event_room_name'] = value.room_number.replace(',', '')
+          events['event_room_name'] = value.room_number.trim().replace(',', '')
         } else if (value.location_name != '') {
-          events['event_room_name'] = value.location_name.replace(',', '')
+          events['event_room_name'] = value.location_name.trim().replace(',', '')
         }
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
           if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
@@ -472,7 +472,7 @@ export default {
         // Event type filter list array
         _.forEach(_.map(value, 'event_types'), function (value) {
           _.forEach(_.map(value, 'name'), function (value) {
-            eventType.push(value.replace(',', ''))
+            eventType.push(value.trim().replace(',', ''))
           })
         })
         events['event_type'] = eventType
@@ -516,16 +516,16 @@ export default {
             events['event_start_time'] = moment(new Date(value.formattedStartDateTime)).format()
             events['event_start'] = moment(new Date(value.formattedStartDateTime)).format('YYYY-MM-DD')
             events['event_end_time'] = moment(new Date(value.formattedEndDateTime)).format()
-            events['event_room_name'] = value.location.replace(',', '')
+            events['event_room_name'] = value.location.trim().replace(',', '')
             _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
               if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
                   events['event_room_name'] = curatedEventLocation[0]
                   events['event_room_smartmap_url'] = curatedEventLocation[2]
               }
             })
-            events['event_type'] = [value.description.match('Event type: (.*)')[1].replace(',', '')]
+            events['event_type'] = [value.description.match('Event type: (.*)')[1].trim().replace(',', '')]
             _.forEach(vueInstance.curatedEventTypes, function(curatedEventType, index) {
-              if (curatedEventType[0] === value.description.match('Event type: (.*)')[1].replace(',', '') || _.includes(curatedEventType[1], value.description.match('Event type: (.*)')[1].replace(',', ''))) {
+              if (curatedEventType[0] === value.description.match('Event type: (.*)')[1].trim().replace(',', '') || _.includes(curatedEventType[1], value.description.match('Event type: (.*)')[1].trim().replace(',', ''))) {
                 events['event_type'] = [curatedEventType[0]]
               }
             })
@@ -552,14 +552,19 @@ export default {
         events['event_start_time'] = moment(new Date(value['r25:event'][0]['r25:event_start_dt']['0'])).format()
         events['event_start'] = moment(new Date(value['r25:event'][0]['r25:event_start_dt']['0'])).format('YYYY-MM-DD')
         events['event_end_time'] = moment(new Date(value['r25:event'][0]['r25:event_end_dt']['0'])).format()
-        events['event_room_name'] = value['r25:spaces'][0]['r25:formal_name'][0].replace(',', '')
+        events['event_room_name'] = value['r25:spaces'][0]['r25:formal_name'][0].trim().replace(',', '')
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
           if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
               events['event_room_name'] = curatedEventLocation[0]
               events['event_room_smartmap_url'] = curatedEventLocation[2]
           }
         })
-        events['event_type'] = ['Class/Workshop']
+        events['event_type'] = [value['r25:layout_name'][0].trim().replace(',', '')]
+        _.forEach(vueInstance.curatedEventTypes, function(curatedEventType, index) {
+          if (curatedEventType[0] === value['r25:layout_name'][0].trim().replace(',', '') || _.includes(curatedEventType[1], value['r25:layout_name'][0].trim().replace(',', ''))) {
+            events['event_type'] = [curatedEventType[0]]
+          }
+        })
         // Events array from r25
         r25Events.push(events)
       })
@@ -628,7 +633,7 @@ export default {
         // Event type filter list array
         _.forEach(_.map(data, 'event_types'), function (value) {
           _.forEach(_.map(value, 'name'), function (value) {
-            eventType.push(value.replace(',', ''))
+            eventType.push(value.trim().replace(',', ''))
           })
         })
         _.forEach(eventType, function (type, index, eventType) {
@@ -642,9 +647,9 @@ export default {
         })
         var location = ''
         if (data.room_number !== '') {
-          location = data.room_number.replace(',', '')
+          location = data.room_number.trim().replace(',', '')
         } else if (data.location_name != '') {
-          location = data.location_name.replace(',', '')
+          location = data.location_name.trim().replace(',', '')
         }
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
           if (curatedEventLocation[0] === location || _.includes(curatedEventLocation[1], location)) {
@@ -667,11 +672,17 @@ export default {
       } else if (source === 'Libcal') {
         this.$set('event', data)
       } else if (source === 'R25Local') {
-          var location = data['r25:spaces'][0]['r25:formal_name'][0].replace(',', '')
+          var location = data['r25:spaces'][0]['r25:formal_name'][0].trim().replace(',', '')
           _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
             if (curatedEventLocation[0] === location || _.includes(curatedEventLocation[1], location)) {
                 location = curatedEventLocation[0]
                 location_smartmap_url = curatedEventLocation[2]
+            }
+          })
+          var event_type = data['r25:layout_name'][0].trim().replace(',', '')
+          _.forEach(vueInstance.curatedEventTypes, function(curatedEventType, index) {
+            if (curatedEventType[0] === event_type || _.includes(curatedEventType[1], event_type)) {
+                event_type = curatedEventType[0]
             }
           })
         this.$set('event', {
@@ -680,15 +691,21 @@ export default {
           'event_start_time': moment(new Date(data['r25:event'][0]['r25:event_start_dt']['0'])).format(),
           'event_end_time': moment(new Date(data['r25:event'][0]['r25:event_end_dt']['0'])).format(),
           'event_room_name': location,
-          'event_type': ['Class/Workshop'],
+          'event_type': [event_type],
           'event_room_smartmap_url': location_smartmap_url
         })
       } else if (source === 'R25Web') {
-        var location = data[0]['r25:space_reservation'][0]['r25:formal_name'][0].replace(',', '')
+        var location = data[0]['r25:space_reservation'][0]['r25:formal_name'][0].trim().replace(',', '')
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
           if (curatedEventLocation[0] === location || _.includes(curatedEventLocation[1], location)) {
               location = curatedEventLocation[0]
               location_smartmap_url = curatedEventLocation[2]
+          }
+        })
+        var event_type = data['r25:layout_name'][0].trim().replace(',', '')
+        _.forEach(vueInstance.curatedEventTypes, function(curatedEventType, index) {
+          if (curatedEventType[0] === event_type || _.includes(curatedEventType[1], event_type)) {
+              event_type = curatedEventType[0]
           }
         })
         this.$set('event', {
@@ -697,7 +714,7 @@ export default {
           'event_start_time': moment(new Date(data[0]['r25:event_start_dt'][0])).format(),
           'event_end_time': moment(new Date(data[0]['r25:event_end_dt'][0])).format(),
           'event_room_name': location,
-          'event_type': ['Class/Workshop'],
+          'event_type': [event_type],
           'event_room_smartmap_url': location_smartmap_url
         })
       }
