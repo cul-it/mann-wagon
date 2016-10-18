@@ -10,8 +10,9 @@ module.exports = {
 
   resolve: {
     alias: {
-      jquery: "jquery/src/jquery",
-      suiIcon: "semantic-ui-css/components/icon.min.css"
+      doubleTapToGo: 'doubletaptogo/doubletaptogo.min.js',
+      jquery: 'jquery/src/jquery',
+      suiIcon: 'semantic-ui-css/components/icon.min.css'
     },
     extensions: ['', '.css', '.scss', '.js', '.vue'],
     root: [
@@ -35,7 +36,7 @@ module.exports = {
       spacesCards: './src/js/spaces-cards.js',
       spotlights: './src/js/spotlights.js',
       staffDirectory: './src/js/staff-directory.js',
-      vendor: ['jquery', 'suiIcon']
+      vendor: ['jquery', 'suiIcon', 'doubleTapToGo']
   },
   output: {
     path: path.join(__dirname, 'public', 'javascripts'),
