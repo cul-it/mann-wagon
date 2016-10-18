@@ -31,7 +31,7 @@
 
 .footer__copyright {
   @include susy-breakpoint($scape, $g-scape) {
-    @include span(4);
+    @include span(full nest);
 
     margin-left: 0;
   }
