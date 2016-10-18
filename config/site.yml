@@ -51,11 +51,9 @@ metafields:
   sensitive_data:
     labstats_customer_id:
     libcal_apikey:
-    scrapinghub_apikey:
     r25_webservice_authorization:
   events_config:
     default_number_of_days:
-    homepage_r25_default_number_of_days:
   site_analytics:
     google_analytics_tracking_identifier:
     piwik_analytics_site_identifier:
