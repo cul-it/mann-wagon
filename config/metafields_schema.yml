@@ -63,9 +63,6 @@ sensitive_data:
     libcal_apikey:
       type: string
       hint: Used to authenticate against the LibCal API to retrieve reservation, event & consultation data
-    scrapinghub_apikey:
-      type: string
-      hint: Used to authenticate against the Scrapinghub API to retrieve items scraped from dev site to power temporary site search
     r25_webservice_authorization:
       type: string
       hint: Base 64 encoded username:password, used to authenticate r25 webservice to retrieve B30 classroom events
@@ -75,9 +72,6 @@ events_config:
     default_number_of_days:
       type: integer
       hint: Used to load the events for the number of days in future
-    homepage_r25_default_number_of_days:
-      type: integer
-      hint: Used to load r25 events for the number of days in future, only on homepage
 site_analytics:
   label: Site Analytics
   fields:
