@@ -78,3 +78,12 @@ events_config:
     homepage_r25_default_number_of_days:
       type: integer
       hint: Used to load r25 events for the number of days in future, only on homepage
+site_analytics:
+  label: Site Analytics
+  fields:
+    google_analytics_tracking_identifier:
+      type: string
+      hint: Tracking ID for the property of this site in Google Analytics
+    piwik_analytics_site_identifier:
+      type: string
+      hint: Site ID for this site in Piwik Analytics

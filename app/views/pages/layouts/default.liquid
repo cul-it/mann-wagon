@@ -22,6 +22,8 @@ is_layout: false
 
     {{ 'main.css' | stylesheet_tag }}
     {{ 'vendor.bundle.js' | javascript_tag }}
+    {%comment%}Google and Piwik Analytics{%endcomment%}
+    {% include 'site-analytics' %}
   </head>
 
   <body class="body-{{ page.slug }}">
