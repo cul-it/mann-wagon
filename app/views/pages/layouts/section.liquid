@@ -11,9 +11,7 @@ is_layout: true
   <img class="section-page__photo ui rounded image" src="{{ selected_photo }}">
 
   <div class="section-page__content">
-    {% editable_text "landing_description", hint: "Keep it short and sweet" %}
-      Brief description here.
-    {% endeditable_text %}
+    {% editable_text "landing_description", hint: "Keep it short and sweet" %}{% endeditable_text %}
 
     <ul class="section-page__list">
       {% for child in page.children %}
