@@ -1,6 +1,12 @@
 .staff-directory__book-consultation {
   &.ui.button { // Override semantic ui default
     margin: 1em 0 .5em;
+    background-color: color('consultation');
+    color: color('white');
+
+    &:hover {
+      background-color: color('consultation' ('shade': 10%));
+    }
   }
 }
 
