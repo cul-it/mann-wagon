@@ -10,7 +10,7 @@ Vue.directive('datepicker', {
         vm.localistReservations = vm.libcalReservations = vm.r25Reservations = []
         vm.getCornellEvents('date', date)
         vm.getLibCalEvents('date', date)
-        vm.getR25Events('date', date)
+        // vm.getR25Events('date', date)
         vm.showNoEventsMessage = true
         vm.allEvents = []
         vm.dateSelected = date
