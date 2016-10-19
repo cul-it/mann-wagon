@@ -1,0 +1,12 @@
+---
+title: Project template page
+listed: false
+published: true
+content_type: projects
+---
+{% extends layouts/section %}
+{% block main %}
+{% include 'project-nav' %}
+.page-content
+  {{ project.description }}
+{% endblock %}

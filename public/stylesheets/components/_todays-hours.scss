@@ -1,0 +1,59 @@
+.todays-hours {
+  padding: .53em .5em;
+  font-size: modular-scale(-1);
+  line-height: modular-scale(-1);
+  background: color('alabaster');
+  @include span(last 1);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(last 2);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    padding: .45em 0 .15em 5%;
+    font-size: modular-scale(0);
+    border-top: solid 1px color('alabaster' ('shade': 5%));
+    border-bottom: solid 4px color('alabaster' ('tint': 30%));
+    border-right: solid 2px color('alabaster' ('shade': 5%));
+
+
+    @include span(3 wide no-gutter);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    padding: .5em 0 .2em 8%;
+    font-size: modular-scale(1);
+
+    @include span(5 wide no-gutter);
+  }
+}
+
+.todays-hours__mann {
+  margin-bottom: .3em;
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(2 of 3);
+  }
+}
+
+.todays-hours__lobby,
+.todays-hours__more {
+  margin-left: .3em;
+  font-size: modular-scale(-2);
+}
+
+.todays-hours__now {
+  font-weight: bold;
+
+  &.is-open {
+    @include badge(color('open'));
+  }
+
+  &.is-closed {
+    @include badge(color('closed'));
+  }
+}
+
+.todays-hours__until {
+  font-size: modular-scale(-1);
+}

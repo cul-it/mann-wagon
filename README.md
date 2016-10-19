@@ -1,18 +1,9 @@
-<a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
-
 # mann-wagon
-[Locomotive](http://locomotivecms.com) site for Mann Library
+[LocomotiveCMS](http://locomotivecms.com) Wagon site for Mann Library
 
 ### Overview
 
-[Wagon](http://github.com/locomotivecms/wagon) is the command line interface for Locomotive and is where developers will spend most of their time when working locally on a Locomotive site. For a more thorough intro to the Locomotive approach and workflow, please review the [mann-locomotive README](http://github.com/cul-it/mann-locomotive#overview). We'll be here when you get back.
-
-### Prerequisites
-
-* ruby
-* bundler
-* node
-* npm
+[Wagon](http://github.com/locomotivecms/wagon) is the command line interface for LocomotiveCMS and is where developers will spend most of their time when working on a LocomotiveCMS site. For a more thorough intro to the LocomotiveCMS approach and workflow, please review the [mann-locomotive README](http://github.com/cul-it/mann-locomotive#overview). We'll be here when you get back.
 
 ### QuickStart
 
@@ -29,28 +20,18 @@ $ cd <clone>
 $ bundle install
 ```
 
-1. Install modules
-   ```bash
-$ npm install
-```
-
 1. Serve the site
-
-  > proxied through [Browsersync](https://www.browsersync.io) for live-reload goodness -- watching SCSS, JS, templates
-
    ```bash
-$ npm start
+$ bundle exec wagon serve -v
 ```
 
-1. Visit the Mann website at [http://localhost:3000](http://localhost:3000)
-
-  > default browser should automatically launch and request this URL thanks to Browsersync
+1. Visit the Mann website at [http://localhost:3333](http://localhost:3333)
 
 ### Syncing/Deploying
 
-We'll be using the sample development environment in this example.
+We'll be using the dev Engine at http://mannloco-dev.library.cornell.edu as an example.
 
-  > See official Locomotive documentation for a [guide to installing engine](https://locomotive-v3.readme.io/docs/getting-started-with-locomotive) and more details on available options for [`sync`](https://locomotive-v3.readme.io/docs/synchronize-content) and [`deploy`](https://locomotive-v3.readme.io/docs/deploy) commands.
+  > See official [Locomotive documentation](https://locomotive-v3.readme.io/docs) for more details on available options for [`sync`](https://locomotive-v3.readme.io/docs/synchronize-content) and [`deploy`](https://locomotive-v3.readme.io/docs/deploy) commands.
 
 ###### Configure environments in `config/deploy.yml`
 
@@ -60,7 +41,9 @@ We'll be using the sample development environment in this example.
 $ cp config/deploy.yml.example config/deploy.yml
 ```
 
-1. Edit `host`, `handle`, `email` and `api_key` as applicable for your development environment
+1. Edit `email` and `api_key` for the development environment
+
+  > **Don't have an api_key?** What about an account on the remote Engine? [Request one](http://mannloco-dev.library.cornell.edu/locomotive/sign_up) and then you'll find your api-key under [account settings](http://mannloco-dev.library.cornell.edu/locomotive/my_account/edit?_location=%2Flocomotive%2Fsites#api).
 
 ###### Sync from a remote Engine
 

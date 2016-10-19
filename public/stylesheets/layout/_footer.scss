@@ -1,0 +1,93 @@
+.footer {
+  margin-top: 1em;
+  padding: 2em .3em;
+  color: color('aluminum');
+  background: color('vulcan');
+
+  @include span(full);
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    padding: 2em 3%;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    padding: 2em 7%;
+  }
+}
+
+.footer__panel {
+  margin-bottom: 1em;
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(2);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(4);
+  }
+}
+
+.footer__about-us {
+
+}
+
+.footer__featured-plus-haiku {
+
+}
+
+.footer__contact-us {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(last 2);
+  }
+}
+
+.footer__bottomline {
+  @include span(full);
+}
+
+.footer__heading {
+  margin-bottom: .2em;
+  color: color('amulet');
+}
+
+.footer__subheading {
+  margin-bottom: .1em;
+  font-size: modular-scale(0);
+  color: color('amulet');
+}
+
+.footer__mission,
+.footer__haiku {
+  margin-bottom: 0;
+}
+
+.footer__floorplans,
+.footer__address-line {
+  font-size: modular-scale(-1);
+  line-height: modular-scale(1);
+}
+
+.footer__address-line {
+  display: block;
+}
+
+.footer__social {
+  margin-bottom: 1em;
+
+  @include susy-breakpoint($scape, $g-scape) {
+    text-align: right;
+    @include span(last 2);
+  }
+}
+
+.footer__social-icon {
+  color: color('aluminum');
+}
+
+.footer__copyright {
+  line-height: modular-scale(1);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(4);
+  }
+}

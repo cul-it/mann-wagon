@@ -5,8 +5,23 @@ published: true
 listed: true
 position: 1
 ---
-{% extends 'layouts/default' %}
+{% extends layouts/default %}
 
-{% block 'main' %}
-  {% include 'spaces-finder' %}
+{% block main %}
+
+<div class="ui three doubling cards">
+  {% for type in contents.spaces_types %}
+    <a class="ui card" href="{% path_to type %}">
+      <div class="image">
+        <img src="{{ type.photo.url | resize: '700x475#' }}" alt="photo of {{ type.name }}">
+      </div>
+      <div class="content">
+        <h3 class="space-finder__category">{{ type.name }}</h3>
+      </div>
+    </a>
+  {% endfor %}
+</div>
+
+{% include 'section-nav' %}
+
 {% endblock %}

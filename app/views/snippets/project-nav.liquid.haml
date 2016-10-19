@@ -1,0 +1,10 @@
+%nav.sections
+  {% if page.depth >= 2 %}
+  %h4.parent-section {{ page.parent.title }}
+  {% else %}
+  %h4.parent-section {{ page.title }}
+  {% endif %}
+  %ul<
+    {% for project in contents.projects %}
+    %li <a href="{% path_to project %}">{{ project.title }}</a>
+    {% endfor %}
