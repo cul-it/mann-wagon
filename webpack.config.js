@@ -31,6 +31,7 @@ module.exports = {
       instructionRequest: './src/js/form-instruction-request.js',
       main: './src/scss/main.scss',
       modalLibcal: './src/js/modal-libcal.js',
+      navSearch: './src/js/nav-search.js',
       softwareList: './vue/software-list/software-list.js',
       softwareRequest: './src/js/form-software-request.js',
       spacesCards: './src/js/spaces-cards.js',
