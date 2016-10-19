@@ -16,6 +16,10 @@
   &--unavailable {
     color: darken(color('error'), 50%);
   }
+
+  &--overdue {
+    color: darken(color('alert'), 50%);
+  }
 }
 
 .space__features {
