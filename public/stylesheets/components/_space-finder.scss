@@ -1,0 +1,87 @@
+.space-finder__category {
+  font-family: $base-font-family;
+  font-size: modular-scale(0);
+  font-weight: 700;
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    font-size: modular-scale(1);
+  }
+}
+
+.space-finder__name {
+  font-family: $base-font-family;
+  font-weight: 700;
+}
+
+.space-finder__name-link {
+  margin-bottom: 0;
+  color: color('font-base');
+}
+
+.space-finder__study-spaces {
+  padding: 0 1em 1em 1em;
+  background: color('alabaster');
+  border-radius: .5em;
+}
+
+.space-finder__subheading {
+  margin: 2em 0 .5em 0;
+  padding-top: .5em;
+  font-family: $base-font-family;
+  font-size: modular-scale(2);
+  font-weight: 700;
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    margin: 2em 0 0 0;
+  }
+}
+
+.space-finder__cards {
+  &.ui.cards { // Override semantic ui default
+    margin-top: 0;
+
+    &~.ui.cards {
+      margin-top: 0;
+    }
+  }
+}
+
+.space-finder__quiet {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.space-finder__reserve {
+  &.ui.button { // Override semantic ui default
+    margin-top: .2em;
+    color: color('white');
+    background: color('action');
+
+    &:hover {
+      background: color('action' ('shade': 5%));
+    }
+  }
+}
+
+.space-finder__checkout {
+  display: block;
+  margin-top: .2em;
+  line-height: 1.3em;
+}
+
+.space-finder__availability {
+  &--available {
+    color: darken(color('success'), 50%);
+  }
+
+  &--unavailable {
+    color: darken(color('error'), 50%);
+  }
+}
+
+.space-finder__card-meta {
+  .ui.cards>.card & { // Override semantic ui default
+    color: color('medium-gray');
+  }
+}

@@ -1,0 +1,30 @@
+// All temporary hacks here to help ensure they don't stick around
+
+// Search select via semantic-ui CDN (components/search)
+.search__select {
+  display: none !important;
+  font-size: modular-scale(0);
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    display: inline-block !important;
+  }
+}
+
+.search__button {
+  height: 52px; // Match height of cu-banner
+  color: color('search-button') !important;
+  background-color: color('search-banner');
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    display: none;
+  }
+}
+
+// Pointer cursor fo all links on events page
+#events-container {
+  a {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

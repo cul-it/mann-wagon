@@ -1,0 +1,7 @@
+.featured__side-image {
+  @include span(full);
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(last 5);
+  }
+}

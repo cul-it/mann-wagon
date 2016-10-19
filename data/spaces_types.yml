@@ -1,70 +1,58 @@
-- Study Spaces:
-    _slug: study
-    name: Study Spaces
-    photo: "/samples/content_entries/2nd_Floor_Main_Area_people.jpg"
-    description: Discover the wide variety of study spaces at Mann Library.
+- CIT:
+    _slug: cit
+    name: CIT
+    description: CIT Labs at Mann
     spaces:
+    - mac-lab
+- Classroom:
+    _slug: classroom
+    name: Classroom
+    description: All classrooms
+    spaces:
+    - b30a
+    - stone-classroom
+    - mac-lab
+- Conference:
+    _slug: conference
+    name: Conference
+    description: Conference and seminar rooms
+    spaces:
+    - mann-102
+- Group:
+    _slug: group
+    name: Group
+    description: Group study rooms
+    spaces:
+    - bissett-collaborative-center
+- Other:
+    _slug: other
+    name: Other
+    description: Everything else
+    spaces:
+    - lobby
+- Quiet:
+    _slug: quiet
+    name: Quiet
+    description: Quiet study spaces
+    spaces:
+    - 3rd-floor
+- Reservable:
+    _slug: reservable
+    name: Reservable
+    description: All reservable spaces
+    spaces:
+    - hive
+    - stone-classroom
+    - mann-102
+    - lobby
+    - bissett-workstations
+- Study:
+    _slug: study
+    name: Study
+    description: Study spaces and rooms
+    spaces:
+    - hive
+    - grad-rooms
     - 3rd-floor
     - bissett-collaborative-center
     - bissett-workstations
-    - grad-rooms
-    - hive
-    - group-study-rooms
-    - one-button-studio
-    - interview-room
-    - follet-information-commons
-    - individual-study-rooms
-    - graduate-study-area
-    - large-group-study-rooms
-    - lobby
-- Conference & Seminar Rooms:
-    _slug: conference
-    name: Conference & Seminar Rooms
-    photo: "/samples/content_entries/Mann_100.JPG"
-    description: Multiple reservable conference rooms are available for faculty, staff,
-      & student academic use.
-    spaces:
-    - mann-102
-    - stern-seminar-room
-    - mann-100
-- Classrooms:
-    _slug: classrooms
-    name: Classrooms
-    photo: "/samples/content_entries/Stone_Classroom.JPG"
-    description: Mann Library houses multiple reservable classrooms for instruction
-      and workshops.
-    spaces:
-    - b30a
-    - mac-lab
-    - stone-classroom
-    - cit-lab
-    - b30b
-- Lobby & Cafe:
-    _slug: lobby-cafe
-    name: Lobby & Cafe
-    photo: "/samples/content_entries/Lobby.jpg"
-    description: Reserve the lobby to promote your event or research.
-    spaces:
-    - manndible
-    - lobby-table-1
-- Gallery & Exhibit Spaces:
-    _slug: gallery-exhibit
-    name: Gallery & Exhibit Spaces
-    photo: "/samples/content_entries/GalleryWithNewFurniture.apr2015.jpg"
-    description: Our gallery and exhibit spaces celebrate the sciences, arts, and
-      the community at Cornell.
-    spaces:
-    - gallery
-- Computing Facilities:
-    _slug: computing-facilities
-    name: Computing Facilities
-    photo: "/samples/content_entries/Stone_Computing_Area.jpg"
-    description: Our large public computing area offers dual-screen monitors and a
-      wide variety of software.
-    spaces:
-    - cit-lab
-    - stone-computing-center
-    - b30a
-    - b30b
-    - mac-lab
-    - stone-classroom

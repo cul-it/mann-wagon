@@ -1,9 +1,0 @@
-<div class="news-story">
-  <strong class="news-story__date">
-    {{ news.date | date: '%a %b %e, %Y' }}
-  </strong>
-
-  <img class="news-story__image ui rounded floated {{ news.image_align }} image" src="{{ news.image.url | resize: '400x>' }}">
-
-  {{ news.body }}
-</div>

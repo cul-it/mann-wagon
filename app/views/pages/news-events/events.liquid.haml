@@ -1,0 +1,103 @@
+---
+title: Events
+slug: events
+handle: events
+position: 0
+listed: true
+published: true
+is_layout: false
+---
+{% extends 'layouts/default' %}
+
+{% block main %}
+#events-container{"booked-username" => "{{site.metafields.sensitive_data.booked_username}}", "booked-password" => "{{site.metafields.sensitive_data.booked_password}}"}
+  .events
+    .event-feature
+      %img.img-responsive.img-faded{:alt => "Abstract placeholder", :src => "{{ 'events/abstract-placeholder.jpg' | theme_image_url }}"}/
+      .btn-group.feature{"aria-label" => "Featured Events", :role => "group"}
+        %button.btn.btn-default{:type => "button"}
+          %i.fa.fa-caret-left
+        %button.btn.btn-default{:type => "button"} 1
+        %button.btn.btn-default{:type => "button"} 2
+        %button.btn.btn-default{:type => "button"} 3
+        %button.btn.btn-default{:type => "button"}
+          %i.fa.fa-caret-right
+
+      / Tab panes
+      .tab-content
+        %div{"v-show" => "showNoEventsMessage"} loading...
+
+        .events__per-day{"v-for" => "(date, events) in allEvents | filterBy searchText | roomFilter room | eventTypeFilter eventType | limitListFilter limitList | groupBy 'event_start'"}
+          %h2.events__date-heading
+            ((date | momentDate))
+            %span.events__date.badge.badge-alert{"v-if" => "date | momentDateText"} ((date | momentDateText))
+          #events
+            .event{"v-for" => "event in events"}
+              %h3.event__title (((event.event_title)))
+
+              .event__details
+                %span.time{"v-if" => "event.event_end_time"}
+                  %i.fa.fa-clock-o
+                  ((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))
+                %span.time{"v-else" => ""}
+                  %i.fa.fa-clock-o
+                  ((event.event_start_time | momentTime ))
+
+                %span.location.pull-right
+                  %i.fa.fa-map-marker>
+                  ((event.event_room_name))
+
+              %description{"v-bind:description-text" => "(( event.event_description ))", "word-limit" => 20}
+
+              %span.event__type.badge-notice{"v-for" => "type in event.event_type"}
+                ((type))
+        %div{"v-show" => "!showNoEventsMessage", "v-if" => "filteredEvents.length == 0"} No events for selection...
+
+        %h6
+          %a{"v-on:click" => "loadMoreEvents()", "v-if" => "allEvents.length > limitList"} ((loadMoreText))
+  .events-filters
+    %a{:href => "#"}
+      %button Reserve a space for your event!
+
+    -# jquery ui datepicker
+    #datepicker{"v-datepicker" => ""}
+
+    %div.events-filters__selected-date
+      ((dateSelected | momentDate))
+      %a.fa.fa-times{"v-on:click" => "removeSelectedDate()", "v-if" => "dateSelected"}
+
+    %a{"data-filter" => ".event", "v-on:click" => "clearAllFilters()"}
+      %button.ui.basic.button
+        %i.fa.fa-times
+        Clear All Filters
+
+    %h6.events-filters__type Filter Events
+    %input.form-control{:placeholder => "Filter events", :type => "text", "v-model" => "searchText"}
+    %a.fa.fa-times{"v-on:click" => "removeSearchFilter()", "v-if" => "searchText"}
+
+    %h6.events-filters__type Type
+    %ul{"data-filter-group" => "type"}
+      %li{"v-for" => "event_type of allEventTypes | orderBy 'eventType'"}
+        %a.filter{"v-bind:class" => "{ 'selected-filter': event_type == eventSelected }", "v-on:click" => "setEventTypeFilter(event_type)"} ((event_type))
+        %a.fa.fa-times{"v-on:click" => "removeEventTypeFilter()", "v-if" => "event_type == eventSelected"}
+
+    %h6.events-filters__type  Space/Room
+    %ul{"data-filter-group" => "venue"}
+      %li{"v-for" => "room of allRoomNames | orderBy 'room'"}
+        / event to set room filter
+        %a.filter{"v-bind:class" => "{ 'selected-filter': room == roomSelected }", "v-on:click" => "setRoomFilter(room)"} ((room))
+        %a.fa.fa-times{"v-on:click" => "removeRoomFilter()", "v-if" => "room == roomSelected"}
+
+
+{% include 'section-nav' %}
+{{ 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js' | javascript_tag }}
+{{ 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.11.1/lodash.js' | javascript_tag }}
+{{ 'https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.1/js.cookie.js' | javascript_tag }}
+{{ 'events-calendar.js' | javascript_tag }}
+{{ 'vendor/vue/vue.js' | javascript_tag }}
+{{ 'vendor/vue-resource/vue-resource.js' | javascript_tag }}
+
+{{ 'events-calendar-directive.js' | javascript_tag }}
+{{ 'events.js' | javascript_tag }}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+$badge-font-size: modular-scale(-1) !default;
+
+@mixin badge($color: color('medium-gray')) {
+  background-color: $color;
+  border-radius: $badge-font-size * 5;
+  color: darken($color, 60%);
+  display: inline-block;
+  font-size: $badge-font-size;
+  line-height: modular-scale(0);
+  padding: 0.4em 1.2em;
+}
+
+.badge {
+  @include badge;
+}
+
+.badge-alert {
+  @include badge(color('alert'));
+}
+
+.badge-danger {
+  @include badge(color('danger'));
+}
+
+.badge-error {
+  @include badge(color('error'));
+}
+
+.badge-notice {
+  @include badge(color('notice'));
+}
+
+.badge-success {
+  @include badge(color('success'));
+}

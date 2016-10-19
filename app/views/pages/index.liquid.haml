@@ -1,0 +1,151 @@
+---
+title: Home
+handle: home
+published: true
+listed: false
+---
+{% extends 'layouts/default' %}
+
+{% block main %}
+%button.course-reserves-link Course Reserves
+
+%section.guides
+  %h4.guides__heading.lead-in Research Guides
+
+  %ul.guides__libguides
+    %span.guides__libguides-grp1
+      %li
+        %a{href: "http://guides.library.cornell.edu/srch.php?q=agriculture+economics+and+business&t=0"} Agriculture Economics &amp; Business
+      %li
+        %a{href: "http://guides.library.cornell.edu/srch.php?q=food+systems+and+agriculture&t="} Food Systems &amp; Agriculture
+      %li
+        %a{href: "http://guides.library.cornell.edu/srch.php?q=health+science+and+policy&t=0"} Health Science &amp; Policy
+      %li
+        %a{href: "http://guides.library.cornell.edu/srch.php?q=environmental+sciences&t=0"} Environmental Sciences
+    %span.guides__libguides-grp2
+      %li
+        %a{href: "http://guides.library.cornell.edu/srch.php?q=applied+social+science&guide_id=154284"} Applied Social Sciences
+      %li
+        %a{href: "http://guides.library.cornell.edu/srch.php?q=life+and+biological+sciences&t=0"} Life &amp; Biological Sciences
+      %li
+        %a{href: "http://guides.library.cornell.edu/srch.php?q=environmental+and+fiber+design&t=0"} Environmental &amp; Fiber Design
+  %a.guides__all-guides.more-link{href: "http://guides.library.cornell.edu"}
+    All Guides
+    %i.fa.fa-angle-double-right
+
+%section.featured__side-image
+  %img.img-responsive.img-faded{:alt => "Abstract placeholder", :src => "{{ 'events/abstract-placeholder.jpg' | theme_image_url }}"}/
+
+%section.available-now
+  %h4.available-now__heading.lead-in
+    Available Now
+    %span.available-now__datetime {{ now | date: '%-I:%M %p' }}
+
+  .available-now__grp.available-now__study
+    {% include 'avail-now-study' %}
+
+  .available-now__grp.available-now__consultation
+    %h5.available-now__subheading Consultation
+
+    %ul
+      %li.available-now__status--available
+        %i.fa.fa-fw.fa-check-square
+        Reference
+      %li.available-now__status--unavailable
+        %i.fa.fa-fw.fa-minus-square
+        GIS
+      %li.available-now__status--available
+        %i.fa.fa-fw.fa-check-square
+        CISER
+      %li.available-now__status--available
+        %i.fa.fa-fw.fa-check-square
+        Knight Writing Institute
+
+  .available-now__grp.available-now__computers
+    %h5.available-now__subheading Computers
+
+    %ul
+      %li.available-now__status--unavailable
+        %a.available-now__link{href: "{% path_to desktops %}"}
+          %i.fa.fa-fw.fa-minus-square
+          Desktops
+          %span.badge.badge-error 0
+      %li.available-now__status--available
+        %a.available-now__link{href: "{% path_to laptops %}"}
+          %i.fa.fa-fw.fa-check-square
+          Laptops
+          %span.badge.badge-success 27
+
+#events-container{"booked-username" => "{{site.metafields.sensitive_data.booked_username}}", "booked-password" => "{{site.metafields.sensitive_data.booked_password}}"}
+  %section.events-home
+    %h4.events-home__heading.lead-in
+      %a.events-home__heading-link{href: "{% path_to events %}"}
+        Events &amp; Exhibits
+
+    %div{"v-show" => "showNoEventsMessage"} loading...
+
+    %template{"v-for" => "(date, events) in allEvents | limitListFilter 3 | groupBy 'event_start'"}
+
+      %h5.events-home__day ((date | momentHomeDateText))
+
+      %ul.events-home__list
+
+        %li.events-home__event{"v-for" => "event in events"}
+          %h6.events-home__title
+            %a{href: "javascript:void(0);"} ((event.event_title))
+
+          %dl
+            %dt.events-home__label time
+            %dd.events-home__time{"v-if" => "event.event_end_time"} ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
+            %dd.events-home__time{"v-else" => ""} ((event.event_start_time | momentHomeTime ))
+
+
+            %dt.events-home__label location
+            %dd.events-home__location ((event.event_room_name))
+
+
+
+    %a.more-link{href: "{% path_to events %}"}
+      All Events
+      %i.fa.fa-angle-double-right
+
+  %section.events-home.workshops
+    %h4.lead-in
+      %a.events-home__heading-link{href: "{% path_to events %}"}
+        Workshops &amp; Classes
+
+    %div{"v-show" => "showNoEventsMessage"} loading...
+
+    %template{"v-for" => "(date, events) in allEvents | eventTypeFilter 'Class/ Workshop' | limitListFilter 3 | groupBy 'event_start'"}
+
+      %h5.events-home__day ((date | momentHomeDateText))
+
+      %ul.events-home__list
+
+        %li.events-home__event{"v-for" => "event in events"}
+          %h6.events-home__title
+            %a{href: "javascript:void(0);"} ((event.event_title))
+
+          %dl
+            %dt.events-home__label time
+            %dd.events-home__time{"v-if" => "event.event_end_time"} ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
+            %dd.events-home__time{"v-else" => ""} ((event.event_start_time | momentHomeTime ))
+
+
+            %dt.events-home__label location
+            %dd.events-home__location ((event.event_room_name))
+
+
+    %a.more-link{href: "{% path_to events %}", "v-on:click" => "setFilterCookie()"}
+      All Workshops &amp; Classes
+      %i.fa.fa-angle-double-right
+
+{{ 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js' | javascript_tag }}
+{{ 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.11.1/lodash.js' | javascript_tag }}
+{{ 'https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.1/js.cookie.js' | javascript_tag }}
+{{ 'vendor/vue/vue.js' | javascript_tag }}
+{{ 'vendor/vue-resource/vue-resource.js' | javascript_tag }}
+
+{{ 'events.js' | javascript_tag }}
+
+{% endblock %}
