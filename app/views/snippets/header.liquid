@@ -28,10 +28,19 @@
     <i class="fa fa-search"></i>
   </button>
 
+  <script>
+    $('.search__button').on('click', function() {
+      $('.search__term').focus();
+      $('body').toggleClass('search--engaged');
+      $('.search__input').toggleClass('left icon');
+      $(this).toggleClass('search__button--active');
+    });
+  </script>
+
   <form action="{% path_to search %}" class="search" role="search">
-    <div class="ui left icon fluid input">
-      <i class="search icon"></i>
-      <input class="search__term" name="q" placeholder="Search this site" type="text"></input>
+    <div class="search__input ui left icon fluid input">
+      <i class="search__input-icon search icon"></i>
+      <input class="search__term" name="q" placeholder="Search this site" type="text">
     </div>
   </form>
 

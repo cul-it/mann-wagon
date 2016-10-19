@@ -5,8 +5,10 @@
     @include span(3 at 6);
 
     display: inline-block;
+    top: 32px;
     right: $pad-content-tablet;
     margin-right: 0;
+    font-size: modular-scale(-1);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
@@ -16,12 +18,29 @@
     margin-right: 0;
   }
 
+  @include susy-breakpoint(max-width ($tablet - .05), $g-tablet) {
+    top: -52px;
+    right: 0;
+    margin: 0;
+    background-color: color('cornell-gray');
+    width: 100%;
+    height: 52px;
+  }
+
   // Accessed/toggled via search icon cu-banner at mobile
-  display: none;
   position: absolute;
-  top: 32px;
-  right: 0;
-  font-size: modular-scale(-1);
+}
+
+.search--engaged {
+  transform: translateY(52px);
+}
+
+.search__input-icon {
+  @include susy-breakpoint(max-width ($tablet - .05), $g-tablet) {
+    &.icon {
+      display: none;
+    }
+  }
 }
 
 .search__term {
@@ -31,6 +50,26 @@
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     width: span(4 of 5);
+  }
+
+  @include susy-breakpoint(max-width ($tablet - .05), $g-tablet) {
+    .ui.input & { // Override semantic ui default
+      background-color: transparent;
+      height: 52px;
+      color: color('white');
+
+      &:active,
+      &:focus {
+        border: 0;
+        background-color: inherit;
+        color: color('white');
+      }
+
+      &::placeholder,
+      &:focus::placeholder {
+        color: inherit;
+      }
+    }
   }
 }
 
@@ -48,4 +87,17 @@
   width: $header-height;
   height: $header-height; // Match height of cu-banner
   color: color('accessory-nav-btn');
+
+  &:active,
+  &:focus {
+    background: inherit;
+    color: inherit;
+  }
+
+  &--active,
+  &--active:focus,
+  &:hover {
+    background: color('cornell-gray');
+    color: color('white');
+  }
 }
