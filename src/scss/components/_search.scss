@@ -32,7 +32,9 @@
 }
 
 .search--engaged {
-  transform: translateY(52px);
+  @include susy-breakpoint(max-width ($tablet - .05), $g-tablet) {
+    transform: translateY(52px);
+  }
 }
 
 .search__input-icon {
