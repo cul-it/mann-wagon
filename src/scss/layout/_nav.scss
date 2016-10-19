@@ -1,21 +1,16 @@
 .accessory-nav {
   @include susy-breakpoint($tablet, $g-tablet) {
-    position: relative;
     float: right;
-    margin-top: .8em;
+    margin-top: 1em;
     padding-right: $pad-content-tablet;
     font-size: modular-scale(-2);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    margin-top: 1em;
+    margin-top: 1.2em;
     padding-right: $pad-content-lapdesk;
     font-size: modular-scale(-1);
   }
-
-  position: absolute;
-  top: 3px;
-  right: 0;
 }
 
 .accessory-nav__button {
@@ -23,12 +18,28 @@
     display: none;
   }
 
+  position: absolute;
+  top: 3px;
+  right: 0;
   border-radius: 0;
   background-color: color('cu-banner');
   padding: 0;
   width: $header-height;
   height: $header-height; // Match height of cu-banner
   color: color('accessory-nav-btn');
+
+  &:active,
+  &:focus {
+    background: inherit;
+    color: inherit;
+  }
+
+  &--active,
+  &--active:focus,
+  &:hover {
+    background: color('accessory-nav-bg');
+    color: color('white');
+  }
 }
 
 .accessory-nav__icon {
@@ -77,37 +88,75 @@
   }
 
   // Accessed/toggled via hamburger menu for mobile
-  display: none;
-  position: absolute;
-  top: 52px;
-  right: 0;
-  z-index: $above-content;
-  background: color('accessory-nav');
-  padding: .5em;
-  width: 10em;
+  @include susy-breakpoint(max-width ($tablet - .05), $g-tablet) {
+    display: none;
+    position: absolute;
+    top: 88px;
+    right: 0;
+    z-index: $above-content;
+    margin: 0;
+    background-color: color('accessory-nav-bg');
+    padding: .5em;
+    width: 100%;
+
+    &--hamburglarin {
+      display: block;
+    }
+  }
+
   text-align: left;
 }
 
 .my-account {
   @include susy-breakpoint($tablet, $g-tablet) {
     display: inline-block;
+    top: 6px;
     right: $pad-content-tablet + .4;
+    line-height: 1.2em;
+    font-size: modular-scale(-1);
   }
 
   @include susy-breakpoint($lapdesk, $g-lapdesk) {
     right: $pad-content-lapdesk + .4;
   }
 
-  display: none; // @todo Add to hamburger menu for mobile breakpoints
+  // Accessed/toggled via hamburger menu for mobile
+  @include susy-breakpoint(max-width ($tablet - .05), $g-tablet) {
+    display: none;
+    top: 48px;
+    right: 0;
+    z-index: $above-content;
+    margin: 0;
+    background-color: color('accessory-nav-bg');
+    padding: .5em;
+    width: 100%;
+
+    &--hamburglarin {
+      display: block;
+    }
+  }
+
   position: absolute;
-  top: 6px;
-  right: 0;
-  line-height: 1.2em;
-  font-size: modular-scale(-1);
+}
+
+.my-account__icon {
+  @include susy-breakpoint(max-width ($tablet - .05), $g-tablet) {
+    color: color('accessory-nav-icon');
+  }
 }
 
 .my-account__link {
-  color: color('my-account');
+  @include susy-breakpoint($tablet, $g-tablet) {
+    color: color('my-account');
+  }
+
+  @include susy-breakpoint(max-width ($tablet - .05), $g-tablet) {
+    color: color('my-account-mobile');
+
+    &:hover {
+      color: color('accessory-nav-hover');
+    }
+  }
 }
 
 .site-nav {
