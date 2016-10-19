@@ -251,7 +251,9 @@ export default {
       if (!this.eventSources.updatedCornellEvents && !this.eventSources.libcalEvent && !this.eventSources.r25Events) {
         this.getCornellEvents('default')
         this.getLibCalEvents('default')
-        this.getR25Events('default')
+        // Disable r25Events
+          // this.getR25Events('default')
+          this.$set('eventSources.updatedR25Events', true)
         // events list
         this.$set('eventsList', true)
         if (this.eventTypes && this.eventLocations) {
