@@ -9,7 +9,7 @@
 {% if mannlib_hours.status_1707 == 'Open' %}
   {% assign labstats_url = 'https://online.labstats.com/api/public/GetPublicApiData/1001' %}
 
-  {% consume mann_desktops from labstats_url, header_auth: site.metafields.sensitive_data.labstats_customer_id %}
+  {% consume mann_desktops from labstats_url, header_auth: site.metafields.sensitive_data.labstats_customer_id, expires_in: 60 %}
     {% for location in mann_desktops.groups %}
       {% comment %} Waiting on Gabriel to add LabStats on the rest of the PCs & Macs in the farm, McManus, etc {% endcomment %}
       {% case location.label %}
