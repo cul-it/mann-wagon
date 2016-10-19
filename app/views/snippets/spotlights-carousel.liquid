@@ -1,0 +1,38 @@
+{% comment %} Active spotlights {% endcomment %}
+{% with_scope fallback: false, end_date.gte: now, start_date.lte: now %}
+  {% assign active_spotlights = contents.spotlights.all %}
+{% endwith_scope %}
+
+{% comment %} Fallback spotlights {% endcomment %}
+{% with_scope fallback: true %}
+  {% assign fallback_spotlights = contents.spotlights.all %}
+{% endwith_scope %}
+
+{% assign counter = 0 %}
+
+{% comment %} Build div containing images for active and/or fallback spotlights {% endcomment %}
+{% capture spotlight_images %}
+  <div class="spotlights__images">
+    {% comment %} Limit active spotlights to 5 max {% endcomment %}
+    {% include 'spotlights-looper' with spotlights: active_spotlights, max: 5 %}
+
+    {% comment %} If less than 3 active spotlights, supplement with fallback up to 3 total {% endcomment %}
+    {% if counter < 3 %}
+      {% include 'spotlights-looper' with spotlights: fallback_spotlights, max: 3 %}
+    {% endif %}
+  </div>
+{% endcapture %}
+
+{% editable_model spotlights, hint: 'Manage all spotlights' %}
+  <section class="spotlights">
+    <div class="carousel__contain">
+      <span class="carousel__nav carousel__nav--prev js-spotlights-prev"><i class="fa fa-angle-left fa-inverse fa-5x"></i></span>
+
+      {{ spotlight_images }}
+
+      <span class="carousel__nav carousel__nav--next js-spotlights-next"><i class="fa fa-angle-right fa-inverse fa-5x"></i></span>
+
+      {{ 'spotlights.bundle.js' | javascript_tag }}
+    </div>
+  </section>
+{% endeditable_model %}

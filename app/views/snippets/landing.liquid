@@ -1,0 +1,14 @@
+{% comment %} Snippet that builds array of sub-pages for spaces {% endcomment %}
+{% include 'spaces-subnav' %}
+
+<div class="landing">
+  {% for child in page.children %}
+    {% if child.listed? and child.published? %}
+      <div class="landing__section">
+        <img class="ui rounded image" src="{{ child.editable_elements.main.section_photo | default: '/samples/placeholder.jpg' | resize: '400x400#' }}" alt="Section photo">
+
+        {% include 'nav-builder' with component: 'landing' %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>

@@ -81,6 +81,13 @@ fields:
     localized: false
     # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
 
+- note: # The lowercase, underscored name of the field
+    label: Note # Human readable name of the field
+    type: string
+    required: false
+    hint: This should be left empty unless there is something important that should be displayed on the card. KEEP IT BRIEF! (i.e. "For library staff use only" for Rm 160)
+    localized: false
+
 - photo: # The lowercase, underscored name of the field
     label: Photo # Human readable name of the field
     type: file
@@ -106,6 +113,13 @@ fields:
     localized: false
     # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
 
+- reservations_required_in_advance: # The lowercase, underscored name of the field
+    label: Reservations required in advance? # Human readable name of the field
+    type: boolean
+    required: false
+    hint: This field should be set to "Yes" for rooms that require reservations in advance
+    localized: false
+
 - reservation_system:
     label: Reservation System
     hint: If reservable, where are reservations for this space managed?
@@ -116,7 +130,21 @@ fields:
     label: Reservation System ID # Human readable name of the field
     type: integer
     required: false
-    hint: If reservable, provide space ID in applicable reservation system
+    hint: If reservable, provide space ID in applicable reservation system. For LibCal, use the group ID!
+    localized: false
+
+- reserve_sys_room_ids: # The lowercase, underscored name of the field
+    label: LibCal Room IDs # Human readable name of the field
+    type: string
+    required: false
+    hint: If a LibCal space, provide room ID(s) for each room within the group specified above. Separate multiple room IDs with a comma (no spaces).
+    localized: false
+
+- libcal_public_page_url: # The lowercase, underscored name of the field
+    label: LibCal Public Page URL # Human readable name of the field
+    type: string
+    required: false
+    hint: By default, a widget will be used to render the reservation form. If the full LibCal form is preferred, enter the group's public page URL (aka Friendly URL) here.
     localized: false
 
 - loan_period: # The lowercase, underscored name of the field

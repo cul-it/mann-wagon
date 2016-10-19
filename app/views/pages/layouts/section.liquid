@@ -1,0 +1,30 @@
+---
+title: Section
+is_layout: true
+---
+{% extends 'layouts/default' %}
+
+{% block 'main' %}
+  {% assign default_photo = 'placeholder.jpg' | theme_image_url %}
+  {% capture selected_photo %}{% editable_file section_photo, hint: 'Used on top-level landing page', priority: 1 %}/samples/placeholder.jpg{% endeditable_file %}{% endcapture %}
+
+  <img class="section-page__photo ui rounded image" src="{{ selected_photo }}">
+
+  <div class="section-page__content">
+    {% editable_text "landing_description", hint: "Keep it short and sweet" %}{% endeditable_text %}
+
+    <ul class="section-page__list">
+      {% for child in page.children %}
+        {% if child.listed? and child.published? %}
+          <li><a href="{% path_to child %}">{{ child.title }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+
+  {% comment %}<strong>default_photo:</strong> {{ default_photo }} <br>
+
+  <strong>selected_photo:</strong> {{ selected_photo }} <br>
+
+  <strong>page.editable_elements:</strong> {{ page.editable_elements }}{% endcomment %}
+{% endblock %}

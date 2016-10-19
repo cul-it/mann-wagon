@@ -1,0 +1,51 @@
+{% comment %} Build the request string {% endcomment %}
+{% assign course_reserves_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showCourseReserveList.do?library=MANN&output=json' %}
+
+<div class="course-reserves">
+  {% consume mann_reserves from course_reserves_url, expires_in: 3600 %}
+    {% comment %}{{ mann_reserves.course_list }}{% endcomment %}
+
+    {% assign sorted_courses = mann_reserves.course_list | sort: 'display_course_number' %}
+    {% comment %}{{ sorted_courses }}{% endcomment %}
+
+    <div class="course-reserves__form ui form">
+      <div class="field">
+        <label>Select a course:</label>
+
+        <select class="course-reserves__courses js-course-reserves" v-model="selectedCourse">
+          <option value="">---- Select a course ----</option>
+
+          {% for course in sorted_courses %}
+            {% capture display_name %}{{ course.display_course_number }}: {{ course.course_name }}{% endcapture %}
+            <option value="{{ course.id }}">{{ display_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  {% endconsume %}
+
+  <div class="course-reserves__loader ui inline loader"></div>
+
+  <div class="course-reserves__items" v-if="itemsCourse">
+    <h3 class="course-reserves__course-title">(( itemsCourse.displayCourseNumber )) (( itemsCourse.courseName ))</h3>
+    <span class="course-reserves__instructor">Instructor: (( itemsCourse.instructor ))</span>
+
+    <table class="course-reserves__table ui very basic unstackable collapsing striped table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Author</th>
+          <th>Call Number</th>
+          <th>Availability</th>
+        </tr>
+      </thead>
+      <tbody class="course-reserves__tbody">
+        {% comment %} Vue.js component FTW {% endcomment %}
+        <tr is="reserve-item" v-for="item in items" :item="item" :index="$index"></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+{{ 'courseReserves.bundle.js' | javascript_tag }}

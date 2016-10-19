@@ -41,27 +41,23 @@ fields:
     label: Title # Human readable name of the field
     type: string
     required: true
-    hint: Title of the project
     localized: false
 
 - description: # The lowercase, underscored name of the field
     label: Description # Human readable name of the field
     type: text
     required: false
-    hint: Keep it short and sweet
     localized: false
     # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
 
 - url: # The lowercase, underscored name of the field
-    label: Project website # Human readable name of the field
+    label: Project URL # Human readable name of the field
     type: string
-    required: true
-    hint: URL for the website of the project
+    required: false
     localized: false
 
 - featured: # The lowercase, underscored name of the field
-    label: Featured # Human readable name of the field
+    label: Feature in footer? # Human readable name of the field
     type: boolean
     required: false
-    hint: Want to feature this project
     localized: false

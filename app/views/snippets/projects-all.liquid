@@ -1,0 +1,15 @@
+{% editable_model projects, hint: 'Manage all projects' %}
+  <ul class="projects__list">
+    {% for project in contents.projects %}
+      <li class="projects__project">
+        <h5 class="projects__heading"><a href="{% path_to project %}" title="More details on {{ project.title }}">{{ project.title }}</a></h5>
+
+        <div class="projects__description">
+          {{ project.description | truncatewords: 20 }}
+
+          <a href="{% path_to project %}" title="Read more about {{ project.title }}">More <i class="fa fa-angle-double-right"></i></a>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endeditable_model %}

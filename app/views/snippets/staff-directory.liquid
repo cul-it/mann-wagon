@@ -1,0 +1,62 @@
+{% include 'staff-directory-options' %}
+
+<div class="ui hidden divider"></div>
+
+{% editable_model staff, hint: 'Manage staff' %}{% endeditable_model %}
+{% editable_model divisions, hint: 'Manage divisions' %}{% endeditable_model %}
+
+<table id="staff-table" class="ui table staff-directory staff-directory__table">
+  <thead>
+    <tr>
+      <th class="six wide">Name</th>
+      {% unless current_division %}
+        <th class="three wide">Division</th>
+      {% endunless %}
+      <th class="three wide">Email <span class="staff-directory__email-hint">(@cornell.edu)</span></th>
+      <th class="three wide">Phone</th>
+    </tr>
+  </thead>
+
+  <tbody class="staff-directory__tbody">
+    {% if current_division %}
+      {% with_scope division: current_division, division_head: true %}
+        {% include 'staff-directory-body-table' %}
+      {% endwith_scope %}
+
+      {% comment %} Since there are differences in evaluating falsy btw Engine and Wagon, the key is to test != TRUE {% endcomment %}
+      {% comment %} https://github.com/locomotivecms/steam/blob/2e1b6b821d8e0008dd6b9f616e153b9e9b1e980a/lib/locomotive/steam/adapters/memory/condition.rb#L28 {% endcomment %}
+      {% with_scope division: current_division, division_head.ne: true %}
+        {% include 'staff-directory-body-table' %}
+      {% endwith_scope %}
+    {% else %}
+      {% with_scope imposter.ne: true %}
+        {% include 'staff-directory-body-table' %}
+      {% endwith_scope %}
+    {% endif %}
+
+  </tbody>
+</table>
+
+
+<div id="staff-cards" class="ui five doubling cards staff-directory staff-directory__grid" id="staff-cards">
+{% if current_division %}
+  {% with_scope division: current_division, division_head: true %}
+    {% include 'staff-directory-body-grid' %}
+  {% endwith_scope %}
+
+  {% comment %} Since there are differences in evaluating falsy btw Engine and Wagon, the key is to test != TRUE {% endcomment %}
+  {% comment %} https://github.com/locomotivecms/steam/blob/2e1b6b821d8e0008dd6b9f616e153b9e9b1e980a/lib/locomotive/steam/adapters/memory/condition.rb#L28 {% endcomment %}
+  {% with_scope division: current_division, division_head.ne: true %}
+    {% include 'staff-directory-body-grid' %}
+  {% endwith_scope %}
+{% else %}
+  {% with_scope imposter.ne: true %}
+    {% include 'staff-directory-body-grid' %}
+  {% endwith_scope %}
+{% endif %}
+</div>
+
+{{ 'staffDirectory.bundle.js' | javascript_tag }}
+
+<!--  Libcal MyScheduler Widget-->
+{{ '//api3.libcal.com/js/myscheduler.js?002' | javascript_tag }}

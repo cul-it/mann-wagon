@@ -1,0 +1,177 @@
+// Google Fonts
+@import url('http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Francois+One|Montserrat|Inconsolata:400,700');
+$francois: 'Francois One', sans-serif;
+$lato: 'Lato', sans-serif;
+$inconsolata: 'Inconsolata', sans-serif;
+$montserrat: 'Montserrat', sans-serif; // CUL standard
+
+// Typography
+$base-font-family: $lato;
+$heading-font-family: $francois;
+$monospace-font-family: $inconsolata;
+
+// Font Sizes
+$base-font-size: 1em;
+
+// Line height
+$base-line-height: 1.5;
+$heading-line-height: 1.2;
+
+// Other Sizes
+$base-border-radius: 3px;
+$base-spacing: $base-line-height * 1em;
+$small-spacing: $base-spacing / 2;
+$header-height: 45px;
+
+// z-index
+$below-content: 1;
+$content: 2;
+$above-content: 3;
+
+// Breakpoints
+$scape: 30em; // 480px
+$tablet: 45em; // 720px
+$lapdesk: 56em; // 896px
+$allout: 69em; // 1104px
+
+// Set Susy contexts for breakpoints
+$g-scape: (
+  columns: 6,
+);
+
+$g-tablet: (
+  columns: 8,
+);
+
+$g-lapdesk: (
+  columns: 12,
+);
+
+$g-allout: (
+  columns: 12,
+);
+
+// Layouts
+$susy: (
+  columns: 4 2 2 4,
+  gutters: .15,
+  gutter-position: split,
+  global-box-sizing: border-box,
+  debug: ( // Uncomment these to render grid visualization:
+    // image: show,
+    color: rgba(#ff851b, .25),
+    // output: overlay,
+  )
+);
+
+// Alignment for header content with padded content at larger breakpoints
+$pad-content-tablet: 5.4%;
+$pad-content-lapdesk: 8%;
+
+// Megamenu joins the party as well
+$pad-megamenu-tablet: 5.8%;
+$pad-megamenu-lapdesk: 10.4%;
+
+// Colors variable via accoutrement-color
+// Names via Name That Color
+// -- http://chir.ag/projects/name-that-color
+// -- http://www.color-blindness.com/color-name-hue
+$colors: (
+  // Primary Palette - http://coolors.co/ebefde-edc217-28849b-60c198-377771
+  'alabaster-new': hsl(74%, 35%, 90%),
+  'deep-lemon': hsl(48%, 86%, 51%),
+  'celadon-green': hsl(192%, 59%, 38%),
+  'ocean-green': hsl(155%, 44%, 57%),
+  'myrtle-green': hsl(174%, 37%, 34%),
+
+  // Accessory
+  'blond': hsl(52, 100%, 87%),
+  'primrose': hsl(67, 69%, 76%),
+  'soapstone': hsl(39, 30%, 89%),
+  'yellow-sea': hsl(32, 91%, 58%),
+  'vulcan': hsl(205, 40%, 8%),
+
+  // Status
+  'tutu': hsl(358, 75%, 94%),
+  'glitter': hsl(215, 58%, 94%),
+  'spring-green': hsl(72, 58%, 85%),
+  'alert': 'blond',
+  'error': 'tutu',
+  'danger': 'yellow-sea' ('tint': 60%),
+  'notice': 'glitter',
+  'success': 'ocean-green' ('tint': 75%),
+
+  // Availability
+  'available': 'myrtle-green',
+  'available-icon': 'ocean-green',
+
+  // Grayscale
+  'alabaster': hsl(0, 0%, 98%),
+  'white': hsl(0, 0%, 100%),
+  'black': hsl(0, 0%, 0%),
+  'raisin-black': hsl(0, 0%, 13%),
+  'bokara-gray': hsl(0, 0%, 16%),
+  'bunker': hsl(210, 6%, 7%),
+  'aluminum': hsl(193, 6%, 68%),
+  'barely-gray': 'aluminum' ('tint': 70%),
+  'light-gray': 'aluminum' ('tint': 40%),
+  'medium-gray': 'aluminum' ('shade': 40%),
+  'dark-gray': 'aluminum' ('shade': 80%),
+
+  // Brand
+  'cornell-red': hsl(0, 74%, 40%),
+  'cornell-gray': 'raisin-black',
+  'cu-banner': 'white',
+  'mann-primary': 'celadon-green',
+
+  // Typography
+  'font-base': 'vulcan' ('tint': 10%),
+  'headings': 'vulcan',
+  'headings-footer': 'ocean-green',
+
+  // Links
+  'action': 'celadon-green',
+  'consultation': 'ocean-green',
+  'nav': 'primrose',
+  'section-nav': 'soapstone' ('tint': 40%),
+
+  // Nav
+  'accessory-nav': 'white',
+  'accessory-nav-hover': 'ocean-green',
+  'accessory-nav-icon': 'deep-lemon',
+  'accessory-nav-bg': 'cornell-gray',
+  'accessory-nav-btn': 'cornell-gray',
+  'my-account': 'cornell-gray',
+  'my-account-mobile': 'white',
+  'nav-bg': 'myrtle-green',
+  'mega-bg': 'alabaster-new',
+
+  // Hours
+  'closed': 'error',
+  'open': 'deep-lemon',
+  'today': 'blond',
+  'weekly-location': 'white',
+  'weekly-location-bg': 'vulcan',
+  'monthly-building': 'notice',
+  'monthly-lobby': 'monthly-building' ('tint': 75%)
+);
+
+// Font Colors
+$base-font-color: color('font-base');
+$action-color: color('action');
+
+// Border
+$base-border-color: color('light-gray');
+$base-border: 1px solid $base-border-color;
+
+// Background Colors
+$base-background-color: color('white');
+$secondary-background-color: tint($base-border-color, 75%);
+
+// Forms
+$form-box-shadow: inset 0 1px 3px rgba(color('black'), .06);
+$form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -.3);
+
+// Animations
+$base-duration: 150ms;
+$base-timing: ease;

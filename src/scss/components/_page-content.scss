@@ -1,0 +1,103 @@
+// Targeting content managed via wysihtml
+
+.landing-description,
+.page-content {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(4 nest);
+
+    padding-right: 1em;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(5 nest);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(9 nest);
+  }
+}
+
+.page-content__title {
+  font-size: modular-scale(2);
+
+  // body classes to target specific pages
+  .body-hours & {
+    float: left;
+  }
+}
+
+.page-content--dynamic {
+  @include span(full nest);
+}
+
+.page-content--accessory {
+  @include border-top-radius(5px);
+  @include border-bottom-radius(5px);
+
+  @include span(full nest);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(last 2 nest);
+
+    margin-top: 0;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(last 3 nest);
+
+    font-size: modular-scale(0);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(last 3 nest);
+  }
+
+  background: color('alabaster');
+
+  &:not(:empty) {
+    margin-bottom: 1em;
+    padding: .5em .7em;
+  }
+}
+
+// Target content authored via wysihtml (RTE)
+.page-content {
+  // Headings
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 2em 0 .5em;
+    font-family: $base-font-family;
+    font-weight: 700;
+
+    &:first-child { // Not necessary if the first element in the block
+      margin-top: 0;
+    }
+  }
+
+  h4,
+  h5,
+  h6 {
+    color: color('medium-gray');
+    font-weight: normal;
+  }
+
+  // Lists
+  li {
+    margin: .2em 0;
+  }
+
+  ol,
+  ul {
+    margin: 0 0 .75em 1.1em;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+}

@@ -1,0 +1,31 @@
+{{ '//api3.libcal.com/js/roombooking.js?002' | javascript_tag }}
+
+{% if space.reservation_system.name == 'LibCal' %}
+  {% comment %} Build unique id for targeting by libcal widget using custom counter {% endcomment %}
+  {% capture libcal_target_id %}js-libcal-room__{{ space.reserve_sys_id }}-{{ libcal_widget_counter }}{% endcapture %}
+
+  {% comment %}
+    Widget or all-out form for LibCal?
+    - The second condition should be completely unnecessary but Engine on dev instance refuses to evaluate empty string as false
+  {% endcomment %}
+  {% if space.libcal_public_page_url and space.libcal_public_page_url != '' %}
+    {% include 'modal-libcal' with space.reserve_sys_id, space.name %}
+  {% else %}
+    <a id="{{ libcal_target_id }}" class="ui labeled icon button space-finder__reserve js-spacefinder-link {% if indiv_space %}space__reserve{% endif %}" title="Reserve this space">
+
+    <!--  Libcal room reservation widget code -->
+    <script>
+      jQuery(function(){
+        jQuery("#{{ libcal_target_id }}").LibCalRoomBooking({ "iid": 973, "gid": {{ space.reserve_sys_id }},  "width": 500, "height": 450 });
+      });
+    </script>
+  {% endif %}
+
+  {% comment %} Increment libcal counter {% endcomment %}
+  {% assign libcal_widget_counter = libcal_widget_counter | plus: 1 %}
+{% else %}
+  <a class="ui labeled icon button space-finder__reserve js-spacefinder-link {% if indiv_space %}space__reserve{% endif %}" href="{{ space.reservation_system.url }}" title="Reserve this space" target="_blank">
+{% endif %}
+
+  <i class="calendar icon"></i> Reserve
+</a>

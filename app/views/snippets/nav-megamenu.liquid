@@ -1,0 +1,14 @@
+{% comment %} Snippet that builds array of sub-pages for spaces {% endcomment %}
+{% include 'spaces-subnav' %}
+
+{{ page.title }} <i class="fa fa-caret-down"></i></a>
+
+<ul class="site-nav__mega">
+  {% for child in page.children %}
+    {% if child.listed? and child.published? %}
+      <li class="site-nav__section">
+        {% include 'nav-builder' with component: 'site-nav' %}
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

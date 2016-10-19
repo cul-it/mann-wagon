@@ -1,0 +1,8 @@
+{% include 'availnow-computers-setup' %}
+
+<h3>{{ computer_accessory_heading }}</h3>
+
+<ul>
+  {% include 'availnow-computers-li' with location: 'Circulation Desk', os: 'windows', available: winbook_avail %}
+  {% include 'availnow-computers-li' with location: 'Circulation Desk', os: 'apple', available: macbook_avail %}
+</ul>

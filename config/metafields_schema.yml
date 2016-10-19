@@ -57,13 +57,27 @@
 sensitive_data:
   label: Sensitive Data
   fields:
-    scrapinghub_apikey:
+    labstats_customer_id:
       type: string
-      hint: Used to retrieve the items scraped from dev site to power temporary site search
-    booked_username:
-      type: string
-    booked_password:
-      type: string
+      hint: Used to authenticate against the LabStats API to retrieve real time desktop availability
     libcal_apikey:
       type: string
-      hint: Used to retrieve data from libcal
+      hint: Used to authenticate against the LibCal API to retrieve reservation, event & consultation data
+    r25_webservice_authorization:
+      type: string
+      hint: Base 64 encoded username:password, used to authenticate r25 webservice to retrieve B30 classroom events
+events_config:
+  label: Events Configuration
+  fields:
+    default_number_of_days:
+      type: integer
+      hint: Used to load the events for the number of days in future
+site_analytics:
+  label: Site Analytics
+  fields:
+    google_analytics_tracking_identifier:
+      type: string
+      hint: Tracking ID for the property of this site in Google Analytics
+    piwik_analytics_site_identifier:
+      type: string
+      hint: Site ID for this site in Piwik Analytics

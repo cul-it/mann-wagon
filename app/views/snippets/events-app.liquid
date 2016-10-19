@@ -1,0 +1,45 @@
+{% comment %}
+  Pass path to events page as JS variable, and use in Vue app
+{% endcomment %}
+
+<script type="text/javascript">
+  var path_to_events_page = '{% path_to events-calendar %}';
+</script>
+
+{% comment %}
+  Pass curated event-locations and event_types to Vue app
+{% endcomment %}
+
+{% editable_model event_locations, hint: 'Manage event locations' %}{% endeditable_model %}
+
+{% capture event_locations %}
+  {% for event_location in contents.event_locations %}
+    {% if (forloop.last)%}
+    {"curated_event_location_name":"{{ event_location.name | escape }}","alternate_event_location_names":"{{ event_location.alternate_names | join: ', ' | escape }}","smartmap_url":"{{ event_location.smartmap_url | escape }}"}
+  {% else %}
+    {"curated_event_location_name":"{{ event_location.name | escape }}","alternate_event_location_names":"{{ event_location.alternate_names | join: ', ' | escape  }}","smartmap_url":"{{ event_location.smartmap_url | escape }}"}-
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% editable_model event_types, hint: 'Manage event types' %}{% endeditable_model %}
+
+{% capture event_types %}
+  {% for event_type in contents.event_types %}
+    {% if (forloop.last)%}
+      {"curated_event_type_name":"{{ event_type.name | escape }}","alternate_event_type_names":"{{ event_type.alternate_names | join: ', ' | escape }}"}
+    {% else %}
+      {"curated_event_type_name":"{{ event_type.name | escape }}","alternate_event_type_names":"{{ event_type.alternate_names | join: ', ' | escape }}"}-
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+  <router-view
+  r25-webservice-authorization = '{{ site.metafields.sensitive_data.r25_webservice_authorization }}'
+  default-number-of-days = '{{ site.metafields.events_config.default_number_of_days | default: 30 }}'
+  events-page-path = '{% path_to events-calendar %}'
+  event-locations = '{{ event_locations | default: null }}'
+  event-types = '{{ event_types | default: null }}'
+  ></router-view>
+
+  {{ 'eventsPage.bundle.js' | javascript_tag }}
