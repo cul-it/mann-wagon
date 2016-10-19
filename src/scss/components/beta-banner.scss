@@ -17,7 +17,19 @@
 }
 
 .beta-banner--engaged {
-  padding-bottom: 10em;
+  @include susy-breakpoint($scape, $g-scape) {
+    padding-bottom: 12.6em;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    padding-bottom: 12em;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    padding-bottom: 10.5em;
+  }
+
+  padding-bottom: 18em;
 }
 
 .beta-banner__feedback-btn {
