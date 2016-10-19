@@ -1,3 +1,0 @@
-$('.js-sui-popup')
-  .popup()
-;

@@ -1,0 +1,55 @@
+{% comment %} Filter librarians from all staff and randomize {% endcomment %}
+{% with_scope librarian: true %}
+  {% assign all_librarians = contents.staff.all | shuffle %}
+{% endwith_scope %}
+
+<div class="carousel__contain">
+  <span class="carousel__nav carousel__nav--experts carousel__nav--prev meet-experts__nav--prev js-meet-experts-prev"><i class="fa fa-angle-left fa-3x"></i></span>
+
+  <div class="meet-experts__librarians">
+    {% editable_model staff, hint: 'Manage all staff' %}
+      {% for person in all_librarians %}
+        <div class="meet-experts__featured">
+          {% assign placeholder_image = 'placeholder.jpg' | theme_image_url %}
+          <img class="meet-experts__photo {% unless person.photo.url %}meet-experts__photo--placeholder{% endunless %}" src="{{ person.photo.url | resize: '500x500#n' | default: placeholder_image }}">
+
+          <h5 class="meet-experts__name"><a href="{% path_to staff %}#{{ person.first_name | strip | downcase }}-{{ person.last_name | strip | downcase }}" title="Contact details">{{ person.first_name }} {{ person.last_name }}</a></h5>
+
+          <span class="meet-experts__title">{{ person.title }}</span>
+
+          {% if person.expertise.size > 0 %}
+            <h6 class="meet-experts__subheading">Areas of Expertise</h6>
+
+            <ul>
+              {% for skill in person.expertise %}
+                <li class="meet-experts__list-item">{{ skill }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          {% if person.departments.size > 0 %}
+            <h6 class="meet-experts__subheading">Liaison to</h6>
+
+            <ul>
+              {% for dept in person.departments %}
+                <li class="meet-experts__list-item">{{ dept.name }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          {% if person.libcal_uid.size > 0 %}
+            {% include 'staff-book-consultation' with libcal_uid: person.libcal_uid %}
+          {% endif %}
+
+          <a class="meet-experts__profile-link" href="{% path_to staff %}#{{ person.first_name | strip | downcase }}-{{ person.last_name | strip | downcase }}" title="Contact details">
+            Contact info <i class="fa fa-angle-double-right"></i>
+          </a>
+        </div>
+      {% endfor %}
+    {% endeditable_model %}
+  </div>
+
+  <span class="carousel__nav carousel__nav--experts carousel__nav--next meet-experts__nav--next js-meet-experts-next"><i class="fa fa-angle-right fa-3x"></i></span>
+</div>
+
+{{ 'experts.bundle.js' | javascript_tag }}

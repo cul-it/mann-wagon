@@ -1,0 +1,42 @@
+// Hide Mann Library type while p22-underground is loading from typekit
+// https://helpx.adobe.com/typekit/using/font-events.html
+.wf-loading {
+  visibility: hidden;
+}
+
+// Bourbon v5 removes all browser prefixes:
+// -- https://github.com/thoughtbot/bourbon/commit/33d4b77
+// but autoprefixer follows Can I Use which doesn't consider font-smooth on
+// the standard track:
+// -- http://caniuse.com/#feat=font-smooth
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Heavier font weight covered by selected heading font (Francois One)
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: color('headings');
+  font-weight: normal;
+}
+
+.page-subheading {
+  margin-top: 2em;
+}
+
+// Utility class for child anchors to inherit parent color
+// -- i.e. don't use the $action-color for these links
+.link--no-color {
+  color: inherit;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: inherit;
+  }
+}

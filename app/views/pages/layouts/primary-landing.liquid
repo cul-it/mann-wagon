@@ -1,0 +1,13 @@
+---
+title: Landing
+is_layout: false
+---
+{% extends 'layouts/default' %}
+
+{% block 'main' %}
+  <div class="landing-description">
+    {% editable_text "landing_description", hint: "Keep it short and sweet" %}{% endeditable_text %}
+  </div>
+
+  {% include 'landing' %}
+{% endblock %}

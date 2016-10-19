@@ -1,0 +1,15 @@
+---
+title: Request Course Instruction
+slug: request-course-instruction
+position: 0
+listed: true
+published: true
+is_layout: false
+editable_elements:
+  main/page_content: "<p>Instruction request form needed</p>"
+---
+{% extends 'layouts/basic-page' %}
+
+{% block 'main/dynamic' %}
+  {% include 'form-instruction-request' %}
+{% endblock %}

@@ -1,0 +1,12 @@
+<table class="software-list__table ui yellow collapsing selectable unstackable definition celled striped table">
+  <thead class="full-width">
+    <tr>
+      <th v-for="heading in softwareList[0]" class="center aligned">(( $key ))</th>
+    </tr>
+  </thead>
+  <tbody class="software-list__tbody">
+    <tr v-for="software in softwareList">
+      <td v-for="entry in software" class="center aligned"><i v-if="entry === 'X'" class="software-list__installed fa fa-check fa-lg"></i><span v-else="">(( entry ))</span></td>
+    </tr>
+  </tbody>
+</table>

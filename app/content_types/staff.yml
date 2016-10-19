@@ -106,6 +106,20 @@ fields:
     required: true
     localized: false
 
+- librarian: # The lowercase, underscored name of the field
+    label: Librarian? # Human readable name of the field
+    type: boolean
+    required: true
+    hint: Librarians are randomly featured on the homepage
+    localized: false
+
+- libcal_uid:
+    label: LibCal User ID (UID)
+    type: string
+    required: false
+    hint: Enter the LibCal UID for this staff member and a "Book a Consultation" button will be generated on applicable pages throughout the site (homepage, meet our experts, staff directory) that initiates the My Scheduler widget
+    localized: false
+
 - expertise: # The lowercase, underscored name of the field
     label: Areas of expertise # Human readable name of the field
     type: tags
@@ -119,3 +133,10 @@ fields:
     class_name: departments
     inverse_of: liaison
     ui_enabled: true
+
+- imposter: # The lowercase, underscored name of the field
+    label: Not Mann staff? # Human readable name of the field
+    type: boolean
+    required: true
+    hint: For those exceptions who are liaisons to CALS/CHE depts but not actually Mann staff - won't be included in staff directory listing
+    localized: false

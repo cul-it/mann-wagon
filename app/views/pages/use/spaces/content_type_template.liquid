@@ -2,56 +2,8 @@
 title: Spaces Type template page
 content_type: spaces_types
 ---
-{% extends layouts/default %}
+{% extends 'layouts/default' %}
 
-  {% block main %}
-
-  <script src="//api3.libcal.com/js/roombooking.js?002"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css">
-
-  {% include 'room-availability-variables'%}
-
-  <p>{{ spaces_type.description }}</p>
-
-  {% assign libcal_widget_counter = 1 %}
-
-  {% if spaces_type._slug == 'study' %}
-    <div class="ui secondary pointing menu">
-      {% for study_type in contents.spaces_study_types %}
-        {% capture study_type_icon %}
-          {% case study_type._slug %}
-            {% when 'group' %}
-              fa-users
-            {% when 'individual' %}
-              fa-user
-            {% when 'quiet' %}
-              fa-volume-down
-          {% endcase %}
-        {% endcapture %}
-
-        <a class="item" href="#{{study_type._slug}}">
-          <i class="fa {{ study_type_icon }} icon"></i> {{ study_type.name }}
-        </a>
-      {% endfor %}
-    </div>
-
-    {% for study_type in contents.spaces_study_types %}
-      <div class="space-finder__study-spaces">
-        <h3 id="{{study_type._slug}}" class="space-finder__subheading">{{ study_type.name }} Study</h3>
-
-        {% assign spaces_collection = study_type.spaces %}
-
-        {% include 'spaces-cards' %}
-      </div>
-    {% endfor %}
-
-  {% else %}
-    {% assign spaces_collection = spaces_type.spaces %}
-
-    {% include 'spaces-cards' %}
-  {% endif %}
-
-{% include 'booked-modal' %}
-
+{% block 'main' %}
+  {% include 'content-type-spaces-types' %}
 {% endblock %}

@@ -1,0 +1,88 @@
+# Human readable name of this type
+name: Spotlights
+
+# Lowercase, underscored handle used to access this type
+slug: spotlights
+
+# Explanatory text displayed in the back-office
+description: Featured images for homepage
+
+# Slug of field used to identify entries by default, such as the title
+label_field_name: name
+
+# Valid values: manually, created_at, updated_at, or the slug of any field
+order_by: start_date
+
+# Valid values: asc (ascending) and desc (descending). Set to asc by default.
+order_direction: desc
+
+# Specify a field slug to group entries by that field in the back-office.
+group_by: fallback
+
+# Activate public 'create' API (e.g for a contact form)
+# public_submission_enabled: false
+
+# Array of emails to be notified of new entries made with the public API
+# public_submission_accounts: ['john@example.com']
+
+# Control the display of the content type in the back-office.
+# display_settings:
+#   seo: false              # display the SEO tab for the content entries
+#   advanced: false         # display the Advanced tab for the content entries
+#   position: 1             # position in the sidebar menu
+#   hidden: false           # hidden for authors?
+
+# By default, the back-office displays the _label property (see label_field_name) of the content entry. This can be modified by writing your own Liquid template below:
+# entry_template: '<a href="{{ link }}">{{ entry._label }}</a>' # The default template
+
+# A list describing each field
+fields:
+- name: # The lowercase, underscored name of the field
+    label: Name # Human readable name of the field
+    type: string
+    required: true
+    hint: Only for internal reference -- not displayed on the site
+    localized: false
+
+- caption: # The lowercase, underscored name of the field
+    label: Caption # Human readable name of the field
+    type: string
+    required: false
+    hint: Brief caption to render with image
+    localized: false
+    # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
+
+- image: # The lowercase, underscored name of the field
+    label: Image # Human readable name of the field
+    type: file
+    required: true
+    hint: 1800px X 1013px -- JPG or PNG, whichever provides better bang-for-your-buck (minimize filesize & maximize quality)
+    localized: false
+
+- fallback: # The lowercase, underscored name of the field
+    label: Fallback Image? # Human readable name of the field
+    type: boolean
+    required: true
+    hint: When there are less than 3 active spotlights based on start/end date, fallback images will be rendered (up to 3 total). If this field is set to true, there is no need to set the date fields as they will be ignored.
+    localized: false
+
+- start_date: # The lowercase, underscored name of the field
+    label: Start date # Human readable name of the field
+    type: date_time
+    required: false
+    hint: When this image should be added to the rotation
+    localized: false
+
+- end_date: # The lowercase, underscored name of the field
+    label: End date # Human readable name of the field
+    type: date_time
+    required: false
+    hint: Leave this empty to keep the image in the rotation permanently
+    localized: false
+
+- url: # The lowercase, underscored name of the field
+    label: Url # Human readable name of the field
+    type: string
+    required: false
+    hint: The image can optionally link to another page/site for further details
+    localized: false

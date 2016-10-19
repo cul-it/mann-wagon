@@ -10,9 +10,13 @@ deploy.yml
 node_modules/*
 npm-debug.log
 
-# Vendorized Sass
-public/stylesheets/vendor/*
-!public/stylesheets/vendor/.gitkeep
+# Compiled assets
+public/javascripts/*
+!public/javascripts/.gitkeep
+public/stylesheets/*
+!public/stylesheets/.gitkeep
 
-#Vendorized Vue
-public/javascripts/vendor/*
+# SPECIAL HANDLING FOR PAGES!!! -> app/views/pages/.gitignore
+
+# Cached response for LibCal Hours API
+cache/*

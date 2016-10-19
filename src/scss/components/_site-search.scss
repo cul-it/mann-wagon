@@ -1,0 +1,62 @@
+.site-search {
+  @include span(full nest);
+}
+
+// Override Google CSE defaults
+.site-search__results {
+  @include span(full nest);
+
+  & table {
+    margin: 0;
+  }
+
+  & td {
+    border: 0;
+    padding: 0;
+  }
+
+  & .gcsc-branding {
+    display: none;
+  }
+
+  & .gs-result .gs-title {
+    height: inherit;
+  }
+
+  & .gs-result .gs-visibleUrl {
+    padding-bottom: 0;
+  }
+
+  & .gs-snippet {
+    margin-top: 0;
+  }
+
+  & .gsc-control-cse {
+    font-family: $base-font-family;
+  }
+
+  & .gsc-control-cse,
+  & .gsc-thumbnail-inside,
+  & .gsc-url-top {
+    padding: 0;
+  }
+
+  & .gsc-result-info {
+    padding-left: 0;
+  }
+}
+
+.site-search__page-title {
+  margin: 1em 0 0;
+  font-family: $base-font-family;
+  font-weight: 700;
+}
+
+.site-search__page-content {
+  color: color('medium-gray');
+}
+
+.site-search__no-results {
+  margin-top: 1.5em;
+  text-align: left;
+}

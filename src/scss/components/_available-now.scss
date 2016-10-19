@@ -1,0 +1,141 @@
+.available-now {
+  @include span(full);
+}
+
+.available-now__heading {
+  margin-bottom: .1em;
+}
+
+.available-now__datetime {
+  color: color('aluminum');
+  font-size: modular-scale(-2);
+  font-weight: normal;
+}
+
+.available-now__link {
+  color: inherit;
+}
+
+.available-now__request-consultation {
+  @include susy-breakpoint($scape, $g-scape) {
+    font-size: modular-scale(0);
+  }
+
+  margin-top: .7em;
+  font-size: modular-scale(-1);
+}
+
+.available-now__find-space {
+  margin-left: .7em;
+  font-size: modular-scale(-2);
+}
+
+.available-now__grp {
+  margin-bottom: 1em;
+}
+
+.available-now__subheading {
+  margin: .7em 0 .2em;
+}
+
+.available-now__study {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(full nest);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(isolate first 6);
+
+    &--grouping {
+      @include span(3 of 6 nest);
+    }
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(isolate first 8);
+
+    &--grouping {
+      @include span(4 of 8 nest);
+    }
+  }
+
+  @include span(full nest);
+
+  &--grouping {
+    @include span(3 of 6 nest)
+  }
+}
+
+.available-now__desktops {
+  @include span(2 nest);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(3 nest);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(isolate 2 at 7);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(isolate 2 at 9);
+  }
+}
+
+.available-now__laptops {
+  @include span(2 nest);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(3 nest);
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(isolate 2 at 7);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(isolate 2 at 11);
+  }
+}
+
+.available-now__os {
+  color: color('font-base');
+}
+
+.available-now__status {
+  padding: .2em 0;
+  line-height: 1em;
+
+  &--available {
+    color: color('available');
+  }
+
+  &--unavailable {
+    color: darken(color('error'), 50%);
+  }
+}
+
+.available-now__icon {
+  &--available {
+    color: color('available-icon');
+  }
+}
+
+.available-now__floor {
+  clear: left;
+  margin: 1em 0 0;
+  font-size: modular-scale(0);
+}
+
+.available-now__location {
+  @include susy-breakpoint($allout, $g-allout) {
+    font-size: modular-scale(0);
+  }
+
+  font-size: modular-scale(-1);
+}
+
+.available-now__badge--promote {
+  float: left;
+  clear: left;
+}

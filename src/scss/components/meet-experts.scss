@@ -1,0 +1,129 @@
+@import 'helpers/mixins';
+@import 'config';
+
+@import 'components/carousel';
+
+.meet-experts {
+  @include span(full nest);
+}
+
+.meet-experts__all-button {
+  margin-left: 1em;
+  font-size: modular-scale(-3);
+}
+
+.meet-experts__all-experts {
+  @include span(full nest);
+
+  margin-top: 1em;
+}
+
+.meet-experts__dots {
+  &.slick-dots {
+    top: -3em;
+    bottom: auto;
+  }
+}
+
+.meet-experts__heading {
+  margin-bottom: 2em;
+}
+
+.meet-experts__heading-link {
+  color: inherit;
+}
+
+.meet-experts__featured {
+  @include susy-breakpoint($scape $tablet, $g-scape) {
+    @include span(2 (gutter-override: 5.1em));
+
+    margin-bottom: 0;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(2 (gutter-override: 3.7em));
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(3 (gutter-override: 4.3em));
+  }
+
+  @include susy-breakpoint($allout, $g-allout) {
+    @include span(3 (gutter-override: 5.3em));
+  }
+
+  @include span(full);
+
+  margin-bottom: 2em;
+  text-align: center;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.meet-experts__list-item {
+  padding: .25em 0;
+  line-height: 1.1em;
+}
+
+.meet-experts__name {
+  margin-bottom: 0;
+  font-size: modular-scale(2);
+}
+
+.meet-experts__nav--prev {
+  @include susy-breakpoint($scape, $g-scape) {
+    left: -.7em;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    left: -1.5em;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    left: -2.5em;
+  }
+
+  left: -.5em;
+}
+
+.meet-experts__nav--next {
+  @include susy-breakpoint($scape, $g-scape) {
+    right: -.7em;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    right: -1.5em;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    right: -2.5em;
+  }
+
+  right: -.5em;
+}
+
+.meet-experts__photo {
+  border-radius: 50%;
+
+  &--placeholder {
+    opacity: .5;
+  }
+}
+
+.meet-experts__profile-link {
+  display: block;
+  font-weight: 700;
+}
+
+.meet-experts__subheading {
+  margin: 1em 0 0;
+}
+
+.meet-experts__title {
+  display: block;
+  margin-bottom: 1em;
+  line-height: 1em;
+  color: color('aluminum');
+}
