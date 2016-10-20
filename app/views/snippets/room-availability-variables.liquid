@@ -32,11 +32,11 @@
 {% endconsume %}
 
 {% comment %}Loop through due_date for each room, don't rely on *RoomNextAvailable{% endcomment %}
-{% assign grad_room_room_due_dates = grad_room_room_due_dates | remove_first: '-' | split: '-' | sort %}
-{% for grad_room_room_due_date in grad_room_room_due_dates %}
-{% assign grad_room_room_due_date = grad_room_room_due_date | date: '%s' %}
-  {% if grad_room_room_due_date > current_time %}
-    {% assign grad_room_next_available = grad_room_room_due_date %}
+{% assign grad_room_due_dates = grad_room_due_dates | remove_first: '-' | split: '-' | sort %}
+{% for grad_room_due_date in grad_room_due_dates %}
+{% assign grad_room_due_date = grad_room_due_date | date: '%s' %}
+  {% if grad_room_due_date > current_time %}
+    {% assign grad_room_next_available = grad_room_due_date %}
     {% break %}
   {% endif %}
 {% endfor %}
