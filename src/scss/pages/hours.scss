@@ -17,6 +17,21 @@
   font-size: modular-scale(-2);
 }
 
+.hours-weekly__all-cul {
+  float: left;
+  clear: left;
+
+  &.ui.label { // Override semantic ui default
+    margin-left: 0;
+  }
+}
+
+.hours-weekly__all-cul-icon {
+  .ui.label > &.icon { // Override semantic ui default
+    margin: 0 0 0 .75em;
+  }
+}
+
 .hours-weekly__category {
   background: color('white');
   padding-top: 3em;
