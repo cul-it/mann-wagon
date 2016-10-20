@@ -17,6 +17,21 @@
   font-size: modular-scale(-2);
 }
 
+.hours-weekly__all-cul {
+  float: left;
+  clear: left;
+
+  &.ui.label { // Override semantic ui default
+    margin-left: 0;
+  }
+}
+
+.hours-weekly__all-cul-icon {
+  .ui.label > &.icon { // Override semantic ui default
+    margin: 0 0 0 .75em;
+  }
+}
+
 .hours-weekly__category {
   background: color('white');
   padding-top: 3em;
@@ -68,31 +83,17 @@
 
 .hours-weekly__switch-view {
   @include susy-breakpoint($scape, $g-scape) {
-    position: absolute;
-    left: 18%;
-    margin-bottom: 0;
-  }
+    @include nobreak;
+    @include span(isolate 2 at 2);
 
-  @include susy-breakpoint($tablet, $g-tablet) {
-    position: absolute;
-    left: 41%;
-  }
-
-  @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    left: 42%;
-  }
-
-  @include susy-breakpoint($allout, $g-allout) {
-    left: 43%;
+    margin-top: 0;
   }
 
   @include break;
+  @include last;
 
-  float: left;
-
-  &.ui.buttons { // Override semantic-ui defaults
-    margin-bottom: .5em;
-  }
+  margin-top: .5em;
+  text-align: right;
 }
 
 .hours-weekly__tbody {
