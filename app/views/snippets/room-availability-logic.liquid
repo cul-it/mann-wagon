@@ -120,7 +120,7 @@
       {% assign room_available_icon = "fa-check" %}
     {% else %}
       {% comment %}Next available{% endcomment %}
-      {% if small_group_room_next_available %}
+      {% if individual_room_next_available %}
         {% assign available_icon = "fa-minus-square" %}
         {% assign next_available = individual_room_next_available %}
         {% assign room_availability = "Unavailable" %}

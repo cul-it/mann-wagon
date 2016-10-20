@@ -34,8 +34,8 @@
 {% comment %}Loop through due_date for each room, don't rely on *RoomNextAvailable{% endcomment %}
 {% assign grad_room_due_dates = grad_room_due_dates | remove_first: '-' | split: '-' | sort %}
 {% for grad_room_due_date in grad_room_due_dates %}
-{% assign grad_room_due_date = grad_room_due_date | date: '%s' %}
-  {% if grad_room_due_date > current_time %}
+{% assign grad_room_due_date_seconds = grad_room_due_date | date: '%s' %}
+  {% if grad_room_due_date_seconds > current_time %}
     {% assign grad_room_next_available = grad_room_due_date %}
     {% break %}
   {% endif %}
@@ -43,8 +43,8 @@
 
 {% assign large_group_room_due_dates = large_group_room_due_dates | remove_first: '-' | split: '-' | sort %}
 {% for large_group_room_due_date in large_group_room_due_dates %}
-{% assign large_group_room_due_date = large_group_room_due_date | date: '%s' %}
-  {% if large_group_room_due_date > current_time %}
+{% assign large_group_room_due_date_seconds = large_group_room_due_date | date: '%s' %}
+  {% if large_group_room_due_date_seconds > current_time %}
     {% assign large_group_room_next_available = large_group_room_due_date %}
     {% break %}
   {% endif %}
@@ -52,8 +52,8 @@
 
 {% assign small_group_room_due_dates = small_group_room_due_dates | remove_first: '-' | split: '-' | sort %}
 {% for small_group_room_due_date in small_group_room_due_dates %}
-{% assign small_group_room_due_date = small_group_room_due_date | date: '%s' %}
-  {% if small_group_room_due_date > current_time %}
+{% assign small_group_room_due_date_seconds = small_group_room_due_date | date: '%s' %}
+  {% if small_group_room_due_date_seconds > current_time %}
     {% assign small_group_room_next_available = small_group_room_due_date %}
     {% break %}
   {% endif %}
@@ -61,8 +61,8 @@
 
 {% assign individual_room_due_dates = individual_room_due_dates | remove_first: '-' | split: '-' | sort %}
 {% for individual_room_due_date in individual_room_due_dates %}
-{% assign individual_room_due_date = individual_room_due_date | date: '%s' %}
-  {% if individual_room_due_date > current_time %}
+{% assign individual_room_due_date_seconds = individual_room_due_date | date: '%s' %}
+  {% if individual_room_due_date_seconds > current_time %}
     {% assign individual_room_next_available = individual_room_due_date %}
     {% break %}
   {% endif %}
