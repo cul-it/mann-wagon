@@ -1,7 +1,7 @@
 {%comment%}Basement hours{%endcomment%}
 {% if space.name == 'B30A' or space.name == 'B30B' or space.name == 'Follett Information Commons' or space.name == 'Interview Room' %}
   {% assign space_status = mannlib_hours.status_2319 %}
-  {% assign space_hours = mannlib_hours.hours_2319 | date: '%l:%M %p' | downcase | replace: ':00', '' %}
+  {% assign space_hours = mannlib_hours.hours_2319 | date: '%l:%M %p' | downcase | replace: ':00', '' | replace: '12 am', 'Midnight' | replace: '12 pm', 'Noon' %}
 {%comment%}Manndible Cafe{%endcomment%}
 {% elsif space.name == 'Manndible Cafe' %}
   {% assign space_status = mannlib_hours.status_2317 %}
@@ -9,12 +9,12 @@
 {%comment%}Exceptions, closed 30 minutes before Library{%endcomment%}
 {% elsif space.name == 'Lobby Tabling' or space.name == 'Mann 100' or space.name == 'Mann 102' or space.name == 'Stone Classroom' %}
   {% assign space_status = mannlib_hours.status_1707 %}
-  {% assign space_hours = mannlib_hours.hours_1707 | date: '%s' | minus: 1800 | date: '%l:%M %p' | downcase | replace: '%l:%M %p', '' %}
+  {% assign space_hours = mannlib_hours.hours_1707 | date: '%s' | minus: 1800 | date: '%l:%M %p' | downcase | replace: ':00', '' | replace: '12 am', 'Midnight' | replace: '12 pm', 'Noon' %}
 {%comment%}Exceptions, Hive{%endcomment%}
 {% elsif space.name == 'Mann 282 (The Hive)' %}
   {% assign day_of_week =  today | date: '%A' %}
   {% assign space_status = mannlib_hours.status_1707 %}
-  {% assign space_hours = mannlib_hours.hours_1707 | date: '%l:%M %p' | downcase | replace: ':00', '' %}
+  {% assign space_hours = mannlib_hours.hours_1707 | date: '%l:%M %p' | downcase | replace: ':00', '' | replace: '12 am', 'Midnight' | replace: '12 pm', 'Noon' %}
   {%comment%}Monday through Friday{%endcomment%}
     {% if day_of_week == 'Monday' or day_of_week == 'Tuesday' or day_of_week == 'Wednesday' or day_of_week == 'Thrusday' or day_of_week == 'Friday' %}
       {% capture current_time %} {{ now | date: '%s' }} {% endcapture %}
