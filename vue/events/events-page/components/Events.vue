@@ -114,7 +114,8 @@ export default {
       recurringEventStartTime: '',
       apiErrors: [],
       latestCornellRequest: 0,
-      latestR25Request: 0
+      latestR25Request: 0,
+      r25Status: ''
     }
   },
   // Use vue-router transition data hook to trigger methods
@@ -145,11 +146,14 @@ export default {
       this.$set('eventSources.updatedLibcalEvents', true)
     },
     'r25Events': function () {
-      this.$set('eventSources.updatedR25Events', true)
+        this.$set('eventSources.updatedR25Events', true)
     },
     'eventSources': {
       handler: function (events) {
-        if (events.updatedCornellEvents && events.updatedLibcalEvents && events.updatedR25Events) {
+        if (events.updatedCornellEvents && events.updatedLibcalEvents) {
+          this.getAllEvents()
+        }
+        if ( events.updatedR25Events) {
           this.getAllEvents()
         }
       },
@@ -243,6 +247,19 @@ export default {
         this.$set('noEventsMessage', 'Something went wrong while getting upcoming events, please try again later. <br><a href="/contact/site-feedback">Report this issue.</a>')
       }
     },
+    toggleAcademicCourses (status) {
+      this.$set('eventSources.updatedR25Events', false)
+      if (status) {
+        if (this.dateSelected) {
+          this.getR25Events('date', this.dateSelected)
+        } else {
+          this.getR25Events('default')
+        }
+        this.$set('showNoEventsMessage', true)
+      } else {
+        this.r25EventsArray([])
+      }
+    },
     displayEventList () {
       if (this.query.eventType) {
         this.setEventTypeFilter(this.params)
@@ -255,7 +272,7 @@ export default {
         this.getLibCalEvents('default')
         // Disable r25Events
           // this.getR25Events('default')
-          this.$set('eventSources.updatedR25Events', true)
+          // this.$set('eventSources.updatedR25Events', true)
         // events list
         this.$set('eventsList', true)
         if (this.eventTypes && this.eventLocations) {
@@ -579,6 +596,10 @@ export default {
     setEventTypeFilter (eventType) {
       this.eventType = eventType
       this.eventSelected = eventType
+      if (eventType == 'Academic Course') {
+        this.toggleAcademicCourses(true)
+        this.$set('r25Status', true)
+      }
     },
     removeEventTypeFilter () {
       this.eventType = ''
@@ -596,7 +617,9 @@ export default {
       this.$set('dateSelected', '')
       this.getCornellEvents('default')
       this.getLibCalEvents('default')
-      this.getR25Events('default')
+      if (this.r25Status) {
+        this.getR25Events('default')
+      }
       $('#datepicker').datepicker('setDate', moment().format('YYYY-MM-DD'))
       this.showNoEventsMessage = true
       this.allEvents = []
@@ -611,7 +634,9 @@ export default {
       this.eventSelected = ''
       this.getCornellEvents('default')
       this.getLibCalEvents('default')
-      this.getR25Events('default')
+      if (this.r25Status) {
+        this.getR25Events('default')
+      }
       this.removeSearchFilter()
       this.$set('dateSelected', '')
       $('#datepicker').datepicker('setDate', moment().format('YYYY-MM-DD'))
@@ -788,57 +813,57 @@ export default {
       var r25Events = []
       var eventTypes = []
       var roomNames = []
-
-      _.forEach(data, function (value, index) {
-        var events = {}
-        events['event_id'] = 'R25-' + value['r25:reservation_id'][0]
-        events['event_title'] = value['r25:event'][0]['r25:event_name']['0']
-        events['event_description'] = value['r25:event'][0]['r25:event_title']['0']
-        events['event_start_time'] = moment(new Date(value['r25:event'][0]['r25:event_start_dt']['0'])).format()
-        events['event_start'] = moment(new Date(value['r25:event'][0]['r25:event_start_dt']['0'])).format('YYYY-MM-DD')
-        events['event_end_time'] = moment(new Date(value['r25:event'][0]['r25:event_end_dt']['0'])).format()
-        events['event_room_name'] = value['r25:spaces'][0]['r25:formal_name'][0].trim().replace(',', '')
-        _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
-          if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
-              events['event_room_name'] = curatedEventLocation[0]
-              events['event_room_smartmap_url'] = curatedEventLocation[2]
+      if (data.length) {
+        _.forEach(data, function (value, index) {
+          var events = {}
+          events['event_id'] = 'R25-' + value['r25:reservation_id'][0]
+          events['event_title'] = value['r25:event'][0]['r25:event_name']['0']
+          events['event_description'] = value['r25:event'][0]['r25:event_title']['0']
+          events['event_start_time'] = moment(new Date(value['r25:event'][0]['r25:event_start_dt']['0'])).format()
+          events['event_start'] = moment(new Date(value['r25:event'][0]['r25:event_start_dt']['0'])).format('YYYY-MM-DD')
+          events['event_end_time'] = moment(new Date(value['r25:event'][0]['r25:event_end_dt']['0'])).format()
+          events['event_room_name'] = value['r25:spaces'][0]['r25:formal_name'][0].trim().replace(',', '')
+          _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
+            if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
+                events['event_room_name'] = curatedEventLocation[0]
+                events['event_room_smartmap_url'] = curatedEventLocation[2]
+            }
+          })
+          events['event_type'] = [value['r25:layout_name'][0].trim().replace(',', '')]
+          _.forEach(vueInstance.curatedEventTypes, function(curatedEventType, index) {
+            if (curatedEventType[0] === value['r25:layout_name'][0].trim().replace(',', '') || _.includes(curatedEventType[1], value['r25:layout_name'][0].trim().replace(',', ''))) {
+              events['event_type'] = [curatedEventType[0]]
+            }
+          })
+          // Events array from r25
+          r25Events.push(events)
+          // Room filter list array
+          if (roomNames.indexOf(value['r25:spaces'][0]['r25:formal_name'][0].trim().replace(',', '')) === -1) {
+            roomNames.push(value['r25:spaces'][0]['r25:formal_name'][0].trim().replace(',', ''))
           }
-        })
-        events['event_type'] = [value['r25:layout_name'][0].trim().replace(',', '')]
-        _.forEach(vueInstance.curatedEventTypes, function(curatedEventType, index) {
-          if (curatedEventType[0] === value['r25:layout_name'][0].trim().replace(',', '') || _.includes(curatedEventType[1], value['r25:layout_name'][0].trim().replace(',', ''))) {
-            events['event_type'] = [curatedEventType[0]]
+          // Event type filter list array
+          if (eventTypes.indexOf(value['r25:layout_name'][0].trim().replace(',', ''))) {
+            eventTypes.push(value['r25:layout_name'][0].trim().replace(',', ''))
           }
+
         })
-        // Events array from r25
-        r25Events.push(events)
-        // Room filter list array
-        if (roomNames.indexOf(value['r25:spaces'][0]['r25:formal_name'][0].trim().replace(',', '')) === -1) {
-          roomNames.push(value['r25:spaces'][0]['r25:formal_name'][0].trim().replace(',', ''))
-        }
-        // Event type filter list array
-        if (eventTypes.indexOf(value['r25:layout_name'][0].trim().replace(',', ''))) {
-          eventTypes.push(value['r25:layout_name'][0].trim().replace(',', ''))
-        }
 
-      })
-
-      _.forEach(eventTypes, function (type, index, eventTypes) {
-        _.forEach(vueInstance.curatedEventTypes, function(curatedEventType) {
-          if (curatedEventType[0] === type || _.includes(curatedEventType[1], type)) {
-              eventTypes[index] = curatedEventType[0]
-          }
+        _.forEach(eventTypes, function (type, index, eventTypes) {
+          _.forEach(vueInstance.curatedEventTypes, function(curatedEventType) {
+            if (curatedEventType[0] === type || _.includes(curatedEventType[1], type)) {
+                eventTypes[index] = curatedEventType[0]
+            }
+          })
         })
-      })
 
-      _.forEach(roomNames, function (room, index, roomNames) {
-        _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation) {
-          if (curatedEventLocation[0] === room || _.includes(curatedEventLocation[1], room)) {
-              roomNames[index] = curatedEventLocation[0]
-          }
+        _.forEach(roomNames, function (room, index, roomNames) {
+          _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation) {
+            if (curatedEventLocation[0] === room || _.includes(curatedEventLocation[1], room)) {
+                roomNames[index] = curatedEventLocation[0]
+            }
+          })
         })
-      })
-
+      }
       // set array values to be used later to merge
       this.$set('r25Events', r25Events)
       this.$set('r25EventTypes', eventTypes)
