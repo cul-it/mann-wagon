@@ -1,7 +1,7 @@
 <tbody class="hours-weekly__tbody">
   <tr>
     {% unless category == "Building" %}
-      <th class="hours-weekly__category hours-weekly__data" colspan="8">{{ category }}</th>
+      <th id="{{ category | downcase | dasherize }}" class="hours-weekly__category hours-weekly__data" colspan="8">{{ category }}</th>
     {% endunless %}
 
     {% for week in weeks %}
