@@ -25,7 +25,15 @@
         </a>
       </td>
     {% endunless %}
-    <td class="top aligned">{{ person.netid }}</td>
-    <td class="top aligned">607-25{{ person.phone }}</td>
+    <td class="top aligned">
+      <a href="https://www.cornell.edu/search/people.cfm?netid={{ person.netid }}" title="Contact details for {{ person.first_name }}" target="_blank">
+        <i class="envelope icon"></i> {{ person.netid }}
+      </a>
+    </td>
+    <td class="top aligned">
+      <a href="tel:+1607-25{{ person.phone }}" title="Call {{ person.first_name }}">
+          <i class="phone icon"></i> 607-25{{ person.phone }}
+      </a>
+    </td>
   </tr>
 {% endfor %}
