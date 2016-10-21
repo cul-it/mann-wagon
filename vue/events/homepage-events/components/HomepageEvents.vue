@@ -722,6 +722,9 @@ export default {
       }
       // Call Semantic ui modal and accordion for future times
       $('.ui.modal').modal({
+        dimmerSettings: {
+          opacity: .5
+        },
         onHide: function () {
           vueInstance.$route.router.go('/')
         },
