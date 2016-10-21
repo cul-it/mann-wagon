@@ -5,7 +5,7 @@
   {% assign grad_room_now_available = mannservices_api.grad_room_available %}
   {% for grad_rooms in mannservices_api.grad_room_list | json %}
     {% for due_dates in grad_rooms.due_date %}
-      {% capture grad_room_due_dates %} {{ grad_room_due_dates }}-{{ due_dates | date: '%s' }}{% endcapture %}
+      {% capture grad_room_due_dates %} {{ grad_room_due_dates }}-{{ due_dates | date: '%s'}}{% endcapture %}
     {% endfor %}
   {% endfor %}
   {% assign large_group_room_now_available = mannservices_api.large_group_room_available %}
@@ -25,13 +25,13 @@
   {% assign individual_room_now_available = mannservices_api.individual_room_available %}
   {% for individual_rooms in mannservices_api.individual_room_list | json %}
     {% for due_dates in individual_rooms.due_date %}
-      {% capture individual_room_due_dates %} {{ individual_room_due_dates }}-{{ due_dates | date: '%s' }}{% endcapture %}
+    {% capture individual_room_due_dates %} {{ individual_room_due_dates }}-{{ due_dates | date: '%s'}}{% endcapture %}
     {% endfor %}
   {% endfor %}
 {% endconsume %}
 
 {% comment %}Loop through due_date for each room, don't rely on *RoomNextAvailable{% endcomment %}
-{% assign grad_room_due_dates = grad_room_due_dates | remove_first: '-' | split: '-' | sort %}
+{% assign grad_room_due_dates = grad_room_due_dates | split: '-' | sort %}
 {% for grad_room_due_date in grad_room_due_dates %}
   {% if grad_room_due_date > current_time %}
     {% assign grad_room_next_available = grad_room_due_date %}
@@ -39,7 +39,7 @@
   {% endif %}
 {% endfor %}
 
-{% assign large_group_room_due_dates = large_group_room_due_dates | remove_first: '-' | split: '-' | sort %}
+{% assign large_group_room_due_dates = large_group_room_due_dates | split: '-' | sort %}
 {% for large_group_room_due_date in large_group_room_due_dates %}
   {% if large_group_room_due_date > current_time %}
     {% assign large_group_room_next_available = large_group_room_due_date %}
@@ -47,7 +47,7 @@
   {% endif %}
 {% endfor %}
 
-{% assign small_group_room_due_dates = small_group_room_due_dates | remove_first: '-' | split: '-' | sort %}
+{% assign small_group_room_due_dates = small_group_room_due_dates | split: '-' | sort %}
 {% for small_group_room_due_date in small_group_room_due_dates %}
   {% if small_group_room_due_date > current_time %}
     {% assign small_group_room_next_available = small_group_room_due_date %}
@@ -55,7 +55,7 @@
   {% endif %}
 {% endfor %}
 
-{% assign individual_room_due_dates = individual_room_due_dates | remove_first: '-' | split: '-' | sort %}
+{% assign individual_room_due_dates = individual_room_due_dates | split: '-' | sort %}
 {% for individual_room_due_date in individual_room_due_dates %}
   {% if individual_room_due_date > current_time %}
     {% assign individual_room_next_available = individual_room_due_date %}
