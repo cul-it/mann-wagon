@@ -14,7 +14,11 @@ var modalLibcal = {
     $('.js-modal-libcal').on('click', function() {
       var spaceId = $(this).data('spaceid');
       $('#js-space-' + spaceId)
-        .modal('show')
+        .modal({
+          dimmerSettings: {
+            opacity: .5
+          }
+        }).modal('show')
       ;
     });
   }
