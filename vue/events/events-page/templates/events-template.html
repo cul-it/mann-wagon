@@ -1,4 +1,9 @@
 <div class="events-container">
+  <div class="events__toggle-courses ui toggle checkbox">
+    <input type="checkbox" name="events-toggle-courses" value="1" tabindex="0" class="hidden">
+    <label class="events__toggle-courses-label">Include academic courses</label>
+  </div>
+
 	<div v-show="showNoEventsMessage"class="ui segment">
 		<div class="ui active centered inline loader">
 			<div class="ui text loader">Loading</div>
@@ -10,21 +15,21 @@
 		<div class="tab-content">
 
 			<div class="events__applied-filters">
-	      <a v-if="dateSelected" v-on:click="removeSelectedDate()" title="Remove filter">
+	      <a class="events__applied-filter" v-if="dateSelected" v-on:click="removeSelectedDate()" title="Remove filter">
            <button class="mini ui teal right labeled icon button">
             <i class="remove icon"></i>
             DATE: ((dateSelected | momentDate))
           </button>
         </a>
 
-				<a v-if="eventSelected" v-on:click="removeEventTypeFilter()" title="Remove filter">
+				<a class="events__applied-filter" v-if="eventSelected" v-on:click="removeEventTypeFilter()" title="Remove filter">
           <button class="mini ui teal right labeled icon button">
             <i class="remove icon"></i>
             TYPE: ((eventSelected))
           </button>
         </a>
 
-				<a v-if="roomSelected" v-on:click="removeRoomFilter()" title="Remove filter">
+				<a class="events__applied-filter" v-if="roomSelected" v-on:click="removeRoomFilter()" title="Remove filter">
           <button class="mini ui teal right labeled icon button">
             <i class="remove icon"></i>
             LOCATION: ((roomSelected))

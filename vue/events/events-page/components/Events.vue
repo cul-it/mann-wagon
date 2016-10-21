@@ -3,6 +3,8 @@ import $ from 'jquery'
 var _ = require('lodash')
 var moment = require('moment')
 
+import 'semantic-ui-css/components/checkbox.min.css';
+import 'semantic-ui-css/components/checkbox.min.js';
 import 'semantic-ui-css/components/dimmer.min.js'
 import 'semantic-ui-css/components/dimmer.min.css'
 import 'semantic-ui-css/components/modal.min.js'
