@@ -23,12 +23,11 @@
 @import 'layout/nav';
 @import 'layout/footer';
 
-// First 2 components are courtesy of Refills
+// Badges component is courtesy of Refills
 // Refills are not yet Bourbon v5 ready, but these are functional as is for now
 // -- https://github.com/thoughtbot/bourbon/issues/874#issuecomment-197984091
 // -- https://github.com/thoughtbot/refills/issues/369
 @import 'components/badges';
-@import 'components/flashes';
 // Proceed with Mann components
 @import 'components/available-now';
 @import 'components/breadcrumbs';
