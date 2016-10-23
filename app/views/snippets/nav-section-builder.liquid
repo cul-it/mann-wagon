@@ -1,0 +1,8 @@
+<a
+  href="{% path_to page %}"
+  {% if page.redirect_url contains 'http' %}
+    target="_blank"
+  {% endif %}
+>
+  {{ page.title }}
+</a>
