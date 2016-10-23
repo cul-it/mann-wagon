@@ -33,6 +33,19 @@
         });
       },
 
+      // Convert software location names to working SmartMap links
+      smartmapQuery (location) {
+        if (location.indexOf('iMacs') !== -1 || location.indexOf('Research') !== -1) {
+          return 'stone computing center'
+        } else if (location.indexOf('PCs') !== -1) {
+          return location.replace('PCs', '').trim().toLowerCase()
+        } else if (location.indexOf('Circ') !== -1) {
+          return 'circulation services'
+        } else {
+          return false
+        }
+      },
+
       stickyHeaders () {
         $('.software-list__table').stickySort()
       }
