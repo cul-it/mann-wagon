@@ -1,8 +1,7 @@
 .space-finder {
-  &.ui.three.doubling.cards { // Override semantic ui default
+  &.ui.three.doubling.cards { // Override semantic ui default for mobile stacking
     @include susy-breakpoint(max-width $tablet) {
-      margin-right: 0;
-      margin-left: 0;
+      margin-right: -.6em;
     }
   }
 }
@@ -44,7 +43,7 @@
     margin: 2em 0 .5em;
   }
 
-  margin: 2em 0 .5em;
+  margin: 2em 0 1em;
   padding-top: .5em;
   font-family: $base-font-family;
   font-size: modular-scale(2);

@@ -5,7 +5,7 @@
 {% assign libcal_widget_counter = 1 %}
 
 {% if spaces_type._slug == 'study' %}
-  <div class="ui secondary pointing menu">
+  <div class="ui stackable secondary pointing menu">
     {% for study_type in contents.spaces_study_types %}
       {% capture study_type_icon %}
         {% case study_type._slug %}
