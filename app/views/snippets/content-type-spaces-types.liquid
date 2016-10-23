@@ -5,7 +5,7 @@
 {% assign libcal_widget_counter = 1 %}
 
 {% if spaces_type._slug == 'study' %}
-  <div class="ui secondary pointing menu">
+  <div class="ui stackable secondary pointing menu">
     {% for study_type in contents.spaces_study_types %}
       {% capture study_type_icon %}
         {% case study_type._slug %}
@@ -29,6 +29,10 @@
         {{ study_type.name }}
       </a>
     {% endfor %}
+    <a class="item" href="#reservable">
+      <i class="calendar icon"></i>
+      Reservable
+    </a>
   </div>
 
   {% for study_type in contents.spaces_study_types %}
@@ -40,6 +44,20 @@
       {% include 'spaces-cards' %}
     </div>
   {% endfor %}
+
+  {% comment %} Filter on reservable study spaces {% endcomment %}
+  {% with_scope _slug: 'study' %}{% assign study_space_type = contents.spaces_types.first %}{% endwith_scope %}
+  {% with_scope spaces_types: study_space_type %}{% assign study_spaces = contents.spaces.all %} {% endwith_scope %}
+  {% with_scope reservation_system.ne: nil, spaces_types: study_space_type %}{% assign reservable_study_spaces = contents.spaces.all %}{% endwith_scope %}
+
+
+  <div class="space-finder__study-spaces">
+    <h3 id="reservable" class="space-finder__subheading">Reservable</h3>
+
+    {% assign spaces_collection = reservable_study_spaces %}
+
+    {% include 'spaces-cards' %}
+  </div>
 
 {% else %}
   {% assign spaces_collection = spaces_type.spaces %}
