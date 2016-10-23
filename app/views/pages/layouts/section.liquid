@@ -16,7 +16,10 @@ is_layout: true
     <ul class="section-page__list">
       {% for child in page.children %}
         {% if child.listed? and child.published? %}
-          <li><a href="{% path_to child %}">{{ child.title }}</a></li>
+          <li>
+            {% comment %} Re-use nav-snippet for section nav by passing child as page {% endcomment %}
+            {% include 'nav-section-builder' with page: child %}
+          </li>
         {% endif %}
       {% endfor %}
     </ul>

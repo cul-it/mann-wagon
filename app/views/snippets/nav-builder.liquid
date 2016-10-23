@@ -15,7 +15,17 @@
   {% else %}
     {% for grandchild in child.children %}
       {% if grandchild.listed? and grandchild.published? %}
-        <li class="{{ component }}__subpage"><a class="{{ component }}__subpage-link" href="{% path_to grandchild %}">{{ grandchild.title }}</a></li>
+        <li class="{{ component }}__subpage">
+          <a
+            class="{{ component }}__subpage-link"
+            href="{% path_to grandchild %}"
+            {% if grandchild.redirect_url contains 'http' %}
+              target="_blank"
+            {% endif %}
+          >
+            {{ grandchild.title }}
+          </a>
+        </li>
       {% endif %}
     {% endfor %}
   {% endif %}
