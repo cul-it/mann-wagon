@@ -1,7 +1,6 @@
 var navSearch = {
   onLoad: function() {
     this.bindEventListeners();
-    this.enableMegaTouch();
   },
 
   bindEventListeners: function() {
@@ -27,11 +26,6 @@ var navSearch = {
       // Toggle button state to trigger differences in rendering/style
       $(this).toggleClass('search__button--active');
     });
-  },
-
-  // Mega menu on touch devices
-  enableMegaTouch: function() {
-    $('.site-nav__list > li').doubleTapToGo();
   }
 }
 
