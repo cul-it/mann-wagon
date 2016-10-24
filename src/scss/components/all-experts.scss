@@ -1,0 +1,127 @@
+@import 'helpers/mixins';
+@import 'config';
+
+.all-experts {
+  @include span(full nest);
+}
+
+.all-experts__consult {
+   &.ui.button { // Override semantic ui default
+    @include break;
+    @include span(isolate first);
+
+    margin: 0 1em 0 .5em;
+  }
+}
+
+.all-experts__contact {
+  @include span(isolate last);
+}
+
+.all-experts__dept {
+  margin-bottom: .65em;
+}
+
+.all-experts__dept-list {
+  line-height: 1.2em;
+}
+
+.all-experts__email {
+  margin-right: 1em;
+}
+
+.all-experts__filters {
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(3 nest);
+
+    padding-right: 1em;
+  }
+}
+
+.all-experts__list {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    margin-top: 1em;
+    border: solid 1px color('alabaster' ('shade': 2%));
+    box-shadow: -1em -.5em 3em -2.3em color('black');
+    background-color: color('alabaster');
+    padding: .5em 1em 2em 1em;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(9 nest);
+  }
+}
+
+.all-experts__name {
+  margin: 0;
+  font-family: $base-font-family;
+}
+
+.all-experts__person {
+  @include span(full nest);
+
+  margin-bottom: 1.5em;
+}
+
+.all-experts__photo {
+  @include span(isolate first);
+
+  margin-bottom: .5em;
+  border-radius: 50%;
+  padding-right: .5em;
+
+  &--placeholder {
+    opacity: .5;
+  }
+}
+
+.all-experts__prop-heading {
+  display: inline;
+  font-family: $base-font-family;
+}
+
+.all-experts__prop-item {
+  display: inline;
+  padding-left: .2em;
+  line-height: .8em;
+
+  &:first-of-type {
+    padding-left: 0;
+  }
+
+  &:after { // comma separated list
+    content: ', ';
+  }
+
+  &:last-child:after { // no comma for last item
+    content: '';
+  }
+}
+
+.all-experts__prop-list {
+  display: inline;
+  line-height: 1.2em;
+}
+
+.all-experts__prop-segment {
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(4 nest);
+  }
+}
+
+.all-experts__staff-directory {
+  @include span(isolate last);
+}
+
+.all-experts__title {
+  display: block;
+  margin-bottom: 1em;
+  line-height: 1em;
+  color: color('aluminum');
+}
+
+.all-experts__toggles {
+  &.ui.buttons { // Override semantic ui default
+    margin: 0 2em 0;
+  }
+}
