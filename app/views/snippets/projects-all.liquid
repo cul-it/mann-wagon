@@ -1,4 +1,4 @@
-{% editable_model projects, hint: 'Manage all projects' %}
+{% comment %} editable_model projects, hint: 'Manage all projects' {% endcomment %}
   <ul class="projects__list">
     {% for project in contents.projects %}
       <li class="projects__project">
@@ -12,4 +12,4 @@
       </li>
     {% endfor %}
   </ul>
-{% endeditable_model %}
+{% comment %} endeditable_model {% endcomment %}

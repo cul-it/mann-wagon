@@ -10,7 +10,7 @@
   Pass curated event-locations and event_types to Vue app
 {% endcomment %}
 
-{% editable_model event_locations, hint: 'Manage event locations' %}{% endeditable_model %}
+{% comment %} editable_model event_locations, hint: 'Manage event locations' endeditable_model {% endcomment %}
 
 {% capture event_locations %}
   {% for event_location in contents.event_locations %}
@@ -22,7 +22,7 @@
   {% endfor %}
 {% endcapture %}
 
-{% editable_model event_types, hint: 'Manage event types' %}{% endeditable_model %}
+{% comment %} editable_model event_types, hint: 'Manage event types' endeditable_model {% endcomment %}
 
 {% capture event_types %}
   {% for event_type in contents.event_types %}

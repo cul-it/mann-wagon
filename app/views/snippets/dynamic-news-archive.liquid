@@ -1,4 +1,4 @@
-{% editable_model news, hint: 'Manage all news stories' %}
+{% comment %} editable_model news, hint: 'Manage all news stories' %} {% endcomment %}
   <ul>
     {% comment %} Filter out future news stories {% endcomment %}
     {% with_scope date.lte: now %}
@@ -7,4 +7,4 @@
       {% endfor %}
     {% endwith_scope %}
   </ul>
-{% endeditable_model %}
+{% comment %} endeditable_model {% endcomment %}

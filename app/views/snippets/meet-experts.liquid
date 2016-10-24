@@ -7,7 +7,7 @@
   <span class="carousel__nav carousel__nav--experts carousel__nav--prev meet-experts__nav--prev js-meet-experts-prev"><i class="fa fa-angle-left fa-3x"></i></span>
 
   <div class="meet-experts__librarians">
-    {% editable_model staff, hint: 'Manage all staff' %}
+    {% comment %}editable_model staff, hint: 'Manage all staff'{% endcomment %}
       {% for person in all_librarians %}
         <div class="meet-experts__featured">
           {% assign placeholder_image = 'placeholder.jpg' | theme_image_url %}
@@ -46,7 +46,7 @@
           </a>
         </div>
       {% endfor %}
-    {% endeditable_model %}
+    {% comment %}endeditable_model{% endcomment %}
   </div>
 
   <span class="carousel__nav carousel__nav--experts carousel__nav--next meet-experts__nav--next js-meet-experts-next"><i class="fa fa-angle-right fa-3x"></i></span>

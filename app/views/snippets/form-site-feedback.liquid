@@ -1,4 +1,4 @@
-{% editable_model site_feedback, hint: 'View submitted feedback' %}{% endeditable_model %}
+{% comment %} editable_model site_feedback, hint: 'View submitted feedback' endeditable_model {% endcomment %}
 
 {% model_form 'site_feedback', class: 'ui form success error mann-form', success: path , error: path %}
   {% capture page_in_question %}

@@ -1,5 +1,5 @@
 <div class="space-finder ui three doubling cards">
-  {% editable_model spaces, hint: 'Manage all spaces' %}
+  {% comment %} editable_model spaces, hint: 'Manage all spaces' {% endcomment %}
     {% for type in contents.spaces_types %}
       <a class="ui card" href="{% path_to type %}">
         <div class="image">
@@ -10,5 +10,5 @@
         </div>
       </a>
     {% endfor %}
-  {% endeditable_model %}
+  {% comment %} endeditable_model {% endcomment %}
 </div>

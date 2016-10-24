@@ -2,7 +2,7 @@
 {% with_scope date.lte: now %}{% assign published_stories = contents.news.all %}{% endwith_scope %}
 
 <div class="news-latest__stories">
-  {% editable_model news, hint: 'Manage all news stories' %}
+  {% comment %} editable_model news, hint: 'Manage all news stories' {% endcomment %}
     <ul>
       {% for story in published_stories %}
         <li class="news-latest__item">
@@ -22,7 +22,7 @@
         {% endif %}
       {% endfor %}
     </ul>
-  {% endeditable_model %}
+  {% comment %} endeditable_model {% endcomment %}
 
   <h4 class="news-latest__archive-heading">Older News</h4>
 

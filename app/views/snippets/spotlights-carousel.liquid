@@ -23,7 +23,7 @@
   </div>
 {% endcapture %}
 
-{% editable_model spotlights, hint: 'Manage all spotlights' %}
+{% comment %} editable_model spotlights, hint: 'Manage all spotlights' {% endcomment %}
   <section class="spotlights">
     <div class="carousel__contain">
       <span class="carousel__nav carousel__nav--prev js-spotlights-prev"><i class="fa fa-angle-left fa-inverse fa-5x"></i></span>
@@ -35,4 +35,4 @@
       {{ 'spotlights.bundle.js' | javascript_tag }}
     </div>
   </section>
-{% endeditable_model %}
+{% comment %} endeditable_model {% endcomment %}
