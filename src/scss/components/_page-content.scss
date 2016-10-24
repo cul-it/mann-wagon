@@ -21,6 +21,7 @@
   font-size: modular-scale(2);
 
   // body classes to target specific pages
+  .body-calendar &,
   .body-hours & {
     float: left;
     margin-bottom: .2em;

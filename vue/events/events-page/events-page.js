@@ -25,3 +25,7 @@ routes[path_to_events_page] = {
 router.map(routes)
 
 router.start(App, 'body')
+
+$('.ui.checkbox')
+  .checkbox()
+;
