@@ -20,9 +20,9 @@
           {% if person.expertise.size > 0 %}
             <h6 class="meet-experts__subheading">Areas of Expertise</h6>
 
-            <ul>
+            <ul class="meet-experts__expertise-list">
               {% for skill in person.expertise %}
-                <li class="meet-experts__list-item">{{ skill }}</li>
+                <li class="meet-experts__expertise-item">{{ skill }}</li>
               {% endfor %}
             </ul>
           {% endif %}
