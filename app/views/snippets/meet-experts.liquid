@@ -10,10 +10,14 @@
     {% editable_model staff, hint: 'Manage all staff' %}
       {% for person in all_librarians %}
         <div class="meet-experts__featured">
-          {% assign placeholder_image = 'placeholder.jpg' | theme_image_url %}
-          <img class="meet-experts__photo {% unless person.photo.url %}meet-experts__photo--placeholder{% endunless %}" src="{{ person.photo.url | resize: '500x500#n' | default: placeholder_image }}">
+          {% capture profile_url %}{% path_to staff %}#{{ person.first_name | strip | downcase }}-{{ person.last_name | strip | downcase }}{% endcapture %}
 
-          <h5 class="meet-experts__name"><a href="{% path_to staff %}#{{ person.first_name | strip | downcase }}-{{ person.last_name | strip | downcase }}" title="Contact details">{{ person.first_name }} {{ person.last_name }}</a></h5>
+          {% assign placeholder_image = 'placeholder.jpg' | theme_image_url %}
+          <a href="{{ profile_url }}" title="Contact details">
+            <img class="meet-experts__photo {% unless person.photo.url %}meet-experts__photo--placeholder{% endunless %}" src="{{ person.photo.url | resize: '500x500#n' | default: placeholder_image }}">
+          </a>
+
+          <h5 class="meet-experts__name"><a href="{{ profile_url }}" title="Contact details">{{ person.first_name }} {{ person.last_name }}</a></h5>
 
           <span class="meet-experts__title">{{ person.title }}</span>
 
@@ -41,7 +45,7 @@
             {% include 'staff-book-consultation' with libcal_uid: person.libcal_uid %}
           {% endif %}
 
-          <a class="meet-experts__profile-link" href="{% path_to staff %}#{{ person.first_name | strip | downcase }}-{{ person.last_name | strip | downcase }}" title="Contact details">
+          <a class="meet-experts__profile-link" href="{{ profile_url }}" title="Contact details">
             Contact info <i class="fa fa-angle-double-right"></i>
           </a>
         </div>
