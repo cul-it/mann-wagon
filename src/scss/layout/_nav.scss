@@ -239,7 +239,7 @@
   left: 0;
   visibility: hidden;
   opacity: 0;
-  z-index: $above-content;
+  z-index: $above-content + 1000; // play it safe, ensure megamenu beats out any other element using this var
   background: color('mega-bg' ('transparentize': .02));
   padding: 2em;
   width: 100vw;
