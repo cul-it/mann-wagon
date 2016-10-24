@@ -23,6 +23,7 @@
 !404.liquid
 !about/staff.liquid
 !/course-reserves.liquid # Be specific here due to redirect with same filename at use/borrow-request-renew/course-reserves.liquid
+!help/faculty-instructors/find-your-librarian.liquid
 !help/faculty-instructors/request-course-instruction.liquid
 !help/research-support/research-guides.liquid
 !help/research-support/research-help/request-a-consultation.liquid
