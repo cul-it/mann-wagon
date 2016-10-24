@@ -5,7 +5,7 @@
 {%comment%}Lobby Study Space{%endcomment%}
 {% elsif space.name == 'Lobby' %}
   {% assign space_status = mannlib_hours.status_1709 %}
-  {% assign space_hours = mannlib_hours.hours_1709 | date: '%l:%M %p' | downcase | replace: ':00', '' %}
+  {% assign space_hours = mannlib_hours.hours_1709 | replace: '12am', 'Midnight' | replace: '12pm', 'Noon' | replace: '24hours', '24 hours' %}
 {%comment%}Manndible Cafe{%endcomment%}
 {% elsif space.name == 'Manndible Cafe' %}
   {% assign space_status = mannlib_hours.status_2317 %}
