@@ -621,6 +621,7 @@ export default {
         this.getR25Events('default')
       }
       $('#datepicker').datepicker('setDate', moment().format('YYYY-MM-DD'))
+      $('#datepicker .ui-datepicker-today a').removeClass('ui-state-active');
       this.showNoEventsMessage = true
       this.allEvents = []
     },
@@ -640,6 +641,7 @@ export default {
       this.removeSearchFilter()
       this.$set('dateSelected', '')
       $('#datepicker').datepicker('setDate', moment().format('YYYY-MM-DD'))
+      $('#datepicker .ui-datepicker-today a').removeClass('ui-state-active');
       this.showNoEventsMessage = true
       this.allEvents = []
     },

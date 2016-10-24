@@ -29,3 +29,6 @@ router.start(App, 'body')
 $('.ui.checkbox')
   .checkbox()
 ;
+$(document).ready(function() {
+  $('#datepicker .ui-datepicker-today a').removeClass('ui-state-active');
+})
