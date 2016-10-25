@@ -4,5 +4,5 @@
   {% else %}
     {% assign filter_value = item %}
   {% endif %}
-  <li class="all-experts__filter"><a class="js-filter-{{ type }}" href="#" data-{{ type }}="{{ filter_value }}">{{ filter_value }}</a></li>
+  <li class="all-experts__filter"><a class="all-experts__filter-link js-filter-{{ type }}" href="#" data-{{ type }}="{{ filter_value }}">{{ filter_value }}</a></li>
 {% endfor %}
