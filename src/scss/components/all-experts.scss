@@ -18,17 +18,17 @@
   @include span(isolate last);
 }
 
-.all-experts__dept {
+.all-experts__email {
+  margin-right: 1em;
+}
+
+.all-experts__filter {
   margin-bottom: .85em;
 }
 
-.all-experts__dept-list {
+.all-experts__filter-list {
   line-height: 1.2em;
   font-size: modular-scale(-1);
-}
-
-.all-experts__email {
-  margin-right: 1em;
 }
 
 .all-experts__filters {

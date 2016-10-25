@@ -38,13 +38,22 @@ var allExperts = {
 
       return false
     })
+
+    $('.js-filter-expertise').on('click', function() {
+      var skill = $(this).data('expertise')
+      allExperts.filterList('expertise', skill)
+      allExperts.toggleActiveType('clear')
+
+      return false
+    })
   },
 
   initializeList: function() {
     var options = {
       valueNames: [
+        { data: ['department'] },
+        { data: ['expertise'] },
         { data: ['type'] },
-        { data: ['department'] }
       ]
     }
 
@@ -57,11 +66,14 @@ var allExperts = {
 
     allExperts.list.filter(function(item) {
       switch (filter) {
-        case 'type':
-          var truth = _.indexOf(_.split(item.values().type, ','), filterValue) > -1
-          break;
         case 'dept':
           var truth = _.indexOf(_.split(item.values().department, ','), filterValue) > -1
+          break;
+        case 'expertise':
+          var truth = _.indexOf(_.split(item.values().expertise, ','), filterValue) > -1
+          break;
+        case 'type':
+          var truth = _.indexOf(_.split(item.values().type, ','), filterValue) > -1
           break;
       }
 

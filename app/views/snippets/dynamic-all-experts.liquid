@@ -13,8 +13,15 @@
   <div class="all-experts__filters">
     <div class="all-experts__filter all-experts__filter--department">
       <div class="ui fluid accordion">
-        {% include 'experts-dept-list' with college: 'CALS' %}
-        {% include 'experts-dept-list' with college: 'CHE' %}
+        {% include 'experts-filters' with filter_type: 'dept', college: 'CALS' %}
+        {% include 'experts-filters' with filter_type: 'dept', college: 'CHE' %}
+
+        {% comment %} Build array of collective expertise -- insanity {% endcomment %}
+        {% capture all_skills %}{% for person in contents.staff %}{% for skill in person.expertise %}{{ skill | capitalize }}, {% endfor %}{% endfor %}{% endcapture %}
+        {% assign all_skills = all_skills | split: ', ' | sort | uniq %}
+        {% comment %}<pre>{{ all_skills }}</pre>{% endcomment %}
+
+        {% include 'experts-filters' with name: 'Expertise', array: all_skills %}
       </div>
     </div>
   </div>
@@ -25,8 +32,9 @@
         {% assign type = type | append: 'liaison' %}
         {% capture depts %}{% for dept in person.departments %}{{ dept.name }},{% endfor %}{% endcapture %}
       {% endif %}
+      {% capture skills %}{% for skill in person.expertise %}{{ skill | capitalize }},{% endfor %}{% endcapture %}
 
-        <li class="all-experts__person" data-type="{{ type }}" data-department="{{ depts }}">
+        <li class="all-experts__person" data-type="{{ type }}" data-department="{{ depts }}" data-expertise="{{ skills }}">
           <img class="all-experts__photo {% unless person.photo.url %}all-experts__photo--placeholder{% endunless %}" src="{{ person.photo.url | resize: '150x150#n' | default: placeholder_image }}">
 
           <div class="all-experts__contact">
