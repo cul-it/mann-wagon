@@ -183,17 +183,16 @@
 }
 
 .all-experts__toggles {
-  &.ui.buttons { // Override semantic ui default
-    @include susy-breakpoint($scape, $g-scape) {
-      @include span(isolate last);
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(isolate last 3);
 
-      text-align: right;
-    }
+    text-align: right;
+  }
 
-    @include susy-breakpoint($tablet, $g-tablet) {
-      @include span(isolate at 3);
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(isolate 3 at 3);
 
-      margin-left: 25%;
-    }
+    margin-left: 25%;
+    text-align: left;
   }
 }
