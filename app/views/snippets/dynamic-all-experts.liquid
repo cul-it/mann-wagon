@@ -12,13 +12,10 @@
 
   <div class="all-experts__filters">
     <div class="all-experts__filter all-experts__filter--department">
-      <h4>Academic Departments</h4>
-
-      <ul class="all-experts__dept-list">
-        {% for dept in contents.departments %}
-        <li class="all-experts__dept"><a class="js-filter-dept" href="#" data-dept="{{ dept.name }}">{{ dept.name }}</a></li>
-        {% endfor %}
-      </ul>
+      <div class="ui fluid accordion">
+        {% include 'experts-dept-list' with college: 'CALS' %}
+        {% include 'experts-dept-list' with college: 'CHE' %}
+      </div>
     </div>
   </div>
   <ul class="all-experts__list list">

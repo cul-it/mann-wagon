@@ -1,3 +1,5 @@
+import 'semantic-ui-css/components/accordion.min.css'
+import 'semantic-ui-css/components/accordion.min.js'
 import 'semantic-ui-css/components/segment.min.css'
 import 'components/all-experts'
 
@@ -6,9 +8,16 @@ import _ from 'lodash'
 
 var allExperts = {
   onLoad: function() {
+    this.accordionMe()
     this.bindEventListeners()
     this.initializeList()
     this.filterList('type', 'expert')
+  },
+
+  accordionMe: function() {
+    $('.ui.accordion')
+      .accordion()
+    ;
   },
 
   bindEventListeners: function() {
@@ -40,8 +49,6 @@ var allExperts = {
     }
 
     allExperts.list = new List('js-experts', options)
-
-    console.log(allExperts.list)
   },
 
   filterList: function(filter, filterValue) {
