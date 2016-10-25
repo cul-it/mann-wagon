@@ -23,7 +23,12 @@
 }
 
 .all-experts__filter {
-  margin-bottom: .85em;
+  padding: .5em;
+
+  &--active {
+    background-color: color('active-filter-bg');
+    font-weight: 700;
+  }
 }
 
 .all-experts__filter-list {

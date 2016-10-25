@@ -22,30 +22,39 @@ var allExperts = {
 
   bindEventListeners: function() {
     $('.js-experts-only').on('click', function() {
+      allExperts.cleanSlate()
       allExperts.filterList('type', 'expert')
       allExperts.toggleActiveType('js-experts-only')
     })
 
     $('.js-liaisons-only').on('click', function() {
+      allExperts.cleanSlate()
       allExperts.filterList('type', 'liaison')
       allExperts.toggleActiveType('js-liaisons-only')
     })
 
     $('.js-filter-dept').on('click', function() {
       var department = $(this).data('dept')
+      allExperts.cleanSlate()
       allExperts.filterList('dept', department)
-      allExperts.toggleActiveType('clear')
+      $(this).parent().toggleClass('all-experts__filter--active')
 
       return false
     })
 
     $('.js-filter-expertise').on('click', function() {
       var skill = $(this).data('expertise')
+      allExperts.cleanSlate()
       allExperts.filterList('expertise', skill)
-      allExperts.toggleActiveType('clear')
+      $(this).parent().toggleClass('all-experts__filter--active')
 
       return false
     })
+  },
+
+  cleanSlate: function() {
+    allExperts.toggleActiveType('clear')
+    $('.all-experts__filter').removeClass('all-experts__filter--active')
   },
 
   initializeList: function() {
