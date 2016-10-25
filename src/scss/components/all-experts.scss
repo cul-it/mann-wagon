@@ -158,12 +158,6 @@
   line-height: 1.2em;
 }
 
-.all-experts__prop-segment {
-  @include susy-breakpoint($lapdesk, $g-lapdesk) {
-    @include span(4 nest);
-  }
-}
-
 .all-experts__staff-directory {
   @include susy-breakpoint($scape, $g-scape) {
     @include span(isolate 2 at 5);
