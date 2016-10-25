@@ -11,26 +11,31 @@ var allExperts = {
     this.accordionMe()
     this.bindEventListeners()
     this.initializeList()
-    this.filterList('type', 'expert')
+    this.applyView()
   },
 
   accordionMe: function() {
     $('.ui.accordion')
       .accordion()
-    ;
+  },
+
+  applyView: function(requested = 'liaison') {
+    // Catch request for Experts as initial view (from homepage)
+    if (location.hash === '#experts') {
+      requested = 'expert'
+    }
+    allExperts.cleanSlate()
+    allExperts.filterList('type', requested)
+    allExperts.toggleActiveType('js-' + requested + '-only')
   },
 
   bindEventListeners: function() {
-    $('.js-experts-only').on('click', function() {
-      allExperts.cleanSlate()
-      allExperts.filterList('type', 'expert')
-      allExperts.toggleActiveType('js-experts-only')
+    $('.js-expert-only').on('click', function() {
+      allExperts.applyView('expert')
     })
 
-    $('.js-liaisons-only').on('click', function() {
-      allExperts.cleanSlate()
-      allExperts.filterList('type', 'liaison')
-      allExperts.toggleActiveType('js-liaisons-only')
+    $('.js-liaison-only').on('click', function() {
+      allExperts.applyView('liaison')
     })
 
     $('.js-filter-dept').on('click', function() {
