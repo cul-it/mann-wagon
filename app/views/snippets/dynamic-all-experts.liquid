@@ -25,6 +25,7 @@
       </div>
     </div>
   </div>
+
   <ul class="all-experts__list list">
     {% for person in contents.staff %}
       {% if person.expertise.size > 0 %}{% assign type = 'expert,' %}{% endif %}
@@ -35,7 +36,13 @@
       {% capture skills %}{% for skill in person.expertise %}{{ skill | capitalize }},{% endfor %}{% endcapture %}
 
         <li class="all-experts__person" data-type="{{ type }}" data-department="{{ depts }}" data-expertise="{{ skills }}">
-          <img class="all-experts__photo {% unless person.photo.url %}all-experts__photo--placeholder{% endunless %}" src="{{ person.photo.url | resize: '150x150#n' | default: placeholder_image }}">
+          <div class="all-experts__photo-consult">
+            <img class="all-experts__photo {% unless person.photo.url %}all-experts__photo--placeholder{% endunless %}" src="{{ person.photo.url | resize: '400x400#n' | default: placeholder_image }}">
+
+            {% if person.libcal_uid.size > 0 %}
+              {% include 'staff-book-consultation' with libcal_uid: person.libcal_uid, class: 'all-experts__consult' %}
+            {% endif %}
+          </div>
 
           <div class="all-experts__contact">
             <a class="all-experts__email" href="https://www.cornell.edu/search/people.cfm?netid={{ person.netid }}" title="Contact details for {{ person.first_name }}" target="_blank">
@@ -46,38 +53,36 @@
             </a>
           </div>
 
-          <h3 class="all-experts__name">{{ person.first_name }} {{ person.last_name }}</h3>
-          <span class="all-experts__title">{{ person.title }}</span>
+          <div class="all-experts__body">
+            <h3 class="all-experts__name">{{ person.first_name }} {{ person.last_name }}</h3>
+            <span class="all-experts__title">{{ person.title }}</span>
 
-          <div class="ui horizontal segments">
-            {% if type contains 'expert' %}
-              <div class="all-experts__prop-segment ui segment">
-                <h6 class="all-experts__prop-heading ui horizontal label">Expertise</h6>
+            <div class="ui horizontal segments">
+              {% if type contains 'expert' %}
+                <div class="all-experts__prop-segment ui segment">
+                  <h6 class="all-experts__prop-heading ui horizontal label">Expertise</h6>
 
-                <ul class="all-experts__prop-list">
-                  {% for skill in person.expertise %}
-                    <li class="all-experts__prop-item">{{ skill }}</li>
-                  {% endfor %}
-                </ul>
-              </div>
-            {% endif %}
+                  <ul class="all-experts__prop-list">
+                    {% for skill in person.expertise %}
+                      <li class="all-experts__prop-item">{{ skill }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
 
-            {% if type contains 'liaison' %}
-              <div class="all-experts__prop-segment ui segment">
-                <h6 class="all-experts__prop-heading ui horizontal label">Liaison to</h6>
+              {% if type contains 'liaison' %}
+                <div class="all-experts__prop-segment ui segment">
+                  <h6 class="all-experts__prop-heading ui horizontal label">Liaison to</h6>
 
-                <ul class="all-experts__prop-list">
-                  {% for dept in person.departments %}
-                    <li class="all-experts__prop-item">{{ dept.name }}</li>
-                  {% endfor %}
-                </ul>
-              </div>
-            {% endif %}
+                  <ul class="all-experts__prop-list">
+                    {% for dept in person.departments %}
+                      <li class="all-experts__prop-item">{{ dept.name }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+            </div>
           </div>
-
-          {% if person.libcal_uid.size > 0 %}
-            {% include 'staff-book-consultation' with libcal_uid: person.libcal_uid, class: 'all-experts__consult' %}
-          {% endif %}
         </li>
 
         {% comment %} Reset tests {% endcomment %}
