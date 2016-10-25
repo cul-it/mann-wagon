@@ -744,70 +744,84 @@ export default {
       // Event properties
       _.forEach(data, function (value, index) {
         var events = {}
-        if (value.description.match('Will this be advertised through Cornell Events\\?: (.*)')[1] == 'Yes') {
-          // Do nothing
-        } else {
-          // If same event based on title and time comparison
-          // Check twice for lobby
-          if (libcalEvents.length && libcalEvents[counter - 1].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 1].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
-            libcalEvents[counter - 1].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
-          } else if (libcalEvents.length > 1 && libcalEvents[counter - 2].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 2].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
-            libcalEvents[counter - 2].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
+        // Workaround for situations were incomplete data is returned from MannServices
+        if(value.description.match('Will this be advertised through Cornell Events\\?: (.*)') === null || value.description.match('Event Name: (.*)') === null || value.description.match('Event Description: (.*)') === null) {
+          console.log(value);
+          vueInstance.$set('libcalReservations', [])
+          if (vueInstance.dateSelected) {
+            vueInstance.getLibCalEvents('date', vueInstance.dateSelected)
           } else {
-            events['event_id'] = value.eventId
-            events['event_title'] = value.description.match('Event Name: (.*)')[1]
-            events['event_description'] = value.description.match('Event Description: (.*)')[1]
-            events['event_start_time'] = moment(new Date(value.formattedStartDateTime)).format()
-            events['event_start'] = moment(new Date(value.formattedStartDateTime)).format('YYYY-MM-DD')
-            events['event_end_time'] = moment(new Date(value.formattedEndDateTime)).format()
-            events['event_room_name'] = value.location.trim().replace(',', '')
-            _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
-              if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
-                  events['event_room_name'] = curatedEventLocation[0]
-                  events['event_room_smartmap_url'] = curatedEventLocation[2]
-              }
-            })
-            events['event_type'] = [value.description.match('Event type: (.*)')[1].trim().replace(',', '')]
-            _.forEach(vueInstance.curatedEventTypes, function(curatedEventType, index) {
-              if (curatedEventType[0] === value.description.match('Event type: (.*)')[1].trim().replace(',', '') || _.includes(curatedEventType[1], value.description.match('Event type: (.*)')[1].trim().replace(',', ''))) {
-                events['event_type'] = [curatedEventType[0]]
-              }
-            })
-
-            // Events array from LibCal
-            libcalEvents.push(events)
-            // Increment event counter
-
-          // Room filter list array
-          if (roomNames.indexOf(value.location.trim().replace(',', '')) === -1) {
-            roomNames.push(value.location.trim().replace(',', ''))
+            vueInstance.getLibCalEvents('default')
           }
-          // Event type filter list array
-          if (eventTypes.indexOf(value.description.match('Event type: (.*)')[1].trim().replace(',', '')) === -1) {
-            eventTypes.push(value.description.match('Event type: (.*)')[1].trim().replace(',', ''))
-          }
-            counter++
+        }
+        if (vueInstance.libcalReservations.length) {
+          if (value.description.match('Will this be advertised through Cornell Events\\?: (.*)')[1] == 'Yes') {
+            // Already in Localist, Do nothing
+          } else {
+            // If same event based on title and time comparison
+            // Check twice for lobby
+            if (libcalEvents.length && libcalEvents[counter - 1].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 1].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
+              libcalEvents[counter - 1].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
+            } else if (libcalEvents.length > 1 && libcalEvents[counter - 2].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 2].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
+              libcalEvents[counter - 2].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
+            } else {
+              events['event_id'] = value.eventId
+              events['event_title'] = value.description.match('Event Name: (.*)')[1]
+              events['event_description'] = value.description.match('Event Description: (.*)')[1]
+              events['event_start_time'] = moment(new Date(value.formattedStartDateTime)).format()
+              events['event_start'] = moment(new Date(value.formattedStartDateTime)).format('YYYY-MM-DD')
+              events['event_end_time'] = moment(new Date(value.formattedEndDateTime)).format()
+              events['event_room_name'] = value.location.trim().replace(',', '')
+              _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
+                if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
+                    events['event_room_name'] = curatedEventLocation[0]
+                    events['event_room_smartmap_url'] = curatedEventLocation[2]
+                }
+              })
+              events['event_type'] = [value.description.match('Event type: (.*)')[1].trim().replace(',', '')]
+              _.forEach(vueInstance.curatedEventTypes, function(curatedEventType, index) {
+                if (curatedEventType[0] === value.description.match('Event type: (.*)')[1].trim().replace(',', '') || _.includes(curatedEventType[1], value.description.match('Event type: (.*)')[1].trim().replace(',', ''))) {
+                  events['event_type'] = [curatedEventType[0]]
+                }
+              })
+
+              // Events array from LibCal
+              libcalEvents.push(events)
+              // Increment event counter
+
+            // Room filter list array
+            if (roomNames.indexOf(value.location.trim().replace(',', '')) === -1) {
+              roomNames.push(value.location.trim().replace(',', ''))
+            }
+            // Event type filter list array
+            if (eventTypes.indexOf(value.description.match('Event type: (.*)')[1].trim().replace(',', '')) === -1) {
+              eventTypes.push(value.description.match('Event type: (.*)')[1].trim().replace(',', ''))
+            }
+              counter++
+            }
           }
         }
       })
-      _.forEach(eventTypes, function (type, index, eventTypes) {
-        _.forEach(vueInstance.curatedEventTypes, function(curatedEventType) {
-          if (curatedEventType[0] === type || _.includes(curatedEventType[1], type)) {
-              eventTypes[index] = curatedEventType[0]
-          }
+      if (vueInstance.libcalReservations.length) {
+        _.forEach(eventTypes, function (type, index, eventTypes) {
+          _.forEach(vueInstance.curatedEventTypes, function(curatedEventType) {
+            if (curatedEventType[0] === type || _.includes(curatedEventType[1], type)) {
+                eventTypes[index] = curatedEventType[0]
+            }
+          })
         })
-      })
-      _.forEach(roomNames, function (room, index, roomNames) {
-        _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation) {
-          if (curatedEventLocation[0] === room || _.includes(curatedEventLocation[1], room)) {
-              roomNames[index] = curatedEventLocation[0]
-          }
+        _.forEach(roomNames, function (room, index, roomNames) {
+          _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation) {
+            if (curatedEventLocation[0] === room || _.includes(curatedEventLocation[1], room)) {
+                roomNames[index] = curatedEventLocation[0]
+            }
+          })
         })
-      })
-      // Set array values to be used later to merge
-      this.$set('libcalEvents', libcalEvents)
-      this.$set('libcalEventTypes', eventTypes)
-      this.$set('libcalRoomNames', roomNames)
+        // Set array values to be used later to merge
+        this.$set('libcalEvents', libcalEvents)
+        this.$set('libcalEventTypes', eventTypes)
+        this.$set('libcalRoomNames', roomNames)
+      }
     },
     // Custom data model from r25 events
     r25EventsArray (data) {
