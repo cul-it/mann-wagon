@@ -11,7 +11,7 @@ var allExperts = {
     this.accordionMe()
     this.bindEventListeners()
     this.initializeList()
-    this.applyView()
+    this.applyView('liaison', true)
   },
 
   accordionMe: function() {
@@ -19,9 +19,9 @@ var allExperts = {
       .accordion()
   },
 
-  applyView: function(requested = 'liaison') {
+  applyView: function(requested, initRequest) {
     // Catch request for Experts as initial view (from homepage)
-    if (location.hash === '#experts') {
+    if (initRequest && location.hash === '#experts') {
       requested = 'expert'
     }
     allExperts.cleanSlate()
@@ -100,7 +100,7 @@ var allExperts = {
   },
 
   toggleActiveType: function(trigger) {
-    var buttons = $('.all-experts__toggles').children()
+    var buttons = $('.js-toggle-buttons').children()
     if (trigger === 'clear') {
       buttons.removeClass('active')
     } else {
