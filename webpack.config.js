@@ -21,6 +21,7 @@ module.exports = {
     ]
   },
   entry: {
+      allExperts: './src/js/all-experts.js',
       betaBanner: './src/js/beta-banner.js',
       consultationRequest: './src/js/form-consultation-request.js',
       courseReserves: './vue/course-reserves/course-reserves.js',

@@ -1,0 +1,199 @@
+@import 'helpers/mixins';
+@import 'config';
+
+.all-experts {
+  @include span(full nest);
+}
+
+.all-experts__body {
+  @include susy-breakpoint($scape, $g-scape) {
+    margin-top: 0;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(isolate 6 at 3);
+  }
+
+  @include span(isolate 3 at 2);
+
+  margin-top: 1em;
+}
+
+.all-experts__photo-consult {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(isolate first 2);
+  }
+
+  @include span(isolate first 1);
+
+  text-align: center;
+}
+
+.all-experts__consult {
+  &.ui.button { // Override semantic ui default
+    margin: 0;
+    width: 100%;
+  }
+}
+
+.all-experts__contact {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(isolate 2 at 5);
+
+    text-align: right;
+  }
+
+  @include span(isolate 3 at 2);
+
+  font-size: modular-scale(-1);
+}
+
+.all-experts__email {
+  margin-right: 1em;
+}
+
+.all-experts__filter {
+  padding: .5em;
+
+  &--active {
+    background-color: color('active-filter-bg');
+    font-weight: 700;
+  }
+}
+
+.all-experts__filter-link {
+  display: block;
+}
+
+.all-experts__filter-list {
+  line-height: 1.2em;
+  font-size: modular-scale(-1);
+}
+
+.all-experts__filters {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(3 nest);
+
+    padding-right: 1em;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(2 nest);
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(3 nest);
+
+    padding-right: 1em;
+  }
+
+  @include span(full nest);
+}
+
+.all-experts__list {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(6 nest);
+
+    margin-top: 3.2em;
+    box-shadow: -1em -.5em 3em -2.3em color('black');
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(9 nest);
+  }
+
+  @include span(full nest);
+
+  border: solid 1px color('alabaster' ('shade': 2%));
+  background-color: color('alabaster');
+  padding: .5em 1em 2em;
+}
+
+.all-experts__name {
+  margin: 0;
+  font-family: $base-font-family;
+}
+
+.all-experts__person {
+  @include span(full nest);
+
+  margin-bottom: 1.5em;
+}
+
+.all-experts__photo {
+  margin-bottom: .5em;
+  border-radius: 50%;
+  padding-right: .5em;
+
+  &--placeholder {
+    opacity: .5;
+  }
+}
+
+.all-experts__prop-heading {
+  display: inline;
+  font-family: $base-font-family;
+}
+
+.all-experts__prop-item {
+  display: inline;
+  padding-left: .2em;
+  line-height: .8em;
+
+  &:first-of-type {
+    padding-left: 0;
+  }
+
+  &:after { // comma separated list
+    content: ', ';
+  }
+
+  &:last-child:after { // no comma for last item
+    content: '';
+  }
+}
+
+.all-experts__prop-list {
+  display: inline;
+  line-height: 1.2em;
+}
+
+.all-experts__staff-directory {
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(isolate 2 at 5);
+
+    margin-top: 3.5em;
+    text-align: right;
+  }
+
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(isolate last 2);
+
+    margin-top: .5em;
+  }
+
+  @include span(2 nest);
+}
+
+.all-experts__title {
+  display: block;
+  margin-bottom: 1em;
+  line-height: 1em;
+  color: color('aluminum');
+}
+
+.all-experts__toggles {
+  &.ui.buttons { // Override semantic ui default
+    @include susy-breakpoint($scape, $g-scape) {
+      @include span(isolate last);
+
+      text-align: right;
+    }
+
+    @include susy-breakpoint($tablet, $g-tablet) {
+      @include span(isolate at 3);
+
+      margin-left: 25%;
+    }
+  }
+}
