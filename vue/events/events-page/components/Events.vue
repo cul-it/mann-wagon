@@ -114,6 +114,7 @@ export default {
       recurringEventStartTime: '',
       apiErrors: [],
       latestCornellRequest: 0,
+      latestLibcalRequest: 0,
       latestR25Request: 0,
       r25Status: ''
     }
@@ -384,6 +385,9 @@ export default {
       if (this.libcalReservations.length) {
         this.setLibCalEvents(option, param)
       } else {
+        var vueInstance = this
+        var thisRequest = ++this.latestLibcalRequest;
+
         this.eventSources.updatedLibcalEvents = false
         var mannservicesEventsUrl = 'https://mannservices.mannlib.cornell.edu/LibServices/showEventsById.do?output=json&id='
         var roomIds = [23, 24, 25, 26]
@@ -401,21 +405,23 @@ export default {
         })
 
         Promise.all([promise[23], promise[24], promise[25], promise[26]]).then((values) => {
-          _.each(values, function (value, index) {
-            libcalReservations = _.concat(libcalReservations, value.data.eventList)
+          if (thisRequest === this.latestLibcalRequest) {
+              _.each(values, function (value, index) {
+                libcalReservations = _.concat(libcalReservations, value.data.eventList)
+              })
+              libcalReservations = _.each(libcalReservations, function (libcalReservation) {
+                // remove email from eventId for use as url parameter for single event display
+                libcalReservation.eventId = libcalReservation.eventId.split('-', 3).join('-')
+              })
+              this.$set('libcalReservations', libcalReservations);
+              this.setLibCalEvents(option, param)
+            }
+          }).catch(function(error){
+            vueInstance.setLibCalEvents(option, 'error')
+            vueInstance.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/contact/site-feedback">Report this issue.</a>')
+            vueInstance.$set('errorLibcalEvents', error)
+            vueInstance.$set('eventSources.updatedLibcalEvents', true)
           })
-          libcalReservations = _.each(libcalReservations, function (libcalReservation) {
-            // remove email from eventId for use as url parameter for single event display
-            libcalReservation.eventId = libcalReservation.eventId.split('-', 3).join('-')
-          })
-          this.$set('libcalReservations', libcalReservations);
-          this.setLibCalEvents(option, param)
-        }).catch(function(error){
-          vueInstance.setLibCalEvents(option, 'error')
-          vueInstance.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/contact/site-feedback">Report this issue.</a>')
-          vueInstance.$set('errorLibcalEvents', error)
-          vueInstance.$set('eventSources.updatedLibcalEvents', true)
-        })
       }
     },
     setLibCalEvents (option, param) {
