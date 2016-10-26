@@ -17,7 +17,7 @@
       </div>
 
       {% if person.libcal_uid.size > 0 %}
-        {% include 'staff-book-consultation' with libcal_uid: person.libcal_uid %}
+        {% include 'staff-book-consultation' with libcal_uid: person.libcal_uid, caller: 'grid' %}
       {% endif %}
     </div>
     <div class="extra content">
