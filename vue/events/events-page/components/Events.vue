@@ -333,7 +333,7 @@ export default {
     // Cornell localist events
     getCornellEvents (option, param) {
       var vueInstance = this
-      var localistApiBaseUrl = 'http://events.cornell.edu/api/2/events/?type=4228&pp=100'
+      var localistApiBaseUrl = 'https://events.cornell.edu/api/2/events/?type=4228&pp=100'
       if (this.localistReservations.length) {
         this.setCornellEvents(option, param)
         // Get default events
@@ -361,7 +361,7 @@ export default {
     makeCornellRequest (localistApiBaseUrl, option, param) {
       var vueInstance = this
       var thisRequest = ++this.latestCornellRequest;
-      var localistApiBaseUrl = 'http://events.cornell.edu/api/2/events/?type=4228&pp=100'
+      var localistApiBaseUrl = 'https://events.cornell.edu/api/2/events/?type=4228&pp=100'
 
       this.$http.get(localistApiBaseUrl + '&start=' + param + '').then(function (response) {
         if (thisRequest === this.latestCornellRequest) {
@@ -385,7 +385,7 @@ export default {
         this.setLibCalEvents(option, param)
       } else {
         this.eventSources.updatedLibcalEvents = false
-        var mannservicesEventsUrl = 'http://mannservices.mannlib.cornell.edu/LibServices/showEventsById.do?output=json&id='
+        var mannservicesEventsUrl = 'https://mannservices.mannlib.cornell.edu/LibServices/showEventsById.do?output=json&id='
         var roomIds = [23, 24, 25, 26]
         var vueInstance = this
         var promise = []
@@ -911,7 +911,7 @@ export default {
     // Cornell localist event
     getCornellEvent () {
       var vueInstance = this
-      var localistApiBaseUrl = 'http://events.cornell.edu/api/2/events/'
+      var localistApiBaseUrl = 'https://events.cornell.edu/api/2/events/'
       this.$http.get(localistApiBaseUrl + this.params).then(function (response) {
         // Create custom data model
         this.eventArray('Cornell', response.data.event)
