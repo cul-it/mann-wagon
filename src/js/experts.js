@@ -31,6 +31,13 @@ $('.meet-experts__librarians').slick({
         slidesToScroll: 3,
         slidesToShow: 3
       }
+    },
+    {
+      breakpoint: 1104,
+      settings: {
+        slidesToScroll: 4,
+        slidesToShow: 4
+      }
     }
   ],
   slidesToScroll: 2,
