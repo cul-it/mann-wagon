@@ -25,6 +25,10 @@
   font-size: modular-scale(-1);
 }
 
+.footer__admin {
+  @include span(full nest);
+}
+
 .footer__bottomline {
   @include span(full);
 }
