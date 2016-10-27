@@ -7,16 +7,42 @@ listed: true
 published: true
 is_layout: false
 editable_elements:
-  main/page_content: '<div class="content-body"><div class="node"><div class="content
-    clear"><p>Mann Library staff have created a series of research guides to support
-    degree programs in the College of Agriculture and Life Sciences, and the College
-    of Human Ecology.&nbsp;<br></p><p></p><p>Browse or search <a rel="nofollow" href="http://guides.library.cornell.edu/"
-    title="Link: http://guides.library.cornell.edu/" data-mce-href="http://guides.library.cornell.edu/">guides</a>&nbsp;in
-    subject areas covered by Mann and other libraries for a list of other suggested
-    resources.</p><p><br></p></div></div></div>'
+  main/page_content: "<p>Mann Library staff have created a series of research guides
+    to support degree programs in the College of Agriculture and Life Sciences, and
+    the College of Human Ecology.</p>\r\n\r\n<p>Browse or search <a target=\"_blank\"
+    href=\"http://guides.library.cornell.edu/\">guides</a> in subject areas covered
+    by Mann and other libraries for a list of other suggested resources.</p>\r\n\r\n<h4>Guides
+    by Department</h4>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/?group_id=971\"
+    title=\"Link: http://guides.library.cornell.edu/?group_id=971\">AEM: Applied Economics
+    &amp; Management</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/BEE\"
+    title=\"Link: http://guides.library.cornell.edu/BEE\">BEE: Biological &amp; Environmental
+    Engineering</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/BioEE\">BioEE:
+    Ecology and Evolutionary Biology</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/BioG\">BioG:
+    General Biology</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/BioMG\">BioMG:
+    Molecular Biology and Genetics</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/BioMI\">BioMI:
+    Microbiology</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/BioNB\">BioNB:
+    Neurobiology &amp; Behavior</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/COMM\">COMM:
+    Communication</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/DEA\">DEA:
+    Design &amp; Environmental Analysis</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/DSOC\">DSOC:
+    Development Sociology</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/EAS\">EAS:
+    Earth and Atmospheric Science</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/EDUC\">EDUC:
+    Education</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/FDSC\">FDSC:
+    Food Science</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/FSAD\">FSAD:
+    Fiber Science &amp; Apparel Design</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/HD\">HD:
+    Human Development Studies</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/HORT\">HORT:
+    Horticulture</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/?group_id=1002\">IARD:
+    International Agriculture &amp; Rural Development</a></li>\r\n  <li><a target=\"_blank\"
+    href=\"http://guides.library.cornell.edu/LA\">LA: Landscape Architecture</a></li>\r\n
+    \ <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/NS\">NS: Nutrition</a></li>\r\n
+    \ <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/NTRES\">NTRES:
+    Natural Resources</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/?group_id=7559\">PADM:
+    Public Affairs and Decision Making</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/PAM\">PAM:
+    Policy, Analysis, &amp; Management</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/?group_id=4428\">PLPA:
+    Plant Pathology</a></li>\r\n  <li><a target=\"_blank\" href=\"http://guides.library.cornell.edu/PLSCS\">PLSCS:
+    Crop &amp; Soil Sciences</a></li>"
 ---
 {% extends 'layouts/basic-page' %}
 
-{% block 'main/dynamic' %}
-  {% include 'dynamic-research-guides' %}
+{% block 'main/accessory' %}
+  {% include 'accessory-research-guides' %}
 {% endblock %}
