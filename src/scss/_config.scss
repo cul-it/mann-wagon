@@ -1,5 +1,5 @@
 // Google Fonts
-@import url('http://fonts.googleapis.com/css?family=Lato:400,400italic,700|Francois+One|Montserrat|Inconsolata:400,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,400italic,700|Francois+One|Montserrat|Inconsolata:400,700');
 $francois: 'Francois One', sans-serif;
 $lato: 'Lato', sans-serif;
 $inconsolata: 'Inconsolata', sans-serif;
@@ -153,7 +153,10 @@ $colors: (
   'weekly-location': 'white',
   'weekly-location-bg': 'vulcan',
   'monthly-building': 'notice',
-  'monthly-lobby': 'monthly-building' ('tint': 75%)
+  'monthly-lobby': 'monthly-building' ('tint': 75%),
+
+  // Experts
+  'active-filter-bg': 'deep-lemon' ('tint': 75%)
 );
 
 // Font Colors

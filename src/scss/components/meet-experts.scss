@@ -25,6 +25,23 @@
   }
 }
 
+.meet-experts__expertise-list {
+  line-height: 1.2em;
+}
+
+.meet-experts__expertise-item {
+  display: inline;
+  line-height: .8em;
+
+  &:after { // comma separated list
+    content: ', ';
+  }
+
+  &:last-child:after { // no comma for last item
+    content: '';
+  }
+}
+
 .meet-experts__heading {
   margin-bottom: 2em;
 }
@@ -114,6 +131,7 @@
 
 .meet-experts__profile-link {
   display: block;
+  margin-top: .5em;
   font-weight: 700;
 }
 

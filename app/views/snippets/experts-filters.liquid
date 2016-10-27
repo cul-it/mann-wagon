@@ -1,0 +1,19 @@
+{% if college %}
+  {% assign name = college | append: ' Departments' %}
+{% endif %}
+
+<h4 class="title">
+  <i class="dropdown icon"></i>
+  {{ name }}
+</h4>
+
+<ul class="all-experts__filter-list content">
+  {% if college %}
+    {% with_scope college: college %}
+      {% include 'experts-filter-list' with type: filter_type, collection: contents.departments, multi: true %}
+    {% endwith_scope %}
+  {% else %}
+    {% assign filter_type = name | downcase %}
+    {% include 'experts-filter-list' with type: filter_type , collection: array %}
+  {% endif %}
+</ul>

@@ -1,4 +1,4 @@
-<div class="ui three doubling cards space-finder">
+<div class="space-finder ui three doubling cards">
   {% editable_model spaces, hint: 'Manage all spaces' %}
     {% for type in contents.spaces_types %}
       <a class="ui card" href="{% path_to type %}">

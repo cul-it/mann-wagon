@@ -10,8 +10,8 @@
 
 <script>
   jQuery(function(){
-     jQuery("#mySched{{ libcal_uid }}").LibCalMySched({ iid: 973, uid: {{ libcal_uid }}, gid: 0,  width: 500, height: 450 });
+     jQuery("#mySched{{ libcal_uid }}{% if caller %}--{{ caller }}{% endif %}").LibCalMySched({ iid: 973, uid: {{ libcal_uid }}, gid: 0,  width: 500, height: 450 });
   });
 </script>
 
-<a id="mySched{{ libcal_uid }}" class="staff-directory__book-consultation ui mini button" href="#">Book a Consultation</a>
+<a id="mySched{{ libcal_uid }}{% if caller %}--{{ caller }}{% endif %}" class="staff-directory__book-consultation {% if class %}{{ class }}{% endif %} ui mini button" href="#">Book a Consultation</a>

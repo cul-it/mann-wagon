@@ -1,7 +1,10 @@
 <table class="software-list__table ui yellow collapsing selectable unstackable definition celled striped table">
   <thead class="full-width">
     <tr>
-      <th v-for="heading in softwareList[0]" class="center aligned">(( $key ))</th>
+      <th v-for="heading in softwareList[0]" class="center aligned">
+        <a v-if="smartmapQuery($key)" href="http://smartmap.mannlib.cornell.edu/location/(( smartmapQuery($key) ))" title="Map it" target="_blank">(( $key ))</a>
+        <span v-else>(( $key ))</span>
+      </th>
     </tr>
   </thead>
   <tbody class="software-list__tbody">
