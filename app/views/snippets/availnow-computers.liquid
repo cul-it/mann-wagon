@@ -1,19 +1,71 @@
-{% include 'availnow-computers-setup' %}
+{% assign avail_class = 'available' %}
+{% assign unavail_class = 'unavailable' %}
+{% assign avail_icon = 'fa-check-square' %}
+{% assign unavail_icon = 'fa-minus-square' %}
+{% assign avail_badge = 'badge-success' %}
+{% assign unavail_badge = 'badge-error' %}
 
-<div class="available-now__grp available-now__desktops">
-  <h5 class="available-now__subheading"><a class="available-now__link" href="{% path_to desktops %}" title="More details about desktop computers at Mann">Desktops</a></h5>
+{% comment %} Forget about hitting APIs if we're closed {% endcomment %}
+{% if mannlib_hours.status_1707 == 'Open' %}
 
-  <ul>
-    {% include 'availnow-computers-li' with type: 'desktops', linked: true, os: 'windows', available: windows_avail %}
-    {% include 'availnow-computers-li' with type: 'desktops', linked: true, os: 'apple', available: macs_avail %}
-  </ul>
-</div>
+  {% assign computer_accessory_heading = 'Current Availability' %}
 
-<div class="available-now__grp available-now__laptops shame-isolate-laptops">
-  <h5 class="available-now__subheading"><a class="available-now__link" href="{% path_to laptops %}" title="More details about laptop computers at Mann">Laptops</a></h5>
+  {% assign laptops_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showLaptopInfo.do?output=json&locationId=14' %}
 
-  <ul>
-    {% include 'availnow-computers-li' with type: 'laptops', linked: true, os: 'windows', available: winbook_avail %}
-    {% include 'availnow-computers-li' with type: 'laptops', linked: true, os: 'apple', available: macbook_avail %}
-  </ul>
-</div>
+  {% consume mann_laptops from laptops_url %}
+    {% assign winbook_avail = mann_laptops.laptop_available | ceil %}
+    {% assign macbook_avail = mann_laptops.macbook_available | ceil %}
+  {% endconsume %}
+
+  {% assign labstats_url = 'https://online.labstats.com/api/public/GetPublicApiData/1001' %}
+
+  {% consume mann_computers from labstats_url, header_auth: site.metafields.sensitive_data.labstats_customer_id, expires_in: 60 %}
+    {% for location in mann_computers.groups %}
+      {% comment %} Waiting on Gabriel to add LabStats on the rest of the PCs & Macs in the farm, McManus, etc {% endcomment %}
+      {% case location.label %}
+        {% when 'B30A' %}
+          {% assign b30a = location %}
+        {% when 'B30B' %}
+          {% assign b30b = location %}
+        {% when 'CIT 101' %}
+          {% assign cit_101 = location %}
+        {% when 'CIT 112' %}
+          {% assign cit_112 = location %}
+        {% when 'CIT Mac 220A' %}
+          {% assign cit_mac_220a = location %}
+        {% when 'McManus' %}
+          {% assign mcmanus = location %}
+        {% when 'Research' %}
+          {% assign research_win = location %}
+        {% when 'Research Mac' %}
+          {% assign research_mac = location %}
+        {% when 'Stone' %}
+          {% assign stone = location %}
+      {% endcase %}
+    {% endfor %}
+
+  {% assign windows_avail = cit_101.available | plus: cit_112.available | plus: research_win.available | plus: stone.available %}
+
+  {% comment %} Include B30 classrooms in total count if basement is open {% endcomment %}
+  {% if mannlib_hours.status_2319 == 'Open' %}
+    {% assign windows_avail = windows_avail | plus: b30a.available | plus: b30b.available %}
+
+    {% assign basement_status = false %}
+  {% else %}
+    {% assign b30a = nil %}
+    {% assign b30b = nil %}
+
+    {% capture basement_status %}<a href="{% path_to hours %}" title="View all hours"><span class="badge badge-error">Closed</span></a>{% endcapture %}
+  {% endif %}
+
+  {% assign macs_avail = cit_mac_220a.available | plus: mcmanus.available | plus: research_mac.available %}
+
+  {% assign stone_center_win =  cit_101.available | plus: research_win.available %}
+
+  {% include 'availnow-computers-template' %}
+
+  {% endconsume %}
+{% else %}
+  {% capture computer_accessory_heading %}<a href="{% path_to hours %}" title="View all hours"><span class="badge badge-error">Closed</span></a> <a class="todays-hours__more" href="{% path_to hours %}" title="View all hours">All Hours <i class="fa fa-angle-double-right"></i></a>{% endcapture %}
+  {% include 'availnow-computers-template' %}
+{% endif %}
