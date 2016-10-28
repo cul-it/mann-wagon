@@ -65,6 +65,13 @@ fields:
     inverse_of: spaces
     ui_enabled: true
 
+- smartmap_url: # The lowercase, underscored name of the field
+    label: SmartMap URL # Human readable name of the field
+    type: string
+    required: false
+    hint: Used to link to the Mann SmartMap to aid in patrons finding the location (floor is used as link text)
+    localized: false
+
 - spaces_study_types:
     label: Types of study spaces
     hint: If this is a study space, specify whether indiv, group, quiet
