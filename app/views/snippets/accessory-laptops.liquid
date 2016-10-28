@@ -1,8 +1,25 @@
-{% include 'availnow-computers-setup' %}
+{% assign avail_class = 'available' %}
+{% assign unavail_class = 'unavailable' %}
+{% assign avail_icon = 'fa-check-square' %}
+{% assign unavail_icon = 'fa-minus-square' %}
+{% assign avail_badge = 'badge-success' %}
+{% assign unavail_badge = 'badge-error' %}
 
-<h3>{{ computer_accessory_heading }}</h3>
+{% comment %} Forget about hitting APIs if we're closed {% endcomment %}
+{% if mannlib_hours.status_1707 == 'Open' %}
 
-<ul>
-  {% include 'availnow-computers-li' with location: 'Circulation Desk', os: 'windows', available: winbook_avail %}
-  {% include 'availnow-computers-li' with location: 'Circulation Desk', os: 'apple', available: macbook_avail %}
-</ul>
+  {% assign computer_accessory_heading = 'Current Availability' %}
+
+  {% assign laptops_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showLaptopInfo.do?output=json&locationId=14' %}
+
+  {% consume mann_laptops from laptops_url %}
+    {% assign winbook_avail = mann_laptops.laptop_available | ceil %}
+    {% assign macbook_avail = mann_laptops.macbook_available | ceil %}
+
+    {% include 'availnow-laptops-template' %}
+
+  {% endconsume %}
+{% else %}
+  {% capture computer_accessory_heading %}<a href="{% path_to hours %}" title="View all hours"><span class="badge badge-error">Closed</span></a> <a class="todays-hours__more" href="{% path_to hours %}" title="View all hours">All Hours <i class="fa fa-angle-double-right"></i></a>{% endcapture %}
+  {% include 'availnow-laptops-template' %}
+{% endif %}
