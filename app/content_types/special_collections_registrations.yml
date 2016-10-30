@@ -92,15 +92,15 @@ fields:
     #   fr: ['option1_fr', 'option2_fr']
     select_options: ['Cornell', 'Other']
 
-- usage_agreement: # The lowercase, underscored name of the field
-    label: Usage agreement # Human readable name of the field
-    type: boolean
-    required: true
-    localized: false
-
 - date: # The lowercase, underscored name of the field
     label: Date # Human readable name of the field
     type: date_time
+    required: true
+    localized: false
+
+- usage_agreement: # The lowercase, underscored name of the field
+    label: Usage agreement # Human readable name of the field
+    type: boolean
     required: true
     localized: false
 

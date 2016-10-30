@@ -9,3 +9,7 @@ editable_elements:
   main/page_content: ''
 ---
 {% extends "layouts/basic-page" %}
+
+{% block 'main/dynamic' %}
+  {% include 'form-special-collections' %}
+{% endblock %}
