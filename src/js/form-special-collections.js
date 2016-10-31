@@ -1,44 +1,83 @@
-// SUI calendar component via mdehoog fork until PR is merged
-// -- https://github.com/mdehoog/Semantic-UI/tree/calendar-dist
-// -- https://github.com/Semantic-Org/Semantic-UI/pull/3256#issuecomment-224113834
-import 'semantic-ui-calendar/calendar.min.js';
-import 'semantic-ui-calendar/calendar.min.css';
+import 'semantic-ui-calendar/dist/calendar.min.css'
+import 'semantic-ui-calendar/dist/calendar.min.js'
 
-import 'semantic-ui-css/components/accordion.min.css';
-import 'semantic-ui-css/components/accordion.min.js';
-import 'semantic-ui-css/components/checkbox.min.css';
-import 'semantic-ui-css/components/checkbox.min.js';
-import 'semantic-ui-css/components/dropdown.min.css';
-import 'semantic-ui-css/components/dropdown.min.js';
-import 'semantic-ui-css/components/form.min.css';
-import 'semantic-ui-css/components/form.min.js';
-import 'semantic-ui-css/components/header.min.css';
-import 'semantic-ui-css/components/message.min.css';
-import 'semantic-ui-css/components/popup.min.css';
-import 'semantic-ui-css/components/popup.min.js';
-import 'semantic-ui-css/components/segment.min.css';
-import 'semantic-ui-css/components/transition.min.css';
-import 'semantic-ui-css/components/transition.min.js';
+import 'semantic-ui-css/components/accordion.min.css'
+import 'semantic-ui-css/components/accordion.min.js'
+import 'semantic-ui-css/components/checkbox.min.css'
+import 'semantic-ui-css/components/checkbox.min.js'
+import 'semantic-ui-css/components/dropdown.min.css'
+import 'semantic-ui-css/components/dropdown.min.js'
+import 'semantic-ui-css/components/form.min.css'
+import 'semantic-ui-css/components/form.min.js'
+import 'semantic-ui-css/components/header.min.css'
+import 'semantic-ui-css/components/message.min.css'
+import 'semantic-ui-css/components/popup.min.css'
+import 'semantic-ui-css/components/popup.min.js'
+import 'semantic-ui-css/components/segment.min.css'
+import 'semantic-ui-css/components/transition.min.css'
+import 'semantic-ui-css/components/transition.min.js'
 
 import moment from 'moment'
 
-$('.ui.date-selector').calendar({
-  type: 'datetime',
-  minDate: moment().add(1, 'day').set('hour', 10).toDate(),
-  maxDate: moment().add(1, 'month').toDate()
-});
+$(document).ready(function() {
+  $('.ui.date-selector').calendar({
+    type: 'datetime',
+    // Require at least a half hour advanced notice and up to 1 month out
+    minDate: moment().add(30, 'minutes').toDate(),
+    maxDate: moment().add(1, 'month').toDate(),
 
-$('.ui.accordion')
-  .accordion()
-;
+    // Is the given date disabled?
+    isDisabled: function (date, mode) {
+      var day = moment(date).day()
+      var hour = moment(date).hour()
+      var minute = moment(date).minute()
+      // Sunday = 0, Saturday = 6
+      var weekend = [0,6]
+      // Standard hours are 10am - 3pm, Mon-Thu (Friday, close at noon)
+      var open = 10
+      var close = day === 5 ? 12 : 15
 
-$('.ui.checkbox')
-  .checkbox()
-;
+      switch  (mode) {
+        case 'day':
+          // Closed on the weekend
+          if (weekend.indexOf(day) !== -1) {
+            return true
+          }
+          break
+        case 'hour':
+          if (hour < open || hour >= close) {
+            return true
+          }
 
-$('.ui.dropdown')
-  .dropdown()
-;
+          // Catch day exceptions if browsing through days in hour mode
+          if (weekend.indexOf(day) !== -1) {
+            return true
+          }
+          break
+        case 'minute':
+          // Don't allow registrations within 15min of closing
+          if (hour === (close - 1)) {
+            if (minute > 45) {
+              return true
+            }
+          }
+
+          // Catch hour & day exceptions if browsing through days in minute mode
+          if (hour >= close || (weekend.indexOf(day) !== -1)) {
+            return true
+          }
+          break
+      }
+      return false
+    },
+  })
+})
+
+$('.ui.accordion').accordion()
+
+$('.ui.checkbox').checkbox()
+
+$('.ui.dropdown').dropdown()
 
 // Would like to adjust the default prompt for the empty rule, but unclear how
 // $fn.form.settings.prompt = function(rule, field) {
@@ -130,4 +169,3 @@ $('.ui.form')
       }
     }
   })
-;
