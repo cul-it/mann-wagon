@@ -1,19 +1,36 @@
-{% if site.metafields.site_analytics.google_analytics_tracking_identifier %}
-  {% google_analytics site.metafields.site_analytics.google_analytics_tracking_identifier %}
-{% endif %}
-{% if site.metafields.site_analytics.piwik_analytics_site_identifier %}
-  <script type="text/javascript">
-    var _paq = _paq || [];
-    _paq.push(["setDomains", ["*.{{site.domains}}"]]);
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    (function() {
-      var u="//webanalytics.library.cornell.edu/";
-      _paq.push(['setTrackerUrl', u+'piwik.php']);
-      _paq.push(['setSiteId', {{site.metafields.site_analytics.piwik_analytics_site_identifier}}]);
-      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-    })();
-  </script>
-  <noscript><p><img src="//webanalytics.library.cornell.edu/piwik.php?idsite={{site.metafields.site_analytics.piwik_analytics_site_identifier}}" style="border:0;" alt="" /></p></noscript>
-{% endif %}
+{% comment %} No analytics is serving site by Wagon {% endcomment %}
+{% unless wagon %}
+  {% assign prod = false %}
+  {% if base_url contains 'mannlib.cornell.edu' %}
+    {% assign prod = true %}
+  {% endif %}
+
+  {% if prod %}
+    {% assign piwik_url = '//webanalytics.library.cornell.edu/' %}
+  {% else %}
+    {% assign piwik_url = '//piwik-test.library.cornell.edu/' %}
+  {% endif %}
+
+  {% comment %} Google Analytics only for production {% endcomment %}
+  {% if prod and site.metafields.site_analytics.google_analytics_tracking_identifier %}
+    {% google_analytics site.metafields.site_analytics.google_analytics_tracking_identifier %}
+  {% endif %}
+
+  {% comment %} Piwik for dev as well to test AWS Piwik instance for Alan {% endcomment %}
+  {% if site.metafields.site_analytics.piwik_analytics_site_identifier %}
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      _paq.push(["setDomains", ["*.{{ site.domains | first }}"]]);
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="{{ piwik_url }}";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', {{ site.metafields.site_analytics.piwik_analytics_site_identifier }}]);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <noscript><p><img src="{{ piwik_url }}piwik.php?idsite={{ site.metafields.site_analytics.piwik_analytics_site_identifier }}" style="border:0;" alt="" /></p></noscript>
+  {% endif %}
+{% endunless %}
