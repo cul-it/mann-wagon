@@ -112,22 +112,13 @@
 
     <h4 class="ui dividing header mann-form__header">Requested Items</h4>
 
-    <div class="required field mann-form__compact">
-      <label>Call Number</label>
-      <input type="text" name="content[item1_callno]" value="{{ special_collections_registration.item1_callno }}">
+    <div class="ui basic segment">
+      {% for i in (1..5) %}
+        {% include 'form-special-collections-item' %}
+      {% endfor %}
     </div>
 
-    <div class="field mann-form__compact">
-      <label>Author</label>
-      <input type="text" name="content[item1_author]" value="{{ special_collections_registration.item1_author }}">
-    </div>
-
-    <div class="field mann-form__compact">
-      <label>Brief Title</label>
-      <input type="text" name="content[item1_title]" value="{{ special_collections_registration.item1_title }}">
-    </div>
-
-    <button class="ui button" type="submit">Submit your request</button>
+    <button class="ui button" type="submit">Submit your registration</button>
   {% endunless %}
 {% endmodel_form %}
 

@@ -4,6 +4,8 @@
 import 'semantic-ui-calendar/calendar.min.js';
 import 'semantic-ui-calendar/calendar.min.css';
 
+import 'semantic-ui-css/components/accordion.min.css';
+import 'semantic-ui-css/components/accordion.min.js';
 import 'semantic-ui-css/components/checkbox.min.css';
 import 'semantic-ui-css/components/checkbox.min.js';
 import 'semantic-ui-css/components/dropdown.min.css';
@@ -14,6 +16,7 @@ import 'semantic-ui-css/components/header.min.css';
 import 'semantic-ui-css/components/message.min.css';
 import 'semantic-ui-css/components/popup.min.css';
 import 'semantic-ui-css/components/popup.min.js';
+import 'semantic-ui-css/components/segment.min.css';
 import 'semantic-ui-css/components/transition.min.css';
 import 'semantic-ui-css/components/transition.min.js';
 
@@ -24,6 +27,10 @@ $('.ui.date-selector').calendar({
   minDate: moment().add(1, 'day').set('hour', 10).toDate(),
   maxDate: moment().add(1, 'month').toDate()
 });
+
+$('.ui.accordion')
+  .accordion()
+;
 
 $('.ui.checkbox')
   .checkbox()

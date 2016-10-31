@@ -1,0 +1,34 @@
+{% comment %}
+  Setup dynamic variables for retaining submitted values on potential return from server-side validation
+  -- Confused? Check out these very helpful posts in the Shopify forums...wash, rinse, repeat until it sinks in ;)
+  https://ecommerce.shopify.com/c/ecommerce-design/t/using-a-variable-in-a-liquid-statement-191989
+  https://ecommerce.shopify.com/c/ecommerce-design/t/getting-a-liquid-object-from-a-string-variable-143551
+  https://ecommerce.shopify.com/c/ecommerce-design/t/dynamic-variable-names-possible-270577
+{% endcomment %}
+{% capture callno %}item{{ i }}_callno{% endcapture %}
+{% capture author %}item{{ i }}_author{% endcapture %}
+{% capture title %}item{{ i }}_title{% endcapture %}
+
+<div class="ui styled accordion">
+  <div class="title {% if i == 1 %}active{% endif %}">
+    Item #{{ i }}
+    <i class="dropdown icon"></i>
+  </div>
+
+  <div class="content {% if i == 1 %}active{% endif %}">
+    <div class="{% if i == 1 %}required{% endif %} field mann-form__compact">
+      <label>Call Number</label>
+      <input type="text" name="content[item{{ i }}_callno]" value="{{ special_collections_registration[callno] }}">
+    </div>
+
+    <div class="field mann-form__compact">
+      <label>Author</label>
+      <input type="text" name="content[item{{ i }}_author]" value="{{ special_collections_registration[author] }}">
+    </div>
+
+    <div class="field mann-form__compact">
+      <label>Brief Title</label>
+      <input type="text" name="content[item{{ i }}_title]" value="{{ special_collections_registration[title] }}">
+    </div>
+  </div>
+</div>
