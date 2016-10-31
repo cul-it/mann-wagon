@@ -1,36 +1,29 @@
-// SUI calendar component via mdehoog fork until PR is merged
-// -- https://github.com/mdehoog/Semantic-UI/tree/calendar-dist
-// -- https://github.com/Semantic-Org/Semantic-UI/pull/3256#issuecomment-224113834
-import 'semantic-ui-calendar/calendar.min.js';
-import 'semantic-ui-calendar/calendar.min.css';
+import 'semantic-ui-calendar/dist/calendar.min.css'
+import 'semantic-ui-calendar/dist/calendar.min.js'
 
-import 'semantic-ui-css/components/checkbox.min.css';
-import 'semantic-ui-css/components/checkbox.min.js';
-import 'semantic-ui-css/components/dropdown.min.css';
-import 'semantic-ui-css/components/dropdown.min.js';
-import 'semantic-ui-css/components/form.min.css';
-import 'semantic-ui-css/components/form.min.js';
-import 'semantic-ui-css/components/header.min.css';
-import 'semantic-ui-css/components/message.min.css';
-import 'semantic-ui-css/components/popup.min.css';
-import 'semantic-ui-css/components/popup.min.js';
-import 'semantic-ui-css/components/transition.min.css';
-import 'semantic-ui-css/components/transition.min.js';
+import 'semantic-ui-css/components/checkbox.min.css'
+import 'semantic-ui-css/components/checkbox.min.js'
+import 'semantic-ui-css/components/dropdown.min.css'
+import 'semantic-ui-css/components/dropdown.min.js'
+import 'semantic-ui-css/components/form.min.css'
+import 'semantic-ui-css/components/form.min.js'
+import 'semantic-ui-css/components/header.min.css'
+import 'semantic-ui-css/components/message.min.css'
+import 'semantic-ui-css/components/popup.min.css'
+import 'semantic-ui-css/components/popup.min.js'
+import 'semantic-ui-css/components/transition.min.css'
+import 'semantic-ui-css/components/transition.min.js'
 
 $('.date-selector').calendar({
   type: 'date'
-});
+})
 
-$('.ui.checkbox')
-  .checkbox()
-;
+$('.ui.checkbox').checkbox()
 
 // FEW ITEMS TO NOTE
 // i see nick's comment on the feedback form that he doesn't like this for mobile
 // probably needs to be reworked, but i do like the multiple select that comes with semantic-ui
-$('.ui.dropdown')
-  .dropdown()
-;
+$('.ui.dropdown').dropdown()
 
 // Validation via semantic-ui
 $('.ui.form')
@@ -97,4 +90,3 @@ $('.ui.form')
       // }
     }
   })
-;

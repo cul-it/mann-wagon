@@ -1,21 +1,18 @@
-// SUI calendar component via mdehoog fork until PR is merged
-// -- https://github.com/mdehoog/Semantic-UI/tree/calendar-dist
-// -- https://github.com/Semantic-Org/Semantic-UI/pull/3256#issuecomment-224113834
-import 'semantic-ui-calendar/calendar.min.js';
-import 'semantic-ui-calendar/calendar.min.css';
+import 'semantic-ui-calendar/dist/calendar.min.css'
+import 'semantic-ui-calendar/dist/calendar.min.js'
 
-import 'semantic-ui-css/components/checkbox.min.css';
-import 'semantic-ui-css/components/checkbox.min.js';
-import 'semantic-ui-css/components/dropdown.min.css';
-import 'semantic-ui-css/components/dropdown.min.js';
-import 'semantic-ui-css/components/form.min.css';
-import 'semantic-ui-css/components/form.min.js';
-import 'semantic-ui-css/components/header.min.css';
-import 'semantic-ui-css/components/message.min.css';
-import 'semantic-ui-css/components/popup.min.css';
-import 'semantic-ui-css/components/popup.min.js';
-import 'semantic-ui-css/components/transition.min.css';
-import 'semantic-ui-css/components/transition.min.js';
+import 'semantic-ui-css/components/checkbox.min.css'
+import 'semantic-ui-css/components/checkbox.min.js'
+import 'semantic-ui-css/components/dropdown.min.css'
+import 'semantic-ui-css/components/dropdown.min.js'
+import 'semantic-ui-css/components/form.min.css'
+import 'semantic-ui-css/components/form.min.js'
+import 'semantic-ui-css/components/header.min.css'
+import 'semantic-ui-css/components/message.min.css'
+import 'semantic-ui-css/components/popup.min.css'
+import 'semantic-ui-css/components/popup.min.js'
+import 'semantic-ui-css/components/transition.min.css'
+import 'semantic-ui-css/components/transition.min.js'
 
 import moment from 'moment'
 
@@ -23,15 +20,11 @@ $('.ui.date-selector').calendar({
   type: 'date',
   minDate: moment().add(2, 'weeks').toDate(),
   maxDate: moment().add(1, 'year').toDate()
-});
+})
 
-$('.ui.checkbox')
-  .checkbox()
-;
+$('.ui.checkbox').checkbox()
 
-$('.ui.dropdown')
-  .dropdown()
-;
+$('.ui.dropdown').dropdown()
 
 // Would like to adjust the default prompt for the empty rule, but unclear how
 // $fn.form.settings.prompt = function(rule, field) {
@@ -130,4 +123,3 @@ $('.ui.form')
       }
     }
   })
-;

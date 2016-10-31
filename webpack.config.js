@@ -36,6 +36,7 @@ module.exports = {
       softwareList: './vue/software-list/software-list.js',
       softwareRequest: './src/js/form-software-request.js',
       spacesCards: './src/js/spaces-cards.js',
+      specialCollRegistration: './src/js/form-special-collections.js',
       spotlights: './src/js/spotlights.js',
       staffDirectory: './src/js/staff-directory.js',
       vendor: ['jquery', 'suiIcon', 'doubleTapToGo']

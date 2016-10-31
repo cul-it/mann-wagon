@@ -1,7 +1,7 @@
 {% comment %} Ensure that at least one of the child pages are listed {% endcomment %}
 {% assign listed_children = false %}
 {% for child in page.children %}
-  {% if child.listed? %}
+  {% if child.listed? and child.published? %}
     {% assign listed_children = true %}
     {% break %}
   {% endif %}

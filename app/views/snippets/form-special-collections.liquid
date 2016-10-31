@@ -1,0 +1,129 @@
+{% editable_model special_collections_registrations, hint: 'View submitted registrations' %}{% endeditable_model %}
+
+{% model_form 'special_collections_registrations', class: 'ui form success error mann-form', success: path, error: path %}
+  {% comment %} Status messages from Locomotive {% endcomment %}
+  {% if special_collections_registration.errors %}
+    <div class="ui error message">
+      <div class="header">Please address the following errors</div>
+
+      <ul class="list">
+        {% for error in special_collections_registration.errors %}
+          <li>{{error[0] | capitalize}} -  {{error[1]}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% elsif special_collections_registration.errors == false %}
+    <div class="ui icon success message">
+      <i class="thumbs outline up icon"></i>
+
+      <div class="content">
+        <div class="header">Thank You!</div>
+
+        <p>Your registration to view items from our special collections has been submitted successfully. We'll be in touch shortly to confirm your visit.</p>
+
+        <p><strong>Please note that your request is not guaranteed until you receive confirmation from one of our staff members.</strong></p>
+      </div>
+    </div>
+  {% endif %}
+
+  {% comment %} Don't display the form after successful submission {% endcomment %}
+  {% unless special_collections_registration.errors == false %}
+
+    <h4 class="ui dividing header mann-form__header">Contact Information</h4>
+
+    <div class="required field mann-form__compact">
+      <label>Name</label>
+      <input type="text" name="content[name]" value="{{ special_collections_registration.name }}">
+    </div>
+
+    <div class="required field mann-form__compact">
+      <label>Email</label>
+      <input type="email" name="content[email]" value="{{ special_collections_registration.email }}">
+    </div>
+
+    <div class="required field mann-form__compact">
+      <label>Local Phone</label>
+      <input type="tel" name="content[phone_local]" value="{{ special_collections_registration.phone_local }}">
+    </div>
+
+    <div class="required field">
+      <label>Local Mailing Address</label>
+      <textarea name="content[mailing_local]" rows="4">{{ special_collections_registration.mailing_local }}</textarea>
+    </div>
+
+    <div class="required field mann-form__compact">
+      <label>Home Phone</label>
+      <input type="tel" name="content[phone_home]" value="{{ special_collections_registration.phone_home }}">
+    </div>
+
+    <div class="required field">
+      <label>Home Mailing Address</label>
+      <textarea name="content[mailing_home]" rows="4">{{ special_collections_registration.mailing_home }}</textarea>
+    </div>
+
+    <div class="required field mann-form__compact">
+      <label>Department</label>
+      <input type="text" name="content[department]" value="{{ special_collections_registration.department }}">
+    </div>
+
+    <div class="required field">
+      <label>Affiliation</label>
+
+      <select class="ui dropdown mann-form__compact" name="content[affiliation]">
+        <option value="">-- Select one --</option>
+        {% for affiliation in contents.special_collections_registrations.affiliation_options %}
+          <option value="{{ affiliation }}" {% if special_collections_registration.affiliation == affiliation %} selected {% endif %}>{{ affiliation }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <h4 class="ui dividing header mann-form__header">Visit Details</h4>
+
+    <div class="ui tiny compact info message">
+      <div class="header">
+        Hours of Availability
+      </div>
+      <ul class="list">
+        <li>10am - 3pm Monday through Thursday</li>
+        <li>10am - noon on Fridays</li>
+      </ul>
+    </div>
+
+    <div class="required field mann-form__compact">
+      <label>Preferred Date and Time of Visit</label>
+      <div class="ui calendar date-selector">
+        <div class="ui input left icon">
+          <i class="calendar icon"></i>
+          <input type="text" name="content[date]" value="{{ special_collections_registration.date }}" placeholder="Enter Date &amp; Time">
+        </div>
+      </div>
+    </div>
+
+    <div class="required field">
+      <div class="ui toggle checkbox">
+        {% comment %}
+          Need to set value to 1, otherwise Locomotive will submit 'on' when checked
+          -- https://github.com/locomotivecms/engine/issues/399
+        {% endcomment %}
+        <input type="checkbox" name="content[usage_agreement]" value="1" {% if special_collections_registration.usage_agreement | ceil == 1 %} checked {% endif %}>
+        <label>I agree to abide by all the regulations set forth on this form or imposed at the time of viewing by Library Staff. I also agree not to publish any materials from Mann Library Special Collections without first obtaining legally required permissions.</label>
+      </div>
+    </div>
+
+    <h4 class="ui dividing header mann-form__header">Requested Items</h4>
+
+    <div class="ui tiny compact message">
+      <p>Please <a href="https://newcatalog.library.cornell.edu" title="Search the library catalog for your items" target="_blank">use the catalog</a> to find the requested information for your items</p>
+    </div>
+
+    <div class="ui basic segment">
+      {% for i in (1..5) %}
+        {% include 'form-special-collections-item' %}
+      {% endfor %}
+    </div>
+
+    <button class="ui button" type="submit">Submit your registration</button>
+  {% endunless %}
+{% endmodel_form %}
+
+{{ 'specialCollRegistration.bundle.js' | javascript_tag }}

@@ -36,6 +36,7 @@
 !projects.liquid
 !search.liquid
 !site-feedback.liquid
+!use/collections/special/registration.liquid
 !use/spaces.liquid
 !use/technology/computing/desktops.liquid
 !use/technology/computing/laptops.liquid
