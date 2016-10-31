@@ -6,8 +6,12 @@ is_layout: false
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{{ page.title }}</title>
-
+    {% capture page_seo_title %} {{ page.seo_title | default: page.title }} {% endcapture %}
+    {% if page.parent %}
+      <title>{{ page_seo_title }} | {{ site.seo_title }} </title>
+    {% else %}
+      <title>{{ site.seo_title }} | {{ page_seo_title }}</title>
+    {% endif %}
     <meta name="keywords" value="{{ site.meta_keywords }}">
     <meta name="description" value="{{ site.meta_description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
