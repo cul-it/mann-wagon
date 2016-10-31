@@ -20,7 +20,7 @@
   {% if site.metafields.site_analytics.piwik_analytics_site_identifier %}
     <script type="text/javascript">
       var _paq = _paq || [];
-      _paq.push(["setDomains", ["*.{{ site.domains }}"]]);
+      _paq.push(["setDomains", ["*.{{ site.domains | first }}"]]);
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
       (function() {
