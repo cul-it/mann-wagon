@@ -15,7 +15,7 @@ Vue.config.unsafeDelimiters = ['(((', ')))']
 var Events = require('./components/Events.vue')
 
 var App = Vue.extend({})
-// Use eventsPath as key for the routes object
+// Use js variable as key for the routes object
 var routes = {}
 routes[path_to_events_page] = {
                       name: 'events',

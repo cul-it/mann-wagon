@@ -14,6 +14,13 @@
 {% include 'spotlights-carousel' %}
 
 {% comment %}
+  Pass path to events page as JS variable, and use in Vue app
+{% endcomment %}
+<script type="text/javascript">
+  var path_to_homepage = '{% path_to page.handle %}';
+</script>
+
+{% comment %}
   Pass curated event-locations and event_types to Vue app
 {% endcomment %}
 
