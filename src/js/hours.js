@@ -1,12 +1,15 @@
 import 'semantic-ui-css/components/transition.min.js';
 import 'semantic-ui-css/components/transition.min.css';
 import 'pages/hours';
+import 'sticky-sort/jquery.stickysort.min.js';
+import 'sticky-sort/stickysort.css';
 
 var hours = {
   onLoad: function() {
     this.bindEventListeners();
     this.currentWeek = 0;
     this.currentMonth = 0;
+    this.sticky(0, 0);
   },
 
   bindEventListeners: function() {
@@ -63,9 +66,16 @@ var hours = {
           var requestedWeek = currentView;
           break;
       }
+      // Remove current sticky from current table
+      hours.removeSticky(hours.currentWeek)
+
       // Hide current & display requested week
-      $('.hours-weekly').eq(hours.currentWeek).transition('toggle');
-      $('.hours-weekly').eq(requestedWeek).transition('toggle');
+      $('.week-'+hours.currentWeek).transition('toggle');
+      $('.week-'+requestedWeek).transition('toggle');
+
+      // Add sticky to current table
+      hours.sticky(requestedWeek)
+
       // Update tracking of current week accordingly
       hours.currentWeek = requestedWeek;
       // Enable/disable appropriate buttons
@@ -121,6 +131,15 @@ var hours = {
       }
     }
 
+  },
+  sticky: function(requestedWeek) {
+    $('.week-'+requestedWeek).stickySort();
+    $('.sticky-col').remove();
+    $('.sticky-intersect').remove();
+  },
+  removeSticky: function(week) {
+    $('.week-'+hours.currentWeek).removeClass('sticky-enabled').detach().appendTo('#libcal-weekly-hours');
+    $('.sticky-wrap').remove();
   }
 }
 

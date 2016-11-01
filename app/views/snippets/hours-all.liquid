@@ -35,7 +35,7 @@
       {% assign day_today = nil %}
     {% endif %}
 
-    <table class="hours-weekly" style="{% if day_today == nil %}display:none;{% endif %}">
+    <table class="hours-weekly week-{{forloop.index0}}" style="{% if day_today == nil %}display:none;{% endif %}">
       <thead>
         <tr>
           <th class="hours-weekly__month hours-weekly__data">{{ weeks[1][0][0] | date: "%b" }}</th>
@@ -60,5 +60,6 @@
   {% endfor %}
 </div>
 
+{{ 'http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js' | javascript_tag }}
 {{ 'hours.bundle.js' | javascript_tag }}
 {{ '//api3.libcal.com/js/hours_month.js?002' | javascript_tag }}
