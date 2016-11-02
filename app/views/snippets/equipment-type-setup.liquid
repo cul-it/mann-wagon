@@ -1,6 +1,6 @@
 {% assign equipment_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showEquipmentInfo.do?locationId=14&output=json' %}
 
-{% consume mann_equipment from equipment_url %}
+{% consume mann_equipment from equipment_url, timeout: 5.0  %}
 
   {% for equipment in mann_equipment.equipment_list %}
     {% comment %}Camera types{% endcomment %}

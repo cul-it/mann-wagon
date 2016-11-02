@@ -12,7 +12,7 @@
 
   {% assign laptops_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showLaptopInfo.do?output=json&locationId=14' %}
 
-  {% consume mann_laptops from laptops_url %}
+  {% consume mann_laptops from laptops_url, timeout: 5.0  %}
     {% assign winbook_avail = mann_laptops.laptop_available | ceil %}
     {% assign macbook_avail = mann_laptops.macbook_available | ceil %}
 

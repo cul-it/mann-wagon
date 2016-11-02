@@ -1,7 +1,7 @@
 {% assign haiku_feed = 'http://feeds.feedburner.com/mannlibrary/dailyhaiku' %}
 
 {% comment %} Cache for 6 hrs {% endcomment %}
-{% consume mann_haiku from haiku_feed, expires_in: 21600 %}
+{% consume mann_haiku from haiku_feed, expires_in: 21600, timeout: 5.0  %}
   {% if mann_haiku %}
     {% comment %} Strip Feeburner img appended to encoded description {% endcomment %}
     {% assign latest_haiku = mann_haiku.rss.channel.item.first.encoded | split: '</p>' | first | append: '</p>' %}

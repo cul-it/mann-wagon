@@ -51,7 +51,7 @@
 
 {% assign tumblr_url = 'http://mannlibrary.tumblr.com/rss' %}
 
-{% consume mann_tumblr from tumblr_url, expires_in: 3600 %}
+{% consume mann_tumblr from tumblr_url, expires_in: 3600, timeout: 5.0  %}
   {% if mann_tumblr %}
     {% assign latest_post = mann_tumblr.rss.channel.item.first %}
 
