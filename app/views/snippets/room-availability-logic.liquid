@@ -11,7 +11,7 @@
     {% assign room_param = "&room_id=" | append: room_id %}
     {% assign api_request_url = api_request_url | append: room_param%}
 
-    {% consume libcal_api from api_request_url %}
+    {% consume libcal_api from api_request_url, timeout: 5.0  %}
       {% assign libcal_timeslots = libcal_api.availability.timeslots %}
       {% for timeslot in libcal_timeslots %}
         {% comment %} Now available {% endcomment %}

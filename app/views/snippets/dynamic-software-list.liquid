@@ -2,7 +2,7 @@
 {% assign softwarelist_url = 'https://raw.githubusercontent.com/cul-it/mann-softwarelist-csv/master/softwarelist.csv' %}
 
 <div class="software-list">
-  {% consume mann_software from softwarelist_url, expires_in: 3600 %}
+  {% consume mann_software from softwarelist_url, expires_in: 3600, timeout: 5.0  %}
 
     {% comment %}
       You won't believe the nonsense involved to get the multiline string ready to pass to JS

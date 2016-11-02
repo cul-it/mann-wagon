@@ -1,6 +1,6 @@
 {% assign equipment_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showEquipmentInfo.do?locationId=14&output=json' %}
 
-{% consume mann_equipment from equipment_url %}
+{% consume mann_equipment from equipment_url, timeout: 5.0  %}
 
   {% for equipment in mann_equipment.equipment_list %}
     {% if equipment.equipment_type == 'digital-video-camera-0' or equipment.equipment_type == 'digital-camera-0' %}
@@ -27,5 +27,5 @@
     {% else %}
     {% endif %}
   {% endfor %}
-  
+
 {% endconsume %}

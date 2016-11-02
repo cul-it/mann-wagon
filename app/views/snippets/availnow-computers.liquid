@@ -12,14 +12,14 @@
 
   {% assign laptops_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showLaptopInfo.do?output=json&locationId=14' %}
 
-  {% consume mann_laptops from laptops_url %}
+  {% consume mann_laptops from laptops_url, timeout: 5.0  %}
     {% assign winbook_avail = mann_laptops.laptop_available | ceil %}
     {% assign macbook_avail = mann_laptops.macbook_available | ceil %}
   {% endconsume %}
 
   {% assign labstats_url = 'https://online.labstats.com/api/public/GetPublicApiData/1001' %}
 
-  {% consume mann_computers from labstats_url, header_auth: site.metafields.sensitive_data.labstats_customer_id, expires_in: 60 %}
+  {% consume mann_computers from labstats_url, header_auth: site.metafields.sensitive_data.labstats_customer_id, expires_in: 60, timeout: 5.0 %}
     {% for location in mann_computers.groups %}
       {% comment %} Waiting on Gabriel to add LabStats on the rest of the PCs & Macs in the farm, McManus, etc {% endcomment %}
       {% case location.label %}

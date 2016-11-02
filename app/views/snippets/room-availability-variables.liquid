@@ -1,7 +1,7 @@
 {% assign current_time = now | date: '%s' %}
 
 {% comment %}MannServices Room Availability{% endcomment %}
-{% consume mannservices_api from "http://mannservices.mannlib.cornell.edu/LibServices/showRoomInfo.do?output=json&locationId=14" %}
+{% consume mannservices_api from "http://mannservices.mannlib.cornell.edu/LibServices/showRoomInfo.do?output=json&locationId=14", timeout: 5.0  %}
   {% assign grad_room_now_available = mannservices_api.grad_room_available %}
   {% for grad_rooms in mannservices_api.grad_room_list | json %}
     {% for due_dates in grad_rooms.due_date %}
