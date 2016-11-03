@@ -50,7 +50,7 @@ export default {
       curatedEventLocations: [],
 
       // Event type filter param
-      eventType: '',
+      eventType: 'Workshop/Class',
       // Group events key
       dateKey: 'event_start',
       // No events message
@@ -130,7 +130,6 @@ export default {
     // Event filter
     eventTypeFilter: function (events, eventType) {
       if (eventType === '') {
-        this.loadMoreDisplay(events)
         return events
       } else {
         var filterEvents = function (event) {
@@ -231,6 +230,7 @@ export default {
       }
     },
     getCuratedFilters() {
+      var vueInstance = this
       // Get curated event types
       var event_types = this.eventTypes.split('-')
       var curated_event_types = []
@@ -238,6 +238,9 @@ export default {
       _.forEach(event_types, function (event_type, index){
         var curated_event_type = JSON.parse(event_type).curated_event_type_name,
         alternate_event_type_names = (JSON.parse(event_type).alternate_event_type_names)
+        if ((JSON.parse(event_type).homepage_event_type_filter == 'true' )) {
+          vueInstance.$set('eventType', JSON.parse(event_type).curated_event_type_name)
+        }
         curated_event_types.push(curated_event_type);
         // curated_event_type_with_alt = {curated_event_type: curated_event_type,
         //                                    alternate_event_type_names: alternate_event_type_names}

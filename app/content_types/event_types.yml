@@ -50,3 +50,10 @@ fields:
     required: false
     hint: A comma separated list of strings returned from the data sources that will equate to this name
     localized: false
+
+- homepage_events_filter: # The lowercase, underscored name of the field
+    label:  Homepage event type? # Human readable name of the field
+    type: boolean
+    required: false
+    hint: Events of this event type are filtered out of homepage events & exhibits section and shown in a separate section
+    localized: false
