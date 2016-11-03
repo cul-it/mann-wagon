@@ -37,9 +37,9 @@
 {% capture event_types %}
   {% for event_type in contents.event_types %}
     {% if (forloop.last)%}
-      {"curated_event_type_name":"{{ event_type.name | escape }}","alternate_event_type_names":"{{ event_type.alternate_names | join: ', ' | escape }}"}
+      {"curated_event_type_name":"{{ event_type.name | escape }}","alternate_event_type_names":"{{ event_type.alternate_names | join: ', ' | escape }}", "homepage_event_type_filter":"{{ event_type.homepage_events_filter }}"}
     {% else %}
-      {"curated_event_type_name":"{{ event_type.name | escape }}","alternate_event_type_names":"{{ event_type.alternate_names | join: ', ' | escape }}"}-
+      {"curated_event_type_name":"{{ event_type.name | escape }}","alternate_event_type_names":"{{ event_type.alternate_names | join: ', ' | escape }}", "homepage_event_type_filter":"{{ event_type.homepage_events_filter }}"}-
     {% endif %}
   {% endfor %}
 {% endcapture %}
