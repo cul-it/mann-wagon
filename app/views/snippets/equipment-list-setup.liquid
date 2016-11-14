@@ -5,25 +5,25 @@
   {% for equipment in mann_equipment.equipment_list %}
     {% if equipment.equipment_type == 'digital-video-camera-0' or equipment.equipment_type == 'digital-camera-0' %}
       {% include 'equipment-availability-badge' %}
-      {% capture camera_items %} {{ camera_items }} <tr><td class="selectable"><a href="{% path_to cameras %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back }}</td></tr> {% endcapture %}
+      {% capture camera_items %} {{ camera_items }} <tr><td class="selectable"><a href="{% path_to cameras %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
     {% elsif equipment.equipment_type == 'digital-video-camera-1' or equipment.equipment_type == 'digital-video-camera-2'%}
       {% include 'equipment-availability-badge' %}
-      {% capture camcorder_items %} {{ camcorder_items }} <tr><td class="selectable"><a href="{% path_to camcorders %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back }}</td></tr> {% endcapture %}
+      {% capture camcorder_items %} {{ camcorder_items }} <tr><td class="selectable"><a href="{% path_to camcorders %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
     {% elsif equipment.equipment_type == 'audio-recorder' or equipment.equipment_type == 'audio-recorder-0' %}
       {% include 'equipment-availability-badge' %}
-      {% capture audio_recorder_items %} {{ audio_recorder_items }} <tr><td class="selectable"><a href="{% path_to audio_recorders %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back }}</td></tr> {% endcapture %}
+      {% capture audio_recorder_items %} {{ audio_recorder_items }} <tr><td class="selectable"><a href="{% path_to audio_recorders %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
     {% elsif equipment.equipment_type == 'epson-projector' or equipment.equipment_type == 'epson-projector-0' %}
       {% include 'equipment-availability-badge' %}
-      {% capture projector_items %} {{ projector_items }} <tr><td class="selectable"><a href="{% path_to projectors %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back }}</td></tr> {% endcapture %}
+      {% capture projector_items %} {{ projector_items }} <tr><td class="selectable"><a href="{% path_to projectors %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
     {% elsif equipment.equipment_type == 'snowball' or equipment.equipment_type == 'microphone-kit' %}
       {% include 'equipment-availability-badge' %}
-      {% capture microphone_items %} {{ microphone_items }} <tr><td class="selectable"><a href="{% path_to microphones %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back }}</td></tr> {% endcapture %}
+      {% capture microphone_items %} {{ microphone_items }} <tr><td class="selectable"><a href="{% path_to microphones %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
     {% elsif equipment.equipment_type == 'gps/datalog-gps' or equipment.equipment_type == 'gps/garmin-gps' %}
       {% include 'equipment-availability-badge' %}
-      {% capture gps_unit_items %} {{ gps_unit_items }} <tr><td class="selectable"><a href="{% path_to gps_units %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back }}</td></tr> {% endcapture %}
+      {% capture gps_unit_items %} {{ gps_unit_items }} <tr><td class="selectable"><a href="{% path_to gps_units %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
     {% elsif equipment.equipment_type == 'portable-screen' or equipment.equipment_type == 'tripods' or equipment.equipment_type == 'tripods-3' or equipment.equipment_type == 'tripods-4'%}
       {% include 'equipment-availability-badge' %}
-      {% capture additional_equipment_items %} {{ additional_equipment_items }} <tr><td class="selectable"><a href="{% path_to additional_equipment %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back }}</td></tr> {% endcapture %}
+      {% capture additional_equipment_items %} {{ additional_equipment_items }} <tr><td class="selectable"><a href="{% path_to additional_equipment %}">{{ equipment.name }}</a></td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
     {% else %}
     {% endif %}
   {% endfor %}
