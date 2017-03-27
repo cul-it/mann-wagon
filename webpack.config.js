@@ -2,6 +2,8 @@
 var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var WebpackShellPlugin = require('webpack-shell-plugin');
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 var path = require('path');
 
@@ -137,6 +139,15 @@ module.exports = {
     // Remove extraneous bundle leftover after extracting CSS
     new WebpackShellPlugin({
       onBuildExit:['rm public/javascripts/main.bundle.js']
+    }),
+    new UglifyJSPlugin({
+      compress: true
+    }),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /main.css$/,
+      cssProcessor: require('cssnano'),
+      cssProcessorOptions: { discardComments: {removeAll: true } },
+      canPrint: true
     })
   ],
   sassLoader: {
