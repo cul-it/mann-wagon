@@ -19,32 +19,32 @@
 ###### Local Dev
 
 1. Clone this repo
-    ```bash
-$ git clone git@github.com:cul-it/mann-wagon.git
-```
+   ```sh
+   $ git clone git@github.com:cul-it/mann-wagon.git
+   ```
 
 1. Install gems
-   ```bash
-$ cd <clone>
-$ bundle install
-```
+   ```sh
+   $ cd <clone>
+   $ bundle install
+   ```
 
 1. Install modules
-   ```bash
-$ npm install
-```
+   ```sh
+   $ npm install
+   ```
 
 1. Serve the site
 
-  > proxied through [Browsersync](https://www.browsersync.io) for live-reload goodness -- watching SCSS, JS, templates
+   > proxied through [Browsersync](https://www.browsersync.io) for live-reload goodness -- watching SCSS, JS, templates
 
-   ```bash
-$ npm start
-```
+   ```sh
+   $ npm start
+   ```
 
 1. Visit the Mann website at [http://localhost:3000](http://localhost:3000)
 
-  > default browser should automatically launch and request this URL thanks to Browsersync
+   > default browser should automatically launch and request this URL thanks to Browsersync
 
 ### Syncing/Deploying
 
@@ -56,20 +56,20 @@ We'll be using the sample development environment in this example.
 
 1. Copy the example configuration
 
-  ```bash
-$ cp config/deploy.yml.example config/deploy.yml
-```
+   ```sh
+   $ cp config/deploy.yml.example config/deploy.yml
+   ```
 
 1. Edit `host`, `handle`, `email` and `api_key` as applicable for your development environment
 
 ###### Sync from a remote Engine
 
-```bash
+```sh
 $ bundle exec wagon sync development -v
 ```
 
 ###### Deploy to a remote Engine
 
-```bash
+```sh
 $ bundle exec wagon deploy development -v
 ```
