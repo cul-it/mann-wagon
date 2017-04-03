@@ -141,7 +141,9 @@ module.exports = {
       onBuildExit:['rm public/javascripts/main.bundle.js']
     }),
     new UglifyJSPlugin({
-      compress: true
+      compress: {
+          warnings: false
+      }
     }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /main.css$/,
