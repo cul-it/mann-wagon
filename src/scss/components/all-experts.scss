@@ -6,17 +6,11 @@
 }
 
 .all-experts__body {
-  @include susy-breakpoint($scape, $g-scape) {
-    margin-top: 0;
-  }
-
   @include susy-breakpoint($tablet, $g-tablet) {
     @include span(isolate 6 at 3);
   }
 
   @include span(isolate 3 at 2);
-
-  margin-top: 1em;
 }
 
 .all-experts__photo-consult {
@@ -37,13 +31,11 @@
 }
 
 .all-experts__contact {
-  @include susy-breakpoint($scape, $g-scape) {
-    @include span(isolate 2 at 5);
+  @include susy-breakpoint($tablet, $g-tablet) {
+    @include span(isolate 5 at 4);
 
     text-align: right;
   }
-
-  @include span(isolate 3 at 2);
 
   font-size: modular-scale(-1);
 }
