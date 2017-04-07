@@ -10,7 +10,7 @@
 
 <script>
   jQuery(function(){
-     jQuery("#mySched{{ libcal_uid }}{% if caller %}--{{ caller }}{% endif %}").LibCalMySched({ iid: 973, uid: {{ libcal_uid }}, gid: 0,  width: 500, height: 450 });
+     jQuery("#mySched{{ libcal_uid }}{% if caller %}--{{ caller }}{% endif %}").LibCalMySched({ iid: 973, uid: {{ libcal_uid | default: 0 }}, gid: {{ libcal_gid | default: 0 }},  width: 500, height: 450 });
   });
 </script>
 
