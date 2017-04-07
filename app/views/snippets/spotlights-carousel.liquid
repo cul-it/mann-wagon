@@ -1,11 +1,11 @@
 {% comment %} Active spotlights {% endcomment %}
 {% with_scope fallback: false, end_date.gte: now, start_date.lte: now %}
-  {% assign active_spotlights = contents.spotlights.all %}
+  {% assign active_spotlights = contents.spotlights.all | shuffle %}
 {% endwith_scope %}
 
 {% comment %} Fallback spotlights {% endcomment %}
 {% with_scope fallback: true %}
-  {% assign fallback_spotlights = contents.spotlights.all %}
+  {% assign fallback_spotlights = contents.spotlights.all | shuffle %}
 {% endwith_scope %}
 
 {% assign counter = 0 %}
