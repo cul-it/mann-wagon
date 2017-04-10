@@ -4,6 +4,7 @@ import 'semantic-ui-css/components/modal.min.js';
 import 'semantic-ui-css/components/modal.min.css';
 import 'semantic-ui-css/components/transition.min.js';
 import 'semantic-ui-css/components/transition.min.css';
+import 'components/modal-libcal'
 
 var modalLibcal = {
   onLoad: function() {
