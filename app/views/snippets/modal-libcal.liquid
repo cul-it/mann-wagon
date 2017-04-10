@@ -1,17 +1,12 @@
-{% comment %}
-  Temporarily disable LibCal modal until SSL certificate issues are resolved
-  - for now just send them to the LibCal form in a new window/tab
-{% endcomment %}
-
-{% comment %}<div id="js-space-{{ space.reserve_sys_id }}" class="js-sui-modal ui fullscreen long modal scrolling">
+<div id="js-space-{{ space.reserve_sys_id }}" class="js-sui-modal ui fullscreen long modal scrolling">
   <i class="close fa fa-times"></i>
   <div class="header">
     Reserve {{ space.name }}
   </div>
 
   <iframe src="{{ space.libcal_public_page_url}}" width="100%" height="625"></iframe>
-</div>{% endcomment %}
+</div>
 
-<a class="js-modal-libcal ui labeled icon button space-finder__reserve js-spacefinder-link {% if indiv_space %}space__reserve{% endif %}" href="{{ space.libcal_public_page_url}}" title="Reserve this space" target="_blank" data-spaceid="{{ space.reserve_sys_id }}">
+<a class="js-modal-libcal ui labeled icon button space-finder__reserve js-spacefinder-link {% if indiv_space %}space__reserve{% endif %}" title="Reserve this space" data-spaceid="{{ space.reserve_sys_id }}">
 
-{% comment %}{{ 'modalLibcal.bundle.js' | javascript_tag }}{% endcomment %}
+{{ 'modalLibcal.bundle.js' | javascript_tag }}
