@@ -2,6 +2,10 @@
 
 <p>{{ spaces_type.description }}</p>
 
+{% if spaces_type._slug == 'lobby-cafe' %}
+  {% include 'spaces-lobby-kiosk' %}
+{% endif %}
+
 {% assign libcal_widget_counter = 1 %}
 
 {% if spaces_type._slug == 'study' %}

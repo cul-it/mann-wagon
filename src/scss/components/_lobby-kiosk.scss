@@ -1,0 +1,37 @@
+.lobby-kiosk__category {
+  @include span(full nest);
+
+  margin: 0 0 1.5em;
+}
+
+.lobby-kiosk__icon {
+  float: left;
+
+  &.icon { // Override semantic ui default
+    margin: .2em .5em 0 0;
+  }
+}
+
+.lobby-kiosk__list {
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    @include span(4 of 8);
+  }
+
+  @include span(full);
+
+  border-radius: .5em;
+  padding: 1.5em;
+
+  &--nice {
+    @include susy-breakpoint(max-width ($lapdesk - .05), $g-lapdesk) {
+      margin-bottom: 1em;
+    }
+    background-color: color('success');
+    color: color('success-dark');
+  }
+
+  &--naughty {
+    background-color: color('error');
+    color: color('error-dark');
+  }
+}

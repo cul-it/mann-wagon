@@ -51,6 +51,8 @@
 }
 
 .space-finder__cards {
+  @include break;
+
   &~.ui { // Override semantic ui default
     margin-top: 0;
   }

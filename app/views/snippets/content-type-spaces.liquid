@@ -21,6 +21,10 @@
 
   <p>{{ space.description }}</p>
 
+  {% if space._slug contains 'lobby' %}
+    {% include 'spaces-lobby-kiosk' %}
+  {% endif %}
+
   {% include 'room-availability-variables' %}
 
   {% include 'room-availability-logic' %}
