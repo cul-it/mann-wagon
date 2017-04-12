@@ -31,6 +31,14 @@
   margin-top: .8em;
 }
 
+.space__lobby-kiosk {
+  margin: 1em 0;
+}
+
+.space__lobby-kiosk-heading {
+  margin: 0 0 .3em;
+}
+
 .space__photo {
   @include susy-breakpoint($tablet, $g-tablet) {
     float: right;

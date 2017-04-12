@@ -39,6 +39,7 @@
 !site-feedback.liquid
 !use/collections/special/registration.liquid
 !use/spaces.liquid
+!use/spaces/lobby-cafe/kiosk.liquid
 !use/technology/computing/desktops.liquid
 !use/technology/computing/laptops.liquid
 !use/technology/software.liquid

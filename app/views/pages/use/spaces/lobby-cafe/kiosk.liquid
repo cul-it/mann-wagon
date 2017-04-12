@@ -1,0 +1,16 @@
+---
+title: Lobby Kiosk
+slug: kiosk
+handle: lobby-kiosk
+position: 1
+listed: false
+published: true
+is_layout: false
+editable_elements:
+  main/page_content: ''
+---
+{% extends 'layouts/basic-page' %}
+
+{% block 'main/dynamic' %}
+  {% include 'dynamic-lobby-kiosk' %}
+{% endblock %}
