@@ -117,7 +117,7 @@ module.exports = {
         host: 'localhost',
         port: 3000,
         // Proxy `wagon serve` through Browsersync
-        // -- see `npm start` in package.json
+        // -- see `start script` in package.json
         proxy: 'localhost:3333',
         // Files to watch
         files: [

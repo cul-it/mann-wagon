@@ -6,9 +6,8 @@ dragonfly.log
 
 deploy.yml
 
-# npm
+# node packages
 node_modules/*
-npm-debug.log
 
 # Compiled assets
 public/javascripts/*
