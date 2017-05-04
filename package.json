@@ -35,6 +35,7 @@
     "optimize-css-assets-webpack-plugin": "^1.3.0",
     "sass-lint": "^1.7.0",
     "sass-loader": "^4.0.0",
+    "standard": "^10.0.2",
     "style-loader": "^0.13.1",
     "susy": "^2.2.12",
     "uglify-js": "^2.8.21",
@@ -63,7 +64,8 @@
     "vue-router": "^0.7.13"
   },
   "scripts": {
-    "start": "bundle exec wagon serve -v -l=0 -d -f && webpack --progress --watch"
+    "start": "bundle exec wagon serve -v -l=0 -d -f && webpack --progress --watch",
+    "test": "standard"
   },
   "repository": {
     "type": "git",

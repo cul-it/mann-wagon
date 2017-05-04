@@ -1,11 +1,11 @@
 // Plugins
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var WebpackShellPlugin = require('webpack-shell-plugin');
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var WebpackShellPlugin = require('webpack-shell-plugin')
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
-var path = require('path');
+var path = require('path')
 
 module.exports = {
   context: __dirname,
@@ -23,25 +23,25 @@ module.exports = {
     ]
   },
   entry: {
-      allExperts: './src/js/all-experts.js',
-      consultationRequest: './src/js/form-consultation-request.js',
-      courseReserves: './vue/course-reserves/course-reserves.js',
-      eventsPage: './vue/events/events-page/events-page.js',
-      experts: './src/js/experts.js',
-      formSiteFeedback: './src/js/form-site-feedback.js',
-      homePageEvents: './vue/events/homepage-events/homepage-events.js',
-      hours: './src/js/hours.js',
-      instructionRequest: './src/js/form-instruction-request.js',
-      main: './src/scss/main.scss',
-      modalLibcal: './src/js/modal-libcal.js',
-      navSearch: './src/js/nav-search.js',
-      softwareList: './vue/software-list/software-list.js',
-      softwareRequest: './src/js/form-software-request.js',
-      spacesCards: './src/js/spaces-cards.js',
-      specialCollRegistration: './src/js/form-special-collections.js',
-      spotlights: './src/js/spotlights.js',
-      staffDirectory: './src/js/staff-directory.js',
-      vendor: ['jquery', 'suiIcon', 'doubleTapToGo']
+    allExperts: './src/js/all-experts.js',
+    consultationRequest: './src/js/form-consultation-request.js',
+    courseReserves: './vue/course-reserves/course-reserves.js',
+    eventsPage: './vue/events/events-page/events-page.js',
+    experts: './src/js/experts.js',
+    formSiteFeedback: './src/js/form-site-feedback.js',
+    homePageEvents: './vue/events/homepage-events/homepage-events.js',
+    hours: './src/js/hours.js',
+    instructionRequest: './src/js/form-instruction-request.js',
+    main: './src/scss/main.scss',
+    modalLibcal: './src/js/modal-libcal.js',
+    navSearch: './src/js/nav-search.js',
+    softwareList: './vue/software-list/software-list.js',
+    softwareRequest: './src/js/form-software-request.js',
+    spacesCards: './src/js/spaces-cards.js',
+    specialCollRegistration: './src/js/form-special-collections.js',
+    spotlights: './src/js/spotlights.js',
+    staffDirectory: './src/js/staff-directory.js',
+    vendor: ['jquery', 'suiIcon', 'doubleTapToGo']
   },
   output: {
     path: path.join(__dirname, 'public', 'javascripts'),
@@ -50,58 +50,58 @@ module.exports = {
   },
   module: {
       // `loaders` is an array of loaders to use.
-      loaders: [
-        {
-          test: /\.css$/,
-          loader: 'style!css'
-        },
-        {
-          test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: 'url',
-        },
-        {
-          test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
-          loader: 'file',
-        },
-        {
-          test: /\.html$/,
-          loader: 'html'
-        },
-        {
-          test: /\.(jpe?g|png|gif|svg)$/i,
-          loader:'url'
-        },
-        {
-          test:   /\.js$/,
-          loader: 'babel',
-          include: [
-            path.join(__dirname, 'src'),
-            path.join(__dirname, 'vue/course-reserves'),
-            path.join(__dirname, 'vue/software-list')
-          ]
-        },
-        {
-          // Special handling for main stylesheet -- extract to CSS for performance
-          // aka LibSass > Sprockets when compiling (more details in @480c1f6)
-          test: /main\.scss$/,
-          // The key is to disable css-loaders's @import and url handling
-          // so it leaves assets alone (fonts, images)
-          // -- https://github.com/webpack/css-loader#disable-behavior
-          // loader: ExtractTextPlugin.extract('style', 'css?-import,-url!sass')
-          loader: ExtractTextPlugin.extract('style', 'css?-url!sass')
-        },
-        {
-          // For any other Sass file imported via Webpack
-          test: /\.scss$/,
-          exclude: path.join(__dirname, 'src/scss/main.scss'),
-          loader: 'style!css!sass'
-        },
-        {
-          test: /\.vue$/, // a regex for matching all files that end in `.vue`
-          loader: 'vue'   // loader to use for matched files
-        },
-      ]
-    },
+    loaders: [
+      {
+        test: /\.css$/,
+        loader: 'style!css'
+      },
+      {
+        test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url'
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
+        loader: 'file'
+      },
+      {
+        test: /\.html$/,
+        loader: 'html'
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: 'url'
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel',
+        include: [
+          path.join(__dirname, 'src'),
+          path.join(__dirname, 'vue/course-reserves'),
+          path.join(__dirname, 'vue/software-list')
+        ]
+      },
+      {
+        // Special handling for main stylesheet -- extract to CSS for performance
+        // aka LibSass > Sprockets when compiling (more details in @480c1f6)
+        test: /main\.scss$/,
+        // The key is to disable css-loaders's @import and url handling
+        // so it leaves assets alone (fonts, images)
+        // -- https://github.com/webpack/css-loader#disable-behavior
+        // loader: ExtractTextPlugin.extract('style', 'css?-import,-url!sass')
+        loader: ExtractTextPlugin.extract('style', 'css?-url!sass')
+      },
+      {
+        // For any other Sass file imported via Webpack
+        test: /\.scss$/,
+        exclude: path.join(__dirname, 'src/scss/main.scss'),
+        loader: 'style!css!sass'
+      },
+      {
+        test: /\.vue$/, // a regex for matching all files that end in `.vue`
+        loader: 'vue'   // loader to use for matched files
+      }
+    ]
+  },
   node: {
     // Create empty modules to avoid errors from csvtojson
     // -- https://github.com/vuejs-templates/webpack/issues/262#issuecomment-247135126
@@ -138,21 +138,21 @@ module.exports = {
     new ExtractTextPlugin('../stylesheets/[name].css'),
     // Remove extraneous bundle leftover after extracting CSS
     new WebpackShellPlugin({
-      onBuildExit:['rm public/javascripts/main.bundle.js']
+      onBuildExit: ['rm public/javascripts/main.bundle.js']
     }),
     new UglifyJSPlugin({
       compress: {
-          warnings: false
+        warnings: false
       }
     }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /main.css$/,
       cssProcessor: require('cssnano'),
-      cssProcessorOptions: { discardComments: {removeAll: true } },
+      cssProcessorOptions: { discardComments: { removeAll: true } },
       canPrint: true
     })
   ],
   sassLoader: {
     includePaths: [path.resolve(__dirname, 'src/scss')]
   }
-};
+}

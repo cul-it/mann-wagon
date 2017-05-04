@@ -1,8 +1,8 @@
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import 'components/meet-experts';
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import 'components/meet-experts'
 
-import 'slick-carousel';
+import 'slick-carousel'
 
 $('.meet-experts__librarians').slick({
   dots: true,
@@ -42,4 +42,4 @@ $('.meet-experts__librarians').slick({
   ],
   slidesToScroll: 2,
   slidesToShow: 2
-});
+})

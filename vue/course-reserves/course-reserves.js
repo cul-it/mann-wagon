@@ -36,7 +36,7 @@ new Vue({
 
   methods: {
     getReserveItems () {
-      if ( this.selectedCourse ) {
+      if (this.selectedCourse) {
         var reservesApiBaseUrl = 'http://mannservices.mannlib.cornell.edu/LibServices/showCourseReserveItemInfo.do?output=json&courseid='
         var reservesApiUrl = reservesApiBaseUrl + this.selectedCourse
 
