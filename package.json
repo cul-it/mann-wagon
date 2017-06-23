@@ -67,6 +67,9 @@
     "start": "bundle exec wagon serve -v -l=0 -d -f && webpack --progress --watch",
     "test": "standard"
   },
+  "standard": {
+    "globals": [ "$" ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cul-it/mann-wagon.git"

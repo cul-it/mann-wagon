@@ -1,3 +1,5 @@
+/* global path_to_events_page:false */
+
 var Vue = require('vue')
 Vue.use(require('vue-resource'))
 var VueRouter = require('vue-router')
