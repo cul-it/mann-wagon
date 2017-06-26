@@ -15,7 +15,7 @@
 }
 
 .projects__url {
-  &.ui.label { // Override semantic ui default
+  &.ui.label { // sass-lint:disable-line force-element-nesting |Override semantic ui default
     margin-bottom: 1em;
   }
 }

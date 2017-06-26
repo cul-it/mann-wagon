@@ -2,7 +2,7 @@
   @include span(full nest);
 }
 
-// Override Google CSE defaults
+// sass-lint:disable-block class-name-format, force-element-nesting |Override Google CSE defaults
 .site-search__results {
   @include span(full nest);
 

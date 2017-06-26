@@ -10,6 +10,7 @@
 // the standard track:
 // -- http://caniuse.com/#feat=font-smooth
 body {
+  // sass-lint:disable-block no-vendor-prefixes
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

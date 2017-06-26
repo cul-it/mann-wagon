@@ -6,7 +6,7 @@ import 'slick-carousel'
 
 $('.meet-experts__librarians').slick({
   dots: true,
-  dotsClass: 'slick-dots spotlights__dots meet-experts__dots',
+  dotsClass: 'slick-dots carousel__dots meet-experts__dots',
   mobileFirst: true,
   nextArrow: $('.js-meet-experts-next'),
   prevArrow: $('.js-meet-experts-prev'),

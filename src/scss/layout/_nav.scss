@@ -35,7 +35,7 @@
   }
 
   &--active,
-  &--active:focus,
+  &--active:focus // sass-lint:disable-line force-pseudo-nesting,
   &:hover {
     background: color('accessory-nav-bg');
     color: color('white');

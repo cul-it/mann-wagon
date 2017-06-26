@@ -1,5 +1,5 @@
 .space-finder {
-  &.ui.three.doubling.cards { // Override semantic ui default for mobile stacking
+  &.ui.three.doubling.cards { // sass-lint:disable-line force-element-nesting |Override semantic ui default for mobile stacking
     @include susy-breakpoint(max-width $tablet) {
       margin-right: -.6em;
     }
@@ -17,7 +17,7 @@
 }
 
 .space-finder__loanable {
-  &.ui.ribbon.label { // Override semantic ui default
+  &.ui.ribbon.label { // sass-lint:disable-line force-element-nesting |Override semantic ui default
     margin-top: .5em;
   }
 }
@@ -110,7 +110,7 @@
 }
 
 .space-finder__card-meta {
-  .ui.cards>.card & { // Override semantic ui default
+  .ui.cards>.card & { // sass-lint:disable-line force-element-nesting |Override semantic ui default
     display: block;
     color: color('medium-gray');
   }

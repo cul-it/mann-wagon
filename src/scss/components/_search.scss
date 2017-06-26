@@ -55,7 +55,7 @@
   }
 
   @include susy-breakpoint(max-width ($tablet - .05), $g-tablet) {
-    .ui.input & { // Override semantic ui default
+    .ui.input & { // sass-lint:disable-line force-element-nesting |Override semantic ui default
       background-color: transparent;
       height: 52px;
       color: color('white');
@@ -68,7 +68,7 @@
       }
 
       &::placeholder,
-      &:focus::placeholder {
+      &:focus::placeholder { // sass-lint:disable-line force-pseudo-nesting
         color: inherit;
       }
     }
@@ -97,7 +97,7 @@
   }
 
   &--active,
-  &--active:focus,
+  &--active:focus, // sass-lint:disable-line force-pseudo-nesting
   &:hover {
     background: color('cornell-gray');
     color: color('white');

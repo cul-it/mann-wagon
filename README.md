@@ -73,3 +73,17 @@ $ bundle exec wagon sync development -v
 ```sh
 $ bundle exec wagon deploy development -v
 ```
+
+### Linting
+
+Via [Javascript Standard Style](https://standardjs.com) and [sass-lint](https://github.com/sasstools/sass-lint)
+
+```sh
+$ yarn lint
+```
+> Or lint JS and Sass separately:
+>
+>  ```sh
+>  $ yarn lint-js
+>  $ yarn lint-sass
+>  ```

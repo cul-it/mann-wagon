@@ -7,12 +7,13 @@
 }
 
 .mann-form__compact {
-  .ui.form & { // Override semantic-ui default for <select>
+  .ui.form & { // sass-lint:disable-line force-element-nesting |Override semantic-ui default for <select>
     width: inherit;
   }
 }
 
 .mann-form__header {
+  // sass-lint:disable-block force-element-nesting
   &.ui.header { // Override semantic-ui default
     margin-top: 3em;
     font-size: modular-scale(1);

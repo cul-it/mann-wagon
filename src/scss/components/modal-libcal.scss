@@ -3,6 +3,7 @@
 
 // Temporary override to address Semantic-UI Modal bug in Safari
 // -- https://github.com/Semantic-Org/Semantic-UI/issues/2463#issuecomment-223646959
+// sass-lint:disable-block no-important, force-element-nesting
 .ui.dimmer.modals .scrolling.modal {
   position: relative !important;
   top: auto !important;

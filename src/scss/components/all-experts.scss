@@ -24,7 +24,7 @@
 }
 
 .all-experts__consult {
-  &.ui.button { // Override semantic ui default
+  &.ui.button { // sass-lint:disable-line force-element-nesting |Override semantic ui default
     margin: 0;
     width: 100%;
   }
@@ -136,12 +136,14 @@
     padding-left: 0;
   }
 
-  &:after { // comma separated list
+  &::after { // comma separated list
     content: ', ';
   }
 
-  &:last-child:after { // no comma for last item
-    content: '';
+  &:last-child {
+    &::after { // no comma for last item
+      content: '';
+    }
   }
 }
 
