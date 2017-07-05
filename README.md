@@ -12,7 +12,7 @@
 * ruby
 * bundler
 * node
-* npm
+* yarn
 
 ### QuickStart
 
@@ -31,7 +31,7 @@
 
 1. Install modules
    ```sh
-   $ npm install
+   $ yarn
    ```
 
 1. Serve the site
@@ -39,7 +39,7 @@
    > proxied through [Browsersync](https://www.browsersync.io) for live-reload goodness -- watching SCSS, JS, templates
 
    ```sh
-   $ npm start
+   $ yarn start
    ```
 
 1. Visit the Mann website at [http://localhost:3000](http://localhost:3000)
@@ -73,3 +73,17 @@ $ bundle exec wagon sync development -v
 ```sh
 $ bundle exec wagon deploy development -v
 ```
+
+### Linting
+
+Via [Javascript Standard Style](https://standardjs.com) and [sass-lint](https://github.com/sasstools/sass-lint)
+
+```sh
+$ yarn lint
+```
+> Or lint JS and Sass separately:
+>
+>  ```sh
+>  $ yarn lint-js
+>  $ yarn lint-sass
+>  ```

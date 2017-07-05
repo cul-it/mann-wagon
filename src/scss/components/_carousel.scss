@@ -3,6 +3,7 @@
 }
 
 .carousel__dots {
+  // sass-lint:disable-block force-pseudo-nesting, force-element-nesting
   & button:hover,
   & button:focus {
     background-color: transparent;
@@ -11,7 +12,7 @@
   &.slick-dots { // Override slick.js default styling (slick-theme.css)
     bottom: -2.2em;
 
-    & li button:before {
+    & li button::before {
       font-size: 13px;
     }
   }

@@ -19,7 +19,7 @@ import 'semantic-ui-css/components/transition.min.js'
 
 import moment from 'moment'
 
-$(document).ready(function() {
+$(document).ready(function () {
   $('.ui.date-selector').calendar({
     type: 'datetime',
     // Require at least a half hour advanced notice and up to 1 month out
@@ -32,12 +32,12 @@ $(document).ready(function() {
       var hour = moment(date).hour()
       var minute = moment(date).minute()
       // Sunday = 0, Saturday = 6
-      var weekend = [0,6]
+      var weekend = [0, 6]
       // Standard hours are 10am - 3pm, Mon-Thu (Friday, close at noon)
       var open = 10
       var close = day === 5 ? 12 : 15
 
-      switch  (mode) {
+      switch (mode) {
         case 'day':
           // Closed on the weekend
           if (weekend.indexOf(day) !== -1) {
@@ -69,7 +69,7 @@ $(document).ready(function() {
           break
       }
       return false
-    },
+    }
   })
 })
 
@@ -87,84 +87,84 @@ $('.ui.dropdown').dropdown()
 // Validation via semantic-ui
 $('.ui.form')
   .form({
-    inline : true,
-    on     : 'blur',
+    inline: true,
+    on: 'blur',
     fields: {
       name: {
-        identifier  : 'content[name]',
+        identifier: 'content[name]',
         rules: [{
-          type    : 'empty',
-          prompt  : 'Please enter your name'
+          type: 'empty',
+          prompt: 'Please enter your name'
         }]
       },
       email: {
-        identifier  : 'content[email]',
+        identifier: 'content[email]',
         rules: [{
-            type    : 'email',
-            prompt  : 'Please enter a valid e-mail'
+          type: 'email',
+          prompt: 'Please enter a valid e-mail'
         }]
       },
       phone_local: {
-        identifier  : 'content[phone_local]',
+        identifier: 'content[phone_local]',
         rules: [{
-            type : 'regExp[^(?:(?:\\+?1\\s*(?:[.-]\\s*)?)?(?:\\(\\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\\s*\\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\\s*(?:[.-]\\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\\s*(?:[.-]\\s*)?([0-9]{4})(?:\\s*(?:#|x\\.?|ext\\.?|extension)\\s*(\\d+))?$]',
-            prompt : 'Please enter a valid phone number'
+          type: 'regExp[^(?:(?:\\+?1\\s*(?:[.-]\\s*)?)?(?:\\(\\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\\s*\\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\\s*(?:[.-]\\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\\s*(?:[.-]\\s*)?([0-9]{4})(?:\\s*(?:#|x\\.?|ext\\.?|extension)\\s*(\\d+))?$]',
+          prompt: 'Please enter a valid phone number'
         }]
       },
       mailing_local: {
-        identifier  : 'content[mailing_local]',
+        identifier: 'content[mailing_local]',
         rules: [{
-          type    : 'empty',
-          prompt  : 'Please enter your local mailing address'
+          type: 'empty',
+          prompt: 'Please enter your local mailing address'
         }]
       },
       phone_home: {
-        identifier  : 'content[phone_home]',
+        identifier: 'content[phone_home]',
         rules: [{
-            type : 'regExp[^(?:(?:\\+?1\\s*(?:[.-]\\s*)?)?(?:\\(\\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\\s*\\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\\s*(?:[.-]\\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\\s*(?:[.-]\\s*)?([0-9]{4})(?:\\s*(?:#|x\\.?|ext\\.?|extension)\\s*(\\d+))?$]',
-            prompt : 'Please enter a valid phone number'
+          type: 'regExp[^(?:(?:\\+?1\\s*(?:[.-]\\s*)?)?(?:\\(\\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\\s*\\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\\s*(?:[.-]\\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\\s*(?:[.-]\\s*)?([0-9]{4})(?:\\s*(?:#|x\\.?|ext\\.?|extension)\\s*(\\d+))?$]',
+          prompt: 'Please enter a valid phone number'
         }]
       },
       mailing_home: {
-        identifier  : 'content[mailing_home]',
+        identifier: 'content[mailing_home]',
         rules: [{
-          type    : 'empty',
-          prompt  : 'Please enter your home mailing address'
+          type: 'empty',
+          prompt: 'Please enter your home mailing address'
         }]
       },
       department: {
-        identifier  : 'content[department]',
+        identifier: 'content[department]',
         rules: [{
-          type    : 'empty',
-          prompt  : 'Please enter your department name'
+          type: 'empty',
+          prompt: 'Please enter your department name'
         }]
       },
       affiliation: {
-        identifier  : 'content[affiliation]',
+        identifier: 'content[affiliation]',
         rules: [{
-          type    : 'empty',
-          prompt  : 'Please select your affiliation'
+          type: 'empty',
+          prompt: 'Please select your affiliation'
         }]
       },
       date: {
-        identifier  : 'content[date]',
+        identifier: 'content[date]',
         rules: [{
-          type    : 'empty',
-          prompt  : 'Please select a preferred date for the software installation'
+          type: 'empty',
+          prompt: 'Please select a preferred date for the software installation'
         }]
       },
       usage_agreement: {
-        identifier  : 'content[usage_agreement]',
+        identifier: 'content[usage_agreement]',
         rules: [{
-          type    : 'empty',
-          prompt  : 'Please acknowledge and accept the usage agreement'
+          type: 'empty',
+          prompt: 'Please acknowledge and accept the usage agreement'
         }]
       },
       item1_callno: {
-        identifier  : 'content[item1_callno]',
+        identifier: 'content[item1_callno]',
         rules: [{
-          type    : 'empty',
-          prompt  : 'Please enter the call number for your first item'
+          type: 'empty',
+          prompt: 'Please enter the call number for your first item'
         }]
       }
     }

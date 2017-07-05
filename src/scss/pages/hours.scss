@@ -21,13 +21,13 @@
   float: left;
   clear: left;
 
-  &.ui.label { // Override semantic ui default
+  &.ui.label { // sass-lint:disable-line force-element-nesting |Override semantic ui default
     margin-left: 0;
   }
 }
 
 .hours-weekly__all-cul-icon {
-  .ui.label > &.icon { // Override semantic ui default
+  .ui.label > &.icon { // sass-lint:disable-line force-element-nesting |Override semantic ui default
     margin: 0 0 0 .75em;
   }
 }
@@ -112,6 +112,8 @@
   background: color('today');
 }
 
-.sticky-thead thead {
-  background: color('white');
+.sticky-thead {
+  thead {
+    background: color('white');
+  }
 }

@@ -1,3 +1,5 @@
+// sass-lint:disable class-name-format
+
 // LibCal Hours - monthly widget
 
 // Hide all locations (except for the building and lobby) and LibCal's default nav
@@ -51,9 +53,11 @@
   height: 4em;
 }
 
-.s-lc-mhw-days td { // day of week heading
-  text-align: center;
-  font-weight: bold;
+.s-lc-mhw-days {
+  td { // day of week heading
+    text-align: center;
+    font-weight: bold;
+  }
 }
 
 .s-lc-mhw-day-l { // day of month label

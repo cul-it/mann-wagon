@@ -1,12 +1,6 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 
-Vue.use(VueResource)
-
-// Change Vue delimiters, to avoid conflict with Liquid
-Vue.config.delimiters = ['((', '))']
-Vue.config.unsafeDelimiters = ['(((', ')))']
-
 // Vue components
 import ReserveItem from './components/reserve-item'
 
@@ -14,7 +8,14 @@ import ReserveItem from './components/reserve-item'
 import 'semantic-ui-css/components/loader.min.css'
 import 'components/course-reserves'
 
-new Vue({
+Vue.use(VueResource)
+
+// Change Vue delimiters, to avoid conflict with Liquid
+Vue.config.delimiters = ['((', '))']
+Vue.config.unsafeDelimiters = ['(((', ')))']
+
+/* eslint-disable no-unused-vars */
+var vm = new Vue({
   el: '.course-reserves',
 
   components: {
@@ -36,7 +37,7 @@ new Vue({
 
   methods: {
     getReserveItems () {
-      if ( this.selectedCourse ) {
+      if (this.selectedCourse) {
         var reservesApiBaseUrl = 'http://mannservices.mannlib.cornell.edu/LibServices/showCourseReserveItemInfo.do?output=json&courseid='
         var reservesApiUrl = reservesApiBaseUrl + this.selectedCourse
 

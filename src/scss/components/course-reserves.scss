@@ -37,7 +37,7 @@
 }
 
 .course-reserves__table {
-  &.ui.table { // Override semantic ui default
+  &.ui.table { // sass-lint:disable-line force-element-nesting |Override semantic ui default
     @include susy-breakpoint($scape, $g-scape) {
       font-size: modular-scale(0);
     }

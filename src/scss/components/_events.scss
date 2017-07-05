@@ -112,7 +112,9 @@
 }
 
 .events-filters__type {
-  &.ui.label { // Override semantic ui default
+  font-family: $base-font-family;
+
+  &.ui.label { // sass-lint:disable-line force-element-nesting |Override semantic ui default
     margin: 2em 0 0;
 
     &:first-of-type {
@@ -120,5 +122,4 @@
     }
   }
 
-  font-family: $base-font-family;
 }

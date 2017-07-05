@@ -10,14 +10,14 @@ import 'semantic-ui-css/components/transition.min.js'
 $('.ui.form')
   .form({
     fields: {
-      'content[name]'      : 'empty',
-      'content[email]'     : 'email',
-      'content[category]'  : 'empty',
-      'content[url]'       : 'url',
-      'content[feedback]'  : 'empty'
+      'content[name]': 'empty',
+      'content[email]': 'email',
+      'content[category]': 'empty',
+      'content[url]': 'url',
+      'content[feedback]': 'empty'
     },
-    inline : true,
-    on     : 'blur'
+    inline: true,
+    on: 'blur'
   })
 
 // Would like to use semantic-ui dropdown component but mobile usability is awful

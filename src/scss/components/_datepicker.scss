@@ -1,7 +1,7 @@
 // ID selector fails lint, but nothing I can do about it at this point
 // -- hopefully we will soon be able to disable linters via source
 // -- https://github.com/sasstools/sass-lint/pull/677
-#datepicker {
+#datepicker { // sass-lint:disable-line no-ids
   margin-top: 1em;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .ui-datepicker-prev {
-  &:before {
+  &::before {
     content: '<<';
   }
 }
@@ -18,7 +18,7 @@
 .ui-datepicker-next {
   margin-left: 1em;
 
-  &:after {
+  &::after {
     content: '>>';
   }
 }

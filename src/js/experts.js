@@ -1,12 +1,12 @@
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import 'components/meet-experts';
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import 'components/meet-experts'
 
-import 'slick-carousel';
+import 'slick-carousel'
 
 $('.meet-experts__librarians').slick({
   dots: true,
-  dotsClass: 'slick-dots spotlights__dots meet-experts__dots',
+  dotsClass: 'slick-dots carousel__dots meet-experts__dots',
   mobileFirst: true,
   nextArrow: $('.js-meet-experts-next'),
   prevArrow: $('.js-meet-experts-prev'),
@@ -42,4 +42,4 @@ $('.meet-experts__librarians').slick({
   ],
   slidesToScroll: 2,
   slidesToShow: 2
-});
+})

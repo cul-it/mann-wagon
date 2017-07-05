@@ -33,12 +33,14 @@
   display: inline;
   line-height: .8em;
 
-  &:after { // comma separated list
+  &::after { // comma separated list
     content: ', ';
   }
 
-  &:last-child:after { // no comma for last item
-    content: '';
+  &:last-child {
+    &::after { // no comma for last item
+      content: '';
+    }
   }
 }
 

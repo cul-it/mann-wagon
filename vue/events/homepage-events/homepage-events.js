@@ -1,3 +1,5 @@
+/* global path_to_homepage:false */
+
 var Vue = require('vue')
 Vue.use(require('vue-resource'))
 var VueRouter = require('vue-router')
@@ -18,9 +20,9 @@ var App = Vue.extend({})
 // Use js variable as key for the routes object
 var routes = {}
 routes[path_to_homepage] = {
-                      name: 'homepage_events',
-                      component: HomePageEvents
-                     }
+  name: 'homepage_events',
+  component: HomePageEvents
+}
 
 router.map(routes)
 

@@ -1,3 +1,5 @@
+/* global path_to_events_page:false */
+
 var Vue = require('vue')
 Vue.use(require('vue-resource'))
 var VueRouter = require('vue-router')
@@ -18,9 +20,9 @@ var App = Vue.extend({})
 // Use js variable as key for the routes object
 var routes = {}
 routes[path_to_events_page] = {
-                      name: 'events',
-                      component: Events
-                     }
+  name: 'events',
+  component: Events
+}
 
 router.map(routes)
 
@@ -28,7 +30,7 @@ router.start(App, 'body')
 
 $('.ui.checkbox')
   .checkbox()
-;
-$(document).ready(function() {
-  $('#datepicker .ui-datepicker-today a').removeClass('ui-state-active');
+
+$(document).ready(function () {
+  $('#datepicker .ui-datepicker-today a').removeClass('ui-state-active')
 })

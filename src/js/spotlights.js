@@ -1,8 +1,8 @@
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import 'components/spotlights';
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import 'components/spotlights'
 
-import 'slick-carousel';
+import 'slick-carousel'
 
 $('.spotlights__images').slick({
   centerMode: true,
@@ -31,4 +31,4 @@ $('.spotlights__images').slick({
       }
     }
   ]
-});
+})

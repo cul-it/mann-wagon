@@ -1,5 +1,5 @@
 .staff-directory__book-consultation {
-  &.ui.button { // Override semantic ui default
+  &.ui.button { // sass-lint:disable-line force-element-nesting |Override semantic ui default
     margin-top: 1em;
     background-color: color('consultation');
     color: color('white');
