@@ -1,13 +1,12 @@
 import Config from 'webpack-config'
+import path from 'path'
 
 // Plugins
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var WebpackShellPlugin = require('webpack-shell-plugin')
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
-var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-
-var path = require('path')
+import BrowserSyncPlugin from 'browser-sync-webpack-plugin'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import WebpackShellPlugin from 'webpack-shell-plugin'
+import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
+import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin'
 
 export default new Config().merge({
   context: __dirname,
@@ -149,7 +148,6 @@ export default new Config().merge({
     }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /main.css$/,
-      cssProcessor: require('cssnano'),
       cssProcessorOptions: { discardComments: { removeAll: true } },
       canPrint: true
     })
