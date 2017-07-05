@@ -1,3 +1,5 @@
+import Config from 'webpack-config'
+
 // Plugins
 var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -7,7 +9,7 @@ var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 var path = require('path')
 
-module.exports = {
+export default new Config().merge({
   context: __dirname,
 
   resolve: {
@@ -155,4 +157,4 @@ module.exports = {
   sassLoader: {
     includePaths: [path.resolve(__dirname, 'src/scss')]
   }
-}
+})
