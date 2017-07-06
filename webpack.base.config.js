@@ -5,8 +5,6 @@ import path from 'path'
 import BrowserSyncPlugin from 'browser-sync-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import WebpackShellPlugin from 'webpack-shell-plugin'
-import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
-import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin'
 
 export default new Config().merge({
   context: __dirname,
@@ -140,16 +138,6 @@ export default new Config().merge({
     // Remove extraneous bundle leftover after extracting CSS
     new WebpackShellPlugin({
       onBuildExit: ['rm public/javascripts/main.bundle.js']
-    }),
-    new UglifyJSPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
-    new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /main.css$/,
-      cssProcessorOptions: { discardComments: { removeAll: true } },
-      canPrint: true
     })
   ],
   sassLoader: {
