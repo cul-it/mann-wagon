@@ -62,6 +62,7 @@
     "vue-router": "^0.7.13"
   },
   "scripts": {
+    "build": "NODE_ENV=production webpack --progress",
     "lint": "yarn lint-sass && yarn lint-js",
     "lint-js": "standard",
     "lint-sass": "sass-lint 'src/scss/**/*.scss' -v -q",
