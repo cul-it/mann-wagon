@@ -132,7 +132,7 @@ fields:
     localized: false    # if localized, use
     #   en: ['option1_en', 'option2_en']
     #   fr: ['option1_fr', 'option2_fr']
-    select_options: ['Hand deliver to Mann Library ITS - Attention: Gabriel Plaine', 'Will email license/software/instructions to mann-pac-help@cornell.edu', 'Software can be downloaded at website provided above', 'See Notes below']
+    select_options: ['Hand deliver to Mann Library ITS - Attention: Sara E. Wright', 'Will email license/software/instructions to mann-pac-help@cornell.edu', 'Software can be downloaded at website provided above', 'See Notes below']
 
 - location: # The lowercase, underscored name of the field
     label: Location # Human readable name of the field
