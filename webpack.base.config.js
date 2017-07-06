@@ -86,7 +86,7 @@ export default new Config().merge({
         // so it leaves assets alone (fonts, images)
         // -- https://github.com/webpack/css-loader#disable-behavior
         // loader: ExtractTextPlugin.extract('style', 'css?-import,-url!sass')
-        loader: ExtractTextPlugin.extract('style', 'css?-url!sass')
+        loader: ExtractTextPlugin.extract('style', 'css?-minimize,-url!sass')
       },
       {
         // For any other Sass file imported via Webpack

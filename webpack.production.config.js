@@ -1,6 +1,9 @@
 import webpack from 'webpack'
 import Config from 'webpack-config'
 
+// Plugins
+import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin'
+
 export default new Config().extend({
   'webpack.dev.config.js': config => {
     delete config.debug
@@ -16,6 +19,11 @@ export default new Config().extend({
       compress: {
         warnings: false
       }
+    }),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /main.css$/,
+      cssProcessorOptions: { discardComments: { removeAll: true } },
+      canPrint: true
     })
   ]
 })

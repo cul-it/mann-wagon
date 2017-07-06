@@ -32,6 +32,7 @@
     "moment": "^2.13.0",
     "node-sass": "^3.4.2",
     "normalize-scss": "^4.0.3",
+    "optimize-css-assets-webpack-plugin": "^2.0.0",
     "sass-lint": "^1.7.0",
     "sass-loader": "^4.0.0",
     "standard": "^10.0.2",
