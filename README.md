@@ -70,10 +70,10 @@ $ bundle exec wagon sync development -v
 
 ###### Deploy to a remote Engine
 
-> **IMPORTANT!!** Be sure to optimize assets prior to deploying
+> **IMPORTANT!** Be sure to optimize assets prior to deploying
 > ```sh
-  $ yarn build
-  ```
+> $ yarn build
+> ```
 
 ```sh
 $ bundle exec wagon deploy development -v
