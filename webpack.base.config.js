@@ -1,13 +1,11 @@
+import Config from 'webpack-config'
+import path from 'path'
+
 // Plugins
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var WebpackShellPlugin = require('webpack-shell-plugin')
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
-var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import WebpackShellPlugin from 'webpack-shell-plugin'
 
-var path = require('path')
-
-module.exports = {
+export default new Config().merge({
   context: __dirname,
 
   resolve: {
@@ -88,7 +86,7 @@ module.exports = {
         // so it leaves assets alone (fonts, images)
         // -- https://github.com/webpack/css-loader#disable-behavior
         // loader: ExtractTextPlugin.extract('style', 'css?-import,-url!sass')
-        loader: ExtractTextPlugin.extract('style', 'css?-url!sass')
+        loader: ExtractTextPlugin.extract('style', 'css?-minimize,-url!sass')
       },
       {
         // For any other Sass file imported via Webpack
@@ -110,49 +108,14 @@ module.exports = {
     fs: 'empty'
   },
   plugins: [
-    new BrowserSyncPlugin(
-      // BrowserSync options
-      {
-        // Browse app at http://localhost:3000 during development
-        host: 'localhost',
-        port: 3000,
-        // Proxy `wagon serve` through Browsersync
-        // -- see `start script` in package.json
-        proxy: 'localhost:3333',
-        // Files to watch
-        files: [
-          'public/stylesheets/**/*',
-          'public/javascripts/**/*',
-          'app/views/**/*'
-        ]
-      },
-      // Plugin options
-      {
-        // Don't force Browsersync to reload
-        // -- let the watched files trigger it
-        // -- allows for CSS injection without full page reload
-        reload: false
-      }
-    ),
     // Extract compiled CSS from bundle
     new ExtractTextPlugin('../stylesheets/[name].css'),
     // Remove extraneous bundle leftover after extracting CSS
     new WebpackShellPlugin({
       onBuildExit: ['rm public/javascripts/main.bundle.js']
-    }),
-    new UglifyJSPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
-    new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /main.css$/,
-      cssProcessor: require('cssnano'),
-      cssProcessorOptions: { discardComments: { removeAll: true } },
-      canPrint: true
     })
   ],
   sassLoader: {
     includePaths: [path.resolve(__dirname, 'src/scss')]
   }
-}
+})
