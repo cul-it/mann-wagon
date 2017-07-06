@@ -10,10 +10,9 @@ export default new Config().extend({
   }
 }).merge({
   plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(true),
     new webpack.optimize.UglifyJsPlugin({
-      output: {
-        comments: false
-      },
       compress: {
         warnings: false
       }
