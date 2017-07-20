@@ -86,6 +86,7 @@ fields:
     label: Photo # Human readable name of the field
     type: file
     required: false
+    hint: A placeholder photo will be used if no photo is selected
     localized: false
 
 - birthday: # The lowercase, underscored name of the field
