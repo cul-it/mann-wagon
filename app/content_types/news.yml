@@ -74,6 +74,7 @@ fields:
     label: Image # Human readable name of the field
     type: file
     required: false
+    hint: Width should be 400px minimum
     localized: false
 
 - image_align: # The lowercase, underscored name of the field
@@ -85,6 +86,13 @@ fields:
     #   en: ['option1_en', 'option2_en']
     #   fr: ['option1_fr', 'option2_fr']
     select_options: ['left', 'right']
+
+- image_caption: # The lowercase, underscored name of the field
+    label: Image Caption # Human readable name of the field
+    type: string
+    required: false
+    hint: Optional! Can be used for photo credit
+    localized: false
 
 # nac26, 2016-10-13: Disable this feature for initial launch & revisit later
 # - featured: # The lowercase, underscored name of the field
