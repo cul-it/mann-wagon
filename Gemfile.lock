@@ -1,9 +1,9 @@
 GIT
   remote: git@github.com:cul-it/mann_liquid_extensions
-  revision: 2072126dec86ebae85c35343f951194e373c27bd
-  ref: 2072126
+  revision: 54aea6ea67644a9ae8868d74a953e74d2b1ebe9c
+  tag: v1.0.1
   specs:
-    mann_liquid_extensions (0.4.0)
+    mann_liquid_extensions (1.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -187,4 +187,4 @@ DEPENDENCIES
   mann_liquid_extensions!
 
 BUNDLED WITH
-   1.14.6
+   1.15.1
