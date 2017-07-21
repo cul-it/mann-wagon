@@ -75,7 +75,23 @@
 }
 
 .news-story__image {
-  @include susy-breakpoint($scape $lapdesk, $g-scape) {
+  @include susy-breakpoint($scape $allout, $g-scape) {
     width: span(3);
   }
+
+  float: left;
+  margin: 0 1em 1em 0;
+  max-width: 400px;
+
+  &.right {
+    float: right;
+    margin: 0 0 1em 1em;
+  }
+}
+
+.news-story__image-caption {
+  margin-top: .2em;
+  line-height: 1.2em;
+  color: color('medium-gray');
+  font-style: italic;
 }
