@@ -23,5 +23,5 @@ group :misc do
   # Add your extra gems here
   # gem 'susy', require: 'susy'
   # gem 'redcarpet', require: 'redcarpet'
-  gem 'mann_liquid_extensions', :git => 'git@github.com:cul-it/mann_liquid_extensions', :tag => 'v1.0.1'
+  gem 'mann_liquid_extensions', :git => 'git@github.com:cul-it/mann_liquid_extensions', :tag => 'v1.1.0'
 end
