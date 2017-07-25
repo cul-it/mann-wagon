@@ -33,9 +33,10 @@ is_layout: false
   </head>
 
   <body class="body-{{ page.slug }}">
+    <a class="skip-content" href="#main-content">Skip to main content</a>
     {% include 'header' %}
 
-    <main>
+    <main id="main-content">
       {% block 'heading' %}
         {% include 'breadcrumbs-heading' %}
       {% endblock %}
