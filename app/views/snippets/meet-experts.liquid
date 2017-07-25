@@ -14,7 +14,7 @@
 
           {% assign placeholder_image = 'placeholder.jpg' | theme_image_url %}
           <a href="{{ profile_url }}" title="Contact details">
-            <img class="meet-experts__photo {% unless person.photo.url %}meet-experts__photo--placeholder{% endunless %}" data-lazy="{{ person.photo.url | resize: '500x500#n' | default: placeholder_image }}">
+            <img class="meet-experts__photo {% unless person.photo.url %}meet-experts__photo--placeholder{% endunless %}" alt="{{ person.first_name }} {{ person.last_name }} headshot" data-lazy="{{ person.photo.url | resize: '500x500#n' | default: placeholder_image }}">
           </a>
 
           <h5 class="meet-experts__name"><a href="{{ profile_url }}" title="Contact details">{{ person.first_name }} {{ person.last_name }}</a></h5>
