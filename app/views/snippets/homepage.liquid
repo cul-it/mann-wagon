@@ -1,5 +1,5 @@
-<section class="available-now">
-  <h4 class="available-now__heading lead-in">
+<section class="available-now" aria-labelledby="available-now-label">
+  <h4 class="available-now__heading lead-in" id="available-now-label">
     Available Now
     <span class="available-now__datetime">{{ now | date: '%-I:%M %p' }}</span>
   </h4>
@@ -55,8 +55,8 @@ event-types = '{{ event_types | default: null }}'
 
 {{ 'homePageEvents.bundle.js' | javascript_tag }}
 
-<section class="meet-experts">
-  <h4 class="meet-experts__heading lead-in">
+<section class="meet-experts" aria-labelledby="meet-experts-label">
+  <h4 class="meet-experts__heading lead-in" id="meet-experts-label">
     <a class="meet-experts__heading-link" href="{% path_to mann-experts %}#experts" title="View all Mann librarians and staff">
       Meet Our Experts
       <button class="meet-experts__all-button">All Experts</button>

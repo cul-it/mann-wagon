@@ -31,7 +31,7 @@
   <form action="{% path_to search %}" class="search" role="search">
     <div class="search__input ui left icon fluid input">
       <i class="search__input-icon search icon"></i>
-      <input class="search__term" name="q" placeholder="Search this site" type="text">
+      <input class="search__term" aria-label="Search this site" name="q" placeholder="Search this site" type="text">
     </div>
   </form>
 
@@ -78,8 +78,8 @@
     </a>
   </div>
 
-  <nav class="site-nav" role="navigation">
-    <nav class="accessory-nav" role="navigation">
+  <nav class="site-nav" role="navigation" aria-label="Site navigation">
+    <nav class="accessory-nav" role="navigation" aria-label="Accessory navigation">
       <button class="accessory-nav__button" type="button">
         <i class="fa fa-lg fa-bars"></i>
       </button>
