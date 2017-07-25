@@ -4654,6 +4654,12 @@ slick-carousel@^1.6.0:
   dependencies:
     jquery ">=1.7.2"
 
+"slick-carousel@github:kenwheeler/slick#1.7.0":
+  version "1.7.0"
+  resolved "https://codeload.github.com/kenwheeler/slick/tar.gz/bee9b59866d5fe09abb6d7358ea9d5d2d53054fd"
+  dependencies:
+    jquery ">=1.7.2"
+
 snake-case@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/snake-case/-/snake-case-2.1.0.tgz#41bdb1b73f30ec66a04d4e2cad1b76387d4d6d9f"
