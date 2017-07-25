@@ -66,5 +66,7 @@ event-types = '{{ event_types | default: null }}'
   {% include 'meet-experts' %}
 </section>
 
+{{ 'carousels.bundle.js' | javascript_tag }}
+
 <!--  Libcal MyScheduler Widget-->
 {{ '//api3.libcal.com/js/myscheduler.min.js?002' | javascript_tag }}
