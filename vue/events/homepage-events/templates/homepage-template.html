@@ -33,7 +33,7 @@
 	          </dt>
 						<dd class="events-home__time" v-if="event.event_end_time">
 	            ((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
-							<a v-if="event.event_recurring" v-link="{ name: 'homepage_events', query: { eventId: event.event_id }}" v-on:click="setRecurringEventStartTime(event.event_start_time), eventsLoader()">&rarr; Additional Dates</a>
+							<a v-if="event.event_recurring" v-link="{ name: 'homepage_events', query: { eventId: event.event_id }}" v-on:click="setRecurringEventStartTime(event.event_start_time), eventsLoader()" title="Additional dates for (((event.event_title)))">&rarr; Additional Dates</a>
 	          </dd>
 						<dd class="events-home__time" v-else="">
 	            ((event.event_start_time | momentHomeTime ))
@@ -60,7 +60,7 @@
 
 	<div class="events-home__grouping">
 		<h4 class="lead-in">
-	    <a class="events-home__heading-link" href="((eventsPagePath))?eventType=((eventType))">
+	    <a class="events-home__heading-link" href="((eventsPagePath))?eventType=((eventType))" title="All Workshops &amp; Classes">
 	      Workshops &amp; Classes
 	    </a>
 		</h4>
@@ -111,7 +111,7 @@
 				</li>
 			</ul>
 		</template>
-		<a class="more-link events-home__more-link ui teal tiny button" href="((eventsPagePath))?eventType=((eventType))">
+		<a class="more-link events-home__more-link ui teal tiny button" href="((eventsPagePath))?eventType=((eventType))" title="All Workshops &amp; Classes">
 	    Workshops &amp; Classes
 	  </a>
 	</div>
