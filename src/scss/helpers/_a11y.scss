@@ -1,17 +1,5 @@
-section {
-  margin-top: 4em;
-
-  &:first-of-type {
-    margin-top: .5em;
-  }
-}
-
-.lead-in {
-  font-size: modular-scale(2);
-}
-
-.more-link {
-  font-weight: bold;
+[aria-hidden='true'] {
+  display: none;
 }
 
 .skip-content {
