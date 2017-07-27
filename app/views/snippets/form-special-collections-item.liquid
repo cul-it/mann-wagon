@@ -17,18 +17,18 @@
 
   <div class="content {% if i == 1 %}active{% endif %}">
     <div class="{% if i == 1 %}required{% endif %} field mann-form__compact">
-      <label>Call Number</label>
-      <input type="text" name="content[item{{ i }}_callno]" value="{{ special_collections_registration[callno] }}">
+      <label for="callno-{{ i }}">Call Number</label>
+      <input type="text" id="callno-{{ i }}" name="content[item{{ i }}_callno]" value="{{ special_collections_registration[callno] }}">
     </div>
 
     <div class="field mann-form__compact">
-      <label>Author</label>
-      <input type="text" name="content[item{{ i }}_author]" value="{{ special_collections_registration[author] }}">
+      <label for="author-{{ i }}">Author</label>
+      <input type="text" id="author-{{ i }}" name="content[item{{ i }}_author]" value="{{ special_collections_registration[author] }}">
     </div>
 
     <div class="field mann-form__compact">
-      <label>Brief Title</label>
-      <input type="text" name="content[item{{ i }}_title]" value="{{ special_collections_registration[title] }}">
+      <label for="title-{{ i }}">Brief Title</label>
+      <input type="text" id="title-{{ i }}" name="content[item{{ i }}_title]" value="{{ special_collections_registration[title] }}">
     </div>
   </div>
 </div>

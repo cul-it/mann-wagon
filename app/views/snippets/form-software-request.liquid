@@ -32,29 +32,29 @@
     <h4 class="ui dividing header mann-form__header">Contact Information</h4>
 
     <div class="required field mann-form__compact">
-      <label>Name</label>
-      <input type="text" name="content[name]" value="{{ software_request.name }}">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="content[name]" value="{{ software_request.name }}">
     </div>
 
     <div class="required field mann-form__compact">
-      <label>Email</label>
-      <input type="email" name="content[email]" value="{{ software_request.email }}">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="content[email]" value="{{ software_request.email }}">
     </div>
 
     <div class="required field mann-form__compact">
-      <label>Phone</label>
-      <input type="tel" name="content[phone]" value="{{ software_request.phone }}">
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" name="content[phone]" value="{{ software_request.phone }}">
     </div>
 
     <div class="required field mann-form__compact">
-      <label>Department</label>
-      <input type="text" name="content[department]" value="{{ software_request.department }}">
+      <label for="dept">Department</label>
+      <input type="text" id="dept" name="content[department]" value="{{ software_request.department }}">
     </div>
 
     <div class="required field">
-      <label>Cornell Affiliation</label>
+      <label for="affiliation">Cornell Affiliation</label>
 
-      <select class="ui dropdown mann-form__compact" name="content[affiliation]">
+      <select id="affiliation" class="ui dropdown mann-form__compact" name="content[affiliation]">
         <option value="">-- Select one --</option>
         {% for affiliation in contents.software_requests.affiliation_options %}
           <option value="{{ affiliation }}" {% if software_request.affiliation == affiliation %} selected {% endif %}>{{ affiliation }}</option>
@@ -68,8 +68,8 @@
           Need to set value to 1, otherwise Locomotive will submit 'on' when checked
           -- https://github.com/locomotivecms/engine/issues/399
         {% endcomment %}
-        <input type="checkbox" name="content[course_related]" value="1" {% if software_request.course_related | ceil == 1 %} checked {% endif %}>
-        <label>Is this a course-related request?</label>
+        <input type="checkbox" id="course-related" name="content[course_related]" value="1" {% if software_request.course_related | ceil == 1 %} checked {% endif %}>
+        <label for="course-related">Is this a course-related request?</label>
       </div>
     </div>
 
@@ -80,22 +80,22 @@
     </div>
 
     <div class="required field mann-form__compact">
-      <label>Software Title</label>
-      <input type="text" name="content[title]" value="{{ software_request.title }}">
+      <label for="title">Software Title</label>
+      <input type="text" id="title" name="content[title]" value="{{ software_request.title }}">
     </div>
 
     <div class="required field mann-form__compact">
-      <label>Software Company Name</label>
-      <input type="text" name="content[company]" value="{{ software_request.company }}">
+      <label for="company">Software Company Name</label>
+      <input type="text" id="company" name="content[company]" value="{{ software_request.company }}">
     </div>
 
     <div class="required field mann-form__compact">
-      <label>Software Website</label>
-      <input type="text" name="content[url]" value="{{ software_request.url }}">
+      <label for="url">Software Website</label>
+      <input type="text" id="url" name="content[url]" value="{{ software_request.url }}">
     </div>
 
     <div class="required field">
-      <label>Software Platform</label>
+      <label for="platform">Software Platform</label>
 
       {% comment %}
         Please note: Two unusual/special cases for platform
@@ -104,7 +104,7 @@
               * `platform_managed_list` field (field type: select) to manage the options
               * `platform` field (field type: tags) to store the user selected and submitted values
       {% endcomment %}
-      <select class="ui dropdown selection" name="content[platform][]" multiple="" data-validate="content[platform]">
+      <select id="platform" class="ui dropdown selection" name="content[platform][]" multiple="" data-validate="content[platform]">
         <option value="">-- Select one or more --</option>
         {% for platform in contents.software_requests.platform_managed_list_options %}
           <option value="{{ platform }}" {% if software_request.platform contains platform %} selected {% endif %}>{{ platform }}</option>
@@ -113,8 +113,8 @@
     </div>
 
     <div class="field mann-form__compact">
-      <label>Number of Licenses</label>
-      <input type="text" name="content[licenses]" value="{{ software_request.licenses }}">
+      <label for="licenses">Number of Licenses</label>
+      <input type="text" id="licenses" name="content[licenses]" value="{{ software_request.licenses }}">
 
       <div class="ui tiny compact message">
         <p>If you require software that involves a fee or cost, please contact either the <a href="mailto:mww3@cornell.edu" title="Email CALS staff about covering software fees">College of Agricultural &amp; Life Sciences</a>, the <a href="mailto:jeh24@cornell.edu" title="Email CHE staff about covering software fees">College of Human Ecology</a>, or the individual unit/department making the request.</p>
@@ -122,11 +122,11 @@
     </div>
 
     <div class="required field mann-form__compact">
-      <label>Preferred Date for Software Installation</label>
+      <label for="date">Preferred Date for Software Installation</label>
       <div class="ui calendar date-selector">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input type="text" name="content[date]" value="{{ software_request.date }}" placeholder="Enter Date">
+          <input type="text" id="date" name="content[date]" value="{{ software_request.date }}" placeholder="Enter Date">
         </div>
       </div>
 
@@ -142,23 +142,23 @@
       </div>
     </div>
 
-    <div class="required grouped fields">
-      <label for="fruit">Sofware Delivery</label>
+    <div class="required grouped fields" role="radiogroup" aria-labelledby="delivery-group">
+      <label id="delivery-group">Sofware Delivery</label>
 
       {% for delivery in contents.software_requests.delivery_options %}
         <div class="field">
           <div class="ui radio checkbox">
-            <input type="radio" name="content[delivery]" value="{{ delivery }}" {% if software_request.delivery == delivery %} checked {% endif %} tabindex="0" class="hidden">
-            <label class="radio-button__label">{{ delivery }}</label>
+            <input type="radio" id="delivery-{{ forloop.index }}" name="content[delivery]" value="{{ delivery }}" {% if software_request.delivery == delivery %} checked {% endif %} tabindex="0" class="hidden">
+            <label for="delivery-{{ forloop.index }}" class="radio-button__label">{{ delivery }}</label>
           </div>
         </div>
       {% endfor %}
     </div>
 
     <div class="required field">
-      <label>Where should this software be installed?</label>
+      <label for="location">Where should this software be installed?</label>
 
-      <select class="ui dropdown mann-form__compact" name="content[location]">
+      <select id="location" class="ui dropdown mann-form__compact" name="content[location]">
         <option value="">-- Select one --</option>
         {% for location in contents.software_requests.location_options %}
           <option value="{{ location }}" {% if software_request.location == location %} selected {% endif %}>{{ location }}</option>
@@ -167,8 +167,8 @@
     </div>
 
     <div class="field">
-      <label>Notes regarding software, installation, or licensing</label>
-      <textarea name="content[notes]" rows="4">{{ software_request.notes }}</textarea>
+      <label for="notes">Notes regarding software, installation, or licensing</label>
+      <textarea id="notes" name="content[notes]" rows="4">{{ software_request.notes }}</textarea>
     </div>
 
     <button class="ui button" type="submit">Submit your request</button>

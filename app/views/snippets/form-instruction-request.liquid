@@ -29,29 +29,29 @@
     <h4 class="ui dividing header mann-form__header">Contact Information</h4>
 
     <div class="required field mann-form__compact">
-      <label>Name</label>
-      <input type="text" name="content[name]" value="{{ instruction_request.name }}">
+      <label for="name">Name</label>
+      <input type="text" id="name name="content[name]" value="{{ instruction_request.name }}"">
     </div>
 
     <div class="required field mann-form__compact">
-      <label>Email</label>
-      <input type="email" name="content[email]" value="{{ instruction_request.email }}">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="content[email]" value="{{ instruction_request.email }}">
     </div>
 
     <div class="required field mann-form__compact">
-      <label>Phone</label>
-      <input type="tel" name="content[phone]" value="{{ instruction_request.phone }}">
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" name="content[phone]" value="{{ instruction_request.phone }}">
     </div>
 
     <div class="field mann-form__compact">
-      <label>Department</label>
-      <input type="text" name="content[department]" value="{{ instruction_request.department }}">
+      <label for="dept">Department</label>
+      <input type="text" id="dept" name="content[department]" value="{{ instruction_request.department }}">
     </div>
 
     <div class="field">
-      <label>Cornell Affiliation</label>
+      <label for="affiliation">Cornell Affiliation</label>
 
-      <select class="ui dropdown mann-form__compact" name="content[affiliation]">
+      <select id="affiliation" class="ui dropdown mann-form__compact" name="content[affiliation]">
         <option value="">-- Select one --</option>
         {% for affiliation in contents.instruction_requests.affiliation_options %}
           <option value="{{ affiliation }}" {% if instruction_request.affiliation == affiliation %} selected {% endif %}>{{ affiliation }}</option>
@@ -62,7 +62,7 @@
     <h4 class="ui dividing header mann-form__header">Instruction/Workshop Information</h4>
 
     <div class="required field">
-      <label>What type of instruction would you like?</label>
+      <label for="instruction-type">What type of instruction would you like?</label>
 
       {% comment %}
         Please note: Two unusual/special cases for instruction types
@@ -71,7 +71,7 @@
               * `instruction_types_managed_list` field (field type: select) to manage the options
               * `insruction_types` field (field type: tags) to store the user selected and submitted values
       {% endcomment %}
-      <select class="ui dropdown selection" name="content[instruction_types][]" multiple="" data-validate="content[instruction_types]">
+      <select id="instruction-type" class="ui dropdown selection" name="content[instruction_types][]" multiple="" data-validate="content[instruction_types]">
         <option value="">-- Select one or more --</option>
         {% for type in contents.instruction_requests.instruction_types_managed_list_options %}
           <option value="{{ type }}" {% if instruction_request.instruction_types contains type %} selected {% endif %}>{{ type }}</option>
@@ -85,20 +85,20 @@
           Need to set value to 1, otherwise Locomotive will submit 'on' when checked
           -- https://github.com/locomotivecms/engine/issues/399
         {% endcomment %}
-        <input type="checkbox" name="content[research_guide]" value="1" {% if instruction_request.research_guide | ceil == 1 %} checked {% endif %}>
-        <label>Interested in creation of an online research guide?</label>
+        <input type="checkbox" id="research-guide" name="content[research_guide]" value="1" {% if instruction_request.research_guide | ceil == 1 %} checked {% endif %}>
+        <label for="research-guide">Interested in creation of an online research guide?</label>
       </div>
     </div>
 
     <div class="field">
-      <label>Course Information</label>
-      <textarea name="content[course_info]" rows="4">{{ instruction_request.course_info }}</textarea>
+      <label for="course-info">Course Information</label>
+      <textarea id="course-info" name="content[course_info]" rows="4">{{ instruction_request.course_info }}</textarea>
     </div>
 
     <div class="field">
-      <label>Participants</label>
+      <label for="participants">Participants</label>
 
-      <select class="ui dropdown mann-form__compact" name="content[number_participants]">
+      <select id="participants" class="ui dropdown mann-form__compact" name="content[number_participants]">
         <option value="">-- Select one --</option>
         {% for number_participants in contents.instruction_requests.number_participants_options %}
           <option value="{{ number_participants }}" {% if instruction_request.number_participants == number_participants %} selected {% endif %}>{{ number_participants }}</option>
@@ -107,43 +107,43 @@
     </div>
 
     <div class="field mann-form__compact">
-      <label>Preferred Date for Instruction/Workshop</label>
+      <label for="date-preferred">Preferred Date for Instruction/Workshop</label>
       <div class="ui calendar date-selector">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input type="text" name="content[date_first]" value="{{ instruction_request.date_first }}" placeholder="Enter Date">
+          <input type="text" id="date-preferred" name="content[date_first]" value="{{ instruction_request.date_first }}" placeholder="Enter Date">
         </div>
       </div>
     </div>
 
     <div class="field mann-form__compact">
-      <label>Second Preference</label>
+      <label for="date-2">Second Preference</label>
       <div class="ui calendar date-selector">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input type="text" name="content[date_second]" value="{{ instruction_request.date_second }}" placeholder="Enter Date">
+          <input type="text" id="date-2" name="content[date_second]" value="{{ instruction_request.date_second }}" placeholder="Enter Date">
         </div>
       </div>
     </div>
 
     <div class="field mann-form__compact">
-      <label>Third Preference</label>
+      <label for="date-3">Third Preference</label>
       <div class="ui calendar date-selector">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input type="text" name="content[date_third]" value="{{ instruction_request.date_third }}" placeholder="Enter Date">
+          <input type="text" id="date-3" name="content[date_third]" value="{{ instruction_request.date_third }}" placeholder="Enter Date">
         </div>
       </div>
     </div>
 
     <div class="field">
-      <label>Instruction Needs and/or Learning Outcomes</label>
-      <textarea name="content[needs]" rows="4">{{ instruction_request.needs }}</textarea>
+      <label for="needs">Instruction Needs and/or Learning Outcomes</label>
+      <textarea id="needs" name="content[needs]" rows="4">{{ instruction_request.needs }}</textarea>
     </div>
 
     <div class="field">
-      <label>Additional Information/Comments</label>
-      <textarea name="content[additional_info]" rows="4">{{ instruction_request.additional_info }}</textarea>
+      <label for="additional-info">Additional Information/Comments</label>
+      <textarea id="additional-info" name="content[additional_info]" rows="4">{{ instruction_request.additional_info }}</textarea>
     </div>
 
     <button class="ui button" type="submit">Submit your request</button>

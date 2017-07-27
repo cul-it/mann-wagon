@@ -1,7 +1,7 @@
 <div class="events-container">
   <div class="events__toggle-courses ui toggle checkbox">
-    <input type="checkbox" name="events-toggle-courses" value="1" tabindex="0" class="hidden" v-model="r25Status" v-on:change="toggleAcademicCourses(r25Status)">
-    <label class="events__toggle-courses-label">Include academic courses</label>
+    <input type="checkbox" id="events-toggle" name="events-toggle-courses" value="1" tabindex="0" class="hidden" v-model="r25Status" v-on:change="toggleAcademicCourses(r25Status)">
+    <label class="events__toggle-courses-label" for="events-toggle">Include academic courses</label>
   </div>
 
 	<div v-show="showNoEventsMessage"class="ui segment">

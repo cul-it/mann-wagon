@@ -12,7 +12,8 @@
 
 <div class="site-search">
   <form class="site-search__trigger" action="{{ path }}">
-    <input type="text" name="q" value="{{ params.q }}">
+    <input type="text" aria-label="Search this site" name="q" value="{{ params.q }}">
+    <input type="submit" value="Search" aria-hidden="true">
   </form>
 
   <div class="site-search__results">
