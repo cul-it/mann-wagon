@@ -6,7 +6,7 @@
 
 {% comment %} Breadcrumbs and page title for all but home page {% endcomment %}
 {% unless page.depth == 0 %}
-  <nav class="breadcrumbs">
+  <nav class="breadcrumbs" aria-label="Navigate site hierarchy via breadcrumbs">
     {% for crumb in page.breadcrumbs %}
       {% comment %} No breadcrumb for current page, only ancestors -- avoid title duplication {% endcomment %}
       {% unless forloop.last or crumb.slug == 'divisions' %}
