@@ -6,7 +6,7 @@
     <ul>
       {% for story in published_stories %}
         <li class="news-latest__item">
-          <a href="{% path_to story %}" title="View full story"><img class="news-latest__img ui rounded image" src="{{ story.image.url | resize: '125x125#n' }}"></a>
+          <a href="{% path_to story %}" title="View full story"><img class="news-latest__img ui rounded image" alt="news story photo" src="{{ story.image.url | resize: '125x125#n' }}"></a>
 
           <h5 class="news-latest__story-title"><a href="{% path_to story %}" title="View full story">{{ story.title }}</a></h5>
 

@@ -3,7 +3,7 @@
     <td>
       <div class="staff-directory__header">
         {% assign placeholder_image = 'placeholder.jpg' | theme_image_url %}
-        <img class="ui tiny rounded left floated image staff-directory__photo {% unless person.photo.url %}staff-directory__photo--placeholder{% endunless %}" src="{{ person.photo.url | default: placeholder_image }}">
+        <img class="ui tiny rounded left floated image staff-directory__photo {% unless person.photo.url %}staff-directory__photo--placeholder{% endunless %}" alt="{{ person.first_name }} {{ person.last_name }} headshot" src="{{ person.photo.url | default: placeholder_image }}">
 
         <div class="content">
           <strong>{{ person.last_name }}, {{ person.first_name }}</strong>

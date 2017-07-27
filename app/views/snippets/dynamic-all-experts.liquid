@@ -39,7 +39,7 @@
 
         <li class="all-experts__person" data-type="{{ type }}" data-department="{{ depts }}" data-expertise="{{ skills }}">
           <div class="all-experts__photo-consult">
-            <img class="all-experts__photo {% unless person.photo.url %}all-experts__photo--placeholder{% endunless %}" src="{{ person.photo.url | resize: '400x400#n' | default: placeholder_image }}">
+            <img class="all-experts__photo {% unless person.photo.url %}all-experts__photo--placeholder{% endunless %}" alt="{{ person.first_name }} {{ person.last_name }} headshot" src="{{ person.photo.url | resize: '400x400#n' | default: placeholder_image }}">
 
             {% if person.libcal_uid.size > 0 %}
               {% include 'staff-book-consultation' with libcal_uid: person.libcal_uid, class: 'all-experts__consult' %}
