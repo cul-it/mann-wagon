@@ -27,10 +27,6 @@
           {% assign b30a = location %}
         {% when 'B30B' %}
           {% assign b30b = location %}
-        {% when 'CIT 101' %}
-          {% assign cit_101 = location %}
-        {% when 'CIT 112' %}
-          {% assign cit_112 = location %}
         {% when 'CIT Mac 220A' %}
           {% assign cit_mac_220a = location %}
         {% when 'McManus' %}
@@ -44,7 +40,7 @@
       {% endcase %}
     {% endfor %}
 
-  {% assign windows_avail = cit_101.available | plus: cit_112.available | plus: research_win.available | plus: stone.available %}
+  {% assign windows_avail = research_win.available | plus: stone.available %}
 
   {% comment %} Include B30 classrooms in total count if basement is open {% endcomment %}
   {% if mannlib_hours.status_2319 == 'Open' %}
@@ -59,8 +55,6 @@
   {% endif %}
 
   {% assign macs_avail = cit_mac_220a.available | plus: mcmanus.available | plus: research_mac.available %}
-
-  {% assign stone_center_win =  cit_101.available | plus: research_win.available %}
 
   {% include 'availnow-computers-template' %}
 
