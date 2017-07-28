@@ -10,9 +10,9 @@
 
     <div class="course-reserves__form ui form">
       <div class="field">
-        <label>Select a course:</label>
+        <label for="course">Select a course:</label>
 
-        <select class="course-reserves__courses js-course-reserves" v-model="selectedCourse">
+        <select id="course" class="course-reserves__courses js-course-reserves" v-model="selectedCourse">
           <option value="">---- Select a course ----</option>
 
           {% for course in sorted_courses %}

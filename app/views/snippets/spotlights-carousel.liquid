@@ -24,15 +24,13 @@
 {% endcapture %}
 
 {% editable_model spotlights, hint: 'Manage all spotlights' %}
-  <section class="spotlights">
+  <section class="spotlights" aria-label="News &amp; Spotlights">
     <div class="carousel__contain">
       <span class="carousel__nav carousel__nav--prev js-spotlights-prev"><i class="fa fa-angle-left fa-inverse fa-5x"></i></span>
 
       {{ spotlight_images }}
 
       <span class="carousel__nav carousel__nav--next js-spotlights-next"><i class="fa fa-angle-right fa-inverse fa-5x"></i></span>
-
-      {{ 'spotlights.bundle.js' | javascript_tag }}
     </div>
   </section>
 {% endeditable_model %}

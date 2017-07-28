@@ -5,7 +5,7 @@
   {% for child in page.children %}
     {% if child.listed? and child.published? %}
       <div class="landing__section">
-        <img class="ui rounded image" src="{{ '/samples/placeholder.jpg' | resize: '400x400#' }}" alt="Section photo">
+        <img class="ui rounded image" alt="section photo" src="{{ '/samples/placeholder.jpg' | resize: '400x400#' }}">
 
         {% include 'nav-builder' with component: 'landing' %}
       </div>

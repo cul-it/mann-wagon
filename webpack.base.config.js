@@ -22,10 +22,10 @@ export default new Config().merge({
   },
   entry: {
     allExperts: './src/js/all-experts.js',
+    carousels: './src/js/carousels.js',
     consultationRequest: './src/js/form-consultation-request.js',
     courseReserves: './vue/course-reserves/course-reserves.js',
     eventsPage: './vue/events/events-page/events-page.js',
-    experts: './src/js/experts.js',
     formSiteFeedback: './src/js/form-site-feedback.js',
     homePageEvents: './vue/events/homepage-events/homepage-events.js',
     hours: './src/js/hours.js',
@@ -37,7 +37,6 @@ export default new Config().merge({
     softwareRequest: './src/js/form-software-request.js',
     spacesCards: './src/js/spaces-cards.js',
     specialCollRegistration: './src/js/form-special-collections.js',
-    spotlights: './src/js/spotlights.js',
     staffDirectory: './src/js/staff-directory.js',
     vendor: ['jquery', 'suiIcon', 'doubleTapToGo']
   },

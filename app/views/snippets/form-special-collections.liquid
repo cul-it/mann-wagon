@@ -32,44 +32,44 @@
     <h4 class="ui dividing header mann-form__header">Contact Information</h4>
 
     <div class="required field mann-form__compact">
-      <label>Name</label>
-      <input type="text" name="content[name]" value="{{ special_collections_registration.name }}">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="content[name]" value="{{ special_collections_registration.name }}">
     </div>
 
     <div class="required field mann-form__compact">
-      <label>Email</label>
-      <input type="email" name="content[email]" value="{{ special_collections_registration.email }}">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="content[email]" value="{{ special_collections_registration.email }}">
     </div>
 
     <div class="required field mann-form__compact">
-      <label>Local Phone</label>
-      <input type="tel" name="content[phone_local]" value="{{ special_collections_registration.phone_local }}">
+      <label for="phone-local">Local Phone</label>
+      <input type="tel" id="phone-local" name="content[phone_local]" value="{{ special_collections_registration.phone_local }}">
     </div>
 
     <div class="required field">
-      <label>Local Mailing Address</label>
-      <textarea name="content[mailing_local]" rows="4">{{ special_collections_registration.mailing_local }}</textarea>
+      <label for="mailing-local">Local Mailing Address</label>
+      <textarea id="mailing-local" name="content[mailing_local]" rows="4">{{ special_collections_registration.mailing_local }}</textarea>
     </div>
 
     <div class="required field mann-form__compact">
-      <label>Home Phone</label>
-      <input type="tel" name="content[phone_home]" value="{{ special_collections_registration.phone_home }}">
+      <label for="phone-home">Home Phone</label>
+      <input type="tel" id="phone-home" name="content[phone_home]" value="{{ special_collections_registration.phone_home }}">
     </div>
 
     <div class="required field">
-      <label>Home Mailing Address</label>
-      <textarea name="content[mailing_home]" rows="4">{{ special_collections_registration.mailing_home }}</textarea>
+      <label for="mailing-home">Home Mailing Address</label>
+      <textarea id="mailing-home" name="content[mailing_home]" rows="4">{{ special_collections_registration.mailing_home }}</textarea>
     </div>
 
     <div class="required field mann-form__compact">
-      <label>Department</label>
-      <input type="text" name="content[department]" value="{{ special_collections_registration.department }}">
+      <label for="dept">Department</label>
+      <input type="text" id="dept" name="content[department]" value="{{ special_collections_registration.department }}">
     </div>
 
     <div class="required field">
-      <label>Affiliation</label>
+      <label for="affiliation">Affiliation</label>
 
-      <select class="ui dropdown mann-form__compact" name="content[affiliation]">
+      <select id="affiliation" class="ui dropdown mann-form__compact" name="content[affiliation]">
         <option value="">-- Select one --</option>
         {% for affiliation in contents.special_collections_registrations.affiliation_options %}
           <option value="{{ affiliation }}" {% if special_collections_registration.affiliation == affiliation %} selected {% endif %}>{{ affiliation }}</option>
@@ -90,11 +90,11 @@
     </div>
 
     <div class="required field mann-form__compact">
-      <label>Preferred Date and Time of Visit</label>
+      <label for="date">Preferred Date and Time of Visit</label>
       <div class="ui calendar date-selector">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input type="text" name="content[date]" value="{{ special_collections_registration.date }}" placeholder="Enter Date &amp; Time">
+          <input type="text" id="date" name="content[date]" value="{{ special_collections_registration.date }}" placeholder="Enter Date &amp; Time">
         </div>
       </div>
     </div>
@@ -105,8 +105,8 @@
           Need to set value to 1, otherwise Locomotive will submit 'on' when checked
           -- https://github.com/locomotivecms/engine/issues/399
         {% endcomment %}
-        <input type="checkbox" name="content[usage_agreement]" value="1" {% if special_collections_registration.usage_agreement | ceil == 1 %} checked {% endif %}>
-        <label>I agree to abide by all the regulations set forth on this form or imposed at the time of viewing by Library Staff. I also agree not to publish any materials from Mann Library Special Collections without first obtaining legally required permissions.</label>
+        <input type="checkbox" id="usage-agreement" name="content[usage_agreement]" value="1" {% if special_collections_registration.usage_agreement | ceil == 1 %} checked {% endif %}>
+        <label for="usage-agreement">I agree to abide by all the regulations set forth on this form or imposed at the time of viewing by Library Staff. I also agree not to publish any materials from Mann Library Special Collections without first obtaining legally required permissions.</label>
       </div>
     </div>
 

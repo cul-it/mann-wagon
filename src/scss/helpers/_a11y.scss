@@ -1,0 +1,20 @@
+[aria-hidden='true'] {
+  display: none;
+}
+
+.skip-content {
+  position: absolute;
+  top: auto;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+
+  &:focus {
+    position: static;
+    margin-left: 1em;
+    padding: 0 2em;
+    width: auto;
+    height: auto;
+  }
+}

@@ -34,19 +34,19 @@
   {% comment %} Don't display the form after successful submission {% endcomment %}
   {% unless site_feedback.errors == false %}
       <div class="required field mann-form__compact">
-        <label>Name</label>
-        <input type="text" name="content[name]" value="{{ site_feedback.name }}">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="content[name]" value="{{ site_feedback.name }}">
       </div>
 
       <div class="required field mann-form__compact">
-        <label>Email</label>
-        <input type="email" name="content[email]" value="{{ site_feedback.email }}">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="content[email]" value="{{ site_feedback.email }}">
       </div>
 
     <div class="required field">
-      <label>Category</label>
+      <label for="category">Category</label>
 
-      <select class="ui dropdown mann-form__compact" name="content[category]">
+      <select class="ui dropdown mann-form__compact" id="category" name="content[category]">
         <option value="">-- Select one --</option>
         {% for category in contents.site_feedback.category_options %}
           <option value="{{ category }}" {% if site_feedback.category == category %} selected {% endif %}>{{ category }}</option>
@@ -55,13 +55,13 @@
     </div>
 
     <div class="required field">
-      <label>Page in question</label>
-      <textarea class="mann-form__url" name="content[url]" rows="2">{{ page_in_question | strip }}</textarea>
+      <label for="url">Page in question</label>
+      <textarea class="mann-form__url" id="url" name="content[url]" rows="2">{{ page_in_question | strip }}</textarea>
     </div>
 
     <div class="required field">
-      <label>Feedback</label>
-      <textarea name="content[feedback]" rows="4">{{ site_feedback.feedback }}</textarea>
+      <label for="feedback">Feedback</label>
+      <textarea id="feedback" name="content[feedback]" rows="4">{{ site_feedback.feedback }}</textarea>
     </div>
 
     <button class="ui button" type="submit">Send it our way</button>

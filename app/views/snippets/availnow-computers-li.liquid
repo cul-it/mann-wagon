@@ -10,7 +10,7 @@
 
 <li class="available-now__status available-now__status--{{ class }}">
   {% if linked %}
-    <a class="available-now__link" href="{% path_to type %}">
+    <a class="available-now__link" href="{% path_to type %}" title="{{ os }} availability ({{ type }})">
   {% endif %}
     {% unless location %}
       <i class="fa fa-fw {{ icon }} available-now__icon--{{ class }}"></i>

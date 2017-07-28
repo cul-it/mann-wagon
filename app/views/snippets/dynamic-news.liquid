@@ -6,9 +6,11 @@
     <ul>
       {% for story in published_stories %}
         <li class="news-latest__item">
-          <a href="{% path_to story %}" title="View full story"><img class="news-latest__img ui rounded image" src="{{ story.image.url | resize: '125x125#n' }}"></a>
+          <a href="{% path_to story %}" title="View full story">
+            <img class="news-latest__img ui rounded image" alt="news story photo" src="{{ story.image.url | resize: '125x125#n' }}">
 
-          <h5 class="news-latest__story-title"><a href="{% path_to story %}" title="View full story">{{ story.title }}</a></h5>
+            <h5 class="news-latest__story-title">{{ story.title }}</h5>
+          </a>
 
           <p>
             <span class="news-latest__date ui mini basic label">{{ story.date | date: '%a %b %e, %Y' }}</span>
@@ -60,7 +62,7 @@
 
       <p>{{ latest_post.description | truncatewords: 50 }}</p>
 
-      <a href="{{ latest_post.link }}" target="_blank" title="View our latest post on Tumblr">Read more <i class="fa fa-angle-double-right"></i></a>
+      <a href="{{ latest_post.link }}" target="_blank" title="View our latest post on Tumblr" aria-label="View our latest post on Tumblr">Read more <i class="fa fa-angle-double-right"></i></a>
     </div>
   {% endif %}
 {% endconsume %}

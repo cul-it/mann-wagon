@@ -1,8 +1,0 @@
-@import 'helpers/mixins';
-@import 'config';
-
-@import 'components/carousel';
-
-.spotlights {
-  @include span(full nest);
-}

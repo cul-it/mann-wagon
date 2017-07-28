@@ -2,7 +2,7 @@
   <div id="{{ person.first_name | strip | downcase }}-{{ person.last_name | strip | downcase }}" class="employee card" data-last_name="{{ person.last_name }}" data-first_name="{{ person.first_name }}" data-division="{{ person.division.name }}">
     <div class="image">
       {% assign placeholder_image = 'placeholder.jpg' | theme_image_url %}
-      <img class="ui image staff-directory__photo {% unless person.photo.url %}staff-directory__photo--placeholder{% endunless %}" src="{{ person.photo.url | default: placeholder_image }}">
+      <img class="ui image staff-directory__photo {% unless person.photo.url %}staff-directory__photo--placeholder{% endunless %}" alt="{{ person.first_name }} {{ person.last_name }} headshot" src="{{ person.photo.url | default: placeholder_image }}">
     </div>
     <div class="content">
       <div class="header">{{ person.last_name }}, {{ person.first_name }}</div>

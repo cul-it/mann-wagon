@@ -4,7 +4,7 @@
   </strong>
 
   <figure class="news-story__image {{ news.image_align }}">
-    <img class="ui rounded image" src="{{ news.image.url | resize: '400x>' }}">
+    <img class="ui rounded image" alt="news story photo" src="{{ news.image.url | resize: '400x>' }}">
 
     {% if news.image_caption %}
       <figcaption class="news-story__image-caption">{{ news.image_caption }}</figcaption>
