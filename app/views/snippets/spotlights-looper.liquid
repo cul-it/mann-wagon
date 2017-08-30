@@ -1,10 +1,10 @@
 {% for spotlight in spotlights %}
-  {% capture spotlight_image %}<img data-lazy="{{ spotlight.image.url | image_url }}" alt="{{ spotlight.name }}" title="{{ spotlight.caption }}">{% endcapture %}
+  {% capture spotlight_image %}<img data-lazy="{{ spotlight.image.url }}" alt="{{ spotlight.name }}" title="{{ spotlight.caption }}">{% endcapture %}
 
   {% if spotlight.url.size > 0 %}
     <a href="{{ spotlight.url }}">{{ spotlight_image }}</a>
   {% else %}
-    {{ spotlight_image }}
+    <span>{{ spotlight_image }}</span>
   {% endif %}
 
   {% assign counter = counter | plus: 1 %}
