@@ -80,6 +80,16 @@
     </a>
   </div>
 
+  {% if site.metafields.emergency_alert.active %}
+    <div class="ui violet message emergency-alert">
+      <div class="header">
+        Special Alert
+      </div>
+
+      <p> {{ site.metafields.emergency_alert.alert_message }}</p>
+    </div>
+  {% endif %}
+
   <nav class="site-nav" aria-label="Site navigation">
     <nav class="accessory-nav" aria-label="Accessory navigation">
       <button class="accessory-nav__button" type="button">
