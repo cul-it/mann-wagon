@@ -54,6 +54,21 @@
 #       type: select
 #       select_options: ['helvetica', 'Noto']
 
+emergency_alert:
+  label: Emergency Alert
+  fields:
+    alert_message:
+      type: string
+      hint: Enter a brief message here that will be displayed site-wide in the header
+    active:
+      label: active?
+      type: boolean 
+events_config:
+  label: Events Configuration
+  fields:
+    default_number_of_days:
+      type: integer
+      hint: Used to load the events for the number of days in future
 sensitive_data:
   label: Sensitive Data
   fields:
@@ -66,12 +81,6 @@ sensitive_data:
     r25_webservice_authorization:
       type: string
       hint: Base 64 encoded username:password, used to authenticate r25 webservice to retrieve B30 classroom events
-events_config:
-  label: Events Configuration
-  fields:
-    default_number_of_days:
-      type: integer
-      hint: Used to load the events for the number of days in future
 site_analytics:
   label: Site Analytics
   fields:

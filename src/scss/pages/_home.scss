@@ -6,6 +6,11 @@ section {
   }
 }
 
+.emergency-alert {
+  @include break;
+  @include span(full nest);
+}
+
 .lead-in {
   font-size: modular-scale(2);
 }
