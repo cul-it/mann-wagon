@@ -29,6 +29,7 @@
 
 <div id="libcal-weekly-hours">
   {% for weeks in mannlib_weekly_hours.weekly_hours %}
+    {% assign week_counter = forloop.index %} {% comment %} Used in hours-category snippet {% endcomment %}
     {% if forloop.first %}
       {% assign day_today = now | date: "%w" | plus: 1 %}
     {% else %}
