@@ -39,6 +39,14 @@
 
 .footer__admin {
   @include span(full nest);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(2 nest);
+
+    margin: 0;
+  }
+
+  margin-top: 2em;
 }
 
 .footer__bottomline {
@@ -98,7 +106,8 @@
   margin-bottom: 1em;
 }
 
-.footer__social {
+.footer__social,
+.footer__accessibility {
   @include susy-breakpoint($scape, $g-scape) {
     @include span(last 2);
 
