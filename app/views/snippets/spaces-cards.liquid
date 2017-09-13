@@ -38,7 +38,7 @@
 
           <span class="right floated">
             {% if space.smartmap_url.size > 0 %}
-              <a class="js-spacefinder-link right floated" href="{{ space.smartmap_url }}" title="Map it" target="_blank">
+              <a class="js-spacefinder-link right floated" href="{{ space.smartmap_url }}" title="Map it" target="_blank" aria-label="Find {{ space.name }} on the map">
                 <i class="fa fa-map-marker"></i>
                 {{ space.floor._label }}
               </a>

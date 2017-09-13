@@ -24,7 +24,7 @@
   {% comment %} Increment libcal counter {% endcomment %}
   {% assign libcal_widget_counter = libcal_widget_counter | plus: 1 %}
 {% else %}
-  <a class="ui labeled icon button space-finder__reserve js-spacefinder-link {% if indiv_space %}space__reserve{% endif %}" href="{{ space.reservation_system.url }}" title="Reserve this space" target="_blank">
+  <a class="ui labeled icon button space-finder__reserve js-spacefinder-link {% if indiv_space %}space__reserve{% endif %}" href="{{ space.reservation_system.url }}" title="Reserve {{ space.name }}" target="_blank">
 {% endif %}
 
   <i class="calendar icon"></i> Reserve
