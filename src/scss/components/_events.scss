@@ -62,20 +62,14 @@
   }
 }
 
-.event__title {
-  margin-bottom: 0;
-  font-family: $base-font-family;
-  font-weight: 700;
+.event__additional-dates {
+  text-decoration: underline;
 }
 
 .event__details {
   margin-bottom: .5em;
   background: color('alabaster');
   padding: .3em 1em .3em .1em;
-}
-
-.event__type {
-  margin-right: .5em;
 }
 
 .events-filters {
@@ -121,5 +115,14 @@
       margin-top: 0;
     }
   }
+}
 
+.event__title {
+  margin-bottom: 0;
+  font-family: $base-font-family;
+  font-weight: 700;
+}
+
+.event__type {
+  margin-right: .5em;
 }
