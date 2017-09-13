@@ -52,7 +52,11 @@
 }
 
 .hours-weekly__day-of-week {
-  color: color('light-gray' ('shade': 15%));
+  color: color('soft-gray');
+
+  .hours-weekly__today & {
+    color: color('medium-gray');
+  }
 }
 
 .hours-weekly__exception {

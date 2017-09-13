@@ -1,5 +1,5 @@
 // Google Fonts
-// sass-lint:disable-block no-url-domains, no-url-protocols 
+// sass-lint:disable-block no-url-domains, no-url-protocols
 @import url('https://fonts.googleapis.com/css?family=Lato:400,400italic,700|Francois+One|Montserrat|Inconsolata:400,700');
 $francois: 'Francois One', sans-serif;
 $lato: 'Lato', sans-serif;
@@ -118,6 +118,7 @@ $colors: (
   'aluminum': hsl(193, 6%, 68%),
   'barely-gray': 'aluminum' ('tint': 70%),
   'light-gray': 'aluminum' ('tint': 40%),
+  'soft-gray': 'aluminum' ('shade': 35%),
   'medium-gray': 'aluminum' ('shade': 40%),
   'dark-gray': 'aluminum' ('shade': 80%),
 
@@ -133,10 +134,12 @@ $colors: (
   'headings-footer': 'ocean-green',
 
   // Links
-  'action': 'celadon-green',
+  'action': 'celadon-green' ('shade': 10%),
   'consultation': 'ocean-green',
   'nav': 'primrose',
   'section-nav': 'soapstone' ('tint': 40%),
+  'turquoise': hsl(180, 59%, 51%),
+  'action-footer': 'turquoise',
 
   // Nav
   'accessory-nav': 'white',

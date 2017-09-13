@@ -2,10 +2,18 @@
   &.ui.button { // sass-lint:disable-line force-element-nesting |Override semantic ui default
     margin-top: 1em;
     background-color: color('consultation');
-    color: color('white');
+    color: color('vulcan');
 
     &:hover {
       background-color: color('consultation' ('shade': 10%));
+    }
+  }
+}
+
+a {
+  &.staff-directory__division {
+    .ui.cards>.card>.extra & { // sass-lint:disable-line force-element-nesting |Override semantic ui default
+      color: color('soft-gray');
     }
   }
 }
@@ -16,12 +24,6 @@
 }
 
 .staff-directory__grid {
-  .staff-directory__position {
-    display: block;
-    color: color('medium-gray');
-    font-size: modular-scale(-1);
-  }
-
   .staff-directory__division {
     font-size: modular-scale(-1);
   }
@@ -38,6 +40,12 @@
   }
 }
 
+.staff-directory__position {
+  display: block;
+  color: color('medium-gray');
+  font-size: modular-scale(-1);
+}
+
 .staff-directory__table {
   @include susy-breakpoint($scape, $g-scape) {
     font-size: modular-scale(-1);
@@ -49,10 +57,6 @@
 
   line-height: modular-scale(0);
   font-size: modular-scale(-2);
-
-  .staff-directory__position {
-    display: block;
-  }
 }
 
 .staff-directory__tbody {

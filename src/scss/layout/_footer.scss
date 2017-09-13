@@ -13,6 +13,18 @@
   background: color('vulcan');
   padding: 2em .3em;
   color: color('white');
+
+  a {
+    color: color('action-footer');
+
+    &.footer__heading-link {
+      color: color('headings-footer');
+    }
+
+    &.footer__social-icon {
+      color: color('white');
+    }
+  }
 }
 
 .footer__about-subnav {
@@ -46,10 +58,6 @@
 
 .footer__heading {
   margin-bottom: .2em;
-  color: color('headings-footer');
-}
-
-.footer__heading-link {
   color: color('headings-footer');
 }
 
@@ -106,8 +114,4 @@
   }
 
   margin-bottom: 1em;
-}
-
-.footer__social-icon {
-  color: color('white');
 }
