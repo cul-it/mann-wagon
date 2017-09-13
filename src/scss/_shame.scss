@@ -40,6 +40,17 @@ table.software-list__table {
 // If only semantic-ui src was available in Sass
 // -- then maybe these a11y hacks wouldn't be necessary
 .ui.button { // sass-lint:disable-line force-element-nesting
+  &:focus {
+    outline-width: 1px;
+    outline-style: dotted;
+    outline-color: ButtonText;
+    @supports (outline-color: -webkit-focus-ring-color) {
+      outline-width: 5px;
+      outline-style: auto;
+      outline-color: -webkit-focus-ring-color;
+    }
+  }
+
   &.teal {
     color: color('vulcan');
 
