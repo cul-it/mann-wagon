@@ -51,6 +51,12 @@
   {% include 'social-media-links' with component: 'news-latest' %}
 </ul>
 
+<div class="news-latest__soundcloud">
+  <h5><a href="https://soundcloud.com/mykindofmann" target="_blank" title="Listen to all shows from My Kind of Mann Podcast"><i class="fa fa-headphones"></i> My Kind of Mann</a></h5>
+
+  <iframe width="100%" height="300" title="My Kind of Mann podcast on Soundcloud" style="border-width:0" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/284692851&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;visual=true"></iframe>
+</div>
+
 {% assign tumblr_url = 'http://mannlibrary.tumblr.com/rss' %}
 
 {% consume mann_tumblr from tumblr_url, expires_in: 3600, timeout: 5.0  %}

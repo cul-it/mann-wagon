@@ -16,6 +16,7 @@
 
 .news-latest__facebook,
 .news-latest__social,
+.news-latest__soundcloud,
 .news-latest__tumblr {
   @include susy-breakpoint($tablet, $g-tablet) {
     @include span(3 nest);
