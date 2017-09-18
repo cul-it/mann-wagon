@@ -130,9 +130,9 @@ fields:
 
 - departments:
     label: Liaison to
-    type: has_many
+    type: many_to_many
     class_name: departments
-    inverse_of: liaison
+    inverse_of: liaisons
     ui_enabled: true
 
 - imposter: # The lowercase, underscored name of the field
