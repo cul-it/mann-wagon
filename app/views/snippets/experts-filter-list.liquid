@@ -1,8 +1,17 @@
 {% for item in collection %}
+  {% assign go = true %}
+  {% comment %} Roundabout filter of colleges due to depts in both colleges and limitations of with_scope {% endcomment %}
+  {% if colleges %}
+    {% unless colleges contains item.college %}
+      {% assign go = false %}
+    {% endunless %}
+  {% endif %}
   {% if multi %}
     {% assign filter_value = item.name %}
   {% else %}
     {% assign filter_value = item %}
   {% endif %}
-  <li class="all-experts__filter"><a class="all-experts__filter-link js-filter-{{ type }}" href="#" data-{{ type }}="{{ filter_value }}">{{ filter_value }}</a></li>
+  {% if go %}
+    <li class="all-experts__filter"><a class="all-experts__filter-link js-filter-{{ type }}" href="#" data-{{ type }}="{{ filter_value }}">{{ filter_value }}</a></li>
+  {% endif %}
 {% endfor %}

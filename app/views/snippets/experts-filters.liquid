@@ -9,11 +9,11 @@
 
 <ul class="all-experts__filter-list content">
   {% if college %}
-    {% with_scope college: college %}
-      {% include 'experts-filter-list' with type: filter_type, collection: contents.departments, multi: true %}
-    {% endwith_scope %}
+    {% comment %} Build array of colleges that includes option for 'Both' {% endcomment %}
+    {% assign colleges = college | append: ', Both' | split: ', '%}
+    {% include 'experts-filter-list' with type: filter_type, collection: contents.departments, colleges: colleges, multi: true %}
   {% else %}
     {% assign filter_type = name | downcase %}
-    {% include 'experts-filter-list' with type: filter_type , collection: array %}
+    {% include 'experts-filter-list' with type: filter_type , collection: array, colleges: nil %}
   {% endif %}
 </ul>
