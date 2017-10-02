@@ -1,5 +1,5 @@
 - LibCal:
     _slug: libcal
     name: LibCal
-    url: http://spaces.library.cornell.edu
+    url: https://spaces.library.cornell.edu
     api_url: https://api3.libcal.com
