@@ -1,0 +1,77 @@
+.body-equipment .section-nav {
+    display: none !important;
+}
+.page-content--dynamic {
+    .equipment {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: 1fr repeat(2, .5fr);
+        grid-template-areas:
+          "intro       intro       questions"
+          "equipment   info        info     "
+          "equipment   policy      policy   ";
+    }
+    .equipment__intro {
+        grid-area: intro;
+        margin-bottom: 30px;
+    }
+    .equipment__questions {
+        grid-area: questions;
+        p {
+            border-left: 1px solid gray;
+            padding-left: 20px;
+        }
+    }
+    .equipment__type {
+        grid-area: equipment;
+        span {
+            display: inline-block;
+            width: 130px;
+        }
+        button {
+            width: 170px;
+            display: inline-block;
+            margin-right: 10px;
+        }
+    }
+    .equipment__reserve-info {
+        grid-area: info;
+        position: relative;
+        border-radius: .4em;
+        background-color: #D8D8D8;
+        padding: 20px;
+        height: auto;
+
+        &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 26px solid transparent;
+            //border-right-color: #D8D8D8;
+            border-left: 0;
+            border-bottom: 0;
+            margin-top: -13px;
+            margin-left: -26px;
+            width: 30px;
+            height: 60px;
+            border-right: solid 30px #D8D8D8;
+            border-bottom: solid 30px transparent;
+            border-top: solid 30px transparent;
+        }
+    }
+    .equipment__policy {
+        grid-area: policy;
+
+        h4 {
+          padding-top: 20px;
+        }
+
+        ul {
+          padding-left: 30px;
+          list-style-type: disc;
+        }
+    }
+}
