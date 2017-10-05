@@ -1,58 +1,4 @@
-{% comment %}
-{% include 'equipment-list-setup' %}
-<table class="equipment-list__table ui yellow selectable unstackable very compact small table">
-  <thead>
-    <tr>
-      <th>Item</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td colspan="2"><div class="ui large teal ribbon label">Cameras</div></td>
-    </tr>
-    <tr>
-      {{ camera_items }}
-    </tr>
-    <tr>
-      <td colspan="2"><div class="ui large teal ribbon label">Camcorders</div></td>
-    </tr>
-    <tr>
-      {{ camcorder_items }}
-    </tr>
-    <tr>
-      <td colspan="2"><div class="ui large teal ribbon label">Audio Recorders</div></td>
-    </tr>
-    <tr>
-      {{ audio_recorder_items }}
-    </tr>
-    <tr>
-      <td colspan="2"><div class="ui large teal ribbon label">Projectors</div></td>
-    </tr>
-    <tr>
-      {{ projector_items }}
-    </tr>
-    <tr>
-      <td colspan="2"><div class="ui large teal ribbon label">Microphones</div></td>
-    </tr>
-    <tr>
-      {{ microphone_items }}
-    </tr>
-    <tr>
-      <td colspan="2"><div class="ui large teal ribbon label">GPS Units</div></td>
-    </tr>
-    <tr>
-      {{ gps_unit_items }}
-    </tr>
-    <tr>
-    </tr>
-      <td colspan="2"><div class="ui large teal ribbon label">Additional Equipment</div></td>
-    <tr>
-      {{ additional_equipment_items }}
-    </tr>
-  </tbody>
-</table>
-{% endcomment %}
+{% assign equip_types = 'Audio Recorder, DSLR Camera, GPS Unit, iPhone Mic, Microphone, Projector, Thermal Imager, Tripod, Videocamera' | split: ', ' %}
 
 <div class="equipment">
 
@@ -67,105 +13,18 @@
 
   <div class="equipment__type">
     <ul>
-
-      <li>
-        <p><span>Audio Recorders</span>
-          <a href="#" title="">
-            <button class="">Pick up Now</button>
-          </a>
-          <a href="#" title="">
-            <button class="">Reserve</button>
-          </a>
-        </p>
-      </li>
-
-      <li>
-        <p><span>DSLR Cameras</span>
-          <a href="#" title="">
-            <button class="">Pick up Now</button>
-          </a>
-          <a href="#" title="">
-            <button class="">Reserve</button>
-          </a>
-        </p>
-      </li>
-
-      <li>
-        <p><span>GPS Units</span>
-          <a href="#" title="">
-            <button class="">Pick up Now</button>
-          </a>
-          <a href="#" title="">
-            <button class="" disabled>Reserve</button>
-          </a>
-        </p>
-      </li>
-
-      <li>
-        <p><span>iPhone Mic</span>
-          <a href="#" title="">
-            <button class="">Pick up Now</button>
-          </a>
-          <a href="#" title="">
-            <button class="" disabled>Reserve</button>
-          </a>
-        </p>
-      </li>
-
-      <li>
-        <p><span>Microphones</span>
-          <a href="#" title="">
-            <button class="">Pick up Now</button>
-          </a>
-          <a href="#" title="">
-            <button class="">Reserve</button>
-          </a>
-        </p>
-      </li>
-
-      <li>
-        <p><span>Projector</span>
-          <a href="#" title="">
-            <button class="">Pick up Now</button>
-          </a>
-          <a href="#" title="">
-            <button class="">Reserve</button>
-          </a>
-        </p>
-      </li>
-
-      <li>
-        <p><span>Thermal Imager</span>
-          <a href="#" title="">
-            <button class="">Pick up Now</button>
-          </a>
-          <a href="#" title="">
-            <button class="" disabled>Reserve</button>
-          </a>
-        </p>
-      </li>
-
-      <li>
-        <p><span>Tripods</span>
-          <a href="#" title="">
-            <button class="">Pick up Now</button>
-          </a>
-          <a href="#" title="">
-            <button class="">Reserve</button>
-          </a>
-        </p>
-      </li>
-
-      <li>
-        <p><span>Videocameras</span>
-          <a href="#" title="">
-            <button class="">Pick up Now</button>
-          </a>
-          <a href="#" title="">
-            <button class="">Reserve</button>
-          </a>
-        </p>
-      </li>
+      {% for type in equip_types %}
+        <li>
+          <p><span>{{ type }}</span>
+            <a href="#" title="">
+              <button class="">Pick up Now</button>
+            </a>
+            <a href="#" title="">
+              <button class="">Reserve</button>
+            </a>
+          </p>
+        </li>
+      {% endfor %}
     </ul>
   </div>
 
