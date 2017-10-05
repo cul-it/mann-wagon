@@ -1,7 +1,4 @@
-{% assign equip_types = 'Audio Recorder, DSLR Camera, GPS Unit, iPhone Mic, Microphone, Projector, Thermal Imager, Tripod, Videocamera' | split: ', ' %}
-
 <div class="equipment">
-
   <div class="equipment__intro">
     <p>Mann Library has a variety of equipment available for check-out from the 1st floor Circulation Desk. If what you are looking for is unavailable at Mann please look at the availability of <a target="_blank" href="https://olinuris.library.cornell.edu/services/equipment/loans" title="Link: https://olinuris.library.cornell.edu/services/equipment/loans">equipment at other libraries</a>.</p>
   </div>
@@ -13,17 +10,22 @@
 
   <div class="equipment__type">
     <ul>
-      {% for type in equip_types %}
-        <li>
-          <p><span>{{ type }}</span>
-            <a href="#" title="">
-              <button class="">Pick up Now</button>
-            </a>
-            <a href="#" title="">
-              <button class="">Reserve</button>
-            </a>
-          </p>
-        </li>
+      {% comment %} Use child pages to build equipment category list {% endcomment %}
+      {% assign sorted_children = page.children | sort: 'title' %}
+
+      {% for child in sorted_children %}
+        {% if child.listed? and child.published? %}
+          <li>
+            <p><span>{{ child.title }}</span>
+              <a href="{% path_to child %}" title="Pick up your {{ child.title }}">
+                <button class="">Pick up Now</button>
+              </a>
+              <a href="#" title="">
+                <button class="">Reserve</button>
+              </a>
+            </p>
+          </li>
+        {% endif %}
       {% endfor %}
     </ul>
   </div>
@@ -48,5 +50,4 @@
       </li>
     </ul>
   </div>
-
 </div>
