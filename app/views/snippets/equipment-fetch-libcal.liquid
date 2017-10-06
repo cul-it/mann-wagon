@@ -1,0 +1,58 @@
+{% comment %}
+  Use Locomotive Actions API to fetch data from LibCal
+  -- https://locomotive-v3.readme.io/v3.3/docs/external-api
+{% endcomment %}
+
+{% action "Fetch equipment categories from LibCal" %}
+  var sensitiveData = getProp('site').metafields.sensitive_data
+  var clientId = sensitiveData.libcal_client_id;
+  var clientSecret = sensitiveData.libcal_client_secret;
+  var libcalAuth = false;
+  var equipTypes = false;
+
+  if (clientId && clientSecret) {
+    // Need to obtain access token first
+    libcalAuth = callAPI('POST', 'https://api2.libcal.com/1.1/oauth/token', {
+      data: {
+        client_id:     clientId,
+        client_secret: clientSecret,
+        grant_type:    'client_credentials'
+      }
+    });
+
+    // Now use access token to authenticate
+    if (libcalAuth) {
+      var token = 'Bearer ' + JSON.parse(libcalAuth.data).access_token;
+
+      equipTypes = callAPI('GET', 'https://api2.libcal.com/1.1/equipment/categories/96', {
+        headers: {
+          authorization: token
+        }
+      })
+    }
+
+    setProp('libcal_equip', equipTypes.data[0].categories)
+  }
+{% endaction %}
+
+{% unless libcal_equip %}
+  <div class="ui warning message">
+    <div class="header">
+      Well, this is embarassing
+    </div>
+
+    <p>We are unable to retrieve the reservable equipment data and apologize for this inconvenience.</p>
+    <p>You can try refreshing the page, but if the issue persists, please take a moment to <a href="{% path_to site-feedback %}" title="Report this error">report this error</a>.</p>
+  </div>
+{% endunless %}
+
+{% comment %}
+  The rest is temporary, purely for debugging purposes =)
+{% endcomment %}
+<h2>LibCal data debug</h2>
+
+<ul>
+{% for type in libcal_equip %}
+  <li><strong>{{ type.cid | ceil }}</strong> -- {{ type.name }}</li>
+{% endfor %}
+</ul>

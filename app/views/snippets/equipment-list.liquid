@@ -1,3 +1,5 @@
+{% include 'equipment-fetch-libcal' %}
+
 <div class="equipment">
   <div class="equipment__intro">
     <p>Mann Library has a variety of equipment available for check-out from the 1st floor Circulation Desk. If what you are looking for is unavailable at Mann please look at the availability of <a target="_blank" href="https://olinuris.library.cornell.edu/services/equipment/loans" title="Link: https://olinuris.library.cornell.edu/services/equipment/loans">equipment at other libraries</a>.</p>
@@ -15,12 +17,20 @@
 
       {% for child in sorted_children %}
         {% if child.listed? and child.published? %}
+          {% assign libcal_url = '#' %}
+          {% for type in libcal_equip %}
+            {% if type.name contains child.title %}
+              {% assign type_id = type.cid | ceil %}
+              {% assign libcal_url = 'https://spaces.library.cornell.edu/equipment?lid=96&gid=' | append: type_id  %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
           <li>
             <p><span>{{ child.title }}</span>
               <a href="{% path_to child %}" title="Pick up your {{ child.title }}">
                 <button class="">Pick up Now</button>
               </a>
-              <a href="#" title="">
+              <a href="{{ libcal_url }}" title="Reserve your {{ child.title }} for a future date" target="_blank">
                 <button class="">Reserve</button>
               </a>
             </p>
