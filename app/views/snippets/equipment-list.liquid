@@ -25,16 +25,23 @@
               {% break %}
             {% endif %}
           {% endfor %}
+
+          {% capture reserve-equipment %}
+            {% if libcal_url %}
+            <a href="{{ libcal_url }}" title="Reserve your {{ child.title }} for a future date" target="_blank">
+              <button>Reserve</button>
+            </a>
+            {% else %}
+              <button disabled>Reserve</button>
+            {% endif %}
+          {% endcapture %}
+
           <li>
             <p><span>{{ child.title }}</span>
               <a href="{% path_to child %}" title="Pick up your {{ child.title }}">
                 <button class="">Pick up Now</button>
               </a>
-              {% if libcal_url %}
-              <a href="{{ libcal_url }}" title="Reserve your {{ child.title }} for a future date" target="_blank">
-              {% endif %}
-                <button {% unless libcal_url %}disabled{% endunless %}>Reserve</button>
-              {% if libcal_url %}</a>{% endif %}
+              {{ reserve-equipment }}
             </p>
           </li>
         {% endif %}
