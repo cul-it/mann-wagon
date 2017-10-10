@@ -4,7 +4,7 @@
 
   {% for equipment in mann_equipment.equipment_list %}
     {% comment %}DSLR Camera{% endcomment %}
-    {% if equipment.equipment_type == 'digital-video-camera-0' %}
+    {% if equipment.equipment_type == 'dslr-camera' %}
       {% assign camera_type_1_title = 'Canon T5i'%}
       {% include 'equipment-availability-badge' %}
       {% capture camera_type_1_items %} {{ camera_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
@@ -19,7 +19,7 @@
       {% include 'equipment-availability-badge' %}
       {% capture audio_recorder_type_1_items %} {{ audio_recorder_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
     {% comment %}Projector{% endcomment %}
-    {% elsif equipment.equipment_type == 'epson-projector-0'%}
+    {% elsif equipment.equipment_type == 'projector'%}
       {% assign projector_type_1_title = 'Epson VX240'%}
       {% include 'equipment-availability-badge' %}
       {% capture projector_type_1_items %} {{ projector_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
@@ -29,7 +29,7 @@
       {% include 'equipment-availability-badge' %}
       {% capture microphone_type_1_items %} {{ microphone_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
     {% comment %}GPS Unit{% endcomment %}
-    {% elsif equipment.equipment_type == 'gps/garmin-gps'%}
+    {% elsif equipment.equipment_type == 'gps'%}
       {% assign gps_type_1_title = 'Garmin 76CS'%}
       {% include 'equipment-availability-badge' %}
       {% capture gps_type_1_items %} {{ gps_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
