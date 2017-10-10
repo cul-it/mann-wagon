@@ -3,69 +3,41 @@
 {% consume mann_equipment from equipment_url, timeout: 5.0  %}
 
   {% for equipment in mann_equipment.equipment_list %}
-    {% comment %}Camera types{% endcomment %}
+    {% comment %}DSLR Camera{% endcomment %}
     {% if equipment.equipment_type == 'digital-video-camera-0' %}
-      {% assign camera_type_1_title = 'Canon EOS Rebel'%}
+      {% assign camera_type_1_title = 'Canon T5i'%}
       {% include 'equipment-availability-badge' %}
       {% capture camera_type_1_items %} {{ camera_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
-    {% elsif equipment.equipment_type == 'digital-camera-0' %}
-      {% assign camera_type_2_title = 'Sony Cyber-shot'%}
+    {% comment %}Videocamera{% endcomment %}
+    {% elsif equipment.equipment_type == 'videocamera'%}
+      {% assign videocamera_type_1_title = 'Sony HDR-CX440'%}
       {% include 'equipment-availability-badge' %}
-      {% capture camera_type_2_items %} {{ camera_type_2_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
-    {% comment %}Camcorder types{% endcomment %}
-    {% elsif equipment.equipment_type == 'digital-video-camera-2'%}
-      {% assign camcorder_type_1_title = 'Sony HDR-PJ380'%}
-      {% include 'equipment-availability-badge' %}
-      {% capture camcorder_type_1_items %} {{ camcorder_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
-    {% elsif equipment.equipment_type == 'digital-video-camera-1'%}
-      {% assign camcorder_type_2_title = 'Panasonic HX-WA03'%}
-      {% include 'equipment-availability-badge' %}
-      {% capture camcorder_type_2_items %} {{ camcorder_type_2_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
-    {% comment %}Audio recorder types{% endcomment %}
+      {% capture videocamera_type_1_items %} {{ videocamera_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
+    {% comment %}Audio recorder{% endcomment %}
     {% elsif equipment.equipment_type == 'audio-recorder'%}
       {% assign audio_recorder_type_1_title = 'Zoom H1'%}
       {% include 'equipment-availability-badge' %}
       {% capture audio_recorder_type_1_items %} {{ audio_recorder_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
-    {% elsif equipment.equipment_type == 'audio-recorder-0'%}
-      {% assign audio_recorder_type_2_title = 'Zoom H4n'%}
-      {% include 'equipment-availability-badge' %}
-      {% capture audio_recorder_type_2_items %} {{ audio_recorder_type_2_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
-    {% comment %}Projector types{% endcomment %}
-    {% elsif equipment.equipment_type == 'epson-projector'%}
-      {% assign projector_type_1_title = 'Epson EX3212'%}
+    {% comment %}Projector{% endcomment %}
+    {% elsif equipment.equipment_type == 'epson-projector-0'%}
+      {% assign projector_type_1_title = 'Epson VX240'%}
       {% include 'equipment-availability-badge' %}
       {% capture projector_type_1_items %} {{ projector_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
-    {% elsif equipment.equipment_type == 'epson-projector-0'%}
-      {% assign projector_type_2_title = 'Epson VS230'%}
-      {% include 'equipment-availability-badge' %}
-      {% capture projector_type_2_items %} {{ projector_type_2_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
-    {% comment %}Microphone types{% endcomment %}
-    {% elsif equipment.equipment_type == 'microphone-kit'%}
-      {% assign microphone_type_1_title = 'Sony Wireless'%}
+    {% comment %}Microphone{% endcomment %}
+    {% elsif equipment.equipment_type == 'microphone'%}
+      {% assign microphone_type_1_title = 'Blue Yeti'%}
       {% include 'equipment-availability-badge' %}
       {% capture microphone_type_1_items %} {{ microphone_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
-    {% elsif equipment.equipment_type == 'snowball'%}
-      {% assign microphone_type_2_title = 'Blue Snowball'%}
-      {% include 'equipment-availability-badge' %}
-      {% capture microphone_type_2_items %} {{ microphone_type_2_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
-    {% comment %}GPS types{% endcomment %}
+    {% comment %}GPS Unit{% endcomment %}
     {% elsif equipment.equipment_type == 'gps/garmin-gps'%}
       {% assign gps_type_1_title = 'Garmin 76CS'%}
       {% include 'equipment-availability-badge' %}
       {% capture gps_type_1_items %} {{ gps_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
-    {% elsif equipment.equipment_type == 'gps/datalog-gps'%}
-      {% assign gps_type_2_title = 'Locosys BGT-31'%}
+    {% comment %}Tripod{% endcomment %}
+    {% elsif equipment.equipment_type == 'tripod'%}
+      {% assign tripod_type_1_title = 'Tripod'%}
       {% include 'equipment-availability-badge' %}
-      {% capture gps_type_2_items %} {{ gps_type_2_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
-    {% comment %}Additional equipment types{% endcomment %}
-    {% elsif equipment.equipment_type == 'portable-screen'%}
-      {% assign additional_type_1_title = 'Da-Lite 50" Screen'%}
-      {% include 'equipment-availability-badge' %}
-      {% capture additional_type_1_items %} {{ additional_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
-    {% elsif equipment.equipment_type == 'tripods' or equipment.equipment_type == 'tripods-3' or equipment.equipment_type == 'tripods-4'%}
-      {% assign additional_type_2_title = 'Tri-pods'%}
-      {% include 'equipment-availability-badge' %}
-      {% capture additional_type_2_items %} {{ additional_type_2_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
+      {% capture tripod_type_1_items %} {{ tripod_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
     {% endif %}
   {% endfor %}
 
