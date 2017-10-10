@@ -17,7 +17,7 @@
 
       {% for child in sorted_children %}
         {% if child.listed? and child.published? %}
-          {% assign libcal_url = '#' %}
+          {% assign libcal_url = false %}
           {% for type in libcal_equip %}
             {% if type.name contains child.title %}
               {% assign type_id = type.cid | ceil %}
@@ -30,9 +30,11 @@
               <a href="{% path_to child %}" title="Pick up your {{ child.title }}">
                 <button class="">Pick up Now</button>
               </a>
+              {% if libcal_url %}
               <a href="{{ libcal_url }}" title="Reserve your {{ child.title }} for a future date" target="_blank">
-                <button class="">Reserve</button>
-              </a>
+              {% endif %}
+                <button {% unless libcal_url %}disabled{% endunless %}>Reserve</button>
+              {% if libcal_url %}</a>{% endif %}
             </p>
           </li>
         {% endif %}
