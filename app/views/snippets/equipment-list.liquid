@@ -32,7 +32,7 @@
               <button>Reserve</button>
             </a>
             {% else %}
-              <button disabled>Reserve</button>
+              <button disabled title="Reservations are not offered for {{ child.title }}">Reserve</button>
             {% endif %}
           {% endcapture %}
 
