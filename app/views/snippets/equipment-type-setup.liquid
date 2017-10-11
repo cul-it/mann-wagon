@@ -30,7 +30,7 @@
       {% capture microphone_type_1_items %} {{ microphone_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
     {% comment %}GPS Unit{% endcomment %}
     {% elsif equipment.equipment_type == 'gps'%}
-      {% assign gps_type_1_title = 'Garmin 76CS'%}
+      {% assign gps_type_1_title = 'Garmin eTrex 30x'%}
       {% include 'equipment-availability-badge' %}
       {% capture gps_type_1_items %} {{ gps_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
     {% comment %}Tripod{% endcomment %}
