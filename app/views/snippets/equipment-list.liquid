@@ -1,53 +1,72 @@
-{% include 'equipment-list-setup' %}
-<table class="equipment-list__table ui yellow selectable unstackable very compact small table">
-  <thead>
-    <tr>
-      <th>Item</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td colspan="2"><div class="ui large teal ribbon label">Cameras</div></td>
-    </tr>
-    <tr>
-      {{ camera_items }}
-    </tr>
-    <tr>
-      <td colspan="2"><div class="ui large teal ribbon label">Camcorders</div></td>
-    </tr>
-    <tr>
-      {{ camcorder_items }}
-    </tr>
-    <tr>
-      <td colspan="2"><div class="ui large teal ribbon label">Audio Recorders</div></td>
-    </tr>
-    <tr>
-      {{ audio_recorder_items }}
-    </tr>
-    <tr>
-      <td colspan="2"><div class="ui large teal ribbon label">Projectors</div></td>
-    </tr>
-    <tr>
-      {{ projector_items }}
-    </tr>
-    <tr>
-      <td colspan="2"><div class="ui large teal ribbon label">Microphones</div></td>
-    </tr>
-    <tr>
-      {{ microphone_items }}
-    </tr>
-    <tr>
-      <td colspan="2"><div class="ui large teal ribbon label">GPS Units</div></td>
-    </tr>
-    <tr>
-      {{ gps_unit_items }}
-    </tr>
-    <tr>
-    </tr>
-      <td colspan="2"><div class="ui large teal ribbon label">Additional Equipment</div></td>
-    <tr>
-      {{ additional_equipment_items }}
-    </tr>
-  </tbody>
-</table>
+{% include 'equipment-fetch-libcal' %}
+
+<div class="equipment">
+  <div class="equipment__intro">
+    <p>Mann Library has a variety of equipment available for check-out from the 1st floor Circulation Desk. If what you are looking for is unavailable at Mann please look at the availability of <a target="_blank" href="https://olinuris.library.cornell.edu/services/equipment/loans" title="Link: https://olinuris.library.cornell.edu/services/equipment/loans">equipment at other libraries</a>.</p>
+  </div>
+
+  <div class="equipment__questions">
+    <p><strong>Questions?</strong> Please contact the Circulation Desk at <a href="tel:607-255-3296">255-3296</a>
+    </p>
+  </div>
+
+  <div class="equipment__type">
+    <ul>
+      {% comment %} Use child pages to build equipment category list {% endcomment %}
+      {% assign sorted_children = page.children | sort: 'title' %}
+
+      {% for child in sorted_children %}
+        {% if child.listed? and child.published? %}
+          {% assign libcal_url = false %}
+          {% for type in libcal_equip %}
+            {% if type.name contains child.title %}
+              {% assign type_id = type.cid | ceil %}
+              {% assign libcal_url = 'https://spaces.library.cornell.edu/equipment?lid=96&gid=' | append: type_id  %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+
+          {% capture reserve-equipment %}
+            {% if libcal_url %}
+            <a href="{{ libcal_url }}" title="Reserve your {{ child.title }} for a future date" target="_blank">
+              <button>Reserve</button>
+            </a>
+            {% else %}
+              <button disabled title="Reservations are not offered for {{ child.title }}">Reserve</button>
+            {% endif %}
+          {% endcapture %}
+
+          <li>
+            <p><span>{{ child.title }}</span>
+              <a href="{% path_to child %}" title="Pick up your {{ child.title }}">
+                <button class="">Pick up Now</button>
+              </a>
+              {{ reserve-equipment }}
+            </p>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="equipment__reserve-info">
+    <h3>Should I make a reservation?</h3>
+
+    <p>The same policies apply for both the reservable and first come, first served equipment.<p>
+    <p>The main difference is you can come to the circulation desk to pick up any available equipment on the spot, without first reserving it online. If, however, you need a piece of equipment on a specific date, then we encourage you to make a reservation.<p>
+  </div>
+
+  <div class="equipment__policy">
+    <h4>Policies</h4>
+
+    <ul>
+      <li>Loanable for up to 3 days</li>
+      <li><strong>Eligible:</strong> Cornell students, faculty, and staff with a valid Cornell ID</li>
+      <li><strong>Not Eligible:</strong> NY State Privilege cards, CU Library cards, spousal cards, proxy users, "on leave" or "in absentia" status students</li>
+      <li>Patrons are responsible for returning all items on time and in good condition to the Mann Library Circulation Desk during <a href="{% path_to hours %}" title="Mann Library Hours">operating hours</a></li>
+      <li><strong>Overdue fines:</strong> $1.00/minute</li>
+      <li><strong>Equipment is not renewable</strong>
+      </li>
+    </ul>
+  </div>
+</div>

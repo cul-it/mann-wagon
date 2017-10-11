@@ -62,7 +62,7 @@ emergency_alert:
       hint: Enter a brief message here that will be displayed site-wide in the header
     active:
       label: active?
-      type: boolean 
+      type: boolean
 events_config:
   label: Events Configuration
   fields:
@@ -77,7 +77,13 @@ sensitive_data:
       hint: Used to authenticate against the LabStats API to retrieve real time desktop availability
     libcal_apikey:
       type: string
-      hint: Used to authenticate against the LibCal API to retrieve reservation, event & consultation data
+      hint: Used to authenticate against the LibCal 1.0 API to retrieve room reservations via Room Booking Module
+    libcal_client_id:
+      type: string
+      hint: Used with Client Secret to authenticate against the LibCal 1.1 API to retrieve/post reservations via Spaces & Equipment Module
+    libcal_client_secret:
+      type: string
+      hint: Used with Client ID to authenticate against the LibCal 1.1 API to retrieve/post reservations via Spaces & Equipment Module
     r25_webservice_authorization:
       type: string
       hint: Base 64 encoded username:password, used to authenticate r25 webservice to retrieve B30 classroom events

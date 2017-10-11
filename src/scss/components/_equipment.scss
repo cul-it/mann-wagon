@@ -1,0 +1,120 @@
+.page-content--dynamic {
+  .equipment {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'intro' 'questions' 'equipment' 'info' 'policy';
+  }
+  @media only screen and (min-width: 600px) {
+    .equipment {
+      display: grid;
+      grid-template-columns: 1fr repeat(2, .5fr);
+      grid-template-areas: 'intro intro questions' 'equipment info info ' 'equipment policy policy ';
+    }
+  }
+
+  .equipment__intro {
+    padding-right: 10px;
+    grid-area: intro;
+  }
+
+  .equipment__questions {
+    margin-bottom: 30px;
+    grid-area: questions;
+  }
+  @media only screen and (min-width: 600px) {
+    .equipment__questions {
+      p {
+        border-left: 1px solid color('alabaster');
+        padding-left: 20px;
+      }
+    }
+  }
+
+  .equipment__type {
+    margin-bottom: 30px;
+    grid-area: equipment;
+
+    span {
+      display: inline-block;
+      padding-bottom: 5px;
+      width: 130px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    button {
+      display: inline-block;
+      margin-right: 7px;
+      padding-right: 0;
+      padding-left: 0;
+      width: 110px;
+    }
+  }
+  @media only screen and (min-width: 600px) {
+    .equipment__type {
+      span {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+  @media only screen and (min-width: 839px) {
+    .equipment__type {
+      span {
+        display: inline-block;
+        width: 120px;
+      }
+    }
+  }
+  @media only screen and (min-width: 1183px) {
+    .equipment__type {
+      button {
+        margin-right: 10px;
+        width: 170px;
+      }
+    }
+  }
+
+  .equipment__reserve-info {
+    position: relative;
+    border-radius: .4em;
+    background-color: color('light-gray');
+    padding: 20px;
+    height: auto;
+    grid-area: info;
+  }
+  @media only screen and (min-width: 600px) {
+    .equipment__reserve-info {
+      &::after {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        margin-top: -13px;
+        margin-left: -15px;
+        border: 26px solid transparent;
+        border-top: solid 15px transparent;
+        border-right: solid 15px color('light-gray');
+        border-bottom: solid 15px transparent;
+        border-left: 0;
+        width: 15px;
+        height: 30px;
+        content: '';
+      }
+    }
+  }
+
+  .equipment__policy {
+    grid-area: policy;
+
+    h4 {
+      padding-top: 20px;
+    }
+
+    ul {
+      padding-left: 30px;
+      list-style-type: disc;
+    }
+  }
+}

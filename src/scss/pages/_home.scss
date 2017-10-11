@@ -1,9 +1,3 @@
-p {
-  a {
-    text-decoration: underline;
-  }
-}
-
 section {
   margin-top: 4em;
 
@@ -23,8 +17,4 @@ section {
 
 .more-link {
   font-weight: bold;
-
-  .footer & {
-    text-decoration: none;
-  }
 }

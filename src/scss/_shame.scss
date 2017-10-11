@@ -65,3 +65,7 @@ table.software-list__table {
     color: color('vulcan') !important; // sass-lint:disable-line no-important
   }
 }
+
+.body-equipment .section-nav {
+  display: none !important; // Hide sidebar nav on Equipment page for our interim solution of adding links to LibCal public interface for reserving equipment
+}
