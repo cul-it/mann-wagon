@@ -1,58 +1,62 @@
 // Hide intro copy
-.body-equipment .page-content {
-  display: none;
+.body-equipment {
+  .page-content {
+    display: none;
+  }
 }
 
 .page-content--dynamic {
   .equipment {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: "intro" "questions" "equipment" "info" "policy";
+    grid-template-areas: 'intro' 'questions' 'equipment' 'info' 'policy';
   }
   @media only screen and (min-width: 600px) {
     .equipment {
       display: grid;
       grid-template-columns: 1fr repeat(2, .5fr);
-      grid-template-areas: "intro intro questions" "equipment info info " "equipment policy policy ";
+      grid-template-areas: 'intro intro questions' 'equipment info info ' 'equipment policy policy ';
     }
   }
 
   .equipment__intro {
-    grid-area: intro;
     padding-right: 10px;
+    grid-area: intro;
   }
 
   .equipment__questions {
-    grid-area: questions;
     margin-bottom: 30px;
+    grid-area: questions;
   }
   @media only screen and (min-width: 600px) {
     .equipment__questions {
       p {
-        border-left: 1px solid gray;
+        border-left: 1px solid color('alabaster');
         padding-left: 20px;
       }
     }
   }
 
   .equipment__type {
-    grid-area: equipment;
     margin-bottom: 30px;
+    grid-area: equipment;
 
     span {
       display: inline-block;
-      width: 130px;
       padding-bottom: 5px;
+      width: 130px;
     }
+
     a {
       text-decoration: none;
     }
+
     button {
-      width: 110px;
       display: inline-block;
+      margin-right: 7px;
       padding-right: 0;
       padding-left: 0;
-      margin-right: 7px;
+      width: 110px;
     }
   }
   @media only screen and (min-width: 600px) {
@@ -74,38 +78,37 @@
   @media only screen and (min-width: 1183px) {
     .equipment__type {
       button {
-        width: 170px;
         margin-right: 10px;
+        width: 170px;
       }
     }
   }
 
   .equipment__reserve-info {
-    grid-area: info;
     position: relative;
-    border-radius: 0.4em;
+    border-radius: .4em;
     background-color: color('light-gray');
     padding: 20px;
     height: auto;
+    grid-area: info;
   }
   @media only screen and (min-width: 600px) {
-    .equipment__reserve-info:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: 0;
-      height: 0;
-      border: 26px solid transparent;
-      border-left: 0;
-      border-bottom: 0;
-      margin-top: -13px;
-      margin-left: -15px;
-      width: 15px;
-      height: 30px;
-      border-right: solid 15px color('light-gray');
-      border-bottom: solid 15px transparent;
-      border-top: solid 15px transparent;
+    .equipment__reserve-info {
+      &::after {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        margin-top: -13px;
+        margin-left: -15px;
+        border: 26px solid transparent;
+        border-top: solid 15px transparent;
+        border-right: solid 15px color('light-gray');
+        border-bottom: solid 15px transparent;
+        border-left: 0;
+        width: 15px;
+        height: 30px;
+        content: '';
+      }
     }
   }
 
