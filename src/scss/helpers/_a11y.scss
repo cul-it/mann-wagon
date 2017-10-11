@@ -2,6 +2,13 @@
   display: none;
 }
 
+.page-content,
+.page-content--dynamic {
+  a {
+    text-decoration: underline;
+  }
+}
+
 .skip-content {
   position: absolute;
   top: auto;
