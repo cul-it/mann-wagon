@@ -72,6 +72,13 @@ events_config:
 sensitive_data:
   label: Sensitive Data
   fields:
+    google_apikey:
+      type: string
+      hint: Used to authenticate against the Google Custom Search API for site search
+    google_cse_id:
+      label: Google CSE ID
+      type: string
+      hint: Google Custom Search Engine (CSE) ID (used for value of cx param in API request)
     labstats_customer_id:
       type: string
       hint: Used to authenticate against the LabStats API to retrieve real time desktop availability
