@@ -35,7 +35,7 @@
       {% capture gps_type_1_items %} {{ gps_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
     {% comment %}Tripod{% endcomment %}
     {% elsif equipment.equipment_type == 'tripod'%}
-      {% assign tripod_type_1_title = 'Tripod'%}
+      {% assign tripod_type_1_title = 'Magnus VT-200'%}
       {% include 'equipment-availability-badge' %}
       {% capture tripod_type_1_items %} {{ tripod_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
     {% endif %}
