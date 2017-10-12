@@ -4,11 +4,11 @@
 {% endcomment %}
 
 {% action "Fetch equipment categories from LibCal" %}
-  var sensitiveData = getProp('site').metafields.sensitive_data
-  var clientId = sensitiveData.libcal_client_id;
-  var clientSecret = sensitiveData.libcal_client_secret;
-  var libcalAuth = false;
-  var equipTypes = false;
+  const sensitiveData = getProp('site').metafields.sensitive_data
+  const clientId = sensitiveData.libcal_client_id
+  const clientSecret = sensitiveData.libcal_client_secret
+  var libcalAuth = false
+  var equipTypes = false
 
   if (clientId && clientSecret) {
     // Need to obtain access token first
@@ -18,11 +18,11 @@
         client_secret: clientSecret,
         grant_type:    'client_credentials'
       }
-    });
+    })
 
     // Now use access token to authenticate
     if (libcalAuth) {
-      var token = 'Bearer ' + JSON.parse(libcalAuth.data).access_token;
+      const token = 'Bearer ' + JSON.parse(libcalAuth.data).access_token
 
       equipTypes = callAPI('GET', 'https://api2.libcal.com/1.1/equipment/categories/96', {
         headers: {
