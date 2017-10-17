@@ -13,3 +13,10 @@ editable_elements:
     x 31° Field of View&nbsp;</li><li>9 Hz Image Frequency</li><li>7.5 x 14 µm Spectral\r\nRange</li></ul><p></p>\r\n\r\n\r\n\r\n\r\n\r\n<p></p><br><p></p><p><br></p>"
 ---
 {% extends "layouts/basic-page" %}
+{% block 'main/accessory' %}
+  {% include 'equipment-type-setup' %}
+  {% include 'equipment-type-list'
+    with equipment_type_1_title: thermal_imager_type_1_title,
+    with equipment_type_1: thermal_imager_type_1_items
+  %}
+{% endblock %}
