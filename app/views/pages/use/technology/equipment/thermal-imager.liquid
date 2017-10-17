@@ -1,0 +1,22 @@
+---
+title: Thermal Imager
+slug: thermal-imager
+handle: thermal_imager
+position: 7
+listed: true
+published: true
+is_layout: false
+editable_elements:
+  main/page_content: "<h2>Flir C2 Thermal Imager</h2><h4>Features:&nbsp;<img title=\"Thermal_Imager_front-back...\"
+    alt=\"undefined\" src=\"/samples/assets/Thermal_Imager_front-back.png\" class=\"wysiwyg-float-right\"></h4><p></p><ul><li>80X60
+    IR Sensor with 4,800 measurement pixels<br></li><li>Thermal Sensitivity of &lt;0.10&nbsp;°C</li><li>\r\n\r\n41°
+    x 31° Field of View&nbsp;</li><li>9 Hz Image Frequency</li><li>7.5 x 14 µm Spectral\r\nRange</li></ul><p></p>\r\n\r\n\r\n\r\n\r\n\r\n<p></p><br><p></p><p><br></p>"
+---
+{% extends "layouts/basic-page" %}
+{% block 'main/accessory' %}
+  {% include 'equipment-type-setup' %}
+  {% include 'equipment-type-list'
+    with equipment_type_1_title: thermal_imager_type_1_title,
+    with equipment_type_1: thermal_imager_type_1_items
+  %}
+{% endblock %}

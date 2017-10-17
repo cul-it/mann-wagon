@@ -38,6 +38,10 @@
       {% assign tripod_type_1_title = 'Magnus VT-200'%}
       {% include 'equipment-availability-badge' %}
       {% capture tripod_type_1_items %} {{ tripod_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
+    {% elsif equipment.equipment_type == 'thermal-imager'%}
+      {% assign thermal_imager_type_1_title = 'Flir C2'%}
+      {% include 'equipment-availability-badge' %}
+      {% capture thermal_imager_type_1_items %} {{ thermal_imager_type_1_items }} <tr><td>{{ equipment.name }}</td><td><span class="badge {{ badge }}">{{ availability }}</span><br>{{ due_back_string }}</td></tr> {% endcapture %}
     {% endif %}
   {% endfor %}
 
