@@ -27,7 +27,7 @@ function sortStaff (field) {
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
   $('.staff-directory').each(function () {
     var $wrapper = $(this)
-    console.log($wrapper)
+    // console.log($wrapper)
     $wrapper.find('.employee').sort(function (a, b) {
       var valueA = a.dataset[field]
       var valueB = b.dataset[field]
