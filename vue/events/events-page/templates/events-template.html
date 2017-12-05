@@ -48,7 +48,7 @@
 				<div class="events__list">
 					<div class="event" v-for="event in events">
 						<h3 class="event__title">
-            	<a v-link="{ name: 'events', query: { eventId: event.event_id }}" v-on:click="setRecurringEventStartTime(event.event_start_time)" title="(((event.event_title))) [((date | momentHomeDateText))]">(((event.event_title)))</a>
+            	<a v-link="{ name: 'events', query: { eventId: event.event_id }}" v-on:click="setRecurringEventStartTime(event.event_start_time)" title="(((event.event_title))) [((date | momentDateText))]">(((event.event_title)))</a>
 						</h3>
 						<div class="event__details">
 
