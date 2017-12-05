@@ -242,7 +242,7 @@ export default {
   methods: {
     logErrors (service, error) {
       // log errors and show message to end user
-      console.log(error.status, error.statusText, error.request.url);
+      // console.log(error.status, error.statusText, error.request.url);
       this.apiErrors.push(service)
       if (this.apiErrors.length === 3) {
         this.$set('noEventsMessage', 'Something went wrong while getting upcoming events, please try again later. <br><a href="/contact/site-feedback">Report this issue.</a>')
