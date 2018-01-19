@@ -1,4 +1,4 @@
-{{ '//api3.libcal.com/js/roombooking.js?002' | javascript_tag }}
+{{ '//api3.libcal.com/js/equipment.min.js' | javascript_tag }}
 
 {% if space.reservation_system.name == 'LibCal' %}
   {% comment %} Build unique id for targeting by libcal widget using custom counter {% endcomment %}
@@ -16,7 +16,7 @@
     <!--  Libcal room reservation widget code -->
     <script>
       jQuery(function(){
-        jQuery("#{{ libcal_target_id }}").LibCalRoomBooking({ "iid": 973, "gid": {{ space.reserve_sys_id }},  "width": 500, "height": 450 });
+        jQuery("#{{ libcal_target_id }}").LibCalEquipmentBooking({ "iid": 973, "gid": {{ space.reserve_sys_id }},  "width": 500, "height": 450 });
       });
     </script>
   {% endif %}
