@@ -82,9 +82,6 @@ sensitive_data:
     labstats_customer_id:
       type: string
       hint: Used to authenticate against the LabStats API to retrieve real time desktop availability
-    libcal_apikey:
-      type: string
-      hint: Used to authenticate against the LibCal 1.0 API to retrieve room reservations via Room Booking Module
     libcal_client_id:
       label: LibCal Client ID
       type: string
