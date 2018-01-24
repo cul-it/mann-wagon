@@ -390,7 +390,7 @@ export default {
 
         this.eventSources.updatedLibcalEvents = false
         var mannservicesEventsUrl = 'https://mannservices.mannlib.cornell.edu/LibServices/showEventsById.do?output=json&id='
-        var roomIds = [23, 24, 25, 26]
+        var roomIds = [28, 32, 33, 34]
         var vueInstance = this
         var promise = []
         var libcalReservations = []
@@ -404,7 +404,7 @@ export default {
             })
         })
 
-        Promise.all([promise[23], promise[24], promise[25], promise[26]]).then((values) => {
+        Promise.all([promise[28], promise[32], promise[33], promise[34]]).then((values) => {
           if (thisRequest === this.latestLibcalRequest) {
               _.each(values, function (value, index) {
                 libcalReservations = _.concat(libcalReservations, value.data.eventList)
@@ -784,9 +784,17 @@ export default {
                     events['event_room_smartmap_url'] = curatedEventLocation[2]
                 }
               })
-              events['event_type'] = [value.description.match('Event type: (.*)')[1].trim().replace(',', '')]
+
+              // Default value of 'MISSING' for event_type
+              // -- if this custom question is not included in description
+              // -- encountered after 2018-01-19 LibCal E&S migration
+              // -- probably wise to have this failsafe in place for all occurrences of .match()
+              // -- https://j11y.io/javascript/match-trick
+              const eventTypeSelected = (value.description.match(/Event Type: (.*)/i) || [,'MISSING'])[1].trim().replace(',', '')
+              events['event_type'] = [eventTypeSelected]
+
               _.forEach(vueInstance.curatedEventTypes, function(curatedEventType, index) {
-                if (curatedEventType[0] === value.description.match('Event type: (.*)')[1].trim().replace(',', '') || _.includes(curatedEventType[1], value.description.match('Event type: (.*)')[1].trim().replace(',', ''))) {
+                if (curatedEventType[0] === eventTypeSelected || _.includes(curatedEventType[1], eventTypeSelected)) {
                   events['event_type'] = [curatedEventType[0]]
                 }
               })
@@ -799,9 +807,10 @@ export default {
             if (roomNames.indexOf(value.location.trim().replace(',', '')) === -1) {
               roomNames.push(value.location.trim().replace(',', ''))
             }
+
             // Event type filter list array
-            if (eventTypes.indexOf(value.description.match('Event type: (.*)')[1].trim().replace(',', '')) === -1) {
-              eventTypes.push(value.description.match('Event type: (.*)')[1].trim().replace(',', ''))
+            if (eventTypes.indexOf(eventTypeSelected) === -1) {
+              eventTypes.push(eventTypeSelected)
             }
               counter++
             }
