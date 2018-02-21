@@ -2,20 +2,8 @@
 
 // LibCal Hours - monthly widget
 
-// Hide all locations (except for the building and lobby) and LibCal's default nav
-.btn-sm,
-.loc_1710,
-.loc_1708,
-.loc_2204,
-.loc_2317,
-.loc_2319,
-.loc_3016,
-.loc_3017,
-.loc_3018,
-.loc_3302,
-.loc_3303,
-.loc_3485,
-.loc_3486 {
+// Hide LibCal widget's default nav
+.btn-sm {
   display: none;
 }
 
@@ -88,10 +76,16 @@
   font-weight: bold;
 }
 
-.s-lc-mhw-sub-loc { // nested location (lobby)
-  margin-top: .5em;
-  padding-bottom: .5em;
-  font-size: inherit;
+// Hide all sub locations except the lobby
+.s-lc-mhw-sub-loc {
+  display: none;
+
+  &.loc_1709 {
+    display: block;
+    margin-top: .5em;
+    padding-bottom: .5em;
+    font-size: inherit;
+  }
 }
 
 .s-lc-mhw-tb { // table setup
