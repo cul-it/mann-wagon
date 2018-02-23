@@ -18,14 +18,14 @@
         _paq.push(['trackPageView']);
         _paq.push(['enableLinkTracking']);
         (function() {
-          var u="//webanalytics.library.cornell.edu/";
+          var u="//webstats.library.cornell.edu/";
           _paq.push(['setTrackerUrl', u+'piwik.php']);
           _paq.push(['setSiteId', {{ site.metafields.site_analytics.piwik_analytics_site_identifier }}]);
           var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
           g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
         })();
       </script>
-      <noscript><p><img src="//webanalytics.library.cornell.edu/piwik.php?idsite={{ site.metafields.site_analytics.piwik_analytics_site_identifier }}" style="border:0;" alt="" /></p></noscript>
+      <noscript><p><img src="//webstats.library.cornell.edu/piwik.php?idsite={{ site.metafields.site_analytics.piwik_analytics_site_identifier }}" style="border:0;" alt="" /></p></noscript>
     {% endif %}
   {% endif %}
 {% endunless %}
