@@ -25,3 +25,6 @@ group :misc do
   # gem 'redcarpet', require: 'redcarpet'
   gem 'mann_liquid_extensions', :git => 'git@github.com:cul-it/mann_liquid_extensions', :tag => 'v1.3.0'
 end
+
+# Temp override of locomotivecms engine/steam dependency to address vulnerabilities
+gem 'sprockets', '~> 3.7.2'
