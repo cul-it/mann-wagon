@@ -1,15 +1,13 @@
 .page-content--dynamic {
   .equipment {
+    @include susy-breakpoint($tablet, $g-tablet) {
+      grid-template-columns: 1fr repeat(2, .5fr);
+      grid-template-areas: 'intro intro questions' 'equipment policy policy' 'equipment policy policy';
+    }
+
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: 'intro' 'questions' 'equipment' 'info' 'policy';
-  }
-  @media only screen and (min-width: 600px) {
-    .equipment {
-      display: grid;
-      grid-template-columns: 1fr repeat(2, .5fr);
-      grid-template-areas: 'intro intro questions' 'equipment info info ' 'equipment policy policy ';
-    }
+    grid-template-areas: 'intro' 'questions' 'equipment' 'policy';
   }
 
   .equipment__intro {
@@ -18,16 +16,15 @@
   }
 
   .equipment__questions {
-    margin-bottom: 30px;
-    grid-area: questions;
-  }
-  @media only screen and (min-width: 600px) {
-    .equipment__questions {
+    @include susy-breakpoint($tablet, $g-tablet) {
       p {
         border-left: 1px solid color('alabaster');
         padding-left: 20px;
       }
     }
+
+    margin-bottom: 30px;
+    grid-area: questions;
   }
 
   .equipment__type {
@@ -35,6 +32,10 @@
     grid-area: equipment;
 
     span {
+      @include susy-breakpoint($lapdesk, $g-lapdesk) {
+        width: 170px;
+      }
+
       display: inline-block;
       padding-bottom: 5px;
       width: 130px;
@@ -45,63 +46,14 @@
     }
 
     button {
-      display: inline-block;
-      margin-right: 7px;
-      padding-right: 0;
-      padding-left: 0;
-      width: 110px;
-    }
-  }
-  @media only screen and (min-width: 600px) {
-    .equipment__type {
-      span {
-        display: block;
-        width: 100%;
-      }
-    }
-  }
-  @media only screen and (min-width: 839px) {
-    .equipment__type {
-      span {
-        display: inline-block;
-        width: 120px;
-      }
-    }
-  }
-  @media only screen and (min-width: 1183px) {
-    .equipment__type {
-      button {
-        margin-right: 10px;
+      @include susy-breakpoint($scape, $g-scape) {
         width: 170px;
       }
-    }
-  }
 
-  .equipment__reserve-info {
-    position: relative;
-    border-radius: .4em;
-    background-color: color('light-gray');
-    padding: 20px;
-    height: auto;
-    grid-area: info;
-  }
-  @media only screen and (min-width: 600px) {
-    .equipment__reserve-info {
-      &::after {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        margin-top: -13px;
-        margin-left: -15px;
-        border: 26px solid transparent;
-        border-top: solid 15px transparent;
-        border-right: solid 15px color('light-gray');
-        border-bottom: solid 15px transparent;
-        border-left: 0;
-        width: 15px;
-        height: 30px;
-        content: '';
-      }
+      display: inline-block;
+      padding-right: 0;
+      padding-left: 0;
+      width: 150px;
     }
   }
 
