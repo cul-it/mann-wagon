@@ -7,12 +7,13 @@
   const sensitiveData = getProp('site').metafields.sensitive_data
   const clientId = sensitiveData.libcal_client_id
   const clientSecret = sensitiveData.libcal_client_secret
+  const apiBaseUrl = 'https://api2.libcal.com/1.1/'
   var libcalAuth = false
   var equipTypes = false
 
   if (clientId && clientSecret) {
     // Need to obtain access token first
-    libcalAuth = callAPI('POST', 'https://api2.libcal.com/1.1/oauth/token', {
+    libcalAuth = callAPI('POST', apiBaseUrl + 'oauth/token', {
       data: {
         client_id:     clientId,
         client_secret: clientSecret,
@@ -24,14 +25,36 @@
     if (libcalAuth) {
       const token = 'Bearer ' + JSON.parse(libcalAuth.data).access_token
 
-      equipTypes = callAPI('GET', 'https://api2.libcal.com/1.1/equipment/categories/96', {
+      // Fetch all equipment categories for Mann location
+      equipTypes = callAPI('GET', apiBaseUrl + 'equipment/categories/96', {
         headers: {
           authorization: token
         }
       })
+
+      // Sort categories by name
+      var categories = equipTypes.data[0].categories.sort(function(a,b) {
+        return a.name.localeCompare(b.name)
+      })
+
+      // Create an array of category IDs
+      var catIds = categories.map(function(c) {
+        return c.cid
+      })
+
+      // Fetch all items per category (will use an item ID to provide direct reservation link)
+      catIds.forEach(function(c, i) {
+        var equipment = callAPI('GET', apiBaseUrl + 'equipment/category/' + c, {
+          headers: {
+            authorization: token
+          }
+        })
+
+        categories[i].equip = equipment.data[0].items
+      })
     }
 
-    setProp('libcal_equip', equipTypes.data[0].categories)
+    setProp('libcal_equip', categories)
   }
 {% endaction %}
 
