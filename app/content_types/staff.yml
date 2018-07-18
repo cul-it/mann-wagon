@@ -71,7 +71,7 @@ fields:
 - phone: # The lowercase, underscored name of the field
     label: Phone # Human readable name of the field
     type: string
-    required: true
+    required: false
     hint: Just last 5 digits (e.g. 4-5238) -- include the hyphen
     localized: false
 
