@@ -51,9 +51,11 @@
               <a class="all-experts__email" href="https://www.cornell.edu/search/people.cfm?netid={{ person.netid }}" title="Contact details for {{ person.first_name }}" target="_blank">
                 <i class="fa fa-fw fa-envelope"></i> {{ person.netid }}
               </a>
-              <a href="tel:+1607-25{{ person.phone }}" title="Call {{ person.first_name }}">
-                <i class="fa fa-fw fa-phone"></i> 607-25{{ person.phone }}
-              </a>
+              {% if person.phone.size > 0 %}
+                <a class="all-experts__phone" href="tel:+1607-25{{ person.phone }}" title="Call {{ person.first_name }}">
+                  <i class="fa fa-fw fa-phone"></i> 607-25{{ person.phone }}
+                </a>
+              {% endif %}
             </div>
 
             <h3 class="all-experts__name">{{ person.first_name }} {{ person.last_name }}</h3>

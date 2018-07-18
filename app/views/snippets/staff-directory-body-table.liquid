@@ -31,9 +31,11 @@
       </a>
     </td>
     <td class="top aligned">
-      <a href="tel:+1607-25{{ person.phone }}" title="Call {{ person.first_name }}">
-          <i class="phone icon"></i> 607-25{{ person.phone }}
-      </a>
+      {% if person.phone.size > 0 %}
+        <a href="tel:+1607-25{{ person.phone }}" title="Call {{ person.first_name }}">
+            <i class="phone icon"></i> 607-25{{ person.phone }}
+        </a>
+      {% endif %}
     </td>
   </tr>
 {% endfor %}
