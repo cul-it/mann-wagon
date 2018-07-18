@@ -2,12 +2,12 @@
   .equipment {
     @include susy-breakpoint($tablet, $g-tablet) {
       grid-template-columns: 1fr repeat(2, .5fr);
-      grid-template-areas: 'intro intro questions' 'equipment policy policy' 'equipment policy policy';
+      grid-template-areas: 'intro intro questions' 'equipment equipment equipment' 'equipment equipment equipment';
     }
 
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: 'intro' 'questions' 'equipment' 'policy';
+    grid-template-areas: 'intro' 'questions' 'equipment';
   }
 
   .equipment__intro {
@@ -32,7 +32,7 @@
     grid-area: equipment;
 
     span {
-      @include susy-breakpoint($lapdesk, $g-lapdesk) {
+      @include susy-breakpoint($scape, $g-scape) {
         width: 170px;
       }
 
@@ -54,19 +54,6 @@
       padding-right: 0;
       padding-left: 0;
       width: 150px;
-    }
-  }
-
-  .equipment__policy {
-    grid-area: policy;
-
-    h4 {
-      padding-top: 20px;
-    }
-
-    ul {
-      padding-left: 30px;
-      list-style-type: disc;
     }
   }
 }
