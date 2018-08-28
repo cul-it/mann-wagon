@@ -66,7 +66,7 @@
     <div class="news-latest__tumblr">
       <h5><a href="{{ latest_post.link }}" target="_blank" title="View our latest post on Tumblr">{{ latest_post.title }}</a></h5>
 
-      <p>{{ latest_post.description | truncatewords: 50 }}</p>
+      <div>{{ latest_post.description | remove: '<i>' | remove: '</i>' | truncatewords: 50 }}</div>
 
       <a href="{{ latest_post.link }}" target="_blank" title="View our latest post on Tumblr" aria-label="View our latest post on Tumblr">Read more <i class="fa fa-angle-double-right"></i></a>
     </div>
