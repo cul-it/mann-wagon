@@ -33,9 +33,9 @@ $(document).ready(function () {
       var minute = moment(date).minute()
       // Sunday = 0, Saturday = 6
       var weekend = [0, 6]
-      // Standard hours are 10am - 3pm, Mon-Thu (Friday, close at noon)
-      var open = 10
-      var close = day === 5 ? 12 : 15
+      // Standard hours are 9am - 4pm, Mon-Fri
+      var open = 9
+      var close = 16
 
       switch (mode) {
         case 'day':
