@@ -124,7 +124,7 @@ fields:
     label: Reservations required in advance? # Human readable name of the field
     type: boolean
     required: false
-    hint: This field should be set to "Yes" for rooms that require reservations in advance
+    hint: This field should be set to "Yes" for rooms that require lead time for reservations (can't reserve for immediate use)
     localized: false
 
 - reservation_system:
@@ -134,24 +134,17 @@ fields:
     class_name: reservation_systems
 
 - reserve_sys_id: # The lowercase, underscored name of the field
-    label: Reservation System ID # Human readable name of the field
+    label: LibCal Category ID # Human readable name of the field
     type: integer
     required: false
-    hint: If reservable, provide space ID in applicable reservation system. For LibCal, use the group ID!
+    hint: If a LibCal space, provide category ID (GID).
     localized: false
 
 - reserve_sys_room_ids: # The lowercase, underscored name of the field
-    label: LibCal Room IDs # Human readable name of the field
+    label: LibCal Space IDs # Human readable name of the field
     type: string
     required: false
-    hint: If a LibCal space, provide room ID(s) for each room within the group specified above. Separate multiple room IDs with a comma (no spaces).
-    localized: false
-
-- libcal_public_page_url: # The lowercase, underscored name of the field
-    label: LibCal Public Page URL # Human readable name of the field
-    type: string
-    required: false
-    hint: By default, a widget will be used to render the reservation form. If the full LibCal form is preferred, enter the group's public page URL (aka Friendly URL) here.
+    hint: If a LibCal space, provide space ID(s) for each space within the group specified above. Separate multiple space IDs with a comma (no spaces).
     localized: false
 
 - loan_period: # The lowercase, underscored name of the field
