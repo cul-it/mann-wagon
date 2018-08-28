@@ -84,8 +84,7 @@
         Hours of Availability
       </div>
       <ul class="list">
-        <li>10am - 3pm Monday through Thursday</li>
-        <li>10am - noon on Fridays</li>
+        <li>9am - 4pm Monday through Friday</li>
       </ul>
     </div>
 
@@ -120,6 +119,11 @@
       {% for i in (1..5) %}
         {% include 'form-special-collections-item' %}
       {% endfor %}
+    </div>
+
+    <div class="field">
+      <label for="additional-comments">Additional Comments</label>
+      <textarea id="additional-comments" name="content[additional_comments]" rows="4">{{ special_collections_registration.additional_comments }}</textarea>
     </div>
 
     <button class="ui button" type="submit">Submit your registration</button>

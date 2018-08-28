@@ -193,3 +193,10 @@ fields:
     type: string
     required: false
     localized: false
+
+- additional_comments: # The lowercase, underscored name of the field
+    label: Additonal Comments # Human readable name of the field
+    type: text
+    required: false
+    localized: false
+    text_formatting: text # html (uses rich text editor), markdown or text (uses plain text editor)
