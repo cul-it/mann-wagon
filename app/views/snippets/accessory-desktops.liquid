@@ -20,8 +20,6 @@
           {% assign b30a = location %}
         {% when 'B30B' %}
           {% assign b30b = location %}
-        {% when 'CIT Mac 220A' %}
-          {% assign cit_mac_220a = location %}
         {% when 'McManus' %}
           {% assign mcmanus = location %}
         {% when 'Research' %}
@@ -47,7 +45,7 @@
     {% capture basement_status %}<a href="{% path_to hours %}" title="View all hours"><span class="badge badge-error">Closed</span></a>{% endcapture %}
   {% endif %}
 
-  {% assign macs_avail = cit_mac_220a.available | plus: mcmanus.available | plus: research_mac.available %}
+  {% assign macs_avail = research_mac.available | plus: mcmanus.available %}
 
   {% include 'availnow-desktops-template' %}
 
