@@ -24,7 +24,7 @@ $(document).ready(function () {
     type: 'datetime',
     // Require at least a half hour advanced notice and up to 1 month out
     minDate: moment().add(30, 'minutes').toDate(),
-    maxDate: moment().add(1, 'month').toDate(),
+    maxDate: moment().add(3, 'month').toDate(),
 
     // Is the given date disabled?
     isDisabled: function (date, mode) {
