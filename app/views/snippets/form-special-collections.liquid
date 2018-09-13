@@ -88,12 +88,15 @@
       </ul>
     </div>
 
-    <div class="required field mann-form__compact">
+    <div class="required field">
       <label for="date">Preferred Date and Time of Visit</label>
       <div class="ui calendar date-selector">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
           <input type="text" id="date" name="content[date]" value="{{ special_collections_registration.date }}" placeholder="Enter Date &amp; Time">
+          <div class="ui left pointing label">
+            Minimum 24 hr advance notice
+          </div>
         </div>
       </div>
     </div>
@@ -122,7 +125,7 @@
     </div>
 
     <div class="field">
-      <label for="additional-comments">Additional Comments</label>
+      <label for="additional-comments">Additional Comments <span class="mann-form__hint">Specific needs or project details that may help us suggest additional books, materials, resources, etc.</span></label>
       <textarea id="additional-comments" name="content[additional_comments]" rows="4">{{ special_collections_registration.additional_comments }}</textarea>
     </div>
 

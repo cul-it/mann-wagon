@@ -22,8 +22,8 @@ import moment from 'moment'
 $(document).ready(function () {
   $('.ui.date-selector').calendar({
     type: 'datetime',
-    // Require at least a half hour advanced notice and up to 1 month out
-    minDate: moment().add(30, 'minutes').toDate(),
+    // Require at least two hour advanced notice and up to 3 month outs
+    minDate: moment().add(2, 'hours').toDate(),
     maxDate: moment().add(3, 'month').toDate(),
 
     // Is the given date disabled?
