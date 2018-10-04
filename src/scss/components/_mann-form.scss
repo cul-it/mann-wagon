@@ -34,3 +34,9 @@
   margin-bottom: 0;
   font-weight: normal;
 }
+
+.mann-form__minimal {
+  .ui.form & input[type='text'] { // sass-lint:disable-line force-element-nesting force-attribute-nesting no-qualifying-elements |Override semantic-ui default for input width
+    width: 8em;
+  }
+}

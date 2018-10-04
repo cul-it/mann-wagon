@@ -66,7 +66,26 @@ fields:
     type: select
     required: false
     localized: false
-    select_options: ['Undergraduate Student', 'Graduate Student', 'Faculty', 'Staff', 'Other']
+    select_options: ['Faculty', 'Graduate Student', 'Staff', 'Other']
+
+- course_name: # The lowercase, underscored name of the field
+    label: Course Name # Human readable name of the field
+    type: string
+    required: true
+    localized: false
+
+- course_number: # The lowercase, underscored name of the field
+    label: Course Number # Human readable name of the field
+    type: string
+    required: true
+    localized: false
+
+- course_info: # The lowercase, underscored name of the field
+    label: Course info # Human readable name of the field
+    type: text
+    required: true
+    localized: false
+    # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
 
 - instruction_types_managed_list: # The lowercase, underscored name of the field
     label: Manage instruction types # Human readable name of the field
@@ -74,7 +93,7 @@ fields:
     required: false
     hint: DON'T select values! Just use EDIT OPTIONS link to manage the options presented to users
     localized: false    # if localized, use
-    select_options: ['Class-related session', 'Workshop', 'Library assignment', 'Special instruction (for Cornell Cooperative Extension, emeriti, high school outreach, etc.)', 'Tour and/or Orientation', 'Consultation']
+    select_options: ['In-class instruction', 'Outside of class workshop', 'Help session', 'Online materials', 'Tour of library', 'Other']
 
 - instruction_types: # The lowercase, underscored name of the field
     label: Requested instruction types # Human readable name of the field
@@ -83,25 +102,51 @@ fields:
     hint: This field records the intstruction types selected by the user when submitting a request
     localized: false    # if localized, use
 
-- research_guide: # The lowercase, underscored name of the field
-    label: Research Guide? # Human readable name of the field
-    type: boolean
-    required: false
-    localized: false
-
-- course_info: # The lowercase, underscored name of the field
-    label: Course info # Human readable name of the field
-    type: text
-    required: false
-    localized: false
-    # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
-
 - number_participants: # The lowercase, underscored name of the field
     label: Number participants # Human readable name of the field
-    type: select
+    type: string
     required: false
     localized: false
-    select_options: ['1-25', '25-50', '50-75', '75+', 'unsure']
+
+- date_first: # The lowercase, underscored name of the field
+    label: Preferred date of session # Human readable name of the field
+    type: date_time
+    required: false
+    localized: false
+
+- date_second: # The lowercase, underscored name of the field
+    label: Second (date) preference # Human readable name of the field
+    type: date_time
+    required: false
+    localized: false
+
+- date_third: # The lowercase, underscored name of the field
+    label: Third (date) preference # Human readable name of the field
+    type: date_time
+    required: false
+    localized: false
+
+- location_managed_list: # The lowercase, underscored name of the field
+    label: Manage Locations # Human readable name of the field
+    type: select
+    required: false
+    hint: DON'T select values! Just use EDIT OPTIONS link to manage the options presented to users
+    localized: false    # if localized, use
+    select_options: ['Library classroom', 'Course location', 'Other']
+
+- location: # The lowercase, underscored name of the field
+    label: Preferred Location # Human readable name of the field
+    type: tags
+    required: true
+    hint: This field records the preferred location selected by the user when submitting a request
+    localized: false    # if localized, use
+
+- assignment: # The lowercase, underscored name of the field
+    label: Assignment # Human readable name of the field
+    type: select
+    required: true
+    localized: false    # if localized, use
+    select_options: ['Yes', 'No', 'Not sure']
 
 - needs: # The lowercase, underscored name of the field
     label: Needs # Human readable name of the field
@@ -109,24 +154,6 @@ fields:
     required: false
     localized: false
     # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
-
-- date_first: # The lowercase, underscored name of the field
-    label: Preferred date of session # Human readable name of the field
-    type: date
-    required: false
-    localized: false
-
-- date_second: # The lowercase, underscored name of the field
-    label: Second (date) preference # Human readable name of the field
-    type: date
-    required: false
-    localized: false
-
-- date_third: # The lowercase, underscored name of the field
-    label: Third (date) preference # Human readable name of the field
-    type: date
-    required: false
-    localized: false
 
 - additional_info: # The lowercase, underscored name of the field
     label: Additional info # Human readable name of the field
