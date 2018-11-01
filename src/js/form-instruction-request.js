@@ -19,8 +19,8 @@ import moment from 'moment'
 
 $('.date-selector').calendar({
   type: 'datetime',
-  // Require at least 24 hrs advanced notice and up to 3 months out
-  minDate: moment().add(1, 'day').toDate(),
+  // Require at least 48 hrs advanced notice and up to 3 months out
+  minDate: moment().add(2, 'day').toDate(),
   maxDate: moment().add(3, 'month').toDate(),
 
   // Is the given date disabled?
@@ -30,9 +30,9 @@ $('.date-selector').calendar({
     var minute = moment(date).minute()
     // Sunday = 0, Saturday = 6
     var weekend = [0, 6]
-    // Standard hours are 8am - 5pm, Mon-Fri
+    // Standard hours are 8am - 8pm, Mon-Fri
     var open = 8
-    var close = 17
+    var close = 20
 
     switch (mode) {
       case 'day':
