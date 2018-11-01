@@ -19,7 +19,7 @@ import moment from 'moment'
 
 $('.date-selector').calendar({
   type: 'datetime',
-  // Require at least 24 hrs advanced notice and up to 3 month outs
+  // Require at least 24 hrs advanced notice and up to 3 months out
   minDate: moment().add(1, 'day').toDate(),
   maxDate: moment().add(3, 'month').toDate(),
 
@@ -94,11 +94,18 @@ $('.ui.form')
           prompt: 'Please enter a valid e-mail'
         }]
       },
-      phone: {
-        identifier: 'content[phone]',
+      department: {
+        identifier: 'content[department]',
         rules: [{
-          type: 'regExp[^(?:(?:\\+?1\\s*(?:[.-]\\s*)?)?(?:\\(\\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\\s*\\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\\s*(?:[.-]\\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\\s*(?:[.-]\\s*)?([0-9]{4})(?:\\s*(?:#|x\\.?|ext\\.?|extension)\\s*(\\d+))?$]',
-          prompt: 'Please enter a valid phone number'
+          type: 'empty',
+          prompt: 'Please enter your department name'
+        }]
+      },
+      affiliation: {
+        identifier: 'content[affiliation]',
+        rules: [{
+          type: 'empty',
+          prompt: 'Please select your affiliation'
         }]
       },
       course_name: {

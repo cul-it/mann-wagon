@@ -46,17 +46,17 @@
       <input type="email" id="email" name="content[email]" value="{{ instruction_request.email }}">
     </div>
 
-    <div class="required field mann-form__compact">
+    <div class="field mann-form__compact">
       <label for="phone">Phone</label>
       <input type="tel" id="phone" name="content[phone]" value="{{ instruction_request.phone }}">
     </div>
 
-    <div class="field mann-form__compact">
+    <div class="required field mann-form__compact">
       <label for="dept">Department</label>
       <input type="text" id="dept" name="content[department]" value="{{ instruction_request.department }}">
     </div>
 
-    <div class="field mann-form__compact">
+    <div class="required field mann-form__compact">
       <label for="affiliation">Cornell Affiliation</label>
 
       <select id="affiliation" class="ui dropdown mann-form__compact" name="content[affiliation]">
@@ -169,7 +169,7 @@
       </select>
     </div>
 
-    <div class="field">
+    <div class="required field">
       <label for="needs">Instruction Needs and/or Learning Outcomes</label>
       <textarea id="needs" name="content[needs]" rows="4">{{ instruction_request.needs }}</textarea>
     </div>

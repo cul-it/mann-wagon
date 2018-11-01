@@ -52,19 +52,19 @@ fields:
 - phone: # The lowercase, underscored name of the field
     label: Phone # Human readable name of the field
     type: string
-    required: true
+    required: false
     localized: false
 
 - department: # The lowercase, underscored name of the field
     label: Department # Human readable name of the field
     type: string
-    required: false
+    required: true
     localized: false
 
 - affiliation: # The lowercase, underscored name of the field
     label: Affiliation # Human readable name of the field
     type: select
-    required: false
+    required: true
     localized: false
     select_options: ['Faculty', 'Graduate Student', 'Staff', 'Other']
 
@@ -151,7 +151,7 @@ fields:
 - needs: # The lowercase, underscored name of the field
     label: Needs # Human readable name of the field
     type: text
-    required: false
+    required: true
     localized: false
     # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
 
