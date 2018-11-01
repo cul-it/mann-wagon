@@ -134,13 +134,6 @@ fields:
     hint: This field records the preferred location selected by the user when submitting a request
     localized: false    # if localized, use
 
-- assignment: # The lowercase, underscored name of the field
-    label: Assignment # Human readable name of the field
-    type: select
-    required: true
-    localized: false    # if localized, use
-    select_options: ['Yes', 'No', 'Not sure']
-
 - needs: # The lowercase, underscored name of the field
     label: Needs # Human readable name of the field
     type: text
@@ -148,6 +141,13 @@ fields:
     localized: false
     # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
 
+- assignment: # The lowercase, underscored name of the field
+    label: Assignment # Human readable name of the field
+    type: select
+    required: true
+    localized: false    # if localized, use
+    select_options: ['Yes', 'No', 'Not sure']
+    
 - additional_info: # The lowercase, underscored name of the field
     label: Additional info # Human readable name of the field
     type: text

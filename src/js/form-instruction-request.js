@@ -136,6 +136,13 @@ $('.ui.form')
           prompt: 'Please select your preferred location'
         }]
       },
+      needs: {
+        identifier: 'needs',
+        rules: [{
+          type: 'empty',
+          prompt: 'Please provide details on your instruction needs and/or learning outcomes'
+        }]
+      },
       assignment: {
         identifier: 'assignment',
         rules: [{

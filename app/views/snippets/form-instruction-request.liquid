@@ -153,6 +153,11 @@
       {% endfor %}
     </div>
 
+    <div class="required field">
+      <label for="needs">Instruction Needs and/or Learning Outcomes</label>
+      <textarea id="needs" name="content[needs]" rows="4">{{ instruction_request.needs }}</textarea>
+    </div>
+
     <div class="required field mann-form__compact">
       <label for="assignment">Is there an assignment related to the library instruction?</label>
 
@@ -164,13 +169,8 @@
       </select>
     </div>
 
-    <div class="required field">
-      <label for="needs">Instruction Needs and/or Learning Outcomes</label>
-      <textarea id="needs" name="content[needs]" rows="4">{{ instruction_request.needs }}</textarea>
-    </div>
-
     <div class="field">
-      <label for="additional-info">Additional Information/Comments</label>
+      <label for="additional-info">If there is an assignment, please provide more details here</label>
       <textarea id="additional-info" name="content[additional_info]" rows="4">{{ instruction_request.additional_info }}</textarea>
     </div>
 
