@@ -92,7 +92,7 @@ fields:
     label: Requested instruction types # Human readable name of the field
     type: tags
     required: true
-    hint: This field records the intstruction types selected by the user when submitting a request
+    hint: This field records the instruction types selected by the user when submitting a request
     localized: false    # if localized, use
 
 - number_participants: # The lowercase, underscored name of the field
