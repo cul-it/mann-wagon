@@ -122,13 +122,6 @@ $('.ui.form')
           prompt: 'Please enter the course number'
         }]
       },
-      course_info: {
-        identifier: 'content[course_info]',
-        rules: [{
-          type: 'empty',
-          prompt: 'Please provide additional information for the course'
-        }]
-      },
       instruction_types: {
         identifier: 'content[instruction_types][]',
         rules: [{

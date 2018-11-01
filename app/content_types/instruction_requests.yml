@@ -80,13 +80,6 @@ fields:
     required: true
     localized: false
 
-- course_info: # The lowercase, underscored name of the field
-    label: Course info # Human readable name of the field
-    type: text
-    required: true
-    localized: false
-    # text_formatting: html # html (uses rich text editor), markdown or text (uses plain text editor)
-
 - instruction_types_managed_list: # The lowercase, underscored name of the field
     label: Manage instruction types # Human readable name of the field
     type: select

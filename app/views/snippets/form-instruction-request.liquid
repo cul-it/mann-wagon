@@ -79,11 +79,6 @@
       <input type="text" id="course-number" name="content[course_number]" value="{{ instruction_request.course_number }}">
     </div>
 
-    <div class="required field">
-      <label for="course-info">Additional Course Information</label>
-      <textarea id="course-info" name="content[course_info]" rows="4">{{ instruction_request.course_info }}</textarea>
-    </div>
-
     <h4 class="ui dividing header mann-form__header">Instruction/Workshop Information</h4>
 
     {% assign type_descriptions = 'Librarian comes to your class as a guest lecturer. One or two sessions as needed. | Can be offered in lieu of or in addition to in-class instruction. Focus is on specific topics. | Can be scheduled as a supplement to in-class instruction. Opportunity for students to get extra assistance with research assignments in small groups with librarian present to facilitate. | Tailored to your class (tutorials, videos, etc.) | Basic orientation to library services' | split: ' | ' %}
