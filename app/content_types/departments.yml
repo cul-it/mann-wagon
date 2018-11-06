@@ -50,9 +50,11 @@ fields:
     localized: false    # if localized, use
     #   en: ['option1_en', 'option2_en']
     #   fr: ['option1_fr', 'option2_fr']
-    select_options: ['CALS', 'CHE']
+    select_options: ['Both', 'CALS', 'CHE']
 
-- liaison:
-    label: Liaison
-    type: belongs_to
+- liaisons:
+    label: Liaisons
+    type: many_to_many
     class_name: staff
+    inverse_of: departments
+    ui_enabled: true
