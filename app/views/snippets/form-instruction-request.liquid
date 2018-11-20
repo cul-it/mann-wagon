@@ -1,5 +1,13 @@
 {% editable_model instruction_requests, hint: 'View submitted requests' %}{% endeditable_model %}
 
+{% comment %}
+  Please note: Two unusual/special cases for instruction types & location fields below
+  -- 1. Need to append brackets to element name so that value is sent as an array for multiple select
+  -- 2. Since the select field type in locomotive does not support multiple values or user specified content, we're using two fields:
+        * `instruction_types_managed_list` field (field type: select) to manage the options
+        * `insruction_types` field (field type: tags) to store the user selected and submitted values
+{% endcomment %}
+
 {% model_form 'instruction_requests', class: 'ui form success error mann-form', success: path, error: path %}
   {% comment %} Status messages from Locomotive {% endcomment %}
   {% if instruction_request.errors %}
@@ -30,7 +38,7 @@
 
     <div class="required field mann-form__compact">
       <label for="name">Name</label>
-      <input type="text" id="name" name="content[name]" value="{{ instruction_request.name }}"">
+      <input type="text" id="name" name="content[name]" value="{{ instruction_request.name }}">
     </div>
 
     <div class="required field mann-form__compact">
@@ -38,17 +46,17 @@
       <input type="email" id="email" name="content[email]" value="{{ instruction_request.email }}">
     </div>
 
-    <div class="required field mann-form__compact">
+    <div class="field mann-form__compact">
       <label for="phone">Phone</label>
       <input type="tel" id="phone" name="content[phone]" value="{{ instruction_request.phone }}">
     </div>
 
-    <div class="field mann-form__compact">
+    <div class="required field mann-form__compact">
       <label for="dept">Department</label>
       <input type="text" id="dept" name="content[department]" value="{{ instruction_request.department }}">
     </div>
 
-    <div class="field">
+    <div class="required field mann-form__compact">
       <label for="affiliation">Cornell Affiliation</label>
 
       <select id="affiliation" class="ui dropdown mann-form__compact" name="content[affiliation]">
@@ -59,59 +67,52 @@
       </select>
     </div>
 
+    <h4 class="ui dividing header mann-form__header">Course Information</h4>
+
+    <div class="required field mann-form__compact">
+      <label for="course-name">Course Name</label>
+      <input type="text" id="course-name" name="content[course_name]" value="{{ instruction_request.course_name }}"">
+    </div>
+
+    <div class="required field mann-form__minimal">
+      <label for="course-number">Course Number</label>
+      <input type="text" id="course-number" name="content[course_number]" value="{{ instruction_request.course_number }}">
+    </div>
+
     <h4 class="ui dividing header mann-form__header">Instruction/Workshop Information</h4>
 
-    <div class="required field">
+    {% assign type_descriptions = 'Librarian comes to your class as a guest lecturer. One or two sessions as needed. | Can be offered in lieu of or in addition to in-class instruction. Focus is on specific topics. | Can be scheduled as a supplement to in-class instruction. Opportunity for students to get extra assistance with research assignments in small groups with librarian present to facilitate. | Tailored to your class (library guides, tutorials, videos, etc.) | Basic orientation to library services' | split: ' | ' %}
+
+    <div class="required grouped fields">
       <label for="instruction-type">What type of instruction would you like?</label>
+      <span class="mann-form__hint">Select all that apply</span>
 
-      {% comment %}
-        Please note: Two unusual/special cases for instruction types
-        -- 1. Need to append brackets to element name here so that value is sent as an array for multiple select
-        -- 2. Since the select field type in locomotive does not support multiple values, we're using two fields:
-              * `instruction_types_managed_list` field (field type: select) to manage the options
-              * `insruction_types` field (field type: tags) to store the user selected and submitted values
-      {% endcomment %}
-      <select id="instruction-type" class="ui dropdown selection" name="content[instruction_types][]" multiple="" data-validate="content[instruction_types]">
-        <option value="">-- Select one or more --</option>
-        {% for type in contents.instruction_requests.instruction_types_managed_list_options %}
-          <option value="{{ type }}" {% if instruction_request.instruction_types contains type %} selected {% endif %}>{{ type }}</option>
-        {% endfor %}
-      </select>
+      {% assign instruct_type_other = instruction_request.instruction_types | last %}
+
+      {% for type in contents.instruction_requests.instruction_types_managed_list_options %}
+        <div class="field">
+          <div class="ui checkbox">
+            <input id="instruction-type-{{ forloop.index }}" {% if forloop.last %} class="js-mannform-other" {% endif %} type="checkbox" name="content[instruction_types][]" value="{{ type }}" data-prefix="{{ type }}" {% if instruction_request.instruction_types contains type or instruct_type_other contains type %} checked {% endif %}>
+            <label for="instruction-type-{{ forloop.index }}">{{ type }} <span class="mann-form__hint">{{ type_descriptions[forloop.index0] }}</span></label>
+            {% if forloop.last %}
+              <input id="instruction-type-other" class="js-mannform-other__value" type="text" placeholder="Please elaborate">
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
     </div>
 
-    <div class="field">
-      <div class="ui toggle checkbox">
-        {% comment %}
-          Need to set value to 1, otherwise Locomotive will submit 'on' when checked
-          -- https://github.com/locomotivecms/engine/issues/399
-        {% endcomment %}
-        <input type="checkbox" id="research-guide" name="content[research_guide]" value="1" {% if instruction_request.research_guide | ceil == 1 %} checked {% endif %}>
-        <label for="research-guide">Interested in creation of an online research guide?</label>
-      </div>
-    </div>
-
-    <div class="field">
-      <label for="course-info">Course Information</label>
-      <textarea id="course-info" name="content[course_info]" rows="4">{{ instruction_request.course_info }}</textarea>
-    </div>
-
-    <div class="field">
-      <label for="participants">Participants</label>
-
-      <select id="participants" class="ui dropdown mann-form__compact" name="content[number_participants]">
-        <option value="">-- Select one --</option>
-        {% for number_participants in contents.instruction_requests.number_participants_options %}
-          <option value="{{ number_participants }}" {% if instruction_request.number_participants == number_participants %} selected {% endif %}>{{ number_participants }}</option>
-        {% endfor %}
-      </select>
+    <div class="field mann-form__minimal">
+      <label for="number-participants">Anticipated Number of Participants</label>
+      <input type="text" id="number-participants" name="content[number_participants]" value="{{ instruction_request.number_participants }}">
     </div>
 
     <div class="field mann-form__compact">
-      <label for="date-preferred">Preferred Date for Instruction/Workshop</label>
+      <label for="date-preferred">Preferred Date and Time of Instruction/Workshop</label>
       <div class="ui calendar date-selector">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input type="text" id="date-preferred" name="content[date_first]" value="{{ instruction_request.date_first }}" placeholder="Enter Date">
+          <input type="text" id="date-preferred" name="content[date_first]" value="{{ instruction_request.date_first }}" placeholder="Enter Date &amp; Time">
         </div>
       </div>
     </div>
@@ -121,7 +122,7 @@
       <div class="ui calendar date-selector">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input type="text" id="date-2" name="content[date_second]" value="{{ instruction_request.date_second }}" placeholder="Enter Date">
+          <input type="text" id="date-2" name="content[date_second]" value="{{ instruction_request.date_second }}" placeholder="Enter Date &amp; Time">
         </div>
       </div>
     </div>
@@ -131,18 +132,45 @@
       <div class="ui calendar date-selector">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input type="text" id="date-3" name="content[date_third]" value="{{ instruction_request.date_third }}" placeholder="Enter Date">
+          <input type="text" id="date-3" name="content[date_third]" value="{{ instruction_request.date_third }}" placeholder="Enter Date &amp; Time">
         </div>
       </div>
     </div>
 
-    <div class="field">
+    <div class="required grouped fields">
+      <label for="location">Preferred location for instruction</label>
+
+      {% for loc in contents.instruction_requests.location_managed_list_options %}
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="content[location]" {% if forloop.first != true %} class="js-mannform-other" {% endif %} value="{{ loc }}" data-prefix="{{ loc }}" {% if instruction_request.location contains loc %} checked {% endif %}>
+            <label for="location-{{ forloop.index }}" class="radio-button__label">{{ loc }}</label>
+            {% if forloop.first != true %}
+              <input id="location-other-{{ forloop.index }}" class="js-mannform-other__value" type="text" placeholder="Please specify">
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="required field">
       <label for="needs">Instruction Needs and/or Learning Outcomes</label>
       <textarea id="needs" name="content[needs]" rows="4">{{ instruction_request.needs }}</textarea>
     </div>
 
+    <div class="required field mann-form__compact">
+      <label for="assignment">Is there an assignment related to the library instruction?</label>
+
+      <select id="assignment" class="ui dropdown mann-form__compact" name="content[assignment]">
+        <option value="">-- Select one --</option>
+        {% for assignment in contents.instruction_requests.assignment_options %}
+          <option value="{{ assignment }}" {% if instruction_request.assignment == assignment %} selected {% endif %}>{{ assignment }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
     <div class="field">
-      <label for="additional-info">Additional Information/Comments</label>
+      <label for="additional-info">If there is an assignment, please provide more details here</label>
       <textarea id="additional-info" name="content[additional_info]" rows="4">{{ instruction_request.additional_info }}</textarea>
     </div>
 

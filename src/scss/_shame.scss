@@ -39,7 +39,7 @@ table.software-list__table {
 
 // If only semantic-ui src was available in Sass
 // -- then maybe these a11y hacks wouldn't be necessary
-.ui.button { // sass-lint:disable-line force-element-nesting
+.ui.button {
   &:focus {
     outline-width: 1px;
     outline-style: dotted;
@@ -60,12 +60,19 @@ table.software-list__table {
   }
 }
 
-.ui.label { // sass-lint:disable-line force-element-nesting
+.ui.label {
   &.teal {
-    color: color('vulcan') !important; // sass-lint:disable-line no-important
+    color: color('vulcan') !important;
   }
 }
 
 .body-equipment .section-nav {
   display: none !important; // Hide sidebar nav on Equipment page for our interim solution of adding links to LibCal public interface for reserving equipment
+}
+
+// Need the ID here to avoid the insanity while attempting to override sui defaults :(
+#instruction-type-other,
+#location-other-2,
+#location-other-3 {
+  margin: .4em 0 0 2em;
 }
