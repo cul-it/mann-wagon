@@ -51,7 +51,7 @@
     description: "<p>Study rooms for graduate students.</p>"
     capacity: '1'
     loan_period: 8-hour
-    avail_url: https://mannservices.mannlib.cornell.edu/LibServices/showRoomInfo.do?output=json&locationId=14
+    avail_url: https://api.library.cornell.edu/LibServices/showRoomInfo.do?output=json&locationId=14
 - Hive:
     _slug: hive
     name: Hive
