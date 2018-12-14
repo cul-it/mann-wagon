@@ -1,5 +1,5 @@
 {% comment %} Build the request string {% endcomment %}
-{% assign course_reserves_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showCourseReserveList.do?library=MANN&output=json' %}
+{% assign course_reserves_url = 'https://api.library.cornell.edu/LibServices/showCourseReserveList.do?library=MANN&output=json' %}
 
 <div class="course-reserves">
   {% consume mann_reserves from course_reserves_url, expires_in: 3600  %}

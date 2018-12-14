@@ -10,7 +10,7 @@
 
   {% assign computer_accessory_heading = 'Current Availability' %}
 
-  {% assign laptops_url = 'http://mannservices.mannlib.cornell.edu/LibServices/showLaptopInfo.do?output=json&locationId=14' %}
+  {% assign laptops_url = 'https://api.library.cornell.edu/LibServices/showLaptopInfo.do?output=json&locationId=14' %}
 
   {% consume mann_laptops from laptops_url, timeout: 5.0  %}
     {% assign winbook_avail = mann_laptops.laptop_available | ceil %}

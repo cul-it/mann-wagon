@@ -300,7 +300,7 @@ export default {
       if (this.libcalReservations.length) {
         this.setLibCalEvents(option, param)
       } else {
-        var mannservicesEventsUrl = 'https://mannservices.mannlib.cornell.edu/LibServices/showEventsById.do?output=json&id='
+        var mannservicesEventsUrl = 'https://api.library.cornell.edu/LibServices/showEventsById.do?output=json&id='
         var roomIds = [28, 32, 33, 34]
         var vueInstance = this
         var promise = []
