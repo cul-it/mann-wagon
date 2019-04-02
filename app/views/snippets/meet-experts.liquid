@@ -4,7 +4,7 @@
 {% endwith_scope %}
 
 <div class="carousel__contain">
-  <span class="carousel__nav carousel__nav--experts carousel__nav--prev meet-experts__nav--prev js-meet-experts-prev"><i class="fa fa-angle-left fa-3x"></i></span>
+  <span class="carousel__nav carousel__nav--experts carousel__nav--prev meet-experts__nav--prev js-meet-experts-prev"><span class="fa fa-angle-left fa-3x"></span></span>
 
   <div class="meet-experts__librarians">
     {% editable_model staff, hint: 'Manage all staff' %}
@@ -46,12 +46,12 @@
           {% endif %}
 
           <a class="meet-experts__profile-link" href="{{ profile_url }}" title="Contact details for {{ person.first_name }} {{ person.last_name }}">
-            Contact info <i class="fa fa-angle-double-right"></i>
+            Contact info <span class="fa fa-angle-double-right"></span>
           </a>
         </div>
       {% endfor %}
     {% endeditable_model %}
   </div>
 
-  <span class="carousel__nav carousel__nav--experts carousel__nav--next meet-experts__nav--next js-meet-experts-next"><i class="fa fa-angle-right fa-3x"></i></span>
+  <span class="carousel__nav carousel__nav--experts carousel__nav--next meet-experts__nav--next js-meet-experts-next"><span class="fa fa-angle-right fa-3x"></span></span>
 </div>

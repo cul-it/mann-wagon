@@ -48,7 +48,7 @@
     {% comment %}This is completely unnecessary but Engine refuses to cooperate otherwise...don't ask{% endcomment %}
     {% if space.reservation_system or space.avail_url != "" %}
       <div class="space__availability--{{ room_availability | downcase }}">
-        <i class="fa {{ room_available_icon }}"></i> {{ room_availability }}
+        <span class="fa {{ room_available_icon }}"></span> {{ room_availability }}
         {% if room_availability == 'Unavailable' %}
           {% if next_available %}
             <p>Next Available: {{ next_available | date: '%-I:%M %p' }}</p>
@@ -69,7 +69,7 @@
       <dd>
         {% if space.smartmap_url.size > 0 %}
           <a href="{{ space.smartmap_url }}" title="Map it" target="_blank">
-            <i class="fa fa-map-marker"></i>
+            <span class="fa fa-map-marker"></span>
             {{ space.floor._label }}
           </a>
         {% else %}
@@ -92,9 +92,9 @@
       <dt class="space__field-name">Capacity</dt>
       <dd>
         {% if space.capacity == '1' %}
-          <i class="fa fa-user"></i>
+          <span class="fa fa-user"></span>
         {% else %}
-          <i class="fa fa-users"></i>
+          <span class="fa fa-users"></span>
         {% endif %}
 
         {% if space.capacity == 'N/A' %}

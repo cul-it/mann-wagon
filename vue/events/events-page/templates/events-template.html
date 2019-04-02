@@ -53,19 +53,19 @@
 						<div class="event__details">
 
 							<span class="time" v-if="event.event_end_time">
-								<i class="fa fa-clock-o"></i>
+								<span class="fa fa-clock-o"></span>
 									((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))
 									<a class="event__additional-dates" v-if="event.event_recurring" v-link="{ name: 'events', query: { eventId: event.event_id }}" v-on:click="setRecurringEventStartTime(event.event_start_time)" title="Additional dates for (((event.event_title)))">&rarr; Additional Dates</a>
 							</span>
 
               <span class="time" v-else="">
-                <i class="fa fa-clock-o"></i>
+                <span class="fa fa-clock-o"></span>
 	                ((event.event_start_time | momentTime ))
 									<a class="event__additional-dates" v-if="event.event_recurring" v-link="{ name: 'events', query: { eventId: event.event_id }}" v-on:click="setRecurringEventStartTime(event.event_start_time)" title="Additional dates for (((event.event_title)))">&rarr; Additional Dates</a>
               </span>
 
               <span class="location pull-right">
-                <i class="fa fa-map-marker"></i>
+                <span class="fa fa-map-marker"></span>
 								<a target="_blank" v-if="event.event_room_smartmap_url" href="(( event.event_room_smartmap_url ))">((event.event_room_name ))</a>
 								<template v-else="">((event.event_room_name ))</template>
               </span>
@@ -100,13 +100,13 @@
 			<li>
 				<a class="" href="http://events.cornell.edu/calendar?event_types%5B%5D=4205" target="_blank">
 			    All Library Events
-			    <i class="fa fa-angle-double-right"></i>
+			    <span class="fa fa-angle-double-right"></span>
 			  </a>
 			</li>
 			<li>
 				<a class="" href="http://spaces.library.cornell.edu/calendar/CULworkshops/?cid=4102&t=d&d=0000-00-00&cal%5B%5D=4102" target="_blank">
 					All Library Workshops
-			    <i class="fa fa-angle-double-right"></i>
+			    <span class="fa fa-angle-double-right"></span>
 			  </a>
 			</li>
 		</ul>
@@ -196,7 +196,7 @@
 
 	<div class="ui fullscreen modal">
 
-		<i class="close fa fa-times"></i>
+		<span class="close fa fa-times"></span>
 
 		<div class="header" v-if="noSingleEventMessage">
 			Error
@@ -223,7 +223,7 @@
 			<div class="event__details">
 
 				<span class="location pull-right">
-					<i class="fa fa-map-marker"></i>
+					<span class="fa fa-map-marker"></span>
 					<a target="_blank" v-if="event.event_room_smartmap_url" href="(( event.event_room_smartmap_url ))">((event.event_room_name ))</a>
 					<template v-else="">((event.event_room_name ))</template>
 				</span>
@@ -231,12 +231,12 @@
 				<div class="ui accordion" v-if="event.event_has_additional_times">
 					<div class="title">
 						<span class="time" v-if="event.event_end_time">
-							<i class="fa fa-clock-o"></i>
+							<span class="fa fa-clock-o"></span>
 								((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))
 						</span>
 
 						<span class="time" v-else="">
-							<i class="fa fa-clock-o"></i>
+							<span class="fa fa-clock-o"></span>
 							((event.event_start_time | momentTime ))
 						</span>
 						&rarr; More Dates through (( event.event_additional_times[event.event_has_additional_times-1][0] | momentDate ))
@@ -257,12 +257,12 @@
 				<div class="" v-else="">
 
 					<span class="time" v-if="event.event_end_time">
-						<i class="fa fa-clock-o"></i>
+						<span class="fa fa-clock-o"></span>
 							((event.event_start_time | momentTime )) - ((event.event_end_time | momentTime))
 					</span>
 
 					<span class="time" v-else="">
-						<i class="fa fa-clock-o"></i>
+						<span class="fa fa-clock-o"></span>
 						((event.event_start_time | momentTime ))
 					</span>
 

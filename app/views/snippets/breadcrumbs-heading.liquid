@@ -13,7 +13,7 @@
         {% link_to crumb %}
         {% comment %} Don't render the arrow after the parent {% endcomment %}
         {% if forloop.rindex0 > ultima_depth %}
-          <i class="fa fa-long-arrow-right"></i>
+          <span class="fa fa-long-arrow-right"></span>
         {% endif %}
       {% endunless %}
     {% endfor %}

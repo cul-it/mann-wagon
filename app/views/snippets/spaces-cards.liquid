@@ -39,7 +39,7 @@
           <span class="right floated">
             {% if space.smartmap_url.size > 0 %}
               <a class="js-spacefinder-link right floated" href="{{ space.smartmap_url }}" title="Map it" target="_blank" aria-label="Find {{ space.name }} on the map">
-                <i class="fa fa-map-marker"></i>
+                <span class="fa fa-map-marker"></span>
                 {{ space.floor._label }}
               </a>
             {% else %}
@@ -51,14 +51,14 @@
             {% if quiet_study %}
               <span class="space-finder__quiet" data-tooltip="quiet study" data-position="bottom left" data-inverted="">
                 <span class="fa-stack">
-                  <i class="fa fa-volume-up fa-stack-1x"></i>
-                  <i class="space-finder__quiet-ban fa fa-ban fa-stack-2x"></i>
+                  <span class="fa fa-volume-up fa-stack-1x"></span>
+                  <span class="space-finder__quiet-ban fa fa-ban fa-stack-2x"></span>
                 </span>
               </span>
             {% endif %}
           {% elsif spaces_type._slug == 'classroom' or spaces_type._slug == 'computing-facilities' %}
             {% comment %} Need logic here to first see if room is available (all but stone computing center) {% endcomment %}
-            {% comment %} <i class="fa fa-desktop"></i> 27 {% endcomment %}
+            {% comment %} <span class="fa fa-desktop"></span> 27 {% endcomment %}
           {% endif %}
         </div>
 
@@ -103,9 +103,9 @@
 
         <span>
           {% if space.capacity == '1' %}
-            <i class="fa fa-user"></i>
+            <span class="fa fa-user"></span>
           {% else %}
-            <i class="fa fa-users"></i>
+            <span class="fa fa-users"></span>
           {% endif %}
 
           {% if space.capacity == 'N/A' %}
