@@ -20,13 +20,13 @@
 
   <div class="my-account">
     <a class="my-account__link" href="https://www.library.cornell.edu/myacct" title="Manage your library account" target="_blank">
-      <i class="my-account__icon fa fa-fw fa-user"></i>
+      <span class="my-account__icon fa fa-fw fa-user"></span>
       My Account
     </a>
   </div>
 
   <button class="search__button" type="button">
-    <i class="fa fa-search"></i>
+    <span class="fa fa-search"></span>
   </button>
 
   <form action="{% path_to search %}" class="search" role="search">
@@ -76,7 +76,7 @@
 
     <a class="todays-hours__more" href="{% path_to hours %}">
       All Hours
-      <i class="fa fa-angle-double-right"></i>
+      <span class="fa fa-angle-double-right"></span>
     </a>
   </div>
 
@@ -93,25 +93,25 @@
   <nav class="site-nav" aria-label="Site navigation">
     <nav class="accessory-nav" aria-label="Accessory navigation">
       <button class="accessory-nav__button" type="button">
-        <i class="fa fa-lg fa-bars"></i>
+        <span class="fa fa-lg fa-bars"></span>
       </button>
 
       <ul class="accessory-nav__list">
         <li class="accessory-nav__item">
           <a class="accessory-nav__link" href="https://newcatalog.library.cornell.edu" title="Search the Library Catalog" target="_blank">
-            <i class="accessory-nav__icon fa fa-fw fa-book"></i>
+            <span class="accessory-nav__icon fa fa-fw fa-book"></span>
             Library Catalog
           </a>
         </li>
         <li class="accessory-nav__item">
           <a class="accessory-nav__link" href="{% path_to course-reserves %}" title="Find course reserves for your class">
-            <i class="accessory-nav__icon fa fa-fw fa-bookmark"></i>
+            <span class="accessory-nav__icon fa fa-fw fa-bookmark"></span>
             Course Reserves
           </a>
         </li>
         <li class="accessory-nav__item">
           <a class="accessory-nav__link" href="https://www.library.cornell.edu/ask" title="Request assistance from our friendly experts" target="_blank">
-            <i class="accessory-nav__icon fa fa-fw fa-question"></i>
+            <span class="accessory-nav__icon fa fa-fw fa-question"></span>
             Ask a Librarian
           </a>
         </li>

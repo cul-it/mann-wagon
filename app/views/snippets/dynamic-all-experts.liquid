@@ -8,7 +8,7 @@
   </div>
 
   <a class="all-experts__staff-directory" href="{% path_to staff %}" title="View all our staff">
-    <i class="fa fa-fw fa-info-circle"></i>
+    <span class="fa fa-fw fa-info-circle"></span>
     Staff Directory
   </a>
 
@@ -49,11 +49,11 @@
           <div class="all-experts__body">
             <div class="all-experts__contact">
               <a class="all-experts__email" href="https://www.cornell.edu/search/people.cfm?netid={{ person.netid }}" title="Contact details for {{ person.first_name }}" target="_blank">
-                <i class="fa fa-fw fa-envelope"></i> {{ person.netid }}
+                <span class="fa fa-fw fa-envelope"></span> {{ person.netid }}
               </a>
               {% if person.phone.size > 0 %}
                 <a class="all-experts__phone" href="tel:+1607-25{{ person.phone }}" title="Call {{ person.first_name }}">
-                  <i class="fa fa-fw fa-phone"></i> 607-25{{ person.phone }}
+                  <span class="fa fa-fw fa-phone"></span> 607-25{{ person.phone }}
                 </a>
               {% endif %}
             </div>

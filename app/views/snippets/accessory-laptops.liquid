@@ -20,6 +20,6 @@
 
   {% endconsume %}
 {% else %}
-  {% capture computer_accessory_heading %}<a href="{% path_to hours %}" title="View all hours"><span class="badge badge-error">Closed</span></a> <a class="todays-hours__more" href="{% path_to hours %}" title="View all hours">All Hours <i class="fa fa-angle-double-right"></i></a>{% endcapture %}
+  {% capture computer_accessory_heading %}<a href="{% path_to hours %}" title="View all hours"><span class="badge badge-error">Closed</span></a> <a class="todays-hours__more" href="{% path_to hours %}" title="View all hours">All Hours <span class="fa fa-angle-double-right"></span></a>{% endcapture %}
   {% include 'availnow-laptops-template' %}
 {% endif %}

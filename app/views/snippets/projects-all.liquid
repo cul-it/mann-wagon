@@ -7,7 +7,7 @@
         <div class="projects__description">
           {{ project.description | truncatewords: 20 }}
 
-          <a href="{% path_to project %}" title="Read more about {{ project.title }}">More <i class="fa fa-angle-double-right"></i></a>
+          <a href="{% path_to project %}" title="Read more about {{ project.title }}">More <span class="fa fa-angle-double-right"></span></a>
         </div>
       </li>
     {% endfor %}

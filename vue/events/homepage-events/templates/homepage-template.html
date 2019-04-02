@@ -43,7 +43,7 @@
 	            location
 	          </dt>
 						<dd class="events-home__location">
-	            <i class="fa fa-map-marker events-home__location-icon"></i>
+	            <span class="fa fa-map-marker events-home__location-icon"></span>
 							<a target="_blank" v-if="event.event_room_smartmap_url" href="(( event.event_room_smartmap_url ))">((event.event_room_name ))</a>
 							<template v-else="">((event.event_room_name ))</template>
 	          </dd>
@@ -102,7 +102,7 @@
 	            location
 	          </dt>
 						<dd class="events-home__location">
-	            <i class="fa fa-map-marker events-home__location-icon"></i>
+	            <span class="fa fa-map-marker events-home__location-icon"></span>
 							<a target="_blank" v-if="event.event_room_smartmap_url" href="(( event.event_room_smartmap_url ))">((event.event_room_name ))</a>
 							<template v-else="">((event.event_room_name ))</template>
 	          </dd>
@@ -117,7 +117,7 @@
 	</div>
 
 	<div class="ui fullscreen modal">
-		<i class="close fa fa-times"></i>
+		<span class="close fa fa-times"></span>
 
 		<div class="header" v-if="noSingleEventMessage">
 			Error
@@ -144,7 +144,7 @@
 			<div class="event__details">
 
 				<span class="location pull-right">
-					<i class="fa fa-map-marker"></i>
+					<span class="fa fa-map-marker"></span>
 					<a target="_blank" v-if="event.event_room_smartmap_url" href="(( event.event_room_smartmap_url ))">((event.event_room_name ))</a>
 					<template v-else="">((event.event_room_name ))</template>
 				</span>
@@ -152,12 +152,12 @@
 				<div class="ui accordion" v-if="event.event_has_additional_times">
 					<div class="title">
 						<span class="time" v-if="event.event_end_time">
-							<i class="fa fa-clock-o"></i>
+							<span class="fa fa-clocspan-o"></span>
 								((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
 						</span>
 
 						<span class="time" v-else="">
-							<i class="fa fa-clock-o"></i>
+							<span class="fa fa-clock-o"></span>
 							((event.event_start_time | momentHomeTime ))
 						</span>
 						&rarr; More Dates through (( event.event_additional_times[event.event_has_additional_times-1][0] | momentHomeDate ))
@@ -178,12 +178,12 @@
 				<div class="" v-else="">
 
 					<span class="time" v-if="event.event_end_time">
-						<i class="fa fa-clock-o"></i>
+						<span class="fa fa-clock-o"></span>
 							((event.event_start_time | momentHomeTime )) - ((event.event_end_time | momentHomeTime))
 					</span>
 
 					<span class="time" v-else="">
-						<i class="fa fa-clock-o"></i>
+						<span class="fa fa-clock-o"></span>
 						((event.event_start_time | momentHomeTime ))
 					</span>
 
