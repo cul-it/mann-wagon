@@ -12,7 +12,8 @@ export default new Config().merge({
     alias: {
       doubleTapToGo: 'doubletaptogo/doubletaptogo.min.js',
       jquery: 'jquery/src/jquery',
-      suiIcon: 'semantic-ui-css/components/icon.min.css'
+      // Override sui icon component to use <span> in place of <i>
+      suiIcon: './src/scss/helpers/sui-a11y-icon/icon-span.min.css'
     },
     extensions: ['', '.css', '.scss', '.js', '.vue'],
     root: [
