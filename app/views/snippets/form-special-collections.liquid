@@ -14,7 +14,7 @@
     </div>
   {% elsif special_collections_registration.errors == false %}
     <div class="ui icon success message">
-      <i class="thumbs outline up icon"></i>
+      <span class="thumbs outline up icon"></span>
 
       <div class="content">
         <div class="header">Thank You!</div>
@@ -92,7 +92,7 @@
       <label for="date">Preferred Date and Time of Visit</label>
       <div class="ui calendar date-selector">
         <div class="ui input left icon">
-          <i class="calendar icon"></i>
+          <span class="calendar icon"></span>
           <input type="text" id="date" name="content[date]" value="{{ special_collections_registration.date }}" placeholder="Enter Date &amp; Time">
           <div class="ui left pointing label">
             Minimum 24 hr advance notice

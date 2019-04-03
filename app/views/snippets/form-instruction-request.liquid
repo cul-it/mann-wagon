@@ -22,7 +22,7 @@
     </div>
   {% elsif instruction_request.errors == false %}
     <div class="ui icon success message">
-      <i class="thumbs outline up icon"></i>
+      <span class="thumbs outline up icon"></span>
 
       <div class="content">
         <div class="header">Thank You!</div>
@@ -111,7 +111,7 @@
       <label for="date-preferred">Preferred Date and Time of Instruction/Workshop</label>
       <div class="ui calendar date-selector">
         <div class="ui input left icon">
-          <i class="calendar icon"></i>
+          <span class="calendar icon"></span>
           <input type="text" id="date-preferred" name="content[date_first]" value="{{ instruction_request.date_first }}" placeholder="Enter Date &amp; Time">
         </div>
       </div>
@@ -121,7 +121,7 @@
       <label for="date-2">Second Preference</label>
       <div class="ui calendar date-selector">
         <div class="ui input left icon">
-          <i class="calendar icon"></i>
+          <span class="calendar icon"></span>
           <input type="text" id="date-2" name="content[date_second]" value="{{ instruction_request.date_second }}" placeholder="Enter Date &amp; Time">
         </div>
       </div>
@@ -131,7 +131,7 @@
       <label for="date-3">Third Preference</label>
       <div class="ui calendar date-selector">
         <div class="ui input left icon">
-          <i class="calendar icon"></i>
+          <span class="calendar icon"></span>
           <input type="text" id="date-3" name="content[date_third]" value="{{ instruction_request.date_third }}" placeholder="Enter Date &amp; Time">
         </div>
       </div>
