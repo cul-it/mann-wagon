@@ -1,0 +1,97 @@
+/*--------------------
+       Loading
+---------------------*/
+
+.ui.loading.loading.input > span.icon:before {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  margin: -0.64285714em 0em 0em -0.64285714em;
+  width: 1.28571429em;
+  height: 1.28571429em;
+  border-radius: 500rem;
+  border: 0.2em solid rgba(0, 0, 0, 0.1);
+}
+.ui.loading.loading.input > span.icon:after {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  margin: -0.64285714em 0em 0em -0.64285714em;
+  width: 1.28571429em;
+  height: 1.28571429em;
+  -webkit-animation: button-spin 0.6s linear;
+          animation: button-spin 0.6s linear;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  border-radius: 500rem;
+  border-color: #767676 transparent transparent;
+  border-style: solid;
+  border-width: 0.2em;
+  box-shadow: 0px 0px 0px 1px transparent;
+}
+
+/*--------------------
+      Transparent
+---------------------*/
+
+/* Transparent Icon */
+.ui.transparent.icon.input > span.icon {
+  width: 1.1em;
+}
+
+/*--------------------
+         Icon
+---------------------*/
+
+.ui.icon.input > span.icon {
+  cursor: default;
+  position: absolute;
+  line-height: 1;
+  text-align: center;
+  top: 0px;
+  right: 0px;
+  margin: 0em;
+  height: 100%;
+  width: 2.67142857em;
+  opacity: 0.5;
+  border-radius: 0em 0.28571429rem 0.28571429rem 0em;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+}
+.ui.icon.input > span.icon:not(.link) {
+  pointer-events: none;
+}
+.ui.icon.input > span.icon:before,
+.ui.icon.input > span.icon:after {
+  left: 0;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  width: 100%;
+  margin-top: -0.5em;
+}
+.ui.icon.input > span.link.icon {
+  cursor: pointer;
+}
+.ui.icon.input > span.circular.icon {
+  top: 0.35em;
+  right: 0.5em;
+}
+
+/* Left Icon Input */
+.ui[class*="left icon"].input > span.icon {
+  right: auto;
+  left: 1px;
+  border-radius: 0.28571429rem 0em 0em 0.28571429rem;
+}
+.ui[class*="left icon"].input > span.circular.icon {
+  right: auto;
+  left: 0.5em;
+}
+
+/* Focus */
+.ui.icon.input > input:focus ~ span.icon {
+  opacity: 1;
+}

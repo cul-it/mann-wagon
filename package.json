@@ -54,7 +54,6 @@
     "jquery": "~3.0.0",
     "jquery-ui": "1.12.1",
     "list.js": "^1.2.0",
-    "semantic-ui-calendar": "0.0.3",
     "semantic-ui-css": "^2.2.1",
     "slick-carousel": "^1.7.1",
     "vue": "^1.0.23",

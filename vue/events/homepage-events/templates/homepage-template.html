@@ -161,7 +161,7 @@
 							((event.event_start_time | momentHomeTime ))
 						</span>
 						&rarr; More Dates through (( event.event_additional_times[event.event_has_additional_times-1][0] | momentHomeDate ))
-						<i class="dropdown icon"></i>
+						<span class="dropdown icon"></span>
 					</div>
 						<div class="content" v-if="event.event_end_time">
 							<p v-for="additional_time of event.event_additional_times">

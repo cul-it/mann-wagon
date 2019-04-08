@@ -14,7 +14,7 @@
     </div>
   {% elsif software_request.errors == false %}
     <div class="ui icon success message">
-      <i class="thumbs outline up icon"></i>
+      <span class="thumbs outline up icon"></span>
 
       <div class="content">
         <div class="header">Thank You!</div>
@@ -125,7 +125,7 @@
       <label for="date">Preferred Date for Software Installation</label>
       <div class="ui calendar date-selector">
         <div class="ui input left icon">
-          <i class="calendar icon"></i>
+          <span class="calendar icon"></span>
           <input type="text" id="date" name="content[date]" value="{{ software_request.date }}" placeholder="Enter Date">
         </div>
       </div>

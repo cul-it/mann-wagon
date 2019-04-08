@@ -14,6 +14,9 @@ import 'semantic-ui-css/components/popup.min.js'
 import 'semantic-ui-css/components/transition.min.css'
 import 'semantic-ui-css/components/transition.min.js'
 
+// Use <span> for embedded icon component
+import suiA11y from 'sui-a11y-dropdown.js'
+
 import moment from 'moment'
 
 $('.ui.date-selector').calendar({
@@ -24,7 +27,11 @@ $('.ui.date-selector').calendar({
 
 $('.ui.checkbox').checkbox()
 
-$('.ui.dropdown').dropdown()
+$(".ui.dropdown").dropdown({
+  templates: {
+    dropdown: suiA11y.dropdown
+  }
+});
 
 // Would like to adjust the default prompt for the empty rule, but unclear how
 // $fn.form.settings.prompt = function(rule, field) {

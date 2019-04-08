@@ -17,21 +17,21 @@
 			<div class="events__applied-filters">
 	      <a class="events__applied-filter" v-if="dateSelected" v-on:click="removeSelectedDate()" title="Remove filter">
            <button class="mini ui teal right labeled icon button">
-            <i class="remove icon"></i>
+            <span class="remove icon"></span>
             DATE: ((dateSelected | momentDate))
           </button>
         </a>
 
 				<a class="events__applied-filter" v-if="eventSelected" v-on:click="removeEventTypeFilter()" title="Remove filter">
           <button class="mini ui teal right labeled icon button">
-            <i class="remove icon"></i>
+            <span class="remove icon"></span>
             TYPE: ((eventSelected))
           </button>
         </a>
 
 				<a class="events__applied-filter" v-if="roomSelected" v-on:click="removeRoomFilter()" title="Remove filter">
           <button class="mini ui teal right labeled icon button">
-            <i class="remove icon"></i>
+            <span class="remove icon"></span>
             LOCATION: ((roomSelected))
           </button>
         </a>
@@ -115,7 +115,7 @@
       Filter Events
       <a data-filter=".event" v-show="roomSelected || eventSelected || dateSelected" v-on:click="clearAllFilters()" class="events-filters__clear-all">
         <button class="mini ui right labeled icon button">
-          <i class="remove icon"></i>
+          <span class="remove icon"></span>
           Clear All Filters
         </button>
       </a>
@@ -128,7 +128,7 @@
     <div class="events-filters__selected-date">
       ((dateSelected | momentDate))
       <a v-if="dateSelected" v-on:click="removeSelectedDate()">
-        <i class="red remove icon"></i>
+        <span class="red remove icon"></span>
       </a>
     </div>
 
@@ -137,7 +137,7 @@
 
     <!-- <input class="form-control" placeholder="Filter events" type="text" v-model="searchText"> -->
     <!-- <a v-if="searchText" v-on:click="removeSearchFilter()"> -->
-      <!-- <i class="red remove icon"></i> -->
+      <!-- <span class="red remove icon"></span> -->
     <!-- </a> -->
 
 		<h6 class="events-filters__type ui ribbon teal label">
@@ -150,7 +150,7 @@
           ((event_type))
         </a>
         <a v-if="event_type == eventSelected" v-on:click="removeEventTypeFilter()">
-          <i class="red remove icon"></i>
+          <span class="red remove icon"></span>
         </a>
 			</li>
 		</ul>
@@ -160,7 +160,7 @@
 					((event_type))*
 				</a>
 				<a v-if="event_type == eventSelected" v-on:click="removeEventTypeFilter()">
-          <i class="red remove icon"></i>
+          <span class="red remove icon"></span>
 				</a>
 			</li>
 		</ul>
@@ -176,7 +176,7 @@
 					((room))
         </a>
         <a v-if="room == roomSelected" v-on:click="removeRoomFilter()">
-          <i class="red remove icon"></i>
+          <span class="red remove icon"></span>
         </a>
 			</li>
 		</ul>
@@ -187,7 +187,7 @@
 					((room))*
 				</a>
 				<a v-if="room == roomSelected" v-on:click="removeRoomFilter()">
-  				<i class="red remove icon"></i>
+  				<span class="red remove icon"></span>
         </a>
 			</li>
 
@@ -240,7 +240,7 @@
 							((event.event_start_time | momentTime ))
 						</span>
 						&rarr; More Dates through (( event.event_additional_times[event.event_has_additional_times-1][0] | momentDate ))
-						<i class="dropdown icon"></i>
+						<span class="dropdown icon"></span>
 					</div>
 						<div class="content" v-if="event.event_end_time">
 							<p v-for="additional_time of event.event_additional_times">

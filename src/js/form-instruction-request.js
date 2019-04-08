@@ -14,6 +14,9 @@ import 'semantic-ui-css/components/popup.min.js'
 import 'semantic-ui-css/components/transition.min.css'
 import 'semantic-ui-css/components/transition.min.js'
 
+// Use <span> for embedded icon component
+import suiA11y from 'sui-a11y-dropdown.js'
+
 import { escape } from 'lodash'
 import moment from 'moment'
 
@@ -72,7 +75,11 @@ $('.date-selector').calendar({
 // FEW ITEMS TO NOTE
 // i see nick's comment on the feedback form that he doesn't like this for mobile
 // probably needs to be reworked, but i do like the multiple select that comes with semantic-ui
-$('.ui.dropdown').dropdown()
+$('.ui.dropdown').dropdown({
+  templates: {
+    dropdown: suiA11y.dropdown
+  }
+})
 
 // Validation via semantic-ui
 $('.ui.form')

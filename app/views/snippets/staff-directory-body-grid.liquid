@@ -9,11 +9,11 @@
       <div class="staff-directory__position">{{ person.title }}</div>
       <div class="staff-directory__contact">
         <a class="left floated" href="https://www.cornell.edu/search/people.cfm?netid={{ person.netid }}" title="Contact details for {{ person.first_name }}" target="_blank">
-          <i class="envelope icon"></i> {{ person.netid }}
+          <span class="envelope icon"></span> {{ person.netid }}
         </a>
         {% if person.phone.size > 0 %}
           <a class="right floated" href="tel:+1607-25{{ person.phone }}" title="Call {{ person.first_name }}">
-            <i class="phone icon"></i> 607-25{{ person.phone }}
+            <span class="phone icon"></span> 607-25{{ person.phone }}
           </a>
         {% endif %}
       </div>

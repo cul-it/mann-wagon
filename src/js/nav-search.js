@@ -1,3 +1,5 @@
+import "helpers/sui-a11y-icon/sui-input"
+
 var navSearch = {
   onLoad: function () {
     this.bindEventListeners()
