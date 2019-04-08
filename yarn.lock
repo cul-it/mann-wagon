@@ -4532,10 +4532,6 @@ scss-tokenizer@^0.1.2:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
 
-semantic-ui-calendar@0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/semantic-ui-calendar/-/semantic-ui-calendar-0.0.3.tgz#ea7090108e9bc7edfca002f22de71d70784fe725"
-
 semantic-ui-css@^2.2.1:
   version "2.2.10"
   resolved "https://registry.yarnpkg.com/semantic-ui-css/-/semantic-ui-css-2.2.10.tgz#f8f4470dbeffca0f0f3ff4fb71a35c71e88ad89c"
