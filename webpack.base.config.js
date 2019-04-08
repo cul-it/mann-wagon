@@ -17,6 +17,7 @@ export default new Config().merge({
     },
     extensions: ['', '.css', '.scss', '.js', '.vue'],
     root: [
+      path.resolve('./src/js/sui-a11y'),
       path.resolve('./src/js/vendor'),
       path.resolve('./src/scss')
     ]

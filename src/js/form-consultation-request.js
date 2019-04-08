@@ -7,7 +7,14 @@ import 'semantic-ui-css/components/message.min.css'
 import 'semantic-ui-css/components/transition.min.css'
 import 'semantic-ui-css/components/transition.min.js'
 
-$('.ui.dropdown').dropdown()
+// Use <span> for embedded icon component
+import suiA11y from 'sui-a11y-dropdown.js'
+
+$('.ui.dropdown').dropdown({
+  templates: {
+    dropdown: suiA11y.dropdown
+  }
+})
 
 // Validation via semantic-ui
 $('.ui.form')
