@@ -39,6 +39,13 @@ $(document).ready(function () {
       // Standard hours are 9am - 4pm, Mon-Fri
       var open = 9
       var close = 16
+      // Holidays*
+      var indy2019 = moment('2019-07-05')
+
+      // Exceptions due to staff coverage on holidays
+      if (moment(date).isSame(indy2019, 'day')) {
+        return true
+      }
 
       switch (mode) {
         case 'day':
