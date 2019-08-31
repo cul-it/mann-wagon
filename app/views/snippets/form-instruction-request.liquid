@@ -34,51 +34,6 @@
   {% comment %} Don't display the form after successful submission {% endcomment %}
   {% unless instruction_request.errors == false %}
 
-    <h4 class="ui dividing header mann-form__header">Contact Information</h4>
-
-    <div class="required field mann-form__compact">
-      <label for="name">Name</label>
-      <input type="text" id="name" name="content[name]" value="{{ instruction_request.name }}">
-    </div>
-
-    <div class="required field mann-form__compact">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="content[email]" value="{{ instruction_request.email }}">
-    </div>
-
-    <div class="field mann-form__compact">
-      <label for="phone">Phone</label>
-      <input type="tel" id="phone" name="content[phone]" value="{{ instruction_request.phone }}">
-    </div>
-
-    <div class="required field mann-form__compact">
-      <label for="dept">Department</label>
-      <input type="text" id="dept" name="content[department]" value="{{ instruction_request.department }}">
-    </div>
-
-    <div class="required field mann-form__compact">
-      <label for="affiliation">Cornell Affiliation</label>
-
-      <select id="affiliation" class="ui dropdown mann-form__compact" name="content[affiliation]">
-        <option value="">-- Select one --</option>
-        {% for affiliation in contents.instruction_requests.affiliation_options %}
-          <option value="{{ affiliation }}" {% if instruction_request.affiliation == affiliation %} selected {% endif %}>{{ affiliation }}</option>
-        {% endfor %}
-      </select>
-    </div>
-
-    <h4 class="ui dividing header mann-form__header">Course Information</h4>
-
-    <div class="required field mann-form__compact">
-      <label for="course-name">Course Name</label>
-      <input type="text" id="course-name" name="content[course_name]" value="{{ instruction_request.course_name }}"">
-    </div>
-
-    <div class="required field mann-form__minimal">
-      <label for="course-number">Course Number</label>
-      <input type="text" id="course-number" name="content[course_number]" value="{{ instruction_request.course_number }}">
-    </div>
-
     <h4 class="ui dividing header mann-form__header">Instruction/Workshop Information</h4>
 
     {% assign type_descriptions = 'Librarian comes to your class as a guest lecturer. One or two sessions as needed. | Can be offered in lieu of or in addition to in-class instruction. Focus is on specific topics. | Can be scheduled as a supplement to in-class instruction. Opportunity for students to get extra assistance with research assignments in small groups with librarian present to facilitate. | Tailored to your class (library guides, tutorials, videos, etc.) | Basic orientation to library services' | split: ' | ' %}
@@ -172,6 +127,51 @@
     <div class="field">
       <label for="additional-info">If there is an assignment, please provide more details here</label>
       <textarea id="additional-info" name="content[additional_info]" rows="4">{{ instruction_request.additional_info }}</textarea>
+    </div>
+
+    <h4 class="ui dividing header mann-form__header">Contact Information</h4>
+
+    <div class="required field mann-form__compact">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="content[name]" value="{{ instruction_request.name }}">
+    </div>
+
+    <div class="required field mann-form__compact">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="content[email]" value="{{ instruction_request.email }}">
+    </div>
+
+    <div class="field mann-form__compact">
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" name="content[phone]" value="{{ instruction_request.phone }}">
+    </div>
+
+    <div class="required field mann-form__compact">
+      <label for="dept">Department</label>
+      <input type="text" id="dept" name="content[department]" value="{{ instruction_request.department }}">
+    </div>
+
+    <div class="required field mann-form__compact">
+      <label for="affiliation">Cornell Affiliation</label>
+
+      <select id="affiliation" class="ui dropdown mann-form__compact" name="content[affiliation]">
+        <option value="">-- Select one --</option>
+        {% for affiliation in contents.instruction_requests.affiliation_options %}
+          <option value="{{ affiliation }}" {% if instruction_request.affiliation == affiliation %} selected {% endif %}>{{ affiliation }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <h4 class="ui dividing header mann-form__header">Course Information</h4>
+
+    <div class="required field mann-form__compact">
+      <label for="course-name">Course Name</label>
+      <input type="text" id="course-name" name="content[course_name]" value="{{ instruction_request.course_name }}"">
+    </div>
+
+    <div class="required field mann-form__minimal">
+      <label for="course-number">Course Number</label>
+      <input type="text" id="course-number" name="content[course_number]" value="{{ instruction_request.course_number }}">
     </div>
 
     <button class="ui button" type="submit">Submit your request</button>
