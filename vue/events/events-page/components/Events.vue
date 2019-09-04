@@ -750,30 +750,36 @@ export default {
       // Event properties
       _.forEach(data, function (value, index) {
         var events = {}
-        // Workaround for situations were incomplete data is returned from MannServices
-        if(value.description.match('Will this be advertised through Cornell Events\\?: (.*)') === null || value.description.match('Event Name: (.*)') === null || value.description.match('Event Description: (.*)') === null) {
-          console.log(value);
-          vueInstance.$set('libcalReservations', [])
-          if (vueInstance.dateSelected) {
-            vueInstance.getLibCalEvents('date', vueInstance.dateSelected)
-          } else {
-            vueInstance.getLibCalEvents('default')
-          }
-        }
-        if (vueInstance.libcalReservations.length) {
-          if (value.description.match('Will this be advertised through Cornell Events\\?: (.*)')[1] == 'Yes') {
+
+        // Parse patron submitted values from description
+        // -- handle missing values – all of these are required on the public form, but staff often bypass :(
+        // -- first encountered missing values bug in 2018-01-19 LibCal E&S migration with event_type
+        // -- should have listened to myself and implemented this failsafe for the rest of the .match() occurrences at that time
+        // -- bit by this in a big way in 2019-09-03 when the events calendar was stuck in an endless loop
+        // ---- due to missing/empty values for advertising with CU Events calendar, event name and event description
+        // -- https://j11y.io/javascript/match-trick
+        const eventAdvertise = (value.description.match('Will this be advertised through Cornell Events\\?: (.*)') || [, false])[1]
+        const submittedName = value.description.match('Event Name: (.*)')[1]
+        const eventTitle = submittedName === '' ? 'No title provided' : submittedName
+        const submittedDescription = value.description.match('Event Description: (.*)')[1]
+        const eventDescription = submittedDescription === '' ? 'No description provided' : submittedDescription
+        const submittedEventType = (value.description.match('Event Type: (.*)') || [, ''])[1].trim().replace(',', '')
+        const eventType = submittedEventType === '' ? 'MISSING' : submittedEventType
+
+        if (vueInstance.libcalReservations.length) {          
+          if (eventAdvertise === 'Yes') {
             // Already in Localist, Do nothing
           } else {
             // If same event based on title and time comparison
             // Check twice for lobby
-            if (libcalEvents.length && libcalEvents[counter - 1].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 1].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
+            if (libcalEvents.length && libcalEvents[counter - 1].event_title === eventTitle && libcalEvents[counter - 1].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
               libcalEvents[counter - 1].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
-            } else if (libcalEvents.length > 1 && libcalEvents[counter - 2].event_title === value.description.match('Event Name: (.*)')[1] && libcalEvents[counter - 2].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
+            } else if (libcalEvents.length > 1 && libcalEvents[counter - 2].event_title === eventTitle && libcalEvents[counter - 2].event_end_time === moment(new Date(value.formattedStartDateTime)).format()) {
               libcalEvents[counter - 2].event_end_time = moment(new Date(value.formattedEndDateTime)).format()
             } else {
               events['event_id'] = value.eventId
-              events['event_title'] = value.description.match('Event Name: (.*)')[1]
-              events['event_description'] = value.description.match('Event Description: (.*)')[1]
+              events['event_title'] = eventTitle
+              events['event_description'] = eventDescription
               events['event_start_time'] = moment(new Date(value.formattedStartDateTime)).format()
               events['event_start'] = moment(new Date(value.formattedStartDateTime)).format('YYYY-MM-DD')
               events['event_end_time'] = moment(new Date(value.formattedEndDateTime)).format()
@@ -785,16 +791,10 @@ export default {
                 }
               })
 
-              // Default value of 'MISSING' for event_type
-              // -- if this custom question is not included in description
-              // -- encountered after 2018-01-19 LibCal E&S migration
-              // -- probably wise to have this failsafe in place for all occurrences of .match()
-              // -- https://j11y.io/javascript/match-trick
-              const eventTypeSelected = (value.description.match(/Event Type: (.*)/i) || [,'MISSING'])[1].trim().replace(',', '')
-              events['event_type'] = [eventTypeSelected]
+              events['event_type'] = [eventType]
 
               _.forEach(vueInstance.curatedEventTypes, function(curatedEventType, index) {
-                if (curatedEventType[0] === eventTypeSelected || _.includes(curatedEventType[1], eventTypeSelected)) {
+                if (curatedEventType[0] === eventType || _.includes(curatedEventType[1], eventType)) {
                   events['event_type'] = [curatedEventType[0]]
                 }
               })
@@ -809,8 +809,8 @@ export default {
             }
 
             // Event type filter list array
-            if (eventTypes.indexOf(eventTypeSelected) === -1) {
-              eventTypes.push(eventTypeSelected)
+            if (eventTypes.indexOf(eventType) === -1) {
+              eventTypes.push(eventType)
             }
               counter++
             }
