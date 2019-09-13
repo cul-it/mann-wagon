@@ -50,7 +50,7 @@
             <input id="instruction-type-{{ forloop.index }}" {% if forloop.last %} class="js-mannform-other" {% endif %} type="checkbox" name="content[instruction_types][]" value="{{ type }}" data-prefix="{{ type }}" {% if instruction_request.instruction_types contains type or instruct_type_other contains type %} checked {% endif %}>
             <label for="instruction-type-{{ forloop.index }}">{{ type }} <span class="mann-form__hint">{{ type_descriptions[forloop.index0] }}</span></label>
             {% if forloop.last %}
-              <input id="instruction-type-other" class="js-mannform-other__value" type="text" placeholder="Please elaborate">
+              <input id="instruction-type-other" class="js-mannform-other__value" type="text" aria-label="Please elaborate" placeholder="Please elaborate">
             {% endif %}
           </div>
         </div>
@@ -98,10 +98,10 @@
       {% for loc in contents.instruction_requests.location_managed_list_options %}
         <div class="field">
           <div class="ui radio checkbox">
-            <input type="radio" name="content[location]" {% if forloop.first != true %} class="js-mannform-other" {% endif %} value="{{ loc }}" data-prefix="{{ loc }}" {% if instruction_request.location contains loc %} checked {% endif %}>
+            <input type="radio" name="content[location]" {% if forloop.first != true %} class="js-mannform-other" {% endif %} value="{{ loc }}" data-prefix="{{ loc }}" aria-label="{{ loc }}" {% if instruction_request.location contains loc %} checked {% endif %}>
             <label for="location-{{ forloop.index }}" class="radio-button__label">{{ loc }}</label>
             {% if forloop.first != true %}
-              <input id="location-other-{{ forloop.index }}" class="js-mannform-other__value" type="text" placeholder="Please specify">
+              <input id="location-other-{{ forloop.index }}" class="js-mannform-other__value" type="text" aria-label="Please specify" placeholder="Please specify">
             {% endif %}
           </div>
         </div>
