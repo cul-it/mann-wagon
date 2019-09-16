@@ -52,18 +52,29 @@ table.software-list__table {
   }
 
   &.teal {
-    color: color('vulcan');
+    color: color('black');
 
     &:hover {
-      color: color('vulcan');
+      color: color('black');
     }
   }
 }
 
 .ui.label {
   &.teal {
-    color: color('vulcan') !important;
+    color: color('black') !important;
   }
+}
+
+.ui.label {
+  &.orange {
+    color: color('black') !important;
+  }
+}
+
+// Override grayed-out color for default value in select lists
+.ui.dropdown:not(.button)>.default.text {
+    color: color('black') !important;
 }
 
 .body-equipment .section-nav {
