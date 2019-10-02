@@ -68,7 +68,7 @@
 }
 
 .space-finder__quiet-ban {
-  color: color('error' ('darken': 50%));
+  color: darken(color('error'), 50%);
 }
 
 .space-finder__quiet-grp {
@@ -84,7 +84,8 @@
     color: color('white');
 
     &:hover {
-      background: color('action' ('shade': 5%));
+      background: color('action' ('shade': 20%));
+      color: color('white');
     }
   }
 }
@@ -97,7 +98,7 @@
 
 .space-finder__availability {
   &--available {
-    color: darken(color('success'), 50%);
+    color: darken(color('success'), 55%);
   }
 
   &--unavailable {
