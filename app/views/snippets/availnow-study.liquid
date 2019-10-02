@@ -26,7 +26,7 @@
           {% include 'room-availability-logic' %}
 
           <li class="available-now__status available-now__status--{{ room_availability | downcase }}">
-            <a class="available-now__link ui" href="{% path_to space %}" {% if next_available and room_availability == 'Unavailable' %}data-tooltip="Next Available: {{ next_available | date: '%-I:%M %p' }}" data-position="top left" data-inverted=""{% endif %}>
+            <a class="available-now__link ui" href="{% path_to space %}" aria-label="{{ space.name }}: {{ room_availability }}" {% if next_available and room_availability == 'Unavailable' %}data-tooltip="Next Available: {{ next_available | date: '%-I:%M %p' }}" data-position="top left" data-inverted=""{% endif %}>
               <span class="fa fa-fw {{ available_icon }} available-now__icon--{{ room_availability | downcase }}"></span> {{ space.name }}
             </a>
           </li>
