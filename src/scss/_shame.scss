@@ -83,6 +83,10 @@ table.software-list__table {
   box-shadow: 0 0 .1em color('medium-gray') inset !important;
 }
 
+.ui.toggle.checkbox input:focus ~ .box, .ui.toggle.checkbox input:focus ~ label {
+  border: dotted 1px color('action');
+}
+
 .body-equipment .section-nav {
   display: none !important; // Hide sidebar nav on Equipment page for our interim solution of adding links to LibCal public interface for reserving equipment
 }
