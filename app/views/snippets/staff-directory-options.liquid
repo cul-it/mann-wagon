@@ -5,21 +5,6 @@
   <div class="menu">
     <div class="item" data-value="last_name">Last Name</div>
     <div class="item" data-value="first_name">First Name</div>
-    <div class="item" data-value="division">Division</div>
-  </div>
-</div>
-
-<div class="ui floating labeled icon dropdown tiny button">
-  <input id="division" name="division" aria-label="Filter staff by division" type="hidden">
-  <span class="sitemap icon"></span>
-  <span class="text">Division</span>
-  <div class="menu">
-    <div class="item" data-value="{% path_to staff %}">Show All</div>
-    {% for division in contents.divisions %}
-      <div class="item" data-value="{% path_to division %}">
-        {{ division.name }}
-      </div>
-    {% endfor %}
   </div>
 </div>
 

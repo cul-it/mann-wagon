@@ -59,6 +59,22 @@ a {
   font-size: modular-scale(-2);
 }
 
+.staff-directory__teams {
+  margin-top: 3em;
+
+  &.staff-table {
+    margin-top: .5em
+  }
+}
+
+.staff-directory__team {
+  margin-bottom: .5em;
+
+  &.staff-table {
+    display: inline-block;
+  }
+}
+
 .staff-directory__tbody {
   tr {
     &:nth-of-type(odd) {
