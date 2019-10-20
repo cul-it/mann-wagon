@@ -11,7 +11,7 @@ var allExperts = {
     this.accordionMe()
     this.bindEventListeners()
     this.initializeList()
-    this.applyView('liaison', true)
+    this.applyView('expert', true)
   },
 
   accordionMe: function () {
@@ -25,19 +25,11 @@ var allExperts = {
       requested = 'expert'
     }
     allExperts.cleanSlate()
-    allExperts.filterList('type', requested)
+    allExperts.filterList('type', requested, initRequest)
     allExperts.toggleActiveType('js-' + requested + '-only')
   },
 
   bindEventListeners: function () {
-    $('.js-expert-only').on('click', function () {
-      allExperts.applyView('expert')
-    })
-
-    $('.js-liaison-only').on('click', function () {
-      allExperts.applyView('liaison')
-    })
-
     $('.js-filter-dept').on('click', function () {
       var department = $(this).data('dept')
       allExperts.cleanSlate()
@@ -55,6 +47,23 @@ var allExperts = {
 
       return false
     })
+
+    $('.js-filter-reset').on('click', function () {
+      allExperts.cleanSlate()
+      allExperts.filterList('type', 'expert')
+      $('.all-experts__filter-reset').toggleClass('mannlib-hidden')
+
+      return false
+    })
+
+    $('.js-filter-teams').on('click', function () {
+      var team = $(this).data('teams')
+      allExperts.cleanSlate()
+      allExperts.filterList('teams', team)
+      $(this).parent().toggleClass('all-experts__filter--active')
+
+      return false
+    })
   },
 
   cleanSlate: function () {
@@ -67,6 +76,7 @@ var allExperts = {
       valueNames: [
         { data: ['department'] },
         { data: ['expertise'] },
+        { data: ['teams'] },
         { data: ['type'] }
       ]
     }
@@ -74,7 +84,7 @@ var allExperts = {
     allExperts.list = new List('js-experts', options)
   },
 
-  filterList: function (filter, filterValue) {
+  filterList: function (filter, filterValue, initial) {
     // Clear all filters
     allExperts.list.filter()
 
@@ -86,12 +96,18 @@ var allExperts = {
         case 'expertise':
           truth = _.indexOf(_.split(item.values().expertise, ','), filterValue) > -1
           break
+        case 'teams':
+          truth = _.indexOf(_.split(item.values().teams, ','), filterValue) > -1
+          break
         case 'type':
           truth = _.indexOf(_.split(item.values().type, ','), filterValue) > -1
           break
       }
 
       if (truth) {
+        if (!initial) {
+          $('.all-experts__filter-reset').removeClass('mannlib-hidden')
+        }
         return true
       } else {
         return false
