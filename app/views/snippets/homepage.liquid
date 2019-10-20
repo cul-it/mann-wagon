@@ -11,6 +11,17 @@
   </div>
 </section>
 
+{% comment %} 
+  New callouts for Fall 2019 as per Erica's request
+{% endcomment %}
+{% assign home_callouts = "Library Instruction, Our Collection, Research Support" | split: ', ' %}
+
+<div class="home-callouts">
+  {% for section in home_callouts %}
+    {% include 'home-callout' with section: section %}
+  {% endfor %}
+</div>
+
 {% include 'spotlights-carousel' %}
 
 {% comment %}

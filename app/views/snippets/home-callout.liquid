@@ -1,0 +1,30 @@
+{% assign section_kebab = section | downcase | replace: ' ', '-' %}
+
+{% case section_kebab %}
+  {% when 'library-instruction' %}
+    {% assign tagline = 'Submit your request' %}
+    {% capture section_link %}{% path_to request-course-instruction %}{% endcapture %}
+  {% when 'our-collection' %}
+    {% assign tagline = 'Suggest a recommendation' %}
+    {% capture section_link %}{% path_to recommend-a-purchase %}{% endcapture %}
+  {% when 'research-support' %}
+    {% assign tagline = 'Consult with our experts' %}
+    {% capture section_link %}{% path_to consultation-services %}{% endcapture %}
+  {% else %}
+    {% assign tagline = '' %}
+    {% assign section_link = '#' %}
+{% endcase %}
+
+{% assign section_img = section_kebab | prepend: 'home-callout_' | append: '.png' %}
+
+<section class="home-callouts__item" aria-labelledby="home-callouts__item-label--{{ section_kebab }}">
+  <a href="{{ section_link }}" title="{{ section }}: {{ tagline }}">
+    <img src="{{ section_img | theme_image_url }}" alt="{{ section}} icon">
+
+    <h4 class="home-callouts__item-heading" id="home-callouts__item-label--{{ section_kebab }}">
+      {{ section }}
+    </h4>
+
+    <p>{{ tagline }}</p>
+  </a>
+</section>
