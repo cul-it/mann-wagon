@@ -108,66 +108,6 @@
           {% assign room_available_icon = "fa-times" %}
         {% endif %}
       {% endif %}
-    {% elsif space.name == "Large Group Study Rooms" %}
-      {% comment %} Now available {% endcomment %}
-      {% if large_group_room_now_available > "0" %}
-        {% assign available_icon = "fa-check-square" %}
-        {% assign room_availability = "Available" %}
-        {% assign room_available_icon = "fa-check" %}
-      {% else %}
-        {% comment %} Next available {% endcomment %}
-        {% if large_group_room_next_available %}
-          {% assign available_icon = "fa-minus-square" %}
-          {% assign next_available = large_group_room_next_available %}
-          {% assign room_availability = "Unavailable" %}
-          {% assign room_available_icon = "fa-times" %}
-        {% else %}
-          {% assign available_icon = "fa-minus-square" %}
-          {% assign next_available = nil %}
-          {% assign room_availability = "Overdue" %}
-          {% assign room_available_icon = "fa-times" %}
-        {% endif %}
-      {% endif %}
-    {% elsif space.name == "Small Group Study Rooms" %}
-      {% comment %} Now available {% endcomment %}
-      {% if small_group_room_now_available > "0" %}
-        {% assign available_icon = "fa-check-square" %}
-        {% assign room_availability = "Available" %}
-        {% assign room_available_icon = "fa-check" %}
-      {% else %}
-        {% comment %} Next available {% endcomment %}
-        {% if small_group_room_next_available %}
-          {% assign available_icon = "fa-minus-square" %}
-          {% assign next_available = small_group_room_next_available %}
-          {% assign room_availability = "Unavailable" %}
-          {% assign room_available_icon = "fa-times" %}
-        {% else %}
-          {% assign available_icon = "fa-minus-square" %}
-          {% assign next_available = nil %}
-          {% assign room_availability = "Overdue" %}
-          {% assign room_available_icon = "fa-times" %}
-        {% endif %}
-      {% endif %}
-    {% elsif space.name == "Individual Study Rooms" %}
-      {% comment %} Now available {% endcomment %}
-      {% if individual_room_now_available > "0" %}
-        {% assign available_icon = "fa-check-square" %}
-        {% assign room_availability = "Available" %}
-        {% assign room_available_icon = "fa-check" %}
-      {% else %}
-        {% comment %} Next available {% endcomment %}
-        {% if individual_room_next_available %}
-          {% assign available_icon = "fa-minus-square" %}
-          {% assign next_available = individual_room_next_available %}
-          {% assign room_availability = "Unavailable" %}
-          {% assign room_available_icon = "fa-times" %}
-        {% else %}
-          {% assign available_icon = "fa-minus-square" %}
-          {% assign next_available = nil %}
-          {% assign room_availability = "Overdue" %}
-          {% assign room_available_icon = "fa-times" %}
-        {% endif %}
-      {% endif %}
     {% endif %}
   {% else %}
   {% comment %} Otherwise, library is closed so everything is unavailable {% endcomment %}
