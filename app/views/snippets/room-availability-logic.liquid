@@ -6,82 +6,29 @@
   {% assign next_available = nil %}
   {% assign available_time = nil %}
 
-  {% assign room_ids = space.reserve_sys_room_ids | split: "," %}
-  {% for room_id in room_ids %}
-    {% assign room_param = "&room_id=" | append: room_id %}
-    {% assign api_request_url = api_request_url | append: room_param%}
-
+  {% comment %} Dynamic request to LibCal API based on space metadata {% endcomment %}
+  {% if space.reserve_sys_room_ids %}
     {% comment %}
-      Use Locomotive Actions API to fetch data from LibCal
-      -- https://locomotive-v3.readme.io/v3.3/docs/external-api
+      If individual room IDs are specified:
+      -- Create array
+      -- Loop through array, making http request per room
     {% endcomment %}
+    {% assign scope = 'item' %}
+    {% assign room_ids = space.reserve_sys_room_ids | split: "," %}
 
-    {% action "Fetch availability from LibCal" %}
-      const sensitiveData = getProp('site').metafields.sensitive_data
-      const clientId = sensitiveData.libcal_client_id
-      const clientSecret = sensitiveData.libcal_client_secret
-      const spaceId = getProp('room_id')
-      const apiUrl = 'https://api2.libcal.com/1.1/space/item/' + spaceId + '?availability'
-      var libcalAuth = false
-      var libcalAvailability = false
-
-      if (clientId && clientSecret) {
-        // Need to obtain access token first
-        libcalAuth = callAPI('POST', 'https://api2.libcal.com/1.1/oauth/token', {
-          data: {
-            client_id:     clientId,
-            client_secret: clientSecret,
-            grant_type:    'client_credentials'
-          }
-        })
-
-        // Now use access token to authenticate
-        if (libcalAuth) {
-          const token = 'Bearer ' + JSON.parse(libcalAuth.data).access_token
-
-          libcalAvailability = callAPI('GET', apiUrl, {
-            headers: {
-              authorization: token,
-              accept: 'application/json'
-            }
-          })
-        }
-
-        setProp('libcal_availability', libcalAvailability.data[0].availability)
-      }
-    {% endaction %}
-
-    {% for timeslot in libcal_availability %}
-      {% comment %} Now available {% endcomment %}
-      {% capture available_start_time %}{{timeslot.from | date: '%s'}}{% endcapture %}
-      {% capture available_end_time %}{{timeslot.to | date: '%s'}}{% endcapture %}
-
-      {% if available_start_time < current_time and available_end_time > current_time %}
-        {% assign available_icon = "fa-check-square" %}
-        {% assign room_availability = "Available" %}
-        {% assign room_available_icon = "fa-check" %}
-
-        {% comment %} Break if loop {% endcomment %}
-        {% break %}
-      {% comment %} Next available {% endcomment %}
-      {% elsif available_start_time > current_time %}
-        {% comment %}
-          Break elsif loop if next_available is less than next available_start_time
-          -- This logic works only for two rooms in a group
-        {% endcomment %}
-        {% if next_available and next_available < available_start_time %}
-          {% break %}
-        {% endif %}
-
-        {% assign available_icon = "fa-minus-square" %}
-        {% assign next_available = available_start_time %}
-        {% assign room_availability = "Unavailable" %}
-        {% assign room_available_icon = "fa-times" %}
-
-        {% break %}
-      {% endif %}
+    {% for room_id in room_ids %}
+      {% include 'room-availability-libcal' with scope: scope, id: room_id  %}
     {% endfor %}
-  {% endfor %}
+  {% else %}
+    {% comment %}
+      If individual room IDs are NOT specified
+      -- Use the reserve_sys_id as category
+      -- Make single http request and retrieve availability for all rooms within category
+    {% endcomment %}
+    {% assign scope = 'category' %}
+
+    {% include 'room-availability-libcal' with scope: scope, id: space.reserve_sys_id %}
+  {% endif %}
 {% else %}
 {% comment %}
   MannServices Room Availability Logic
