@@ -1,0 +1,87 @@
+{% comment %}
+  Use Locomotive Actions API to fetch data from LibCal
+  -- https://locomotive-v3.readme.io/v3.3/docs/external-api
+{% endcomment %}
+{% action "Fetch availability from LibCal" %}
+  const sensitiveData = getProp('site').metafields.sensitive_data
+  const clientId = sensitiveData.libcal_client_id
+  const clientSecret = sensitiveData.libcal_client_secret
+  const scope = getProp('scope')
+  const id = getProp('id')
+  const apiUrl = 'https://api2.libcal.com/1.1/space/' + scope + '/' + id + '?availability'
+  var libcalAuth = false
+  var libcalAvailability = false
+
+  if (clientId && clientSecret) {
+    // Need to obtain access token first
+    libcalAuth = callAPI('POST', 'https://api2.libcal.com/1.1/oauth/token', {
+      data: {
+        client_id:     clientId,
+        client_secret: clientSecret,
+        grant_type:    'client_credentials'
+      }
+    })
+
+    // Now use access token to authenticate
+    if (libcalAuth) {
+      const token = 'Bearer ' + JSON.parse(libcalAuth.data).access_token
+
+      libcalAvailability = callAPI('GET', apiUrl, {
+        headers: {
+          authorization: token,
+          accept: 'application/json'
+        }
+      })
+    }
+
+    //setProp('libcal_availability', libcalAvailability.data[0].availability)
+    setProp('libcal_response', libcalAvailability.data)
+  }
+{% endaction %}
+
+{% if scope == 'category' %}
+  {% assign available_list = libcal_response[0].items %}
+{% else %}
+  {% assign available_list = libcal_response %}
+{% endif %}
+
+{% comment %} {{ libcal_response }} {% endcomment %}
+{% comment %} {{ available_list }} {% endcomment %}
+
+
+{% for space in available_list %}
+  {% for timeslot in space.availability %}
+    {% comment %} Now available {% endcomment %}
+    {% capture available_start_time %}{{timeslot.from | date: '%s'}}{% endcapture %}
+    {% capture available_end_time %}{{timeslot.to | date: '%s'}}{% endcapture %}
+
+    {% if available_start_time < current_time and available_end_time > current_time %}
+      {% assign available_icon = "fa-check-square" %}
+      {% assign room_availability = "Available" %}
+      {% assign room_available_icon = "fa-check" %}
+
+      {% comment %} Break for loop {% endcomment %}
+      {% break %}
+    {% comment %} Next available {% endcomment %}
+    {% elsif available_start_time > current_time %}
+      {% comment %}
+        Determine next available_start_time
+      {% endcomment %}
+      {% if next_available %}
+        {% if next_available > available_start_time %}
+          {% assign next_available = available_start_time %}
+        {% endif %}
+      {% else %}
+        {% assign next_available = available_start_time %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% comment %} {% assign next_available = available_start_time %} {% endcomment %}
+{% endfor %}
+
+{% if room_availability != "Available" %}
+  {% assign available_icon = "fa-minus-square" %}
+  {% assign room_availability = "Unavailable" %}
+  {% assign room_available_icon = "fa-times" %}
+{% endif %}
