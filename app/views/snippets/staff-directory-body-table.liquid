@@ -8,6 +8,9 @@
         <div class="content">
           <strong>{{ person.last_name }}, {{ person.first_name }}</strong>
           <span class="staff-directory__position">{{ person.title }}</span>
+          {% if person.pronouns %}
+            <span class="staff-directory__pronouns">{{ person.pronouns }}</span>
+          {% endif %}
 
           <ul class="staff-directory__teams staff-table">
           {% for team in person.teams %}

@@ -49,6 +49,12 @@ fields:
     required: true
     localized: false
 
+- pronouns: # The lowercase, underscored name of the field
+    label: Preferred pronouns # Human readable name of the field
+    type: string
+    required: false
+    localized: false
+
 - title: # The lowercase, underscored name of the field
     label: Title # Human readable name of the field
     type: string

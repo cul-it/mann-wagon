@@ -30,5 +30,10 @@
         {% include 'staff-book-consultation' with libcal_uid: person.libcal_uid, caller: 'grid' %}
       {% endif %}
     </div>
+    {% if person.pronouns %}
+      <div class="staff-directory__pronouns extra content">
+        {{ person.pronouns }}
+      </div>
+    {% endif %}
   </div>
 {% endfor %}

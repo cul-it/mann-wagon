@@ -46,6 +46,17 @@ a {
   font-size: modular-scale(-1);
 }
 
+.staff-directory__pronouns {
+  .ui.card>&,
+  .ui.cards>.card>& {
+    font-size: modular-scale(-1);
+  }
+
+  display: block;
+  margin-top: .5em;
+  font-size: modular-scale(-1);
+}
+
 .staff-directory__table {
   @include susy-breakpoint($scape, $g-scape) {
     font-size: modular-scale(-1);
