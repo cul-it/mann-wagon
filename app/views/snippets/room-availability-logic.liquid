@@ -6,8 +6,21 @@
   {% assign next_available = nil %}
   {% assign available_time = nil %}
 
-  {% comment %} Dynamic request to LibCal API based on space metadata {% endcomment %}
-  {% if space.reserve_sys_room_ids %}
+  {% comment %}
+    Dynamic request to LibCal API based on space metadata
+    -- Since there are differences in evaluating falsy btw Engine and Wagon, the key is to test != TRUE
+    -- https://github.com/locomotivecms/steam/blob/2e1b6b821d8e0008dd6b9f616e153b9e9b1e980a/lib/locomotive/steam/adapters/memory/condition.rb#L28
+  {% endcomment %}
+  {% if space.reserve_sys_room_ids != true %}
+    {% comment %}
+      If individual room IDs are NOT specified
+      -- Use the reserve_sys_id as category
+      -- Make single http request and retrieve availability for all rooms within category
+    {% endcomment %}
+    {% assign scope = 'category' %}
+
+    {% include 'room-availability-libcal' with scope: scope, id: space.reserve_sys_id %}
+  {% else %}
     {% comment %}
       If individual room IDs are specified:
       -- Create array
@@ -19,15 +32,6 @@
     {% for room_id in room_ids %}
       {% include 'room-availability-libcal' with scope: scope, id: room_id  %}
     {% endfor %}
-  {% else %}
-    {% comment %}
-      If individual room IDs are NOT specified
-      -- Use the reserve_sys_id as category
-      -- Make single http request and retrieve availability for all rooms within category
-    {% endcomment %}
-    {% assign scope = 'category' %}
-
-    {% include 'room-availability-libcal' with scope: scope, id: space.reserve_sys_id %}
   {% endif %}
 {% else %}
 {% comment %}
