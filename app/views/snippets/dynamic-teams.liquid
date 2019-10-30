@@ -1,33 +1,20 @@
 {% comment %} Filter out non DReSS teams {% endcomment %}
 {% with_scope parent: 'dress' %}{% assign dress_teams = contents.teams.all %}{% endwith_scope %}
 
-{% comment %} Select the DReSS team itself {% endcomment %}
-{% with_scope _slug: 'dress' %}{% assign dress = contents.teams.first %}{% endwith_scope %}
-
 {% editable_model teams, hint: 'Manage teams' %}{% endeditable_model %}
 
-<img class="ui big rounded image" alt="{{ dress.name }} photo" src="{{ dress.photo.url }}">
-
-<div class="teams-dress__description">
-  {{ dress.description | default: 'DReSS description goes here.' }}
-</div>
-
+<ul class="teams-dress__teams">
 {% for team in dress_teams %}
-  <h3 class="teams-dress__heading">{{ team.name }}</h3>
+  {% assign team_kebab = team.name | downcase | replace: ' ', '-' %}
+  
+  <li class="teams-dress__team">
+    <a href="{% path_to mann-experts %}#{{ team_kebab }}" title="{{ team.name }}">
+      <img class="ui rounded image teams-dress__img" alt="{{ team.name }} photo" src="{{ team.photo.url }}">
 
-  <div class="teams-dress__description">
-    {{ team.description | default: 'Team description goes here.'}}
-  </div>
+      <h3 class="teams-dress__heading">{{ team.name }}</h3>
+    </a>
 
-  <ul class="teams-dress__members">
-  {% for member in team.members %}
-    {% capture profile_url %}{% path_to staff %}#{{ member.first_name | strip | downcase }}-{{ member.last_name | strip | downcase }}{% endcapture %}
-
-    <li class="teams-dress__member"><a href="{{ profile_url }}" title="View profile for {{ member.first_name }} {{ member.last_name }}">
-      <img class="ui tiny rounded image" alt="{{ member.first_name }} {{ member.last_name }} headshot" src="{{ member.photo.url | resize: '500x500#n' }}">
-
-      {{ member.first_name }} {% comment %}{{ member.last_name }} {% endcomment %}
-    </a></li>
-  {% endfor %}
-  </ul>
+    <a class="staff-directory__book-consultation ui mini button" href="https://cornell.libwizard.com/f/RequestMannConsultation">Make an Appt.</a>
+  </li>
 {% endfor %}
+</ul>

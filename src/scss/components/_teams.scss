@@ -1,19 +1,40 @@
 .teams-dress__heading {
   clear: left;
-  margin-top: 1.5em;
+  margin: .75em 0 .25em 0;
   margin-bottom: 0;
 }
 
-.teams-dress__description {
-  margin-top: .75em;
-}
+.teams-dress__team {
+  @include susy-breakpoint($scape, $g-scape) {
+    margin-top: 0;
+  }
 
-.teams-dress__member {
-  display: inline-block;
-  margin: 0 .5em .5em 0;
+  @include susy-breakpoint($tablet, $g-tablet) {
+    font-size: modular-scale(0);
+  }
+
+  @include susy-breakpoint($allout, $g-allout) {
+    padding: 0 2.5em;
+  }
+
+  flex-basis: 0;
+  flex-grow: 1;
+  margin-top: 2.5em;
+  padding: 0 1em;
   text-align: center;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
 }
 
-.teams-dress__members {
-  margin-top: 1em;
+.teams-dress__teams {
+  @include span(full nest);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    display: flex;
+    overflow: hidden;
+  }
+
+  margin-top: 2em;
 }
