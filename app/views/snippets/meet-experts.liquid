@@ -23,7 +23,7 @@
 
           <ul class="meet-experts__teams">
           {% for team in person.teams %}
-            <li class="meet-experts__team"><a href="{% path_to disciplinary-research-support %}" title="Learn more about {{ team.name }}" class="ui purple label">
+            <li class="meet-experts__team"><a href="{% include 'team-link' with team: team.name %}" title="Learn more about {{ team.name }}" class="ui purple label">
               {{ team.name }}
             </a></li>
           {% endfor %}

@@ -14,7 +14,7 @@
 
           <ul class="staff-directory__teams staff-table">
           {% for team in person.teams %}
-            <li class="staff-directory__team staff-table"><a href="{% path_to disciplinary-research-support %}" title="Learn more about {{ team.name }}" class="staff-directory__team ui tiny purple label">
+            <li class="staff-directory__team staff-table"><a href="{% include 'team-link' with team: team.name %}" title="Learn more about {{ team.name }}" class="staff-directory__team ui tiny purple label">
               {{ team.name }}
             </a></li>
           {% endfor %}

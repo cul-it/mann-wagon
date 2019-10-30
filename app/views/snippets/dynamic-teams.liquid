@@ -5,10 +5,8 @@
 
 <ul class="teams-dress__teams">
 {% for team in dress_teams %}
-  {% assign team_kebab = team.name | downcase | replace: ' ', '-' %}
-  
   <li class="teams-dress__team">
-    <a href="{% path_to mann-experts %}#{{ team_kebab }}" title="{{ team.name }}">
+    <a href="{% include 'team-link' with team: team.name %}" title="{{ team.name }}">
       <img class="ui rounded image teams-dress__img" alt="{{ team.name }} photo" src="{{ team.photo.url }}">
 
       <h3 class="teams-dress__heading">{{ team.name }}</h3>
