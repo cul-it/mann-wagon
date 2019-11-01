@@ -1,5 +1,10 @@
 {% assign placeholder_image = 'placeholder.jpg' | theme_image_url %}
 <div id="js-experts" class="all-experts">
+  <div class="all-experts__request-buttons">
+    <a class="staff-directory__book-consultation ui mini button" href="https://cornell.libwizard.com/f/RequestMannConsultation">Request a Consultation</a>      
+    <a class="staff-directory__book-consultation ui mini button" href="{% path_to request-course-instruction %}">Request Course Instruction</a>      
+  </div>
+
   <a class="all-experts__staff-directory" href="{% path_to staff %}" title="View all our staff">
     <span class="fa fa-fw fa-info-circle"></span>
     Staff Directory
