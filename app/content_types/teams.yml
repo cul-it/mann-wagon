@@ -11,7 +11,7 @@ description:  Out with Liaisons...gooooo team!
 label_field_name: name
 
 # Valid values: manually, created_at, updated_at, or the slug of any field
-order_by: name
+order_by: manually
 
 # Valid values: asc (ascending) and desc (descending). Set to asc by default.
 # order_direction: asc
