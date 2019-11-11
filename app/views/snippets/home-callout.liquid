@@ -5,8 +5,8 @@
     {% assign tagline = 'Submit your request' %}
     {% capture section_link %}{% path_to request-course-instruction %}{% endcapture %}
   {% when 'our-collection' %}
-    {% assign tagline = 'Suggest a recommendation' %}
-    {% capture section_link %}{% path_to recommend-a-purchase %}{% endcapture %}
+    {% assign tagline = 'Explore our resources' %}
+    {% assign section_link = 'https://newcatalog.library.cornell.edu/?f%5Blocation%5D%5B%5D=Mann+Library' %}
   {% when 'research-support' %}
     {% assign tagline = 'Consult with our experts' %}
     {% capture section_link %}{% path_to consultation-services %}{% endcapture %}
