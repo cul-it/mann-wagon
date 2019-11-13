@@ -1,0 +1,18 @@
+{% comment %} Filter out non DReSS teams {% endcomment %}
+{% with_scope parent: 'dress' %}{% assign dress_teams = contents.teams.all %}{% endwith_scope %}
+
+{% editable_model teams, hint: 'Manage teams' %}{% endeditable_model %}
+
+<ul class="teams-dress__teams">
+{% for team in dress_teams %}
+  <li class="teams-dress__team">
+    <a href="{% include 'team-link' with team: team.name %}" title="{{ team.name }}">
+      <img class="ui rounded image teams-dress__img" alt="{{ team.name }} photo" src="{{ team.photo.url }}">
+
+      <h3 class="teams-dress__heading">{{ team.name }}</h3>
+    </a>
+
+    <a class="staff-directory__book-consultation ui mini button" href="https://cornell.libwizard.com/f/RequestMannConsultation">Book a Consultation</a>
+  </li>
+{% endfor %}
+</ul>

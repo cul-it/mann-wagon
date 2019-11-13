@@ -46,6 +46,17 @@ a {
   font-size: modular-scale(-1);
 }
 
+.staff-directory__pronouns {
+  .ui.card>&,
+  .ui.cards>.card>& {
+    font-size: modular-scale(-1);
+  }
+
+  display: block;
+  margin-top: .5em;
+  font-size: modular-scale(-1);
+}
+
 .staff-directory__table {
   @include susy-breakpoint($scape, $g-scape) {
     font-size: modular-scale(-1);
@@ -57,6 +68,22 @@ a {
 
   line-height: modular-scale(0);
   font-size: modular-scale(-2);
+}
+
+.staff-directory__teams {
+  margin-top: 3em;
+
+  &.staff-table {
+    margin-top: .5em
+  }
+}
+
+.staff-directory__team {
+  margin-bottom: .5em;
+
+  &.staff-table {
+    display: inline-block;
+  }
 }
 
 .staff-directory__tbody {

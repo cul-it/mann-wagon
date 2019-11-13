@@ -49,6 +49,12 @@ fields:
     required: true
     localized: false
 
+- pronouns: # The lowercase, underscored name of the field
+    label: Preferred pronouns # Human readable name of the field
+    type: string
+    required: false
+    localized: false
+
 - title: # The lowercase, underscored name of the field
     label: Title # Human readable name of the field
     type: string
@@ -106,6 +112,13 @@ fields:
     type: boolean
     required: true
     localized: false
+
+- teams:
+    label: Member of
+    type: many_to_many
+    class_name: teams
+    inverse_of: members
+    ui_enabled: true
 
 - librarian: # The lowercase, underscored name of the field
     label: Librarian? # Human readable name of the field

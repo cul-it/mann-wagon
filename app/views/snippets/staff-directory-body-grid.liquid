@@ -18,18 +18,22 @@
         {% endif %}
       </div>
 
+      <ul class="staff-directory__teams">
+      {% for team in person.teams %}
+        <li class="staff-directory__team"><a href="{% include 'team-link' with team: team.name %}" title="Learn more about {{ team.name }}" class="ui purple label">
+          {{ team.name }}
+        </a></li>
+      {% endfor %}
+      </ul>
+
       {% if person.libcal_uid.size > 0 %}
         {% include 'staff-book-consultation' with libcal_uid: person.libcal_uid, caller: 'grid' %}
       {% endif %}
     </div>
-    <div class="extra content">
-      <a href="{% path_to person.division %}" title="Learn more about {{ person.division.name }}" class="staff-directory__division">
-        {% if person.division.name contains 'ITS' %}
-          ITS
-        {% else %}
-          {{ person.division.name }}
-        {% endif %}
-      </a>
-    </div>
+    {% if person.pronouns %}
+      <div class="staff-directory__pronouns extra content">
+        {{ person.pronouns }}
+      </div>
+    {% endif %}
   </div>
 {% endfor %}

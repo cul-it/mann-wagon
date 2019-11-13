@@ -8,10 +8,12 @@ import _ from 'lodash'
 
 var allExperts = {
   onLoad: function () {
+    var requested = window.location.hash ? this.toProperCase(window.location.hash.substr(1)) : 'expert'
+    var filter = requested === 'expert' ? 'type' : 'teams'
     this.accordionMe()
     this.bindEventListeners()
     this.initializeList()
-    this.applyView('liaison', true)
+    this.applyView(requested, filter, true)
   },
 
   accordionMe: function () {
@@ -19,25 +21,21 @@ var allExperts = {
       .accordion()
   },
 
-  applyView: function (requested, initRequest) {
-    // Catch request for Experts as initial view (from homepage)
-    if (initRequest && window.location.hash === '#experts') {
-      requested = 'expert'
-    }
+  applyView: function (requested, type, initRequest) {
     allExperts.cleanSlate()
-    allExperts.filterList('type', requested)
-    allExperts.toggleActiveType('js-' + requested + '-only')
+    allExperts.filterList(type, requested, initRequest)
+
+    var activeTeam = $('.js-filter-teams[data-teams="' + requested + '"]')
+    var teamsList = activeTeam.parentsUntil('.accordion')[1]
+
+    // Indicate active filter included with initial page request
+    // -- i.e. for team view coming from Staff Directory, Homepage or Meet Our Experts
+    activeTeam.parent().toggleClass('all-experts__filter--active')
+    $(teamsList).toggleClass('active')
+    $(teamsList).prev().toggleClass('active')
   },
 
   bindEventListeners: function () {
-    $('.js-expert-only').on('click', function () {
-      allExperts.applyView('expert')
-    })
-
-    $('.js-liaison-only').on('click', function () {
-      allExperts.applyView('liaison')
-    })
-
     $('.js-filter-dept').on('click', function () {
       var department = $(this).data('dept')
       allExperts.cleanSlate()
@@ -55,6 +53,23 @@ var allExperts = {
 
       return false
     })
+
+    $('.js-filter-reset').on('click', function () {
+      allExperts.cleanSlate()
+      allExperts.filterList('type', 'expert')
+      $('.all-experts__filter-reset').toggleClass('mannlib-hidden')
+
+      return false
+    })
+
+    $('.js-filter-teams').on('click', function () {
+      var team = $(this).data('teams')
+      allExperts.cleanSlate()
+      allExperts.filterList('teams', team)
+      $(this).parent().toggleClass('all-experts__filter--active')
+
+      return false
+    })
   },
 
   cleanSlate: function () {
@@ -67,6 +82,7 @@ var allExperts = {
       valueNames: [
         { data: ['department'] },
         { data: ['expertise'] },
+        { data: ['teams'] },
         { data: ['type'] }
       ]
     }
@@ -74,7 +90,7 @@ var allExperts = {
     allExperts.list = new List('js-experts', options)
   },
 
-  filterList: function (filter, filterValue) {
+  filterList: function (filter, filterValue, initial) {
     // Clear all filters
     allExperts.list.filter()
 
@@ -86,12 +102,18 @@ var allExperts = {
         case 'expertise':
           truth = _.indexOf(_.split(item.values().expertise, ','), filterValue) > -1
           break
+        case 'teams':
+          truth = _.indexOf(_.split(item.values().teams, ','), filterValue) > -1
+          break
         case 'type':
           truth = _.indexOf(_.split(item.values().type, ','), filterValue) > -1
           break
       }
 
       if (truth) {
+        if (!initial || filter === 'teams') {
+          $('.all-experts__filter-reset').removeClass('mannlib-hidden')
+        }
         return true
       } else {
         return false
@@ -122,6 +144,12 @@ var allExperts = {
       }
     })
     return noSoupForYou
+  },
+
+  toProperCase: function (string) {
+    return string.split('-')
+    .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+    .join(' ')
   }
 }
 

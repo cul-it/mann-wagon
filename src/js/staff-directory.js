@@ -11,10 +11,6 @@ $('#sort').change(function () {
   sortStaff($(this).val())
 })
 
-$('#division').change(function () {
-  window.location.replace($(this).val())
-})
-
 $('#view > button').on('click', function () {
   $('.staff-directory').hide()
   var layoutSelected = $(this).val()

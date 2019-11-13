@@ -21,6 +21,14 @@
 
           <span class="meet-experts__title">{{ person.title }}</span>
 
+          <ul class="meet-experts__teams">
+          {% for team in person.teams %}
+            <li class="meet-experts__team"><a href="{% include 'team-link' with team: team.name %}" title="Learn more about {{ team.name }}" class="ui purple label">
+              {{ team.name }}
+            </a></li>
+          {% endfor %}
+          </ul>
+
           {% if person.expertise.size > 0 %}
             <h6 class="meet-experts__subheading">Areas of Expertise</h6>
 

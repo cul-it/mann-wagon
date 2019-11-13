@@ -1,0 +1,4 @@
+{% assign team_kebab = team | downcase | replace: ' ', '-' %}
+
+{% comment %} Return the appropriate URL to use as href value {% endcomment %}
+{% path_to mann-experts %}#{{ team_kebab }}
