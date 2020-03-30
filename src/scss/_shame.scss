@@ -105,6 +105,8 @@ table.software-list__table {
   border: 0;
   border-radius: 0;
   box-shadow: none;
-  font-weight: bold;
   text-align: center;
+  a, a:visited, a:focus, a:active {
+    color: #0068ac;
+  }
 }
