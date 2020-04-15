@@ -7,7 +7,7 @@
   <td>(( item.author ))</td>
   <td>
     <em v-if="item.elsewhere" class="course-reserves__location--not-mann" >(( item.location ))</em>
-    (( item.callnumber ))
+    <span v-if="item.callnumber !== 'networked resource'">(( item.callnumber ))</span>
   </td>
   <td>
     <a v-if="item.online" href="https://canvas.cornell.edu" title="Sign in to Canvas to retrieve this electronic resource" target="_blank">(( item.dueDate ))</a>
