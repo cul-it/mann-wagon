@@ -27,8 +27,13 @@
           this.$set('item.elsewhere', true)
         }
 
+        // If "CURRENTLY UNAVAILABLE DUE TO LIBRARY CLOSURE"
+        if (this.item.dueDate == 'CURRENTLY UNAVAILABLE DUE TO LIBRARY CLOSURE') {
+          this.$set('item.dueDate', 'CURRENTLY UNAVAILABLE DUE TO LIBRARY CLOSURE')
+        }
+
         // Use Moment to format due date of unavailable items
-        if (this.item.dueDate !== 'Available' && this.item.dueDate !== 'Online' && this.item.location !== '?') {
+        if (this.item.dueDate !== 'Available' && this.item.dueDate !== 'CURRENTLY UNAVAILABLE DUE TO LIBRARY CLOSURE' && this.item.dueDate !== 'Online' && this.item.location !== '?') {
           var due = moment(this.item.dueDate)
           var dueRelative = due.calendar()
 

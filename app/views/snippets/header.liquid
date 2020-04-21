@@ -81,12 +81,12 @@
   </div>
 
   {% if site.metafields.emergency_alert.active %}
-    <div class="ui violet message emergency-alert">
-      <div class="header">
+    <div class="ui message emergency-alert">
+      {% comment %}<div class="header">
         Special Alert
-      </div>
+      </div>{% endcomment %}
 
-      <p> {{ site.metafields.emergency_alert.alert_message }}</p>
+      <p>{{ site.metafields.emergency_alert.alert_message }}</p>
     </div>
   {% endif %}
 

@@ -97,3 +97,16 @@ table.software-list__table {
 .mannlib-hidden {
   display: none;
 }
+
+// Override of emergency alert banner to fit the style on all other unit sites - no current options matched well enough
+.ui.message {
+  background-color: #fcf8e3;
+  color: #0068ac;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: center;
+  a, a:visited, a:focus, a:active {
+    color: #0068ac;
+  }
+}

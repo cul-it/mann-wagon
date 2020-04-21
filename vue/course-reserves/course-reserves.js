@@ -38,7 +38,7 @@ var vm = new Vue({
   methods: {
     getReserveItems () {
       if (this.selectedCourse) {
-        var reservesApiBaseUrl = 'https://api.library.cornell.edu/LibServices/showCourseReserveItemInfo.do?output=json&courseid='
+        var reservesApiBaseUrl = 'https://coursereserves.library.cornell.edu/CourseReserves/showCourseReserveItemInfo?courseid='
         var reservesApiUrl = reservesApiBaseUrl + this.selectedCourse
 
         this.toggleLoader()
