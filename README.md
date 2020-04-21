@@ -79,6 +79,29 @@ $ bundle exec wagon sync development -v
 $ bundle exec wagon deploy development -v
 ```
 
+#### Deploy to Production
+
+1. Copy the example configuration
+
+   ```sh
+   $ cp config/deploy.yml.example config/deploy.yml
+   ```
+
+2. Log in to Locomotive admin interface (https://admin.mannlib.cornell.edu), navigate to the Developers menu option, and copy the Production block that contains the `host`, `handle`, `email` and `api_key`
+
+3. Paste the Production block into your `config/deploy.yml`
+
+> **IMPORTANT!** Be sure to optimize assets prior to deploying
+> ```sh
+> $ yarn build
+> ```
+
+4. To deploy changes to Production environment, run 
+```sh
+$ bundle exec wagon deploy production
+```
+
+
 ### Linting
 
 Via [Javascript Standard Style](https://standardjs.com) and [sass-lint](https://github.com/sasstools/sass-lint)
