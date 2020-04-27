@@ -72,9 +72,19 @@ table.software-list__table {
   }
 }
 
-// Override grayed-out color for default value in select lists
+// Override grayed-out color for default value in select lists & toggles
 .ui.dropdown:not(.button)>.default.text {
     color: color('black') !important;
+}
+.ui.toggle.checkbox .box::before, .ui.toggle.checkbox label::before {
+  background-color: color('light-gray') !important;
+}
+.ui.toggle.checkbox input ~ .box::after, .ui.toggle.checkbox input ~ label::after {
+  box-shadow: 0 0 .1em color('medium-gray') inset !important;
+}
+
+.ui.toggle.checkbox input:focus ~ .box, .ui.toggle.checkbox input:focus ~ label {
+  border: dotted 1px color('action');
 }
 
 .body-equipment .section-nav {
