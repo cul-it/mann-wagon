@@ -563,10 +563,9 @@ export default {
           }
         }
       })
-      if (vueInstance.libcalReservations.length) {
-        // Set array values to be used later to merge
-        this.$set('libcalEvents', libcalEvents)
-      }
+
+      // Set array values to be used later to merge
+      this.$set('libcalEvents', libcalEvents)
     },
     // Custom data model from r25 events
     r25EventsArray (data) {

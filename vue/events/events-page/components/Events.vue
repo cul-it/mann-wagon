@@ -832,11 +832,11 @@ export default {
             }
           })
         })
-        // Set array values to be used later to merge
-        this.$set('libcalEvents', libcalEvents)
-        this.$set('libcalEventTypes', eventTypes)
-        this.$set('libcalRoomNames', roomNames)
       }
+      // Set array values to be used later to merge
+      this.$set('libcalEvents', libcalEvents)
+      this.$set('libcalEventTypes', eventTypes)
+      this.$set('libcalRoomNames', roomNames)
     },
     // Custom data model from r25 events
     r25EventsArray (data) {
