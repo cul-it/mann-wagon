@@ -17,7 +17,11 @@
   var searchResults = false
 
   if (apiKey && cseId) {
-    searchResults = callAPI('GET', apiUrl, {})
+    searchResults = callAPI('GET', apiUrl, {
+      headers: {
+        referer: 'https://mannlib.cornell.edu/search'
+      }
+    })
 
     if (searchResults.status === 200) {
       setProp('search_results', searchResults.data)
