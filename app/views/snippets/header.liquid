@@ -44,6 +44,16 @@
           <span class="badge todays-hours__now {% if mannlib_hours.status_1707 == 'Open' %}is-open{% else %}is-closed{% endif %}">{{ mannlib_hours.status_1707 }}</span>
         </a>
         <span class="todays-hours__until">
+          {% comment %} Display note for special "text" status from LibCal {% endcomment %}
+          {% if mannlib_hours.note_1707 %}
+            {% comment %} Link to COVID-19 return to campus FAQ if applicable {% endcomment %}
+            {% if (mannlib_hours.note_1707 | downcase) contains "pickup service" %}
+              <a href="https://www.library.cornell.edu/library-return-campus-faq">{{ mannlib_hours.note_1707 }}</a>
+            {% else %}
+              {{ mannlib_hours.note_1707 }}
+            {% endif %}
+          {% endif %}
+
           {% if mannlib_hours.hours_1707 %}
             {% if mannlib_hours.hours_1707 == '24 hours' %}
               {{ mannlib_hours.hours_1707 }}
