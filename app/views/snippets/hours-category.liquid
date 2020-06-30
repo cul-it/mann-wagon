@@ -18,7 +18,17 @@
 
             {% for time in day[1] %}
               <td class="{% if forloop.index == day_today %}hours-weekly__today{% endif %} hours-weekly__data">
-                <span class="hours-weekly__hours">{{ time[0] | replace: "Hours", "hrs" | replace: "Appointment", "Appt" | replace: "am", "a" | replace: "pm", "p" }}</span>
+                {% assign hours = time[0] | replace: "Hours", "hrs" | replace: "Appointment", "Appt" | replace: "am", "a" | replace: "pm", "p" %}
+                {% assign hours_downcase = hours | downcase %}
+
+                <span class="hours-weekly__hours">
+                  {% comment %} Link to COVID-19 return to campus FAQ if applicable {% endcomment %}
+                  {% if hours_downcase contains "pickup service" %}
+                    <a href="https://www.library.cornell.edu/library-return-campus-faq">{{ hours }}</a>
+                  {% else %}
+                    {{ hours }}
+                  {% endif %}
+                </span>
                 {% unless time[1] == nil %}
                   <span class="badge badge-danger hours-weekly__exception">{{ time[1] }}</span>
                 {% endunless %}
