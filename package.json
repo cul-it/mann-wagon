@@ -49,7 +49,7 @@
     "csvtojson": "^1.0.2",
     "formvalidation": "github:formvalidation/formvalidation",
     "jquery": "^2.2.4",
-    "jquery-ui": "1.10.5",
+    "jquery-ui": "1.12.1",
     "list.js": "^1.2.0",
     "semantic-ui-css": "^2.2.1",
     "slick-carousel": "^1.6.0",
