@@ -54,7 +54,6 @@ metafields:
   events_config:
     default_number_of_days:
   sensitive_data:
-    google_apikey:
     google_cse_id:
     labstats_customer_id:
     libcal_client_id:

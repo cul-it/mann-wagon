@@ -72,9 +72,6 @@ events_config:
 sensitive_data:
   label: Sensitive Data
   fields:
-    google_apikey:
-      type: string
-      hint: Used to authenticate against the Google Custom Search API for site search
     google_cse_id:
       label: Google CSE ID
       type: string
