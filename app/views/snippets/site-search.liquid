@@ -1,33 +1,14 @@
-{% comment %}
-  Use Locomotive Actions API to query CSE via Google Custom Search API
-  -- https://locomotive-v3.readme.io/v3.3/docs/external-api
-  -- https://developers.google.com/custom-search/json-api/v1/overview
-{% endcomment %}
-
-{% action "Query Google Custom Search API" %}
-  const sensitiveData = getProp('site').metafields.sensitive_data
-  const apiKey = sensitiveData.google_apikey
-  const cseId = sensitiveData.google_cse_id
-  const query = getProp('params').q
-  const startIndex = getProp('params').start
-  const apiUrl = 'https://www.googleapis.com/customsearch/v1?cx=' + cseId + '&key=' + apiKey + '&q=' + query
-  if (startIndex) {
-    apiUrl += '&start=' + startIndex
-  }
-  var searchResults = false
-
-  if (apiKey && cseId) {
-    searchResults = callAPI('GET', apiUrl, {
-      headers: {
-        referer: 'https://mannlib.cornell.edu/search'
-      }
-    })
-
-    if (searchResults.status === 200) {
-      setProp('search_results', searchResults.data)
-    }
-  }
-{% endaction %}
+<script>
+  (function() {
+    var cx = '{{ site.metafields.sensitive_data.google_cse_id }}';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
 
 <div class="site-search">
   <form class="site-search__trigger" action="{{ path }}">
@@ -35,52 +16,7 @@
     <input type="submit" value="Search" aria-hidden="true">
   </form>
 
-  {% if search_results %}
-    {% unless search_results.search_information.formatted_total_results == '0' %}
-      {% assign next_page = search_results.queries.next_page[0] %}
-      {% assign prev_page = search_results.queries.previous_page[0] %}
-
-      <div class="site-search__info">
-        <span>About {{ search_results.search_information.formatted_total_results }} results ({{ search_results.search_information.formatted_search_time }} seconds)</span>
-      </div>
-
-      <div class="site-search__results">
-        <ol>
-          {% for item in search_results.items %}
-            <li>
-              <h3 class="site-search__page-title"><a href="{{ item.link | replace: 'http:', 'https:' }}">{{ item.html_title | remove: ' | Albert R. Mann Library' }}</a></h3>
-              <p class="site-search__snippet">{{ item.html_snippet | remove: '<br>' }}</p>
-              <span class="site-search__url">{{ item.html_formatted_url | remove: 'https://' }}</span>
-            </li>
-          {% endfor %}
-        </ol>
-      </div>
-
-      {% if search_results %}
-        {% assign base_path = fullpath | split: '&start' | first %}
-
-        <ul class="site-search__pagination">
-          {% if prev_page %}
-            <li><a href="{{ base_path }}&start={{ prev_page.start_index | ceil }}">&laquo; Previous</a></li>
-          {% endif %}
-          {% if next_page %}
-            <li><a href="{{ base_path }}&start={{ next_page.start_index | ceil }}">Next &raquo;</a></li>
-          {% endif %}
-        </ul>
-      {% endif %}
-    {% else %}
-      <div class="ui warning message">
-        No results. Please modify your search and try again.
-      </div>
-    {% endunless %}
-  {% else  %}
-    <div class="ui warning message">
-      <div class="header">
-        Well, this is embarassing
-      </div>
-
-      <p>We are unable to process your search and apologize for this inconvenience.</p>
-      <p>You can try refreshing the page, but if the issue persists, please take a moment to <a href="{% path_to site-feedback %}" title="Report this error">report this error</a>.</p>
-    </div>
-  {% endif %}
+  <div class="site-search__results">
+    <gcse:searchresults-only linkTarget="_self"></gcse:searchresults-only>
+  </div>
 </div>
