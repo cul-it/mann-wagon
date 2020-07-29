@@ -120,3 +120,11 @@ table.software-list__table {
     color: #0068ac;
   }
 }
+
+// Override link color for ui error message
+.ui.message.error {
+  a, a:visited, a:focus, a:active {
+    color: color('error-dark');
+    font-weight: 700;
+  }
+}
