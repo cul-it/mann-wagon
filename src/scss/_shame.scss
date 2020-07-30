@@ -109,7 +109,7 @@ table.software-list__table {
 }
 
 // Override of emergency alert banner to fit the style on all other unit sites - no current options matched well enough
-.ui.message {
+.ui.message.emergency-alert {
   background-color: #fcf8e3;
   color: #0068ac;
   border: 0;
@@ -118,5 +118,13 @@ table.software-list__table {
   text-align: center;
   a, a:visited, a:focus, a:active {
     color: #0068ac;
+  }
+}
+
+// Override link color for ui error message
+.ui.message.error {
+  a, a:visited, a:focus, a:active {
+    color: color('error-dark');
+    font-weight: 700;
   }
 }
