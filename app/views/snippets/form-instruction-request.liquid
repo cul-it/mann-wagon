@@ -44,27 +44,6 @@
 
     <h4 class="ui dividing header mann-form__header">Instruction/Workshop Information</h4>
 
-    {% assign type_descriptions = 'Librarian comes to your class as a guest lecturer. One or two sessions as needed. | Can be offered in lieu of or in addition to in-class instruction. Focus is on specific topics. | Can be scheduled as a supplement to in-class instruction. Opportunity for students to get extra assistance with research assignments in small groups with librarian present to facilitate. | Tailored to your class (library guides, tutorials, videos, etc.) | Basic orientation to library services' | split: ' | ' %}
-
-    <fieldset class="required grouped fields" role="group" aria-labelledby="instruction-type-label">
-      <legend id="instruction-type-label" for="instruction-type">What type of instruction would you like?</legend>
-      <span class="mann-form__hint">Select all that apply</span>
-
-      {% assign instruct_type_other = instruction_request.instruction_types | last %}
-
-      {% for type in contents.instruction_requests.instruction_types_managed_list_options %}
-        <div class="field">
-          <div class="ui checkbox">
-            <input id="instruction-type-{{ forloop.index }}" {% if forloop.last %} class="js-mannform-other" {% endif %} type="checkbox" name="content[instruction_types][]" value="{{ type }}" data-prefix="{{ type }}" {% if instruction_request.instruction_types contains type or instruct_type_other contains type %} checked {% endif %}>
-            <label for="instruction-type-{{ forloop.index }}">{{ type }} <span class="mann-form__hint">{{ type_descriptions[forloop.index0] }}</span></label>
-            {% if forloop.last %}
-              <input id="instruction-type-other" class="js-mannform-other__value" type="text" aria-label="Please elaborate" placeholder="Please elaborate">
-            {% endif %}
-          </div>
-        </div>
-      {% endfor %}
-    </fieldset>
-
     <div class="field mann-form__minimal">
       <label for="number-participants">Anticipated Number of Participants</label>
       <input type="text" id="number-participants" name="content[number_participants]" value="{{ instruction_request.number_participants }}">
@@ -99,22 +78,6 @@
         </div>
       </div>
     </div>
-
-    <fieldset class="required grouped fields" role="radiogroup" aria-labelledby="location-label">
-      <legend for="location" id="location-label">Preferred location for instruction</legend>
-
-      {% for loc in contents.instruction_requests.location_managed_list_options %}
-        <div class="field">
-          <div class="ui radio checkbox">
-            <input type="radio" id="location-{{ forloop.index }}" name="content[location]" {% if forloop.first != true %} class="js-mannform-other" {% endif %} value="{{ loc }}" data-prefix="{{ loc }}" aria-label="{{ loc }}" {% if instruction_request.location contains loc %} checked {% endif %}>
-            <label for="location-{{ forloop.index }}" class="radio-button__label">{{ loc }}</label>
-            {% if forloop.first != true %}
-              <input id="location-other-{{ forloop.index }}" class="js-mannform-other__value" type="text" aria-label="Please specify" placeholder="Please specify">
-            {% endif %}
-          </div>
-        </div>
-      {% endfor %}
-    </fieldset>
 
     <div class="required field">
       <label for="needs">Instruction Needs and/or Learning Outcomes</label>
