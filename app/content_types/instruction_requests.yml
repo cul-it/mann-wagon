@@ -91,7 +91,7 @@ fields:
 - instruction_types: # The lowercase, underscored name of the field
     label: Requested instruction types # Human readable name of the field
     type: tags
-    required: true
+    required: false
     hint: This field records the instruction types selected by the user when submitting a request
     localized: false    # if localized, use
 
@@ -130,7 +130,7 @@ fields:
 - location: # The lowercase, underscored name of the field
     label: Preferred Location # Human readable name of the field
     type: tags
-    required: true
+    required: false
     hint: This field records the preferred location selected by the user when submitting a request
     localized: false    # if localized, use
 

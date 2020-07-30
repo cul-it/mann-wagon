@@ -129,20 +129,21 @@ $('.ui.form')
           prompt: 'Please enter the course number'
         }]
       },
-      instruction_types: {
-        identifier: 'content[instruction_types][]',
-        rules: [{
-          type: 'checked',
-          prompt: 'Please select at least one type of instruction'
-        }]
-      },
-      location: {
-        identifier: 'content[location]',
-        rules: [{
-          type: 'checked',
-          prompt: 'Please select your preferred location'
-        }]
-      },
+      // Remove these fields in prep for Fall 2020 COVID-19 reopening
+      // instruction_types: {
+      //   identifier: 'content[instruction_types][]',
+      //   rules: [{
+      //     type: 'checked',
+      //     prompt: 'Please select at least one type of instruction'
+      //   }]
+      // },
+      // location: {
+      //   identifier: 'content[location]',
+      //   rules: [{
+      //     type: 'checked',
+      //     prompt: 'Please select your preferred location'
+      //   }]
+      // },
       needs: {
         identifier: 'needs',
         rules: [{
