@@ -42,6 +42,18 @@
   {% comment %} Don't display the form after successful submission {% endcomment %}
   {% unless instruction_request.errors == false %}
 
+    <h4 class="ui dividing header mann-form__header">Course Information</h4>
+
+    <div class="required field mann-form__compact">
+      <label for="course-name">Course Name</label>
+      <input type="text" id="course-name" name="content[course_name]" value="{{ instruction_request.course_name }}"">
+    </div>
+
+    <div class="required field mann-form__minimal">
+      <label for="course-number">Course Number</label>
+      <input type="text" id="course-number" name="content[course_number]" value="{{ instruction_request.course_number }}">
+    </div>
+
     <h4 class="ui dividing header mann-form__header">Instruction/Workshop Information</h4>
 
     <div class="field mann-form__minimal">
@@ -131,18 +143,6 @@
           <option value="{{ affiliation }}" {% if instruction_request.affiliation == affiliation %} selected {% endif %}>{{ affiliation }}</option>
         {% endfor %}
       </select>
-    </div>
-
-    <h4 class="ui dividing header mann-form__header">Course Information</h4>
-
-    <div class="required field mann-form__compact">
-      <label for="course-name">Course Name</label>
-      <input type="text" id="course-name" name="content[course_name]" value="{{ instruction_request.course_name }}"">
-    </div>
-
-    <div class="required field mann-form__minimal">
-      <label for="course-number">Course Number</label>
-      <input type="text" id="course-number" name="content[course_number]" value="{{ instruction_request.course_number }}">
     </div>
 
     <button class="ui button" type="submit">Submit your request</button>
