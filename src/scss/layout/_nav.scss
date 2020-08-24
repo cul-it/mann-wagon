@@ -73,7 +73,8 @@
   font-weight: normal;
 
   &:hover {
-    color: color('accessory-nav-hover');
+    color: color('accessory-nav');
+    text-decoration: underline; 
   }
 }
 
@@ -154,7 +155,8 @@
     color: color('my-account-mobile');
 
     &:hover {
-      color: color('accessory-nav-hover');
+      color: color('accessory-nav');
+      text-decoration: underline;
     }
   }
 }
