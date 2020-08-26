@@ -128,3 +128,10 @@ table.software-list__table {
     font-weight: 700;
   }
 }
+
+// Temporarily reduce opacity for space finder for Fall 2020 (COVID-19)
+.space,
+.space-finder__cards,
+.space-finder__study-spaces {
+  opacity: 50%;
+}
