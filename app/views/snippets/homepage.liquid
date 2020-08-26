@@ -14,10 +14,20 @@
   </div>
 </section> {% endcomment %}
 
+<div class="quiet-study">
+  <div class="quuiet-study__icon">
+    <img src="{{ 'home-callout_our-collection.png' | theme_image_url }}" alt="quiet study icon">
+  </div>
+  <div class="quiet-study__details">
+    <p class="quiet-study__info">Mann Library offers 7 zones of quiet study on the first floor, maintaining a minimum physical distance of 6 feet.<p>
+    <a class="quiet-study__reserve ui teal button" href="https://chatter.cornell.edu" alt="Reserve your quiet study in Mann Library via Cornell Chatter">Reserve quiet study</a>
+  </div>
+</div>
+
 {% comment %} 
   New callouts for Fall 2019 as per Erica's request
 {% endcomment %}
-{% assign home_callouts = "Research Support, Library Instruction, Our Collection" | split: ', ' %}
+{% assign home_callouts = "Research Support" | split: ', ' %}
 
 <div class="home-callouts">
   {% for section in home_callouts %}
