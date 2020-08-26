@@ -1,4 +1,7 @@
-<section class="available-now" aria-labelledby="available-now-label">
+{% comment %}
+  Temporarily disable available now for Fall 2020 (COVID-19)
+{% endcomment %}
+{% comment %} <section class="available-now" aria-labelledby="available-now-label">
   <h4 class="available-now__heading lead-in" id="available-now-label">
     Available Now
     <span class="available-now__datetime">{{ now | date: '%-I:%M %p' }}</span>
@@ -9,7 +12,7 @@
   <div class="available-now__grp available-now__study">
     {% include 'availnow-study' %}
   </div>
-</section>
+</section> {% endcomment %}
 
 {% comment %} 
   New callouts for Fall 2019 as per Erica's request
