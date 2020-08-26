@@ -28,17 +28,21 @@
 {% include 'spotlights-carousel' %}
 
 {% comment %}
+  Temporarily disable upcoming events for Fall 2020 (COVID-19)
+{% endcomment %}
+
+{% comment %}
   Pass path to events page as JS variable, and use in Vue app
 {% endcomment %}
-<script type="text/javascript">
+{% comment %} <script type="text/javascript">
   var path_to_homepage = '{% path_to page.handle %}';
-</script>
+</script> {% endcomment %}
 
 {% comment %}
   Pass curated event-locations and event_types to Vue app
 {% endcomment %}
 
-{% capture event_locations %}
+{% comment %} {% capture event_locations %}
   {% for event_location in contents.event_locations %}
     {% if (forloop.last)%}
       {"curated_event_location_name":"{{ event_location.name | escape }}","alternate_event_location_names":"{{ event_location.alternate_names | join: ', ' | escape }}","smartmap_url":"{{ event_location.smartmap_url | escape }}"}
@@ -67,7 +71,7 @@ event-locations = '{{ event_locations | default: null }}'
 event-types = '{{ event_types | default: null }}'
 ></router-view>
 
-{{ 'homePageEvents.bundle.js' | javascript_tag }}
+{{ 'homePageEvents.bundle.js' | javascript_tag }} {% endcomment %}
 
 <section class="meet-experts" aria-labelledby="meet-experts-label">
   <h4 class="meet-experts__heading lead-in" id="meet-experts-label">
