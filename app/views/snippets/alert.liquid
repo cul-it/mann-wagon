@@ -1,0 +1,12 @@
+{% capture alert_enabled %}{% editable_control "alert_enabled?", options: 'true=Yes,false=No', hint: "Must save to reflect change in live preview =(", priority: 1 %}
+  false
+{% endeditable_control %}{% endcapture %}
+
+{% if alert_enabled == 'true' %}
+  <div class="ui icon error message">
+    <span class="exclamation circle icon"></span>
+    <div class="content">
+      {% editable_text "alert_body", hint: "Ensure the alert is enabled above" %}{% endeditable_text %}
+    </div>
+  </div>
+{% endif %}

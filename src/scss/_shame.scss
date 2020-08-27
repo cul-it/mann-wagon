@@ -126,5 +126,6 @@ table.software-list__table {
   a, a:visited, a:focus, a:active {
     color: color('error-dark');
     font-weight: 700;
+    text-decoration: underline;
   }
 }
