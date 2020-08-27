@@ -134,4 +134,11 @@ table.software-list__table {
 .space-finder__cards,
 .space-finder__study-spaces {
   opacity: 50%;
+
+  // And disable all links while we're at it
+  a {
+    pointer-events: none;
+    cursor: default !important;
+    text-decoration: none;
+  }
 }

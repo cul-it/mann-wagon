@@ -14,7 +14,7 @@
 
     {% capture card_link_attr %}href="{% path_to space %}" title="View details for {{ space.name }}"{% endcapture %}
 
-    <div class="ui raised link card">
+    <div class="ui raised card">
       <a class="image" {{ card_link_attr }}>
         <img src="{{ space.photo.url | resize: '700x475#' }}" alt="photo of {{ space.name }}">
       </a>
@@ -119,4 +119,7 @@
   {% endfor %}
 </div>
 
-{{ 'spacesCards.bundle.js' | javascript_tag }}
+{% comment %}
+  Temporarily disable spaces cards links for Fall 2020 (COVID-19)
+{% endcomment %}
+{% comment %} {{ 'spacesCards.bundle.js' | javascript_tag }} {% endcomment %}
