@@ -10,6 +10,12 @@
   }
 }
 
+// Scrub CSE results
+.gsc-adBlock {
+  height: 0 !important;
+  display: none !important;
+}
+
 // Quick fix for desktops & laptops on home page
 // -- keep them stacked at tablet breakpoint while in isolate layout
 // -- alternative is to wrap them in another div :(
