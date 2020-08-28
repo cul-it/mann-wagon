@@ -52,5 +52,8 @@ editable_elements:
 {% extends parent %}
 
 {% block 'main/accessory' %}
-  {% include 'accessory-desktops' %}
+  {% comment %}
+    Temporarily disable desktop availability for Fall 2020 (COVID-19)
+  {% endcomment %}
+  {% comment %} {% include 'accessory-desktops' %} {% endcomment %}
 {% endblock %}
