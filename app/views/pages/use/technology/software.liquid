@@ -17,5 +17,8 @@ editable_elements:
 {% extends "layouts/basic-page" %}
 
 {% block 'main/dynamic' %}
-  {% include 'dynamic-software-list' %}
+  {% comment %}
+    Temporarily disable software list for Fall 2020 (COVID-19)
+  {% endcomment %}
+  {% comment %} {% include 'dynamic-software-list' %} {% endcomment %}
 {% endblock %}
