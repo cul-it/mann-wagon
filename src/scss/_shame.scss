@@ -135,3 +135,19 @@ table.software-list__table {
     text-decoration: underline;
   }
 }
+
+// Temporarily reduce opacity for space finder images for Fall 2020 (COVID-19)
+.space,
+.space-finder__cards,
+.space-finder__study-spaces {
+  img {
+    opacity: .35;
+  }
+
+  // And disable all links while we're at it
+  a {
+    pointer-events: none;
+    cursor: default !important;
+    text-decoration: none;
+  }
+}

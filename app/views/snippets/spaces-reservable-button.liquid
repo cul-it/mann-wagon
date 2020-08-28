@@ -4,6 +4,9 @@
   {% assign reserve_url = space.reservation_system.url %}
 {% endif %}
 
-<a class="ui labeled icon button space-finder__reserve js-spacefinder-link {% if indiv_space %}space__reserve{% endif %}" href="{{ reserve_url }}" title="Reserve {{ space.name }}" target="_blank">
+{% comment %}
+  Temporarily disable space reservations for Fall 2020 (COVID-19)
+{% endcomment %}
+{% comment %} <a class="ui labeled icon button space-finder__reserve js-spacefinder-link {% if indiv_space %}space__reserve{% endif %}" href="{{ reserve_url }}" title="Reserve {{ space.name }}" target="_blank">
   <span class="calendar icon"></span> Reserve
-</a>
+</a> {% endcomment %}
