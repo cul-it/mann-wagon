@@ -15,7 +15,7 @@
     {% assign section_link = '#' %}
 {% endcase %}
 
-{% assign section_img = section_kebab | prepend: 'home-callout_' | append: '.png' %}
+{% assign section_img = section_kebab | prepend: 'home-callout_' | append: '_covid.png' %}
 
 <section class="home-callouts__item" aria-labelledby="home-callouts__item-label--{{ section_kebab }}">
   <a href="{{ section_link }}" title="{{ section }}: {{ tagline }}">
