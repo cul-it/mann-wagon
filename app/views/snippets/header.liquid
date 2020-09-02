@@ -69,7 +69,9 @@
         </span>
       </li>
       <li class="todays-hours__location">
-        <span class="todays-hours__label">Contactless Pickup</span>
+        <span class="todays-hours__label">
+          <a href="{% path_to contactless-pickup %}" title="Review details of our contactless pickup service">Contactless Pickup</a>
+        </span>
         <a class="todays-hours__link" href="{% path_to hours %}">
           <span class="badge todays-hours__now {% if mannlib_hours.status_14351 == 'Open' %}is-open{% else %}is-closed{% endif %}">{{ mannlib_hours.status_14351 }}</span>
         </a>
