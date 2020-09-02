@@ -47,8 +47,11 @@
           {% comment %} Display note for special "text" status from LibCal {% endcomment %}
           {% if mannlib_hours.note_1707 %}
             {% comment %} Link to COVID-19 return to campus FAQ if applicable {% endcomment %}
-            {% if (mannlib_hours.note_1707 | downcase) contains "pickup service" %}
+            {% if mannlib_hours.note_1707 contains "pickup service" %}
               <a href="https://www.library.cornell.edu/library-return-campus-faq">{{ mannlib_hours.note_1707 }}</a>
+            {% comment %} Exception for classes (first week of Fall 2020) {% endcomment %}
+            {% elsif mannlib_hours.note_1707 contains "except for academic classes" %}
+              {{ mannlib_hours.note_1707 | replace: 'Closed ', '' }}
             {% else %}
               {{ mannlib_hours.note_1707 }}
             {% endif %}
@@ -66,18 +69,18 @@
         </span>
       </li>
       <li class="todays-hours__location">
-        <span class="todays-hours__label">Lobby</span>
+        <span class="todays-hours__label">Contactless Pickup</span>
         <a class="todays-hours__link" href="{% path_to hours %}">
-          <span class="badge todays-hours__now {% if mannlib_hours.status_1709 == 'Open' %}is-open{% else %}is-closed{% endif %}">{{ mannlib_hours.status_1709 }}</span>
+          <span class="badge todays-hours__now {% if mannlib_hours.status_14351 == 'Open' %}is-open{% else %}is-closed{% endif %}">{{ mannlib_hours.status_14351 }}</span>
         </a>
         <span class="todays-hours__until">
-          {% if mannlib_hours.hours_1709 %}
-            {% if mannlib_hours.hours_1709 == '24hours' %}
-              {{ mannlib_hours.hours_1709 | replace: '24hours', '24 hours' }}
-            {% elsif mannlib_hours.hours_1709 contains 'Opens' %}
-              {{ mannlib_hours.hours_1709 }}
+          {% if mannlib_hours.hours_14351 %}
+            {% if mannlib_hours.hours_14351 == '24hours' %}
+              {{ mannlib_hours.hours_14351 | replace: '24hours', '24 hours' }}
+            {% elsif mannlib_hours.hours_14351 contains 'Opens' %}
+              {{ mannlib_hours.hours_14351 }}
             {% else %}
-            {{ mannlib_hours.hours_1709 | date: '%l:%M %p' | downcase | replace: ':00', '' | prepend: 'until ' | replace: '12 am', 'Midnight' | replace: '12 pm', 'Noon'}}
+            {{ mannlib_hours.hours_14351 | date: '%l:%M %p' | downcase | replace: ':00', '' | prepend: 'until ' | replace: '12 am', 'Midnight' | replace: '12 pm', 'Noon'}}
             {% endif %}
           {% endif %}
         </span>
