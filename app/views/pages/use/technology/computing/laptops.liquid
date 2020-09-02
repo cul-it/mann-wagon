@@ -26,5 +26,8 @@ editable_elements:
 {% extends parent %}
 
 {% block 'main/accessory' %}
-  {% include 'accessory-laptops' %}
+  {% comment %}
+    Temporarily disable laptop availability for Fall 2020 (COVID-19)
+  {% endcomment %}
+  {% comment %} {% include 'accessory-laptops' %} {% endcomment %}
 {% endblock %}
