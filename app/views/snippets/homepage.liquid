@@ -1,4 +1,7 @@
-<section class="available-now" aria-labelledby="available-now-label">
+{% comment %}
+  Temporarily disable available now for Fall 2020 (COVID-19)
+{% endcomment %}
+{% comment %} <section class="available-now" aria-labelledby="available-now-label">
   <h4 class="available-now__heading lead-in" id="available-now-label">
     Available Now
     <span class="available-now__datetime">{{ now | date: '%-I:%M %p' }}</span>
@@ -9,12 +12,27 @@
   <div class="available-now__grp available-now__study">
     {% include 'availnow-study' %}
   </div>
-</section>
+</section> {% endcomment %}
+
+<div class="quiet-study">
+  <div class="quiet-study__icon">
+    <img src="{{ 'home-callout_our-collection_covid.png' | theme_image_url }}" alt="quiet study icon">
+  </div>
+  <div class="quiet-study__details">
+    <p>Mann Library offers quiet study on the first and second floors, maintaining a minimum physical distance of 6 feet.<p>
+    <p>Please respect others in this shared space by <a href="https://covid.cornell.edu" title="Cornell Universiity's COVID-19 and Reactivation Planning">complying with your Behavioral Compact</a>.</p>
+    <p><em>Quiet study reservations coming soon.</em></p>
+    {% comment %}
+      Reservation system is still a big unknown
+    {% endcomment %}
+    {% comment %} <a class="quiet-study__reserve ui teal button" href="https://chatter.cornell.edu" alt="Reserve your quiet study in Mann Library via Cornell Chatter">Reserve quiet study</a> {% endcomment %}
+  </div>
+</div>
 
 {% comment %} 
   New callouts for Fall 2019 as per Erica's request
 {% endcomment %}
-{% assign home_callouts = "Research Support, Library Instruction, Our Collection" | split: ', ' %}
+{% assign home_callouts = "Research Support" | split: ', ' %}
 
 <div class="home-callouts">
   {% for section in home_callouts %}
@@ -25,17 +43,21 @@
 {% include 'spotlights-carousel' %}
 
 {% comment %}
+  Temporarily disable upcoming events for Fall 2020 (COVID-19)
+{% endcomment %}
+
+{% comment %}
   Pass path to events page as JS variable, and use in Vue app
 {% endcomment %}
-<script type="text/javascript">
+{% comment %} <script type="text/javascript">
   var path_to_homepage = '{% path_to page.handle %}';
-</script>
+</script> {% endcomment %}
 
 {% comment %}
   Pass curated event-locations and event_types to Vue app
 {% endcomment %}
 
-{% capture event_locations %}
+{% comment %} {% capture event_locations %}
   {% for event_location in contents.event_locations %}
     {% if (forloop.last)%}
       {"curated_event_location_name":"{{ event_location.name | escape }}","alternate_event_location_names":"{{ event_location.alternate_names | join: ', ' | escape }}","smartmap_url":"{{ event_location.smartmap_url | escape }}"}
@@ -64,7 +86,7 @@ event-locations = '{{ event_locations | default: null }}'
 event-types = '{{ event_types | default: null }}'
 ></router-view>
 
-{{ 'homePageEvents.bundle.js' | javascript_tag }}
+{{ 'homePageEvents.bundle.js' | javascript_tag }} {% endcomment %}
 
 <section class="meet-experts" aria-labelledby="meet-experts-label">
   <h4 class="meet-experts__heading lead-in" id="meet-experts-label">

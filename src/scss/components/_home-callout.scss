@@ -2,11 +2,13 @@
   @include span(full nest);
 
   @include susy-breakpoint($scape, $g-scape) {
+    @include span(last 2 nest);
+
     display: flex;
     overflow: hidden;
   }
 
-  margin-top: 4em;
+  margin-top: 2em;
 }
 
 .home-callouts__item {

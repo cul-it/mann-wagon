@@ -1,0 +1,38 @@
+.quiet-study {
+  @include span(full nest);
+
+  @include susy-breakpoint($scape, $g-scape) {
+    @include span(first 4 nest);
+
+    display: flex;
+    overflow: hidden;
+    padding: 0;
+    text-align: left;
+  }
+
+  margin-top: 2em;
+  padding: 0 4em;
+  text-align: center;
+}
+
+.quiet-study__details {
+  @include susy-breakpoint($tablet, $g-tablet) {
+    padding-top: 2em;
+  }
+
+  @include susy-breakpoint($lapdesk, $g-lapdesk) {
+    padding-top: 3em;
+  }
+}
+
+.quiet-study__reserve {
+  &.ui.button { // sass-lint:disable-line force-element-nesting |Override semantic ui default
+    margin-top: 1em;
+    background-color: color('consultation');
+    color: color('vulcan');
+
+    &:hover {
+      background-color: color('consultation' ('shade': 10%));
+    }
+  }
+}
