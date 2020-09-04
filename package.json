@@ -30,7 +30,7 @@
     "lodash": "^4.17.19",
     "mathsass": "^0.9.5",
     "moment": "^2.19.3",
-    "node-sass": "^3.4.2",
+    "node-sass": "^4.13.1",
     "normalize-scss": "^4.0.3",
     "optimize-css-assets-webpack-plugin": "^2.0.0",
     "sass-lint": "^1.7.0",
