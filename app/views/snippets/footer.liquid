@@ -14,24 +14,14 @@
       {% endfor %}
     </ul>
 
-    <h5 class="footer__heading"><a class="footer__heading-link" href="http://smartmap.mannlib.cornell.edu" title="Mann Library SmartMap" target="_blank">Floor Plans</a></h5>
+    <h5 class="footer__heading"><a class="footer__heading-link" href="{% path_to floorplans %}" title="View our building maps">Floor Plans</a></h5>
 
-    <ul>
-      <li>
-        <a href="http://smartmap.mannlib.cornell.edu/floor/0" title="Basement floor plan" target="_blank">Basement</a>
-      </li>
-      <li>
-        <a href="http://smartmap.mannlib.cornell.edu/floor/1" title="First floor, floor plan" target="_blank">1st</a>
-      </li>
-      <li>
-        <a href="http://smartmap.mannlib.cornell.edu/floor/2" title="Second floor, floor plan" target="_blank">2nd</a>
-      </li>
-      {% comment %}
-        Third floor will is closed for Fall 2020 (COVID-19)
-      {% endcomment %}
-      {% comment %} <li>
-        <a href="http://smartmap.mannlib.cornell.edu/floor/3" title="Third floor, floor plan" target="_blank">3rd</a>
-      </li> {% endcomment %}
+    {% comment %} About Us subnav with child pages {% endcomment %}
+    {% with_scope handle: 'floorplans' %}{% assign floorplans_page = site.pages.first %}{% endwith_scope %}
+    <ul class="footer__about-subnav">
+      {% for child in floorplans_page.children %}
+        <li><a href="{% path_to child %}" title="{{ child.title }}">{{ child.title }}</a></li>
+      {% endfor %}
     </ul>
   </div>
 
