@@ -1,0 +1,20 @@
+---
+title: Basement
+slug: basement
+handle: basement
+position: 0
+listed: true
+published: true
+is_layout: false
+editable_elements:
+  alert/alert_enabled?: 'false'
+  alert/alert_body: ''
+  "/alert_enabled?": 'false'
+  "/alert_body": ''
+  main/page_content: <p><img title="mann-floorplan-basement.png" alt="undefined" src="/samples/assets/mann-floorplan-basement.png"><br></p>
+---
+{% extends "layouts/basic-page" %}
+
+{% block 'main/accessory' %}
+  {% include 'nav-siblings' %}
+{% endblock %}

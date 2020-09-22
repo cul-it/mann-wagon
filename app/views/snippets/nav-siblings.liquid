@@ -1,0 +1,14 @@
+<nav aria-label="Project navigation">
+  <h4 class="parent-section">{{ page.parent.title }}</h4>
+
+  <ul>
+    {% for sibling in page.parent.children %}
+      {% if sibling.listed? and sibling.published? %}
+        <li>
+          {% comment %} Re-use nav-snippet for section nav by passing sibling as page {% endcomment %}
+          {% include 'nav-section-builder' with page: sibling %}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</nav>
