@@ -14,3 +14,7 @@ editable_elements:
   main/page_content: <p><img title="mann-floorplan-basement.png" alt="undefined" src="/samples/assets/mann-floorplan-basement.png"><br></p>
 ---
 {% extends "layouts/basic-page" %}
+
+{% block 'main/accessory' %}
+  {% include 'nav-siblings' %}
+{% endblock %}

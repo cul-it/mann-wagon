@@ -12,3 +12,7 @@ editable_elements:
   alert/alert_body: ''
 ---
 {% extends "layouts/basic-page" %}
+
+{% block 'main/accessory' %}
+  {% include 'nav-siblings' %}
+{% endblock %}
