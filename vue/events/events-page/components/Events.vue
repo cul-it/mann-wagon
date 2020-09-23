@@ -677,6 +677,8 @@ export default {
           events['event_room_name'] = value.room_number.trim().replace(',', '')
         } else if (value.location_name) {
           events['event_room_name'] = value.location_name.trim().replace(',', '')
+        } else {
+          events['event_room_name'] = 'Virtual Event'
         }
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
           if (curatedEventLocation[0] === events['event_room_name'] || _.includes(curatedEventLocation[1], events['event_room_name'])) {
@@ -992,6 +994,8 @@ export default {
           location = data.room_number.trim().replace(',', '')
         } else if (data.location_name) {
           location = data.location_name.trim().replace(',', '')
+        } else {
+          location = 'Virtual Event'
         }
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
           if (curatedEventLocation[0] === location || _.includes(curatedEventLocation[1], location)) {
