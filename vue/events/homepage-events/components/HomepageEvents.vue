@@ -465,7 +465,7 @@ export default {
         events['event_end_time'] = value.event_instances[0].event_instance.end
         if (value.room_number) {
           events['event_room_name'] = value.room_number.trim().replace(',', '')
-        } else if (value.location_name != '') {
+        } else if (value.location_name) {
           events['event_room_name'] = value.location_name.trim().replace(',', '')
         }
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
@@ -674,9 +674,9 @@ export default {
           })
         })
         var location = ''
-        if (data.room_number !== '') {
+        if (data.room_number) {
           location = data.room_number.trim().replace(',', '')
-        } else if (data.location_name != '') {
+        } else if (data.location_name) {
           location = data.location_name.trim().replace(',', '')
         }
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
