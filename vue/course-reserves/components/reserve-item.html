@@ -12,9 +12,9 @@
   <td>
     <a v-if="item.online" href="https://canvas.cornell.edu" title="Sign in to Canvas to retrieve this electronic resource" target="_blank">(( item.dueDate ))</a>
     <span v-if="item.dueDate === 'Available'" class="badge badge-success">(( item.dueDate ))</span>
+    <span v-else><span v-if="!item.online">(( item.dueDate ))</span></span>
     <span v-if="item.checkedOut" class="badge badge-error">(( item.formattedDueDate ))</span>
-    <span v-if="item.dueDate === 'CURRENTLY UNAVAILABLE DUE TO LIBRARY CLOSURE'">(( item.dueDate ))</span>
-    <template v-if="item.overdue">
+    <template v-if="item.overdue && item.checkedOut">
       <span class="badge badge-danger">Overdue</span>
       <span class="course-reserves__overdue">(( item.formattedDueDate ))</span>
     </template>
