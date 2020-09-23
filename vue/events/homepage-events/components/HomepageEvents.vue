@@ -185,7 +185,7 @@ export default {
       // console.log(error.status, error.statusText, error.request.url);
       this.apiErrors.push(service)
       if (this.apiErrors.length === 3) {
-        this.$set('noEventsMessage', 'Something went wrong while getting upcoming events, please try again later. <br><a href="/contact/site-feedback">Report this issue.</a>')
+        this.$set('noEventsMessage', 'Something went wrong while getting upcoming events, please try again later. <br><a href="/site-feedback">Report this issue.</a>')
       }
     },
     displayEventList () {
@@ -327,7 +327,7 @@ export default {
           this.setLibCalEvents(option, param)
         }).catch(function(error){
           vueInstance.setLibCalEvents(option, 'error')
-          vueInstance.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/contact/site-feedback">Report this issue.</a>')
+          vueInstance.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/site-feedback">Report this issue.</a>')
           vueInstance.$set('errorLibcalEvents', error)
           vueInstance.$set('eventSources.updatedLibcalEvents', true)
         })
@@ -433,7 +433,7 @@ export default {
             }).catch(function(error){
               vueInstance.eventArray('Error')
               vueInstance.$set('errorR25Event', error)
-              this.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/contact/site-feedback">Report this issue.</a>')
+              this.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/site-feedback">Report this issue.</a>')
             })
         }
       }
@@ -463,9 +463,9 @@ export default {
         events['event_start_time'] = value.event_instances[0].event_instance.start
         events['event_start'] = value.event_instances[0].event_instance.start.substring(0, 10)
         events['event_end_time'] = value.event_instances[0].event_instance.end
-        if (value.room_number != '') {
+        if (value.room_number) {
           events['event_room_name'] = value.room_number.trim().replace(',', '')
-        } else if (value.location_name != '') {
+        } else if (value.location_name) {
           events['event_room_name'] = value.location_name.trim().replace(',', '')
         }
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
@@ -620,7 +620,7 @@ export default {
       }).catch(function(error){
         vueInstance.eventArray('Error')
         vueInstance.$set('errorCornellEvent', error)
-        this.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/contact/site-feedback">Report this issue.</a>')
+        this.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/site-feedback">Report this issue.</a>')
       })
     },
     eventArray (source, data) {
@@ -674,9 +674,9 @@ export default {
           })
         })
         var location = ''
-        if (data.room_number !== '') {
+        if (data.room_number) {
           location = data.room_number.trim().replace(',', '')
-        } else if (data.location_name != '') {
+        } else if (data.location_name) {
           location = data.location_name.trim().replace(',', '')
         }
         _.forEach(vueInstance.curatedEventLocations, function(curatedEventLocation, index) {
