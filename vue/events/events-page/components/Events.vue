@@ -673,7 +673,7 @@ export default {
         events['event_start_time'] = value.event_instances[0].event_instance.start
         events['event_start'] = value.event_instances[0].event_instance.start.substring(0, 10)
         events['event_end_time'] = value.event_instances[0].event_instance.end
-        if (value.room_number != '') {
+        if (value.room_number) {
           events['event_room_name'] = value.room_number.trim().replace(',', '')
         } else if (value.location_name != '') {
           events['event_room_name'] = value.location_name.trim().replace(',', '')
@@ -708,7 +708,7 @@ export default {
         cornellEvents.push(events)
 
         // Room filter list array
-        if (value.room_number != '') {
+        if (value.room_number) {
           if (roomNames.indexOf(value.room_number.trim().replace(',', '')) === -1) {
             roomNames.push(value.room_number.trim().replace(',', ''))
           }
