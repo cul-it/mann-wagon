@@ -185,7 +185,7 @@ export default {
       // console.log(error.status, error.statusText, error.request.url);
       this.apiErrors.push(service)
       if (this.apiErrors.length === 3) {
-        this.$set('noEventsMessage', 'Something went wrong while getting upcoming events, please try again later. <br><a href="/contact/site-feedback">Report this issue.</a>')
+        this.$set('noEventsMessage', 'Something went wrong while getting upcoming events, please try again later. <br><a href="/site-feedback">Report this issue.</a>')
       }
     },
     displayEventList () {
@@ -327,7 +327,7 @@ export default {
           this.setLibCalEvents(option, param)
         }).catch(function(error){
           vueInstance.setLibCalEvents(option, 'error')
-          vueInstance.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/contact/site-feedback">Report this issue.</a>')
+          vueInstance.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/site-feedback">Report this issue.</a>')
           vueInstance.$set('errorLibcalEvents', error)
           vueInstance.$set('eventSources.updatedLibcalEvents', true)
         })
@@ -433,7 +433,7 @@ export default {
             }).catch(function(error){
               vueInstance.eventArray('Error')
               vueInstance.$set('errorR25Event', error)
-              this.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/contact/site-feedback">Report this issue.</a>')
+              this.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/site-feedback">Report this issue.</a>')
             })
         }
       }
@@ -620,7 +620,7 @@ export default {
       }).catch(function(error){
         vueInstance.eventArray('Error')
         vueInstance.$set('errorCornellEvent', error)
-        this.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/contact/site-feedback">Report this issue.</a>')
+        this.$set('noSingleEventMessage', 'Something went wrong while getting the event, please try again later. <br><a href="/site-feedback">Report this issue.</a>')
       })
     },
     eventArray (source, data) {
