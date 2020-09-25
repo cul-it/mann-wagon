@@ -23,12 +23,14 @@
     <p>Please respect others in this shared space by <a href="https://covid.cornell.edu" title="Cornell University's COVID-19 and Reactivation Planning">complying with your Behavioral Compact</a>.</p>
     <a class="quiet-study__reserve ui teal button" href="https://cornell1.force.com/cu/s/study-space" title="Reserve your quiet study in Mann Library via Cornell Chatter">Reserve quiet study</a>
 
-    <div class="quiet-study__live-occupancy">
-      {% comment %} Vue.js component FTW {% endcomment %}
-      <live-occupancy></live-occupancy>
-    </div>
+    {% if mannlib_hours.status_1707 == 'Open' %}
+      <div class="quiet-study__live-occupancy">
+        {% comment %} Vue.js component FTW {% endcomment %}
+        <live-occupancy></live-occupancy>
+      </div>
 
-    {{ 'liveOccupancy.bundle.js' | javascript_tag }}
+      {{ 'liveOccupancy.bundle.js' | javascript_tag }}
+    {% endif %}
   </div>
 </div>
 
