@@ -32,6 +32,7 @@ export default new Config().merge({
     homePageEvents: './vue/events/homepage-events/homepage-events.js',
     hours: './src/js/hours.js',
     instructionRequest: './src/js/form-instruction-request.js',
+    liveOccupancy: './vue/live-occupancy/live-occupancy.js',
     main: './src/scss/main.scss',
     navSearch: './src/js/nav-search.js',
     softwareList: './vue/software-list/software-list.js',
@@ -75,6 +76,7 @@ export default new Config().merge({
         include: [
           path.join(__dirname, 'src'),
           path.join(__dirname, 'vue/course-reserves'),
+          path.join(__dirname, 'vue/live-occupancy'),
           path.join(__dirname, 'vue/software-list')
         ]
       },
