@@ -55,10 +55,12 @@
   .occupancy {
     margin: .2em 0 0 1em;
     font-size: .7em;
+    color: #0c161d;
   }
   .remaining {
     margin-left: 1em;
     font-size: .9em;
     font-weight: 700;
+    color: #0169b8;
   }
 </style>
