@@ -10,11 +10,6 @@
     grid-template-areas: 'intro' 'questions' 'equipment';
   }
 
-  .equipment__intro {
-    padding-right: 10px;
-    grid-area: intro;
-  }
-
   .equipment__questions {
     @include susy-breakpoint($tablet, $g-tablet) {
       p {
