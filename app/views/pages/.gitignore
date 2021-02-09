@@ -25,6 +25,7 @@
 !about/floors/basement.liquid
 !about/floors/first.liquid
 !about/floors/second.liquid
+!about/floors/third.liquid
 !/course-reserves.liquid # Be specific here due to redirect with same filename at use/borrow-request-renew/course-reserves.liquid
 !help/faculty-instructors/find-your-librarian.liquid
 !help/faculty-instructors/request-course-instruction.liquid
