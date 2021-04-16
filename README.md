@@ -1,6 +1,7 @@
-<a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
+# DEPRECATED!
+As of 2021-04-01, the Mann website has migrated to Wordpress.
 
-# mann-wagon
+## mann-wagon
 [Locomotive](http://locomotivecms.com) site for Mann Library
 
 ### Overview
